@@ -1,8 +1,26 @@
-# Static site — no build step. Publishes the repo root.
+# Netlify config — inquirED reporting dashboard (static site, set up like html-pages)
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
 [build]
+  # No build step — just serving static files from this folder.
   publish = "."
   command = ""
 
+# Friendly URLs: visiting /foo serves /foo.html (real files like /data/*.json serve directly).
+[[redirects]]
+  from = "/*"
+  to = "/:splat.html"
+  status = 200
+  force = false
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Reporting data should always be fresh (it changes each run).
 [[headers]]
   for = "/data/*"
   [headers.values]
