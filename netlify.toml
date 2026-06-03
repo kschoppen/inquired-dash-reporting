@@ -1,0 +1,9 @@
+# Static site — no build step. Publishes the repo root.
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "no-cache"

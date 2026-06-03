@@ -1,0 +1,20 @@
+{
+  "skill": "monthly-marketing-digest",
+  "title": "Monthly Funnel & Revenue",
+  "updated": "2026-06-03",
+  "fiscal_year_start_month": 7,
+  "seasonality": {
+    "peak_close": ["May", "Jun"],
+    "peak_leadgen": ["Jan", "Feb"],
+    "low": ["Jul", "Aug"],
+    "note": "K-12 July–June fiscal cycle: May–Jun = budget-close (revenue peaks, new-lead volume dips); Jan–Feb = peak lead-gen; summer = low."
+  },
+  "months": [
+    {"period": "2025-12", "label": "Dec 2025", "funnel": {"hih": null, "mql": null, "sql": null, "opp": null}, "revenue": {"district_won": 11250, "school_won": 0, "total_won": 11250, "nb_won": null, "existing_won": null, "wins": null}, "web": {"sessions": null, "users": null, "views": null}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
+    {"period": "2026-01", "label": "Jan 2026", "funnel": {"hih": null, "mql": null, "sql": null, "opp": null}, "revenue": {"district_won": 15241.6, "school_won": 0, "total_won": 15241.6, "nb_won": null, "existing_won": null, "wins": null}, "web": {"sessions": null, "users": null, "views": null}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
+    {"period": "2026-02", "label": "Feb 2026", "funnel": {"hih": null, "mql": null, "sql": null, "opp": null}, "revenue": {"district_won": 7805, "school_won": 250, "total_won": 8055, "nb_won": null, "existing_won": null, "wins": null}, "web": {"sessions": null, "users": null, "views": null}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
+    {"period": "2026-03", "label": "Mar 2026", "funnel": {"hih": null, "mql": null, "sql": null, "opp": null}, "revenue": {"district_won": 4000, "school_won": 0, "total_won": 4000, "nb_won": null, "existing_won": null, "wins": null}, "web": {"sessions": null, "users": null, "views": null}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
+    {"period": "2026-04", "label": "Apr 2026", "funnel": {"hih": 73, "mql": 164, "sql": 76, "opp": 78}, "revenue": {"district_won": 11249, "school_won": 1900, "total_won": 13149, "nb_won": null, "existing_won": null, "wins": 6}, "web": {"sessions": 17696, "users": 9215, "views": 25746}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
+    {"period": "2026-05", "label": "May 2026", "funnel": {"hih": 99, "mql": 142, "sql": 67, "opp": 66}, "revenue": {"district_won": 83853.38, "school_won": 21363, "total_won": 105216.38, "nb_won": 103216.38, "existing_won": 2000, "wins": 11, "win_rate_count_pct": 21.2, "win_rate_dollar_pct": 15.3, "by_segment": {"single_small": {"won": 41759, "lost": 133927}, "medium": {"won": 0, "lost": 225518}, "large": {"won": 0, "lost": 71000}, "enterprise": {"won": 63457, "lost": 150000}}}, "web": {"sessions": 39181, "users": 12663, "views": 32590, "yoy": {"sessions": 14781, "users": 9861, "views": 16126}}, "seo": {"tracked": 152, "top10": 33, "avg_position": 4.4, "ranked": 38}}
+  ]
+}
