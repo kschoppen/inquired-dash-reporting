@@ -64,12 +64,12 @@ function renderMonthly(d) {
     </div>
 
     <div class="grid2">
-      <div class="panel"><h3>Closed-won revenue (District + School)</h3><canvas id="cRev"></canvas></div>
-      <div class="panel"><h3>Funnel by stage</h3><canvas id="cFunnel"></canvas></div>
+      <div class="panel"><h3>Closed-won revenue (District + School)</h3><div class="chartbox"><canvas id="cRev"></canvas></div></div>
+      <div class="panel"><h3>Funnel by stage</h3><div class="chartbox"><canvas id="cFunnel"></canvas></div></div>
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Web sessions (GA4)</h3><canvas id="cWeb"></canvas></div>
-      <div class="panel"><h3>${last.label} — won vs lost $ by segment</h3><canvas id="cSeg"></canvas></div>
+      <div class="panel"><h3>Web sessions (GA4)</h3><div class="chartbox"><canvas id="cWeb"></canvas></div></div>
+      <div class="panel"><h3>${last.label} — won vs lost $ by segment</h3><div class="chartbox"><canvas id="cSeg"></canvas></div></div>
     </div>
 
     <div class="panel"><h3>Monthly detail</h3>
