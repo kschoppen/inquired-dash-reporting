@@ -1,6 +1,7 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
   { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
+  { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
 const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
@@ -167,6 +168,16 @@ function dealDrill(last) {
     <table><thead><tr><th>Deal</th><th>Segment</th><th>Pipeline</th><th>Type</th><th>Amount</th></tr></thead><tbody>
     ${ds.map((x) => `<tr><td><a href="${x.url}" target="_blank">${x.name} ↗</a></td><td>${x.segment}</td><td>${x.pipeline}</td><td>${x.type}</td><td>${fmt$(x.amount)}</td></tr>`).join("")}
     </tbody></table></details>`;
+}
+
+// ---- definitions tab ----
+function renderDefinitions(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  document.getElementById("view").innerHTML = `
+    <div class="panel glossary">
+      ${d.intro ? `<p class="insight">${d.intro}</p>` : ""}
+      ${(d.sections || []).map((s) => `<h3>${s.heading}</h3><dl>${s.terms.map((t) => `<dt>${t.term}</dt><dd>${t.def}</dd>`).join("")}</dl>`).join("")}
+    </div>`;
 }
 
 // ---- shell ----

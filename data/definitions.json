@@ -1,0 +1,85 @@
+{
+  "skill": "definitions",
+  "title": "Definitions",
+  "updated": "2026-06-03",
+  "intro": "How every metric on this dashboard is defined, so the numbers mean the same thing to everyone. Marketing leads with leading indicators; revenue and win rate are the lagging scoreboard and are owned by RevOps.",
+  "sections": [
+    {
+      "heading": "Funnel stages",
+      "terms": [
+        {"term": "HIH (High-Intent Lead)", "def": "A contact flagged marketing_intent_tier = High. The earliest read on high-intent demand and our north-star metric. Counted by create date in the month."},
+        {"term": "MQL (Marketing Qualified Lead)", "def": "A contact that entered the Marketing Qualified Lead lifecycle stage in the month."},
+        {"term": "SQL (Sales Qualified Lead)", "def": "A contact that entered the Sales Qualified Lead stage in the month, sales has accepted it as worth pursuing."},
+        {"term": "Opp (Opportunity)", "def": "A contact that entered the Opportunity stage in the month."}
+      ]
+    },
+    {
+      "heading": "Conversion and framing",
+      "terms": [
+        {"term": "MQL to SQL", "def": "SQL stage-entries divided by MQL stage-entries in the month. Directional, not a true cohort rate (a contact entering SQL this month may have become an MQL earlier)."},
+        {"term": "Leading vs lagging", "def": "Leading indicators (HIH, MQL, SQL, attribution) are what marketing controls and acts on. Lagging indicators (revenue, win rate) are sales outcomes that trail the work by roughly two quarters in K-12, shown as context only."}
+      ]
+    },
+    {
+      "heading": "Revenue and deal types",
+      "terms": [
+        {"term": "Closed-won", "def": "Sum of deal amount for non-test, non-RFP deals marked closed-won in the month, across the District and School pipelines. Includes $0 pilots (real business activity)."},
+        {"term": "New Business (NB)", "def": "dealtype of New Business, Pilot, or Pilot Expansion. A pilot converting or expanding counts as new business."},
+        {"term": "Existing / Expansion", "def": "dealtype of Renewal, Upsell, Add On, or Cross Sell (growth within an existing customer)."},
+        {"term": "Wins", "def": "Count of non-test, non-RFP closed-won deals in the month, regardless of dollar amount (so pilots are visible)."}
+      ]
+    },
+    {
+      "heading": "Win rate (lagging, RevOps owns the official number)",
+      "terms": [
+        {"term": "Win rate, monthly (count)", "def": "Won deals divided by won plus lost deals that reached a close stamp in the month. Swings with when sales clears stale deals, so read with care."},
+        {"term": "Win rate, monthly (dollar)", "def": "Won dollars divided by won plus lost dollars in the month. A $300 loss and a $150K loss are not the same, so the dollar view matters."},
+        {"term": "Win rate, cumulative FYTD", "def": "Won divided by all deals in the segment fiscal-year-to-date. This is the basis that matches RevOps. Gated off until the RevOps deal-inclusion definition is confirmed."},
+        {"term": "Test / RFP exclusion", "def": "Internal test deals and competitive RFP deals are excluded from BOTH the won and lost sides."},
+        {"term": "Backlog flush", "def": "When most of a month's losses are aged deals (created more than 90 days ago) cleared in a cleanup, the monthly win rate is distorted and is flagged."}
+      ]
+    },
+    {
+      "heading": "Segments (company size)",
+      "terms": [
+        {"term": "Single / Small", "def": "Deal Segment = Single Site or Small District."},
+        {"term": "Medium", "def": "Deal Segment = Medium District."},
+        {"term": "Large", "def": "Deal Segment = Large District."},
+        {"term": "Enterprise", "def": "Deal Segment = Enterprise District. Segment is company-level, so a single school inherits its parent district's size."}
+      ]
+    },
+    {
+      "heading": "Products and topic areas",
+      "terms": [
+        {"term": "Inquiry Journeys (IJ)", "def": "K-8 social studies curriculum (topic area: Social Studies). Our core, highest-volume product."},
+        {"term": "Inkwell", "def": "K-2 integrated ELA + social studies (topic area: ELA). A growth product."},
+        {"term": "World History (WH)", "def": "Secondary world history curriculum."},
+        {"term": "Great First 8 (GF8)", "def": "Licensed Pre-K / TK early-childhood curriculum (topic area: ECE / Pre-K). A growth product."},
+        {"term": "Product splits (coverage caveat)", "def": "Funnel-by-product uses the contact product_interest field (strong at top of funnel, partial down-funnel). Revenue-by-product uses the deal product_s_ field, which is multi-select, so product splits are directional and do not sum to totals."}
+      ]
+    },
+    {
+      "heading": "Attribution and SEO",
+      "terms": [
+        {"term": "Attribution (UTM completeness)", "def": "Share of new contacts with a utm_campaign populated. Low coverage means source-level cuts are unreliable. Target is 30% or higher."},
+        {"term": "Tracked / Ranked / In top 10", "def": "Keywords we track in Search Atlas, how many currently rank at all, and how many rank in positions 1 to 10."},
+        {"term": "Avg position", "def": "Average Google position across ranked keywords (lower is better)."},
+        {"term": "Topic areas (SEO)", "def": "Keywords grouped by Brand, Social Studies, ELA, ECE / Pre-K, and Other, so we can see where we rank by product line. MoM deltas begin once a second month of history exists."}
+      ]
+    },
+    {
+      "heading": "Calendar and seasonality",
+      "terms": [
+        {"term": "Close / fiscal year", "def": "Oct 1 to Sep 30. Pipeline, targets, and the cumulative win rate are measured against it."},
+        {"term": "District buying season", "def": "Districts buy on the school-year calendar, so deals concentrate in spring and summer (Apr to Aug) for the upcoming year. Revenue peaks May to Jul, offset from the Sep 30 close. New-lead volume builds fall to winter, peaks Jan to Feb, and is low in summer."}
+      ]
+    },
+    {
+      "heading": "Data sources and freshness",
+      "terms": [
+        {"term": "Sources", "def": "Funnel + revenue from HubSpot CRM, web metrics from GA4, organic search from Search Atlas. Backfilled history (Jun 2025 to May 2026) is not test-excluded except the current month."},
+        {"term": "Updated", "def": "The date stamped at the top reflects the last reporting run that wrote this data."}
+      ]
+    }
+  ]
+}

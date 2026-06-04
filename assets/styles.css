@@ -99,5 +99,10 @@ details.kwd summary { cursor: pointer; font-size: 13px; font-weight: 700; color:
 details.kwd table { margin-top: 8px; }
 .flag { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
+.glossary h3 { margin: 22px 0 4px; }
+.glossary h3:first-of-type { margin-top: 8px; }
+.glossary dl { margin: 0 0 6px; }
+.glossary dt { font-weight: 700; color: var(--ink); margin-top: 12px; font-size: 14px; }
+.glossary dd { margin: 3px 0 0; color: #3a3a3a; font-size: 14px; line-height: 1.55; }
 .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 22px; }
 .foot a { color: var(--muted); }
