@@ -182,38 +182,53 @@ function dealDrill(last) {
 }
 
 // ---- weekly tab ----
-let WBREAK = "segment", WSTAGE = "mql", WPROD = "all";
-const WPRODS = [["all", "All products"], ["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"]];
-const SEG_KEYS = [["single_small", "Single/Small", IJ], ["medium", "Medium", PLUM], ["large", "Large", AMBER], ["enterprise", "Enterprise", ROSE]];
-const WPROD_KEYS = [["ij", "Inquiry Journeys", IJ], ["inkwell", "Inkwell", PLUM], ["wh", "World History", AMBER]];
-const STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
+const WK_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"]];
+const WK_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
+const WK_STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
+
+// WoW arrow for a breakdown cell. Suppressed when last week's base < 5 (small-sample noise).
+function wowArrow(cur, prv) {
+  if (cur == null) return "";
+  if (prv == null || prv < 5) return "";
+  const p = (cur - prv) / Math.abs(prv) * 100;
+  if (Math.abs(p) < 5) return '<span class="delta flat">=</span>';
+  return p > 0 ? `<span class="delta up">▲${Math.round(p)}%</span>` : `<span class="delta down">▼${Math.round(Math.abs(p))}%</span>`;
+}
+
+// Always-on breakdown table: rows = product or segment, cols = funnel stages, cell = this week + WoW arrow.
+function wkBreakdownTable(rows, dimKey, last, prev, opts = {}) {
+  const get = (o, k, s) => (o[dimKey] && o[dimKey][k]) ? o[dimKey][k][s] : null;
+  const body = rows.map(([k, label]) => {
+    const cells = WK_STAGES.map(([s]) => `<td>${fmtN(get(last, k, s))} ${wowArrow(get(last, k, s), get(prev, k, s))}</td>`).join("");
+    return `<tr><td>${label}</td>${cells}</tr>`;
+  }).join("");
+  let extra = "";
+  if (opts.untagged) {
+    const cells = WK_STAGES.map(([s]) => {
+      const tot = last.funnel ? last.funnel[s] : null;
+      const tagged = rows.reduce((a, [k]) => a + (get(last, k, s) || 0), 0);
+      return `<td>${tot == null ? "—" : fmtN(tot - tagged)}</td>`;
+    }).join("");
+    extra = `<tr class="untagged"><td>Untagged</td>${cells}</tr>`;
+  }
+  return `<table class="bd"><thead><tr><th></th>${WK_STAGES.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${body}${extra}</tbody></table>`;
+}
 
 function renderWeekly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
   const labels = w.map((x) => x.label);
-  const f = (o, s) => WPROD === "all" ? ((o && o.funnel) ? o.funnel[s] : null) : ((o && o.by_product && o.by_product[WPROD]) ? o.by_product[WPROD][s] : null);
+  const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
-  const pLabel = (WPRODS.find((p) => p[0] === WPROD) || [, ""])[1];
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
-  const dimKey = WBREAK === "segment" ? "by_segment" : "by_product";
-  const keys = WBREAK === "segment" ? SEG_KEYS : WPROD_KEYS;
-  const stageLabel = (STAGES.find((s) => s[0] === WSTAGE) || [, WSTAGE])[1];
-  const bdNote = WBREAK === "segment" ? d.segment_caveat : d.product_caveat;
-  const bdDatasets = keys.map(([k, lab, color]) => ({ label: lab, data: w.map((x) => (x[dimKey] && x[dimKey][k]) ? x[dimKey][k][WSTAGE] : 0), backgroundColor: color, stack: "b" }));
-  const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
+  const covLine = `tagging coverage — HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
 
   document.getElementById("view").innerHTML = `
     <div class="contextbar">
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
       <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
     </div>
-    <div class="toolbar">
-      <span class="tlabel">Product:</span>
-      ${WPRODS.map((p) => `<button class="chip ${p[0]===WPROD?"on":""}" data-wp="${p[0]}">${p[1]}</button>`).join("")}
-      ${WPROD!=="all" ? `<span class="cov">⚠ primary-product subset — funnel cuts only; pipeline · disposition · segment stay all-product</span>` : ""}
-    </div>
-    <div class="section-label">▲ Latest complete week — ${last.label || ""}${WPROD!=="all" ? " · " + pLabel : ""}</div>
+    <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
     <div class="cards">
       ${card("HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
       ${card("MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
@@ -222,22 +237,20 @@ function renderWeekly(d) {
       ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Funnel by week${WPROD!=="all" ? ` — ${pLabel}` : ""}</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW." + (WPROD!=="all" ? ` Showing the <strong>${pLabel}</strong> primary-product cut.` : ""))}</div>
+      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW.")}</div>
       <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="wConv"></canvas></div></div>
     </div>
 
-    <div class="panel">
-      <h3>Funnel breakdown</h3>
-      <div class="toolbar">
-        <span class="tlabel">Cut by:</span>
-        <button class="chip ${WBREAK==="segment"?"on":""}" data-wb="segment">Account segment</button>
-        <button class="chip ${WBREAK==="product"?"on":""}" data-wb="product">Product</button>
-        <span class="tlabel" style="margin-left:12px">Stage:</span>
-        ${STAGES.map(([k,l]) => `<button class="chip ${k===WSTAGE?"on":""}" data-ws="${k}">${l}</button>`).join("")}
+    <div class="section-label">Where it's coming from — ${last.label || ""} <span class="muted">(this week · WoW)</span></div>
+    <div class="grid2">
+      <div class="panel"><h3>By product</h3>
+        ${wkBreakdownTable(WK_PRODUCT_ROWS, "by_product", last, prev, {untagged:true})}
+        ${note("Each contact counts under its single <strong>primary</strong> product (priority Inkwell → IJ → World History), so rows sum to the tagged total — the rest is <em>Untagged</em>. WoW arrow shown only when last week's base was ≥ 5.")}
       </div>
-      <div class="chartbox"><canvas id="wBreak"></canvas></div>
-      ${WBREAK==="segment" ? `<p class="cap">Segment tagging coverage per stage: ${covLine}. Bars sum only tagged contacts, so a stacked total can fall below the headline funnel number.</p>` : ""}
-      ${note(bdNote || "")}
+      <div class="panel"><h3>By account segment</h3>
+        ${wkBreakdownTable(WK_SEGMENT_ROWS, "by_segment", last, prev, {})}
+        ${note("Account segment (clean, single-select; " + covLine + "). Unassigned contacts are excluded here but still in the headline totals. WoW arrow shown only when last week's base was ≥ 5.")}
+      </div>
     </div>
 
     <div class="grid2">
@@ -261,11 +274,6 @@ function renderWeekly(d) {
       <p class="flag">${d.notes || ""}</p>
     </div>`;
 
-  // wire toggles
-  document.querySelectorAll("[data-wp]").forEach((b) => b.onclick = () => { WPROD = b.dataset.wp; renderWeekly(DATA); });
-  document.querySelectorAll("[data-wb]").forEach((b) => b.onclick = () => { WBREAK = b.dataset.wb; renderWeekly(DATA); });
-  document.querySelectorAll("[data-ws]").forEach((b) => b.onclick = () => { WSTAGE = b.dataset.ws; renderWeekly(DATA); });
-
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   mkChart("wFunnel", { type: "line", data: { labels, datasets: [
       { label: "HIH (high-intent)", data: w.map((x) => f(x,"hih")), borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2 },
@@ -274,8 +282,6 @@ function renderWeekly(d) {
     options: { ...botLeg } });
   mkChart("wConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3 }] },
     options: { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
-  mkChart("wBreak", { type: "bar", data: { labels, datasets: bdDatasets },
-    options: { ...botLeg, plugins: { legend: { position: "bottom" }, title: { display: true, text: `${stageLabel} by ${WBREAK === "segment" ? "account segment" : "product"} (stacked, per week)` } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
   mkChart("wDisp", { type: "bar", data: { labels, datasets: [
       { label: "Disqualified", data: w.map((x) => x.disposition && x.disposition.dq), backgroundColor: GREY },
       { label: "Entered Nurture", data: w.map((x) => x.disposition && x.disposition.nurture), backgroundColor: ROSE } ] },
@@ -368,7 +374,7 @@ function renderDefinitions(d) {
 
 // ---- shell ----
 async function loadTab(tab) {
-  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; WPROD = "all"; WBREAK = "segment"; WSTAGE = "mql";
+  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all";
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });

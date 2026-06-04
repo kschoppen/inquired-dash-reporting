@@ -102,6 +102,12 @@ ul.planned li { margin: 2px 0; }
 /* strategic-group color dot */
 .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; vertical-align: middle; }
 
+/* always-on breakdown tables (weekly "where it's coming from") */
+table.bd td .delta { font-size: 11px; margin-left: 3px; }
+table.bd tbody tr:last-child td { font-weight: 700; }
+table.bd tr.untagged td { color: var(--muted); font-weight: 400; font-style: italic; }
+table.bd tr.untagged td:first-child { font-style: normal; }
+
 /* ── Tables ── */
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); }
