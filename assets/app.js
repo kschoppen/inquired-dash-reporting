@@ -1,6 +1,8 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
   { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
+  { id: "weekly", label: "Weekly Funnel", data: "data/weekly-digest.json", render: renderWeekly },
+  { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
   { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
@@ -177,6 +179,76 @@ function dealDrill(last) {
     <table><thead><tr><th>Deal</th><th>Segment</th><th>Pipeline</th><th>Type</th><th>Amount</th></tr></thead><tbody>
     ${ds.map((x) => `<tr><td><a href="${x.url}" target="_blank">${x.name} ↗</a></td><td>${x.segment}</td><td>${x.pipeline}</td><td>${x.type}</td><td>${fmt$(x.amount)}</td></tr>`).join("")}
     </tbody></table></details>`;
+}
+
+// ---- weekly tab ----
+function renderWeekly(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
+  const labels = w.map((x) => x.label);
+  const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
+  const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
+  document.getElementById("view").innerHTML = `
+    <div class="contextbar">
+      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
+      <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
+    </div>
+    <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
+    <div class="cards">
+      ${card("HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
+      ${card("MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
+      ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"}))}
+      ${card("Opp", fmtN(f(last,"opp")), deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"}))}
+      ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div></div>
+      <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="wConv"></canvas></div></div>
+    </div>
+    <div class="panel"><h3>Weekly detail</h3>
+      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>
+      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td></tr>`).join("")}
+      </tbody></table>
+      <p class="flag">${d.notes || ""}</p>
+    </div>`;
+  const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
+  mkChart("wFunnel", { type: "line", data: { labels, datasets: [
+      { label: "HIH (high-intent)", data: w.map((x) => f(x,"hih")), borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2 },
+      { label: "MQL", data: w.map((x) => f(x,"mql")), borderColor: IJ, borderWidth: 3, tension: 0.25, pointRadius: 2 },
+      { label: "SQL", data: w.map((x) => f(x,"sql")), borderColor: PLUM, borderWidth: 3, tension: 0.25, pointRadius: 2 } ] },
+    options: { ...botLeg } });
+  mkChart("wConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3 }] },
+    options: { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
+}
+
+// ---- campaign tab ----
+function renderCampaign(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  const months = d.months || [];
+  if (!months.length) {
+    document.getElementById("view").innerHTML = `
+      <div class="contextbar">
+        <span class="asof">📅 As of <strong>${d.updated}</strong></span>
+        <span class="timing">Campaign quality — full report is a private DM to Kelsey</span>
+      </div>
+      <div class="panel"><h3>Campaign Health — awaiting first run</h3>
+        <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (first Wednesday). The full per-campaign report is a private DM to Kelsey; this dashboard view will track the quality trend by strategic group.</p>
+        <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong>${g}</strong>`).join(" · ")}.</p>
+      </div>`;
+    return;
+  }
+  // Once populated: latest-month group rollup (bar) + HIH/MQL trend.
+  const last = months[months.length - 1], labels = months.map((m) => m.label);
+  const groups = (last.groups || []);
+  document.getElementById("view").innerHTML = `
+    <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group</span></div>
+    <div class="grid2">
+      <div class="panel"><h3>${last.label} — HIH by strategic group</h3><div class="chartbox"><canvas id="cGroup"></canvas></div></div>
+      <div class="panel"><h3>MQL trend (all campaigns)</h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
+    </div>`;
+  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  mkChart("cGroup", { type: "bar", data: { labels: groups.map((g) => g.group), datasets: [{ data: groups.map((g) => g.hih), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  mkChart("cTrend", { type: "line", data: { labels, datasets: [{ label: "MQL", data: months.map((m) => m.total && m.total.mql), borderColor: IJ, tension: 0.25 }] }, options: { ...noLeg } });
 }
 
 // ---- definitions tab ----
