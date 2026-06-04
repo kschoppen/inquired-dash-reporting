@@ -71,7 +71,7 @@ function renderMonthly(d) {
       ${PRODUCT === "all" ? card("Attribution (UTM)", utm != null ? utm + "%" : "—", utm != null && utm < 30 ? '<span class="delta down">below 30% target</span>' : '<span class="delta flat">—</span>') : ""}
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Funnel by stage${PRODUCT !== "all" ? ` — ${pLabel}` : ""}</h3><div class="chartbox"><canvas id="cFunnel"></canvas></div></div>
+      <div class="panel"><h3>Funnel by stage${PRODUCT !== "all" ? ` — ${pLabel}` : ""}</h3><div class="chartbox"><canvas id="cFunnel"></canvas></div>${note("<strong>HIH (high-intent)</strong> = contacts in the High marketing-intent tier — the earliest signal that someone is seriously evaluating, and our north-star metric. It's tracked back to at least early 2024 (this view shows the trailing 12 months). Shown here as the shaded band beneath MQL and SQL.")}</div>
       <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="cConv"></canvas></div>${note(funnelNarrative(d, last, convLast))}</div>
     </div>
     <div class="grid2">
