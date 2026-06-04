@@ -47,6 +47,11 @@ function renderMonthly(d) {
       <span class="cov">${cov ? "⚠ " + cov : ""}</span>
     </div>
 
+    <div class="contextbar">
+      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · trailing 12 months (${m[0].label} – ${last.label})</span>
+      <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
+    </div>
+
     <div class="hero">
       <div class="hero-main">
         <div class="hero-label">★ HIGH-INTENT (HIH) LEADS — north star${PRODUCT !== "all" ? " · " + pLabel : ""}</div>
@@ -89,6 +94,7 @@ function renderMonthly(d) {
     <div class="section-label">🔍 Organic search — by topic area</div>
     <div class="panel">
       ${seoSection(d)}
+      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Search Atlas rank-tracker (project #77489), not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Search Atlas project. MoM movement begins once we have a prior month to compare.</p>
       ${note(seoNarrative(d))}
     </div>
 
@@ -109,7 +115,7 @@ function renderMonthly(d) {
 
   const fds = [{ label: "MQL", data: mql, borderColor: IJ, spanGaps: true }, { label: "SQL", data: sql, borderColor: PLUM, spanGaps: true }];
   if (PRODUCT === "all") fds.push({ label: "Opp", data: ser(m, "opp"), borderColor: ROSE, spanGaps: true });
-  fds.unshift({ label: "HIH", data: hih, borderColor: AMBER, borderDash: [4,3], spanGaps: true });
+  fds.unshift({ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.13)", fill: true, tension: 0.3, pointRadius: 2, spanGaps: true });
   mkChart("cFunnel", { type: "line", data: { labels, datasets: fds }, options: { ...botLeg } });
 
   mkChart("cConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });

@@ -52,6 +52,12 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .chip.on { background: var(--iq-green); color: #fff; border-color: var(--iq-green); }
 .cov { font-size: 12px; color: #8a6d1f; margin-left: 6px; }
 
+/* ── Context / timeline bar ── */
+.contextbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; margin-bottom: 14px; font-size: 12.5px; }
+.contextbar .asof { color: var(--ink); }
+.contextbar .asof strong { color: var(--iq-green); }
+.contextbar .timing { color: var(--muted); }
+
 /* ── HIH hero (north star) ── */
 .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; background: var(--iq-lt-green); border: 1px solid #cfead0; border-left: 5px solid var(--iq-green); border-radius: 14px; padding: 20px 22px; margin-bottom: 10px; }
 @media (max-width: 820px) { .hero { grid-template-columns: 1fr; } }
