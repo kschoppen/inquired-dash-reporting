@@ -182,12 +182,25 @@ function dealDrill(last) {
 }
 
 // ---- weekly tab ----
+let WBREAK = "segment", WSTAGE = "mql";
+const SEG_KEYS = [["single_small", "Single/Small", IJ], ["medium", "Medium", PLUM], ["large", "Large", AMBER], ["enterprise", "Enterprise", ROSE]];
+const WPROD_KEYS = [["ij", "Inquiry Journeys", IJ], ["inkwell", "Inkwell", PLUM], ["wh", "World History", AMBER]];
+const STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
+
 function renderWeekly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
   const labels = w.map((x) => x.label);
   const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
+  const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
+  const dimKey = WBREAK === "segment" ? "by_segment" : "by_product";
+  const keys = WBREAK === "segment" ? SEG_KEYS : WPROD_KEYS;
+  const stageLabel = (STAGES.find((s) => s[0] === WSTAGE) || [, WSTAGE])[1];
+  const bdNote = WBREAK === "segment" ? d.segment_caveat : d.product_caveat;
+  const bdDatasets = keys.map(([k, lab, color]) => ({ label: lab, data: w.map((x) => (x[dimKey] && x[dimKey][k]) ? x[dimKey][k][WSTAGE] : 0), backgroundColor: color, stack: "b" }));
+  const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
+
   document.getElementById("view").innerHTML = `
     <div class="contextbar">
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
@@ -202,15 +215,49 @@ function renderWeekly(d) {
       ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div></div>
+      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW.")}</div>
       <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="wConv"></canvas></div></div>
     </div>
+
+    <div class="panel">
+      <h3>Funnel breakdown</h3>
+      <div class="toolbar">
+        <span class="tlabel">Cut by:</span>
+        <button class="chip ${WBREAK==="segment"?"on":""}" data-wb="segment">Account segment</button>
+        <button class="chip ${WBREAK==="product"?"on":""}" data-wb="product">Product</button>
+        <span class="tlabel" style="margin-left:12px">Stage:</span>
+        ${STAGES.map(([k,l]) => `<button class="chip ${k===WSTAGE?"on":""}" data-ws="${k}">${l}</button>`).join("")}
+      </div>
+      <div class="chartbox"><canvas id="wBreak"></canvas></div>
+      ${WBREAK==="segment" ? `<p class="cap">Segment tagging coverage per stage: ${covLine}. Bars sum only tagged contacts, so a stacked total can fall below the headline funnel number.</p>` : ""}
+      ${note(bdNote || "")}
+    </div>
+
+    <div class="grid2">
+      <div class="panel"><h3>Open pipeline <span class="muted">(snapshot ${pipe.as_of || d.updated})</span></h3>
+        <div class="cards">
+          ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
+          ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
+        </div>
+        ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
+      </div>
+      <div class="panel"><h3>Lead disposition by week <span class="muted">(churn / list cleanup context)</span></h3>
+        <div class="chartbox"><canvas id="wDisp"></canvas></div>
+        ${note("Disqualified + Entered-Nurture counts. Big DQ spikes (e.g. " + Math.max(...w.map(x=>x.disposition?.dq||0)).toLocaleString() + " in one week) are list imports / database cleanup, <strong>not</strong> a funnel signal — they explain volatility in new-contact counts and are why we read stage transitions instead.")}
+      </div>
+    </div>
+
     <div class="panel"><h3>Weekly detail</h3>
-      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>
-      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td></tr>`).join("")}
+      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
+      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${fmtN(x.disposition&&x.disposition.dq)}</td><td>${fmtN(x.disposition&&x.disposition.nurture)}</td></tr>`).join("")}
       </tbody></table>
       <p class="flag">${d.notes || ""}</p>
     </div>`;
+
+  // wire toggles
+  document.querySelectorAll("[data-wb]").forEach((b) => b.onclick = () => { WBREAK = b.dataset.wb; renderWeekly(DATA); });
+  document.querySelectorAll("[data-ws]").forEach((b) => b.onclick = () => { WSTAGE = b.dataset.ws; renderWeekly(DATA); });
+
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   mkChart("wFunnel", { type: "line", data: { labels, datasets: [
       { label: "HIH (high-intent)", data: w.map((x) => f(x,"hih")), borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2 },
@@ -219,9 +266,18 @@ function renderWeekly(d) {
     options: { ...botLeg } });
   mkChart("wConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3 }] },
     options: { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
+  mkChart("wBreak", { type: "bar", data: { labels, datasets: bdDatasets },
+    options: { ...botLeg, plugins: { legend: { position: "bottom" }, title: { display: true, text: `${stageLabel} by ${WBREAK === "segment" ? "account segment" : "product"} (stacked, per week)` } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
+  mkChart("wDisp", { type: "bar", data: { labels, datasets: [
+      { label: "Disqualified", data: w.map((x) => x.disposition && x.disposition.dq), backgroundColor: GREY },
+      { label: "Entered Nurture", data: w.map((x) => x.disposition && x.disposition.nurture), backgroundColor: ROSE } ] },
+    options: { ...botLeg, scales: { y: { beginAtZero: true } } } });
 }
 
 // ---- campaign tab ----
+const GROUP_COLORS = { "Inquiry Journeys": IJ, "Inkwell": PLUM, "Always-on / brand": "#6B7B79", "Re-engagement / ABM": AMBER, "Great First Eight": ROSE };
+const gColor = (g) => GROUP_COLORS[g] || "#6B7B79";
+
 function renderCampaign(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const months = d.months || [];
@@ -232,23 +288,64 @@ function renderCampaign(d) {
         <span class="timing">Campaign quality — full report is a private DM to Kelsey</span>
       </div>
       <div class="panel"><h3>Campaign Health — awaiting first run</h3>
-        <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (first Wednesday). The full per-campaign report is a private DM to Kelsey; this dashboard view will track the quality trend by strategic group.</p>
-        <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong>${g}</strong>`).join(" · ")}.</p>
+        <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (monthly). The full per-campaign report still goes as a private DM to Kelsey; this dashboard is the visual companion that retains it. Once it runs, every element from the DM lands here:</p>
+        <ul class="planned">
+          <li><strong>Headline KPIs</strong> — active campaigns, total contacts, HIH count + share, MQL MoM</li>
+          <li><strong>HIH by strategic group</strong> — the bar chart, colored by group (the product cut: Inquiry Journeys / Inkwell / GF8 are product-aligned)</li>
+          <li><strong>Group rollup table</strong> — contacts · HIH · HIH% · MQL per group</li>
+          <li><strong>Per-campaign quality</strong> — every campaign: total, HIH, HIH%, MQL, MoM, ranked</li>
+          <li><strong>Intent distribution</strong> — % High / Med / Low per campaign (lists ≥100 contacts)</li>
+          <li><strong>MQL trend</strong> across months · <strong>data flags</strong> (low-volume / asset-audit)</li>
+        </ul>
+        <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong style="color:${gColor(g)}">${g}</strong>`).join(" · ")}.</p>
       </div>`;
     return;
   }
-  // Once populated: latest-month group rollup (bar) + HIH/MQL trend.
   const last = months[months.length - 1], labels = months.map((m) => m.label);
-  const groups = (last.groups || []);
+  const groups = last.groups || [], camps = (last.campaigns || []).slice().sort((a, b) => (b.hih || 0) - (a.hih || 0));
+  const t = last.total || {}, flags = last.flags || [];
+  const intentCamps = camps.filter((c) => c.intent && (c.total || 0) >= 100);
+  const grpTotal = (k) => groups.reduce((s, g) => s + (g[k] || 0), 0);
+
   document.getElementById("view").innerHTML = `
-    <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group</span></div>
+    <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group · full detail is a private DM to Kelsey</span></div>
+    ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
+    <div class="section-label">▲ ${last.label} — headline</div>
+    <div class="cards">
+      ${card("Active campaigns", fmtN(t.active_campaigns ?? camps.length))}
+      ${card("Contacts touched", fmtN(t.contacts ?? grpTotal("contacts")))}
+      ${card("HIH leads", fmtN(t.hih ?? grpTotal("hih")), "", "high-intent handraisers")}
+      ${card("HIH share", (t.hih_pct ?? rate(t.hih ?? grpTotal("hih"), t.contacts ?? grpTotal("contacts"))) + "%")}
+      ${card("MQLs", fmtN(t.mql ?? grpTotal("mql")), deltaHTML(t.mql, t.mql_prior, {label:"MoM"}))}
+    </div>
     <div class="grid2">
-      <div class="panel"><h3>${last.label} — HIH by strategic group</h3><div class="chartbox"><canvas id="cGroup"></canvas></div></div>
-      <div class="panel"><h3>MQL trend (all campaigns)</h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
-    </div>`;
+      <div class="panel"><h3>${last.label} — HIH by strategic group</h3><div class="chartbox"><canvas id="cGroup"></canvas></div>
+        ${note("HIH (high-intent) by group is the headline quality read. Inquiry Journeys / Inkwell / Great First Eight are product-aligned, so this doubles as the product cut.")}</div>
+      <div class="panel"><h3>MQL trend <span class="muted">(all campaigns)</span></h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
+    </div>
+    <div class="panel"><h3>Group rollup</h3>
+      <table><thead><tr><th>Strategic group</th><th>Contacts</th><th>HIH</th><th>HIH %</th><th>MQL</th><th>MoM</th></tr></thead><tbody>
+      ${groups.map((g) => `<tr><td><span class="dot" style="background:${gColor(g.group)}"></span>${g.group}</td><td>${fmtN(g.contacts)}</td><td>${fmtN(g.hih)}</td><td>${g.hih_pct ?? rate(g.hih,g.contacts) ?? "—"}%</td><td>${fmtN(g.mql)}</td><td>${deltaHTML(g.mql, g.mql_prior)}</td></tr>`).join("")}
+      </tbody></table></div>
+    <div class="panel"><h3>Per-campaign quality <span class="muted">(ranked by HIH)</span></h3>
+      <table><thead><tr><th>Campaign</th><th>Group</th><th>Contacts</th><th>HIH</th><th>HIH %</th><th>MQL</th><th>MoM</th><th>Flags</th></tr></thead><tbody>
+      ${camps.map((c) => `<tr><td>${c.name}</td><td><span class="dot" style="background:${gColor(c.group)}"></span>${c.group || "—"}</td><td>${fmtN(c.total)}</td><td>${fmtN(c.hih)}</td><td>${c.hih_pct ?? rate(c.hih,c.total) ?? "—"}%</td><td>${fmtN(c.mql)}</td><td>${deltaHTML(c.mql, c.mql_prior)}</td><td>${(c.flags||[]).length ? "⚠️ " + c.flags.join("; ") : ""}</td></tr>`).join("")}
+      </tbody></table></div>
+    ${intentCamps.length ? `<div class="panel"><h3>Intent distribution <span class="muted">(lists ≥100 contacts)</span></h3><div class="chartbox"><canvas id="cIntent"></canvas></div>
+      ${note("Share of each campaign's audience at High / Medium / Low marketing-intent tier. A curated list skewing High is a bright spot; a big list skewing Low is an asset-tagging or targeting flag.")}</div>` : ""}
+    ${flags.length ? `<div class="panel"><h3>Data flags</h3><ul class="planned">${flags.map((x) => `<li>⚠️ ${x}</li>`).join("")}</ul></div>` : ""}`;
+
   const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
-  mkChart("cGroup", { type: "bar", data: { labels: groups.map((g) => g.group), datasets: [{ data: groups.map((g) => g.hih), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
-  mkChart("cTrend", { type: "line", data: { labels, datasets: [{ label: "MQL", data: months.map((m) => m.total && m.total.mql), borderColor: IJ, tension: 0.25 }] }, options: { ...noLeg } });
+  const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
+  mkChart("cGroup", { type: "bar", data: { labels: groups.map((g) => g.group), datasets: [{ data: groups.map((g) => g.hih), backgroundColor: groups.map((g) => gColor(g.group)) }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  mkChart("cTrend", { type: "line", data: { labels, datasets: [{ label: "MQL", data: months.map((m) => m.total && m.total.mql), borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.25 }] }, options: { ...noLeg } });
+  if (intentCamps.length) {
+    mkChart("cIntent", { type: "bar", data: { labels: intentCamps.map((c) => c.name), datasets: [
+        { label: "High", data: intentCamps.map((c) => c.intent.high), backgroundColor: IJ, stack: "i" },
+        { label: "Medium", data: intentCamps.map((c) => c.intent.medium), backgroundColor: PLUM, stack: "i" },
+        { label: "Low", data: intentCamps.map((c) => c.intent.low), backgroundColor: GREY, stack: "i" } ] },
+      options: { ...botLeg, indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true }, y: { stacked: true } } } });
+  }
 }
 
 // ---- definitions tab ----

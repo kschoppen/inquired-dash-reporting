@@ -1,8 +1,8 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-06-03",
-  "notes": "Per-campaign quality (HIH / MQL / lifecycle composite) grouped by strategic priority. The full report is a private DM to Kelsey; this tab tracks the quality trend by group. Populates on the next campaign-analytics-report run — structure only for now (no fabricated data).",
+  "updated": "2026-06-04",
+  "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion (nothing from the DM is lost). Populates on the next campaign-analytics-report run — structure only for now (no fabricated data). Per-month entry shape: { period, label, verdict, total:{active_campaigns,contacts,hih,hih_pct,mql,mql_prior}, groups:[{group,contacts,hih,hih_pct,mql,mql_prior}], campaigns:[{name,group,total,hih,hih_pct,mql,mql_prior,intent:{high,medium,low,unknown},flags:[]}], flags:[] }.",
   "strategic_groups": ["Inquiry Journeys", "Inkwell", "Always-on / brand", "Re-engagement / ABM", "Great First Eight"],
   "months": []
 }
