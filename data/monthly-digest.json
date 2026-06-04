@@ -4,24 +4,1057 @@
   "updated": "2026-06-03",
   "fiscal_year_start_month": 10,
   "seasonality": {
-    "peak_close": ["May", "Jun"],
-    "peak_leadgen": ["Jan", "Feb"],
-    "low": ["Jul", "Aug"],
-    "note": "Close/fiscal year = Oct 1–Sep 30 (pipeline + cumulative win rate measured against it). District buying follows the school year: deals peak spring–summer (Apr–Aug, buying for next school year) — which is why revenue concentrates May–Jul, offset from inquirED's Sep 30 close. Lead-gen builds fall–winter; Jan–Feb peak; summer low."
+    "note": "Close/fiscal year = Oct 1\u2013Sep 30 (pipeline + cumulative win rate measured against it). District buying follows the school year: deals peak spring\u2013summer (Apr\u2013Aug, buying for next school year) \u2014 so revenue concentrates May\u2013Jul, offset from the Sep 30 close. Lead-gen builds fall\u2013winter; Jan\u2013Feb peak; summer low."
   },
-  "notes": "Revenue/funnel/web backfilled from HubSpot + GA4 (Jun 2025–May 2026). Backfill is not test-deal-excluded; the current month (May 2026) uses the clean, test+RFP-excluded figures from the digest. SEO baseline starts May 2026.",
+  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run).",
   "months": [
-    {"period": "2025-06", "label": "Jun 2025", "funnel": {"hih": 82, "mql": 127, "sql": 38, "opp": 44}, "revenue": {"district_won": 320014.36, "school_won": 20806.51, "total_won": 340820.87, "wins": 26}, "web": {"sessions": 9508, "users": 7404, "views": 11179}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-07", "label": "Jul 2025", "funnel": {"hih": 49, "mql": 137, "sql": 52, "opp": 53}, "revenue": {"district_won": 467121.79, "school_won": 53244, "total_won": 520365.79, "wins": 34}, "web": {"sessions": 7962, "users": 5941, "views": 9068}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-08", "label": "Aug 2025", "funnel": {"hih": 13, "mql": 195, "sql": 101, "opp": 98}, "revenue": {"district_won": 35735.84, "school_won": 20954, "total_won": 56689.84, "wins": 23}, "web": {"sessions": 11372, "users": 8455, "views": 13315}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-09", "label": "Sep 2025", "funnel": {"hih": 27, "mql": 305, "sql": 120, "opp": 120}, "revenue": {"district_won": 20287.41, "school_won": 2498.36, "total_won": 22785.77, "wins": 12}, "web": {"sessions": 26003, "users": 14932, "views": 37996}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-10", "label": "Oct 2025", "funnel": {"hih": 33, "mql": 682, "sql": 497, "opp": 499}, "revenue": {"district_won": 4731, "school_won": 0, "total_won": 4731, "wins": 8}, "web": {"sessions": 35976, "users": 22925, "views": 55655}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-11", "label": "Nov 2025", "funnel": {"hih": 86, "mql": 144, "sql": 43, "opp": 42}, "revenue": {"district_won": 5184.3, "school_won": 0, "total_won": 5184.3, "wins": 5}, "web": {"sessions": 21037, "users": 12087, "views": 28515}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2025-12", "label": "Dec 2025", "funnel": {"hih": 36, "mql": 136, "sql": 70, "opp": 71}, "revenue": {"district_won": 11250, "school_won": 0, "total_won": 11250, "wins": 5}, "web": {"sessions": 14977, "users": 7396, "views": 21778}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2026-01", "label": "Jan 2026", "funnel": {"hih": 75, "mql": 145, "sql": 37, "opp": 30}, "revenue": {"district_won": 15241.6, "school_won": 0, "total_won": 15241.6, "wins": 9}, "web": {"sessions": 19498, "users": 9910, "views": 27991}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2026-02", "label": "Feb 2026", "funnel": {"hih": 89, "mql": 313, "sql": 69, "opp": 69}, "revenue": {"district_won": 7805, "school_won": 250, "total_won": 8055, "wins": 8}, "web": {"sessions": 21773, "users": 12063, "views": 34254}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2026-03", "label": "Mar 2026", "funnel": {"hih": 70, "mql": 437, "sql": 68, "opp": 65}, "revenue": {"district_won": 4000, "school_won": 0, "total_won": 4000, "wins": 4}, "web": {"sessions": 23590, "users": 12652, "views": 33258}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2026-04", "label": "Apr 2026", "funnel": {"hih": 73, "mql": 164, "sql": 76, "opp": 78}, "revenue": {"district_won": 11249, "school_won": 1900, "total_won": 13149, "wins": 6}, "web": {"sessions": 17696, "users": 9215, "views": 25746}, "seo": {"tracked": null, "top10": null, "avg_position": null}},
-    {"period": "2026-05", "label": "May 2026", "funnel": {"hih": 99, "mql": 142, "sql": 67, "opp": 66}, "revenue": {"district_won": 83853.38, "school_won": 21363, "total_won": 105216.38, "nb_won": 103216.38, "existing_won": 2000, "wins": 11, "win_rate_count_pct": 21.2, "win_rate_dollar_pct": 15.3, "by_segment": {"single_small": {"won": 41759, "lost": 133927}, "medium": {"won": 0, "lost": 225518}, "large": {"won": 0, "lost": 71000}, "enterprise": {"won": 63457, "lost": 150000}}}, "quality": {"mql_to_sql_pct": 47.2, "utm_completeness_pct": 5.86, "sql_by_source": [["OFFLINE", 29], ["DIRECT", 27], ["PAID_SEARCH", 3], ["ORGANIC", 3], ["OTHER", 2], ["EMAIL", 1]]}, "web": {"sessions": 39181, "users": 12663, "views": 32590, "yoy": {"sessions": 14781, "users": 9861, "views": 16126}}, "seo": {"tracked": 152, "top10": 33, "avg_position": 4.4, "ranked": 38}}
+    {
+      "period": "2025-06",
+      "label": "Jun 2025",
+      "funnel": {
+        "hih": 82,
+        "mql": 127,
+        "sql": 38,
+        "opp": 44
+      },
+      "revenue": {
+        "district_won": 320014.36,
+        "school_won": 20806.51,
+        "total_won": 340820.87,
+        "wins": 26
+      },
+      "web": {
+        "sessions": 9508,
+        "users": 7404,
+        "views": 11179
+      },
+      "by_product": {
+        "ij": {
+          "hih": 51,
+          "mql": 53,
+          "sql": 11
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 125843.08,
+        "inkwell": 0,
+        "wh": 68055,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-07",
+      "label": "Jul 2025",
+      "funnel": {
+        "hih": 49,
+        "mql": 137,
+        "sql": 52,
+        "opp": 53
+      },
+      "revenue": {
+        "district_won": 467121.79,
+        "school_won": 53244,
+        "total_won": 520365.79,
+        "wins": 34
+      },
+      "web": {
+        "sessions": 7962,
+        "users": 5941,
+        "views": 9068
+      },
+      "by_product": {
+        "ij": {
+          "hih": 31,
+          "mql": 52,
+          "sql": 24
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 3,
+          "sql": 0
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 1,
+          "sql": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 302400.16,
+        "inkwell": 0,
+        "wh": 16797,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-08",
+      "label": "Aug 2025",
+      "funnel": {
+        "hih": 13,
+        "mql": 195,
+        "sql": 101,
+        "opp": 98
+      },
+      "revenue": {
+        "district_won": 35735.84,
+        "school_won": 20954,
+        "total_won": 56689.84,
+        "wins": 23
+      },
+      "web": {
+        "sessions": 11372,
+        "users": 8455,
+        "views": 13315
+      },
+      "by_product": {
+        "ij": {
+          "hih": 8,
+          "mql": 95,
+          "sql": 30
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 7,
+          "sql": 2
+        },
+        "inkwell": {
+          "hih": 2,
+          "mql": 4,
+          "sql": 2
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 51302.84,
+        "inkwell": 0,
+        "wh": 4850,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-09",
+      "label": "Sep 2025",
+      "funnel": {
+        "hih": 27,
+        "mql": 305,
+        "sql": 120,
+        "opp": 120
+      },
+      "revenue": {
+        "district_won": 20287.41,
+        "school_won": 2498.36,
+        "total_won": 22785.77,
+        "wins": 12
+      },
+      "web": {
+        "sessions": 26003,
+        "users": 14932,
+        "views": 37996
+      },
+      "by_product": {
+        "ij": {
+          "hih": 25,
+          "mql": 179,
+          "sql": 61
+        },
+        "wh": {
+          "hih": 2,
+          "mql": 10,
+          "sql": 4
+        },
+        "inkwell": {
+          "hih": 0,
+          "mql": 15,
+          "sql": 2
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 22785.77,
+        "inkwell": 0,
+        "wh": 10770,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-10",
+      "label": "Oct 2025",
+      "funnel": {
+        "hih": 33,
+        "mql": 682,
+        "sql": 497,
+        "opp": 499
+      },
+      "revenue": {
+        "district_won": 4731,
+        "school_won": 0,
+        "total_won": 4731,
+        "wins": 8
+      },
+      "web": {
+        "sessions": 35976,
+        "users": 22925,
+        "views": 55655
+      },
+      "by_product": {
+        "ij": {
+          "hih": 24,
+          "mql": 176,
+          "sql": 55
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 19,
+          "sql": 2
+        },
+        "inkwell": {
+          "hih": 6,
+          "mql": 56,
+          "sql": 8
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 4731,
+        "inkwell": 0,
+        "wh": 4059,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-11",
+      "label": "Nov 2025",
+      "funnel": {
+        "hih": 86,
+        "mql": 144,
+        "sql": 43,
+        "opp": 42
+      },
+      "revenue": {
+        "district_won": 5184.3,
+        "school_won": 0,
+        "total_won": 5184.3,
+        "wins": 5
+      },
+      "web": {
+        "sessions": 21037,
+        "users": 12087,
+        "views": 28515
+      },
+      "by_product": {
+        "ij": {
+          "hih": 66,
+          "mql": 96,
+          "sql": 26
+        },
+        "wh": {
+          "hih": 25,
+          "mql": 27,
+          "sql": 2
+        },
+        "inkwell": {
+          "hih": 6,
+          "mql": 12,
+          "sql": 1
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 5184.3,
+        "inkwell": 0,
+        "wh": 0,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2025-12",
+      "label": "Dec 2025",
+      "funnel": {
+        "hih": 36,
+        "mql": 136,
+        "sql": 70,
+        "opp": 71
+      },
+      "revenue": {
+        "district_won": 11250,
+        "school_won": 0,
+        "total_won": 11250,
+        "wins": 5
+      },
+      "web": {
+        "sessions": 14977,
+        "users": 7396,
+        "views": 21778
+      },
+      "by_product": {
+        "ij": {
+          "hih": 24,
+          "mql": 93,
+          "sql": 50
+        },
+        "wh": {
+          "hih": 7,
+          "mql": 10,
+          "sql": 2
+        },
+        "inkwell": {
+          "hih": 7,
+          "mql": 13,
+          "sql": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 11250,
+        "inkwell": 0,
+        "wh": 11250,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2026-01",
+      "label": "Jan 2026",
+      "funnel": {
+        "hih": 75,
+        "mql": 145,
+        "sql": 37,
+        "opp": 30
+      },
+      "revenue": {
+        "district_won": 15241.6,
+        "school_won": 0,
+        "total_won": 15241.6,
+        "wins": 9
+      },
+      "web": {
+        "sessions": 19498,
+        "users": 9910,
+        "views": 27991
+      },
+      "by_product": {
+        "ij": {
+          "hih": 67,
+          "mql": 110,
+          "sql": 21
+        },
+        "wh": {
+          "hih": 13,
+          "mql": 19,
+          "sql": 3
+        },
+        "inkwell": {
+          "hih": 4,
+          "mql": 10,
+          "sql": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 15241.6,
+        "inkwell": 0,
+        "wh": 7000,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2026-02",
+      "label": "Feb 2026",
+      "funnel": {
+        "hih": 89,
+        "mql": 313,
+        "sql": 69,
+        "opp": 69
+      },
+      "revenue": {
+        "district_won": 7805,
+        "school_won": 250,
+        "total_won": 8055,
+        "wins": 8
+      },
+      "web": {
+        "sessions": 21773,
+        "users": 12063,
+        "views": 34254
+      },
+      "by_product": {
+        "ij": {
+          "hih": 76,
+          "mql": 145,
+          "sql": 35
+        },
+        "wh": {
+          "hih": 11,
+          "mql": 14,
+          "sql": 8
+        },
+        "inkwell": {
+          "hih": 5,
+          "mql": 18,
+          "sql": 3
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 8055,
+        "inkwell": 0,
+        "wh": 8055,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2026-03",
+      "label": "Mar 2026",
+      "funnel": {
+        "hih": 70,
+        "mql": 437,
+        "sql": 68,
+        "opp": 65
+      },
+      "revenue": {
+        "district_won": 4000,
+        "school_won": 0,
+        "total_won": 4000,
+        "wins": 4
+      },
+      "web": {
+        "sessions": 23590,
+        "users": 12652,
+        "views": 33258
+      },
+      "by_product": {
+        "ij": {
+          "hih": 58,
+          "mql": 115,
+          "sql": 21
+        },
+        "wh": {
+          "hih": 11,
+          "mql": 15,
+          "sql": 3
+        },
+        "inkwell": {
+          "hih": 6,
+          "mql": 157,
+          "sql": 6
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 4,
+          "sql": 3
+        }
+      },
+      "rev_by_product": {
+        "ij": 4000,
+        "inkwell": 0,
+        "wh": 0,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2026-04",
+      "label": "Apr 2026",
+      "funnel": {
+        "hih": 73,
+        "mql": 164,
+        "sql": 76,
+        "opp": 78
+      },
+      "revenue": {
+        "district_won": 11249,
+        "school_won": 1900,
+        "total_won": 13149,
+        "wins": 6
+      },
+      "web": {
+        "sessions": 17696,
+        "users": 9215,
+        "views": 25746
+      },
+      "by_product": {
+        "ij": {
+          "hih": 64,
+          "mql": 65,
+          "sql": 18
+        },
+        "wh": {
+          "hih": 13,
+          "mql": 16,
+          "sql": 3
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 13,
+          "sql": 5
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 5260,
+        "inkwell": 5389,
+        "wh": 2500,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null
+      }
+    },
+    {
+      "period": "2026-05",
+      "label": "May 2026",
+      "funnel": {
+        "hih": 99,
+        "mql": 142,
+        "sql": 67,
+        "opp": 66
+      },
+      "revenue": {
+        "district_won": 83853.38,
+        "school_won": 21363,
+        "total_won": 105216.38,
+        "wins": 11,
+        "nb_won": 103216.38,
+        "existing_won": 2000,
+        "win_rate_count_pct": 21.2,
+        "win_rate_dollar_pct": 15.3,
+        "by_segment": {
+          "single_small": {
+            "won": 41759,
+            "lost": 133927
+          },
+          "medium": {
+            "won": 0,
+            "lost": 225518
+          },
+          "large": {
+            "won": 0,
+            "lost": 71000
+          },
+          "enterprise": {
+            "won": 63457,
+            "lost": 150000
+          }
+        }
+      },
+      "web": {
+        "sessions": 39181,
+        "users": 12663,
+        "views": 32590,
+        "yoy": {
+          "sessions": 14781,
+          "users": 9861,
+          "views": 16126
+        }
+      },
+      "by_product": {
+        "ij": {
+          "hih": 79,
+          "mql": 73,
+          "sql": 28
+        },
+        "wh": {
+          "hih": 15,
+          "mql": 16,
+          "sql": 4
+        },
+        "inkwell": {
+          "hih": 16,
+          "mql": 21,
+          "sql": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0
+        }
+      },
+      "rev_by_product": {
+        "ij": 96832.38,
+        "inkwell": 8389,
+        "wh": 15813,
+        "gf8": 0
+      },
+      "seo": {
+        "tracked": 152,
+        "top10": 33,
+        "avg_position": 4.4,
+        "ranked": 38
+      },
+      "quality": {
+        "mql_to_sql_pct": 47.2,
+        "utm_completeness_pct": 5.86,
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            29
+          ],
+          [
+            "DIRECT",
+            27
+          ],
+          [
+            "PAID_SEARCH",
+            3
+          ],
+          [
+            "ORGANIC",
+            3
+          ],
+          [
+            "OTHER",
+            2
+          ],
+          [
+            "EMAIL",
+            1
+          ]
+        ]
+      },
+      "hih_by_source": [
+        [
+          "Direct",
+          81
+        ],
+        [
+          "Organic Search",
+          8
+        ],
+        [
+          "Paid Search",
+          4
+        ],
+        [
+          "Email",
+          2
+        ],
+        [
+          "Organic Social",
+          2
+        ],
+        [
+          "Referrals",
+          1
+        ],
+        [
+          "AI Referrals",
+          1
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Puyallup School District \u2014 IJ (Pilot Expansion)",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 60457.38,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44376900148"
+        },
+        {
+          "name": "St. Augustine Preparatory Academy, WI \u2014 SS (Pilot Expansion)",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 12813,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53763015561"
+        },
+        {
+          "name": "Dunecrest American School, IT \u2014 SS (Pilot Expansion)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot Expansion",
+          "amount": 7108,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/47828474373"
+        },
+        {
+          "name": "Global School Brooklyn \u2014 Inkwell",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 6389,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57979974267"
+        },
+        {
+          "name": "Harney County School District 3, OR \u2014 SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "New Business",
+          "amount": 6000,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/48172085135"
+        },
+        {
+          "name": "Casas Elementary CPS, IL \u2014 SS",
+          "segment": "Enterprise",
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 3000,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56896844358"
+        },
+        {
+          "name": "Pierce City R-VI, MO \u2014 3-5",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "New Business",
+          "amount": 2583,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53266495564"
+        },
+        {
+          "name": "Greater Commonwealth Virtual School, MA \u2014 SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 2500,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57856225691"
+        },
+        {
+          "name": "Nicaragua Christian Academy, IT \u2014 SS (Pilot Expansion)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot Expansion",
+          "amount": 2366,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/45679981575"
+        },
+        {
+          "name": "Bornblum Jewish Community School, TN \u2014 Inkwell",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Upsell",
+          "amount": 2000,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40433681510"
+        },
+        {
+          "name": "Iowa City Community School District, IA \u2014 Inkwell Pilot",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Cross Sell",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40445887574"
+        }
+      ]
+    }
+  ],
+  "seo_topics": [
+    {
+      "topic": "Brand",
+      "tracked": 24,
+      "ranked": 17,
+      "top10": 17,
+      "avg_position": 1.1,
+      "keywords": [
+        {
+          "kw": "inquired",
+          "pos": 1,
+          "vol": 60500
+        },
+        {
+          "kw": "inquiry journeys",
+          "pos": 1,
+          "vol": 110
+        },
+        {
+          "kw": "inquired curriculum",
+          "pos": 1,
+          "vol": 110
+        },
+        {
+          "kw": "inquired social studies",
+          "pos": 1,
+          "vol": 30
+        },
+        {
+          "kw": "inquired ed",
+          "pos": 1,
+          "vol": 20
+        },
+        {
+          "kw": "inkwell ela",
+          "pos": 1,
+          "vol": 0
+        },
+        {
+          "kw": "inquired prek",
+          "pos": 1,
+          "vol": 0
+        },
+        {
+          "kw": "inquired early childhood",
+          "pos": 1,
+          "vol": 0
+        }
+      ]
+    },
+    {
+      "topic": "Social Studies (IJ)",
+      "tracked": 29,
+      "ranked": 15,
+      "top10": 10,
+      "avg_position": 7.7,
+      "keywords": [
+        {
+          "kw": "inquiry based social studies",
+          "pos": 1,
+          "vol": 110
+        },
+        {
+          "kw": "inquiry based learning social studies",
+          "pos": 1,
+          "vol": 110
+        },
+        {
+          "kw": "best elementary social studies curriculum",
+          "pos": 5,
+          "vol": 10
+        },
+        {
+          "kw": "k-5 social studies pilot",
+          "pos": 5,
+          "vol": 0
+        },
+        {
+          "kw": "elementary social studies curriculum",
+          "pos": 6,
+          "vol": 320
+        },
+        {
+          "kw": "k-2 social studies curriculum",
+          "pos": 9,
+          "vol": 0
+        },
+        {
+          "kw": "hqim social studies",
+          "pos": 11,
+          "vol": 0
+        },
+        {
+          "kw": "california social studies curriculum",
+          "pos": 11,
+          "vol": 40
+        }
+      ]
+    },
+    {
+      "topic": "ELA (Inkwell)",
+      "tracked": 47,
+      "ranked": 3,
+      "top10": 3,
+      "avg_position": 6.7,
+      "keywords": [
+        {
+          "kw": "ela and social studies integration",
+          "pos": 6,
+          "vol": 0
+        },
+        {
+          "kw": "integrated reading and social studies",
+          "pos": 7,
+          "vol": 0
+        },
+        {
+          "kw": "integrated ela and social studies curriculum",
+          "pos": 7,
+          "vol": 0
+        },
+        {
+          "kw": "integrated literacy curriculum",
+          "pos": null,
+          "vol": 10
+        },
+        {
+          "kw": "second grade ela curriculum",
+          "pos": null,
+          "vol": 0
+        },
+        {
+          "kw": "amplify ela alternative",
+          "pos": null,
+          "vol": 0
+        },
+        {
+          "kw": "comprehensive k-2 ela",
+          "pos": null,
+          "vol": 0
+        }
+      ]
+    },
+    {
+      "topic": "ECE / Pre-K (GF8)",
+      "tracked": 20,
+      "ranked": 0,
+      "top10": 0,
+      "avg_position": null,
+      "keywords": [
+        {
+          "kw": "preschool curriculum",
+          "pos": null,
+          "vol": 6600
+        },
+        {
+          "kw": "prek curriculum",
+          "pos": null,
+          "vol": 2400
+        },
+        {
+          "kw": "early childhood curriculum",
+          "pos": null,
+          "vol": 1900
+        },
+        {
+          "kw": "early childhood education curriculum",
+          "pos": null,
+          "vol": 880
+        },
+        {
+          "kw": "transitional kindergarten curriculum",
+          "pos": null,
+          "vol": 140
+        },
+        {
+          "kw": "best prek curriculum",
+          "pos": null,
+          "vol": 90
+        }
+      ]
+    },
+    {
+      "topic": "Other / generic",
+      "tracked": 32,
+      "ranked": 3,
+      "top10": 3,
+      "avg_position": 4.3,
+      "keywords": [
+        {
+          "kw": "inquire ed curriculum",
+          "pos": 1,
+          "vol": 0
+        },
+        {
+          "kw": "inquiry curriculum",
+          "pos": 2,
+          "vol": 110
+        },
+        {
+          "kw": "ink well curriculum",
+          "pos": 10,
+          "vol": 0
+        },
+        {
+          "kw": "ckla alternative",
+          "pos": null,
+          "vol": 0
+        },
+        {
+          "kw": "el education alternative",
+          "pos": null,
+          "vol": 0
+        },
+        {
+          "kw": "studies weekly alternative",
+          "pos": null,
+          "vol": 0
+        }
+      ]
+    }
   ]
 }
