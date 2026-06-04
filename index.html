@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inquirED — Reporting Dashboard</title>
+  <title>inquirED — Reporting (Internal)</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
   <script src="assets/chart.umd.min.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">inquir<span>ED</span> &nbsp;·&nbsp; Reporting</div>
-    <div class="updated" id="updated"></div>
+  <header class="site-header">
+    <div class="brand-main">inquir<span>ED</span> &nbsp;Reporting</div>
+    <div class="header-right">
+      <span class="header-badge">Internal</span>
+      <span class="updated" id="updated"></span>
+    </div>
   </header>
   <nav class="tabs" id="tabs"></nav>
   <main id="view"><div class="loading">Loading…</div></main>
   <footer class="foot">
-    Static dashboard · regenerated each reporting run · data in <code>/data/*.json</code>
+    Internal reporting dashboard · managed in <a href="https://github.com/kschoppen/inquired-dash-reporting" target="_blank" rel="noopener">kschoppen/inquired-dash-reporting</a> · Netlify auto-deploys on push to main
   </footer>
   <script src="assets/app.js"></script>
 </body>

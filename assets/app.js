@@ -2,7 +2,8 @@
 const TABS = [
   { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
 ];
-const IJ = "#4B7774", IJ_FADE = "rgba(75,119,116,0.35)", ROSE = "#B02660", PLUM = "#4F164C", AMBER = "#C77D29", GREY = "rgba(120,130,128,0.5)";
+// inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
+const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
 const PRODUCTS = [["all","All products"],["ij","Inquiry Journeys"],["inkwell","Inkwell (ELA)"],["wh","World History"],["gf8","Great First 8"]];
 let DATA = null, PRODUCT = "all";
 const charts = [];
@@ -103,7 +104,7 @@ function renderMonthly(d) {
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
 
-  mkChart("cHih", { type: "line", data: { labels, datasets: [{ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(199,125,41,0.18)", fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg } });
+  mkChart("cHih", { type: "line", data: { labels, datasets: [{ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg } });
 
   const fds = [{ label: "MQL", data: mql, borderColor: IJ, spanGaps: true }, { label: "SQL", data: sql, borderColor: PLUM, spanGaps: true }];
   if (PRODUCT === "all") fds.push({ label: "Opp", data: ser(m, "opp"), borderColor: ROSE, spanGaps: true });
@@ -121,7 +122,7 @@ function renderMonthly(d) {
   if (PRODUCT === "all") {
     mkChart("cRev", { type: "bar", data: { labels, datasets: [
       { label: "District", data: m.map((x) => x.revenue.district_won), backgroundColor: IJ_FADE, stack: "r" },
-      { label: "School", data: m.map((x) => x.revenue.school_won), backgroundColor: "rgba(176,38,96,0.35)", stack: "r" }] },
+      { label: "School", data: m.map((x) => x.revenue.school_won), backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }] },
       options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
   } else {
     mkChart("cRev", { type: "bar", data: { labels, datasets: [{ label: pLabel + " won $", data: revSer(m), backgroundColor: IJ }] }, options: { ...noLeg, scales: { y: { beginAtZero: true } } } });
