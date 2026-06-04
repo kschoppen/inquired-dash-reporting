@@ -83,7 +83,7 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .chartbox canvas { position: absolute; inset: 0; }
 
 /* ── Insight ("so what") ── */
-.insight { background: var(--iq-beige); border-radius: 10px; padding: 10px 13px; margin: 12px 0 0; font-size: 13px; color: #3a3a3a; line-height: 1.5; }
+.insight { background: #F1F2F3; border-radius: 10px; padding: 10px 13px; margin: 12px 0 0; font-size: 13px; color: #3a3a3a; line-height: 1.5; }
 
 /* ── Tables ── */
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
