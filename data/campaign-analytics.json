@@ -2,7 +2,41 @@
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
   "updated": "2026-06-04",
-  "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion (nothing from the DM is lost). Populates on the next campaign-analytics-report run — structure only for now (no fabricated data). Per-month entry shape: { period, label, verdict, total:{active_campaigns,contacts,hih,hih_pct,mql,mql_prior}, groups:[{group,contacts,hih,hih_pct,mql,mql_prior}], campaigns:[{name,group,total,hih,hih_pct,mql,mql_prior,intent:{high,medium,low,unknown},flags:[]}], flags:[] }.",
+  "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. First populated run = May 2026 (complete-month vs April), run 2026-06-04. Bi-monthly going forward (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts — a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated.",
   "strategic_groups": ["Inquiry Journeys", "Inkwell", "Always-on / brand", "Re-engagement / ABM", "Great First Eight"],
-  "months": []
+  "months": [
+    {
+      "period": "2026-05", "label": "May 2026",
+      "verdict": "May MQLs down ~43% MoM (21 vs 37) — in line with the spring decision-crunch slowdown, not a lead-gen failure. Standing high-intent is strongest in Inquiry Journeys (Navigating Curriculum 44% HIH) and Always-on (MKTG Nurture 64%); Account Driven is now live (478 contacts) but cold (5% HIH, 291 unknown-intent).",
+      "total": { "active_campaigns": 12, "contacts": 2242, "hih": 469, "hih_pct": 20.9, "mql": 21, "mql_prior": 37 },
+      "groups": [
+        { "group": "Inkwell", "contacts": 692, "hih": 149, "hih_pct": 21.5, "mql": 8, "mql_prior": 17 },
+        { "group": "Inquiry Journeys", "contacts": 778, "hih": 183, "hih_pct": 23.5, "mql": 8, "mql_prior": 14 },
+        { "group": "Always-on / brand", "contacts": 286, "hih": 109, "hih_pct": 38.1, "mql": 2, "mql_prior": 4 },
+        { "group": "Re-engagement / ABM", "contacts": 483, "hih": 28, "hih_pct": 5.8, "mql": 3, "mql_prior": 2 },
+        { "group": "Great First Eight", "contacts": 3, "hih": 0, "hih_pct": 0, "mql": 0, "mql_prior": 0 }
+      ],
+      "campaigns": [
+        { "name": "Navigating Curriculum", "group": "Inquiry Journeys", "total": 262, "hih": 114, "hih_pct": 43.5, "mql": 0, "mql_prior": 1, "intent": { "high": 114, "medium": 23, "low": 125, "unknown": 0 }, "flags": [] },
+        { "name": "Inkwell", "group": "Inkwell", "total": 277, "hih": 78, "hih_pct": 28.2, "mql": 6, "mql_prior": 9, "intent": { "high": 78, "medium": 107, "low": 27, "unknown": 65 }, "flags": [] },
+        { "name": "ELA Webinars", "group": "Inkwell", "total": 415, "hih": 71, "hih_pct": 17.1, "mql": 2, "mql_prior": 8, "intent": { "high": 71, "medium": 270, "low": 40, "unknown": 34 }, "flags": [] },
+        { "name": "PPC Ads", "group": "Always-on / brand", "total": 222, "hih": 69, "hih_pct": 31.1, "mql": 2, "mql_prior": 2, "intent": { "high": 69, "medium": 71, "low": 16, "unknown": 66 }, "flags": [] },
+        { "name": "TL Webinars", "group": "Inquiry Journeys", "total": 505, "hih": 60, "hih_pct": 11.9, "mql": 6, "mql_prior": 13, "intent": { "high": 60, "medium": 39, "low": 356, "unknown": 50 }, "flags": [] },
+        { "name": "MKTG Nurture", "group": "Always-on / brand", "total": 63, "hih": 40, "hih_pct": 63.5, "mql": 0, "mql_prior": 2, "intent": null, "flags": [] },
+        { "name": "Account Driven", "group": "Re-engagement / ABM", "total": 478, "hih": 24, "hih_pct": 5.0, "mql": 3, "mql_prior": 2, "intent": { "high": 24, "medium": 23, "low": 140, "unknown": 291 }, "flags": ["mostly unenriched intent (291 unknown) — cold ABM upload"] },
+        { "name": "Product Webinars", "group": "Inquiry Journeys", "total": 11, "hih": 9, "hih_pct": 81.8, "mql": 2, "mql_prior": 0, "intent": null, "flags": [] },
+        { "name": "MQL Re-engagement", "group": "Re-engagement / ABM", "total": 5, "hih": 4, "hih_pct": 80.0, "mql": 0, "mql_prior": 0, "intent": null, "flags": ["total<10 — asset-attachment audit"] },
+        { "name": "Great First Eight", "group": "Great First Eight", "total": 3, "hih": 0, "hih_pct": 0, "mql": 0, "mql_prior": 0, "intent": null, "flags": ["total<10 — deprioritized per strategy"] },
+        { "name": "Evergreen Social", "group": "Always-on / brand", "total": 1, "hih": 0, "hih_pct": 0, "mql": 0, "mql_prior": 0, "intent": null, "flags": ["total<10 — pure organic, minimal list-add expected"] },
+        { "name": "Symposium", "group": "Inquiry Journeys", "total": 0, "hih": 0, "hih_pct": 0, "mql": 0, "mql_prior": 0, "intent": null, "flags": ["0 contacts — target-list-driven; needs list-membership OR group"] }
+      ],
+      "flags": [
+        "Account Driven (10096) now returns 478 contacts — its list membership was added since the April run (previously 0). Intent is mostly unenriched (291 of 478 unknown).",
+        "Symposium (10097): 0 contacts — target-list-driven; still needs a list-membership OR group added to its filter.",
+        "Below the 10-contact audit threshold: Great First Eight (3), MQL Re-engagement (5), Evergreen Social (1).",
+        "Contacts + HIH are gross list-membership counts — a contact in multiple lists is counted in each; group/total figures are not deduplicated.",
+        "MQL volume is month-scoped and small across most lists; HIH count + share is the headline quality signal."
+      ]
+    }
+  ]
 }

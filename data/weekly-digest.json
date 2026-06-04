@@ -2,7 +2,7 @@
   "skill": "weekly-marketing-digest",
   "title": "Weekly Funnel",
   "updated": "2026-06-04",
-  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (IJ/Inkwell/WH — directional, see caveat), by account segment (clean), plus lead disposition and an open-pipeline snapshot.",
+  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "pipeline": {
     "district_open": 138,
     "school_open": 50,
@@ -10,77 +10,77 @@
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Snapshot only — not a weekly series. Small test-deal inflation (~3-5%) not excluded in this backfill."
   },
   "segment_coverage": { "hih": 62, "mql": 76, "sql": 94, "opp": 95 },
-  "product_caveat": "product_interest is a newer, multi-select property: it is partially populated and a contact can carry more than one product, so per-product cells are DIRECTIONAL and will not sum to the funnel total. Read as mix/trend, not exact counts. GF8 omitted (below the 5-contact relevance threshold every week).",
+  "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total — the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). GF8 omitted (below the 5-contact relevance threshold every week).",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
   "products_included": ["ij", "inkwell", "wh"],
   "weeks": [
     {
       "period": "2026-03-23", "label": "Mar 23",
       "funnel": { "hih": 12, "mql": 34, "sql": 17, "opp": 18 },
-      "by_product": { "ij": { "hih": 12, "mql": 17, "sql": 5, "opp": 6 }, "inkwell": { "hih": 0, "mql": 4, "sql": 2, "opp": 2 }, "wh": { "hih": 0, "mql": 0, "sql": 1, "opp": 2 } },
+      "by_product": { "ij": { "hih": 12, "mql": 16, "sql": 5, "opp": 6 }, "inkwell": { "hih": 0, "mql": 4, "sql": 2, "opp": 2 }, "wh": { "hih": 0, "mql": 0, "sql": 1, "opp": 1 } },
       "by_segment": { "single_small": { "hih": 5, "mql": 16, "sql": 9, "opp": 9 }, "medium": { "hih": 3, "mql": 4, "sql": 2, "opp": 3 }, "large": { "hih": 0, "mql": 1, "sql": 1, "opp": 1 }, "enterprise": { "hih": 1, "mql": 7, "sql": 5, "opp": 5 } },
       "disposition": { "dq": 262, "nurture": 59 }
     },
     {
       "period": "2026-03-30", "label": "Mar 30",
       "funnel": { "hih": 15, "mql": 22, "sql": 10, "opp": 10 },
-      "by_product": { "ij": { "hih": 13, "mql": 14, "sql": 4, "opp": 4 }, "inkwell": { "hih": 0, "mql": 2, "sql": 1, "opp": 1 }, "wh": { "hih": 3, "mql": 1, "sql": 2, "opp": 2 } },
+      "by_product": { "ij": { "hih": 13, "mql": 14, "sql": 3, "opp": 3 }, "inkwell": { "hih": 0, "mql": 2, "sql": 1, "opp": 1 }, "wh": { "hih": 2, "mql": 0, "sql": 0, "opp": 0 } },
       "by_segment": { "single_small": { "hih": 5, "mql": 7, "sql": 6, "opp": 6 }, "medium": { "hih": 4, "mql": 7, "sql": 0, "opp": 0 }, "large": { "hih": 0, "mql": 0, "sql": 1, "opp": 1 }, "enterprise": { "hih": 0, "mql": 1, "sql": 1, "opp": 1 } },
       "disposition": { "dq": 237, "nurture": 87 }
     },
     {
       "period": "2026-04-06", "label": "Apr 6",
       "funnel": { "hih": 13, "mql": 37, "sql": 21, "opp": 23 },
-      "by_product": { "ij": { "hih": 10, "mql": 15, "sql": 2, "opp": 2 }, "inkwell": { "hih": 1, "mql": 4, "sql": 1, "opp": 1 }, "wh": { "hih": 3, "mql": 2, "sql": 0, "opp": 1 } },
+      "by_product": { "ij": { "hih": 10, "mql": 15, "sql": 2, "opp": 2 }, "inkwell": { "hih": 1, "mql": 4, "sql": 1, "opp": 1 }, "wh": { "hih": 2, "mql": 1, "sql": 0, "opp": 1 } },
       "by_segment": { "single_small": { "hih": 7, "mql": 17, "sql": 6, "opp": 6 }, "medium": { "hih": 1, "mql": 9, "sql": 15, "opp": 16 }, "large": { "hih": 0, "mql": 0, "sql": 0, "opp": 0 }, "enterprise": { "hih": 2, "mql": 3, "sql": 0, "opp": 0 } },
       "disposition": { "dq": 195, "nurture": 150 }
     },
     {
       "period": "2026-04-13", "label": "Apr 13",
       "funnel": { "hih": 28, "mql": 57, "sql": 25, "opp": 25 },
-      "by_product": { "ij": { "hih": 26, "mql": 19, "sql": 10, "opp": 10 }, "inkwell": { "hih": 0, "mql": 3, "sql": 0, "opp": 0 }, "wh": { "hih": 3, "mql": 5, "sql": 1, "opp": 1 } },
+      "by_product": { "ij": { "hih": 26, "mql": 19, "sql": 10, "opp": 10 }, "inkwell": { "hih": 0, "mql": 3, "sql": 0, "opp": 0 }, "wh": { "hih": 2, "mql": 4, "sql": 1, "opp": 1 } },
       "by_segment": { "single_small": { "hih": 9, "mql": 14, "sql": 9, "opp": 9 }, "medium": { "hih": 4, "mql": 14, "sql": 4, "opp": 4 }, "large": { "hih": 1, "mql": 4, "sql": 1, "opp": 1 }, "enterprise": { "hih": 7, "mql": 14, "sql": 11, "opp": 11 } },
       "disposition": { "dq": 223, "nurture": 100 }
     },
     {
       "period": "2026-04-20", "label": "Apr 20",
       "funnel": { "hih": 16, "mql": 37, "sql": 19, "opp": 20 },
-      "by_product": { "ij": { "hih": 14, "mql": 14, "sql": 2, "opp": 3 }, "inkwell": { "hih": 1, "mql": 3, "sql": 1, "opp": 1 }, "wh": { "hih": 3, "mql": 5, "sql": 2, "opp": 2 } },
+      "by_product": { "ij": { "hih": 13, "mql": 13, "sql": 2, "opp": 3 }, "inkwell": { "hih": 1, "mql": 3, "sql": 1, "opp": 1 }, "wh": { "hih": 2, "mql": 4, "sql": 1, "opp": 1 } },
       "by_segment": { "single_small": { "hih": 8, "mql": 15, "sql": 7, "opp": 7 }, "medium": { "hih": 1, "mql": 6, "sql": 2, "opp": 2 }, "large": { "hih": 0, "mql": 4, "sql": 5, "opp": 5 }, "enterprise": { "hih": 2, "mql": 4, "sql": 1, "opp": 2 } },
       "disposition": { "dq": 36, "nurture": 15 }
     },
     {
       "period": "2026-04-27", "label": "Apr 27",
       "funnel": { "hih": 9, "mql": 30, "sql": 11, "opp": 10 },
-      "by_product": { "ij": { "hih": 8, "mql": 15, "sql": 4, "opp": 4 }, "inkwell": { "hih": 2, "mql": 4, "sql": 2, "opp": 2 }, "wh": { "hih": 2, "mql": 3, "sql": 0, "opp": 0 } },
+      "by_product": { "ij": { "hih": 7, "mql": 14, "sql": 4, "opp": 4 }, "inkwell": { "hih": 2, "mql": 4, "sql": 2, "opp": 2 }, "wh": { "hih": 0, "mql": 1, "sql": 0, "opp": 0 } },
       "by_segment": { "single_small": { "hih": 3, "mql": 13, "sql": 5, "opp": 5 }, "medium": { "hih": 2, "mql": 8, "sql": 4, "opp": 3 }, "large": { "hih": 0, "mql": 3, "sql": 2, "opp": 2 }, "enterprise": { "hih": 0, "mql": 1, "sql": 0, "opp": 0 } },
       "disposition": { "dq": 59, "nurture": 25 }
     },
     {
       "period": "2026-05-04", "label": "May 4",
       "funnel": { "hih": 35, "mql": 38, "sql": 15, "opp": 16 },
-      "by_product": { "ij": { "hih": 25, "mql": 21, "sql": 4, "opp": 4 }, "inkwell": { "hih": 4, "mql": 4, "sql": 0, "opp": 0 }, "wh": { "hih": 4, "mql": 3, "sql": 2, "opp": 2 } },
+      "by_product": { "ij": { "hih": 24, "mql": 20, "sql": 4, "opp": 4 }, "inkwell": { "hih": 4, "mql": 4, "sql": 0, "opp": 0 }, "wh": { "hih": 3, "mql": 2, "sql": 2, "opp": 2 } },
       "by_segment": { "single_small": { "hih": 11, "mql": 15, "sql": 7, "opp": 7 }, "medium": { "hih": 2, "mql": 6, "sql": 2, "opp": 3 }, "large": { "hih": 4, "mql": 3, "sql": 2, "opp": 2 }, "enterprise": { "hih": 1, "mql": 6, "sql": 4, "opp": 4 } },
       "disposition": { "dq": 30, "nurture": 15 }
     },
     {
       "period": "2026-05-11", "label": "May 11",
       "funnel": { "hih": 20, "mql": 35, "sql": 14, "opp": 12 },
-      "by_product": { "ij": { "hih": 18, "mql": 21, "sql": 7, "opp": 7 }, "inkwell": { "hih": 6, "mql": 8, "sql": 0, "opp": 0 }, "wh": { "hih": 8, "mql": 8, "sql": 1, "opp": 1 } },
+      "by_product": { "ij": { "hih": 13, "mql": 16, "sql": 7, "opp": 7 }, "inkwell": { "hih": 6, "mql": 8, "sql": 0, "opp": 0 }, "wh": { "hih": 1, "mql": 1, "sql": 0, "opp": 0 } },
       "by_segment": { "single_small": { "hih": 7, "mql": 16, "sql": 10, "opp": 10 }, "medium": { "hih": 0, "mql": 4, "sql": 1, "opp": 0 }, "large": { "hih": 0, "mql": 0, "sql": 0, "opp": 0 }, "enterprise": { "hih": 2, "mql": 4, "sql": 2, "opp": 2 } },
       "disposition": { "dq": 141, "nurture": 25 }
     },
     {
       "period": "2026-05-18", "label": "May 18",
       "funnel": { "hih": 25, "mql": 30, "sql": 21, "opp": 19 },
-      "by_product": { "ij": { "hih": 22, "mql": 16, "sql": 10, "opp": 8 }, "inkwell": { "hih": 1, "mql": 1, "sql": 0, "opp": 1 }, "wh": { "hih": 1, "mql": 0, "sql": 1, "opp": 1 } },
+      "by_product": { "ij": { "hih": 22, "mql": 16, "sql": 10, "opp": 8 }, "inkwell": { "hih": 1, "mql": 1, "sql": 0, "opp": 1 }, "wh": { "hih": 1, "mql": 0, "sql": 0, "opp": 0 } },
       "by_segment": { "single_small": { "hih": 10, "mql": 12, "sql": 9, "opp": 10 }, "medium": { "hih": 3, "mql": 5, "sql": 6, "opp": 4 }, "large": { "hih": 0, "mql": 1, "sql": 1, "opp": 1 }, "enterprise": { "hih": 3, "mql": 6, "sql": 4, "opp": 4 } },
       "disposition": { "dq": 76, "nurture": 12 }
     },
     {
       "period": "2026-05-25", "label": "May 25",
       "funnel": { "hih": 17, "mql": 34, "sql": 15, "opp": 17 },
-      "by_product": { "ij": { "hih": 12, "mql": 11, "sql": 5, "opp": 7 }, "inkwell": { "hih": 4, "mql": 6, "sql": 0, "opp": 0 }, "wh": { "hih": 2, "mql": 5, "sql": 0, "opp": 0 } },
+      "by_product": { "ij": { "hih": 11, "mql": 10, "sql": 5, "opp": 7 }, "inkwell": { "hih": 4, "mql": 6, "sql": 0, "opp": 0 }, "wh": { "hih": 1, "mql": 4, "sql": 0, "opp": 0 } },
       "by_segment": { "single_small": { "hih": 4, "mql": 11, "sql": 8, "opp": 8 }, "medium": { "hih": 2, "mql": 4, "sql": 2, "opp": 5 }, "large": { "hih": 0, "mql": 0, "sql": 1, "opp": 1 }, "enterprise": { "hih": 3, "mql": 5, "sql": 2, "opp": 1 } },
       "disposition": { "dq": 188, "nurture": 13 }
     }

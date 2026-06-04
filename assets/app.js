@@ -182,7 +182,8 @@ function dealDrill(last) {
 }
 
 // ---- weekly tab ----
-let WBREAK = "segment", WSTAGE = "mql";
+let WBREAK = "segment", WSTAGE = "mql", WPROD = "all";
+const WPRODS = [["all", "All products"], ["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"]];
 const SEG_KEYS = [["single_small", "Single/Small", IJ], ["medium", "Medium", PLUM], ["large", "Large", AMBER], ["enterprise", "Enterprise", ROSE]];
 const WPROD_KEYS = [["ij", "Inquiry Journeys", IJ], ["inkwell", "Inkwell", PLUM], ["wh", "World History", AMBER]];
 const STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
@@ -191,8 +192,9 @@ function renderWeekly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
   const labels = w.map((x) => x.label);
-  const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
+  const f = (o, s) => WPROD === "all" ? ((o && o.funnel) ? o.funnel[s] : null) : ((o && o.by_product && o.by_product[WPROD]) ? o.by_product[WPROD][s] : null);
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
+  const pLabel = (WPRODS.find((p) => p[0] === WPROD) || [, ""])[1];
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
   const dimKey = WBREAK === "segment" ? "by_segment" : "by_product";
   const keys = WBREAK === "segment" ? SEG_KEYS : WPROD_KEYS;
@@ -206,7 +208,12 @@ function renderWeekly(d) {
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
       <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
     </div>
-    <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
+    <div class="toolbar">
+      <span class="tlabel">Product:</span>
+      ${WPRODS.map((p) => `<button class="chip ${p[0]===WPROD?"on":""}" data-wp="${p[0]}">${p[1]}</button>`).join("")}
+      ${WPROD!=="all" ? `<span class="cov">⚠ primary-product subset — funnel cuts only; pipeline · disposition · segment stay all-product</span>` : ""}
+    </div>
+    <div class="section-label">▲ Latest complete week — ${last.label || ""}${WPROD!=="all" ? " · " + pLabel : ""}</div>
     <div class="cards">
       ${card("HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
       ${card("MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
@@ -215,7 +222,7 @@ function renderWeekly(d) {
       ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW.")}</div>
+      <div class="panel"><h3>Funnel by week${WPROD!=="all" ? ` — ${pLabel}` : ""}</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW." + (WPROD!=="all" ? ` Showing the <strong>${pLabel}</strong> primary-product cut.` : ""))}</div>
       <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="wConv"></canvas></div></div>
     </div>
 
@@ -255,6 +262,7 @@ function renderWeekly(d) {
     </div>`;
 
   // wire toggles
+  document.querySelectorAll("[data-wp]").forEach((b) => b.onclick = () => { WPROD = b.dataset.wp; renderWeekly(DATA); });
   document.querySelectorAll("[data-wb]").forEach((b) => b.onclick = () => { WBREAK = b.dataset.wb; renderWeekly(DATA); });
   document.querySelectorAll("[data-ws]").forEach((b) => b.onclick = () => { WSTAGE = b.dataset.ws; renderWeekly(DATA); });
 
@@ -360,7 +368,7 @@ function renderDefinitions(d) {
 
 // ---- shell ----
 async function loadTab(tab) {
-  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all";
+  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; WPROD = "all"; WBREAK = "segment"; WSTAGE = "mql";
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });
