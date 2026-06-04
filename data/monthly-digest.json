@@ -2,12 +2,12 @@
   "skill": "monthly-marketing-digest",
   "title": "Monthly Funnel & Revenue",
   "updated": "2026-06-03",
-  "fiscal_year_start_month": 7,
+  "fiscal_year_start_month": 10,
   "seasonality": {
     "peak_close": ["May", "Jun"],
     "peak_leadgen": ["Jan", "Feb"],
     "low": ["Jul", "Aug"],
-    "note": "K-12 July–June fiscal cycle: May–Jun = budget-close (revenue peaks, new-lead volume dips); Jan–Feb = peak lead-gen; summer = low. Note the Jun–Jul 2025 revenue spike = prior FY close."
+    "note": "Close/fiscal year = Oct 1–Sep 30 (pipeline + cumulative win rate measured against it). District buying follows the school year: deals peak spring–summer (Apr–Aug, buying for next school year) — which is why revenue concentrates May–Jul, offset from inquirED's Sep 30 close. Lead-gen builds fall–winter; Jan–Feb peak; summer low."
   },
   "notes": "Revenue/funnel/web backfilled from HubSpot + GA4 (Jun 2025–May 2026). Backfill is not test-deal-excluded; the current month (May 2026) uses the clean, test+RFP-excluded figures from the digest. SEO baseline starts May 2026.",
   "months": [
