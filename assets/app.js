@@ -17,7 +17,7 @@ function deltaHTML(cur, prev, o = {}) {
   const p = ((cur - prev) / Math.abs(prev)) * 100, cls = Math.abs(p) < 0.5 ? "flat" : (p > 0 ? "up" : "down");
   return `<span class="delta ${cls}">${p > 0 ? "▲" : p < 0 ? "▼" : "→"} ${Math.abs(p).toFixed(0)}%${o.label ? ` <span class="sub">${o.label}</span>` : ""}</span>`;
 }
-const card = (l, v, d = "") => `<div class="card"><div class="label">${l}</div><div class="value">${v}</div><div>${d}</div></div>`;
+const card = (l, v, d = "", cap = "") => `<div class="card"><div class="label">${l}</div><div class="value">${v}</div><div>${d}</div>${cap ? `<div class="cap">${cap}</div>` : ""}</div>`;
 const note = (t) => `<p class="insight">💬 ${t}</p>`;
 function mkChart(id, cfg) { const el = document.getElementById(id); if (el) charts.push(new Chart(el, cfg)); }
 // stage series honoring the product toggle
@@ -81,9 +81,9 @@ function renderMonthly(d) {
 
     <div class="section-label">▽ Lagging — sales outcome (context; $ + win rate → RevOps)</div>
     <div class="cards">
-      ${card("Closed-won", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}))}
-      ${card("New business", fmt$(last.revenue.nb_won), "")}
-      ${card("Wins", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}))}
+      ${card("Closed-won ($)", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}), "total dollars won (non-test / non-RFP)")}
+      ${card("New business ($)", fmt$(last.revenue.nb_won), "", "new + pilot + pilot-expansion deals")}
+      ${card("Deals won (count)", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}), "number of deals closed-won, incl. $0 pilots")}
     </div>
     <div class="panel"><h3>Closed-won revenue ${PRODUCT === "all" ? "(District + School)" : `— ${pLabel} <span class="muted">(multi-select; directional)</span>`} <span class="muted">— lagging</span></h3>
       <div class="chartbox"><canvas id="cRev"></canvas></div>

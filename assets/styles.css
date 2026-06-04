@@ -78,6 +78,7 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .delta { font-size: 12px; font-weight: 700; }
 .delta.up { color: var(--up); } .delta.down { color: var(--down); } .delta.flat { color: var(--muted); }
 .delta .sub { color: var(--muted); font-weight: 600; }
+.card .cap { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.35; }
 
 /* ── Panels & charts ── */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
