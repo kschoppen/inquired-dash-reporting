@@ -113,9 +113,12 @@ function renderMonthly(d) {
 
   mkChart("cHih", { type: "line", data: { labels, datasets: [{ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg } });
 
-  const fds = [{ label: "MQL", data: mql, borderColor: IJ, spanGaps: true }, { label: "SQL", data: sql, borderColor: PLUM, spanGaps: true }];
-  if (PRODUCT === "all") fds.push({ label: "Opp", data: ser(m, "opp"), borderColor: ROSE, spanGaps: true });
-  fds.unshift({ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.13)", fill: true, tension: 0.3, pointRadius: 2, spanGaps: true });
+  // HIH = neutral slate background band (north-star context); MQL green + SQL purple = the two bold lines. Opp omitted (tracks SQL; it's in the detail table).
+  const fds = [
+    { label: "HIH (high-intent)", data: hih, borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2, spanGaps: true },
+    { label: "MQL", data: mql, borderColor: IJ, borderWidth: 3, tension: 0.25, pointRadius: 2, spanGaps: true },
+    { label: "SQL", data: sql, borderColor: PLUM, borderWidth: 3, tension: 0.25, pointRadius: 2, spanGaps: true },
+  ];
   mkChart("cFunnel", { type: "line", data: { labels, datasets: fds }, options: { ...botLeg } });
 
   mkChart("cConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
