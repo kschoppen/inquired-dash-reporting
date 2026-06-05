@@ -22,6 +22,25 @@ function deltaHTML(cur, prev, o = {}) {
 const card = (l, v, d = "", cap = "") => `<div class="card"><div class="label">${l}</div><div class="value">${v}</div><div>${d}</div>${cap ? `<div class="cap">${cap}</div>` : ""}</div>`;
 const note = (t) => `<p class="insight">💬 ${t}</p>`;
 function mkChart(id, cfg) { const el = document.getElementById(id); if (el) charts.push(new Chart(el, cfg)); }
+// ---- contact drill-down drawer (weekly) — IDs only, no PII; links to gated HubSpot records ----
+function closeDrawer() { const s = document.getElementById("drawerScrim"), dr = document.getElementById("drawer"); if (s) s.classList.remove("on"); if (dr) dr.classList.remove("on"); }
+function openDrawer(title, rows) {
+  let sc = document.getElementById("drawerScrim");
+  if (!sc) {
+    sc = document.createElement("div"); sc.id = "drawerScrim"; sc.className = "scrim"; sc.onclick = closeDrawer;
+    const dr = document.createElement("div"); dr.id = "drawer"; dr.className = "drawer";
+    document.body.appendChild(sc); document.body.appendChild(dr);
+  }
+  const dr = document.getElementById("drawer");
+  const body = rows.length
+    ? rows.map((r) => `<a class="drow" href="https://app.hubspot.com/contacts/4451852/record/0-1/${r[0]}" target="_blank" rel="noopener">Open contact ↗<span class="dmeta">${[r[1], r[2]].filter(Boolean).join(" · ") || "—"}</span></a>`).join("")
+    : '<p class="flag" style="padding:14px 18px">No records for this week.</p>';
+  dr.innerHTML = `<div class="drawer-head"><strong>${title}</strong><button class="drawer-x" id="drawerX">✕</button></div>
+    <div class="drawer-sub">Each row opens the record in HubSpot (access-gated). No names are stored here — segment · source shown for context.</div>
+    <div class="drawer-body">${body}</div>`;
+  document.getElementById("drawerX").onclick = closeDrawer;
+  document.getElementById("drawerScrim").classList.add("on"); dr.classList.add("on");
+}
 // stage series honoring the product toggle
 function ser(m, stage) { return m.map((x) => PRODUCT === "all" ? (x.funnel ? x.funnel[stage] : null) : (x.by_product && x.by_product[PRODUCT] ? x.by_product[PRODUCT][stage] : null)); }
 function revSer(m) { return PRODUCT === "all" ? null : m.map((x) => x.rev_by_product ? x.rev_by_product[PRODUCT] : null); }
@@ -245,6 +264,11 @@ function renderWeekly(d) {
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
   const covLine = `tagging coverage — HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
+  const drill = last.drill || {};
+  const dcard = (stage, l, v, dl) => {
+    const n = (drill[stage] || []).length;
+    return n ? `<div class="card drill" data-drill="${stage}"><div class="label">${l}</div><div class="value">${v}</div><div>${dl}</div><div class="cap">▸ ${n} contacts — click to view in HubSpot</div></div>` : card(l, v, dl);
+  };
 
   document.getElementById("view").innerHTML = `
     <div class="contextbar">
@@ -253,10 +277,10 @@ function renderWeekly(d) {
     </div>
     <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
     <div class="cards">
-      ${card("HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
-      ${card("MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
-      ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"}))}
-      ${card("Opp", fmtN(f(last,"opp")), deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"}))}
+      ${dcard("hih", "HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
+      ${dcard("mql", "MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
+      ${dcard("sql", "SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"}))}
+      ${dcard("opp", "Opp", fmtN(f(last,"opp")), deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"}))}
       ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
     </div>
     <div class="grid2">
@@ -296,6 +320,12 @@ function renderWeekly(d) {
       </tbody></table>
       <p class="flag">${d.notes || ""}</p>
     </div>`;
+
+  document.querySelectorAll("[data-drill]").forEach((el) => el.onclick = () => {
+    const s = el.dataset.drill, rows = (last.drill && last.drill[s]) || [];
+    const labels = { hih: "High-intent (HIH)", mql: "MQLs", sql: "SQLs", opp: "Opportunities" };
+    openDrawer(`Week of ${last.label} · ${labels[s] || s} (${rows.length})`, rows);
+  });
 
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   mkChart("wFunnel", { type: "line", data: { labels, datasets: [
@@ -397,7 +427,7 @@ function renderDefinitions(d) {
 
 // ---- shell ----
 async function loadTab(tab) {
-  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all";
+  charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });
