@@ -39,17 +39,13 @@ function renderMonthly(d) {
   const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
   const cov = PRODUCT === "all" ? null : "product-tagged subset — partial coverage, won't sum to totals";
 
-  // HIH hero
+  // HIH hero — always all-product (the single north-star number; product cut lives in the Leading section only)
   const hihLast = f(last, "hih"), hihPrev = f(prev, "hih");
+  const heroHih = last.funnel ? last.funnel.hih : null, heroHihPrev = prev.funnel ? prev.funnel.hih : null;
+  const heroHihToMql = rate(last.funnel && last.funnel.mql, last.funnel && last.funnel.hih), heroConv = rate(last.funnel && last.funnel.sql, last.funnel && last.funnel.mql);
   const seasons = d.seasonality ? d.seasonality.note : "";
 
   document.getElementById("view").innerHTML = `
-    <div class="toolbar">
-      <span class="tlabel">Product:</span>
-      ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
-      <span class="cov">${cov ? "⚠ " + cov : ""}</span>
-    </div>
-
     <div class="contextbar">
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · trailing 12 months (${m[0].label} – ${last.label})</span>
       <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
@@ -57,15 +53,20 @@ function renderMonthly(d) {
 
     <div class="hero">
       <div class="hero-main">
-        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star${PRODUCT !== "all" ? " · " + pLabel : ""}</div>
-        <div class="hero-val">${fmtN(hihLast)} ${deltaHTML(hihLast, hihPrev, {label:"MoM"})}</div>
-        <div class="hero-sub">HIH→MQL ${hihToMql != null ? hihToMql + "%" : "—"} · MQL→SQL ${convLast != null ? convLast + "%" : "—"} — does high intent convert?</div>
+        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star</div>
+        <div class="hero-val">${fmtN(heroHih)} ${deltaHTML(heroHih, heroHihPrev, {label:"MoM"})}</div>
+        <div class="hero-sub">HIH→MQL ${heroHihToMql != null ? heroHihToMql + "%" : "—"} · MQL→SQL ${heroConv != null ? heroConv + "%" : "—"} — does high intent convert?</div>
         ${note(hihNarrative(d, last))}
       </div>
       <div class="hero-chart"><div class="chartbox sm"><canvas id="cHih"></canvas></div></div>
     </div>
 
     <div class="section-label">▲ Leading · ${last.label} — what marketing works off${PRODUCT !== "all" ? ` · ${pLabel}` : ""}</div>
+    <div class="toolbar">
+      <span class="tlabel">Product cut (funnel only):</span>
+      ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
+      <span class="cov">${cov ? "⚠ " + cov : ""}</span>
+    </div>
     <div class="cards">
       ${card("MQL → SQL", convLast != null ? convLast + "%" : "—", deltaHTML(convLast, convPrev, {label:"MoM"}))}
       ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"MoM"}))}
@@ -114,7 +115,7 @@ function renderMonthly(d) {
       ${card("New business ($)", fmt$(last.revenue.nb_won), "", `${last.label} · new + pilot + pilot-expansion deals`)}
       ${card("Deals won (count)", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}), `${last.label} · closed-won, incl. $0 pilots`)}
     </div>
-    <div class="panel"><h3>Closed-won revenue ${PRODUCT === "all" ? "(District + School)" : `— ${pLabel} <span class="muted">(multi-select; directional)</span>`} <span class="muted">— lagging</span></h3>
+    <div class="panel"><h3>Closed-won revenue (District + School) <span class="muted">— lagging</span></h3>
       <div class="chartbox"><canvas id="cRev"></canvas></div>
       ${note(laggingNarrative(last))}
       ${last.deals ? dealDrill(last) : ""}
@@ -157,14 +158,10 @@ function renderMonthly(d) {
   const ssrc = q.sql_by_source || [];
   mkChart("cSqlSrc", { type: "bar", data: { labels: ssrc.map((s) => s[0]), datasets: [{ data: ssrc.map((s) => s[1]), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 
-  if (PRODUCT === "all") {
-    mkChart("cRev", { type: "bar", data: { labels, datasets: [
-      { label: "District", data: m.map((x) => x.revenue.district_won), backgroundColor: IJ_FADE, stack: "r" },
-      { label: "School", data: m.map((x) => x.revenue.school_won), backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }] },
-      options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
-  } else {
-    mkChart("cRev", { type: "bar", data: { labels, datasets: [{ label: pLabel + " won $", data: revSer(m), backgroundColor: IJ }] }, options: { ...noLeg, scales: { y: { beginAtZero: true } } } });
-  }
+  mkChart("cRev", { type: "bar", data: { labels, datasets: [
+    { label: "District", data: m.map((x) => x.revenue.district_won), backgroundColor: IJ_FADE, stack: "r" },
+    { label: "School", data: m.map((x) => x.revenue.school_won), backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }] },
+    options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
 }
 
 // ---- narratives ----
