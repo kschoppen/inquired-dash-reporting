@@ -55,25 +55,6 @@ function renderMonthly(d) {
       <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
     </div>
 
-    ${wv.channels ? `
-    <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
-    <div class="cards">
-      ${card("Sessions", fmtN(wv.sessions), deltaHTML(wv.sessions, yoy && yoy.sessions, {label:"YoY"}), wt ? `trailing 12mo ▲${wt.yoy_pct}% YoY · ${last.label} was a traffic spike` : "")}
-      ${card("Engaged sessions", (wv.engaged_pct != null ? wv.engaged_pct : "—") + "%", "", "GA4 engagement rate")}
-      ${card("Users", fmtN(wv.users))}
-      ${card("Page views", fmtN(wv.views))}
-    </div>
-    <div class="grid2">
-      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — its own session attribution from referrer + Google Ads click-ID + any UTMs, <strong>independent of HubSpot lead-source UTMs</strong>. 'AI Tool' referrals (ChatGPT/Perplexity) land here under Referral until we add a custom GA4 grouping.")}</div>
-      <div class="panel"><h3>Sessions — this year vs last</h3><div class="chartbox"><canvas id="mWebTrend"></canvas></div>${note("Trailing 12 months vs the prior 12 — site-wide GA4 sessions. Monthly spikes (Oct, May) are campaign / PR bursts, not baseline growth.")}</div>
-    </div>
-    <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3>
-      <div class="cards">
-        ${(wv.conversions || []).map((c) => card(c[0], fmtN(c[1]))).join("")}
-      </div>
-      ${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead below. (These are GA4 web events, distinct from HubSpot lead stages and from Google Ads' modeled conversions.)")}
-    </div>` : ""}
-
     <div class="hero">
       <div class="hero-main">
         <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star${PRODUCT !== "all" ? " · " + pLabel : ""}</div>
@@ -101,6 +82,32 @@ function renderMonthly(d) {
       <div class="panel"><h3>SQLs by source <span class="muted">(${last.label})</span></h3><div class="chartbox"><canvas id="cSqlSrc"></canvas></div></div>
     </div>
 
+    ${wv.channels ? `
+    <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
+    <div class="cards">
+      ${card("Sessions", fmtN(wv.sessions), deltaHTML(wv.sessions, yoy && yoy.sessions, {label:"YoY"}), wt ? `trailing 12mo ▲${wt.yoy_pct}% YoY · ${last.label} was a traffic spike` : "")}
+      ${card("Engaged sessions", (wv.engaged_pct != null ? wv.engaged_pct : "—") + "%", "", "GA4 engagement rate")}
+      ${card("Users", fmtN(wv.users))}
+      ${card("Page views", fmtN(wv.views))}
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — its own session attribution from referrer + Google Ads click-ID + any UTMs, <strong>independent of HubSpot lead-source UTMs</strong>. 'AI Tool' referrals (ChatGPT/Perplexity) land here under Referral until we add a custom GA4 grouping.")}</div>
+      <div class="panel"><h3>Sessions — this year vs last</h3><div class="chartbox"><canvas id="mWebTrend"></canvas></div>${note("Trailing 12 months vs the prior 12 — site-wide GA4 sessions. Monthly spikes (Oct, May) are campaign / PR bursts, not baseline growth.")}</div>
+    </div>
+    <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3>
+      <div class="cards">
+        ${(wv.conversions || []).map((c) => card(c[0], fmtN(c[1]))).join("")}
+      </div>
+      ${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead below. (These are GA4 web events, distinct from HubSpot lead stages and from Google Ads' modeled conversions.)")}
+    </div>` : ""}
+
+    <div class="section-label">🔍 Organic search — by topic area</div>
+    <div class="panel">
+      ${seoSection(d)}
+      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Search Atlas rank-tracker (project #77489), not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Search Atlas project. MoM movement begins once we have a prior month to compare.</p>
+      ${note(seoNarrative(d))}
+    </div>
+
     <div class="section-label">▽ Lagging · ${last.label} — sales outcome (context; $ + win rate → RevOps)</div>
     <div class="cards">
       ${card("Closed-won ($)", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}), `${last.label} · total dollars won (non-test / non-RFP)`)}
@@ -111,13 +118,6 @@ function renderMonthly(d) {
       <div class="chartbox"><canvas id="cRev"></canvas></div>
       ${note(laggingNarrative(last))}
       ${last.deals ? dealDrill(last) : ""}
-    </div>
-
-    <div class="section-label">🔍 Organic search — by topic area</div>
-    <div class="panel">
-      ${seoSection(d)}
-      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Search Atlas rank-tracker (project #77489), not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Search Atlas project. MoM movement begins once we have a prior month to compare.</p>
-      ${note(seoNarrative(d))}
     </div>
 
     <div class="panel"><h3>Monthly detail (all products)</h3>
