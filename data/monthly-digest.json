@@ -647,7 +647,64 @@
           "sessions": 14781,
           "users": 9861,
           "views": 16126
-        }
+        },
+        "engaged_pct": 72.1,
+        "channels": [
+          [
+            "Organic Search",
+            18146
+          ],
+          [
+            "Direct",
+            13236
+          ],
+          [
+            "Paid Search",
+            3478
+          ],
+          [
+            "Email",
+            1994
+          ],
+          [
+            "Referral",
+            1151
+          ],
+          [
+            "Organic Social",
+            218
+          ],
+          [
+            "Other",
+            908
+          ]
+        ],
+        "conversions": [
+          [
+            "Form thank-you",
+            383
+          ],
+          [
+            "Resource downloads",
+            387
+          ],
+          [
+            "Webinar signups",
+            72
+          ],
+          [
+            "Contact sales",
+            35
+          ],
+          [
+            "Curriculum guide",
+            26
+          ],
+          [
+            "IJ download",
+            2
+          ]
+        ]
       },
       "by_product": {
         "ij": {
@@ -1056,5 +1113,53 @@
         }
       ]
     }
-  ]
+  ],
+  "web_trend": {
+    "labels": [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May"
+    ],
+    "current": [
+      9508,
+      7962,
+      11372,
+      26003,
+      35976,
+      21037,
+      14977,
+      19498,
+      21773,
+      23590,
+      17696,
+      39181
+    ],
+    "prior": [
+      11044,
+      12663,
+      19127,
+      24368,
+      25022,
+      17754,
+      13312,
+      17552,
+      19950,
+      18734,
+      18428,
+      14781
+    ],
+    "current_total": 248573,
+    "prior_total": 212735,
+    "yoy_pct": 16.8
+  },
+  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
 }

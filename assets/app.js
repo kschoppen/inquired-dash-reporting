@@ -35,6 +35,7 @@ function renderMonthly(d) {
   const conv = m.map((x, i) => rate(sql[i], mql[i]));
   const hihToMql = rate(f(last, "mql"), f(last, "hih")), convLast = rate(f(last, "sql"), f(last, "mql")), convPrev = rate(f(prev, "sql"), f(prev, "mql"));
   const q = last.quality || {}, utm = q.utm_completeness_pct, yoy = last.web && last.web.yoy;
+  const wv = last.web || {}, wt = d.web_trend || null;
   const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
   const cov = PRODUCT === "all" ? null : "product-tagged subset — partial coverage, won't sum to totals";
 
@@ -53,6 +54,25 @@ function renderMonthly(d) {
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · trailing 12 months (${m[0].label} – ${last.label})</span>
       <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
     </div>
+
+    ${wv.channels ? `
+    <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
+    <div class="cards">
+      ${card("Sessions", fmtN(wv.sessions), deltaHTML(wv.sessions, yoy && yoy.sessions, {label:"YoY"}), wt ? `trailing 12mo ▲${wt.yoy_pct}% YoY · ${last.label} was a traffic spike` : "")}
+      ${card("Engaged sessions", (wv.engaged_pct != null ? wv.engaged_pct : "—") + "%", "", "GA4 engagement rate")}
+      ${card("Users", fmtN(wv.users))}
+      ${card("Page views", fmtN(wv.views))}
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — its own session attribution from referrer + Google Ads click-ID + any UTMs, <strong>independent of HubSpot lead-source UTMs</strong>. 'AI Tool' referrals (ChatGPT/Perplexity) land here under Referral until we add a custom GA4 grouping.")}</div>
+      <div class="panel"><h3>Sessions — this year vs last</h3><div class="chartbox"><canvas id="mWebTrend"></canvas></div>${note("Trailing 12 months vs the prior 12 — site-wide GA4 sessions. Monthly spikes (Oct, May) are campaign / PR bursts, not baseline growth.")}</div>
+    </div>
+    <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3>
+      <div class="cards">
+        ${(wv.conversions || []).map((c) => card(c[0], fmtN(c[1]))).join("")}
+      </div>
+      ${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead below. (These are GA4 web events, distinct from HubSpot lead stages and from Google Ads' modeled conversions.)")}
+    </div>` : ""}
 
     <div class="hero">
       <div class="hero-main">
@@ -112,6 +132,12 @@ function renderMonthly(d) {
 
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+
+  if (wv.channels) mkChart("mWebChannel", { type: "bar", data: { labels: wv.channels.map((c) => c[0]), datasets: [{ data: wv.channels.map((c) => c[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  if (wt) mkChart("mWebTrend", { type: "line", data: { labels: wt.labels, datasets: [
+      { label: "This year", data: wt.current, borderColor: IJ, borderWidth: 3, tension: 0.3, pointRadius: 2 },
+      { label: "Last year", data: wt.prior, borderColor: "#9AA6A4", borderWidth: 2, borderDash: [5, 4], tension: 0.3, pointRadius: 2 } ] },
+    options: { ...botLeg } });
 
   mkChart("cHih", { type: "line", data: { labels, datasets: [{ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg } });
 
