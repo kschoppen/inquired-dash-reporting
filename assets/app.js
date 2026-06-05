@@ -56,7 +56,7 @@ function renderMonthly(d) {
 
     <div class="hero">
       <div class="hero-main">
-        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS — north star${PRODUCT !== "all" ? " · " + pLabel : ""}</div>
+        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star${PRODUCT !== "all" ? " · " + pLabel : ""}</div>
         <div class="hero-val">${fmtN(hihLast)} ${deltaHTML(hihLast, hihPrev, {label:"MoM"})}</div>
         <div class="hero-sub">HIH→MQL ${hihToMql != null ? hihToMql + "%" : "—"} · MQL→SQL ${convLast != null ? convLast + "%" : "—"} — does high intent convert?</div>
         ${note(hihNarrative(d, last))}
@@ -64,7 +64,7 @@ function renderMonthly(d) {
       <div class="hero-chart"><div class="chartbox sm"><canvas id="cHih"></canvas></div></div>
     </div>
 
-    <div class="section-label">▲ Leading — what marketing works off${PRODUCT !== "all" ? ` · ${pLabel}` : ""}</div>
+    <div class="section-label">▲ Leading · ${last.label} — what marketing works off${PRODUCT !== "all" ? ` · ${pLabel}` : ""}</div>
     <div class="cards">
       ${card("MQL → SQL", convLast != null ? convLast + "%" : "—", deltaHTML(convLast, convPrev, {label:"MoM"}))}
       ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"MoM"}))}
@@ -81,11 +81,11 @@ function renderMonthly(d) {
       <div class="panel"><h3>SQLs by source <span class="muted">(${last.label})</span></h3><div class="chartbox"><canvas id="cSqlSrc"></canvas></div></div>
     </div>
 
-    <div class="section-label">▽ Lagging — sales outcome (context; $ + win rate → RevOps)</div>
+    <div class="section-label">▽ Lagging · ${last.label} — sales outcome (context; $ + win rate → RevOps)</div>
     <div class="cards">
-      ${card("Closed-won ($)", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}), "total dollars won (non-test / non-RFP)")}
-      ${card("New business ($)", fmt$(last.revenue.nb_won), "", "new + pilot + pilot-expansion deals")}
-      ${card("Deals won (count)", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}), "number of deals closed-won, incl. $0 pilots")}
+      ${card("Closed-won ($)", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}), `${last.label} · total dollars won (non-test / non-RFP)`)}
+      ${card("New business ($)", fmt$(last.revenue.nb_won), "", `${last.label} · new + pilot + pilot-expansion deals`)}
+      ${card("Deals won (count)", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}), `${last.label} · closed-won, incl. $0 pilots`)}
     </div>
     <div class="panel"><h3>Closed-won revenue ${PRODUCT === "all" ? "(District + School)" : `— ${pLabel} <span class="muted">(multi-select; directional)</span>`} <span class="muted">— lagging</span></h3>
       <div class="chartbox"><canvas id="cRev"></canvas></div>
