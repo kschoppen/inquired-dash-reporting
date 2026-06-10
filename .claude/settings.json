@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "growth-marketing": {
+      "source": { "source": "github", "repo": "kschoppen/growth-marketing" }
+    },
+    "inquired-marketing-marketplace": {
+      "source": { "source": "github", "repo": "inquired-miles/inquired-marketing-skills" }
+    }
+  },
+  "enabledPlugins": {
+    "growth-marketing@growth-marketing": true,
+    "inquired-marketing@inquired-marketing-marketplace": true
+  }
+}
