@@ -1,19 +1,19 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Funnel",
-  "updated": "2026-06-08",
+  "updated": "2026-06-15",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "pipeline": {
-    "district_open": 134,
-    "school_open": 52,
-    "as_of": "2026-06-08",
-    "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Two visually-tagged test deals excluded from District count."
+    "district_open": 136,
+    "school_open": 54,
+    "as_of": "2026-06-15",
+    "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
   },
   "segment_coverage": {
-    "hih": 64,
-    "mql": 84,
-    "sql": 97,
-    "opp": 94
+    "hih": 58,
+    "mql": 71,
+    "sql": 84,
+    "opp": 81
   },
   "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). GF8 omitted (below the 5-contact relevance threshold every week).",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
@@ -621,6 +621,61 @@
       "disposition": {
         "dq": 132,
         "nurture": 47
+      }
+    },
+    {
+      "period": "2026-06-08",
+      "label": "Jun 8",
+      "funnel": {
+        "hih": 12,
+        "mql": 34,
+        "sql": 25,
+        "opp": 26
+      },
+      "by_product": {
+        "ij": {
+          "hih": 8,
+          "mql": 9,
+          "sql": 4,
+          "opp": 5
+        },
+        "inkwell": {
+          "hih": 2,
+          "mql": 2,
+          "sql": 2,
+          "opp": 2
+        },
+        "wh": null
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 5,
+          "mql": 16,
+          "sql": 17,
+          "opp": 17
+        },
+        "medium": {
+          "hih": 1,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "large": {
+          "hih": 1,
+          "mql": 5,
+          "sql": 2,
+          "opp": 2
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 3,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "disposition": {
+        "dq": 41,
+        "nurture": 26
       }
     }
   ],
