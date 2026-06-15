@@ -627,15 +627,15 @@
       "period": "2026-06-08",
       "label": "Jun 8",
       "funnel": {
-        "hih": 12,
-        "mql": 34,
-        "sql": 25,
-        "opp": 26
+        "hih": 16,
+        "mql": 38,
+        "sql": 27,
+        "opp": 30
       },
       "by_product": {
         "ij": {
-          "hih": 8,
-          "mql": 9,
+          "hih": 12,
+          "mql": 11,
           "sql": 4,
           "opp": 5
         },
@@ -651,8 +651,8 @@
         "single_small": {
           "hih": 5,
           "mql": 16,
-          "sql": 17,
-          "opp": 17
+          "sql": 15,
+          "opp": 16
         },
         "medium": {
           "hih": 1,
