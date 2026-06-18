@@ -609,7 +609,14 @@
         "hih": 99,
         "mql": 142,
         "sql": 67,
-        "opp": 66
+        "opp": 66,
+        "lead": 310,
+        "lead_by_product": {
+          "ij": 114,
+          "inkwell": 13,
+          "wh": 13,
+          "gf8": 0
+        }
       },
       "revenue": {
         "district_won": 83853.38,
@@ -767,6 +774,28 @@
           [
             "EMAIL",
             1
+          ]
+        ],
+        "top_conversion_forms": [
+          [
+            "IJ Scope & Sequence (download)",
+            42
+          ],
+          [
+            "Social Studies Webinar Series",
+            22
+          ],
+          [
+            "Contact Us (website)",
+            17
+          ],
+          [
+            "Curriculum Review Guide (download)",
+            17
+          ],
+          [
+            "World History S&S (download)",
+            12
           ]
         ]
       },
