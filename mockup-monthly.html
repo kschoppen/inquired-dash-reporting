@@ -188,6 +188,12 @@
     .top-page-path { color: var(--iq-purple); font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .top-page-conv { font-size: 11px; font-weight: 700; color: var(--up); background: rgba(26,127,90,0.10); padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
     .top-page-type { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .top-page-traffic { font-size: 11px; font-weight: 700; color: var(--iq-dk-purple); background: rgba(28,38,96,0.08); padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+    .source-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 6px; letter-spacing: 0.04em; }
+    .source-badge.ga4  { background: rgba(255,152,0,0.13); color: #b35e00; border: 1px solid rgba(255,152,0,0.25); }
+    .source-badge.semrush { background: rgba(28,38,96,0.09); color: var(--iq-dk-purple); border: 1px solid rgba(28,38,96,0.20); }
+    .source-badge.hs   { background: rgba(20,71,69,0.10); color: var(--iq-green); border: 1px solid rgba(20,71,69,0.20); }
+    .pending-note { font-size: 11.5px; color: var(--muted); background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 8px 12px; margin-top: 10px; line-height: 1.5; }
 
     /* ---- tables ---- */
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -317,10 +323,10 @@
           <div class="f-stage-name">Lead</div>
           <div class="f-count">—</div>
           <div class="f-delta-row">
-            <span class="fdp flat">HubSpot data</span>
+            <span class="fdp flat">skill update needed</span>
           </div>
         </div>
-        <div class="f-sub-label">HS lifecycle = Lead</div>
+        <div class="f-sub-label">recent_conversion_date in mo.</div>
       </div>
 
       <div class="funnel-connector">
@@ -543,11 +549,43 @@
     </div>
   </div>
 
+  <!-- Top conversion pages — GA4 -->
+  <div class="panel">
+    <h3>Top conversion pages <span class="source-badge ga4">GA4 API</span></h3>
+    <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request, webinar signup) in May 2026 — ranked by total completions</p>
+    <div class="top-page-row">
+      <span class="top-page-path">/resources/social-studies-guide</span>
+      <span class="top-page-conv">387 completions</span>
+      <span class="top-page-type">resource download</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/curriculum/inquiry-journeys</span>
+      <span class="top-page-conv">383 completions</span>
+      <span class="top-page-type">form thank-you</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/webinars</span>
+      <span class="top-page-conv">72 completions</span>
+      <span class="top-page-type">webinar signup</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/demo</span>
+      <span class="top-page-conv">35 completions</span>
+      <span class="top-page-type">contact sales</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/resources/curriculum-guide</span>
+      <span class="top-page-conv">26 completions</span>
+      <span class="top-page-type">curriculum guide</span>
+    </div>
+    <div class="pending-note">⚠ Page paths are illustrative — the actual GA4 query (top pages by key event completion) needs to be added to the monthly skill. The conversion counts above are real May 2026 totals from the existing JSON; the page-level breakdown is new data.</div>
+  </div>
+
   <!-- ===== SEO — redesigned with top converting pages ===== -->
-  <div class="section-label">🔍 Organic search · May 2026 <span class="muted">(Search Atlas · baseline month)</span></div>
+  <div class="section-label">🔍 Organic search · May 2026 <span class="muted">(Search Atlas rankings · SemRush traffic)</span></div>
   <div class="grid2">
     <div class="panel">
-      <h3>Keyword rankings by topic</h3>
+      <h3>Keyword rankings by topic <span class="source-badge hs">Search Atlas</span></h3>
       <table>
         <thead><tr><th>Topic</th><th>Tracked</th><th>Top 10</th><th>Avg pos</th><th>MoM</th></tr></thead>
         <tbody>
@@ -562,39 +600,39 @@
     </div>
 
     <div class="panel">
-      <h3>Top converting pages <span class="muted">(GA4 · May 2026)</span></h3>
-      <p style="font-size:12px;color:var(--muted);margin:0 0 10px">Pages driving the most key-event completions (form fills, downloads, demo requests)</p>
+      <h3>Top organic entry pages <span class="source-badge semrush">SemRush API</span></h3>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in May 2026 — ranked by estimated monthly visits from Google</p>
       <div class="top-page-row">
         <span class="top-page-path">/curriculum/inquiry-journeys</span>
-        <span class="top-page-conv">142 conv.</span>
+        <span class="top-page-traffic">~3,200 visits</span>
         <span class="top-page-type">product page</span>
       </div>
       <div class="top-page-row">
-        <span class="top-page-path">/resources/social-studies-guide</span>
-        <span class="top-page-conv">89 conv.</span>
-        <span class="top-page-type">resource</span>
-      </div>
-      <div class="top-page-row">
-        <span class="top-page-path">/demo</span>
-        <span class="top-page-conv">72 conv.</span>
-        <span class="top-page-type">demo request</span>
-      </div>
-      <div class="top-page-row">
-        <span class="top-page-path">/curriculum/inkwell-ela</span>
-        <span class="top-page-conv">54 conv.</span>
-        <span class="top-page-type">product page</span>
-      </div>
-      <div class="top-page-row">
-        <span class="top-page-path">/blog/inquiry-based-learning</span>
-        <span class="top-page-conv">38 conv.</span>
+        <span class="top-page-path">/blog/inquiry-based-social-studies</span>
+        <span class="top-page-traffic">~1,840 visits</span>
         <span class="top-page-type">blog post</span>
       </div>
       <div class="top-page-row">
-        <span class="top-page-path">/pricing</span>
-        <span class="top-page-conv">35 conv.</span>
-        <span class="top-page-type">pricing page</span>
+        <span class="top-page-path">/resources/social-studies-guide</span>
+        <span class="top-page-traffic">~1,100 visits</span>
+        <span class="top-page-type">resource</span>
       </div>
-      <p class="cap">⚠ Page paths + conversion counts are <strong>illustrative placeholders</strong> for design review — actual data requires a GA4 API query to be wired up in the monthly skill</p>
+      <div class="top-page-row">
+        <span class="top-page-path">/curriculum/inkwell-ela</span>
+        <span class="top-page-traffic">~620 visits</span>
+        <span class="top-page-type">product page</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/blog/elementary-social-studies</span>
+        <span class="top-page-traffic">~510 visits</span>
+        <span class="top-page-type">blog post</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/about</span>
+        <span class="top-page-traffic">~480 visits</span>
+        <span class="top-page-type">brand page</span>
+      </div>
+      <div class="pending-note">⚠ Page paths + traffic estimates are illustrative — SemRush API is wired but blocked by environment egress. Add <code>api.semrush.com</code> to the network allowlist in your Claude Code environment settings to activate real data.</div>
     </div>
   </div>
 
