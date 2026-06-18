@@ -283,6 +283,7 @@ function renderMonthly(d) {
 
     <!-- LAGGING -->
     <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
+    <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
     <div class="cards">
       <div class="card"><div class="label">Closed-won ($)</div><div class="value">${fmt$(last.revenue.total_won)}</div>${dualDelta(last.revenue.total_won, prev.revenue && prev.revenue.total_won, null)}<div class="cap">${last.label} · total dollars won (non-test / non-RFP)</div></div>
       <div class="card"><div class="label">New business ($)</div><div class="value">${fmt$(last.revenue.nb_won)}</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">new + pilot + pilot-expansion deals</div></div>
