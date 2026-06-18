@@ -125,7 +125,7 @@ function renderMonthly(d) {
     <div class="section-label">🔍 Organic search — by topic area</div>
     <div class="panel">
       ${seoSection(d)}
-      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Search Atlas rank-tracker (project #77489), not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Search Atlas project. MoM movement begins once we have a prior month to compare.</p>
+      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
       ${note(seoNarrative(d))}
     </div>
 
