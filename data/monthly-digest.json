@@ -703,6 +703,58 @@
             "IJ download",
             2
           ]
+        ],
+        "top_conversion_pages": [
+          {
+            "path": "/webinar-sign-up/social-studies",
+            "completions": 261,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/webinar-sign-up-thank-you",
+            "completions": 228,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/download/social-studies-curriculum-review-thank-you",
+            "completions": 152,
+            "type": "curriculum page"
+          },
+          {
+            "path": "/download/inquiry-journeys-scope-and-sequence-thank-you",
+            "completions": 134,
+            "type": "resource"
+          },
+          {
+            "path": "/inquiry-based-social-studies/elementary-curriculum",
+            "completions": 128,
+            "type": "curriculum page"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 92,
+            "type": "contact sales"
+          },
+          {
+            "path": "/webinar-sign-up/product",
+            "completions": 81,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/integrated-ela-curriculum/reviewer",
+            "completions": 80,
+            "type": "curriculum page"
+          },
+          {
+            "path": "/download/pacing-guide-thank-you",
+            "completions": 62,
+            "type": "resource"
+          },
+          {
+            "path": "/",
+            "completions": 56,
+            "type": "homepage"
+          }
         ]
       },
       "by_product": {
@@ -993,7 +1045,59 @@
             "vol": 140
           }
         ]
-      }
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "keywords": 113,
+          "visits": 3056
+        },
+        {
+          "path": "/post/52-words-the-meaning-and-message-of-the-preamble",
+          "keywords": 35,
+          "visits": 1360
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "keywords": 18,
+          "visits": 806
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "keywords": 8,
+          "visits": 243
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "keywords": 74,
+          "visits": 169
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "keywords": 26,
+          "visits": 134
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "keywords": 21,
+          "visits": 107
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "keywords": 57,
+          "visits": 93
+        },
+        {
+          "path": "/careers",
+          "keywords": 16,
+          "visits": 90
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum/oregon",
+          "keywords": 4,
+          "visits": 82
+        }
+      ]
     }
   ],
   "seo_topics": [
