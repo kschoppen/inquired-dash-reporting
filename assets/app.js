@@ -74,7 +74,8 @@ function renderMonthly(d) {
       <div class="hero-main">
         <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star</div>
         <div class="hero-val">${fmtN(heroHih)} ${deltaHTML(heroHih, heroHihPrev, {label:"MoM"})}</div>
-        <div class="hero-sub">HIH→MQL ${heroHihToMql != null ? heroHihToMql + "%" : "—"} · MQL→SQL ${heroConv != null ? heroConv + "%" : "—"} — does high intent convert?</div>
+        <div class="hero-sub">Contacts in HubSpot's <strong>High marketing-intent</strong> stage — earliest signal of serious evaluation · HIH→MQL ${heroHihToMql != null ? heroHihToMql + "%" : "—"} · MQL→SQL ${heroConv != null ? heroConv + "%" : "—"}</div>
+        <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
         ${note(hihNarrative(d, last))}
       </div>
       <div class="hero-chart"><div class="chartbox sm"><canvas id="cHih"></canvas></div></div>
@@ -84,8 +85,8 @@ function renderMonthly(d) {
     <div class="toolbar">
       <span class="tlabel">Product cut (funnel only):</span>
       ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
-      <span class="cov">${cov ? "⚠ " + cov : ""}</span>
     </div>
+    ${PRODUCT !== "all" ? `<div class="product-filter-bar">Filtered to: <strong>${pLabel}</strong> <span class="pfbar-note">product-tagged contacts only · partial coverage · won't sum to totals · click <em>All products</em> to reset</span></div>` : ""}
     <div class="cards">
       ${card("MQL → SQL", convLast != null ? convLast + "%" : "—", deltaHTML(convLast, convPrev, {label:"MoM"}))}
       ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"MoM"}))}
