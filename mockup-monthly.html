@@ -61,16 +61,22 @@
     .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--iq-green); font-weight: 900; margin: 22px 0 10px; }
     .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
 
-    /* ---- HIH hero: two panels side-by-side ---- */
+    /* ---- HIH hero: top row + def + chart all in green card ---- */
     .hih-hero {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       background: var(--iq-lt-green); border: 1px solid #cfead0;
       border-left: 5px solid var(--iq-green); border-radius: 14px;
       overflow: hidden; margin-bottom: 10px;
+      display: flex; flex-direction: column;
     }
-    @media (max-width: 820px) { .hih-hero { grid-template-columns: 1fr; } }
+    .hih-hero-top { display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 820px) { .hih-hero-top { grid-template-columns: 1fr; } }
     .hih-hero-main { padding: 20px 22px; }
     .hih-hero-velocity { padding: 20px 22px; background: rgba(20,71,69,0.055); border-left: 1px solid #cfead0; }
+    .hih-hero-def { padding: 12px 22px; border-top: 1px solid #cfead0; font-size: 12.5px; color: #2c3a39; line-height: 1.55; }
+    .hih-hero-def strong { color: var(--iq-dk-purple); }
+    .hih-hero-chart { padding: 4px 22px 18px; border-top: 1px solid #cfead0; }
+    .hih-hero-chart h4 { margin: 10px 0 6px; font-size: 12px; font-weight: 900; color: var(--iq-green); text-transform: uppercase; letter-spacing: 0.08em; }
+    .hih-trend-box { position: relative; height: 140px; }
     .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--iq-green); text-transform: uppercase; }
     .hero-val { font-size: 44px; font-weight: 900; color: var(--iq-green); margin: 2px 0; line-height: 1.1; }
     .hero-val-sm { font-size: 36px; font-weight: 900; color: var(--iq-green); margin: 2px 0; line-height: 1.1; }
@@ -79,6 +85,13 @@
     .hih-hs-link:hover { background: rgba(20,71,69,0.18); }
     .sparkbox { height: 70px; position: relative; margin-top: 10px; }
     .sparkbox canvas { position: absolute; inset: 0; }
+    .hih-prod-breakdown { margin-top: 12px; border-top: 1px solid rgba(20,71,69,0.18); padding-top: 10px; }
+    .hih-prod-breakdown .pb-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 3px 0; font-size: 12px; }
+    .hih-prod-breakdown .pb-label { display: flex; align-items: center; gap: 5px; color: #2c3a39; font-weight: 700; }
+    .hih-prod-breakdown .pb-count { font-size: 14px; font-weight: 900; color: var(--iq-green); }
+    .hih-prod-breakdown .pb-pct { font-size: 11px; color: var(--muted); }
+    .hih-def-note { background: rgba(28,38,96,0.055); border-left: 3px solid var(--iq-dk-purple); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 10px; font-size: 12.5px; color: #3a3a3a; line-height: 1.55; }
+    .hih-def-note strong { color: var(--iq-dk-purple); }
 
     /* ---- funnel visual ---- */
     .funnel-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 18px; }
@@ -219,24 +232,56 @@
     <span class="timing">Fiscal year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
   </div>
 
-  <!-- ===== HIH HERO — two panels ===== -->
+  <!-- ===== HIH HERO — top row + def + trend chart, all in green card ===== -->
   <div class="hih-hero">
-    <div class="hih-hero-main">
-      <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
-      <div class="hero-val">374</div>
-      <div class="hero-sub">
-        Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This is the actionable pool; it refreshes continuously in HubSpot.
+    <div class="hih-hero-top">
+      <div class="hih-hero-main">
+        <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
+        <div class="hero-val">374</div>
+        <div class="hero-sub">
+          Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This is the actionable pool; it refreshes continuously in HubSpot.
+        </div>
+        <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
       </div>
-      <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
+      <div class="hih-hero-velocity">
+        <div class="hero-label">★ HIH VELOCITY — new contacts this month (May 2026)</div>
+        <div class="hero-val-sm">99 &nbsp;<span class="delta up" style="font-size:15px">▲ 36% <span class="sub">MoM</span></span></div>
+        <div class="hero-sub">
+          New contacts reaching High-intent in May · HIH→MQL <strong>71.7%</strong> · MQL→SQL <strong>47.2%</strong><br>
+          <span style="color:var(--muted);font-size:12px">YoY available starting Jun 2026 (first full year of data)</span>
+        </div>
+        <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
+        <div class="hih-prod-breakdown">
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#144745"></span>Inquiry Journeys</span>
+            <span><span class="pb-count">79</span> <span class="pb-pct">80%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#F99792"></span>Inkwell (ELA)</span>
+            <span><span class="pb-count">16</span> <span class="pb-pct">16%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#5B5A9E"></span>World History</span>
+            <span><span class="pb-count">15</span> <span class="pb-pct">15%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#B1E0BB"></span>Great First 8</span>
+            <span><span class="pb-count">0</span> <span class="pb-pct">—</span></span>
+          </div>
+          <p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p>
+        </div>
+      </div>
     </div>
-    <div class="hih-hero-velocity">
-      <div class="hero-label">★ HIH VELOCITY — new contacts this month (May 2026)</div>
-      <div class="hero-val-sm">99 &nbsp;<span class="delta up" style="font-size:15px">▲ 36% <span class="sub">MoM</span></span></div>
-      <div class="hero-sub">
-        New contacts reaching High-intent in May · HIH→MQL <strong>71.7%</strong> · MQL→SQL <strong>47.2%</strong><br>
-        <span style="color:var(--muted);font-size:12px">YoY available starting Jun 2026 (first full year of data)</span>
-      </div>
-      <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
+
+    <!-- definition strip -->
+    <div class="hih-hero-def">
+      <strong>✦ HIH (High-Intent)</strong> is a signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of their lifecycle stage. 374 are active in the last 90 days (the working pool above); 99 are newly identified this month. HIH contacts convert to MQL at 71.7%, making them our highest-value top-of-funnel signal.
+    </div>
+
+    <!-- 12-month HIH velocity trend -->
+    <div class="hih-hero-chart">
+      <h4>HIH velocity — trailing 12 months</h4>
+      <div class="hih-trend-box"><canvas id="cHihTrend"></canvas></div>
     </div>
   </div>
 
@@ -270,34 +315,16 @@
       <div class="funnel-stage">
         <div class="funnel-box f-prospect">
           <div class="f-stage-name">Lead</div>
-          <div class="f-count">905</div>
+          <div class="f-count">—</div>
           <div class="f-delta-row">
-            <span class="fdp flat">—</span>
+            <span class="fdp flat">HubSpot data</span>
           </div>
         </div>
-        <div class="f-sub-label">web conversions</div>
+        <div class="f-sub-label">HS lifecycle = Lead</div>
       </div>
 
       <div class="funnel-connector">
-        <div class="conv-rate-pill hih-pill">intent scored → HIH</div>
-        <div class="chevron" style="color:#aaa">›</div>
-      </div>
-
-      <!-- HIH (dashed — signal layer) -->
-      <div class="funnel-stage">
-        <div class="funnel-box f-hih">
-          <div class="f-stage-name">✦ HIH</div>
-          <div class="f-count">99</div>
-          <div class="f-delta-row">
-            <span class="fdp up">▲ 36% MoM</span>
-            <span class="fdp flat">— YoY</span>
-          </div>
-        </div>
-        <div class="f-sub-label" style="color:var(--iq-dk-purple);font-weight:700">high-intent signal layer</div>
-      </div>
-
-      <div class="funnel-connector">
-        <div class="conv-rate-pill">71.7% HIH→MQL</div>
+        <div class="conv-rate-pill">MQL criteria</div>
         <div class="chevron">›</div>
       </div>
 
@@ -351,10 +378,6 @@
       </div>
 
     </div><!-- /funnel-flow -->
-
-    <div class="hih-note">
-      <strong>✦ HIH (High-Intent)</strong> is a signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of their lifecycle stage. 374 are active in the last 90 days (the working pool above); 99 are newly identified this month. HIH contacts convert to MQL at 71.7%, making them our highest-value top-of-funnel signal.
-    </div>
   </div>
 
   <!-- ===== PRODUCT-FILTERED SECTION ===== -->
@@ -447,7 +470,7 @@
       <div class="panel" style="margin-bottom:0">
         <h3>HIH by product <span class="muted">(May 2026)</span></h3>
         <table>
-          <thead><tr><th>Product</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th></tr></thead>
+          <thead><tr><th>Product</th><th>New HIH</th><th>New MQL</th><th>New SQL</th><th>MQL→SQL</th></tr></thead>
           <tbody>
             <tr><td><span class="dot" style="background:#144745"></span>Inquiry Journeys</td><td>79</td><td>73</td><td>28</td><td>38.4%</td></tr>
             <tr><td><span class="dot" style="background:#F99792"></span>Inkwell (ELA)</td><td>16</td><td>21</td><td>0</td><td>0%</td></tr>
@@ -456,7 +479,7 @@
             <tr><td><strong>All products</strong></td><td><strong>99</strong></td><td><strong>142</strong></td><td><strong>67</strong></td><td><strong>47.2%</strong></td></tr>
           </tbody>
         </table>
-        <p class="cap">Product-tagged subset · partial coverage · sums won't match all-product totals</p>
+        <p class="cap">New contacts created &amp; tagged this month · product-tagged subset · partial coverage · sums won't match all-product totals</p>
       </div>
     </div>
 
@@ -684,7 +707,7 @@
   const distD = [320014, 467122, 35736, 20287, 4731, 5184, 11250, 15242, 7805, 4000, 11249, 83853];
   const schoD = [20807, 53244, 20954, 2498, 0, 0, 0, 0, 250, 0, 1900, 21363];
 
-  // HIH velocity sparkline (last 6 months in hero)
+  // HIH velocity sparkline (last 6 months in hero right panel)
   new Chart(document.getElementById("cHihVelocity"), {
     type: "line",
     data: {
@@ -692,6 +715,24 @@
       datasets: [{ data: [36, 75, 89, 70, 73, 99], borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.15)", fill: true, tension: 0.4, pointRadius: [0,0,0,0,0,4], pointBackgroundColor: AMBER }]
     },
     options: { ...noLeg, scales: { x: { display: true, ticks: { font: { size: 10 }, color: "#999" }, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
+  });
+
+  // HIH 12-month trend — full width, inside hero card
+  new Chart(document.getElementById("cHihTrend"), {
+    type: "line",
+    data: {
+      labels: ["Jun 2025","Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026"],
+      datasets: [{
+        data: hihD,
+        borderColor: AMBER, backgroundColor: "rgba(20,71,69,0.10)",
+        fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: "#fff",
+        pointBorderColor: AMBER, pointBorderWidth: 2
+      }]
+    },
+    options: { ...noLeg, scales: {
+      x: { ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } },
+      y: { beginAtZero: true, ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } }
+    }}
   });
 
   // Sparklines inside KPI cards
