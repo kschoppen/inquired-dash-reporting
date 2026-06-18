@@ -102,6 +102,8 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .funnel-box { width: 100%; padding: 12px 8px; border-radius: 8px; text-align: center; border: 2px solid transparent; }
 .f-stage-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
 .f-count { font-size: 22px; font-weight: 900; }
+.f-deltas { margin-top: 5px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.f-deltas .delta { font-size: 10px; }
 .f-sub-label { font-size: 10px; color: var(--muted); margin-top: 5px; text-align: center; }
 .f-delta-row { display: flex; gap: 4px; justify-content: center; margin-top: 5px; flex-wrap: wrap; }
 .fdp { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; white-space: nowrap; }
@@ -215,6 +217,29 @@ th:first-child, td:first-child { text-align: left; }
 thead th { color: var(--muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; }
 tbody tr:last-child td { font-weight: 700; }
 a { color: var(--iq-purple); font-weight: 700; text-decoration: underline; }
+
+/* ── AI Visibility ── */
+.ai-vis-score { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
+.ai-vis-num { font-size: 36px; font-weight: 900; color: var(--iq-green); line-height: 1; }
+.ai-vis-denom { font-size: 16px; color: var(--muted); }
+.ai-vis-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: .4px; margin-left: 4px; }
+.ai-vis-badge.low { background: #fde8e8; color: var(--down); }
+.ai-vis-badge.medium { background: #fef3cd; color: #856404; }
+.ai-vis-badge.high { background: var(--iq-lt-green); color: var(--iq-green); }
+.ai-vis-stats { display: flex; gap: 22px; margin-bottom: 14px; flex-wrap: wrap; }
+.ai-vis-stat { display: flex; flex-direction: column; gap: 2px; }
+.ai-vis-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; font-weight: 700; }
+.ai-vis-stat-val { font-size: 20px; font-weight: 900; color: var(--iq-dk-purple); line-height: 1.1; }
+.ai-vis-llm { margin-top: 6px; }
+.ai-vis-llm-hdr { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; font-weight: 700; margin-bottom: 8px; }
+.ai-vis-llm-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ai-vis-llm-name { font-size: 12px; width: 100px; flex-shrink: 0; }
+.ai-vis-bar-wrap { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; min-width: 40px; }
+.ai-vis-bar { height: 100%; background: var(--iq-purple); border-radius: 4px; }
+.ai-vis-llm-pct { font-size: 11px; color: var(--muted); white-space: nowrap; }
+/* ── Keyword Gap ── */
+.kw-gap-hero { margin-bottom: 12px; font-size: 13px; line-height: 1.5; }
+.kw-gap-n { font-size: 28px; font-weight: 900; color: var(--iq-dk-purple); line-height: 1; margin-right: 4px; }
 
 /* ── Drill-downs ── */
 details.kwd { margin: 12px 0 0; border-top: 1px solid var(--line); padding-top: 8px; }

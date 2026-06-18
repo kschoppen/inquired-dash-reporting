@@ -918,7 +918,35 @@
           "amount": 0,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40445887574"
         }
-      ]
+      ],
+      "ai_visibility": {
+        "score": 16,
+        "label": "Low",
+        "mentions": 31,
+        "mentions_delta_pct": -3.1,
+        "citations": 83,
+        "citations_delta_pct": -15.3,
+        "cited_pages": 26,
+        "cited_pages_delta_pct": -16.1,
+        "by_llm": [
+          {"llm": "AI Overview", "pct": 45.2, "count": 14},
+          {"llm": "Gemini", "pct": 25.8, "count": 8},
+          {"llm": "ChatGPT", "pct": 19.4, "count": 6},
+          {"llm": "AI Mode", "pct": 9.7, "count": 3}
+        ]
+      },
+      "keyword_gap": {
+        "total_missing": 129,
+        "relevant_missing": 20,
+        "filter_note": "Math keywords excluded — competitors' products include math curricula not relevant to IJ/Inkwell/WH. ~20 of 129 missing keywords are ELA/literacy/social studies.",
+        "top_gaps": [
+          {"kw": "ela curriculum", "vol": 880},
+          {"kw": "english language arts curriculum", "vol": 260},
+          {"kw": "ela in schools", "vol": 210},
+          {"kw": "middle school language arts curriculum", "vol": 210},
+          {"kw": "middle school ela curriculum", "vol": 140}
+        ]
+      }
     }
   ],
   "seo_topics": [

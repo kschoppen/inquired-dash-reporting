@@ -49,10 +49,14 @@ function revSer(m) { return PRODUCT === "all" ? null : m.map((x) => x.rev_by_pro
 const spkOpts = { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { x: { display: false }, y: { display: false, beginAtZero: true } }, elements: { point: { radius: 0 } }, animation: false };
 
 function funnelStage(name, count, prevCount, subLabel, cssClass, yoyCount) {
+  const momD = (count != null && prevCount != null && prevCount > 0) ? Math.round((count - prevCount) / prevCount * 100) : null;
+  const yoyD = (count != null && yoyCount != null && yoyCount > 0) ? Math.round((count - yoyCount) / yoyCount * 100) : null;
+  const pill = (v, lbl) => v == null ? "" : `<span class="delta ${v > 0 ? "up" : v < 0 ? "down" : "flat"}">${v > 0 ? "↑" : v < 0 ? "↓" : ""}${Math.abs(v)}% ${lbl}</span>`;
   return `<div class="funnel-stage">
     <div class="funnel-box ${cssClass}">
       <div class="f-stage-name">${name}</div>
       <div class="f-count">${count != null ? fmtN(count) : "—"}</div>
+      ${momD != null || yoyD != null ? `<div class="f-deltas">${pill(momD, "MoM")}${pill(yoyD, "YoY")}</div>` : ""}
     </div>
     ${subLabel ? `<div class="f-sub-label">${subLabel}</div>` : ""}
   </div>`;
@@ -261,6 +265,20 @@ function renderMonthly(d) {
           : `<p class="pending-note">⚠ SemRush top organic pages — pending skill update + egress allowlist for <code>api.semrush.com</code>.</p>`}
       </div>
     </div>
+
+    <!-- AI VISIBILITY + KEYWORD GAP -->
+    <div class="section-label">🤖 AI &amp; competitive search visibility · ${last.label} <span class="muted">(Semrush)</span></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
+        ${aiVisSection(last)}
+      </div>
+      <div class="panel">
+        <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
+        ${kwGapSection(last)}
+      </div>
+    </div>
+
     <div class="panel" style="font-size:13px;color:#3a3a3a">
 
     <!-- LAGGING -->
@@ -374,6 +392,38 @@ function seoSection(d) {
     <table><thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>MoM</th></tr></thead><tbody>
     ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
     </tbody></table></details>`).join("")}`;
+}
+
+// ---- AI visibility section ----
+function aiVisSection(m) {
+  const av = m.ai_visibility;
+  if (!av) return '<p class="pending-note">⚠ AI Visibility — read Semrush AI Visibility PDF (Step 3h) to populate.</p>';
+  const llms = av.by_llm || [];
+  return `<div class="ai-vis-score">
+      <span class="ai-vis-num">${av.score}</span><span class="ai-vis-denom">/100</span>
+      <span class="ai-vis-badge ${av.label.toLowerCase()}">${av.label}</span>
+    </div>
+    <div class="ai-vis-stats">
+      ${[["Mentions", av.mentions, av.mentions_delta_pct], ["Citations", av.citations, av.citations_delta_pct], ["Cited pages", av.cited_pages, av.cited_pages_delta_pct]].map(([lbl, val, delta]) =>
+      `<div class="ai-vis-stat"><span class="ai-vis-stat-label">${lbl}</span><span class="ai-vis-stat-val">${val}</span>${delta != null ? `<span class="delta ${delta >= 0 ? "up" : "down"}">${delta > 0 ? "+" : ""}${delta}%</span>` : ""}</div>`
+    ).join("")}
+    </div>
+    ${llms.length ? `<div class="ai-vis-llm">
+      <div class="ai-vis-llm-hdr">By AI engine</div>
+      ${llms.map((l) => `<div class="ai-vis-llm-row"><span class="ai-vis-llm-name">${l.llm}</span><div class="ai-vis-bar-wrap"><div class="ai-vis-bar" style="width:${l.pct}%"></div></div><span class="ai-vis-llm-pct">${l.pct}% · ${l.count}</span></div>`).join("")}
+    </div>` : ""}`;
+}
+
+// ---- keyword gap section ----
+function kwGapSection(m) {
+  const kg = m.keyword_gap;
+  if (!kg) return '<p class="pending-note">⚠ Keyword Gap — read Semrush Keyword Gap PDF (Step 3i). Math keywords auto-filtered; ELA/SS gaps only shown.</p>';
+  const gaps = kg.top_gaps || [];
+  return `<div class="kw-gap-hero"><span class="kw-gap-n">${kg.relevant_missing}</span> ELA/SS keywords we're missing <span class="muted">(of ${fmtN(kg.total_missing)} total — math excluded)</span></div>
+    ${gaps.length ? `<table><thead><tr><th>Keyword</th><th>Est. volume</th></tr></thead><tbody>
+      ${gaps.map((g) => `<tr><td>${g.kw}</td><td>${fmtN(g.vol)}</td></tr>`).join("")}
+    </tbody></table>` : ""}
+    ${kg.filter_note ? note(kg.filter_note) : ""}`;
 }
 
 // ---- deal drill-down ----
