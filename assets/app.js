@@ -254,11 +254,12 @@ function renderMonthly(d) {
     </div>` : ""}
 
     <!-- SEO -->
-    <div class="section-label">🔍 Organic search · ${last.label} <span class="muted">(Search Atlas rankings · SemRush traffic)</span></div>
+    <div class="section-label">🔍 Organic search · ${last.label} <span class="muted">(Semrush rankings · SemRush traffic)</span></div>
     <div class="grid2">
       <div class="panel">
-        <h3>Keyword rankings by topic <span class="source-badge hs">Search Atlas</span></h3>
+        <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
         ${seoSection(d)}
+        <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
         ${note(seoNarrative(d))}
       </div>
       <div class="panel">
@@ -270,8 +271,6 @@ function renderMonthly(d) {
       </div>
     </div>
     <div class="panel" style="font-size:13px;color:#3a3a3a">
-      <p class="insight">🛈 <strong>Keyword rankings:</strong> full set of keywords in Search Atlas project #77489, auto-grouped by topic. <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · MoM movement starts once we have a prior month to compare.</p>
-    </div>
 
     <!-- LAGGING -->
     <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
@@ -377,13 +376,12 @@ function seoNarrative(d) {
 function seoSection(d) {
   const topics = d.seo_topics || [];
   if (!topics.length) return '<p class="flag">SEO data unavailable.</p>';
-  return `<table><thead><tr><th>Topic</th><th>Tracked</th><th>Top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
-    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
+  return `<table><thead><tr><th>Topic area</th><th>Tracked</th><th>Ranked</th><th>In top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
+    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
   </tbody></table>
-  <p class="cap">${d.seo_topics && d.seo_topics.reduce((s,t) => s + (t.tracked||0), 0)} keywords tracked · MoM movement starts once we have a prior month to compare · ELA and ECE are the clearest organic growth opportunities</p>
-  ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${(t.keywords||[]).length} keywords</summary>
+  ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${t.keywords.length} keywords</summary>
     <table><thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>MoM</th></tr></thead><tbody>
-    ${(t.keywords||[]).map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
+    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
     </tbody></table></details>`).join("")}`;
 }
 
