@@ -618,7 +618,7 @@
         "mql": 269,
         "sql": 99,
         "opp": 96,
-        "hih_pool_active": 996
+        "hih_pool_active": 374
       },
       "revenue": {
         "district_won": 277427.56,
@@ -708,19 +708,23 @@
       "by_product": {
         "ij": {
           "mql": 108,
-          "sql": 42
+          "sql": 42,
+          "hih": 57
         },
         "inkwell": {
           "mql": 2,
-          "sql": 2
+          "sql": 2,
+          "hih": 0
         },
         "wh": {
           "mql": 2,
-          "sql": 0
+          "sql": 0,
+          "hih": 0
         },
         "gf8": {
           "mql": 0,
-          "sql": 0
+          "sql": 0,
+          "hih": 0
         }
       },
       "rev_by_product": {

@@ -84,9 +84,9 @@ function hihProdBreakdown(last) {
     { key: "gf8",     label: "Great First 8",     color: "#B1E0BB" },
   ];
   return prods.map((p) => {
-    const n = (last.by_product && last.by_product[p.key]) ? last.by_product[p.key].hih : 0;
-    const pct = (n && total) ? Math.round(n / total * 100) : null;
-    return `<div class="pb-row"><span class="pb-label"><span class="dot" style="background:${p.color}"></span>${p.label}</span><span><span class="pb-count">${n}</span> <span class="pb-pct">${pct != null ? pct + "%" : "—"}</span></span></div>`;
+    const n = (last.by_product && last.by_product[p.key] && last.by_product[p.key].hih != null) ? last.by_product[p.key].hih : null;
+    const pct = (n != null && n > 0 && total) ? Math.round(n / total * 100) : null;
+    return `<div class="pb-row"><span class="pb-label"><span class="dot" style="background:${p.color}"></span>${p.label}</span><span><span class="pb-count">${n != null ? n : "—"}</span> <span class="pb-pct">${pct != null ? pct + "%" : "—"}</span></span></div>`;
   }).join("");
 }
 
@@ -125,7 +125,7 @@ function renderMonthly(d) {
   const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
 
   const hihVel = fu(last, "hih"), hihVelPrev = fu(prev, "hih");
-  const hihPool = last.hih_pool_active || null;
+  const hihPool = (last.funnel && last.funnel.hih_pool_active != null) ? last.funnel.hih_pool_active : null;
   const hihToMql = rate(fu(last, "mql"), hihVel), heroConv = rate(fu(last, "sql"), fu(last, "mql"));
 
   const sessions = wv.sessions, sessionsPrev = (prev.web || {}).sessions;
@@ -245,7 +245,7 @@ function renderMonthly(d) {
       <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request) in ${last.label} — ranked by completions</p>
       ${last.web && last.web.top_conversion_pages
         ? topPageRows(last.web.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`)
-        : `<p class="pending-note">⚠ Top conversion pages — GA4 query not yet in skill. Run updated monthly digest skill to populate.</p>`}
+        : `<p class="pending-note">Top conversion pages — requires GA4 OAuth credentials. Not available in cloud sessions; re-run locally to populate.</p>`}
     </div>` : ""}
 
     <!-- SEO -->
@@ -262,7 +262,7 @@ function renderMonthly(d) {
         <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
         ${last.seo_top_pages
           ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-          : `<p class="pending-note">⚠ SemRush top organic pages — pending skill update + egress allowlist for <code>api.semrush.com</code>.</p>`}
+          : `<p class="pending-note">Top organic entry pages — requires Semrush API egress access. Not available in cloud sessions; re-run locally to populate.</p>`}
       </div>
     </div>
 
