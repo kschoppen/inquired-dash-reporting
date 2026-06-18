@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOCKUP — Monthly Funnel &amp; Revenue (redesign)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script src="assets/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --iq-green:    #144745;
+      --iq-green-dk: #0E3332;
+      --iq-med-green:#B1E0BB;
+      --iq-lt-green: #E4FBCE;
+      --iq-purple:   #5B5A9E;
+      --iq-purple-lt:#DAD0FF;
+      --iq-dk-purple:#1C2660;
+      --iq-yellow:   #F7EC89;
+      --iq-pink:     #F99792;
+      --iq-beige:    #F6EFE7;
+      --iq-lt-blue:  #EAEEF5;
+      --surface:     #F4F5F4;
+      --line:        #E2E2E2;
+      --muted:       #757575;
+      --ink:         #1A1A1A;
+      --up:          #1a7f5a;
+      --down:        #b3261e;
+      --font: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font); }
+
+    .mockup-banner {
+      background: var(--iq-yellow); border-bottom: 2px solid #c8b800;
+      padding: 9px 28px; font-size: 13px; font-weight: 700; color: #3d3000;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .site-header {
+      height: 58px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; background: var(--iq-green);
+    }
+    .brand-main { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: -0.2px; }
+    .brand-main span { color: var(--iq-med-green); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-badge { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.78); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .updated { font-size: 12px; color: rgba(255,255,255,0.65); }
+
+    .tabs { display: flex; gap: 4px; padding: 0 22px; background: #fff; border-bottom: 1px solid var(--line); overflow-x: auto; }
+    .tabs button { border: 0; background: none; padding: 14px 16px; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; font-family: var(--font); }
+    .tabs button.active { color: var(--iq-green); border-bottom-color: var(--iq-green); }
+
+    main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
+
+    .contextbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; margin-bottom: 14px; font-size: 12.5px; }
+    .contextbar .asof strong { color: var(--iq-green); }
+    .contextbar .timing { color: var(--muted); }
+
+    .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--iq-green); font-weight: 900; margin: 22px 0 10px; }
+    .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
+
+    /* ---- HIH hero: top row + def + chart all in green card ---- */
+    .hih-hero {
+      background: var(--iq-lt-green); border: 1px solid #cfead0;
+      border-left: 5px solid var(--iq-green); border-radius: 14px;
+      overflow: hidden; margin-bottom: 10px;
+      display: flex; flex-direction: column;
+    }
+    .hih-hero-top { display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 820px) { .hih-hero-top { grid-template-columns: 1fr; } }
+    .hih-hero-main { padding: 20px 22px; }
+    .hih-hero-velocity { padding: 20px 22px; background: rgba(20,71,69,0.055); border-left: 1px solid #cfead0; }
+    .hih-hero-def { padding: 12px 22px; border-top: 1px solid #cfead0; font-size: 12.5px; color: #2c3a39; line-height: 1.55; }
+    .hih-hero-def strong { color: var(--iq-dk-purple); }
+    .hih-hero-chart { padding: 4px 22px 18px; border-top: 1px solid #cfead0; }
+    .hih-hero-chart h4 { margin: 10px 0 6px; font-size: 12px; font-weight: 900; color: var(--iq-green); text-transform: uppercase; letter-spacing: 0.08em; }
+    .hih-trend-box { position: relative; height: 140px; }
+    .hero-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--iq-green); text-transform: uppercase; }
+    .hero-val { font-size: 44px; font-weight: 900; color: var(--iq-green); margin: 2px 0; line-height: 1.1; }
+    .hero-val-sm { font-size: 36px; font-weight: 900; color: var(--iq-green); margin: 2px 0; line-height: 1.1; }
+    .hero-sub { font-size: 13px; color: #2c3a39; line-height: 1.5; margin-top: 4px; }
+    .hih-hs-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--iq-green); background: rgba(20,71,69,0.10); padding: 5px 12px; border-radius: 6px; text-decoration: none; }
+    .hih-hs-link:hover { background: rgba(20,71,69,0.18); }
+    .sparkbox { height: 70px; position: relative; margin-top: 10px; }
+    .sparkbox canvas { position: absolute; inset: 0; }
+    .hih-prod-breakdown { margin-top: 12px; border-top: 1px solid rgba(20,71,69,0.18); padding-top: 10px; }
+    .hih-prod-breakdown .pb-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 3px 0; font-size: 12px; }
+    .hih-prod-breakdown .pb-label { display: flex; align-items: center; gap: 5px; color: #2c3a39; font-weight: 700; }
+    .hih-prod-breakdown .pb-count { font-size: 14px; font-weight: 900; color: var(--iq-green); }
+    .hih-prod-breakdown .pb-pct { font-size: 11px; color: var(--muted); }
+    .hih-def-note { background: rgba(28,38,96,0.055); border-left: 3px solid var(--iq-dk-purple); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 10px; font-size: 12.5px; color: #3a3a3a; line-height: 1.55; }
+    .hih-def-note strong { color: var(--iq-dk-purple); }
+
+    /* ---- funnel visual ---- */
+    .funnel-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 18px; }
+    .funnel-panel h3 { margin: 0 0 2px; font-size: 15px; font-weight: 900; color: var(--iq-green); }
+    .funnel-panel .f-sub { font-size: 12px; color: var(--muted); margin: 0 0 18px; line-height: 1.5; }
+    .funnel-flow { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding-bottom: 6px; }
+    .funnel-stage { flex: 1 0 100px; display: flex; flex-direction: column; align-items: center; min-width: 100px; }
+    .funnel-box {
+      width: 100%; padding: 12px 8px; border-radius: 8px; text-align: center;
+      border: 2px solid transparent;
+    }
+    .f-stage-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
+    .f-count { font-size: 22px; font-weight: 900; }
+    .f-sub-label { font-size: 10px; color: var(--muted); margin-top: 3px; text-align: center; }
+    .f-delta-row { display: flex; gap: 4px; justify-content: center; margin-top: 5px; flex-wrap: wrap; }
+    .fdp { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; white-space: nowrap; }
+    .fdp.up   { background: rgba(26,127,90,0.12); color: var(--up); }
+    .fdp.down { background: rgba(179,38,30,0.10); color: var(--down); }
+    .fdp.flat { background: #eee; color: var(--muted); }
+    .fdp.yoy  { background: var(--iq-lt-blue); color: var(--iq-dk-purple); }
+
+    .funnel-connector { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 3px; padding-top: 28px; }
+    .conv-rate-pill { font-size: 10px; font-weight: 700; color: var(--iq-green); background: var(--iq-lt-green); border: 1px solid #cfead0; padding: 3px 7px; border-radius: 10px; white-space: nowrap; margin-bottom: 4px; text-align: center; }
+    .conv-rate-pill.hih-pill { color: var(--iq-dk-purple); background: rgba(28,38,96,0.07); border-color: rgba(28,38,96,0.20); }
+    .chevron { font-size: 22px; color: #ccc; line-height: 1; }
+
+    .f-prospect { background: var(--iq-lt-blue); border-color: #c0cde0; }
+    .f-prospect .f-count { color: #2d4a72; }
+    .f-hih { background: rgba(28,38,96,0.07); border: 2px dashed rgba(28,38,96,0.30); }
+    .f-hih .f-count { color: var(--iq-dk-purple); }
+    .f-hih .f-stage-name { color: var(--iq-dk-purple); }
+    .f-mql { background: var(--iq-lt-green); border-color: #cfead0; }
+    .f-mql .f-count { color: var(--iq-green); }
+    .f-sql { background: rgba(20,71,69,0.13); border-color: rgba(20,71,69,0.30); }
+    .f-sql .f-count { color: var(--iq-green-dk); }
+    .f-opp { background: rgba(20,71,69,0.22); border-color: var(--iq-green); }
+    .f-opp .f-count { color: var(--iq-green-dk); }
+
+    .hih-note { margin-top: 14px; padding: 8px 14px; background: rgba(28,38,96,0.055); border-left: 3px solid var(--iq-dk-purple); border-radius: 0 8px 8px 0; font-size: 12px; color: #3a3a3a; line-height: 1.5; }
+    .hih-note strong { color: var(--iq-dk-purple); }
+
+    /* ---- product-filtered section container ---- */
+    .product-section {
+      border: 2px solid var(--line); border-radius: 14px;
+      padding: 16px 18px 18px; margin-bottom: 18px; background: #fff;
+    }
+    .product-section-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 14px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--line);
+    }
+    .product-section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--iq-green); font-weight: 900; }
+    .product-section-note { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .toolbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .tlabel { font-size: 12px; color: var(--muted); font-weight: 700; margin-right: 4px; }
+    .chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 13px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--ink); font-family: var(--font); }
+    .chip.on { background: var(--iq-green); color: #fff; border-color: var(--iq-green); }
+    .product-filter-bar { background: var(--iq-dk-purple); color: #fff; border-radius: 8px; padding: 9px 14px; margin-bottom: 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .product-filter-bar strong { font-size: 14px; }
+    .pfbar-note { color: rgba(255,255,255,0.72); font-size: 12px; }
+
+    /* ---- KPI cards with sparkline + dual delta ---- */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 14px; margin-bottom: 14px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+    .card.inside { background: var(--surface); }
+    .card .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; font-weight: 700; }
+    .card .value { font-size: 26px; font-weight: 900; color: var(--iq-green); margin: 4px 0 2px; }
+    .card .dual-delta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 3px; align-items: center; }
+    .card .cap { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.35; }
+    .card .spk { height: 34px; position: relative; margin: 5px 0 2px; }
+    .card .spk canvas { position: absolute; inset: 0; }
+    .delta { font-size: 12px; font-weight: 700; }
+    .delta.up   { color: var(--up); }
+    .delta.down { color: var(--down); }
+    .delta.flat { color: var(--muted); }
+    .delta .sub { color: var(--muted); font-weight: 600; font-size: 11px; }
+    .delta-sep { color: var(--line); font-size: 12px; }
+
+    /* ---- panels ---- */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 820px) { .grid2 { grid-template-columns: 1fr; } }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 18px; }
+    .panel h3 { margin: 0 0 12px; font-size: 15px; font-weight: 900; color: var(--iq-green); }
+    .chartbox { position: relative; height: 280px; width: 100%; }
+    .chartbox.sm { height: 180px; }
+    .chartbox.xs { height: 130px; }
+    .chartbox canvas { position: absolute; inset: 0; }
+    .insight { background: #F1F2F3; border-radius: 10px; padding: 10px 13px; margin: 12px 0 0; font-size: 13px; color: #3a3a3a; line-height: 1.5; }
+    .cap { font-size: 11.5px; color: var(--muted); margin: 10px 0 0; line-height: 1.45; }
+
+    /* ---- top converting pages ---- */
+    .top-page-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .top-page-row:last-of-type { border-bottom: none; }
+    .top-page-path { color: var(--iq-purple); font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .top-page-conv { font-size: 11px; font-weight: 700; color: var(--up); background: rgba(26,127,90,0.10); padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+    .top-page-type { font-size: 11px; color: var(--muted); white-space: nowrap; }
+    .top-page-traffic { font-size: 11px; font-weight: 700; color: var(--iq-dk-purple); background: rgba(28,38,96,0.08); padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+    .source-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 6px; letter-spacing: 0.04em; }
+    .source-badge.ga4  { background: rgba(255,152,0,0.13); color: #b35e00; border: 1px solid rgba(255,152,0,0.25); }
+    .source-badge.semrush { background: rgba(28,38,96,0.09); color: var(--iq-dk-purple); border: 1px solid rgba(28,38,96,0.20); }
+    .source-badge.hs   { background: rgba(20,71,69,0.10); color: var(--iq-green); border: 1px solid rgba(20,71,69,0.20); }
+    .pending-note { font-size: 11.5px; color: var(--muted); background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 8px 12px; margin-top: 10px; line-height: 1.5; }
+
+    /* ---- tables ---- */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { color: var(--muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; }
+    tbody tr:last-child td { font-weight: 700; }
+    a { color: var(--iq-purple); font-weight: 700; text-decoration: underline; }
+    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+    details.kwd { margin: 12px 0 0; border-top: 1px solid var(--line); padding-top: 8px; }
+    details.kwd summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--iq-purple); padding: 4px 0; }
+
+    .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 22px; }
+    .foot a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="mockup-banner">
+  🎨 DESIGN MOCKUP — "Monthly Funnel &amp; Revenue" tab redesign — uses real May 2026 data · not yet deployed · leave feedback &amp; I'll iterate
+</div>
+
+<header class="site-header">
+  <div class="brand-main">inquir<span>ED</span> &nbsp;Reporting</div>
+  <div class="header-right">
+    <span class="header-badge">Internal</span>
+    <span class="updated">Updated Jun 3 2026</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="active">Monthly Funnel &amp; Revenue</button>
+  <button>Weekly Funnel</button>
+  <button>Campaign Health</button>
+  <button>Definitions</button>
+</nav>
+
+<main>
+
+  <div class="contextbar">
+    <span class="asof">📅 Data as of <strong>2026-06-03</strong> · trailing 12 months (Jun 2025 – May 2026)</span>
+    <span class="timing">Fiscal year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
+  </div>
+
+  <!-- ===== HIH HERO — top row + def + trend chart, all in green card ===== -->
+  <div class="hih-hero">
+    <div class="hih-hero-top">
+      <div class="hih-hero-main">
+        <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
+        <div class="hero-val">374</div>
+        <div class="hero-sub">
+          Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This is the actionable pool; it refreshes continuously in HubSpot.
+        </div>
+        <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
+      </div>
+      <div class="hih-hero-velocity">
+        <div class="hero-label">★ HIH VELOCITY — new contacts this month (May 2026)</div>
+        <div class="hero-val-sm">99 &nbsp;<span class="delta up" style="font-size:15px">▲ 36% <span class="sub">MoM</span></span></div>
+        <div class="hero-sub">
+          New contacts reaching High-intent in May · HIH→MQL <strong>71.7%</strong> · MQL→SQL <strong>47.2%</strong><br>
+          <span style="color:var(--muted);font-size:12px">YoY available starting Jun 2026 (first full year of data)</span>
+        </div>
+        <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
+        <div class="hih-prod-breakdown">
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#144745"></span>Inquiry Journeys</span>
+            <span><span class="pb-count">79</span> <span class="pb-pct">80%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#F99792"></span>Inkwell (ELA)</span>
+            <span><span class="pb-count">16</span> <span class="pb-pct">16%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#5B5A9E"></span>World History</span>
+            <span><span class="pb-count">15</span> <span class="pb-pct">15%</span></span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label"><span class="dot" style="background:#B1E0BB"></span>Great First 8</span>
+            <span><span class="pb-count">0</span> <span class="pb-pct">—</span></span>
+          </div>
+          <p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- definition strip -->
+    <div class="hih-hero-def">
+      <strong>✦ HIH (High-Intent)</strong> is a signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of their lifecycle stage. 374 are active in the last 90 days (the working pool above); 99 are newly identified this month. HIH contacts convert to MQL at 71.7%, making them our highest-value top-of-funnel signal.
+    </div>
+
+    <!-- 12-month HIH velocity trend -->
+    <div class="hih-hero-chart">
+      <h4>HIH velocity — trailing 12 months</h4>
+      <div class="hih-trend-box"><canvas id="cHihTrend"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ===== FUNNEL VISUAL ===== -->
+  <div class="section-label">★ Funnel — May 2026 · all-product · monthly new contacts</div>
+  <div class="funnel-panel">
+    <h3>Prospect → Opp · full funnel with conversion rates</h3>
+    <p class="f-sub">Monthly new contacts entering each stage. MoM delta shown; YoY will populate Jun 2026 onward. HIH is a <em>signal layer</em>, not a sequential step — shown separately from the stage-progression flow.</p>
+
+    <div class="funnel-flow">
+
+      <!-- Prospect -->
+      <div class="funnel-stage">
+        <div class="funnel-box f-prospect">
+          <div class="f-stage-name">Prospect</div>
+          <div class="f-count">39,181</div>
+          <div class="f-delta-row">
+            <span class="fdp up">▲ 165% MoM</span>
+            <span class="fdp flat">— YoY</span>
+          </div>
+        </div>
+        <div class="f-sub-label">web sessions</div>
+      </div>
+
+      <div class="funnel-connector">
+        <div class="conv-rate-pill">form / download</div>
+        <div class="chevron">›</div>
+      </div>
+
+      <!-- Lead -->
+      <div class="funnel-stage">
+        <div class="funnel-box f-prospect">
+          <div class="f-stage-name">Lead</div>
+          <div class="f-count">—</div>
+          <div class="f-delta-row">
+            <span class="fdp flat">skill update needed</span>
+          </div>
+        </div>
+        <div class="f-sub-label">recent_conversion_date in mo.</div>
+      </div>
+
+      <div class="funnel-connector">
+        <div class="conv-rate-pill">MQL criteria</div>
+        <div class="chevron">›</div>
+      </div>
+
+      <!-- MQL -->
+      <div class="funnel-stage">
+        <div class="funnel-box f-mql">
+          <div class="f-stage-name">MQL</div>
+          <div class="f-count">142</div>
+          <div class="f-delta-row">
+            <span class="fdp down">▼ 13% MoM</span>
+            <span class="fdp flat">— YoY</span>
+          </div>
+        </div>
+        <div class="f-sub-label">mktg qualified</div>
+      </div>
+
+      <div class="funnel-connector">
+        <div class="conv-rate-pill">47.2% MQL→SQL</div>
+        <div class="chevron">›</div>
+      </div>
+
+      <!-- SQL -->
+      <div class="funnel-stage">
+        <div class="funnel-box f-sql">
+          <div class="f-stage-name">SQL</div>
+          <div class="f-count">67</div>
+          <div class="f-delta-row">
+            <span class="fdp down">▼ 12% MoM</span>
+            <span class="fdp flat">— YoY</span>
+          </div>
+        </div>
+        <div class="f-sub-label">sales qualified</div>
+      </div>
+
+      <div class="funnel-connector">
+        <div class="conv-rate-pill">98.5% SQL→Opp</div>
+        <div class="chevron">›</div>
+      </div>
+
+      <!-- Opp -->
+      <div class="funnel-stage">
+        <div class="funnel-box f-opp">
+          <div class="f-stage-name">Opp</div>
+          <div class="f-count">66</div>
+          <div class="f-delta-row">
+            <span class="fdp down">▼ 15% MoM</span>
+            <span class="fdp flat">— YoY</span>
+          </div>
+        </div>
+        <div class="f-sub-label">open opportunity</div>
+      </div>
+
+    </div><!-- /funnel-flow -->
+  </div>
+
+  <!-- ===== PRODUCT-FILTERED SECTION ===== -->
+  <div class="product-section">
+
+    <div class="product-section-head">
+      <div>
+        <div class="product-section-title">▲ Leading Indicators · May 2026</div>
+        <div class="product-section-note">Product chips below scope <em>this entire section only</em> — funnel, trend, and source charts all update. All-product totals live in the funnel above.</div>
+      </div>
+      <div class="toolbar">
+        <span class="tlabel">Product:</span>
+        <button class="chip on">All products</button>
+        <button class="chip">IJ</button>
+        <button class="chip">Inkwell</button>
+        <button class="chip">World History</button>
+        <button class="chip">GF8</button>
+      </div>
+    </div>
+
+    <!-- KPI cards: dual delta + sparkline -->
+    <div class="cards">
+      <div class="card inside">
+        <div class="label">HIH new this month</div>
+        <div class="value">99</div>
+        <div class="dual-delta">
+          <span class="delta up">▲ 36% <span class="sub">MoM</span></span>
+          <span class="delta-sep">·</span>
+          <span class="delta flat">— <span class="sub">YoY</span></span>
+        </div>
+        <div class="spk"><canvas id="spkHih"></canvas></div>
+        <div class="cap">vs 73 Apr · YoY available Jun 2026</div>
+      </div>
+      <div class="card inside">
+        <div class="label">MQLs</div>
+        <div class="value">142</div>
+        <div class="dual-delta">
+          <span class="delta down">▼ 13% <span class="sub">MoM</span></span>
+          <span class="delta-sep">·</span>
+          <span class="delta flat">— <span class="sub">YoY</span></span>
+        </div>
+        <div class="spk"><canvas id="spkMql"></canvas></div>
+        <div class="cap">vs 164 Apr · seasonal May dip expected</div>
+      </div>
+      <div class="card inside">
+        <div class="label">SQLs</div>
+        <div class="value">67</div>
+        <div class="dual-delta">
+          <span class="delta down">▼ 12% <span class="sub">MoM</span></span>
+          <span class="delta-sep">·</span>
+          <span class="delta flat">— <span class="sub">YoY</span></span>
+        </div>
+        <div class="spk"><canvas id="spkSql"></canvas></div>
+        <div class="cap">vs 76 Apr</div>
+      </div>
+      <div class="card inside">
+        <div class="label">MQL → SQL conv.</div>
+        <div class="value">47.2%</div>
+        <div class="dual-delta">
+          <span class="delta up">▲ 1pp <span class="sub">MoM</span></span>
+          <span class="delta-sep">·</span>
+          <span class="delta flat">— <span class="sub">YoY</span></span>
+        </div>
+        <div class="spk"><canvas id="spkConv"></canvas></div>
+        <div class="cap">vs 46.3% Apr · B2B benchmark 13–22%</div>
+      </div>
+      <div class="card inside">
+        <div class="label">UTM attribution</div>
+        <div class="value">5.9%</div>
+        <div class="dual-delta">
+          <span class="delta down">below 30% target</span>
+        </div>
+        <div class="cap">% MQLs with source UTM · offline + direct dominate</div>
+      </div>
+    </div>
+
+    <!-- MQL→SQL trend (12 months) — NEW -->
+    <div class="panel" style="margin-bottom:14px">
+      <h3>MQL → SQL conversion — 12-month trend</h3>
+      <div class="chartbox"><canvas id="cConvTrend"></canvas></div>
+      <p class="insight">💬 <strong>47.2% in May</strong> is well above the B2B benchmark (13–22%; top performers 30–45%). The Oct 2025 spike to 72.9% was driven by the list upload and will pull down the trailing average — watch the organic baseline. May–Jun seasonal softening is expected; recovery indicator is Jul–Sep.</p>
+    </div>
+
+    <!-- HIH by source + HIH by product -->
+    <div class="grid2" style="margin-bottom:0">
+      <div class="panel" style="margin-bottom:0">
+        <h3>HIH by source <span class="muted">(May 2026)</span></h3>
+        <div class="chartbox xs"><canvas id="cSrc"></canvas></div>
+      </div>
+      <div class="panel" style="margin-bottom:0">
+        <h3>HIH by product <span class="muted">(May 2026)</span></h3>
+        <table>
+          <thead><tr><th>Product</th><th>New HIH</th><th>New MQL</th><th>New SQL</th><th>MQL→SQL</th></tr></thead>
+          <tbody>
+            <tr><td><span class="dot" style="background:#144745"></span>Inquiry Journeys</td><td>79</td><td>73</td><td>28</td><td>38.4%</td></tr>
+            <tr><td><span class="dot" style="background:#F99792"></span>Inkwell (ELA)</td><td>16</td><td>21</td><td>0</td><td>0%</td></tr>
+            <tr><td><span class="dot" style="background:#5B5A9E"></span>World History</td><td>15</td><td>16</td><td>4</td><td>25.0%</td></tr>
+            <tr><td><span class="dot" style="background:#B1E0BB"></span>Great First 8</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+            <tr><td><strong>All products</strong></td><td><strong>99</strong></td><td><strong>142</strong></td><td><strong>67</strong></td><td><strong>47.2%</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="cap">New contacts created &amp; tagged this month · product-tagged subset · partial coverage · sums won't match all-product totals</p>
+      </div>
+    </div>
+
+  </div><!-- /product-section -->
+
+  <!-- ===== WEB ACQUISITION ===== -->
+  <div class="section-label">🌐 Web acquisition · May 2026 <span class="muted">(GA4 · top of funnel)</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="label">Sessions</div>
+      <div class="value">39,181</div>
+      <div class="dual-delta">
+        <span class="delta up">▲ 165% <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta up">▲ 165% <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs 14,781 May 2025 (YoY available)</div>
+    </div>
+    <div class="card">
+      <div class="label">Users</div>
+      <div class="value">12,663</div>
+      <div class="dual-delta">
+        <span class="delta flat">— <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta up">▲ 28% <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs 9,861 May 2025</div>
+    </div>
+    <div class="card">
+      <div class="label">Page views</div>
+      <div class="value">32,590</div>
+      <div class="dual-delta">
+        <span class="delta flat">— <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta up">▲ 102% <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs 16,126 May 2025 · website redesign effect</div>
+    </div>
+    <div class="card">
+      <div class="label">Engagement rate</div>
+      <div class="value">72.1%</div>
+      <div class="dual-delta">
+        <span class="delta flat">— <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta flat">— <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">GA4 engaged sessions / sessions</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Channel mix <span class="muted">(sessions · May 2026)</span></h3>
+      <div class="chartbox xs"><canvas id="mWebChannel"></canvas></div>
+      <p class="insight">💬 Organic Search leads at 46% (18,146). Direct is high (34%) — branded navigations + email click-throughs missing UTMs. AI referrals (ChatGPT/Perplexity) sit under Referral for now.</p>
+    </div>
+    <div class="panel">
+      <h3>Web conversions <span class="muted">(GA4 key events · May 2026)</span></h3>
+      <div class="chartbox xs"><canvas id="mWebConv"></canvas></div>
+      <p class="insight">💬 Form thank-yous (383) and resource downloads (387) are the main web-to-lead conversion events — these feed the HIH pipeline upstream.</p>
+    </div>
+  </div>
+
+  <!-- Top conversion pages — GA4 -->
+  <div class="panel">
+    <h3>Top conversion pages <span class="source-badge ga4">GA4 API</span></h3>
+    <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request, webinar signup) in May 2026 — ranked by total completions</p>
+    <div class="top-page-row">
+      <span class="top-page-path">/resources/social-studies-guide</span>
+      <span class="top-page-conv">387 completions</span>
+      <span class="top-page-type">resource download</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/curriculum/inquiry-journeys</span>
+      <span class="top-page-conv">383 completions</span>
+      <span class="top-page-type">form thank-you</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/webinars</span>
+      <span class="top-page-conv">72 completions</span>
+      <span class="top-page-type">webinar signup</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/demo</span>
+      <span class="top-page-conv">35 completions</span>
+      <span class="top-page-type">contact sales</span>
+    </div>
+    <div class="top-page-row">
+      <span class="top-page-path">/resources/curriculum-guide</span>
+      <span class="top-page-conv">26 completions</span>
+      <span class="top-page-type">curriculum guide</span>
+    </div>
+    <div class="pending-note">⚠ Page paths are illustrative — the actual GA4 query (top pages by key event completion) needs to be added to the monthly skill. The conversion counts above are real May 2026 totals from the existing JSON; the page-level breakdown is new data.</div>
+  </div>
+
+  <!-- ===== SEO — redesigned with top converting pages ===== -->
+  <div class="section-label">🔍 Organic search · May 2026 <span class="muted">(Search Atlas rankings · SemRush traffic)</span></div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Keyword rankings by topic <span class="source-badge hs">Search Atlas</span></h3>
+      <table>
+        <thead><tr><th>Topic</th><th>Tracked</th><th>Top 10</th><th>Avg pos</th><th>MoM</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Brand</strong></td><td>24</td><td>17</td><td>1.1</td><td><span class="delta flat">baseline</span></td></tr>
+          <tr><td><strong>Social Studies (IJ)</strong></td><td>29</td><td>10</td><td>7.7</td><td><span class="delta flat">baseline</span></td></tr>
+          <tr><td><strong>ELA (Inkwell)</strong></td><td>38</td><td>3</td><td>14.2</td><td><span class="delta flat">baseline</span></td></tr>
+          <tr><td><strong>Inquiry Learning</strong></td><td>39</td><td>2</td><td>11.5</td><td><span class="delta flat">baseline</span></td></tr>
+          <tr><td><strong>ECE / Pre-K (GF8)</strong></td><td>22</td><td>1</td><td>18.0</td><td><span class="delta flat">baseline</span></td></tr>
+        </tbody>
+      </table>
+      <p class="cap">152 keywords tracked in Search Atlas · MoM movement starts Jun 2026 · ELA and ECE are the clearest organic growth opportunities</p>
+    </div>
+
+    <div class="panel">
+      <h3>Top organic entry pages <span class="source-badge semrush">SemRush API</span></h3>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in May 2026 — ranked by estimated monthly visits from Google</p>
+      <div class="top-page-row">
+        <span class="top-page-path">/curriculum/inquiry-journeys</span>
+        <span class="top-page-traffic">~3,200 visits</span>
+        <span class="top-page-type">product page</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/blog/inquiry-based-social-studies</span>
+        <span class="top-page-traffic">~1,840 visits</span>
+        <span class="top-page-type">blog post</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/resources/social-studies-guide</span>
+        <span class="top-page-traffic">~1,100 visits</span>
+        <span class="top-page-type">resource</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/curriculum/inkwell-ela</span>
+        <span class="top-page-traffic">~620 visits</span>
+        <span class="top-page-type">product page</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/blog/elementary-social-studies</span>
+        <span class="top-page-traffic">~510 visits</span>
+        <span class="top-page-type">blog post</span>
+      </div>
+      <div class="top-page-row">
+        <span class="top-page-path">/about</span>
+        <span class="top-page-traffic">~480 visits</span>
+        <span class="top-page-type">brand page</span>
+      </div>
+      <div class="pending-note">⚠ Page paths + traffic estimates are illustrative — SemRush API is wired but blocked by environment egress. Add <code>api.semrush.com</code> to the network allowlist in your Claude Code environment settings to activate real data.</div>
+    </div>
+  </div>
+
+  <!-- ===== LAGGING — REVENUE ===== -->
+  <div class="section-label">▽ Lagging · May 2026 — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="label">Closed-won ($)</div>
+      <div class="value">$105,216</div>
+      <div class="dual-delta">
+        <span class="delta up">▲ 700% <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta flat">— <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs $13,149 Apr · Puyallup ($60K) is most of this</div>
+    </div>
+    <div class="card">
+      <div class="label">New business ($)</div>
+      <div class="value">$103,216</div>
+      <div class="dual-delta">
+        <span class="delta flat">— <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta flat">— <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">new + pilot + pilot-expansion</div>
+    </div>
+    <div class="card">
+      <div class="label">Deals won (count)</div>
+      <div class="value">11</div>
+      <div class="dual-delta">
+        <span class="delta up">▲ 83% <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta flat">— <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs 6 Apr · incl. $0 pilots</div>
+    </div>
+    <div class="card">
+      <div class="label">Win rate (count)</div>
+      <div class="value">21.2%</div>
+      <div class="dual-delta">
+        <span class="delta flat">— <span class="sub">MoM</span></span>
+        <span class="delta-sep">·</span>
+        <span class="delta flat">— <span class="sub">YoY</span></span>
+      </div>
+      <div class="cap">vs 15.3% dollar win rate · RevOps owns pipeline</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Closed-won revenue (District + School) <span class="muted">— lagging</span></h3>
+    <div class="chartbox"><canvas id="cRev"></canvas></div>
+    <p class="insight">💬 Revenue lags ~2 quarters in K-12. Puyallup ($60K) is most of May — don't over-read a single month. The May–Jul peak is seasonal (deals closing for next school year). Dollar pipeline + official win rate live in RevOps.</p>
+    <details class="kwd"><summary>▸ 11 closed-won deals (May 2026) — click to expand</summary>
+      <table><thead><tr><th>Deal</th><th>Segment</th><th>Type</th><th>Amount</th></tr></thead><tbody>
+        <tr><td><a href="https://app.hubspot.com/contacts/4451852/record/0-3/44376900148" target="_blank">Puyallup SD — IJ ↗</a></td><td>Enterprise</td><td>Pilot Expansion</td><td>$60,457</td></tr>
+        <tr><td><a href="https://app.hubspot.com/contacts/4451852/record/0-3/53763015561" target="_blank">St. Augustine Prep, WI ↗</a></td><td>Single/Small</td><td>Pilot Expansion</td><td>$12,813</td></tr>
+        <tr><td><a href="https://app.hubspot.com/contacts/4451852/record/0-3/47828474373" target="_blank">Dunecrest American School, IT ↗</a></td><td>Single/Small</td><td>Pilot Expansion</td><td>$7,108</td></tr>
+        <tr><td><a href="https://app.hubspot.com/contacts/4451852/record/0-3/57979974267" target="_blank">Global School Brooklyn — Inkwell ↗</a></td><td>Single/Small</td><td>New Business</td><td>$6,389</td></tr>
+        <tr><td><a href="https://app.hubspot.com/contacts/4451852/record/0-3/48172085135" target="_blank">Harney County SD 3, OR ↗</a></td><td>Single/Small</td><td>New Business</td><td>$6,000</td></tr>
+      </tbody></table>
+      <p class="cap">5 of 11 shown · see HubSpot for full list</p>
+    </details>
+  </div>
+
+  <!-- ===== DETAIL TABLE ===== -->
+  <div class="panel">
+    <h3>Monthly detail — all products (trailing 12 months)</h3>
+    <table>
+      <thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead>
+      <tbody>
+        <tr><td>Jun 2025</td><td>82</td><td>127</td><td>38</td><td>29.9%</td><td>26</td><td>$340,821</td></tr>
+        <tr><td>Jul 2025</td><td>49</td><td>137</td><td>52</td><td>37.9%</td><td>34</td><td>$520,366</td></tr>
+        <tr><td>Aug 2025</td><td>13</td><td>195</td><td>101</td><td>51.8%</td><td>23</td><td>$56,690</td></tr>
+        <tr><td>Sep 2025</td><td>27</td><td>305</td><td>120</td><td>39.3%</td><td>12</td><td>$22,786</td></tr>
+        <tr><td>Oct 2025</td><td>33</td><td>682</td><td>497</td><td>72.9%</td><td>8</td><td>$4,731</td></tr>
+        <tr><td>Nov 2025</td><td>86</td><td>144</td><td>43</td><td>29.9%</td><td>5</td><td>$5,184</td></tr>
+        <tr><td>Dec 2025</td><td>36</td><td>136</td><td>70</td><td>51.5%</td><td>5</td><td>$11,250</td></tr>
+        <tr><td>Jan 2026</td><td>75</td><td>145</td><td>37</td><td>25.5%</td><td>9</td><td>$15,242</td></tr>
+        <tr><td>Feb 2026</td><td>89</td><td>313</td><td>69</td><td>22.0%</td><td>8</td><td>$8,055</td></tr>
+        <tr><td>Mar 2026</td><td>70</td><td>437</td><td>68</td><td>15.6%</td><td>4</td><td>$4,000</td></tr>
+        <tr><td>Apr 2026</td><td>73</td><td>164</td><td>76</td><td>46.3%</td><td>6</td><td>$13,149</td></tr>
+        <tr><td>May 2026</td><td>99</td><td>142</td><td>67</td><td>47.2%</td><td>11</td><td>$105,216</td></tr>
+      </tbody>
+    </table>
+    <p class="cap">Oct 2025 MQL/SQL spike = list upload, not organic · Backfilled Jun 2025–May 2026 from HubSpot + GA4 · Product splits are directional partial coverage</p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  🎨 MOCKUP — inquirED Reporting Dashboard redesign · <a href="https://github.com/kschoppen/inquired-dash-reporting" target="_blank">kschoppen/inquired-dash-reporting</a>
+</footer>
+
+<script>
+  const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", PLUM = "#5B5A9E", AMBER = "#1C2660";
+  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  const botLeg = { plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: false };
+  const spkOpts = {
+    ...noLeg,
+    scales: { x: { display: false }, y: { display: false, beginAtZero: true } },
+    elements: { point: { radius: 0 } },
+    animation: false
+  };
+
+  const mos = ["Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May"];
+  const hihD  = [82, 49, 13, 27, 33, 86, 36, 75, 89, 70, 73, 99];
+  const mqlD  = [127, 137, 195, 305, 682, 144, 136, 145, 313, 437, 164, 142];
+  const sqlD  = [38, 52, 101, 120, 497, 43, 70, 37, 69, 68, 76, 67];
+  const convD = [29.9, 37.9, 51.8, 39.3, 72.9, 29.9, 51.5, 25.5, 22.0, 15.6, 46.3, 47.2];
+  const distD = [320014, 467122, 35736, 20287, 4731, 5184, 11250, 15242, 7805, 4000, 11249, 83853];
+  const schoD = [20807, 53244, 20954, 2498, 0, 0, 0, 0, 250, 0, 1900, 21363];
+
+  // HIH velocity sparkline (last 6 months in hero right panel)
+  new Chart(document.getElementById("cHihVelocity"), {
+    type: "line",
+    data: {
+      labels: ["Dec","Jan","Feb","Mar","Apr","May"],
+      datasets: [{ data: [36, 75, 89, 70, 73, 99], borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.15)", fill: true, tension: 0.4, pointRadius: [0,0,0,0,0,4], pointBackgroundColor: AMBER }]
+    },
+    options: { ...noLeg, scales: { x: { display: true, ticks: { font: { size: 10 }, color: "#999" }, grid: { display: false } }, y: { display: false, beginAtZero: true } } }
+  });
+
+  // HIH 12-month trend — full width, inside hero card
+  new Chart(document.getElementById("cHihTrend"), {
+    type: "line",
+    data: {
+      labels: ["Jun 2025","Jul 2025","Aug 2025","Sep 2025","Oct 2025","Nov 2025","Dec 2025","Jan 2026","Feb 2026","Mar 2026","Apr 2026","May 2026"],
+      datasets: [{
+        data: hihD,
+        borderColor: AMBER, backgroundColor: "rgba(20,71,69,0.10)",
+        fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: "#fff",
+        pointBorderColor: AMBER, pointBorderWidth: 2
+      }]
+    },
+    options: { ...noLeg, scales: {
+      x: { ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } },
+      y: { beginAtZero: true, ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } }
+    }}
+  });
+
+  // Sparklines inside KPI cards
+  const spkColor = (c) => ({ ...spkOpts, datasets: [{ borderColor: c, borderWidth: 2, fill: false, tension: 0.4 }] });
+  new Chart(document.getElementById("spkHih"),  { type: "line", data: { labels: mos, datasets: [{ data: hihD,  borderColor: AMBER, borderWidth: 2, fill: false, tension: 0.4 }] }, options: spkOpts });
+  new Chart(document.getElementById("spkMql"),  { type: "line", data: { labels: mos, datasets: [{ data: mqlD,  borderColor: IJ,    borderWidth: 2, fill: false, tension: 0.4 }] }, options: spkOpts });
+  new Chart(document.getElementById("spkSql"),  { type: "line", data: { labels: mos, datasets: [{ data: sqlD,  borderColor: PLUM,  borderWidth: 2, fill: false, tension: 0.4 }] }, options: spkOpts });
+  new Chart(document.getElementById("spkConv"), { type: "line", data: { labels: mos, datasets: [{ data: convD, borderColor: "#1a7f5a", borderWidth: 2, fill: false, tension: 0.4 }] }, options: spkOpts });
+
+  // MQL→SQL 12-month trend with benchmark lines
+  new Chart(document.getElementById("cConvTrend"), {
+    type: "line",
+    data: {
+      labels: mos,
+      datasets: [
+        { label: "MQL→SQL %", data: convD, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.10)", fill: true, tension: 0.3, pointRadius: 3 },
+        { label: "Top performer (45%)", data: Array(12).fill(45), borderColor: "#aaa", borderWidth: 1.5, borderDash: [6,4], pointRadius: 0 },
+        { label: "B2B benchmark (22%)", data: Array(12).fill(22), borderColor: "#ccc", borderWidth: 1.5, borderDash: [6,4], pointRadius: 0 }
+      ]
+    },
+    options: { ...botLeg, scales: { y: { beginAtZero: true, max: 85, ticks: { callback: (v) => v + "%" } } } }
+  });
+
+  // HIH by source
+  new Chart(document.getElementById("cSrc"), {
+    type: "bar",
+    data: { labels: ["Direct","Organic Search","Paid Search","Email","Organic Social","Referrals","AI Referrals"], datasets: [{ data: [81,8,4,2,2,1,1], backgroundColor: AMBER }] },
+    options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } }
+  });
+
+  // Channel mix
+  new Chart(document.getElementById("mWebChannel"), {
+    type: "bar",
+    data: { labels: ["Organic Search","Direct","Paid Search","Email","Referral","Other","Organic Social"], datasets: [{ data: [18146,13236,3478,1994,1151,908,218], backgroundColor: AMBER }] },
+    options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } }
+  });
+
+  // Web conversions
+  new Chart(document.getElementById("mWebConv"), {
+    type: "bar",
+    data: { labels: ["Resource downloads","Form thank-you","Webinar signups","Contact sales","Curriculum guide","IJ download"], datasets: [{ data: [387,383,72,35,26,2], backgroundColor: IJ }] },
+    options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } }
+  });
+
+  // Revenue stacked bar
+  new Chart(document.getElementById("cRev"), {
+    type: "bar",
+    data: {
+      labels: mos,
+      datasets: [
+        { label: "District", data: distD, backgroundColor: IJ_FADE, stack: "r" },
+        { label: "School",   data: schoD, backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }
+      ]
+    },
+    options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
+  });
+</script>
+
+</body>
+</html>
