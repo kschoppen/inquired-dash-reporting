@@ -1,7 +1,7 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Funnel & Revenue",
-  "updated": "2026-06-03",
+  "updated": "2026-06-18",
   "fiscal_year_start_month": 10,
   "seasonality": {
     "note": "Close/fiscal year = Oct 1\u2013Sep 30 (pipeline + cumulative win rate measured against it). District buying follows the school year: deals peak spring\u2013summer (Apr\u2013Aug, buying for next school year) \u2014 so revenue concentrates May\u2013Jul, offset from the Sep 30 close. Lead-gen builds fall\u2013winter; Jan\u2013Feb peak; summer low."
@@ -552,16 +552,27 @@
       "period": "2026-04",
       "label": "Apr 2026",
       "funnel": {
-        "hih": 73,
-        "mql": 164,
-        "sql": 76,
-        "opp": 78
+        "hih": 72,
+        "lead": 337,
+        "mql": 195,
+        "sql": 74,
+        "opp": 77,
+        "hih_pool_active": null
       },
       "revenue": {
-        "district_won": 11249,
-        "school_won": 1900,
-        "total_won": 13149,
-        "wins": 6
+        "district_won": 270099.92,
+        "school_won": 25368,
+        "total_won": 295467.92,
+        "wins": 9,
+        "nb_won": 84917.92,
+        "existing_won": 210550,
+        "win_rate_count_pct": 15.0,
+        "win_rate_dollar_pct": 18.1,
+        "rfp_excluded": 1,
+        "data_flags": [
+          "Win rate depressed by backlog flush: 27 of 51 losses are aged deals (created >90d ago)",
+          "1 RFP deal excluded: HENRICO COUNTY PUBLIC SCHOOLS $200K (rfp=true)"
+        ]
       },
       "web": {
         "sessions": 17696,
@@ -570,24 +581,20 @@
       },
       "by_product": {
         "ij": {
-          "hih": 64,
-          "mql": 65,
-          "sql": 18
-        },
-        "wh": {
-          "hih": 13,
-          "mql": 16,
-          "sql": 3
+          "mql": 81,
+          "sql": 23
         },
         "inkwell": {
-          "hih": 3,
-          "mql": 13,
-          "sql": 5
-        },
-        "gf8": {
-          "hih": 0,
           "mql": 1,
           "sql": 0
+        },
+        "wh": {
+          "mql": null,
+          "sql": null
+        },
+        "gf8": {
+          "mql": null,
+          "sql": null
         }
       },
       "rev_by_product": {
@@ -606,45 +613,30 @@
       "period": "2026-05",
       "label": "May 2026",
       "funnel": {
-        "hih": 99,
-        "mql": 142,
-        "sql": 67,
-        "opp": 66,
-        "lead": 310,
-        "lead_by_product": {
-          "ij": 114,
-          "inkwell": 13,
-          "wh": 13,
-          "gf8": 0
-        }
+        "hih": 101,
+        "lead": 382,
+        "mql": 269,
+        "sql": 99,
+        "opp": 96,
+        "hih_pool_active": 996
       },
       "revenue": {
-        "district_won": 83853.38,
-        "school_won": 21363,
-        "total_won": 105216.38,
-        "wins": 11,
-        "nb_won": 103216.38,
-        "existing_won": 2000,
-        "win_rate_count_pct": 21.2,
-        "win_rate_dollar_pct": 15.3,
-        "by_segment": {
-          "single_small": {
-            "won": 41759,
-            "lost": 133927
-          },
-          "medium": {
-            "won": 0,
-            "lost": 225518
-          },
-          "large": {
-            "won": 0,
-            "lost": 71000
-          },
-          "enterprise": {
-            "won": 63457,
-            "lost": 150000
-          }
-        }
+        "district_won": 277427.56,
+        "school_won": 21557,
+        "total_won": 298984.56,
+        "wins": 24,
+        "nb_won": 220334.56,
+        "existing_won": 78650,
+        "win_rate_count_pct": 39.3,
+        "win_rate_dollar_pct": 24.6,
+        "nb_win_rate_pct": 35.3,
+        "rfp_excluded": 0,
+        "avg_paid_deal": 14949,
+        "paid_deals": 20,
+        "data_flags": [
+          "Win rate depressed by backlog flush: 21 of 37 losses are aged deals (created >90d ago). Dollar win rate (24.6%) is further depressed by several large-dollar losses ($100K+ deals).",
+          "May is on-cycle for district buying season \u2014 24 wins and $299K in closes are seasonally expected."
+        ]
       },
       "web": {
         "sessions": 39181,
@@ -715,31 +707,28 @@
       },
       "by_product": {
         "ij": {
-          "hih": 79,
-          "mql": 73,
-          "sql": 28
-        },
-        "wh": {
-          "hih": 15,
-          "mql": 16,
-          "sql": 4
+          "mql": 108,
+          "sql": 42
         },
         "inkwell": {
-          "hih": 16,
-          "mql": 21,
+          "mql": 2,
+          "sql": 2
+        },
+        "wh": {
+          "mql": 2,
           "sql": 0
         },
         "gf8": {
-          "hih": 0,
           "mql": 0,
           "sql": 0
         }
       },
       "rev_by_product": {
-        "ij": 96832.38,
+        "ij": 96827.38,
         "inkwell": 8389,
         "wh": 15813,
-        "gf8": 0
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional. 177955 unclassified (product_s_ not set)"
       },
       "seo": {
         "tracked": 152,
@@ -748,56 +737,87 @@
         "ranked": 38
       },
       "quality": {
-        "mql_to_sql_pct": 47.2,
-        "utm_completeness_pct": 5.86,
+        "mql_to_sql_pct": 36.8,
+        "utm_completeness_pct": 24.8,
+        "utm_gap_flag": "UTM completeness 24.8% \u2014 below 30% threshold. Data flag: ~75% of new contacts lack utm_campaign.",
         "sql_by_source": [
           [
-            "OFFLINE",
-            29
+            "DIRECT_TRAFFIC",
+            28
           ],
           [
-            "DIRECT",
-            27
+            "OFFLINE",
+            23
+          ],
+          [
+            "EMAIL_MARKETING",
+            21
+          ],
+          [
+            "ORGANIC_SEARCH",
+            19
+          ],
+          [
+            "OTHER_CAMPAIGNS",
+            4
           ],
           [
             "PAID_SEARCH",
+            1
+          ]
+        ],
+        "top_utm_campaigns": [
+          [
+            "Inkwell_SY2526",
+            4
+          ],
+          [
+            "DistrictAdministration_S25",
             3
           ],
           [
-            "ORGANIC",
+            "State Landers",
             3
           ],
           [
-            "OTHER",
+            "PE Newsletter_S25",
             2
           ],
           [
-            "EMAIL",
-            1
+            "ELA Webinars_S26",
+            2
           ]
         ],
         "top_conversion_forms": [
           [
-            "IJ Scope & Sequence (download)",
-            42
+            "IJ Scope & Sequence Download",
+            48
           ],
           [
-            "Social Studies Webinar Series",
-            22
+            "NCSS Webinar \u2013 Deeper Learning in Social Studies",
+            37
           ],
           [
-            "Contact Us (website)",
+            "IJ PPC Ads Form",
+            18
+          ],
+          [
+            "Literacy in Social Studies Rubric",
             17
           ],
           [
-            "Curriculum Review Guide (download)",
-            17
-          ],
-          [
-            "World History S&S (download)",
-            12
+            "World History S&S Download",
+            10
           ]
-        ]
+        ],
+        "lead_product_coverage_pct": 45,
+        "lead_by_product": {
+          "ij": 88,
+          "inkwell": 2,
+          "wh": 0,
+          "gf8": 0,
+          "note": "45% coverage in sample of 200; 55% of contacts have no product_interest set"
+        }
       },
       "hih_by_source": [
         [
@@ -831,92 +851,84 @@
       ],
       "deals": [
         {
-          "name": "Puyallup School District \u2014 IJ (Pilot Expansion)",
+          "name": "Yonkers City SD, NY \u2014 SS Grades 3-6 Paid Pilot",
           "segment": "Enterprise",
           "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 60457.38,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44376900148"
+          "type": "Pilot",
+          "amount": 132270,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/28699403650"
         },
         {
-          "name": "St. Augustine Preparatory Academy, WI \u2014 SS (Pilot Expansion)",
-          "segment": "Single/Small",
+          "name": "Maywood School District 89 \u2014 TEs and Print",
+          "segment": "Medium",
           "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 12813,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53763015561"
+          "type": "Add On",
+          "amount": 25170,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/22642727261"
         },
         {
-          "name": "Dunecrest American School, IT \u2014 SS (Pilot Expansion)",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "Pilot Expansion",
-          "amount": 7108,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/47828474373"
+          "name": "Elmhurst District 205 Public Schools \u2014 Print",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 24600,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/22641963596"
         },
         {
-          "name": "Global School Brooklyn \u2014 Inkwell",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "New Business",
-          "amount": 6389,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57979974267"
-        },
-        {
-          "name": "Harney County School District 3, OR \u2014 SS",
-          "segment": "Single/Small",
+          "name": "Eastern Carver County SD 112 \u2014 IJ TEs",
+          "segment": "Medium",
           "pipeline": "District",
           "type": "New Business",
-          "amount": 6000,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/48172085135"
+          "amount": 20040,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/38148333112"
         },
         {
-          "name": "Casas Elementary CPS, IL \u2014 SS",
+          "name": "Jefferson County Schools \u2014 Pilot Printed Materials",
           "segment": "Enterprise",
-          "pipeline": "School",
-          "type": "New Business",
-          "amount": 3000,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56896844358"
-        },
-        {
-          "name": "Pierce City R-VI, MO \u2014 3-5",
-          "segment": "Single/Small",
           "pipeline": "District",
-          "type": "New Business",
-          "amount": 2583,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53266495564"
+          "type": "Add On",
+          "amount": 18920,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/35099872943"
         },
         {
-          "name": "Greater Commonwealth Virtual School, MA \u2014 SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "New Business",
-          "amount": 2500,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57856225691"
-        },
-        {
-          "name": "Nicaragua Christian Academy, IT \u2014 SS (Pilot Expansion)",
-          "segment": "Single/Small",
-          "pipeline": "School",
+          "name": "Batavia Public SD 101 \u2014 SS Pilot Expansion",
+          "segment": "Medium",
+          "pipeline": "District",
           "type": "Pilot Expansion",
-          "amount": 2366,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/45679981575"
+          "amount": 12140,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/18175173710"
         },
         {
-          "name": "Bornblum Jewish Community School, TN \u2014 Inkwell",
+          "name": "School District of Fort Atkinson, WI \u2014 SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "New Business",
+          "amount": 11855.56,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/16623669375"
+        },
+        {
+          "name": "Christian Heritage Academy, IL \u2014 Print",
           "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "Upsell",
-          "amount": 2000,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40433681510"
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 5100,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/38130923898"
         },
         {
-          "name": "Iowa City Community School District, IA \u2014 Inkwell Pilot",
-          "segment": "Large",
-          "pipeline": "District",
-          "type": "Cross Sell",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40445887574"
+          "name": "Sinai Akiba Academy, CA \u2014 SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 4682,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/28274449269"
+        },
+        {
+          "name": "Mount Tamalpais School, CA \u2014 SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "New Business",
+          "amount": 4446,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/30832269702"
         }
       ],
       "ai_visibility": {
@@ -929,22 +941,53 @@
         "cited_pages": 26,
         "cited_pages_delta_pct": -16.1,
         "by_llm": [
-          {"llm": "AI Overview", "pct": 45.2, "count": 14},
-          {"llm": "Gemini", "pct": 25.8, "count": 8},
-          {"llm": "ChatGPT", "pct": 19.4, "count": 6},
-          {"llm": "AI Mode", "pct": 9.7, "count": 3}
+          {
+            "llm": "AI Overview",
+            "pct": 45.2,
+            "count": 14
+          },
+          {
+            "llm": "Gemini",
+            "pct": 25.8,
+            "count": 8
+          },
+          {
+            "llm": "ChatGPT",
+            "pct": 19.4,
+            "count": 6
+          },
+          {
+            "llm": "AI Mode",
+            "pct": 9.7,
+            "count": 3
+          }
         ]
       },
       "keyword_gap": {
         "total_missing": 129,
         "relevant_missing": 20,
-        "filter_note": "Math keywords excluded — competitors' products include math curricula not relevant to IJ/Inkwell/WH. ~20 of 129 missing keywords are ELA/literacy/social studies.",
+        "filter_note": "Math keywords excluded \u2014 competitors' products include math curricula not relevant to IJ/Inkwell/WH. ~20 of 129 missing keywords are ELA/literacy/social studies.",
         "top_gaps": [
-          {"kw": "ela curriculum", "vol": 880},
-          {"kw": "english language arts curriculum", "vol": 260},
-          {"kw": "ela in schools", "vol": 210},
-          {"kw": "middle school language arts curriculum", "vol": 210},
-          {"kw": "middle school ela curriculum", "vol": 140}
+          {
+            "kw": "ela curriculum",
+            "vol": 880
+          },
+          {
+            "kw": "english language arts curriculum",
+            "vol": 260
+          },
+          {
+            "kw": "ela in schools",
+            "vol": 210
+          },
+          {
+            "kw": "middle school language arts curriculum",
+            "vol": 210
+          },
+          {
+            "kw": "middle school ela curriculum",
+            "vol": 140
+          }
         ]
       }
     }
