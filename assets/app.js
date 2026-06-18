@@ -45,24 +45,98 @@ function openDrawer(title, rows) {
 function ser(m, stage) { return m.map((x) => PRODUCT === "all" ? (x.funnel ? x.funnel[stage] : null) : (x.by_product && x.by_product[PRODUCT] ? x.by_product[PRODUCT][stage] : null)); }
 function revSer(m) { return PRODUCT === "all" ? null : m.map((x) => x.rev_by_product ? x.rev_by_product[PRODUCT] : null); }
 
+// ---- helpers for new monthly layout ----
+const spkOpts = { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { x: { display: false }, y: { display: false, beginAtZero: true } }, elements: { point: { radius: 0 } }, animation: false };
+
+function funnelStage(name, count, prevCount, subLabel, cssClass, yoyCount) {
+  const mom = (count != null && prevCount != null && prevCount !== 0) ? ((count - prevCount) / Math.abs(prevCount) * 100) : null;
+  const momCls = mom == null ? "flat" : (mom > 0 ? "up" : "down");
+  const momTxt = mom == null ? "— MoM" : `${mom > 0 ? "▲" : "▼"} ${Math.abs(mom).toFixed(0)}% MoM`;
+  const yoyTxt = yoyCount == null ? "— YoY" : (() => { const p = ((count - yoyCount) / Math.abs(yoyCount) * 100); return `${p > 0 ? "▲" : p < 0 ? "▼" : "→"} ${Math.abs(p).toFixed(0)}% YoY`; })();
+  const yoyCls = yoyCount == null ? "flat" : ((count - yoyCount) > 0 ? "up" : "down");
+  return `<div class="funnel-stage">
+    <div class="funnel-box ${cssClass}">
+      <div class="f-stage-name">${name}</div>
+      <div class="f-count">${count != null ? fmtN(count) : "—"}</div>
+      <div class="f-delta-row">
+        <span class="fdp ${momCls}">${momTxt}</span>
+        <span class="fdp ${yoyCls}">${yoyTxt}</span>
+      </div>
+    </div>
+    <div class="f-sub-label">${subLabel}</div>
+  </div>`;
+}
+
+function funnelConnector(pill) {
+  return `<div class="funnel-connector"><div class="conv-rate-pill">${pill}</div><div class="chevron">›</div></div>`;
+}
+
+function topPageRows(pages, valKey, valClass, valFmt) {
+  if (!pages || !pages.length) return `<p class="pending-note">⚠ Data pending — skill update needed.</p>`;
+  return pages.map((p) => `<div class="top-page-row">
+    <span class="top-page-path">${p.path}</span>
+    <span class="${valClass}">${valFmt(p[valKey])}</span>
+    ${p.type ? `<span class="top-page-type">${p.type}</span>` : ""}
+  </div>`).join("");
+}
+
+function hihProdBreakdown(last) {
+  const total = last.funnel ? last.funnel.hih : 0;
+  const prods = [
+    { key: "ij",      label: "Inquiry Journeys", color: "#144745" },
+    { key: "inkwell", label: "Inkwell (ELA)",     color: "#F99792" },
+    { key: "wh",      label: "World History",     color: "#5B5A9E" },
+    { key: "gf8",     label: "Great First 8",     color: "#B1E0BB" },
+  ];
+  return prods.map((p) => {
+    const n = (last.by_product && last.by_product[p.key]) ? last.by_product[p.key].hih : 0;
+    const pct = (n && total) ? Math.round(n / total * 100) : null;
+    return `<div class="pb-row"><span class="pb-label"><span class="dot" style="background:${p.color}"></span>${p.label}</span><span><span class="pb-count">${n}</span> <span class="pb-pct">${pct != null ? pct + "%" : "—"}</span></span></div>`;
+  }).join("");
+}
+
+function dualDelta(cur, prev, yoyPrev) {
+  const momP = (cur != null && prev != null && prev !== 0) ? ((cur - prev) / Math.abs(prev) * 100) : null;
+  const yoyP = (cur != null && yoyPrev != null && yoyPrev !== 0) ? ((cur - yoyPrev) / Math.abs(yoyPrev) * 100) : null;
+  const momCls = momP == null ? "flat" : (momP > 0 ? "up" : "down");
+  const yoyCls = yoyP == null ? "flat" : (yoyP > 0 ? "up" : "down");
+  const momTxt = momP == null ? `— <span class="sub">MoM</span>` : `${momP > 0 ? "▲" : "▼"} ${Math.abs(momP).toFixed(0)}% <span class="sub">MoM</span>`;
+  const yoyTxt = yoyP == null ? `— <span class="sub">YoY</span>` : `${yoyP > 0 ? "▲" : "▼"} ${Math.abs(yoyP).toFixed(0)}% <span class="sub">YoY</span>`;
+  return `<div class="dual-delta"><span class="delta ${momCls}">${momTxt}</span><span class="delta-sep">·</span><span class="delta ${yoyCls}">${yoyTxt}</span></div>`;
+}
+
+function kpiCard(label, value, momPrev, yoyPrev, sparkId, capText) {
+  return `<div class="card inside">
+    <div class="label">${label}</div>
+    <div class="value">${value}</div>
+    ${dualDelta(typeof value === "string" ? parseFloat(value) : value, momPrev, yoyPrev)}
+    ${sparkId ? `<div class="spk"><canvas id="${sparkId}"></canvas></div>` : ""}
+    ${capText ? `<div class="cap">${capText}</div>` : ""}
+  </div>`;
+}
+
 function renderMonthly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const m = d.months, last = m[m.length - 1], prev = m[m.length - 2] || {};
   const labels = m.map((x) => x.label);
-  const f = (mo, s) => PRODUCT === "all" ? (mo.funnel ? mo.funnel[s] : null) : (mo.by_product && mo.by_product[PRODUCT] ? mo.by_product[PRODUCT][s] : null);
   const hih = ser(m, "hih"), mql = ser(m, "mql"), sql = ser(m, "sql");
   const conv = m.map((x, i) => rate(sql[i], mql[i]));
-  const hihToMql = rate(f(last, "mql"), f(last, "hih")), convLast = rate(f(last, "sql"), f(last, "mql")), convPrev = rate(f(prev, "sql"), f(prev, "mql"));
-  const q = last.quality || {}, utm = q.utm_completeness_pct, yoy = last.web && last.web.yoy;
-  const wv = last.web || {}, wt = d.web_trend || null;
-  const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
-  const cov = PRODUCT === "all" ? null : "product-tagged subset — partial coverage, won't sum to totals";
 
-  // HIH hero — always all-product (the single north-star number; product cut lives in the Leading section only)
-  const hihLast = f(last, "hih"), hihPrev = f(prev, "hih");
-  const heroHih = last.funnel ? last.funnel.hih : null, heroHihPrev = prev.funnel ? prev.funnel.hih : null;
-  const heroHihToMql = rate(last.funnel && last.funnel.mql, last.funnel && last.funnel.hih), heroConv = rate(last.funnel && last.funnel.sql, last.funnel && last.funnel.mql);
-  const seasons = d.seasonality ? d.seasonality.note : "";
+  const fu = (mo, s) => mo.funnel ? mo.funnel[s] : null;
+  const fp = (mo, s) => PRODUCT === "all" ? fu(mo, s) : (mo.by_product && mo.by_product[PRODUCT] ? mo.by_product[PRODUCT][s] : null);
+
+  const q = last.quality || {}, utm = q.utm_completeness_pct;
+  const wv = last.web || {}, wt = d.web_trend || null, yoy = wv.yoy || {};
+  const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
+
+  const hihVel = fu(last, "hih"), hihVelPrev = fu(prev, "hih");
+  const hihPool = last.hih_pool_active || null;
+  const hihToMql = rate(fu(last, "mql"), hihVel), heroConv = rate(fu(last, "sql"), fu(last, "mql"));
+
+  const sessions = wv.sessions, sessionsPrev = (prev.web || {}).sessions;
+  const lead = fu(last, "lead"), leadPrev = fu(prev, "lead");
+  const sqlRate = rate(fp(last, "sql"), fp(last, "mql")), sqlRatePrev = rate(fp(prev, "sql"), fp(prev, "mql"));
+  const sqlToOpp = rate(fu(last, "opp"), fu(last, "sql"));
 
   document.getElementById("view").innerHTML = `
     <div class="contextbar">
@@ -70,70 +144,142 @@ function renderMonthly(d) {
       <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
     </div>
 
-    <div class="hero">
-      <div class="hero-main">
-        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label} — north star</div>
-        <div class="hero-val">${fmtN(heroHih)} ${deltaHTML(heroHih, heroHihPrev, {label:"MoM"})}</div>
-        <div class="hero-sub">Contacts in HubSpot's <strong>High marketing-intent</strong> stage — earliest signal of serious evaluation · HIH→MQL ${heroHihToMql != null ? heroHihToMql + "%" : "—"} · MQL→SQL ${heroConv != null ? heroConv + "%" : "—"}</div>
-        <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
-        ${note(hihNarrative(d, last))}
+    <!-- HIH HERO -->
+    <div class="hih-hero">
+      <div class="hih-hero-top">
+        <div class="hih-hero-main">
+          <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
+          <div class="hero-val">${hihPool != null ? fmtN(hihPool) : (hihVel != null ? fmtN(hihVel) : "—")}</div>
+          <div class="hero-sub">Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This pool refreshes continuously in HubSpot.</div>
+          <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
+        </div>
+        <div class="hih-hero-velocity">
+          <div class="hero-label">★ HIH VELOCITY — new contacts this month (${last.label})</div>
+          <div class="hero-val-sm">${fmtN(hihVel)} &nbsp;${deltaHTML(hihVel, hihVelPrev, {label:"MoM"})}</div>
+          <div class="hero-sub">New contacts reaching High-intent · HIH→MQL <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong> · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
+          <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
+          <div class="hih-prod-breakdown">${hihProdBreakdown(last)}<p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p></div>
+        </div>
       </div>
-      <div class="hero-chart"><div class="chartbox sm"><canvas id="cHih"></canvas></div></div>
+      <div class="hih-hero-def"><strong>✦ HIH (High-Intent)</strong> is a signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. ${hihPool != null ? fmtN(hihPool) + " are active in the last 90 days (the working pool); " : ""}${fmtN(hihVel)} newly identified this month. HIH contacts convert to MQL at ${hihToMql != null ? hihToMql + "%" : "—"}, making them our highest-value top-of-funnel signal.</div>
+      <div class="hih-hero-chart">
+        <h4>HIH velocity — trailing 12 months</h4>
+        <div class="hih-trend-box"><canvas id="cHihTrend"></canvas></div>
+      </div>
     </div>
 
-    <div class="section-label">▲ Leading · ${last.label} — what marketing works off${PRODUCT !== "all" ? ` · ${pLabel}` : ""}</div>
-    <div class="toolbar">
-      <span class="tlabel">Product cut (funnel only):</span>
-      ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
-    </div>
-    ${PRODUCT !== "all" ? `<div class="product-filter-bar">Filtered to: <strong>${pLabel}</strong> <span class="pfbar-note">product-tagged contacts only · partial coverage · won't sum to totals · click <em>All products</em> to reset</span></div>` : ""}
-    <div class="cards">
-      ${card("MQL → SQL", convLast != null ? convLast + "%" : "—", deltaHTML(convLast, convPrev, {label:"MoM"}))}
-      ${card("SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"MoM"}))}
-      ${card("MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"MoM"}))}
-      ${card("HIH leads", fmtN(hihLast), deltaHTML(hihLast, hihPrev, {label:"MoM"}))}
-      ${PRODUCT === "all" ? card("Attribution (UTM)", utm != null ? utm + "%" : "—", utm != null && utm < 30 ? '<span class="delta down">below 30% target</span>' : '<span class="delta flat">—</span>') : ""}
-    </div>
-    <div class="grid2">
-      <div class="panel"><h3>Funnel by stage${PRODUCT !== "all" ? ` — ${pLabel}` : ""}</h3><div class="chartbox"><canvas id="cFunnel"></canvas></div>${note("<strong>HIH (high-intent)</strong> = contacts in the High marketing-intent tier — the earliest signal that someone is seriously evaluating, and our north-star metric. It's tracked back to at least early 2024 (this view shows the trailing 12 months). Shown here as the shaded band beneath MQL and SQL.")}</div>
-      <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="cConv"></canvas></div>${note(funnelNarrative(d, last, convLast))}</div>
-    </div>
-    <div class="grid2">
-      <div class="panel"><h3>HIH by source <span class="muted">(${last.label})</span></h3><div class="chartbox"><canvas id="cSrc"></canvas></div></div>
-      <div class="panel"><h3>SQLs by source <span class="muted">(${last.label})</span></h3><div class="chartbox"><canvas id="cSqlSrc"></canvas></div></div>
+    <!-- FUNNEL ARROW -->
+    <div class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
+    <div class="funnel-panel">
+      <h3>Prospect → Opp · full funnel with conversion rates</h3>
+      <p class="f-sub">Monthly new contacts entering each stage. MoM delta shown; YoY populates once prior-year data is in history. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
+      <div class="funnel-flow">
+        ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", yoy.sessions)}
+        ${funnelConnector("form / download")}
+        ${funnelStage("Lead", lead, leadPrev, "recent_conversion_date in mo.", "f-prospect", null)}
+        ${funnelConnector("MQL criteria")}
+        ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", null)}
+        ${funnelConnector(heroConv != null ? heroConv + "% MQL→SQL" : "MQL→SQL")}
+        ${funnelStage("SQL", fu(last,"sql"), fu(prev,"sql"), "sales qualified", "f-sql", null)}
+        ${funnelConnector(sqlToOpp != null ? sqlToOpp + "% SQL→Opp" : "SQL→Opp")}
+        ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", null)}
+      </div>
+      ${lead == null ? `<p class="pending-note">⚠ Lead count (HubSpot <code>recent_conversion_date</code> in month window) — skill update needed. Run the monthly digest skill to populate this field.</p>` : ""}
     </div>
 
+    <!-- PRODUCT SECTION -->
+    <div class="product-section">
+      <div class="product-section-head">
+        <div>
+          <div class="product-section-title">▲ Leading Indicators · ${last.label}</div>
+          <div class="product-section-note">Product chips below scope <em>this entire section only</em> — all-product totals live in the funnel above.</div>
+        </div>
+        <div class="toolbar">
+          <span class="tlabel">Product:</span>
+          ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
+        </div>
+      </div>
+      ${PRODUCT !== "all" ? `<div class="product-filter-bar">Filtered to: <strong>${pLabel}</strong> <span class="pfbar-note">product-tagged contacts only · partial coverage · won't sum to totals · click <em>All products</em> to reset</span></div>` : ""}
+
+      <div class="cards">
+        ${kpiCard("HIH new this month", fmtN(fp(last,"hih")), fp(prev,"hih"), null, "spkHih", `vs ${fmtN(fp(prev,"hih"))} ${prev.label || ""} · YoY available when prior-year month in history`)}
+        ${kpiCard("MQLs", fmtN(fp(last,"mql")), fp(prev,"mql"), null, "spkMql", `vs ${fmtN(fp(prev,"mql"))} ${prev.label || ""} · seasonal May dip expected`)}
+        ${kpiCard("SQLs", fmtN(fp(last,"sql")), fp(prev,"sql"), null, "spkSql", `vs ${fmtN(fp(prev,"sql"))} ${prev.label || ""}`)}
+        ${kpiCard("MQL → SQL conv.", sqlRate != null ? sqlRate + "%" : "—", sqlRatePrev, null, "spkConv", `vs ${sqlRatePrev != null ? sqlRatePrev + "%" : "—"} ${prev.label || ""} · B2B benchmark 13–22%`)}
+        <div class="card inside">
+          <div class="label">UTM attribution</div>
+          <div class="value">${utm != null ? utm + "%" : "—"}</div>
+          <div class="dual-delta">${utm != null && utm < 30 ? '<span class="delta down">below 30% target</span>' : '<span class="delta flat">—</span>'}</div>
+          <div class="cap">% MQLs with source UTM · offline + direct dominate</div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:14px">
+        <h3>MQL → SQL conversion — 12-month trend</h3>
+        <div class="chartbox"><canvas id="cConvTrend"></canvas></div>
+        ${note(funnelNarrative(d, last, sqlRate))}
+      </div>
+
+      <div class="grid2" style="margin-bottom:0">
+        <div class="panel" style="margin-bottom:0">
+          <h3>HIH by source <span class="muted">(${last.label})</span></h3>
+          <div class="chartbox xs"><canvas id="cSrc"></canvas></div>
+        </div>
+        <div class="panel" style="margin-bottom:0">
+          <h3>HIH by product <span class="muted">(${last.label})</span></h3>
+          ${hihByProductTable(last)}
+        </div>
+      </div>
+    </div>
+
+    <!-- WEB ACQUISITION -->
     ${wv.channels ? `
     <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
     <div class="cards">
-      ${card("Sessions", fmtN(wv.sessions), deltaHTML(wv.sessions, yoy && yoy.sessions, {label:"YoY"}), wt ? `trailing 12mo ▲${wt.yoy_pct}% YoY · ${last.label} was a traffic spike` : "")}
-      ${card("Engaged sessions", (wv.engaged_pct != null ? wv.engaged_pct : "—") + "%", "", "GA4 engagement rate")}
-      ${card("Users", fmtN(wv.users))}
-      ${card("Page views", fmtN(wv.views))}
+      <div class="card"><div class="label">Sessions</div><div class="value">${fmtN(wv.sessions)}</div>${dualDelta(wv.sessions, sessionsPrev, yoy.sessions)}<div class="cap">${yoy.sessions ? `vs ${fmtN(yoy.sessions)} same mo. prior year` : "YoY populates with 2 years of data"}</div></div>
+      <div class="card"><div class="label">Users</div><div class="value">${fmtN(wv.users)}</div>${dualDelta(wv.users, (prev.web||{}).users, yoy.users)}<div class="cap">${yoy.users ? `vs ${fmtN(yoy.users)} prior year` : ""}</div></div>
+      <div class="card"><div class="label">Page views</div><div class="value">${fmtN(wv.views)}</div>${dualDelta(wv.views, (prev.web||{}).views, yoy.views)}<div class="cap">${yoy.views ? `vs ${fmtN(yoy.views)} prior year` : ""}</div></div>
+      ${wv.engaged_pct != null ? `<div class="card"><div class="label">Engagement rate</div><div class="value">${wv.engaged_pct}%</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">GA4 engaged sessions / sessions</div></div>` : ""}
     </div>
     <div class="grid2">
-      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — its own session attribution from referrer + Google Ads click-ID + any UTMs, <strong>independent of HubSpot lead-source UTMs</strong>. 'AI Tool' referrals (ChatGPT/Perplexity) land here under Referral until we add a custom GA4 grouping.")}</div>
-      <div class="panel"><h3>Sessions — this year vs last</h3><div class="chartbox"><canvas id="mWebTrend"></canvas></div>${note("Trailing 12 months vs the prior 12 — site-wide GA4 sessions. Monthly spikes (Oct, May) are campaign / PR bursts, not baseline growth.")}</div>
+      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox xs"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — independent of HubSpot lead-source UTMs. AI referrals (ChatGPT/Perplexity) land under Referral until we add a custom GA4 grouping.")}</div>
+      <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3><div class="chartbox xs"><canvas id="mWebConv"></canvas></div>${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead.")}</div>
     </div>
-    <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3>
-      <div class="cards">
-        ${(wv.conversions || []).map((c) => card(c[0], fmtN(c[1]))).join("")}
-      </div>
-      ${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead below. (These are GA4 web events, distinct from HubSpot lead stages and from Google Ads' modeled conversions.)")}
+    <div class="panel">
+      <h3>Top conversion pages <span class="source-badge ga4">GA4 API</span></h3>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request) in ${last.label} — ranked by completions</p>
+      ${last.web && last.web.top_conversion_pages
+        ? topPageRows(last.web.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`)
+        : `<p class="pending-note">⚠ Top conversion pages — GA4 query not yet in skill. Run updated monthly digest skill to populate.</p>`}
     </div>` : ""}
 
-    <div class="section-label">🔍 Organic search — by topic area</div>
-    <div class="panel">
-      ${seoSection(d)}
-      <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Search Atlas rank-tracker (project #77489), not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Search Atlas project. MoM movement begins once we have a prior month to compare.</p>
-      ${note(seoNarrative(d))}
+    <!-- SEO -->
+    <div class="section-label">🔍 Organic search · ${last.label} <span class="muted">(Search Atlas rankings · SemRush traffic)</span></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Keyword rankings by topic <span class="source-badge hs">Search Atlas</span></h3>
+        ${seoSection(d)}
+        ${note(seoNarrative(d))}
+      </div>
+      <div class="panel">
+        <h3>Top organic entry pages <span class="source-badge semrush">SemRush API</span></h3>
+        <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
+        ${last.seo_top_pages
+          ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
+          : `<p class="pending-note">⚠ SemRush top organic pages — pending skill update + egress allowlist for <code>api.semrush.com</code>.</p>`}
+      </div>
+    </div>
+    <div class="panel" style="font-size:13px;color:#3a3a3a">
+      <p class="insight">🛈 <strong>Keyword rankings:</strong> full set of keywords in Search Atlas project #77489, auto-grouped by topic. <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · MoM movement starts once we have a prior month to compare.</p>
     </div>
 
-    <div class="section-label">▽ Lagging · ${last.label} — sales outcome (context; $ + win rate → RevOps)</div>
+    <!-- LAGGING -->
+    <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
     <div class="cards">
-      ${card("Closed-won ($)", fmt$(last.revenue.total_won), deltaHTML(last.revenue.total_won, prev.revenue && prev.revenue.total_won, {label:"MoM"}), `${last.label} · total dollars won (non-test / non-RFP)`)}
-      ${card("New business ($)", fmt$(last.revenue.nb_won), "", `${last.label} · new + pilot + pilot-expansion deals`)}
-      ${card("Deals won (count)", fmtN(last.revenue.wins), deltaHTML(last.revenue.wins, prev.revenue && prev.revenue.wins, {label:"MoM"}), `${last.label} · closed-won, incl. $0 pilots`)}
+      <div class="card"><div class="label">Closed-won ($)</div><div class="value">${fmt$(last.revenue.total_won)}</div>${dualDelta(last.revenue.total_won, prev.revenue && prev.revenue.total_won, null)}<div class="cap">${last.label} · total dollars won (non-test / non-RFP)</div></div>
+      <div class="card"><div class="label">New business ($)</div><div class="value">${fmt$(last.revenue.nb_won)}</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">new + pilot + pilot-expansion deals</div></div>
+      <div class="card"><div class="label">Deals won (count)</div><div class="value">${fmtN(last.revenue.wins)}</div>${dualDelta(last.revenue.wins, prev.revenue && prev.revenue.wins, null)}<div class="cap">${last.label} · incl. $0 pilots</div></div>
+      ${last.revenue.win_rate_count_pct != null ? `<div class="card"><div class="label">Win rate (count)</div><div class="value">${last.revenue.win_rate_count_pct}%</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">monthly close-date basis · RevOps owns pipeline</div></div>` : ""}
     </div>
     <div class="panel"><h3>Closed-won revenue (District + School) <span class="muted">— lagging</span></h3>
       <div class="chartbox"><canvas id="cRev"></canvas></div>
@@ -141,57 +287,82 @@ function renderMonthly(d) {
       ${last.deals ? dealDrill(last) : ""}
     </div>
 
-    <div class="panel"><h3>Monthly detail (all products)</h3>
+    <div class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
       <table><thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead><tbody>
-      ${m.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(x.funnel.hih)}</td><td>${fmtN(x.funnel.mql)}</td><td>${fmtN(x.funnel.sql)}</td><td>${rate(x.funnel.sql,x.funnel.mql) != null ? rate(x.funnel.sql,x.funnel.mql)+"%" : "—"}</td><td>${fmtN(x.revenue.wins)}</td><td>${fmt$(x.revenue.total_won)}</td></tr>`).join("")}
+      ${m.map((x) => `<tr><td>${x.label}</td><td>${fmtN(fu(x,"hih"))}</td><td>${fmtN(fu(x,"mql"))}</td><td>${fmtN(fu(x,"sql"))}</td><td>${rate(fu(x,"sql"),fu(x,"mql")) != null ? rate(fu(x,"sql"),fu(x,"mql"))+"%" : "—"}</td><td>${fmtN(x.revenue.wins)}</td><td>${fmt$(x.revenue.total_won)}</td></tr>`).join("")}
       </tbody></table>
       <p class="flag">${d.notes || ""}</p>
     </div>`;
 
   // wire product chips
-  document.querySelectorAll(".chip").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
+  document.querySelectorAll(".chip[data-p]").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
 
-  const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
-  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  const botLeg = { plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: false };
+  const noLeg  = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
 
-  if (wv.channels) mkChart("mWebChannel", { type: "bar", data: { labels: wv.channels.map((c) => c[0]), datasets: [{ data: wv.channels.map((c) => c[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
-  if (wt) mkChart("mWebTrend", { type: "line", data: { labels: wt.labels, datasets: [
-      { label: "This year", data: wt.current, borderColor: IJ, borderWidth: 3, tension: 0.3, pointRadius: 2 },
-      { label: "Last year", data: wt.prior, borderColor: "#9AA6A4", borderWidth: 2, borderDash: [5, 4], tension: 0.3, pointRadius: 2 } ] },
-    options: { ...botLeg } });
+  // HIH velocity sparkline (6 months in hero right panel)
+  const hih6 = hih.slice(-6), labels6 = labels.slice(-6);
+  mkChart("cHihVelocity", { type: "line", data: { labels: labels6, datasets: [{ data: hih6, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.15)", fill: true, tension: 0.4, pointRadius: [0,0,0,0,0,4], pointBackgroundColor: AMBER }] }, options: { ...noLeg, scales: { x: { display: true, ticks: { font: { size: 10 }, color: "#999" }, grid: { display: false } }, y: { display: false, beginAtZero: true } } } });
 
-  mkChart("cHih", { type: "line", data: { labels, datasets: [{ label: "HIH", data: hih, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg } });
+  // HIH 12-month trend (full width inside hero)
+  mkChart("cHihTrend", { type: "line", data: { labels, datasets: [{ data: hih, borderColor: AMBER, backgroundColor: "rgba(20,71,69,0.10)", fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: "#fff", pointBorderColor: AMBER, pointBorderWidth: 2, spanGaps: true }] }, options: { ...noLeg, scales: { x: { ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } }, y: { beginAtZero: true, ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } } } } });
 
-  // HIH = neutral slate background band (north-star context); MQL green + SQL purple = the two bold lines. Opp omitted (tracks SQL; it's in the detail table).
-  const fds = [
-    { label: "HIH (high-intent)", data: hih, borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2, spanGaps: true },
-    { label: "MQL", data: mql, borderColor: IJ, borderWidth: 3, tension: 0.25, pointRadius: 2, spanGaps: true },
-    { label: "SQL", data: sql, borderColor: PLUM, borderWidth: 3, tension: 0.25, pointRadius: 2, spanGaps: true },
-  ];
-  mkChart("cFunnel", { type: "line", data: { labels, datasets: fds }, options: { ...botLeg } });
+  // KPI sparklines
+  mkChart("spkHih",  { type: "line", data: { labels, datasets: [{ data: ser(m,"hih"),  borderColor: AMBER, borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
+  mkChart("spkMql",  { type: "line", data: { labels, datasets: [{ data: ser(m,"mql"),  borderColor: IJ,    borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
+  mkChart("spkSql",  { type: "line", data: { labels, datasets: [{ data: ser(m,"sql"),  borderColor: PLUM,  borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
+  mkChart("spkConv", { type: "line", data: { labels, datasets: [{ data: conv,          borderColor: "#1a7f5a", borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
 
-  mkChart("cConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3, spanGaps: true }] }, options: { ...noLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
+  // MQL→SQL 12-month trend with benchmarks
+  mkChart("cConvTrend", { type: "line", data: { labels, datasets: [
+    { label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.10)", fill: true, tension: 0.3, pointRadius: 3, spanGaps: true },
+    { label: "Top performer (45%)", data: Array(m.length).fill(45), borderColor: "#aaa", borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0 },
+    { label: "B2B benchmark (22%)", data: Array(m.length).fill(22), borderColor: "#ccc", borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0 }
+  ] }, options: { ...botLeg, scales: { y: { beginAtZero: true, max: 85, ticks: { callback: (v) => v + "%" } } } } });
 
+  // HIH by source
   const hsrc = last.hih_by_source || [];
   mkChart("cSrc", { type: "bar", data: { labels: hsrc.map((s) => s[0]), datasets: [{ data: hsrc.map((s) => s[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 
-  const ssrc = q.sql_by_source || [];
-  mkChart("cSqlSrc", { type: "bar", data: { labels: ssrc.map((s) => s[0]), datasets: [{ data: ssrc.map((s) => s[1]), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  // Web channels + conversions
+  if (wv.channels) mkChart("mWebChannel", { type: "bar", data: { labels: wv.channels.map((c) => c[0]), datasets: [{ data: wv.channels.map((c) => c[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  if (wv.conversions) mkChart("mWebConv", { type: "bar", data: { labels: wv.conversions.map((c) => c[0]), datasets: [{ data: wv.conversions.map((c) => c[1]), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 
+  // Revenue stacked bar
   mkChart("cRev", { type: "bar", data: { labels, datasets: [
     { label: "District", data: m.map((x) => x.revenue.district_won), backgroundColor: IJ_FADE, stack: "r" },
-    { label: "School", data: m.map((x) => x.revenue.school_won), backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }] },
-    options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
+    { label: "School",   data: m.map((x) => x.revenue.school_won),   backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }
+  ] }, options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
+}
+
+function hihByProductTable(last) {
+  const prods = [
+    { key: "ij",      label: "Inquiry Journeys", color: "#144745" },
+    { key: "inkwell", label: "Inkwell (ELA)",     color: "#F99792" },
+    { key: "wh",      label: "World History",     color: "#5B5A9E" },
+    { key: "gf8",     label: "Great First 8",     color: "#B1E0BB" },
+  ];
+  const bp = last.by_product || {};
+  const totHih = last.funnel ? last.funnel.hih : null;
+  const totMql = last.funnel ? last.funnel.mql : null;
+  const totSql = last.funnel ? last.funnel.sql : null;
+  const totConv = rate(totSql, totMql);
+  const rows = prods.map((p) => {
+    const r = bp[p.key] || {};
+    const conv = rate(r.sql, r.mql);
+    return `<tr><td><span class="dot" style="background:${p.color}"></span>${p.label}</td><td>${r.hih != null ? fmtN(r.hih) : "—"}</td><td>${r.mql != null ? fmtN(r.mql) : "—"}</td><td>${r.sql != null ? fmtN(r.sql) : "—"}</td><td>${conv != null ? conv + "%" : "—"}</td></tr>`;
+  }).join("");
+  return `<table>
+    <thead><tr><th>Product</th><th>New HIH</th><th>New MQL</th><th>New SQL</th><th>MQL→SQL</th></tr></thead>
+    <tbody>${rows}
+    <tr><td><strong>All products</strong></td><td>${fmtN(totHih)}</td><td>${fmtN(totMql)}</td><td>${fmtN(totSql)}</td><td>${totConv != null ? totConv + "%" : "—"}</td></tr>
+    </tbody></table>
+  <p class="cap">New contacts created &amp; tagged this month · product-tagged subset · partial coverage · sums won't match all-product totals</p>`;
 }
 
 // ---- narratives ----
-function hihNarrative(d, last) {
-  const s = last.hih_by_source || []; const top = s[0];
-  const share = top && last.funnel.hih ? Math.round(top[1] / s.reduce((a, x) => a + x[1], 0) * 100) : null;
-  return `HIH is the earliest read on high-intent demand. ${top ? `${top[0]} drives ${share}% of it` : ""}; attribution is thin (UTM ${last.quality ? last.quality.utm_completeness_pct + "%" : "—"}), so source detail is directional.`;
-}
 function funnelNarrative(d, last, conv) {
-  return `MQL→SQL ${conv != null ? conv + "%" : "—"}. Volume dips in May–Jun are the seasonal buying crunch (see note), not a lead-gen failure — watch off-cycle drops instead.`;
+  return `MQL→SQL ${conv != null ? conv + "%" : "—"} — well above the B2B benchmark (13–22%; top performers 30–45%). Volume dips in May–Jun are the seasonal buying crunch, not a lead-gen failure — watch off-cycle drops instead.`;
 }
 function laggingNarrative(last) {
   return `Revenue lags ~2 quarters in K-12 (a deal closing now was sourced last fall). One deal (Puyallup $60K) is most of the month — don't over-read a single month. $ pipeline + official win rate live in RevOps.`;
@@ -206,12 +377,13 @@ function seoNarrative(d) {
 function seoSection(d) {
   const topics = d.seo_topics || [];
   if (!topics.length) return '<p class="flag">SEO data unavailable.</p>';
-  return `<table><thead><tr><th>Topic area</th><th>Tracked</th><th>Ranked</th><th>In top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
-    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
+  return `<table><thead><tr><th>Topic</th><th>Tracked</th><th>Top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
+    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
   </tbody></table>
-  ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${t.keywords.length} keywords</summary>
+  <p class="cap">${d.seo_topics && d.seo_topics.reduce((s,t) => s + (t.tracked||0), 0)} keywords tracked · MoM movement starts once we have a prior month to compare · ELA and ECE are the clearest organic growth opportunities</p>
+  ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${(t.keywords||[]).length} keywords</summary>
     <table><thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>MoM</th></tr></thead><tbody>
-    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
+    ${(t.keywords||[]).map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
     </tbody></table></details>`).join("")}`;
 }
 
