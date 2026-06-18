@@ -75,6 +75,8 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .hih-hero-velocity { padding: 20px 22px; background: rgba(20,71,69,0.055); border-left: 1px solid #cfead0; }
 .hih-hero-def { padding: 12px 22px; border-top: 1px solid #cfead0; font-size: 12.5px; color: #2c3a39; line-height: 1.55; }
 .hih-hero-def strong { color: var(--iq-dk-purple); }
+.hih-def-box { margin-top: 14px; padding: 10px 13px; background: rgba(0,0,0,0.055); border: 1px solid rgba(0,0,0,0.09); border-radius: 8px; font-size: 11.5px; color: #3a4a3a; line-height: 1.6; }
+.hih-def-box strong { color: var(--iq-green); }
 .hih-hero-chart { padding: 4px 22px 18px; border-top: 1px solid #cfead0; }
 .hih-hero-chart h4 { margin: 10px 0 6px; font-size: 12px; font-weight: 900; color: var(--iq-green); text-transform: uppercase; letter-spacing: 0.08em; }
 .hih-trend-box { position: relative; height: 140px; }

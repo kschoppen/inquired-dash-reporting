@@ -49,21 +49,12 @@ function revSer(m) { return PRODUCT === "all" ? null : m.map((x) => x.rev_by_pro
 const spkOpts = { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { x: { display: false }, y: { display: false, beginAtZero: true } }, elements: { point: { radius: 0 } }, animation: false };
 
 function funnelStage(name, count, prevCount, subLabel, cssClass, yoyCount) {
-  const mom = (count != null && prevCount != null && prevCount !== 0) ? ((count - prevCount) / Math.abs(prevCount) * 100) : null;
-  const momCls = mom == null ? "flat" : (mom > 0 ? "up" : "down");
-  const momTxt = mom == null ? "— MoM" : `${mom > 0 ? "▲" : "▼"} ${Math.abs(mom).toFixed(0)}% MoM`;
-  const yoyTxt = yoyCount == null ? "— YoY" : (() => { const p = ((count - yoyCount) / Math.abs(yoyCount) * 100); return `${p > 0 ? "▲" : p < 0 ? "▼" : "→"} ${Math.abs(p).toFixed(0)}% YoY`; })();
-  const yoyCls = yoyCount == null ? "flat" : ((count - yoyCount) > 0 ? "up" : "down");
   return `<div class="funnel-stage">
     <div class="funnel-box ${cssClass}">
       <div class="f-stage-name">${name}</div>
       <div class="f-count">${count != null ? fmtN(count) : "—"}</div>
-      <div class="f-delta-row">
-        <span class="fdp ${momCls}">${momTxt}</span>
-        <span class="fdp ${yoyCls}">${yoyTxt}</span>
-      </div>
     </div>
-    <div class="f-sub-label">${subLabel}</div>
+    ${subLabel ? `<div class="f-sub-label">${subLabel}</div>` : ""}
   </div>`;
 }
 
@@ -152,6 +143,7 @@ function renderMonthly(d) {
           <div class="hero-val">${hihPool != null ? fmtN(hihPool) : (hihVel != null ? fmtN(hihVel) : "—")}</div>
           <div class="hero-sub">Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This pool refreshes continuously in HubSpot.</div>
           <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
+          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. HIH contacts convert to MQL at <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong>, making them our highest-value top-of-funnel signal.</div>
         </div>
         <div class="hih-hero-velocity">
           <div class="hero-label">★ HIH VELOCITY — new contacts this month (${last.label})</div>
@@ -161,7 +153,6 @@ function renderMonthly(d) {
           <div class="hih-prod-breakdown">${hihProdBreakdown(last)}<p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p></div>
         </div>
       </div>
-      <div class="hih-hero-def"><strong>✦ HIH (High-Intent)</strong> is a signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. ${hihPool != null ? fmtN(hihPool) + " are active in the last 90 days (the working pool); " : ""}${fmtN(hihVel)} newly identified this month. HIH contacts convert to MQL at ${hihToMql != null ? hihToMql + "%" : "—"}, making them our highest-value top-of-funnel signal.</div>
       <div class="hih-hero-chart">
         <h4>HIH velocity — trailing 12 months</h4>
         <div class="hih-trend-box"><canvas id="cHihTrend"></canvas></div>
@@ -176,7 +167,7 @@ function renderMonthly(d) {
       <div class="funnel-flow">
         ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", yoy.sessions)}
         ${funnelConnector("form / download")}
-        ${funnelStage("Lead", lead, leadPrev, "recent_conversion_date in mo.", "f-prospect", null)}
+        ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", null)}
         ${funnelConnector("MQL criteria")}
         ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", null)}
         ${funnelConnector(heroConv != null ? heroConv + "% MQL→SQL" : "MQL→SQL")}
