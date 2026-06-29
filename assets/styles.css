@@ -275,6 +275,12 @@ details.kwd table { margin-top: 8px; }
 .pulse-action-role { font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
 .pulse-action-body a { color: var(--iq-dk-purple); }
 .pulse-table tbody tr:last-child td { font-weight: 400; }
+.open-decisions { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.open-decision { display: flex; align-items: flex-start; gap: 12px; background: #fffbeb; border: 1px solid #fcd34d; border-left: 4px solid #f59e0b; border-radius: 10px; padding: 12px 15px; font-size: 13.5px; color: #3d2e00; line-height: 1.55; }
+.open-decision-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.open-decision-body strong { color: #92400e; }
+.open-decision-body a { color: #92400e; }
+.open-decision-label { display: inline-block; background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; padding: 1px 7px; border-radius: 10px; margin-bottom: 5px; }
 
 /* ── Top conversion pages ── */
 .page-path { font-family: monospace; font-size: 12px; color: var(--iq-purple); font-weight: 600; max-width: 360px; word-break: break-all; }

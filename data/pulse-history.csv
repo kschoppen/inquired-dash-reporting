@@ -1,0 +1,2 @@
+snapshot_date,iso_week,new_mqa_7d,new_engaged_7d,hot_cold_flagged,warming_2plus_signals,stale_mqa_120d_no_opp,mqa_total_est,engaged_total_est,owner_anne_mqa,owner_gianna_mqa,owner_jason_mqa,notes
+2026-04-28,2026-W18,2,10,29,7,10,87,170,58,19,10,Week 1 seed — 10 of 12 movers NJ districts from single DL fire on 4/25; 5 stale MQAs share 2025-11-17 first_mqa_date (likely import artifact)

@@ -807,11 +807,27 @@ function renderAccountPulse(d) {
     return '<div class="section-label" style="border-left:3px solid ' + color + ';padding-left:8px">' + label + '</div>';
   };
 
+  var openDecisions = '<div class="open-decisions">'
+    + '<div class="open-decision">'
+    + '<div class="open-decision-icon">🔌</div>'
+    + '<div class="open-decision-body">'
+    + '<div class="open-decision-label">Open integration</div>'
+    + '<strong>Starbridge not yet connected.</strong> This tab currently pulls from a static JSON snapshot. Once the Starbridge MCP is wired in, the page will pull live HubSpot account data on load — stages, signals, owner, last contact — without a manual skill run each week. Kelsey is working on getting the Starbridge MCP download working locally.'
+    + '</div></div>'
+    + '<div class="open-decision">'
+    + '<div class="open-decision-icon">🗂️</div>'
+    + '<div class="open-decision-body">'
+    + '<div class="open-decision-label">Open decision</div>'
+    + '<strong>MQA definition needs revisiting.</strong> The current Aware / Engaged / MQA stage logic was built by Nick and lives in HubSpot lists — but neither Kelsey nor Jeanette has validated that the scoring criteria still reflect how we think about account intent. Before this dashboard becomes a GTM tool, Jeanette + Kelsey need to audit the list rules, confirm which signals belong at each stage, and decide whether Starbridge or GA4 signals should supplement or replace the current HubSpot-only scoring. Tim is the HubSpot list owner.'
+    + '</div></div>'
+    + '</div>';
+
   document.getElementById('view').innerHTML =
     '<div class="contextbar">'
     + '<span class="asof">📅 Data as of <strong>' + d.updated + '</strong></span>'
     + '<span class="timing">' + d.universe + '</span>'
     + '</div>'
+    + openDecisions
 
     // Trend strip
     + sectionHdr('★ This week at a glance <span class="muted">(WoW Δ collects after 2+ snapshots)</span>', '#0a7c4a')
