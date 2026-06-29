@@ -750,14 +750,28 @@ function renderAccountPulse(d) {
     if (!rows.length) return '';
     var rowsHtml = rows.map(function(r) {
       var coldStr = r.days_cold == null ? '<strong>never</strong>' : ('~' + fmtN(r.days_cold));
+      var lastCampaign = r.last_campaign
+        ? r.last_campaign
+        : '<span class="placeholder-cell">—</span>';
+      var dealContext = r.deal_context
+        ? r.deal_context
+        : '<span class="placeholder-cell">—</span>';
       return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · ' + r.owner) + '</td>'
         + '<td>' + metaSmall(r.signal) + '</td>'
-        + '<td style="text-align:right;font-weight:700">' + coldStr + '</td></tr>';
+        + '<td style="text-align:right;font-weight:700">' + coldStr + '</td>'
+        + '<td>' + lastCampaign + '</td>'
+        + '<td>' + dealContext + '</td></tr>';
     }).join('');
     return '<div class="pulse-cohort-hdr" style="border-left:3px solid ' + color + '">'
       + '<strong>' + label + '</strong> <span class="badge-count">' + rows.length + ' accounts</span> ' + weekOneOrDelta(rows.length, null)
       + '</div>'
-      + '<table class="pulse-table"><thead><tr><th>District</th><th>Signal</th><th style="text-align:right">Days cold</th></tr></thead>'
+      + '<table class="pulse-table"><thead><tr>'
+      + '<th>District</th>'
+      + '<th>Signal</th>'
+      + '<th style="text-align:right">Days cold</th>'
+      + '<th>Last campaign touched <span class="source-badge hs">HubSpot</span></th>'
+      + '<th>Deal context / notes <span class="source-badge" style="background:rgba(106,62,154,0.09);color:#6a3e9a;border-color:rgba(106,62,154,0.2)">Starbridge</span></th>'
+      + '</tr></thead>'
       + '<tbody>' + rowsHtml + '</tbody></table>';
   };
 

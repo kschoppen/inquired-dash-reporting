@@ -280,6 +280,7 @@ details.kwd table { margin-top: 8px; }
 .open-decision-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 .open-decision-body strong { color: #92400e; }
 .open-decision-body a { color: #92400e; }
+.placeholder-cell { color: var(--muted); font-size: 12px; }
 .open-decision-label { display: inline-block; background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; padding: 1px 7px; border-radius: 10px; margin-bottom: 5px; }
 
 /* ── Top conversion pages ── */
