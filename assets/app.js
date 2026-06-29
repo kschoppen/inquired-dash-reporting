@@ -3,6 +3,7 @@ const TABS = [
   { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
   { id: "weekly", label: "Weekly Funnel", data: "data/weekly-digest.json", render: renderWeekly },
   { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
+  { id: "pulse", label: "Account Pulse (MQA)", data: "data/account-pulse.json", render: renderAccountPulse },
   { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
@@ -708,6 +709,189 @@ function renderDefinitions(d) {
       ${d.intro ? `<p class="insight">${d.intro}</p>` : ""}
       ${(d.sections || []).map((s) => `<h3>${s.heading}</h3><dl>${s.terms.map((t) => `<dt>${t.term}</dt><dd>${t.def}</dd>`).join("")}</dl>`).join("")}
     </div>`;
+}
+
+// ---- Account Pulse (MQA) tab ----
+function renderAccountPulse(d) {
+  charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
+
+  var fc = d.funnel_counts || {};
+  var s1 = d.section1 || [];
+  var s2 = d.section2 || [];
+  var s3 = d.section3 || [];
+  var s4 = d.section4 || [];
+  var s5 = d.section5 || {};
+  var hist = d.history || [];
+  var hasHistory = hist.length >= 2;
+
+  var weekOnePill = '<span class="delta flat">Week 1</span>';
+  var weekOneOrDelta = function(cur, prev) {
+    return (hasHistory && prev != null) ? deltaHTML(cur, prev, {label: 'WoW'}) : weekOnePill;
+  };
+
+  var hsLink = function(url, name) {
+    return '<a href="' + url + '" target="_blank" rel="noopener" class="hs-link">' + name + '</a>';
+  };
+  var metaSmall = function(t) { return '<span class="meta-small">' + t + '</span>'; };
+
+  // Section 1 rows
+  var s1RowsHtml = function(rows) {
+    return rows.map(function(r) {
+      var stageBadge = r.stage + (r.stage_new ? ' <span class="badge-new">new</span>' : '');
+      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · ' + r.owner) + '</td>'
+        + '<td>' + stageBadge + metaSmall(r.signal) + '</td>'
+        + '<td>' + metaSmall(r.why) + '</td></tr>';
+    }).join('');
+  };
+
+  // Section 2 cohort helper
+  var cohortHtml = function(label, predicate, color) {
+    var rows = s2.filter(predicate);
+    if (!rows.length) return '';
+    var rowsHtml = rows.map(function(r) {
+      var coldStr = r.days_cold == null ? '<strong>never</strong>' : ('~' + fmtN(r.days_cold));
+      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · ' + r.owner) + '</td>'
+        + '<td>' + metaSmall(r.signal) + '</td>'
+        + '<td style="text-align:right;font-weight:700">' + coldStr + '</td></tr>';
+    }).join('');
+    return '<div class="pulse-cohort-hdr" style="border-left:3px solid ' + color + '">'
+      + '<strong>' + label + '</strong> <span class="badge-count">' + rows.length + ' accounts</span> ' + weekOneOrDelta(rows.length, null)
+      + '</div>'
+      + '<table class="pulse-table"><thead><tr><th>District</th><th>Signal</th><th style="text-align:right">Days cold</th></tr></thead>'
+      + '<tbody>' + rowsHtml + '</tbody></table>';
+  };
+
+  // Section 3 rows with days bar
+  var s3MaxDays = Math.max.apply(null, s3.map(function(r) { return r.days_engaged || 0; }).concat([1]));
+  var s3RowsHtml = s3.map(function(r) {
+    var pct = Math.round((r.days_engaged || 0) / s3MaxDays * 100);
+    return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state) + '</td>'
+      + '<td>' + metaSmall(r.signals) + '</td>'
+      + '<td><div class="days-bar-wrap"><div class="days-bar" style="width:' + pct + '%"></div></div>' + metaSmall(r.days_engaged + ' days') + '</td>'
+      + '<td>' + metaSmall(r.action) + '</td></tr>';
+  }).join('');
+
+  // Section 4 rows with bar + batch flag
+  var BATCH_DATE = '2025-11-17';
+  var batchCount = s4.filter(function(r) { return r.first_mqa_date === BATCH_DATE; }).length;
+  var s4MaxDays = Math.max.apply(null, s4.map(function(r) { return r.days_mqa || 0; }).concat([1]));
+  var s4RowsHtml = s4.map(function(r) {
+    var pct = Math.round((r.days_mqa || 0) / s4MaxDays * 100);
+    var isBatch = r.first_mqa_date === BATCH_DATE;
+    var batchTag = isBatch ? ' <span class="batch-badge">11/17 batch</span>' : '';
+    return '<tr' + (isBatch ? ' class="batch-row"' : '') + '>'
+      + '<td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · last contact ' + r.last_contact) + batchTag + '</td>'
+      + '<td>' + metaSmall(r.signal || '(no signal recorded)') + '</td>'
+      + '<td style="text-align:right"><div class="days-bar-wrap"><div class="days-bar stale-bar" style="width:' + pct + '%"></div></div><strong>' + r.days_mqa + '</strong></td></tr>';
+  }).join('');
+
+  // Section 5 action cards
+  var s5Html = '';
+  if (s5.cmo) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a7c4a">Jeanette (CMO)</div><div class="pulse-action-body">' + s5.cmo + '</div></div>';
+  if (s5.sales) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#c2540a">Sales</div><div class="pulse-action-body">' + s5.sales + '</div></div>';
+  if (s5.marketing_ops) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a5dc2">Marketing Ops</div><div class="pulse-action-body">' + s5.marketing_ops + '</div></div>';
+
+  // Batch callout
+  var batchCallout = batchCount >= 3
+    ? '<div class="batch-callout">⚠️ <strong>' + batchCount + ' accounts share a first_mqa_date of ' + BATCH_DATE + '</strong> — likely a backfill or import event, not organic signal. These are highlighted below. Recommend: audit MQA scoring rules + tie to November import if one exists.</div>'
+    : '';
+
+  // Owner filter chips
+  var owners = [];
+  s1.forEach(function(r) { if (owners.indexOf(r.owner) === -1) owners.push(r.owner); });
+  var ownerChips = owners.map(function(o) {
+    return '<button class="chip" data-pf="owner" data-val="' + o + '">' + o.split(' ')[0] + '</button>';
+  }).join('');
+
+  var sectionHdr = function(label, color) {
+    return '<div class="section-label" style="border-left:3px solid ' + color + ';padding-left:8px">' + label + '</div>';
+  };
+
+  document.getElementById('view').innerHTML =
+    '<div class="contextbar">'
+    + '<span class="asof">📅 Data as of <strong>' + d.updated + '</strong></span>'
+    + '<span class="timing">' + d.universe + '</span>'
+    + '</div>'
+
+    // Trend strip
+    + sectionHdr('★ This week at a glance <span class="muted">(WoW Δ collects after 2+ snapshots)</span>', '#0a7c4a')
+    + '<div class="cards">'
+    + card('New MQAs (7d)', fmtN(fc.new_mqa_7d), weekOneOrDelta(fc.new_mqa_7d, null), 'MQA stage reached this week')
+    + card('Hot + Cold flagged', fmtN(fc.hot_cold_flagged), weekOneOrDelta(fc.hot_cold_flagged, null), 'MQA + high-intent + 60d+ cold')
+    + card('Warming accounts', fmtN(fc.warming_2plus_signals), weekOneOrDelta(fc.warming_2plus_signals, null), 'Engaged + 2+ signals')
+    + card('Stale MQAs (120d+)', fmtN(fc.stale_mqa_120d_no_opp), weekOneOrDelta(fc.stale_mqa_120d_no_opp, null), 'MQA, no opp, 120+ days')
+    + '</div>'
+
+    // Section 1
+    + sectionHdr('1. What Changed This Week <span class="muted">(last 7 days · ' + s1.length + ' accounts)</span>', '#0a7c4a')
+    + '<div class="panel">'
+    + '<div class="pulse-filter-bar">'
+    + '<span class="tlabel">Stage:</span>'
+    + '<button class="chip on" data-pf="stage" data-val="all">All</button>'
+    + '<button class="chip" data-pf="stage" data-val="MQA">New MQA</button>'
+    + '<button class="chip" data-pf="stage" data-val="Engaged">New Engaged</button>'
+    + '<span class="tlabel" style="margin-left:10px">Owner:</span>'
+    + '<button class="chip on" data-pf="owner" data-val="all">All</button>'
+    + ownerChips
+    + '</div>'
+    + note('📍 All ' + s1.length + ' movers are NJ/NY/MN districts owned by <b>Anne Matz</b>. Two are net-new MQAs; ten are Engaged-stage triggers from one DL fire on 4/25. Pressure-test: pull the source DL and check unique vs. repeat opens before reading this as broad pipeline growth.')
+    + '<table class="pulse-table"><thead><tr><th style="width:40%">District</th><th style="width:28%">Stage / Signal</th><th>Why it matters</th></tr></thead>'
+    + '<tbody id="s1Tbody">' + s1RowsHtml(s1) + '</tbody></table>'
+    + '</div>'
+
+    // Section 2
+    + sectionHdr('2. Hot Signal + Cold Outreach <span class="muted">(top 15 of ' + fmtN(fc.hot_cold_flagged) + ' flagged)</span>', '#c2540a')
+    + '<div class="panel">'
+    + note('⚠️ MQA-stage accounts with high-intent signals and 60+ days since last contact. Sorted by days cold, descending. +14 more accounts in HubSpot (60–125 days cold).')
+    + cohortHtml('Never contacted', function(r) { return r.days_cold == null; }, '#b3261e')
+    + cohortHtml('› 365 days cold — multi-year', function(r) { return r.days_cold != null && r.days_cold >= 365; }, '#c2540a')
+    + cohortHtml('180–365 days cold', function(r) { return r.days_cold != null && r.days_cold >= 180 && r.days_cold < 365; }, '#f59e0b')
+    + cohortHtml('60–180 days cold', function(r) { return r.days_cold != null && r.days_cold >= 60 && r.days_cold < 180; }, '#1C2660')
+    + '</div>'
+
+    // Section 3
+    + sectionHdr('3. Warming Accounts <span class="muted">(Engaged + 2+ signals · ' + s3.length + ' accounts)</span>', '#0a5dc2')
+    + '<div class="panel">'
+    + note('One signal away from MQA. Marketing should accelerate, not wait. Bar = relative days in Engaged — longer = more urgency.')
+    + '<table class="pulse-table"><thead><tr><th style="width:32%">District</th><th style="width:26%">Signals</th><th style="width:16%">Days Engaged</th><th>Suggested action</th></tr></thead>'
+    + '<tbody>' + s3RowsHtml + '</tbody></table>'
+    + '</div>'
+
+    // Section 4
+    + sectionHdr('4. Stale MQAs <span class="muted">(120+ days, no opp · ' + s4.length + ' accounts)</span>', '#6a3e9a')
+    + '<div class="panel">'
+    + note('These have been MQA for a long time — should they be demoted, re-engaged, or escalated?')
+    + batchCallout
+    + '<table class="pulse-table"><thead><tr><th style="width:44%">District</th><th style="width:32%">Signal</th><th style="text-align:right">Days MQA</th></tr></thead>'
+    + '<tbody>' + s4RowsHtml + '</tbody></table>'
+    + '</div>'
+
+    // Section 5
+    + sectionHdr('5. Three Things to Do This Week', '#0a7c4a')
+    + '<div class="pulse-actions">' + s5Html + '</div>'
+
+    + '<p class="flag" style="margin-top:4px">'
+    + 'Source: HubSpot portal 4451852 · '
+    + (hist.length >= 1 ? 'History: ' + hist.length + ' snapshot' + (hist.length > 1 ? 's' : '') + ' — WoW Δ appears after 2 snapshots.' : 'Week 1 of history — WoW Δ will appear next week after the pulse-history-tracker skill runs.')
+    + '</p>';
+
+  // Wire filter pills
+  var pulseFilter = { stage: 'all', owner: 'all' };
+  document.querySelectorAll('[data-pf]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var dim = btn.getAttribute('data-pf');
+      var val = btn.getAttribute('data-val');
+      pulseFilter[dim] = val;
+      document.querySelectorAll('[data-pf="' + dim + '"]').forEach(function(b) {
+        b.classList.toggle('on', b.getAttribute('data-val') === val);
+      });
+      var filtered = s1.filter(function(r) {
+        return (pulseFilter.stage === 'all' || r.stage === pulseFilter.stage)
+          && (pulseFilter.owner === 'all' || r.owner === pulseFilter.owner);
+      });
+      document.getElementById('s1Tbody').innerHTML = s1RowsHtml(filtered);
+    });
+  });
 }
 
 // ---- shell ----

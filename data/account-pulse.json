@@ -1,0 +1,502 @@
+{
+  "updated": "2026-04-28",
+  "iso_week": "2026-W18",
+  "snapshot_date": "2026-04-28",
+  "universe": "Medium / Large / Enterprise districts at MQA or Engaged stage · Source: HubSpot",
+  "notes": "Week 1 snapshot — WoW deltas will appear once 2+ snapshots are in history.",
+  "funnel_counts": {
+    "new_mqa_7d": 2,
+    "new_engaged_7d": 10,
+    "hot_cold_flagged": 29,
+    "warming_2plus_signals": 7,
+    "stale_mqa_120d_no_opp": 10
+  },
+  "history": [],
+  "section1": [
+    {
+      "id": "8976097637",
+      "name": "Hutchinson Public School District",
+      "segment": "Medium",
+      "state": "MN",
+      "owner": "Anne Matz",
+      "stage": "MQA",
+      "stage_new": true,
+      "signal": "High Intent DL + Yes, Reviewing + Upcoming Adoption",
+      "why": "Triple stack — active eval + adoption timing. Top priority this week.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976097637"
+    },
+    {
+      "id": "8976043054",
+      "name": "William Floyd Union Free SD",
+      "segment": "Medium",
+      "state": "NY",
+      "owner": "Anne Matz",
+      "stage": "MQA",
+      "stage_new": true,
+      "signal": "High Intent DL + Yes, Reviewing",
+      "why": "Active evaluator just hit MQA. Outreach window now.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976043054"
+    },
+    {
+      "id": "8976127071",
+      "name": "Long Branch Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest. Add to nurture, watch for second signal.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976127071"
+    },
+    {
+      "id": "1456764846",
+      "name": "Hopewell Valley Regional School District",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1456764846"
+    },
+    {
+      "id": "43147038520",
+      "name": "Washington Township Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43147038520"
+    },
+    {
+      "id": "3038721565",
+      "name": "Marlboro Township Public School District",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3038721565"
+    },
+    {
+      "id": "1089079355",
+      "name": "Orange Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1089079355"
+    },
+    {
+      "id": "27040679817",
+      "name": "Paramus Public School District",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/27040679817"
+    },
+    {
+      "id": "4996659569",
+      "name": "Medford Township Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996659569"
+    },
+    {
+      "id": "8976091249",
+      "name": "Willingboro Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976091249"
+    },
+    {
+      "id": "8976255488",
+      "name": "West Deptford School District",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976255488"
+    },
+    {
+      "id": "4996573893",
+      "name": "Summit Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "stage": "Engaged",
+      "stage_new": false,
+      "signal": "High Intent DL",
+      "why": "Content-triggered interest.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996573893"
+    }
+  ],
+  "section2": [
+    {
+      "id": "8976236430",
+      "name": "Jacksonville School District",
+      "segment": "Medium",
+      "state": "IL",
+      "owner": "Anne Matz",
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_cold": null,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976236430"
+    },
+    {
+      "id": "5135116364",
+      "name": "St. Joseph Schools",
+      "segment": "Medium",
+      "state": "MI",
+      "owner": "Anne Matz",
+      "signal": "Yes, Reviewing + Upcoming Adoption",
+      "days_cold": 1554,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116364"
+    },
+    {
+      "id": "5901608998",
+      "name": "Laramie County School District #1",
+      "segment": "Large",
+      "state": "WY",
+      "owner": "Gianna Miller",
+      "signal": "Yes, Reviewing + Upcoming Adoption",
+      "days_cold": 1531,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5901608998"
+    },
+    {
+      "id": "6010621870",
+      "name": "Pryor High School Innovation Center",
+      "segment": "Medium",
+      "state": "OK",
+      "owner": "Gianna Miller",
+      "signal": "Yes, Reviewing + Upcoming Adoption",
+      "days_cold": 841,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6010621870"
+    },
+    {
+      "id": "8976241038",
+      "name": "Hutto Independent School District",
+      "segment": "Medium",
+      "state": "TX",
+      "owner": "Gianna Miller",
+      "signal": "Yes, Reviewing + Upcoming Adoption",
+      "days_cold": 840,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976241038"
+    },
+    {
+      "id": "8976230241",
+      "name": "North Little Rock School District",
+      "segment": "Medium",
+      "state": "AR",
+      "owner": "Gianna Miller",
+      "signal": "DL attended TL Webinar + Upcoming Adoption",
+      "days_cold": 574,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976230241"
+    },
+    {
+      "id": "8976002141",
+      "name": "Jamesville-Dewitt CSD",
+      "segment": "Medium",
+      "state": "NY",
+      "owner": "Anne Matz",
+      "signal": "High Intent DL + Yes, Reviewing",
+      "days_cold": 351,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976002141"
+    },
+    {
+      "id": "8975961624",
+      "name": "Big Lake Public School District",
+      "segment": "Medium",
+      "state": "MN",
+      "owner": "Anne Matz",
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_cold": 235,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975961624"
+    },
+    {
+      "id": "33131389965",
+      "name": "Hillsborough County Public Schools",
+      "segment": "Enterprise",
+      "state": "FL",
+      "owner": "Jason Long",
+      "signal": "DL Webinar + Yes, Reviewing",
+      "days_cold": 204,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/33131389965"
+    },
+    {
+      "id": "8976230166",
+      "name": "Spring Hill Unified School District 230",
+      "segment": "Medium",
+      "state": "KS",
+      "owner": "Gianna Miller",
+      "signal": "Upcoming Adoption",
+      "days_cold": 201,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976230166"
+    },
+    {
+      "id": "40865257367",
+      "name": "New Prague Area Schools",
+      "segment": "Medium",
+      "state": "MN",
+      "owner": "Anne Matz",
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_cold": 200,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/40865257367"
+    },
+    {
+      "id": "5246856971",
+      "name": "Howard-Suamico School District",
+      "segment": "Medium",
+      "state": "WI",
+      "owner": "Anne Matz",
+      "signal": "2+ DL Forms + DL Webinar + Upcoming Adoption",
+      "days_cold": 181,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246856971"
+    },
+    {
+      "id": "5246861646",
+      "name": "Muskego-Norway School District",
+      "segment": "Medium",
+      "state": "WI",
+      "owner": "Anne Matz",
+      "signal": "Yes, Reviewing + Upcoming Adoption",
+      "days_cold": 175,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246861646"
+    },
+    {
+      "id": "2447937218",
+      "name": "Vineland Public Schools",
+      "segment": "Large",
+      "state": "NJ",
+      "owner": "Anne Matz",
+      "signal": "Clicked Email + Upcoming Adoption",
+      "days_cold": 160,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2447937218"
+    },
+    {
+      "id": "6103434547",
+      "name": "New London Public Schools",
+      "segment": "Medium",
+      "state": "CT",
+      "owner": "Anne Matz",
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_cold": 152,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6103434547"
+    }
+  ],
+  "section3": [
+    {
+      "id": "30338325176",
+      "name": "Kipp Atlanta Schools",
+      "segment": "Medium",
+      "state": "GA",
+      "days_engaged": 159,
+      "signals": "High Intent DL + Yes, Reviewing + Upcoming Adoption",
+      "action": "Trigger Inkwell adoption nurture; route to sales for direct touch.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/30338325176"
+    },
+    {
+      "id": "8976041805",
+      "name": "Waukegan School District",
+      "segment": "Large",
+      "state": "IL",
+      "days_engaged": 102,
+      "signals": "2+ Leads (90d) + Upcoming Adoption",
+      "action": "Multi-contact district — coordinate ABM touch.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976041805"
+    },
+    {
+      "id": "8976206356",
+      "name": "Gregory-Portland Independent SD",
+      "segment": "Medium",
+      "state": "TX",
+      "days_engaged": 88,
+      "signals": "High Intent DL + Yes, Reviewing + Upcoming Adoption",
+      "action": "TX adoption motion — move to MQA, sales follow-up.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976206356"
+    },
+    {
+      "id": "8976048906",
+      "name": "Breakthrough Public Schools",
+      "segment": "Medium",
+      "state": "OH",
+      "days_engaged": 81,
+      "signals": "High Intent DL + Yes, Reviewing + Upcoming Adoption",
+      "action": "Charter network — Inquiry Journeys fit. Add to nurture + sales touch.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976048906"
+    },
+    {
+      "id": "8976301693",
+      "name": "North Wasco County School District 21",
+      "segment": "Medium",
+      "state": "OR",
+      "days_engaged": 73,
+      "signals": "DL Webinar + High Intent DL + Upcoming Adoption",
+      "action": "Webinar attendee — invite to product demo.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976301693"
+    },
+    {
+      "id": "5276889488",
+      "name": "Saint Paul Public Schools",
+      "segment": "Enterprise",
+      "state": "MN",
+      "days_engaged": 66,
+      "signals": "DL Webinar + Upcoming Adoption",
+      "action": "Enterprise — Jason Long, account-driven motion.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5276889488"
+    },
+    {
+      "id": "6910809696",
+      "name": "Carroll County Public Schools",
+      "segment": "Enterprise",
+      "state": "MD",
+      "days_engaged": 18,
+      "signals": "Clicked Email + Upcoming Adoption",
+      "action": "Just engaged — load into Inkwell adoption nurture.",
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6910809696"
+    }
+  ],
+  "section4": [
+    {
+      "id": "3315606253",
+      "name": "Prince George's County Public Schools",
+      "segment": "Enterprise",
+      "state": "MD",
+      "last_contact": "2026-04-21",
+      "first_mqa_date": "2025-11-17",
+      "signal": "2+DL Forms + 2+Leads + Clicked Email + DL Webinar + Yes Reviewing + Upcoming Adoption",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3315606253"
+    },
+    {
+      "id": "1108148703",
+      "name": "Houston County School District",
+      "segment": "Enterprise",
+      "state": "GA",
+      "last_contact": "2026-04-28",
+      "first_mqa_date": "2025-11-17",
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1108148703"
+    },
+    {
+      "id": "3206708915",
+      "name": "Irvington Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "last_contact": "2026-04-07",
+      "first_mqa_date": "2025-11-17",
+      "signal": "Clicked Email + High Intent DL + Upcoming Adoption",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3206708915"
+    },
+    {
+      "id": "30991350090",
+      "name": "Gahanna Jefferson Public Schools",
+      "segment": "Medium",
+      "state": "OH",
+      "last_contact": "2026-03-03",
+      "first_mqa_date": "2025-11-17",
+      "signal": "Clicked Email + Upcoming Adoption",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/30991350090"
+    },
+    {
+      "id": "5667578982",
+      "name": "Williamsville CSD",
+      "segment": "Medium",
+      "state": "NY",
+      "last_contact": "2026-04-21",
+      "first_mqa_date": "2025-11-17",
+      "signal": "Clicked Email + High Intent DL",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5667578982"
+    },
+    {
+      "id": "6062804098",
+      "name": "Centennial School District (PA)",
+      "segment": "Medium",
+      "state": "PA",
+      "last_contact": "2025-11-19",
+      "first_mqa_date": null,
+      "signal": "Clicked Email + DL Webinar",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6062804098"
+    },
+    {
+      "id": "6380512156",
+      "name": "Rose Linda Elementary School",
+      "segment": "Medium",
+      "state": "AZ",
+      "last_contact": "2026-01-19",
+      "first_mqa_date": null,
+      "signal": "High Intent DL + Upcoming Adoption",
+      "days_mqa": 162,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6380512156"
+    },
+    {
+      "id": "1000966386",
+      "name": "New Brunswick Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "last_contact": "2025-12-24",
+      "first_mqa_date": null,
+      "signal": "",
+      "days_mqa": 146,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1000966386"
+    },
+    {
+      "id": "920587935",
+      "name": "Princeton Public Schools",
+      "segment": "Medium",
+      "state": "NJ",
+      "last_contact": "2026-03-04",
+      "first_mqa_date": null,
+      "signal": "Clicked Email + DL Webinar + High Intent DL + Yes Reviewing",
+      "days_mqa": 146,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/920587935"
+    },
+    {
+      "id": "8976798800",
+      "name": "Millburn Township School District",
+      "segment": "Medium",
+      "state": "NJ",
+      "last_contact": "2026-01-06",
+      "first_mqa_date": null,
+      "signal": "Upcoming Adoption",
+      "days_mqa": 146,
+      "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976798800"
+    }
+  ],
+  "section5": {
+    "cmo": "Pressure-test the NJ pattern. <b>10 of this week's 12 movers are NJ districts owned by Anne Matz</b> — all triggered by the same High Intent DL on 4/25. That's a fuel-engine question: is one piece of NJ-targeted content driving disproportionate pipeline, or are we hitting the same audience with the same asset and inflating engagement metrics? Pull the source DL and check unique vs. repeat opens before we celebrate.",
+    "sales": "Hit the four \"high-intent + multi-year cold\" accounts this week — <a href=\"https://app.hubspot.com/contacts/4451852/record/0-2/5135116364\">St. Joseph (MI)</a>, <a href=\"https://app.hubspot.com/contacts/4451852/record/0-2/5901608998\">Laramie County (WY)</a>, <a href=\"https://app.hubspot.com/contacts/4451852/record/0-2/6010621870\">Pryor HSIC (OK)</a>, <a href=\"https://app.hubspot.com/contacts/4451852/record/0-2/8976241038\">Hutto ISD (TX)</a>. All carry \"Yes, Reviewing + Upcoming Adoption\" but haven't been touched in 800+ days. Either re-open or demote — they're polluting MQA counts.",
+    "marketing_ops": "Audit the seven 162-day stale MQAs in Section 4 — <b>five share an identical first_mqa_date of 2025-11-17</b>, suggesting a backfill or import event, not real signal. Run a query against MQA scoring rules and recommend: demote, re-score, or treat as data hygiene. Tie this to the November import audit if one exists."
+  }
+}

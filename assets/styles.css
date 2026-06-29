@@ -255,6 +255,27 @@ details.kwd table { margin-top: 8px; }
 .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 22px; }
 .foot a { color: var(--muted); }
 
+/* ── Account Pulse tab ── */
+.hs-link { color: var(--iq-dk-purple); font-weight: 700; text-decoration: none; }
+.hs-link:hover { text-decoration: underline; }
+.meta-small { display: block; font-size: 11.5px; color: var(--muted); font-weight: 400; margin-top: 2px; line-height: 1.35; }
+.badge-new { display: inline-block; background: rgba(10,124,74,0.13); color: #0a7c4a; border: 1px solid rgba(10,124,74,0.25); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; text-transform: uppercase; letter-spacing: .3px; vertical-align: middle; margin-left: 4px; }
+.badge-count { display: inline-block; background: var(--iq-lt-blue); color: var(--iq-dk-purple); border: 1px solid var(--line); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 4px; }
+.pulse-filter-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.pulse-cohort-hdr { display: flex; align-items: center; gap: 8px; padding: 8px 10px; margin: 14px 0 6px; background: var(--surface); border-radius: 6px; font-size: 13px; }
+.days-bar-wrap { width: 100%; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+.days-bar { height: 100%; background: var(--iq-dk-purple); border-radius: 3px; }
+.days-bar.stale-bar { background: var(--iq-purple); }
+.batch-row td { background: rgba(106,62,154,0.06); }
+.batch-badge { display: inline-block; background: rgba(106,62,154,0.13); color: #6a3e9a; border: 1px solid rgba(106,62,154,0.25); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; margin-left: 5px; white-space: nowrap; }
+.batch-callout { background: rgba(106,62,154,0.07); border: 1px solid rgba(106,62,154,0.22); border-left: 4px solid #6a3e9a; border-radius: 8px; padding: 10px 13px; margin-bottom: 12px; font-size: 13px; color: #3a2850; line-height: 1.5; }
+.pulse-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+@media (max-width: 820px) { .pulse-actions { grid-template-columns: 1fr; } }
+.pulse-action-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; color: #3a3a3a; line-height: 1.55; }
+.pulse-action-role { font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+.pulse-action-body a { color: var(--iq-dk-purple); }
+.pulse-table tbody tr:last-child td { font-weight: 400; }
+
 /* ── Top conversion pages ── */
 .page-path { font-family: monospace; font-size: 12px; color: var(--iq-purple); font-weight: 600; max-width: 360px; word-break: break-all; }
 .page-type-badge { display: inline-block; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
