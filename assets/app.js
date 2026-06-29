@@ -512,14 +512,24 @@ function renderWeekly(d) {
       <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
     </div>
 
-    <div class="hero">
-      <div class="hero-main">
-        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
-        <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
-        <div class="hero-sub">HIH→MQL ${rate(f(last,"mql"), f(last,"hih")) ?? "—"}% · MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
-        ${note("HIH is the earliest read on high-intent demand — the north-star metric. Week-over-week swings are normal; watch the 4-week trend in the chart.")}
+    <div class="hih-hero">
+      <div class="hih-hero-top">
+        <div class="hih-hero-main">
+          <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
+          <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
+          <div class="hero-sub">HIH→MQL ${rate(f(last,"mql"), f(last,"hih")) ?? "—"}% · MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
+        </div>
+        <div class="hih-hero-velocity">
+          <div class="hero-label">★ FUNNEL VELOCITY · ${last.label || ""}</div>
+          <div class="hero-val-sm">${fmtN(f(last,"mql"))} MQL &nbsp;${deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"})}</div>
+          <div class="hero-sub">${fmtN(f(last,"sql"))} SQL ${deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"})} · ${fmtN(f(last,"opp"))} Opp ${deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"})}</div>
+        </div>
       </div>
-      <div class="hero-chart"><div class="chartbox sm"><canvas id="wHihMini"></canvas></div></div>
+      <div class="hih-hero-def">HIH is the earliest read on high-intent demand — the north-star metric. Week-over-week swings are normal; watch the 10-week trend below.</div>
+      <div class="hih-hero-chart">
+        <h4>HIH — trailing ${w.length} weeks</h4>
+        <div class="chartbox sm"><canvas id="wHihMini"></canvas></div>
+      </div>
     </div>
 
     <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
