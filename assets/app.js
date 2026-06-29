@@ -787,7 +787,7 @@ function renderAccountPulse(d) {
 
   // Section 5 action cards
   var s5Html = '';
-  if (s5.cmo) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a7c4a">Jeanette (CMO)</div><div class="pulse-action-body">' + s5.cmo + '</div></div>';
+  if (s5.cmo) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a7c4a">Jeanette</div><div class="pulse-action-body">' + s5.cmo + '</div></div>';
   if (s5.sales) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#c2540a">Sales</div><div class="pulse-action-body">' + s5.sales + '</div></div>';
   if (s5.marketing_ops) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a5dc2">Marketing Ops</div><div class="pulse-action-body">' + s5.marketing_ops + '</div></div>';
 
