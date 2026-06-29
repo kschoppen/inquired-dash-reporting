@@ -792,6 +792,18 @@
         "avg_position": 4.4,
         "ranked": 38
       },
+      "top_pages": [
+        { "path": "/webinar-sign-up/social-studies", "completions": 261, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
+        { "path": "/webinar-sign-up/thank-you", "completions": 228, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
+        { "path": "/download/social-studies-curriculum-review-thank-you", "completions": 152, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
+        { "path": "/download/inquiry-journeys-scope-and-sequence-thank-you", "completions": 134, "type": "resource", "prior_mom": null, "prior_yoy": null },
+        { "path": "/inquiry-based-social-studies/elementary-curriculum", "completions": 128, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
+        { "path": "/contact-thank-you", "completions": 92, "type": "contact sales", "prior_mom": null, "prior_yoy": null },
+        { "path": "/webinar-sign-up/product", "completions": 81, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
+        { "path": "/integrated-ela-curriculum/reviewer", "completions": 80, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
+        { "path": "/download/pacing-guide-thank-you", "completions": 62, "type": "resource", "prior_mom": null, "prior_yoy": null },
+        { "path": "/", "completions": 56, "type": "homepage", "prior_mom": null, "prior_yoy": null }
+      ],
       "quality": {
         "mql_to_sql_pct": 36.8,
         "utm_completeness_pct": 24.8,

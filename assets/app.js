@@ -279,7 +279,11 @@ function renderMonthly(d) {
       </div>
     </div>
 
-    <div class="panel" style="font-size:13px;color:#3a3a3a">
+    ${last.top_pages && last.top_pages.length ? `
+    <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label} · GA4)</span></h3>
+      <p class="flag" style="margin:0 0 10px">Pages ranked by key event completions (form submits, downloads, demo requests). MoM and YoY deltas populate once the digest skill pulls prior-period data.</p>
+      ${topPagesSection(last.top_pages, null, "monthly")}
+    </div>` : ""}
 
     <!-- LAGGING -->
     <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
@@ -382,6 +386,23 @@ function seoNarrative(d) {
   return `We own Brand (avg pos 1.1) and rank core Social Studies — but ELA is ${ela.top10 || 0}/${ela.tracked || 0} in top-10 and ECE/Pre-K is ${ece.top10 || 0}/${ece.tracked || 0}. The non-brand growth products are nearly invisible — the clearest SEO opportunity. (MoM deltas start next month.)`;
 }
 
+// ---- top conversion pages (monthly MoM/YoY + weekly WoW) ----
+function topPagesSection(pages, priorPages, mode) {
+  if (!pages || !pages.length) return '<p class="flag">Top conversion pages — data populates on next digest run.</p>';
+  const priorMap = {};
+  if (priorPages) priorPages.forEach((p) => { priorMap[p.path] = p.completions; });
+  const isMonthly = mode === "monthly";
+  return `<table><thead><tr><th>Page</th><th>Completions</th><th>${isMonthly ? "MoM" : "WoW"}</th>${isMonthly ? "<th>YoY</th>" : ""}<th>Type</th></tr></thead><tbody>
+    ${pages.map((p) => `<tr>
+      <td class="page-path">${p.path}</td>
+      <td><strong>${fmtN(p.completions)}</strong></td>
+      <td>${deltaHTML(p.completions, isMonthly ? p.prior_mom : priorMap[p.path])}</td>
+      ${isMonthly ? `<td>${deltaHTML(p.completions, p.prior_yoy, {label:"YoY"})}</td>` : ""}
+      <td><span class="page-type-badge">${p.type || ""}</span></td>
+    </tr>`).join("")}
+  </tbody></table>`;
+}
+
 // ---- SEO topic → keyword drill ----
 function seoSection(d) {
   const topics = d.seo_topics || [];
@@ -475,83 +496,124 @@ function renderWeekly(d) {
   const labels = w.map((x) => x.label);
   const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
+  const hihToMql = w.map((x) => rate(f(x, "mql"), f(x, "hih")));
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
-  const covLine = `tagging coverage — HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
+  const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
   const drill = last.drill || {};
   const dcard = (stage, l, v, dl) => {
     const n = (drill[stage] || []).length;
     return n ? `<div class="card drill" data-drill="${stage}"><div class="label">${l}</div><div class="value">${v}</div><div>${dl}</div><div class="cap">▸ ${n} contacts — click to view in HubSpot</div></div>` : card(l, v, dl);
   };
+  const segGet = (k, s) => (last.by_segment && last.by_segment[k]) ? last.by_segment[k][s] : 0;
 
   document.getElementById("view").innerHTML = `
     <div class="contextbar">
       <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
       <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
     </div>
+
+    <div class="hero">
+      <div class="hero-main">
+        <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
+        <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
+        <div class="hero-sub">HIH→MQL ${rate(f(last,"mql"), f(last,"hih")) ?? "—"}% · MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
+        ${note("HIH is the earliest read on high-intent demand — the north-star metric. Week-over-week swings are normal; watch the 4-week trend in the chart.")}
+      </div>
+      <div class="hero-chart"><div class="chartbox sm"><canvas id="wHihMini"></canvas></div></div>
+    </div>
+
     <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
     <div class="cards">
-      ${dcard("hih", "HIH", fmtN(f(last,"hih")), deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"}))}
       ${dcard("mql", "MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
       ${dcard("sql", "SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"}))}
       ${dcard("opp", "Opp", fmtN(f(last,"opp")), deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"}))}
       ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
     </div>
-    <div class="grid2">
-      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent, north star) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines. New-contact volume is deliberately excluded — list uploads make it too noisy to read WoW.")}</div>
-      <div class="panel"><h3>MQL → SQL conversion (%)</h3><div class="chartbox"><canvas id="wConv"></canvas></div></div>
-    </div>
 
-    <div class="section-label">Where it's coming from — ${last.label || ""} <span class="muted">(this week · WoW)</span></div>
+    <div class="section-label">📦 By product — ${last.label || ""} <span class="muted">(this week · WoW)</span></div>
     <div class="grid2">
-      <div class="panel"><h3>By product</h3>
+      <div class="panel"><h3>HIH · MQL · SQL by product</h3><div class="chartbox"><canvas id="wProdChart"></canvas></div></div>
+      <div class="panel"><h3>Funnel by product — detail</h3>
         ${wkBreakdownTable(WK_PRODUCT_ROWS, "by_product", last, prev, {untagged:true})}
-        ${note("Each contact counts under its single <strong>primary</strong> product (priority Inkwell → IJ → World History), so rows sum to the tagged total — the rest is <em>Untagged</em>. WoW arrow shown only when last week's base was ≥ 5.")}
-      </div>
-      <div class="panel"><h3>By account segment</h3>
-        ${wkBreakdownTable(WK_SEGMENT_ROWS, "by_segment", last, prev, {})}
-        ${note("Account segment (clean, single-select; " + covLine + "). Unassigned contacts are excluded here but still in the headline totals. WoW arrow shown only when last week's base was ≥ 5.")}
+        ${note("Each contact counted under its single <strong>primary</strong> product (priority Inkwell → IJ → World History). WoW arrow when last week's base was ≥ 5.")}
       </div>
     </div>
 
     <div class="grid2">
-      <div class="panel"><h3>Open pipeline <span class="muted">(snapshot ${pipe.as_of || d.updated})</span></h3>
-        <div class="cards">
-          ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
-          ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
-        </div>
-        ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
+      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines.")}</div>
+      <div class="panel"><h3>Conversion rates by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("HIH→MQL % and MQL→SQL % — within-week stage entries, not a cohort view. Treat as directional velocity. HIH→MQL spikes often reflect large-batch list imports that week.")}</div>
+    </div>
+
+    <div class="section-label">🏢 By account segment — ${last.label || ""} <span class="muted">(segment tagging coverage: ${covLine})</span></div>
+    <div class="grid2">
+      <div class="panel"><h3>HIH · MQL · SQL by segment</h3><div class="chartbox"><canvas id="wSegChart"></canvas></div></div>
+      <div class="panel"><h3>Funnel by segment — detail</h3>
+        ${wkBreakdownTable(WK_SEGMENT_ROWS, "by_segment", last, prev, {})}
+        ${note("Segment is partially populated — unassigned contacts excluded from rows but included in headline totals. WoW arrow when last week's base was ≥ 5.")}
       </div>
-      <div class="panel"><h3>Lead disposition by week <span class="muted">(churn / list cleanup context)</span></h3>
-        <div class="chartbox"><canvas id="wDisp"></canvas></div>
-        ${note("Disqualified + Entered-Nurture counts. Big DQ spikes (e.g. " + Math.max(...w.map(x=>x.disposition?.dq||0)).toLocaleString() + " in one week) are list imports / database cleanup, <strong>not</strong> a funnel signal — they explain volatility in new-contact counts and are why we read stage transitions instead.")}
+    </div>
+
+    <div class="panel"><h3>Open pipeline <span class="muted">(snapshot ${pipe.as_of || d.updated})</span></h3>
+      <div class="cards">
+        ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
+        ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
       </div>
+      ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
+    </div>
+
+    <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label || ""} · WoW)</span></h3>
+      ${last.top_pages && last.top_pages.length
+        ? topPagesSection(last.top_pages, prev.top_pages, "weekly")
+        : '<p class="flag">Page-level conversion data populates on the next weekly digest run (requires GA4 page-path pull in the skill).</p>'}
+      ${note("Pages where visitors completed a key event (form submit, download, demo request) — GA4. WoW comparison requires prior-week data from the digest skill.")}
     </div>
 
     <div class="panel"><h3>Weekly detail</h3>
-      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
-      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${fmtN(x.disposition&&x.disposition.dq)}</td><td>${fmtN(x.disposition&&x.disposition.nurture)}</td></tr>`).join("")}
+      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>
+      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td></tr>`).join("")}
       </tbody></table>
       <p class="flag">${d.notes || ""}</p>
     </div>`;
 
   document.querySelectorAll("[data-drill]").forEach((el) => el.onclick = () => {
     const s = el.dataset.drill, rows = (last.drill && last.drill[s]) || [];
-    const labels = { hih: "High-intent (HIH)", mql: "MQLs", sql: "SQLs", opp: "Opportunities" };
-    openDrawer(`Week of ${last.label} · ${labels[s] || s} (${rows.length})`, rows);
+    const lbl = { hih: "High-intent (HIH)", mql: "MQLs", sql: "SQLs", opp: "Opportunities" };
+    openDrawer(`Week of ${last.label} · ${lbl[s] || s} (${rows.length})`, rows);
   });
 
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
+  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+
+  mkChart("wHihMini", { type: "line", data: { labels, datasets: [{ label: "HIH", data: w.map((x) => f(x,"hih")), borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, pointRadius: 2, spanGaps: true }] }, options: { ...noLeg } });
+
   mkChart("wFunnel", { type: "line", data: { labels, datasets: [
       { label: "HIH (high-intent)", data: w.map((x) => f(x,"hih")), borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2 },
       { label: "MQL", data: w.map((x) => f(x,"mql")), borderColor: IJ, borderWidth: 3, tension: 0.25, pointRadius: 2 },
       { label: "SQL", data: w.map((x) => f(x,"sql")), borderColor: PLUM, borderWidth: 3, tension: 0.25, pointRadius: 2 } ] },
     options: { ...botLeg } });
-  mkChart("wConv", { type: "line", data: { labels, datasets: [{ label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.3 }] },
-    options: { plugins: { legend: { display: false } }, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
-  mkChart("wDisp", { type: "bar", data: { labels, datasets: [
-      { label: "Disqualified", data: w.map((x) => x.disposition && x.disposition.dq), backgroundColor: GREY },
-      { label: "Entered Nurture", data: w.map((x) => x.disposition && x.disposition.nurture), backgroundColor: ROSE } ] },
-    options: { ...botLeg, scales: { y: { beginAtZero: true } } } });
+
+  mkChart("wConvRates", { type: "line", data: { labels, datasets: [
+      { label: "HIH→MQL %", data: hihToMql, borderColor: ROSE, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 },
+      { label: "MQL→SQL %", data: conv, borderColor: IJ, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 }
+    ]}, options: { ...botLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
+
+  mkChart("wProdChart", { type: "bar", data: {
+    labels: WK_PRODUCT_ROWS.map(([, l]) => l),
+    datasets: [
+      { label: "HIH", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].hih : 0), backgroundColor: AMBER },
+      { label: "MQL", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].mql : 0), backgroundColor: IJ },
+      { label: "SQL", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].sql : 0), backgroundColor: PLUM }
+    ]
+  }, options: { ...botLeg, scales: { y: { beginAtZero: true } } } });
+
+  mkChart("wSegChart", { type: "bar", data: {
+    labels: WK_SEGMENT_ROWS.map(([, l]) => l),
+    datasets: [
+      { label: "HIH", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "hih")), backgroundColor: AMBER },
+      { label: "MQL", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "mql")), backgroundColor: IJ },
+      { label: "SQL", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "sql")), backgroundColor: PLUM }
+    ]
+  }, options: { ...botLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 }
 
 // ---- campaign tab ----
