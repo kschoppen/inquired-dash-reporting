@@ -1,10 +1,10 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Funnel & Revenue",
-  "updated": "2026-06-18",
+  "updated": "2026-07-09",
   "fiscal_year_start_month": 10,
   "seasonality": {
-    "note": "Close/fiscal year = Oct 1\u2013Sep 30 (pipeline + cumulative win rate measured against it). District buying follows the school year: deals peak spring\u2013summer (Apr\u2013Aug, buying for next school year) \u2014 so revenue concentrates May\u2013Jul, offset from the Sep 30 close. Lead-gen builds fall\u2013winter; Jan\u2013Feb peak; summer low."
+    "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
   },
   "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run).",
   "months": [
@@ -793,16 +793,76 @@
         "ranked": 38
       },
       "top_pages": [
-        { "path": "/webinar-sign-up/social-studies", "completions": 261, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
-        { "path": "/webinar-sign-up/thank-you", "completions": 228, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
-        { "path": "/download/social-studies-curriculum-review-thank-you", "completions": 152, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
-        { "path": "/download/inquiry-journeys-scope-and-sequence-thank-you", "completions": 134, "type": "resource", "prior_mom": null, "prior_yoy": null },
-        { "path": "/inquiry-based-social-studies/elementary-curriculum", "completions": 128, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
-        { "path": "/contact-thank-you", "completions": 92, "type": "contact sales", "prior_mom": null, "prior_yoy": null },
-        { "path": "/webinar-sign-up/product", "completions": 81, "type": "webinar signup", "prior_mom": null, "prior_yoy": null },
-        { "path": "/integrated-ela-curriculum/reviewer", "completions": 80, "type": "curriculum page", "prior_mom": null, "prior_yoy": null },
-        { "path": "/download/pacing-guide-thank-you", "completions": 62, "type": "resource", "prior_mom": null, "prior_yoy": null },
-        { "path": "/", "completions": 56, "type": "homepage", "prior_mom": null, "prior_yoy": null }
+        {
+          "path": "/webinar-sign-up/social-studies",
+          "completions": 261,
+          "type": "webinar signup",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/webinar-sign-up/thank-you",
+          "completions": 228,
+          "type": "webinar signup",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/download/social-studies-curriculum-review-thank-you",
+          "completions": 152,
+          "type": "curriculum page",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/download/inquiry-journeys-scope-and-sequence-thank-you",
+          "completions": 134,
+          "type": "resource",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "completions": 128,
+          "type": "curriculum page",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/contact-thank-you",
+          "completions": 92,
+          "type": "contact sales",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/webinar-sign-up/product",
+          "completions": 81,
+          "type": "webinar signup",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/integrated-ela-curriculum/reviewer",
+          "completions": 80,
+          "type": "curriculum page",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/download/pacing-guide-thank-you",
+          "completions": 62,
+          "type": "resource",
+          "prior_mom": null,
+          "prior_yoy": null
+        },
+        {
+          "path": "/",
+          "completions": 56,
+          "type": "homepage",
+          "prior_mom": null,
+          "prior_yoy": null
+        }
       ],
       "quality": {
         "mql_to_sql_pct": 36.8,
@@ -1110,6 +1170,454 @@
           "visits": 82
         }
       ]
+    },
+    {
+      "period": "2026-06",
+      "funnel": {
+        "hih": 77,
+        "mql": 336,
+        "sql": 276,
+        "opp": 281
+      },
+      "revenue": {
+        "district_won": 924843.86,
+        "school_won": 45285.08,
+        "total_won": 970128.94,
+        "nb_won": 970128.94,
+        "existing_won": 0,
+        "wins": 34,
+        "win_rate_count_pct": 63.0,
+        "win_rate_dollar_pct": 82.7,
+        "by_segment": {
+          "single_small": {
+            "won": 23,
+            "lost": 14
+          },
+          "medium": {
+            "won": 3,
+            "lost": 5
+          },
+          "large": {
+            "won": 3,
+            "lost": 1
+          },
+          "enterprise": {
+            "won": 4,
+            "lost": 0
+          }
+        }
+      },
+      "web": {
+        "sessions": 28599,
+        "users": 10971,
+        "views": 27167,
+        "engaged_pct": 74.1,
+        "yoy": {
+          "sessions": 9508,
+          "users": 7404,
+          "views": 11179
+        },
+        "channels": [
+          [
+            "Direct",
+            10540
+          ],
+          [
+            "Organic Search",
+            9908
+          ],
+          [
+            "Paid Search",
+            3529
+          ],
+          [
+            "Referral",
+            1321
+          ],
+          [
+            "Email",
+            1066
+          ],
+          [
+            "Organic Social",
+            330
+          ],
+          [
+            "Other",
+            2147
+          ]
+        ],
+        "conversions": [
+          [
+            "Resource downloads",
+            294
+          ],
+          [
+            "Form thank-you",
+            235
+          ],
+          [
+            "Contact sales",
+            57
+          ],
+          [
+            "Webinar signups",
+            333
+          ],
+          [
+            "Curriculum guide",
+            1
+          ]
+        ]
+      },
+      "seo": null,
+      "by_product": {
+        "ij": {
+          "hih": 55,
+          "mql": 71,
+          "sql": 30
+        },
+        "inkwell": {
+          "hih": 9,
+          "mql": 15,
+          "sql": 5
+        },
+        "wh": {
+          "hih": 22,
+          "mql": 21,
+          "sql": 4
+        },
+        "gf8": {
+          "hih": null,
+          "mql": 5,
+          "sql": null
+        }
+      },
+      "rev_by_product": {
+        "ij": 964368.94,
+        "inkwell": 4640,
+        "wh": 181043.93,
+        "gf8": 0
+      },
+      "quality": {
+        "mql_to_sql_pct": 82.14,
+        "utm_completeness_pct": 2.05,
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            190
+          ],
+          [
+            "DIRECT_TRAFFIC",
+            7
+          ],
+          [
+            "EMAIL_MARKETING",
+            2
+          ],
+          [
+            "ORGANIC_SEARCH",
+            1
+          ]
+        ]
+      },
+      "hih_by_source": [
+        [
+          "Direct",
+          66
+        ],
+        [
+          "Paid Search",
+          5
+        ],
+        [
+          "Organic Search",
+          4
+        ],
+        [
+          "AI Tool / LLM",
+          1
+        ],
+        [
+          "Other campaigns",
+          1
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Bellevue School District - Add Ons",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61205703965"
+        },
+        {
+          "name": "San Francisco Unified School District, Add Ons",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61129284409"
+        },
+        {
+          "name": "Alameda Unified School District, CA - Books",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60962199625"
+        },
+        {
+          "name": "Cape Elizabeth School Department, ME - 5th + 6th",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 4646.4,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60846292908"
+        },
+        {
+          "name": "Idea Public Schools - TX, - Regional Academic Leaders Printed Materials",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60459535699"
+        },
+        {
+          "name": "Athena-Weston School District, OR - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 3915,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59419222153"
+        },
+        {
+          "name": "Allendale School District, NJ - WH only",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 2760,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59369633931"
+        },
+        {
+          "name": "Syracuse City School District, NY - PD",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58295772306"
+        },
+        {
+          "name": "Martensdale-st Marys Community School District, IA - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 2573.6,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57019346246"
+        },
+        {
+          "name": "Elizabethtown Independent Schools, KY - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 7408.8,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55556212316"
+        },
+        {
+          "name": "Sheldon Community School District, IA - 3-6",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 7091.52,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53822016522"
+        },
+        {
+          "name": "Danville Independent Schools, KY - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 5145,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53553119662"
+        },
+        {
+          "name": "Charlotte Latin School, NC - 5th grade Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 2100,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53263523238"
+        },
+        {
+          "name": "School District Of Fort Atkinson, - Add Ons",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51663146326"
+        },
+        {
+          "name": "Emmetsburg Community School District, IA - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 2636.55,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44081326241"
+        },
+        {
+          "name": "Carolina Day School, NC - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 4164,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/41344397086"
+        },
+        {
+          "name": "Lakeville Public School District, MN - SS Pilot Expansion",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 58365.36,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40397186691"
+        },
+        {
+          "name": "North Ottawa County School District, KS - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 5108.03,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/39622785563"
+        },
+        {
+          "name": "The Menta Group, IL - SS Pilot Expansion",
+          "segment": "Other",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 8939,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/37294415373"
+        },
+        {
+          "name": "Yonkers City School District, NY - SS Pilot Expansion - Grades k-6",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 160029.5,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/31201270425"
+        },
+        {
+          "name": "Idea Public Schools (District), TX - IJ K - 5 + PM & TE",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 640511.1,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/18150956170"
+        },
+        {
+          "name": "South Windsor Public Schools, CT, SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 9450,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/15343124586"
+        },
+        {
+          "name": "Peninsula School Ltd, CA - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 2500,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60964783494"
+        },
+        {
+          "name": "Elm Community Charter School, NY - WH only",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 3000,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60964810418"
+        },
+        {
+          "name": "Grace International School, IT - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 4600.32,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60239696465"
+        },
+        {
+          "name": "Willowwind, IA - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 1290.76,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59728021292"
+        },
+        {
+          "name": "Washington International Academy, VA - SS + IW",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 4640,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58686630461"
+        },
+        {
+          "name": "Roland Park Country School, MD - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 2500,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58556492968"
+        },
+        {
+          "name": "Central Queens Academy Charter School 1, NY - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 9900,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58289365668"
+        },
+        {
+          "name": "Central Queens Academy Charter School #2, NY - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 7800,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57856101428"
+        },
+        {
+          "name": "Greenhills School, MI - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 2002,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/47831548042"
+        },
+        {
+          "name": "Saint Andrew's Episcopal School, CA - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 4200,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44462248495"
+        },
+        {
+          "name": "Saint Dominics Family Services, NY microschool",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 500,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40011166211"
+        },
+        {
+          "name": "Wissahickon Charter School, PA- SS 5th grade Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot Expansion",
+          "amount": 2352,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/39053995028"
+        }
+      ],
+      "notes": "Funnel MQL/SQL/Opp inflated by a large offline list import (~240 contacts, 95% OFFLINE, no product tag) \u2014 product-tagged funnel is flat vs May. Revenue on-cycle for spring\u2013summer district buying peak; 82% from 2 enterprise deals (Idea $640K, Yonkers $160K). Win rate distorted by backlog flush (13/20 losses aged >90d). SEO omitted (Search Atlas key unset)."
     }
   ],
   "seo_topics": [
@@ -1336,7 +1844,6 @@
   ],
   "web_trend": {
     "labels": [
-      "Jun",
       "Jul",
       "Aug",
       "Sep",
@@ -1347,10 +1854,10 @@
       "Feb",
       "Mar",
       "Apr",
-      "May"
+      "May",
+      "Jun"
     ],
     "current": [
-      9508,
       7962,
       11372,
       26003,
@@ -1361,10 +1868,10 @@
       21773,
       23590,
       17696,
-      39181
+      39181,
+      28599
     ],
     "prior": [
-      11044,
       12663,
       19127,
       24368,
@@ -1375,11 +1882,12 @@
       19950,
       18734,
       18428,
-      14781
+      14781,
+      9508
     ],
-    "current_total": 248573,
-    "prior_total": 212735,
-    "yoy_pct": 16.8
+    "current_total": 267664,
+    "prior_total": 211199,
+    "yoy_pct": 26.7
   },
   "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
 }
