@@ -1,7 +1,7 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
   { id: "overview", label: "Overview", data: "data/overview.json", render: renderOverview },
-  { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
+  { id: "monthly", label: "Monthly Funnel", data: "data/monthly-digest.json", render: renderMonthly },
   { id: "weekly", label: "Weekly Funnel", data: "data/weekly-digest.json", render: renderWeekly },
   { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
   { id: "pulse", label: "Account Pulse (MQA)", data: "data/account-pulse.json", render: renderAccountPulse },
@@ -131,7 +131,7 @@ function renderOverview(d) {
     </div>`).join("");
 
   const CARDS = [
-    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Funnel &amp; Revenue",
+    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Funnel",
       desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
       statLabel: "Latest month", statValue: "May 2026" },
     { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Funnel",
