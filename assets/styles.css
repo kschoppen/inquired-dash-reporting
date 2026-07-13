@@ -151,6 +151,59 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .pending-note { font-size: 11.5px; color: var(--muted); background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 8px 12px; margin-top: 10px; line-height: 1.5; }
 .data-empty { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
 
+/* ── Campaign health cards ── */
+.cc-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.cc-pill { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 5px 13px; border-radius: 20px; border: 1px solid; }
+.cc-pill-red    { background: #FCEBEB; color: #A32D2D; border-color: #F09595; }
+.cc-pill-amber  { background: #FAEEDA; color: #854F0B; border-color: #EF9F27; }
+.cc-pill-green  { background: #E1F5EE; color: #0F6E56; border-color: #5DCAA5; }
+.cc-pill-grey   { background: #F1EFE8; color: #5F5E5A; border-color: #B4B2A9; }
+.cc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+.cc-dot-red   { background: #A32D2D; }
+.cc-dot-amber { background: #854F0B; }
+.cc-dot-green { background: #0F6E56; }
+.cc-dot-grey  { background: #B4B2A9; }
+.cc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.cc-card { background: #fff; border: 0.5px solid #e0e0e0; border-left-width: 3px; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
+.cc-red   { border-left-color: #A32D2D; }
+.cc-amber { border-left-color: #854F0B; }
+.cc-green { border-left-color: #0F6E56; }
+.cc-grey  { border-left-color: #B4B2A9; opacity: 0.78; }
+.cc-status { font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.cc-status-red   { color: #A32D2D; }
+.cc-status-amber { color: #854F0B; }
+.cc-status-green { color: #0F6E56; }
+.cc-status-grey  { color: #5F5E5A; }
+.cc-head { display: flex; align-items: center; gap: 7px; }
+.cc-icon { font-size: 15px; color: var(--muted); }
+.cc-name { font-size: 14px; font-weight: 700; color: var(--text); flex: 1; }
+.cc-type-tag { font-size: 11px; color: var(--muted); background: var(--surface); padding: 2px 8px; border-radius: 10px; border: 0.5px solid #e0e0e0; white-space: nowrap; }
+.cc-hih-block { display: flex; flex-direction: column; gap: 5px; }
+.cc-hih-top { display: flex; justify-content: space-between; align-items: baseline; }
+.cc-hih-num { font-size: 22px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.cc-hih-sub { font-size: 12px; color: var(--muted); }
+.cc-hih-pct { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cc-hih-pct-red   { color: #A32D2D; }
+.cc-hih-pct-amber { color: #854F0B; }
+.cc-hih-pct-green { color: #0F6E56; }
+.cc-bar-wrap { position: relative; height: 6px; background: #f0f0f0; border-radius: 3px; }
+.cc-bar-fill { height: 100%; border-radius: 3px; max-width: 100%; }
+.cc-bar-red   { background: #A32D2D; }
+.cc-bar-amber { background: #D97B1A; }
+.cc-bar-green { background: #0F6E56; }
+.cc-bar-grey  { background: #B4B2A9; }
+.cc-bench { position: absolute; top: -3px; bottom: -3px; width: 2px; background: #144745; border-radius: 1px; }
+.cc-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.cc-flag { font-size: 11px; line-height: 1.4; padding: 5px 9px; border-radius: 6px; background: #FAEEDA; color: #854F0B; }
+.cc-flag.red { background: #FCEBEB; color: #A32D2D; }
+.cc-threshold { font-size: 12px; color: var(--muted); margin-bottom: 20px; padding: 10px 14px; background: var(--surface); border-radius: 8px; border: 0.5px solid #e0e0e0; line-height: 1.7; }
+.cc-threshold strong { color: var(--text); }
+.cc-thr-green { color: #0F6E56; font-weight: 700; }
+.cc-thr-amber { color: #854F0B; font-weight: 700; }
+.cc-thr-red   { color: #A32D2D; font-weight: 700; }
+.cc-thr-grey  { color: #5F5E5A; font-weight: 700; }
+@media (max-width: 680px) { .cc-grid { grid-template-columns: 1fr; } }
+
 /* ── Section labels ── */
 .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--iq-green); font-weight: 900; margin: 22px 0 10px; }
 .muted { color: var(--muted); font-weight: 400; font-size: 12px; }

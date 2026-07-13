@@ -730,29 +730,82 @@ function renderCampaign(d) {
         <span class="timing">Campaign quality — full report is a private DM to Kelsey</span>
       </div>
       <div class="panel"><h3>Campaign Health — awaiting first run</h3>
-        <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (monthly). The full per-campaign report still goes as a private DM to Kelsey; this dashboard is the visual companion that retains it. Once it runs, every element from the DM lands here:</p>
-        <ul class="planned">
-          <li><strong>Headline KPIs</strong> — active campaigns, total contacts, HIH count + share, MQL MoM</li>
-          <li><strong>HIH by strategic group</strong> — the bar chart, colored by group (the product cut: Inquiry Journeys / Inkwell / GF8 are product-aligned)</li>
-          <li><strong>Group rollup table</strong> — contacts · HIH · HIH% · MQL per group</li>
-          <li><strong>Per-campaign quality</strong> — every campaign: total, HIH, HIH%, MQL, MoM, ranked</li>
-          <li><strong>Intent distribution</strong> — % High / Med / Low per campaign (lists ≥100 contacts)</li>
-          <li><strong>MQL trend</strong> across months · <strong>data flags</strong> (low-volume / asset-audit)</li>
-        </ul>
+        <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (monthly).</p>
         <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong style="color:${gColor(g)}">${g}</strong>`).join(" · ")}.</p>
       </div>`;
     return;
   }
+
+  const RAG_ORDER = { red: 0, amber: 1, green: 2, grey: 3 };
+  const RAG_LABEL = { red: "Needs attention", amber: "Watching", green: "On track", grey: "Insufficient data" };
+  const CHAN_ICON  = { content: "ti-book", event: "ti-presentation", paid: "ti-ad", nurture: "ti-mail", reengage: "ti-refresh", abm: "ti-target", social: "ti-antenna-bars-5", email: "ti-mail" };
+  const CHAN_LABEL = { content: "Content", event: "Event", paid: "Paid", nurture: "Nurture", reengage: "Re-engage", abm: "ABM", social: "Social", email: "Email" };
+
+  function campRag(c) {
+    if ((c.total || 0) < 10) return "grey";
+    const pct = c.hih_pct != null ? c.hih_pct : rate(c.hih, c.total);
+    if (pct == null) return "grey";
+    if (pct >= 20) return "green";
+    if (pct >= 10) return "amber";
+    return "red";
+  }
+
+  function campCard(c, benchPct) {
+    const rag = campRag(c);
+    const pct = c.hih_pct != null ? c.hih_pct : (rate(c.hih, c.total) ?? 0);
+    const barW = Math.min(pct, 100).toFixed(1);
+    const benchW = Math.min(benchPct, 100).toFixed(1);
+    const icon = CHAN_ICON[c.channel_type] || "ti-chart-bar";
+    const chanLbl = CHAN_LABEL[c.channel_type] || "";
+    const flags = c.flags || [];
+    const flagHtml = flags.length
+      ? `<div class="cc-flag ${rag === "red" ? "red" : ""}">${flags.join(" · ")}</div>`
+      : "";
+    return `<div class="cc-card cc-${rag}">
+      <div class="cc-status cc-status-${rag}"><span class="cc-dot cc-dot-${rag}"></span>${RAG_LABEL[rag]}</div>
+      <div class="cc-head">
+        <i class="ti ${icon} cc-icon" aria-hidden="true"></i>
+        <span class="cc-name">${c.name}</span>
+        ${chanLbl ? `<span class="cc-type-tag">${chanLbl}</span>` : ""}
+      </div>
+      ${rag !== "grey" ? `
+      <div class="cc-hih-block">
+        <div class="cc-hih-top">
+          <div><span class="cc-hih-num">${fmtN(c.hih)}</span> <span class="cc-hih-sub">HIH leads</span></div>
+          <span class="cc-hih-pct cc-hih-pct-${rag}">${pct.toFixed(1)}% HIH</span>
+        </div>
+        <div class="cc-bar-wrap">
+          <div class="cc-bar-fill cc-bar-${rag}" style="width:${barW}%"></div>
+          <div class="cc-bench" style="left:${benchW}%" title="${benchPct.toFixed(0)}% portfolio avg"></div>
+        </div>
+      </div>` : ""}
+      <div class="cc-foot">
+        <span><i class="ti ti-users" aria-hidden="true" style="font-size:12px;vertical-align:-1px;margin-right:3px"></i>${fmtN(c.total)} contacts${(c.total || 0) < 10 ? " · small" : ""}</span>
+        <span>${fmtN(c.mql)} MQL ${deltaHTML(c.mql, c.mql_prior)}</span>
+      </div>
+      ${flagHtml}
+    </div>`;
+  }
+
   const last = months[months.length - 1], labels = months.map((m) => m.label);
-  const groups = last.groups || [], camps = (last.campaigns || []).slice().sort((a, b) => (b.hih || 0) - (a.hih || 0));
-  const t = last.total || {}, flags = last.flags || [];
-  const intentCamps = camps.filter((c) => c.intent && (c.total || 0) >= 100);
+  const groups = last.groups || [];
+  const t = last.total || {};
   const grpTotal = (k) => groups.reduce((s, g) => s + (g[k] || 0), 0);
+  const benchPct = t.hih_pct ?? rate(t.hih ?? grpTotal("hih"), t.contacts ?? grpTotal("contacts")) ?? 21;
+
+  const camps = (last.campaigns || []).slice().sort((a, b) => RAG_ORDER[campRag(a)] - RAG_ORDER[campRag(b)]);
+  const intentCamps = camps.filter((c) => c.intent && (c.total || 0) >= 100);
+
+  const ragCounts = { red: 0, amber: 0, green: 0, grey: 0 };
+  camps.forEach((c) => ragCounts[campRag(c)]++);
+
+  const ragStrip = ["red", "amber", "green", "grey"].map((r) => ragCounts[r]
+    ? `<div class="cc-pill cc-pill-${r}"><span class="cc-dot cc-dot-${r}"></span>${ragCounts[r]} ${RAG_LABEL[r]}</div>`
+    : "").join("");
 
   document.getElementById("view").innerHTML = `
     <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group · full detail is a private DM to Kelsey</span></div>
     ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
-    <div class="section-label">▲ ${last.label} — headline</div>
     <div class="cards">
       ${card("Active campaigns", fmtN(t.active_campaigns ?? camps.length))}
       ${card("Contacts touched", fmtN(t.contacts ?? grpTotal("contacts")))}
@@ -760,26 +813,26 @@ function renderCampaign(d) {
       ${card("HIH share", (t.hih_pct ?? rate(t.hih ?? grpTotal("hih"), t.contacts ?? grpTotal("contacts"))) + "%")}
       ${card("MQLs", fmtN(t.mql ?? grpTotal("mql")), deltaHTML(t.mql, t.mql_prior, {label:"MoM"}))}
     </div>
-    <div class="grid2">
-      <div class="panel"><h3>${last.label} — HIH by strategic group</h3><div class="chartbox"><canvas id="cGroup"></canvas></div>
-        ${note("HIH (high-intent) by group is the headline quality read. Inquiry Journeys / Inkwell / Great First Eight are product-aligned, so this doubles as the product cut.")}</div>
-      <div class="panel"><h3>MQL trend <span class="muted">(all campaigns)</span></h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
+    <div class="section-label">Status at a glance</div>
+    <div class="cc-strip">${ragStrip}</div>
+    <div class="section-label">Campaign health — ${last.label}</div>
+    <div class="cc-grid">${camps.map((c) => campCard(c, benchPct)).join("")}</div>
+    <div class="cc-threshold">
+      <strong>RAG thresholds (HIH% of contacts touched):</strong>
+      <span class="cc-thr-green">Green ≥ 20%</span> ·
+      <span class="cc-thr-amber">Amber 10–19%</span> ·
+      <span class="cc-thr-red">Red &lt;10%</span> ·
+      <span class="cc-thr-grey">Grey &lt;10 contacts</span> —
+      benchmark line = ${benchPct.toFixed(0)}% portfolio average (${last.label})
     </div>
-    <div class="panel"><h3>Group rollup</h3>
-      <table><thead><tr><th>Strategic group</th><th>Contacts</th><th>HIH</th><th>HIH %</th><th>MQL</th><th>MoM</th></tr></thead><tbody>
-      ${groups.map((g) => `<tr><td><span class="dot" style="background:${gColor(g.group)}"></span>${g.group}</td><td>${fmtN(g.contacts)}</td><td>${fmtN(g.hih)}</td><td>${g.hih_pct ?? rate(g.hih,g.contacts) ?? "—"}%</td><td>${fmtN(g.mql)}</td><td>${deltaHTML(g.mql, g.mql_prior)}</td></tr>`).join("")}
-      </tbody></table></div>
-    <div class="panel"><h3>Per-campaign quality <span class="muted">(ranked by HIH)</span></h3>
-      <table><thead><tr><th>Campaign</th><th>Group</th><th>Contacts</th><th>HIH</th><th>HIH %</th><th>MQL</th><th>MoM</th><th>Flags</th></tr></thead><tbody>
-      ${camps.map((c) => `<tr><td>${c.name}</td><td><span class="dot" style="background:${gColor(c.group)}"></span>${c.group || "—"}</td><td>${fmtN(c.total)}</td><td>${fmtN(c.hih)}</td><td>${c.hih_pct ?? rate(c.hih,c.total) ?? "—"}%</td><td>${fmtN(c.mql)}</td><td>${deltaHTML(c.mql, c.mql_prior)}</td><td>${(c.flags||[]).length ? "⚠️ " + c.flags.join("; ") : ""}</td></tr>`).join("")}
-      </tbody></table></div>
-    ${intentCamps.length ? `<div class="panel"><h3>Intent distribution <span class="muted">(lists ≥100 contacts)</span></h3><div class="chartbox"><canvas id="cIntent"></canvas></div>
-      ${note("Share of each campaign's audience at High / Medium / Low marketing-intent tier. A curated list skewing High is a bright spot; a big list skewing Low is an asset-tagging or targeting flag.")}</div>` : ""}
-    ${flags.length ? `<div class="panel"><h3>Data flags</h3><ul class="planned">${flags.map((x) => `<li>⚠️ ${x}</li>`).join("")}</ul></div>` : ""}`;
+    <div class="grid2">
+      <div class="panel"><h3>MQL trend <span class="muted">(all campaigns)</span></h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
+      ${intentCamps.length ? `<div class="panel"><h3>Intent distribution <span class="muted">(lists ≥100 contacts)</span></h3><div class="chartbox"><canvas id="cIntent"></canvas></div>
+        ${note("High / Medium / Low intent tier per campaign. A list skewing High is a bright spot; skewing Low flags targeting or asset-tagging issues.")}</div>` : ""}
+    </div>`;
 
   const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
-  mkChart("cGroup", { type: "bar", data: { labels: groups.map((g) => g.group), datasets: [{ data: groups.map((g) => g.hih), backgroundColor: groups.map((g) => gColor(g.group)) }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
   mkChart("cTrend", { type: "line", data: { labels, datasets: [{ label: "MQL", data: months.map((m) => m.total && m.total.mql), borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.25 }] }, options: { ...noLeg } });
   if (intentCamps.length) {
     mkChart("cIntent", { type: "bar", data: { labels: intentCamps.map((c) => c.name), datasets: [

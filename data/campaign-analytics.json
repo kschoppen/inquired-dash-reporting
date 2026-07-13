@@ -80,7 +80,8 @@
             "low": 27,
             "unknown": 65
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "content"
         },
         {
           "name": "ELA Webinars",
@@ -96,7 +97,8 @@
             "low": 40,
             "unknown": 34
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "event"
         },
         {
           "name": "TL Webinars",
@@ -112,7 +114,8 @@
             "low": 355,
             "unknown": 50
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "event"
         },
         {
           "name": "Navigating Curriculum",
@@ -128,7 +131,8 @@
             "low": 124,
             "unknown": 0
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "event"
         },
         {
           "name": "PPC Ads",
@@ -144,7 +148,8 @@
             "low": 16,
             "unknown": 66
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "paid"
         },
         {
           "name": "MKTG Nurture",
@@ -155,7 +160,8 @@
           "mql": 0,
           "mql_prior": 2,
           "intent": null,
-          "flags": []
+          "flags": [],
+          "channel_type": "nurture"
         },
         {
           "name": "MQL Re-engagement",
@@ -168,7 +174,8 @@
           "intent": null,
           "flags": [
             "total<10 \u2014 asset-attachment audit"
-          ]
+          ],
+          "channel_type": "reengage"
         },
         {
           "name": "Symposium",
@@ -182,7 +189,8 @@
           "flags": [
             "total<10 \u2014 asset-attachment audit",
             "target-list-driven; engagement-only \u2014 add list-membership OR group"
-          ]
+          ],
+          "channel_type": "event"
         },
         {
           "name": "Product Webinars",
@@ -193,7 +201,8 @@
           "mql": 0,
           "mql_prior": 0,
           "intent": null,
-          "flags": []
+          "flags": [],
+          "channel_type": "event"
         },
         {
           "name": "Account Driven",
@@ -209,7 +218,8 @@
             "low": 140,
             "unknown": 292
           },
-          "flags": []
+          "flags": [],
+          "channel_type": "abm"
         },
         {
           "name": "Great First Eight",
@@ -222,7 +232,8 @@
           "intent": null,
           "flags": [
             "total<10 \u2014 asset-attachment audit"
-          ]
+          ],
+          "channel_type": "content"
         },
         {
           "name": "Evergreen Social",
@@ -235,7 +246,8 @@
           "intent": null,
           "flags": [
             "total<10 \u2014 asset-attachment audit"
-          ]
+          ],
+          "channel_type": "social"
         }
       ],
       "flags": [
