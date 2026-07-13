@@ -1,7 +1,7 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-06-15",
+  "updated": "2026-07-13",
   "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. First populated run = May 2026 (complete-month vs April), run 2026-06-04. Bi-monthly going forward (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts \u2014 a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated.",
   "strategic_groups": [
     "Inquiry Journeys",
@@ -255,6 +255,214 @@
         "Account Driven: now populating (479; was engagement-only/0) - list membership appears added; HIH 5% (large cold upload, 292 unknown intent)",
         "MQL Re-engagement (5), Great First Eight (3), Evergreen Social (1): total<10 - asset-attachment audit"
       ]
+    },
+    {
+      "period": "2026-07",
+      "label": "Jul 2026",
+      "verdict": "IJ Navigating Curriculum leads quality with 112 High Intent Handraisers (43% share); MKTG Nurture is the standout efficiency pick at 64% HIH; overall MQL conversions are light but expected for the July summer bridge.",
+      "total": {
+        "active_campaigns": 12,
+        "contacts": 2250,
+        "hih": 475,
+        "hih_pct": 21.1,
+        "mql": 9,
+        "mql_prior": 14
+      },
+      "groups": [
+        {
+          "group": "Inkwell",
+          "contacts": 692,
+          "hih": 148,
+          "hih_pct": 21.4,
+          "mql": 2,
+          "mql_prior": 4
+        },
+        {
+          "group": "Inquiry Journeys",
+          "contacts": 778,
+          "hih": 187,
+          "hih_pct": 24.0,
+          "mql": 4,
+          "mql_prior": 4
+        },
+        {
+          "group": "Always-on / brand",
+          "contacts": 293,
+          "hih": 112,
+          "hih_pct": 38.2,
+          "mql": 3,
+          "mql_prior": 5
+        },
+        {
+          "group": "Re-engagement / ABM",
+          "contacts": 484,
+          "hih": 28,
+          "hih_pct": 5.8,
+          "mql": 0,
+          "mql_prior": 1
+        },
+        {
+          "group": "Great First Eight",
+          "contacts": 3,
+          "hih": 0,
+          "hih_pct": 0.0,
+          "mql": 0,
+          "mql_prior": 0
+        }
+      ],
+      "campaigns": [
+        {
+          "name": "Inkwell",
+          "group": "Inkwell",
+          "total": 277,
+          "hih": 77,
+          "hih_pct": 27.8,
+          "mql": 1,
+          "mql_prior": 2,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "ELA Webinars",
+          "group": "Inkwell",
+          "total": 415,
+          "hih": 71,
+          "hih_pct": 17.1,
+          "mql": 1,
+          "mql_prior": 2,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "TL Webinars",
+          "group": "Inquiry Journeys",
+          "total": 505,
+          "hih": 66,
+          "hih_pct": 13.1,
+          "mql": 2,
+          "mql_prior": 2,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "Navigating Curriculum",
+          "group": "Inquiry Journeys",
+          "total": 262,
+          "hih": 112,
+          "hih_pct": 42.7,
+          "mql": 2,
+          "mql_prior": 2,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "PPC Ads",
+          "group": "Always-on / brand",
+          "total": 227,
+          "hih": 72,
+          "hih_pct": 31.7,
+          "mql": 3,
+          "mql_prior": 5,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "MKTG Nurture",
+          "group": "Always-on / brand",
+          "total": 63,
+          "hih": 40,
+          "hih_pct": 63.5,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "MQL Re-engagement",
+          "group": "Re-engagement / ABM",
+          "total": 5,
+          "hih": 3,
+          "hih_pct": 60.0,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit recommended"
+          ]
+        },
+        {
+          "name": "Symposium",
+          "group": "Inquiry Journeys",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": [
+            "0 contacts \u2014 target-list-driven; needs list-membership OR group addition"
+          ]
+        },
+        {
+          "name": "Product Webinars",
+          "group": "Inquiry Journeys",
+          "total": 11,
+          "hih": 9,
+          "hih_pct": 81.8,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "Account Driven",
+          "group": "Re-engagement / ABM",
+          "total": 479,
+          "hih": 25,
+          "hih_pct": 5.2,
+          "mql": 0,
+          "mql_prior": 1,
+          "intent": null,
+          "flags": [
+            "Flagged engagement-only in campaign-lists.md but returning 479 \u2014 verify list definition"
+          ]
+        },
+        {
+          "name": "Great First Eight",
+          "group": "Great First Eight",
+          "total": 3,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit recommended"
+          ]
+        },
+        {
+          "name": "Evergreen Social",
+          "group": "Always-on / brand",
+          "total": 3,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 pure organic social; minimal list-add expected"
+          ]
+        }
+      ],
+      "flags": [
+        "Symposium (10097): 0 contacts \u2014 target-list-driven; needs list-membership OR group addition. Owner: Kelsey.",
+        "Account Driven (10096): returning 479 contacts despite engagement-only flag; verify list definition change.",
+        "Great First Eight (10198): 3 contacts \u2014 asset-attachment audit recommended.",
+        "Evergreen Social (10090): 3 contacts \u2014 pure organic social; asset-attachment audit recommended.",
+        "MQL Re-engagement (10093): 5 contacts \u2014 asset-attachment audit recommended.",
+        "No current-customer campaign tracked \u2014 strategic gap."
+      ],
+      "updated": "2026-07-13"
     }
   ]
 }
