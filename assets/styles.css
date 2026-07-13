@@ -469,3 +469,8 @@ details.kwd table { margin-top: 8px; }
 /* ── Top conversion pages ── */
 .page-path { font-family: monospace; font-size: 12px; color: var(--iq-purple); font-weight: 600; max-width: 360px; word-break: break-all; }
 .page-type-badge { display: inline-block; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+
+/* ── Weekly detail: per-row data notes ── */
+tr.has-note td:first-child { background: rgba(180,83,9,0.06); }
+.week-note-flag { cursor: help; font-size: 13px; }
+

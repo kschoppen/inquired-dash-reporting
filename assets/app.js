@@ -133,20 +133,35 @@ function renderOverview(d) {
   const CARDS = [
     { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Funnel",
       desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
-      statLabel: "Latest month", statValue: "May 2026" },
+      statLabel: "Latest month", statValue: "—", dataFile: "data/monthly-digest.json",
+      statFn: (j) => { const m = j.months; return m && m.length ? m[m.length - 1].label : "—"; } },
     { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Funnel",
       desc: "This week's new contacts, MQL conversions, and a drillable account list. Refreshes every Monday. Use for weekly standups and pipeline reviews.",
-      statLabel: "Week of", statValue: "Jun 22" },
+      statLabel: "Week of", statValue: "—", dataFile: "data/weekly-digest.json",
+      statFn: (j) => { const w = j.weeks; return w && w.length ? w[w.length - 1].label : "—"; } },
     { id: "campaign", accent: "#C04040", accentBg: "rgba(192,64,64,0.09)",  icon: "📣", title: "Campaign Health",
-      desc: "Active sends, open and click rates, and HIH/MQL performance by campaign group. Flags underperformers against benchmark.",
-      statLabel: "Active campaigns", statValue: "12" },
+      desc: "HIH/MQL performance by campaign, sorted by health status. Flags underperformers against portfolio benchmark.",
+      statLabel: "Active campaigns", statValue: "—", dataFile: "data/campaign-analytics.json",
+      statFn: (j) => { const m = j.months; if (!m || !m.length) return "—"; const last = m[m.length - 1]; return (last.total && last.total.active_campaigns != null) ? last.total.active_campaigns + " campaigns" : (last.campaigns ? last.campaigns.length + " campaigns" : "—"); } },
     { id: "pulse",    accent: "#1C6854", accentBg: "rgba(28,104,84,0.10)",  icon: "👥", title: "Account Pulse (MQA)",
       desc: "Accounts that have crossed the marketing-qualified threshold. Broken out by engagement stage and district so CS knows who to prioritize.",
-      statLabel: "In MQA window", statValue: "12 accounts" },
+      statLabel: "In MQA window", statValue: "—", dataFile: "data/account-pulse.json",
+      statFn: (j) => { const s1 = j.section1; return s1 ? s1.length + " accounts" : "—"; } },
   ];
 
+  // Fetch live stat values for each card in parallel (soft-fail — cards render with "—" on error)
+  Promise.all(CARDS.map((c) =>
+    fetch(c.dataFile, { cache: "no-store" }).then((r) => r.json()).then((j) => { c.statValue = c.statFn(j); }).catch(() => {})
+  )).then(() => {
+    document.querySelectorAll(".ov-dash-stat-value").forEach((el) => {
+      const id = el.closest(".ov-dash-card") && el.closest(".ov-dash-card").dataset.tabid;
+      const c = CARDS.find((x) => x.id === id);
+      if (c) el.textContent = c.statValue;
+    });
+  });
+
   const cardsHTML = CARDS.map((c) => `
-    <button class="ov-dash-card" style="--ov-accent:${c.accent};--ov-accent-bg:${c.accentBg}" onclick="switchToTab('${c.id}')">
+    <button class="ov-dash-card" data-tabid="${c.id}" style="--ov-accent:${c.accent};--ov-accent-bg:${c.accentBg}" onclick="switchToTab('${c.id}')">
       <div class="ov-dash-card-title">
         <div class="ov-dash-icon">${c.icon}</div>
         ${c.title}
@@ -661,18 +676,22 @@ function renderWeekly(d) {
       ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
     </div>
 
-    <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label || ""} · WoW)</span></h3>
-      ${last.top_pages && last.top_pages.length
-        ? topPagesSection(last.top_pages, prev.top_pages, "weekly")
-        : '<p class="flag">Page-level conversion data populates on the next weekly digest run (requires GA4 page-path pull in the skill).</p>'}
-      ${note("Pages where visitors completed a key event (form submit, download, demo request) — GA4. WoW comparison requires prior-week data from the digest skill.")}
-    </div>
+    ${(last.disposition && (last.disposition.dq != null || last.disposition.nurture != null)) ? `
+    <div class="panel"><h3>Lead disposition — ${last.label || ""}</h3>
+      <div class="cards">
+        ${card("Disqualified (DQ)", fmtN(last.disposition.dq), wowArrow(last.disposition.dq, prev.disposition && prev.disposition.dq), "Contacts marked DQ this week")}
+        ${card("Sent to Nurture", fmtN(last.disposition.nurture), wowArrow(last.disposition.nurture, prev.disposition && prev.disposition.nurture), "Contacts moved to nurture track")}
+      </div>
+      ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
+    </div>` : ""}
+
+    ${last.note ? `<div class="panel"><p class="insight" style="color:#b45309">⚠ <strong>Data note — ${last.label}:</strong> ${last.note}</p></div>` : ""}
 
     <div class="panel"><h3>Weekly detail</h3>
-      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>
-      ${w.map((x, i) => `<tr><td>${x.label}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td></tr>`).join("")}
+      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
+      ${w.map((x, i) => `<tr${x.note ? ' class="has-note"' : ""}><td>${x.label}${x.note ? ` <span class="week-note-flag" title="${x.note.replace(/"/g, "&quot;")}">⚠</span>` : ""}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${x.disposition ? fmtN(x.disposition.dq) : "—"}</td><td>${x.disposition ? fmtN(x.disposition.nurture) : "—"}</td></tr>`).join("")}
       </tbody></table>
-      <p class="flag">${d.notes || ""}</p>
+      ${d.notes ? `<p class="flag">${d.notes}</p>` : ""}
     </div>`;
 
   document.querySelectorAll("[data-drill]").forEach((el) => el.onclick = () => {
@@ -815,6 +834,24 @@ function renderCampaign(d) {
     </div>
     <div class="section-label">Status at a glance</div>
     <div class="cc-strip">${ragStrip}</div>
+    ${groups.length ? `
+    <div class="section-label">By strategic group — ${last.label}</div>
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bd">
+        <thead><tr><th>Group</th><th>Contacts</th><th>HIH</th><th>HIH%</th><th>MQL</th></tr></thead>
+        <tbody>${groups.map((g) => {
+          const gpct = g.hih_pct != null ? g.hih_pct : rate(g.hih, g.contacts);
+          const grag = gpct == null ? "" : gpct >= 20 ? "cc-thr-green" : gpct >= 10 ? "cc-thr-amber" : "cc-thr-red";
+          return `<tr>
+            <td><span class="dot" style="background:${gColor(g.group)};display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px"></span>${g.group}</td>
+            <td>${fmtN(g.contacts)}</td>
+            <td>${fmtN(g.hih)}</td>
+            <td><span class="${grag}" style="font-weight:600">${gpct != null ? gpct.toFixed(1) + "%" : "—"}</span></td>
+            <td>${fmtN(g.mql)}</td>
+          </tr>`;
+        }).join("")}</tbody>
+      </table>
+    </div>` : ""}
     <div class="section-label">Campaign health — ${last.label}</div>
     <div class="cc-grid">${camps.map((c) => campCard(c, benchPct)).join("")}</div>
     <div class="cc-threshold">
