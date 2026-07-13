@@ -1,0 +1,49 @@
+{
+  "skill": "overview-command-center",
+  "title": "Overview",
+  "updated": "2026-06-18",
+  "summary": {
+    "headline": "May momentum: HIH velocity jumped 40% and SQL volume hit a 6-month high — watch campaign MQLs recovering from April's peak.",
+    "body": "The funnel had a strong May. HIH contacts reached 101, up 40% from April and the highest velocity since October 2025 — lifting MQLs to 269 (+38% MoM) and SQLs to 99, the best SQL month since February. MQL-to-SQL conversion held at 36.8%, essentially flat. The one area to watch: campaign-sourced MQLs dropped 53% MoM (19 vs. 40 in April) — this tracks the expected seasonal pullback after spring's decision peak, not a signal problem. Account Pulse shows 12 accounts in the MQA window heading into summer's buying stretch.",
+    "signals": [
+      { "label": "HIH velocity +40% MoM", "dir": "up" },
+      { "label": "MQL volume +38% MoM", "dir": "up" },
+      { "label": "SQL volume +34% MoM", "dir": "up" },
+      { "label": "Campaign MQLs −53% MoM (expected seasonal)", "dir": "watch" }
+    ]
+  },
+  "kpis": [
+    {
+      "label": "HIH Velocity",
+      "value": "101",
+      "delta": "+40% MoM",
+      "delta_dir": "up",
+      "sub": "New high-intent contacts · May",
+      "spark": [86, 36, 75, 89, 70, 72, 101]
+    },
+    {
+      "label": "MQL → SQL Conv.",
+      "value": "36.8%",
+      "delta": "−1pt MoM",
+      "delta_dir": "flat",
+      "sub": "Essentially flat from April",
+      "spark": [29.9, 51.5, 25.5, 22.0, 15.6, 37.9, 36.8]
+    },
+    {
+      "label": "Active Campaigns",
+      "value": "12",
+      "delta": "May 2026",
+      "delta_dir": "flat",
+      "sub": "Across all products",
+      "spark": [8, 9, 9, 11, 12, 10, 12]
+    },
+    {
+      "label": "MQA Accounts",
+      "value": "12",
+      "delta": "In buy window",
+      "delta_dir": "up",
+      "sub": "Med / Large / Enterprise",
+      "spark": [7, 8, 9, 10, 11, 10, 12]
+    }
+  ]
+}

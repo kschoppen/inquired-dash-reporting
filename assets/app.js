@@ -1,5 +1,6 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
+  { id: "overview", label: "Overview", data: "data/overview.json", render: renderOverview },
   { id: "monthly", label: "Monthly Funnel & Revenue", data: "data/monthly-digest.json", render: renderMonthly },
   { id: "weekly", label: "Weekly Funnel", data: "data/weekly-digest.json", render: renderWeekly },
   { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
@@ -109,6 +110,94 @@ function kpiCard(label, value, momPrev, yoyPrev, sparkId, capText) {
     ${sparkId ? `<div class="spk"><canvas id="${sparkId}"></canvas></div>` : ""}
     ${capText ? `<div class="cap">${capText}</div>` : ""}
   </div>`;
+}
+
+// ---- Overview: command center ----
+function renderOverview(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+
+  const s = d.summary || {};
+  const signals = (s.signals || []).map((sig) =>
+    `<span class="ov-chip ${sig.dir}">${sig.dir === "up" ? "↑" : sig.dir === "down" ? "↓" : "⚠"} ${sig.label}</span>`
+  ).join("");
+
+  const kpiHTML = (d.kpis || []).map((k, i) => `
+    <div class="ov-kpi">
+      <div class="ov-kpi-label">${k.label}</div>
+      <div class="ov-kpi-value">${k.value}</div>
+      <span class="ov-kpi-delta ${k.delta_dir}">${k.delta}</span>
+      <div class="ov-kpi-sub">${k.sub}</div>
+      <div class="ov-kpi-spk"><canvas id="ovSpk${i}"></canvas></div>
+    </div>`).join("");
+
+  const CARDS = [
+    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Funnel &amp; Revenue",
+      desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
+      statLabel: "Latest month", statValue: "May 2026" },
+    { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Funnel",
+      desc: "This week's new contacts, MQL conversions, and a drillable account list. Refreshes every Monday. Use for weekly standups and pipeline reviews.",
+      statLabel: "Week of", statValue: "Jun 22" },
+    { id: "campaign", accent: "#C04040", accentBg: "rgba(192,64,64,0.09)",  icon: "📣", title: "Campaign Health",
+      desc: "Active sends, open and click rates, and HIH/MQL performance by campaign group. Flags underperformers against benchmark.",
+      statLabel: "Active campaigns", statValue: "12" },
+    { id: "pulse",    accent: "#1C6854", accentBg: "rgba(28,104,84,0.10)",  icon: "👥", title: "Account Pulse (MQA)",
+      desc: "Accounts that have crossed the marketing-qualified threshold. Broken out by engagement stage and district so CS knows who to prioritize.",
+      statLabel: "In MQA window", statValue: "12 accounts" },
+  ];
+
+  const cardsHTML = CARDS.map((c) => `
+    <button class="ov-dash-card" style="--ov-accent:${c.accent};--ov-accent-bg:${c.accentBg}" onclick="switchToTab('${c.id}')">
+      <div class="ov-dash-card-title">
+        <div class="ov-dash-icon">${c.icon}</div>
+        ${c.title}
+      </div>
+      <div class="ov-dash-desc">${c.desc}</div>
+      <div class="ov-dash-foot">
+        <div>
+          <div class="ov-dash-stat-label">${c.statLabel}</div>
+          <div class="ov-dash-stat-value" style="color:${c.accent}">${c.statValue}</div>
+        </div>
+        <span class="ov-dash-link">Open →</span>
+      </div>
+    </button>`).join("");
+
+  document.getElementById("view").innerHTML = `
+    <div class="ov-narrative">
+      <div class="ov-narr-meta">
+        <span class="ov-ai-badge">AI Summary</span>
+        <span class="ov-narr-date">Generated ${d.updated} · data through prior month</span>
+      </div>
+      <div class="ov-narr-headline">${s.headline || ""}</div>
+      <div class="ov-narr-body">${s.body || ""}</div>
+      <div class="ov-signals">${signals}</div>
+    </div>
+    <div class="ov-section-label">Key metrics</div>
+    <div class="ov-kpi-strip">${kpiHTML}</div>
+    <div class="ov-section-label">Drill into a dashboard</div>
+    <div class="ov-dash-grid">${cardsHTML}</div>
+    <div class="ov-defs-link"><a href="#" onclick="switchToTab('defs');return false;">View metric definitions →</a></div>`;
+
+  // sparklines
+  const spkColors = [IJ, PLUM, ROSE, "#1C6854"];
+  (d.kpis || []).forEach((k, i) => {
+    const el = document.getElementById(`ovSpk${i}`);
+    if (!el || !k.spark) return;
+    const color = spkColors[i] || IJ;
+    charts.push(new Chart(el, {
+      type: "line",
+      data: {
+        labels: k.spark.map((_, j) => j),
+        datasets: [{ data: k.spark, borderColor: color, borderWidth: 2,
+          backgroundColor: color.startsWith("#") ? color + "18" : color,
+          tension: 0.4, pointRadius: 0, fill: true }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: { x: { display: false }, y: { display: false, beginAtZero: false } }
+      }
+    }));
+  });
 }
 
 function renderMonthly(d) {
@@ -947,10 +1036,15 @@ async function loadTab(tab) {
     tab.render(DATA);
   } catch (e) { document.getElementById("view").innerHTML = `<div class="loading">Could not load ${tab.data} — ${e}</div>`; }
 }
+function switchToTab(id) {
+  const btn = document.querySelector(`.tabs button[data-tabid="${id}"]`);
+  if (btn) btn.click();
+}
 function init() {
   const nav = document.getElementById("tabs");
   TABS.forEach((tab, i) => {
     const b = document.createElement("button"); b.textContent = tab.label;
+    b.setAttribute("data-tabid", tab.id);
     if (i === 0) b.classList.add("active");
     b.onclick = () => { document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
     nav.appendChild(b);
