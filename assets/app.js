@@ -180,7 +180,7 @@ function renderOverview(d) {
   const weeklySignalHTML = ws ? `
     <div class="ov-weekly-signal">
       <div class="ov-ws-meta">
-        <span class="ov-ws-badge">Weekly Signal</span>
+        <span class="ov-ws-badge">AI Weekly Digest Summary</span>
         <span class="ov-ws-label">${ws.week_label} · updated ${ws.updated}</span>
       </div>
       <div class="ov-ws-narrative">${ws.narrative}</div>
@@ -189,7 +189,7 @@ function renderOverview(d) {
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">
       <div class="ov-narr-meta">
-        <span class="ov-ai-badge">AI Summary</span>
+        <span class="ov-ai-badge">AI Monthly Digest Summary</span>
         <span class="ov-narr-date">Generated ${d.updated} · data through prior month</span>
       </div>
       <div class="ov-narr-headline">${s.headline || ""}</div>
