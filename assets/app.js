@@ -269,7 +269,7 @@ function renderMonthly(d) {
         ${funnelConnector(sqlToOpp != null ? sqlToOpp + "% SQL→Opp" : "SQL→Opp")}
         ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", null)}
       </div>
-      ${lead == null ? `<p class="pending-note">⚠ Lead count (HubSpot <code>recent_conversion_date</code> in month window) — skill update needed. Run the monthly digest skill to populate this field.</p>` : ""}
+      ${lead == null ? `<p class="data-empty">Lead count not yet populated — run the monthly digest skill.</p>` : ""}
     </div>
 
     <!-- PRODUCT SECTION -->
@@ -335,7 +335,7 @@ function renderMonthly(d) {
       <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request) in ${last.label} — ranked by completions</p>
       ${last.web && last.web.top_conversion_pages
         ? topPageRows(last.web.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`)
-        : `<p class="pending-note">Top conversion pages — requires GA4 OAuth credentials. Not available in cloud sessions; re-run locally to populate.</p>`}
+        : `<p class="data-empty">— Populated on local runs (requires GA4 OAuth)</p>`}
     </div>` : ""}
 
     <!-- SEO -->
@@ -352,7 +352,7 @@ function renderMonthly(d) {
         <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
         ${last.seo_top_pages
           ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-          : `<p class="pending-note">Top organic entry pages — requires Semrush API egress access. Not available in cloud sessions; re-run locally to populate.</p>`}
+          : `<p class="data-empty">— Populated on local runs (requires Semrush API)</p>`}
       </div>
     </div>
 
@@ -509,7 +509,7 @@ function seoSection(d) {
 // ---- AI visibility section ----
 function aiVisSection(m) {
   const av = m.ai_visibility;
-  if (!av) return '<p class="pending-note">⚠ AI Visibility — read Semrush AI Visibility PDF (Step 3h) to populate.</p>';
+  if (!av) return '<p class="data-empty">— Populated on local runs (requires Semrush AI Visibility report)</p>';
   const llms = av.by_llm || [];
   return `<div class="ai-vis-score">
       <span class="ai-vis-num">${av.score}</span><span class="ai-vis-denom">/100</span>
@@ -529,7 +529,7 @@ function aiVisSection(m) {
 // ---- keyword gap section ----
 function kwGapSection(m) {
   const kg = m.keyword_gap;
-  if (!kg) return '<p class="pending-note">⚠ Keyword Gap — read Semrush Keyword Gap PDF (Step 3i). Math keywords auto-filtered; ELA/SS gaps only shown.</p>';
+  if (!kg) return '<p class="data-empty">— Populated on local runs (requires Semrush Keyword Gap report)</p>';
   const gaps = kg.top_gaps || [];
   return `<div class="kw-gap-hero"><span class="kw-gap-n">${kg.relevant_missing}</span> ELA/SS keywords we're missing <span class="muted">(of ${fmtN(kg.total_missing)} total — math excluded)</span></div>
     ${gaps.length ? `<table><thead><tr><th>Keyword</th><th>Est. volume</th></tr></thead><tbody>

@@ -1177,7 +1177,8 @@
         "hih": 77,
         "mql": 336,
         "sql": 276,
-        "opp": 281
+        "opp": 281,
+        "lead": 259
       },
       "revenue": {
         "district_won": 924843.86,
@@ -1617,7 +1618,49 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/39053995028"
         }
       ],
-      "notes": "Funnel MQL/SQL/Opp inflated by a large offline list import (~240 contacts, 95% OFFLINE, no product tag) \u2014 product-tagged funnel is flat vs May. Revenue on-cycle for spring\u2013summer district buying peak; 82% from 2 enterprise deals (Idea $640K, Yonkers $160K). Win rate distorted by backlog flush (13/20 losses aged >90d). SEO omitted (Search Atlas key unset)."
+      "notes": "Funnel MQL/SQL/Opp inflated by a large offline list import (~240 contacts, 95% OFFLINE, no product tag) \u2014 product-tagged funnel is flat vs May. Revenue on-cycle for spring\u2013summer district buying peak; 82% from 2 enterprise deals (Idea $640K, Yonkers $160K). Win rate distorted by backlog flush (13/20 losses aged >90d). SEO omitted (Search Atlas key unset).",
+      "seo_top_pages": [
+        {
+          "page": "inquired.com/",
+          "visits": 2212
+        },
+        {
+          "page": "inquired.com/post/give-and-inquiry-shout-out",
+          "visits": 940
+        },
+        {
+          "page": "inquired.com/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "visits": 244
+        },
+        {
+          "page": "inquired.com/inquiry-based-social-studies/elementary-curriculum",
+          "visits": 175
+        },
+        {
+          "page": "inquired.com/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "visits": 154
+        },
+        {
+          "page": "inquired.com/post/see-think-wonder",
+          "visits": 138
+        },
+        {
+          "page": "inquired.com/post/inquiry-unit-design",
+          "visits": 100
+        },
+        {
+          "page": "inquired.com/inquiry-based-social-studies",
+          "visits": 95
+        },
+        {
+          "page": "inquired.com/careers",
+          "visits": 90
+        },
+        {
+          "page": "inquired.com/inquiry-based-social-studies/elementary-curriculum/oregon",
+          "visits": 83
+        }
+      ]
     }
   ],
   "seo_topics": [
