@@ -381,6 +381,25 @@ details.kwd table { margin-top: 8px; }
 .ov-chip.down  { background: rgba(192,64,64,0.28);  color: #F99792; }
 .ov-chip.watch { background: rgba(249,151,146,0.18); color: #F99792; }
 
+.ov-weekly-signal {
+  background: rgba(91,90,158,0.08);
+  border: 1px solid rgba(91,90,158,0.22);
+  border-left: 3px solid #5B5A9E;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.ov-ws-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.ov-ws-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  background: rgba(91,90,158,0.15); color: #5B5A9E;
+  padding: 3px 8px; border-radius: 4px;
+}
+.ov-ws-label { font-size: 12px; color: var(--muted); }
+.ov-ws-narrative {
+  font-size: 14px; color: var(--body); line-height: 1.65; max-width: 720px;
+}
+
 .ov-kpi-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

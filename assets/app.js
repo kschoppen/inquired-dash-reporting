@@ -176,6 +176,16 @@ function renderOverview(d) {
       </div>
     </button>`).join("");
 
+  const ws = d.weekly_signal;
+  const weeklySignalHTML = ws ? `
+    <div class="ov-weekly-signal">
+      <div class="ov-ws-meta">
+        <span class="ov-ws-badge">Weekly Signal</span>
+        <span class="ov-ws-label">${ws.week_label} · updated ${ws.updated}</span>
+      </div>
+      <div class="ov-ws-narrative">${ws.narrative}</div>
+    </div>` : "";
+
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">
       <div class="ov-narr-meta">
@@ -186,6 +196,7 @@ function renderOverview(d) {
       <div class="ov-narr-body">${s.body || ""}</div>
       <div class="ov-signals">${signals}</div>
     </div>
+    ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
     <div class="ov-section-label">Drill into a dashboard</div>
