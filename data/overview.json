@@ -1,49 +1,90 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-06-18",
+  "updated": "2026-07-13",
   "summary": {
-    "headline": "May momentum: HIH velocity jumped 40% and SQL volume hit a 6-month high — watch campaign MQLs recovering from April's peak.",
-    "body": "The funnel had a strong May. HIH contacts reached 101, up 40% from April and the highest velocity since October 2025 — lifting MQLs to 269 (+38% MoM) and SQLs to 99, the best SQL month since February. MQL-to-SQL conversion held at 36.8%, essentially flat. The one area to watch: campaign-sourced MQLs dropped 53% MoM (19 vs. 40 in April) — this tracks the expected seasonal pullback after spring's decision peak, not a signal problem. Account Pulse shows 12 accounts in the MQA window heading into summer's buying stretch.",
+    "headline": "Revenue closed $970K in June on the spring buying peak; genuine HIH softened seasonally to 77; funnel totals inflated by a lifecycle import.",
+    "body": "June's headline number is revenue: $970K closed won (34 deals, 82% district) \u2014 the strongest month this fiscal year and on-cycle for the spring\u2013summer district buying peak. Two mega-deals drove it: Idea Public Schools ($641K) and Yonkers ($160K) together = 82% of the total. Genuine demand softened as expected entering summer: HIH at 77 (down from 101 in May, \u221224%) \u2014 seasonal, not a signal problem. MQL/SQL/Opp totals are inflated by a lifecycle import event (~95% OFFLINE-source, no product tagging); product-tagged funnel is flat vs May (IJ HIH 55, SQL 30). Web traffic pulled back to 28,599 sessions (from 39K in May \u2014 normal summer softening). Win rate context: 63% count / 83% dollar on close-date basis, but 13 of 20 losses are aged deals (backlog flush \u2014 not current selling).",
     "signals": [
-      { "label": "HIH velocity +40% MoM", "dir": "up" },
-      { "label": "MQL volume +38% MoM", "dir": "up" },
-      { "label": "SQL volume +34% MoM", "dir": "up" },
-      { "label": "Campaign MQLs −53% MoM (expected seasonal)", "dir": "watch" }
+      {
+        "label": "Revenue $970K \u2014 spring buying peak (on-cycle)",
+        "dir": "up"
+      },
+      {
+        "label": "HIH 77 \u2014 seasonal summer softening, expected",
+        "dir": "watch"
+      },
+      {
+        "label": "Lifecycle import inflated MQL/SQL (not genuine demand)",
+        "dir": "watch"
+      },
+      {
+        "label": "IJ genuine funnel flat vs May",
+        "dir": "flat"
+      }
     ]
   },
   "kpis": [
     {
       "label": "HIH Velocity",
-      "value": "101",
-      "delta": "+40% MoM",
-      "delta_dir": "up",
-      "sub": "New high-intent contacts · May",
-      "spark": [86, 36, 75, 89, 70, 72, 101]
+      "value": "77",
+      "delta": "\u221224% MoM",
+      "delta_dir": "down",
+      "sub": "Seasonal summer dip \u00b7 June",
+      "spark": [
+        36,
+        75,
+        89,
+        70,
+        72,
+        101,
+        77
+      ]
     },
     {
-      "label": "MQL → SQL Conv.",
-      "value": "36.8%",
-      "delta": "−1pt MoM",
+      "label": "MQL \u2192 SQL Conv.",
+      "value": "~36%",
+      "delta": "import inflates blended",
       "delta_dir": "flat",
-      "sub": "Essentially flat from April",
-      "spark": [29.9, 51.5, 25.5, 22.0, 15.6, 37.9, 36.8]
+      "sub": "Product-tagged genuine est. \u00b7 June",
+      "spark": [
+        51.5,
+        25.5,
+        22.0,
+        15.6,
+        37.9,
+        36.8,
+        36.0
+      ]
     },
     {
-      "label": "Active Campaigns",
-      "value": "12",
-      "delta": "May 2026",
-      "delta_dir": "flat",
-      "sub": "Across all products",
-      "spark": [8, 9, 9, 11, 12, 10, 12]
-    },
-    {
-      "label": "MQA Accounts",
-      "value": "12",
-      "delta": "In buy window",
+      "label": "Closed-Won Revenue",
+      "value": "$970K",
+      "delta": "+225% MoM",
       "delta_dir": "up",
-      "sub": "Med / Large / Enterprise",
-      "spark": [7, 8, 9, 10, 11, 10, 12]
+      "sub": "34 deals \u00b7 spring buying peak",
+      "spark": [
+        4,
+        104,
+        192,
+        295,
+        299,
+        299,
+        970
+      ]
+    },
+    {
+      "label": "Web Sessions",
+      "value": "28,599",
+      "delta": "\u221227% MoM",
+      "delta_dir": "down",
+      "sub": "Summer traffic dip \u00b7 June",
+      "spark": [
+        23590,
+        17696,
+        39181,
+        28599
+      ]
     }
   ]
 }
