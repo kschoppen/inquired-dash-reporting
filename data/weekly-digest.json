@@ -1,6 +1,6 @@
 {
  "skill": "weekly-marketing-digest",
- "title": "Weekly Funnel",
+ "title": "Weekly Digest",
  "updated": "2026-07-13",
  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
  "pipeline": {
