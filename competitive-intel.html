@@ -994,6 +994,13 @@
   .drawer-link-btn.secondary { background: var(--paper-mid); color: var(--dg); border: 1px solid var(--border); }
   .drawer-link-btn.secondary:hover { background: var(--lb); }
   .drawer-signals { display: flex; flex-direction: column; gap: 0.5rem; }
+  .drawer-keywords { display: flex; flex-direction: column; gap: 0.35rem; }
+  .dr-kw-group { display: flex; flex-direction: column; gap: 0.25rem; }
+  .dr-kw-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); }
+  .dr-kw-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .dr-kw-chip { font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; white-space: nowrap; line-height: 1.6; }
+  .dr-kw-chip.paid { background: #FDE4BA; color: #7A4200; }
+  .dr-kw-chip.organic { background: var(--lg); color: var(--dg); }
   .dr-signal-item {
     display: flex; gap: 0.6rem; align-items: flex-start;
     font-size: 0.82rem; line-height: 1.45; color: var(--black);
@@ -1925,7 +1932,11 @@ const DRAWER = {
       'Marion County KY: major CKLA + ELA district rollout 2025–26',
       'Perfect EdReports score is their primary sales lever in procurement',
       'Minimal paid advertising — competes through rep relationships and district contracts, not inbound'
-    ]
+    ],
+    keywords: {
+      paid: ['science of reading', 'what is the science of reading', 'ckla curriculum'],
+      organic: ['project-based inquiry science']
+    }
   },
   'Great Minds · Wit &amp; Wisdom': {
     threat:'med',
@@ -1941,7 +1952,11 @@ const DRAWER = {
       'Arts & Letters (K–2 companion) increasingly bundled with W&W — can displace Inkwell evaluation entirely',
       'Knowledge-building messaging overlap is highest among all ELA competitors',
       'EdReports green across all ELA — strong procurement position in RFP cycles'
-    ]
+    ],
+    keywords: {
+      paid: ['math curriculum', 'elementary reading curriculum', 'writing curriculum for elementary', 'best science of reading curriculum', 'arts and letters curriculum'],
+      organic: ['teacher appreciation week', 'schema']
+    }
   },
   'Great Minds · Arts &amp; Letters': {
     threat:'med',
@@ -1956,7 +1971,11 @@ const DRAWER = {
       'Frequently bundled with W&W in district RFPs — reduces competitive evaluation window',
       'Knowledge-building and read-aloud heavy — methodological overlap with Inkwell is real',
       'Same ad spend as W&W — treated as one product family in their marketing'
-    ]
+    ],
+    keywords: {
+      paid: ['arts and letters curriculum', 'elementary reading curriculum', 'best science of reading curriculum'],
+      organic: ['schema', 'big ideas']
+    }
   },
   'EL Education · Kiddom': {
     threat:'med',
@@ -1998,7 +2017,11 @@ const DRAWER = {
     signals:[
       'Legacy brand — often the default incumbent in K–2 ELA evaluations',
       'No major SoR overhaul announced — vulnerable to districts under state reading mandates'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['reading comprehension strategies', 'phonics for reading', 'san diego quick assessment']
+    }
   },
   'Bookworms K–5 (Open Up Resources)': {
     threat:'low',
@@ -2027,7 +2050,11 @@ const DRAWER = {
       'Emerge launched 2024 — actively entering adoption cycles that overlap with Inkwell evaluations',
       'High LinkedIn ad spend — major go-to-market investment signals serious commitment',
       'Brand equity in districts already using McGraw-Hill math or science reduces procurement friction'
-    ]
+    ],
+    keywords: {
+      paid: ['homeschool math curriculum'],
+      organic: []
+    }
   },
   'HMH Into Reading': {
     threat:'med',
@@ -2041,7 +2068,11 @@ const DRAWER = {
     signals:[
       'Aggressive SoR messaging pivot in 2024–25 — rebranding existing Into Reading as structured literacy',
       'Strong incumbent position in districts already using HMH products across subject areas'
-    ]
+    ],
+    keywords: {
+      paid: ['differentiated instruction'],
+      organic: ['esl', 'teaching strategies']
+    }
   },
   'Imagine Learning · Dragonfly': {
     threat:'high',
@@ -2057,7 +2088,11 @@ const DRAWER = {
       'Launched 2024–25 — entering adoption cycles directly competing with Inkwell in same districts',
       '200+ LinkedIn ads — the highest ELA ad spend we\'ve tracked',
       'Backed by Imagine Learning\'s existing district infrastructure and EdTech relationships'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['inquiry']
+    }
   },
   'Savvas · myView Literacy': {
     threat:'med',
@@ -2072,7 +2107,11 @@ const DRAWER = {
       'PA state adoption approval — direct deal competition in that market (relevant given Wilson SD PA closed-lost)',
       'Large district relationship advantage from legacy Pearson contracts',
       'Hybrid SoR + PBL positioning may confuse buyers — no clear identity'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['phonemic awareness', 'curriculum for home education']
+    }
   },
   'Teachers\' Curriculum Institute': {
     threat:'high',
@@ -2088,7 +2127,11 @@ const DRAWER = {
       'OR, NY, HI state adoption approvals — limits IJ access without adoption status in those markets',
       '218 LinkedIn ads — highest spend in the entire SS competitive set',
       'Despite heavy ad spend, not ranking organically for inquiry-based SS terms where IJ holds #1'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['active learning', 'gaming in the classroom', 'what is in social studies', 'active learning strategies']
+    }
   },
   'Studies Weekly': {
     threat:'low',
@@ -2133,7 +2176,11 @@ const DRAWER = {
       'Confirmed: won Newberg SD OR GF8 deal ($8,500) — "adopted Teaching Strategies due to budget constraints"',
       'Head Start and Title I relationships give access to GF8\'s exact market segment',
       'Targeting budget-constrained districts — likely positioning on lower total cost of ownership'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['curriculum', 'transitional kindergarten', "scarborough's reading rope"]
+    }
   },
   'Frog Street': {
     threat:'low',
@@ -2162,7 +2209,11 @@ const DRAWER = {
       'Perry Preschool Study data is their strongest procurement asset — used in every district presentation',
       'Plan-Do-Review methodology overlap with GF8\'s inquiry framework — worth addressing in competitive positioning',
       'Primarily a PreK play — less presence in K–2, which is where GF8 has expansion potential'
-    ]
+    ],
+    keywords: {
+      paid: [],
+      organic: ['preschool curriculum', 'early childhood curriculum']
+    }
   }
 };
 
@@ -2187,6 +2238,12 @@ function buildDrawer(name) {
         <div class="drawer-links">
           <a href="${d.siteUrl}" target="_blank" rel="noopener" class="drawer-link-btn secondary">↗ Website</a>
         </div>
+        ${(d.keywords && (d.keywords.paid?.length || d.keywords.organic?.length)) ? `
+        <div class="drawer-section-label" style="margin-top:1rem;">Keywords</div>
+        <div class="drawer-keywords">
+          ${d.keywords.paid?.length ? `<div class="dr-kw-group"><div class="dr-kw-label">Bids on</div><div class="dr-kw-row">${d.keywords.paid.map(k => `<span class="dr-kw-chip paid">${k}</span>`).join('')}</div></div>` : ''}
+          ${d.keywords.organic?.length ? `<div class="dr-kw-group"><div class="dr-kw-label">Ranks for</div><div class="dr-kw-row">${d.keywords.organic.map(k => `<span class="dr-kw-chip organic">${k}</span>`).join('')}</div></div>` : ''}
+        </div>` : ''}
         <div class="drawer-section-label" style="margin-top:1rem;">Latest Signals</div>
         <div class="drawer-signals">${sigs}</div>
       </div>
