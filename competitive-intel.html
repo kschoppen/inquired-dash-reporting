@@ -335,47 +335,6 @@
     padding-left: 0.75rem;
   }
 
-  .comp-ads {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .comp-ads-label {
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-light);
-    font-weight: 700;
-  }
-  .ad-platform-row {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-  .ad-platform {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.22rem 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.68rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .ad-platform.active {
-    border-color: #144745;
-    background: #E4FBCE;
-    color: #144745;
-    font-weight: 700;
-  }
-  .ad-platform.inactive { color: var(--ink-light); }
-  .platform-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--border-mid);
-  }
-  .ad-platform.active .platform-dot { background: #144745; }
-
   .comp-signal {
     border-top: 1px solid var(--border);
     padding-top: 0.8rem;
@@ -1034,7 +993,6 @@
   .drawer-link-btn:hover { background: #0E3332; text-decoration: none; }
   .drawer-link-btn.secondary { background: var(--paper-mid); color: var(--dg); border: 1px solid var(--border); }
   .drawer-link-btn.secondary:hover { background: var(--lb); }
-  .drawer-ad-count { font-size: 0.75rem; color: var(--ink-light); font-weight: 700; }
   .drawer-signals { display: flex; flex-direction: column; gap: 0.5rem; }
   .dr-signal-item {
     display: flex; gap: 0.6rem; align-items: flex-start;
@@ -1083,10 +1041,10 @@
   <div class="overview-section" role="region" aria-label="AI Overview">
     <div class="overview-header">
       <span class="overview-eyebrow">AI Overview · July 2026</span>
-      <span class="overview-freshness">Data: HubSpot 293 deals · Gainsight 38 churns · SEMrush · LinkedIn Ads</span>
+      <span class="overview-freshness">Data: HubSpot 293 deals · Gainsight 38 churns · SEMrush</span>
     </div>
     <p class="overview-narrative">
-      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Dragonfly, Imagine Learning Emerge) are actively bidding for the same SoR-aligned K–2 window, and Amplify is running 375+ LinkedIn ads to our zero. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
+      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Dragonfly, Imagine Learning Emerge) are actively bidding for the same SoR-aligned K–2 window. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
     </p>
     <div class="alert-chips">
       <span class="alert-chip alert">⚠ High: Inkwell ELA crowding — 4 direct competitors with active ad spend</span>
@@ -1123,7 +1081,7 @@
         <div class="signal-panel-title">Top Signals to Watch</div>
         <div class="signal-item">
           <div class="signal-dot red"></div>
-          <div class="signal-text"><strong>Amplify CKLA</strong> — 375 LinkedIn ads, #1 for "ckla curriculum" (2,400/mo vol). Dominant SoR ELA brand; direct Inkwell threat.</div>
+          <div class="signal-text"><strong>Amplify CKLA</strong> — #1 for "ckla curriculum" (2,400/mo vol). Dominant SoR ELA brand; direct Inkwell threat.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot red"></div>
@@ -1154,11 +1112,6 @@
     <div class="stat-tile">
       <div class="stat-number">14</div>
       <div class="stat-label">Competitors tracked across Inkwell, Inquiry Journeys + GF8 (K–5)</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-number accent">1,099</div>
-      <div class="stat-label">Total active LinkedIn ads across all competitors</div>
-      <div class="stat-delta up">inquirED: 0 ads on any platform</div>
     </div>
     <div class="stat-tile">
       <div class="stat-number blue">3</div>
@@ -1207,14 +1160,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Evidence-based K–8 ELA + foundational literacy — perfect EdReports scores, 18M+ students, six levels of differentiation."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1244,14 +1189,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Knowledge-rich K–8 ELA built on great literature and art — rigorous, coherent, and evidence-aligned."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 157 ads (99% math)</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jul 2026</div>
           <div class="signal-text">
@@ -1282,14 +1219,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Science of Reading foundational literacy K–2 — decodable texts, fine art integration, complementary to Wit &amp; Wisdom."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0 (bundled in GM)</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1319,14 +1248,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Character + knowledge-building ELA K–8 — ranked #1 by EdReports, delivered through Kiddom's digital platform."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>Kiddom LinkedIn · 8 ads</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · May–Jul 2026</div>
           <div class="signal-text">
@@ -1356,14 +1277,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Free, high-quality K–12 ELA + math curriculum — knowledge-building, text-rich, open-access from the Achievement Network."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1393,14 +1306,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Trusted K–8 literacy + multilingual — Teacher Favorites award, decodable readers, structured literacy, handwriting."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 9 ads</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jun–Jul 2026</div>
           <div class="signal-text">
@@ -1430,14 +1335,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"High-quality, affordable K–5 ELA — knowledge-building read-alouds, structured phonics, Open Up Resources distribution."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1492,14 +1389,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"All-new K–5 foundational literacy program — structured phonics, phonological awareness, and science of reading alignment."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1530,14 +1419,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Comprehensive K–6 ELA with science of reading integration — growth mindset, culturally relevant texts, embedded Waggle adaptive practice."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1568,14 +1449,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"New core ELA K–5 — knowledge-building, structured literacy, designed from the ground up for the science of reading era."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 460 ads (portfolio-wide)</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jul 2026</div>
           <div class="signal-text">
@@ -1606,14 +1479,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"K–5 ELA built for how today's students learn — student-authored writing, project-based, digital-native, standards-aligned."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 47 ads (CTE/HS — not myView)</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1655,14 +1520,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Active learning that brings K–12 social studies alive — interactive, standards-aligned, engagement-first."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 19 ads</div>
-            <div class="ad-platform active"><div class="platform-dot"></div>Meta · 45+</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jun–Jul 2026</div>
           <div class="signal-text">
@@ -1692,14 +1549,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Education. Evolved. — consumable K–5 SS + science in 45K+ schools, differentiation-first, time-saving for teachers."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 164 ads</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jun 2026</div>
           <div class="signal-text">
@@ -1729,14 +1578,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Standards-aligned K–12 SS with bilingual IMPACTO, AR integration, and adaptive SmartBook — publisher scale as differentiator."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · 2025–26</div>
           <div class="signal-text">
@@ -1778,14 +1619,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Seriously playful. Easy to use. — #1 preschool curriculum for child care centers, 90%+ of Head Start programs, 4M+ children."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 149 ads</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Jul 2026</div>
           <div class="signal-text">
@@ -1815,14 +1648,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"When outcomes matter, the choice is clear — play-based PreK/TK curriculum with California-aligned Golden Journeys TK program."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 1 ad</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal · Apr 2026</div>
           <div class="signal-text">
@@ -1852,14 +1677,6 @@
       </div>
       <div class="comp-card-body">
         <div class="comp-positioning">"Active learning framework for birth–age 5 — plan-do-review cycle, 50+ years of research, professional development focus."</div>
-        <div class="comp-ads">
-          <div class="comp-ads-label">Ad Activity</div>
-          <div class="ad-platform-row">
-            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
-            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
-          </div>
-        </div>
         <div class="comp-signal">
           <div class="signal-date">Latest signal</div>
           <div class="signal-text">
@@ -1884,7 +1701,6 @@
           <th>Pre/TK</th>
           <th>State Adoptions</th>
           <th>EdReports</th>
-          <th>LinkedIn Ads</th>
         </tr>
       </thead>
       <tbody>
@@ -1896,7 +1712,6 @@
           <td><span class="chk">GF8</span></td>
           <td><span class="chk-partial">Growing</span></td>
           <td><span class="chk-partial">In progress</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <!-- Inkwell Knowledge-Building -->
         <tr>
@@ -1907,7 +1722,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">Growing</span></td>
           <td><span class="chk-strong">Perfect</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <tr>
           <td>Great Minds · W&amp;W</td>
@@ -1917,7 +1731,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">Multiple</span></td>
           <td><span class="chk">●●</span></td>
-          <td><span class="chk">157 (math)</span></td>
         </tr>
         <tr>
           <td>Great Minds · A&amp;L</td>
@@ -1927,7 +1740,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk-no">Bundled</span></td>
           <td><span class="chk">●●</span></td>
-          <td><span class="chk-no">0 (in GM)</span></td>
         </tr>
         <tr>
           <td>EL Education · Kiddom</td>
@@ -1937,7 +1749,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk-partial">CA pending</span></td>
           <td><span class="chk-strong">#1 rated</span></td>
-          <td><span class="chk-partial">8 (Kiddom)</span></td>
         </tr>
         <tr>
           <td>Fishtank Learning</td>
@@ -1947,7 +1758,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk-partial">Limited</span></td>
           <td><span class="chk">Strong</span></td>
-          <td><span class="chk-no">0 (free)</span></td>
         </tr>
         <tr>
           <td>Benchmark Education</td>
@@ -1957,7 +1767,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">Multiple</span></td>
           <td><span class="chk-partial">Partial</span></td>
-          <td><span class="chk-partial">9</span></td>
         </tr>
         <tr>
           <td>Bookworms (OUR)</td>
@@ -1967,7 +1776,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk-partial">State lists</span></td>
           <td><span class="chk">Strong</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <!-- Inkwell Basals -->
         <tr>
@@ -1978,7 +1786,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">State approved</span></td>
           <td><span class="chk-partial">Pending</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <tr>
           <td>HMH Into Reading</td>
@@ -1988,7 +1795,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">Widespread</span></td>
           <td><span class="chk-partial">Partial</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <tr>
           <td>Imagine · Dragonfly</td>
@@ -1998,7 +1804,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk-partial">Launching</span></td>
           <td><span class="chk-partial">TBD</span></td>
-          <td><span class="chk">460 (portfolio)</span></td>
         </tr>
         <tr>
           <td>Savvas myView</td>
@@ -2008,7 +1813,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">PA, others</span></td>
           <td><span class="chk-partial">Partial</span></td>
-          <td><span class="chk">47 (CTE/HS)</span></td>
         </tr>
         <!-- Inquiry Journeys -->
         <tr>
@@ -2019,7 +1823,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">OR, NY, HI</span></td>
           <td><span class="chk-partial">Partial</span></td>
-          <td><span class="chk-strong">19 + Meta</span></td>
         </tr>
         <tr>
           <td>Studies Weekly</td>
@@ -2029,7 +1832,6 @@
           <td><span class="chk-partial">Early Learning</span></td>
           <td><span class="chk">Multiple</span></td>
           <td><span class="chk-no">—</span></td>
-          <td><span class="chk">164 (1 campaign)</span></td>
         </tr>
         <tr>
           <td>McGraw-Hill IMPACT</td>
@@ -2039,7 +1841,6 @@
           <td><span class="chk-no">—</span></td>
           <td><span class="chk">Widespread</span></td>
           <td><span class="chk-partial">C3 aligned</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
         <!-- GF8 Pre/TK -->
         <tr>
@@ -2050,7 +1851,6 @@
           <td><span class="chk-strong">●●●</span></td>
           <td><span class="chk">Top-5 districts</span></td>
           <td><span class="chk-partial">GOLD assess.</span></td>
-          <td><span class="chk-strong">149</span></td>
         </tr>
         <tr>
           <td>Frog Street</td>
@@ -2060,7 +1860,6 @@
           <td><span class="chk-strong">●●●</span></td>
           <td><span class="chk">TX, CA TK</span></td>
           <td><span class="chk">JHU study</span></td>
-          <td><span class="chk-partial">1 (outcomes)</span></td>
         </tr>
         <tr>
           <td>HighScope</td>
@@ -2070,7 +1869,6 @@
           <td><span class="chk-strong">●●●</span></td>
           <td><span class="chk">Head Start</span></td>
           <td><span class="chk">AIR efficacy</span></td>
-          <td><span class="chk-no">0</span></td>
         </tr>
       </tbody>
     </table>
@@ -2102,7 +1900,7 @@
   <!-- ── Footer ── -->
   <div class="dash-footer">
     <span>Generated by the <strong>competitive-intel</strong> skill · inquirED Marketing · July 14, 2026</span>
-    <span>Sources: LinkedIn Ad Library · Meta Ad Library · Direct website analysis · Web search</span>
+    <span>Sources: Meta Ad Library · Direct website analysis · Web search</span>
   </div>
 
   </div><!-- /tab-landscape -->
@@ -2113,8 +1911,7 @@
 // ── Competitor drawer data ──────────────────────────────────────────────────
 const DRAWER = {
   'Amplify CKLA': {
-    threat:'high', adCount:375,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=amplifyinc',
+    threat:'high',
     siteUrl:'https://amplify.com',
     messaging:[
       '"A cohesive literacy suite built on the Science of Reading"',
@@ -2131,8 +1928,7 @@ const DRAWER = {
     ]
   },
   'Great Minds · Wit &amp; Wisdom': {
-    threat:'med', adCount:89,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=greatmindsorg',
+    threat:'med',
     siteUrl:'https://greatminds.org/english',
     messaging:[
       '"A groundbreaking K–8 ELA curriculum that lays the foundation for deeper learning"',
@@ -2148,8 +1944,7 @@ const DRAWER = {
     ]
   },
   'Great Minds · Arts &amp; Letters': {
-    threat:'med', adCount:89,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=greatmindsorg',
+    threat:'med',
     siteUrl:'https://greatminds.org/arts-and-letters',
     messaging:[
       '"Build a foundation for lifelong reading and learning"',
@@ -2164,8 +1959,7 @@ const DRAWER = {
     ]
   },
   'EL Education · Kiddom': {
-    threat:'med', adCount:42,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=el-education-inc',
+    threat:'med',
     siteUrl:'https://kiddom.com/el-education',
     messaging:[
       '"High-quality curriculum + adaptive learning in one platform"',
@@ -2179,8 +1973,7 @@ const DRAWER = {
     ]
   },
   'Fishtank Learning': {
-    threat:'low', adCount:12,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=fishtank-learning',
+    threat:'low',
     siteUrl:'https://www.fishtanklearning.org',
     messaging:[
       '"Free, high-quality curriculum for every classroom"',
@@ -2194,8 +1987,7 @@ const DRAWER = {
     ]
   },
   'Benchmark Education': {
-    threat:'low', adCount:28,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=benchmark-education-company',
+    threat:'low',
     siteUrl:'https://www.benchmarkeducation.com',
     messaging:[
       '"Comprehensive, differentiated literacy solutions"',
@@ -2209,8 +2001,7 @@ const DRAWER = {
     ]
   },
   'Bookworms K–5 (Open Up Resources)': {
-    threat:'low', adCount:8,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=open-up-resources',
+    threat:'low',
     siteUrl:'https://openupresources.org/ela-curriculum/',
     messaging:[
       '"Free, OER-based K–5 ELA"',
@@ -2224,8 +2015,7 @@ const DRAWER = {
     ]
   },
   'McGraw-Hill Emerge': {
-    threat:'high', adCount:187,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=mcgraw-hill-education',
+    threat:'high',
     siteUrl:'https://www.mheducation.com/prek-12/program/emerge.html',
     messaging:[
       '"Emerge: K–5 ELA built on the science of reading"',
@@ -2240,8 +2030,7 @@ const DRAWER = {
     ]
   },
   'HMH Into Reading': {
-    threat:'med', adCount:156,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=hmhlearn',
+    threat:'med',
     siteUrl:'https://www.hmhco.com/programs/into-reading',
     messaging:[
       '"Structured literacy proven to accelerate reading growth"',
@@ -2255,8 +2044,7 @@ const DRAWER = {
     ]
   },
   'Imagine Learning · Dragonfly': {
-    threat:'high', adCount:203,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=imagine-learning',
+    threat:'high',
     siteUrl:'https://www.imaginelearning.com/products/dragonfly',
     messaging:[
       '"Dragonfly: Turns classrooms into launchpads of imagination and exploration"',
@@ -2272,8 +2060,7 @@ const DRAWER = {
     ]
   },
   'Savvas · myView Literacy': {
-    threat:'med', adCount:134,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=savvaslearning',
+    threat:'med',
     siteUrl:'https://www.savvas.com',
     messaging:[
       '"A comprehensive, standards-aligned K–5 ELA program"',
@@ -2288,8 +2075,7 @@ const DRAWER = {
     ]
   },
   'Teachers\' Curriculum Institute': {
-    threat:'high', adCount:218,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=tci-teachers%27-curriculum-institute',
+    threat:'high',
     siteUrl:'https://tci.com',
     messaging:[
       '"Inquiry-based social studies — built for state standards"',
@@ -2305,8 +2091,7 @@ const DRAWER = {
     ]
   },
   'Studies Weekly': {
-    threat:'low', adCount:31,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=studies-weekly',
+    threat:'low',
     siteUrl:'https://www.studiesweekly.com',
     messaging:[
       '"Engaging, newspaper-format social studies for K–6"',
@@ -2320,8 +2105,7 @@ const DRAWER = {
     ]
   },
   'McGraw-Hill IMPACT': {
-    threat:'med', adCount:187,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=mcgraw-hill-education',
+    threat:'med',
     siteUrl:'https://www.mheducation.com/prek-12/program/impact.html',
     messaging:[
       '"IMPACT: Comprehensive K–8 social studies built on inquiry"',
@@ -2335,8 +2119,7 @@ const DRAWER = {
     ]
   },
   'Teaching Strategies': {
-    threat:'high', adCount:94,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=teaching-strategies-llc',
+    threat:'high',
     siteUrl:'https://teachingstrategies.com',
     messaging:[
       '"Evidence-Based. Classroom-Proven."',
@@ -2353,8 +2136,7 @@ const DRAWER = {
     ]
   },
   'Frog Street': {
-    threat:'low', adCount:19,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=frog-street-press',
+    threat:'low',
     siteUrl:'https://www.frogstreet.com',
     messaging:[
       '"Complete Pre-K curriculum with embedded assessment"',
@@ -2368,8 +2150,7 @@ const DRAWER = {
     ]
   },
   'HighScope': {
-    threat:'med', adCount:22,
-    adUrl:'https://www.linkedin.com/ad-library/search?accountOwner=highscopeus',
+    threat:'med',
     siteUrl:'https://highscope.org',
     messaging:[
       '"Plan-Do-Review: child-initiated learning with adult scaffolding"',
@@ -2402,11 +2183,9 @@ function buildDrawer(name) {
         <div class="drawer-ai-summary">${d.aiSummary}</div>
       </div>
       <div class="drawer-col">
-        <div class="drawer-section-label">Live Sources</div>
+        <div class="drawer-section-label">Source</div>
         <div class="drawer-links">
-          <a href="${d.adUrl}" target="_blank" rel="noopener" class="drawer-link-btn">↗ LinkedIn Ads Library</a>
           <a href="${d.siteUrl}" target="_blank" rel="noopener" class="drawer-link-btn secondary">↗ Website</a>
-          <span class="drawer-ad-count">${d.adCount} active LinkedIn ads</span>
         </div>
         <div class="drawer-section-label" style="margin-top:1rem;">Latest Signals</div>
         <div class="drawer-signals">${sigs}</div>
