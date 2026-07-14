@@ -6,6 +6,7 @@ const TABS = [
   { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
   { id: "pulse", label: "Account Pulse (MQA)", data: "data/account-pulse.json", render: renderAccountPulse },
   { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
+  { id: "competitive", label: "Competitive Intel", static: true, render: renderCompetitiveIntel },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
 const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
@@ -1126,9 +1127,18 @@ function renderAccountPulse(d) {
   });
 }
 
+function renderCompetitiveIntel() {
+  document.getElementById("updated").textContent = "Updated July 14, 2026";
+  const view = document.getElementById("view");
+  view.style.cssText = "padding:0;max-width:none;margin:0;";
+  view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
+}
+
 // ---- shell ----
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
+  document.getElementById("view").style.cssText = "";
+  if (tab.static) { tab.render(); return; }
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });

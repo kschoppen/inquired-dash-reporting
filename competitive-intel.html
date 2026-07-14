@@ -1,0 +1,2442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Intel · inquirED</title>
+<style>
+  /* ── inquirED Brand Tokens ── */
+  :root {
+    /* Brand primary */
+    --dg:         #144745;   /* Dark Green — primary */
+    --mg:         #B1E0BB;   /* Medium Green */
+    --lg:         #E4FBCE;   /* Light Green */
+    --lp:         #DAD0FF;   /* Light Purple */
+    --mp:         #5B5A9E;   /* Medium Purple */
+    --dp:         #1C2660;   /* Dark Purple */
+    --yellow:     #F7EC89;
+    --pink:       #F99792;
+    --lb:         #EAEEF5;   /* Light Blue */
+    --beige:      #F6EFE7;   /* Light Beige */
+    /* Greyscale */
+    --grey-300:   #CECECE;
+    --grey-600:   #757575;
+    --grey-700:   #515151;
+    --black:      #000000;
+    /* Semantic aliases used in components */
+    --paper:      #FFFFFF;
+    --paper-mid:  var(--beige);
+    --paper-deep: var(--lg);
+    --ink:        var(--dg);
+    --ink-mid:    var(--grey-700);
+    --ink-light:  var(--grey-600);
+    --accent:     var(--dg);
+    --accent-bg:  var(--lg);
+    --blue:       var(--mp);
+    --blue-bg:    var(--lp);
+    --green:      var(--dg);
+    --green-bg:   var(--mg);
+    --border:     var(--grey-300);
+    --border-mid: #BEBEBE;
+    --shadow:     rgba(20, 71, 69, 0.08);
+  }
+  /* Force light mode always — this is an internal dashboard */
+  :root[data-theme="light"], :root[data-theme="dark"], :root {
+    --paper:      #FFFFFF;
+    --paper-mid:  #F6EFE7;
+    --paper-deep: #E4FBCE;
+    --ink:        #144745;
+    --ink-mid:    #515151;
+    --ink-light:  #757575;
+    --accent:     #144745;
+    --accent-bg:  #E4FBCE;
+    --blue:       #5B5A9E;
+    --blue-bg:    #DAD0FF;
+    --green:      #144745;
+    --green-bg:   #B1E0BB;
+    --border:     #CECECE;
+    --border-mid: #BEBEBE;
+    --shadow:     rgba(20, 71, 69, 0.08);
+    --dg:         #144745;
+    --mp:         #5B5A9E;
+    --dp:         #1C2660;
+  }
+
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    background: var(--paper);
+    color: var(--black);
+    font-family: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  a { color: var(--mp); text-decoration: none; font-weight: 700; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--dg); outline-offset: 2px; }
+
+  /* ── Header ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #144745;
+    color: white;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 56px;
+  }
+  .site-header .wordmark {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    color: white;
+    white-space: nowrap;
+  }
+  .site-header .wordmark span {
+    font-weight: 400;
+    color: #B1E0BB;
+  }
+  .header-divider {
+    width: 1px;
+    height: 22px;
+    background: rgba(177, 224, 187, 0.3);
+  }
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+  }
+  .header-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(177, 224, 187, 0.6);
+    font-weight: 700;
+  }
+  .header-value {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.85);
+    font-variant-numeric: tabular-nums;
+  }
+  .header-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .btn-run {
+    background: white;
+    color: #144745;
+    border: none;
+    padding: 0.35rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-run:hover { background: #E4FBCE; }
+  .cadence-pill {
+    font-size: 0.65rem;
+    background: rgba(177,224,187,0.15);
+    border: 1px solid rgba(177,224,187,0.3);
+    color: rgba(177,224,187,0.85);
+    padding: 0.2rem 0.65rem;
+    border-radius: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ── Layout ── */
+  .main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  /* ── Eyebrow / Section label ── */
+  .section-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #144745;
+    background: rgba(20, 71, 69, 0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Stat row ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat-tile {
+    background: var(--paper-mid);
+    padding: 1.25rem 1.4rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    border: 1px solid var(--border);
+  }
+  .stat-number {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #144745;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-number.accent { color: #5B5A9E; }
+  .stat-number.blue   { color: #1C2660; }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--ink-mid);
+    line-height: 1.35;
+  }
+  .stat-delta {
+    font-size: 0.68rem;
+    color: var(--ink-light);
+    margin-top: 0.1rem;
+  }
+  .stat-delta.up   { color: #5B5A9E; font-weight: 700; }
+  .stat-delta.same { color: var(--ink-light); }
+
+  /* ── Competitor grid ── */
+  .competitor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Competitor card ── */
+  .comp-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 2px 6px var(--shadow);
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .comp-card:hover { box-shadow: 0 6px 18px var(--shadow); transform: translateY(-1px); }
+  .comp-card-top {
+    padding: 1.1rem 1.25rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background: var(--paper-mid);
+  }
+  .comp-initial {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    color: white;
+  }
+  .comp-name-block { flex: 1; min-width: 0; }
+  .comp-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #144745;
+    margin-bottom: 0.25rem;
+  }
+  .comp-type-badges {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .badge-ss   { background: #DAD0FF; color: #5B5A9E; }
+  .badge-ela  { background: #B1E0BB; color: #144745; }
+  .badge-both { background: #E4FBCE; color: #144745; }
+  .badge-math { background: var(--lb); color: var(--ink-mid); }
+  .badge-threat-high { background: #F99792; color: #6B0000; }
+  .badge-threat-med  { background: #F7EC89; color: #5A4A00; }
+  .badge-threat-low  { background: #EAEEF5; color: #515151; }
+
+  /* Signal strength bars */
+  .signal-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .signal-bar {
+    width: 4px;
+    border-radius: 2px;
+    background: var(--border-mid);
+  }
+  .signal-bar.active { background: #144745; }
+  .signal-bar:nth-child(1) { height: 5px; }
+  .signal-bar:nth-child(2) { height: 8px; }
+  .signal-bar:nth-child(3) { height: 12px; }
+  .signal-bar:nth-child(4) { height: 17px; }
+
+  .comp-card-body { padding: 1rem 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .comp-positioning {
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #515151;
+    line-height: 1.5;
+    border-left: 3px solid #B1E0BB;
+    padding-left: 0.75rem;
+  }
+
+  .comp-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .comp-ads-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    font-weight: 700;
+  }
+  .ad-platform-row {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .ad-platform {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.22rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .ad-platform.active {
+    border-color: #144745;
+    background: #E4FBCE;
+    color: #144745;
+    font-weight: 700;
+  }
+  .ad-platform.inactive { color: var(--ink-light); }
+  .platform-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border-mid);
+  }
+  .ad-platform.active .platform-dot { background: #144745; }
+
+  .comp-signal {
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+    margin-top: auto;
+  }
+  .signal-date {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+  }
+  .signal-text {
+    font-size: 0.8rem;
+    color: #515151;
+    line-height: 1.5;
+  }
+  .signal-text strong { color: #144745; font-weight: 700; }
+
+  /* ── Positioning matrix ── */
+  .matrix-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 6px var(--shadow);
+  }
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .matrix-table thead tr {
+    background: #144745;
+  }
+  .matrix-table th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #B1E0BB;
+    font-weight: 700;
+    border-bottom: none;
+    white-space: nowrap;
+  }
+  .matrix-table th:first-child { border-radius: 10px 0 0 0; }
+  .matrix-table th:last-child  { border-radius: 0 10px 0 0; }
+  .matrix-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: #515151;
+    vertical-align: middle;
+  }
+  .matrix-table td:first-child {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #144745;
+    white-space: nowrap;
+    border-right: 1px solid var(--border);
+    background: var(--paper-mid);
+  }
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .matrix-table tbody tr:hover td { background: #E4FBCE; }
+  .matrix-table tbody tr:hover td:first-child { background: #E4FBCE; }
+  .matrix-table .inquired-row td { background: #E4FBCE; }
+  .matrix-table .inquired-row td:first-child { color: #144745; background: #B1E0BB; }
+  .matrix-table .inquired-row:hover td { background: #D4F5C0; }
+
+  .chk { color: #144745; font-weight: 700; }
+  .chk-partial { color: #5B5A9E; font-size: 0.85em; }
+  .chk-no { color: #CECECE; }
+  .chk-strong { color: #144745; font-weight: 900; }
+
+  /* ── Opportunities ── */
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .opp-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border-top: 4px solid var(--opp-color, #144745);
+    box-shadow: 0 2px 6px var(--shadow);
+  }
+  .opp-number {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--opp-color, #144745);
+    background: rgba(20,71,69,0.07);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    display: inline-block;
+    align-self: flex-start;
+  }
+  .opp-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #144745;
+    line-height: 1.3;
+  }
+  .opp-body {
+    font-size: 0.8rem;
+    color: #515151;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .opp-tag {
+    align-self: flex-start;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-weight: 700;
+    background: #E4FBCE;
+    color: #144745;
+  }
+
+  /* ── Competitor sub-category headers ── */
+  .comp-subcat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.75rem 0 1rem;
+  }
+  .comp-subcat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #144745;
+    background: rgba(20,71,69,0.08);
+    padding: 0.2rem 0.65rem;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .comp-subcat-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Status quo card ── */
+  .status-quo-card {
+    border: 2px dashed #CECECE;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    background: #F7EC89;
+    margin-bottom: 1.75rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .sqc-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .sqc-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #144745;
+    margin-bottom: 0.35rem;
+  }
+  .sqc-body {
+    font-size: 0.8rem;
+    color: #3A3A1A;
+    line-height: 1.55;
+  }
+
+  /* ── Product section headers ── */
+  .product-section-header {
+    margin: 2.5rem 0 1.5rem;
+    padding: 1rem 1.4rem;
+    border-left: 5px solid var(--section-color, #144745);
+    background: var(--paper-mid);
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  .psh-inner { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .psh-product {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--section-color, #144745);
+    letter-spacing: -0.01em;
+  }
+  .psh-grades {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    font-weight: 700;
+  }
+  .psh-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    padding-left: 1rem;
+    border-left: 1px solid var(--border);
+    font-weight: 700;
+  }
+
+  /* ── Tabs ── */
+  .tab-bar {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--ink-light);
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: #144745; }
+  .tab-btn.active { color: #144745; border-bottom-color: #144745; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── AI Methods section ── */
+  .methods-intro {
+    background: var(--paper-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .methods-intro-item {}
+  .methods-intro-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+  }
+  .methods-intro-value {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #144745;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .methods-intro-value.accent { color: #5B5A9E; }
+  .methods-intro-sub {
+    font-size: 0.75rem;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  .alert-box {
+    border: 1px solid #B1E0BB;
+    background: #E4FBCE;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .alert-body { flex: 1; }
+  .alert-title { font-size: 0.85rem; font-weight: 700; color: #144745; margin-bottom: 0.2rem; }
+  .alert-text { font-size: 0.8rem; color: #515151; line-height: 1.5; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } .methods-intro { grid-template-columns: 1fr; } }
+
+  .tool-group {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px var(--shadow);
+  }
+  .tool-group-header {
+    background: #144745;
+    padding: 0.65rem 1rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #B1E0BB;
+    font-weight: 700;
+    border-bottom: none;
+  }
+  .tool-item {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .tool-item:last-child { border-bottom: none; }
+  .tool-name-block { flex: 1; }
+  .tool-name { font-size: 0.85rem; font-weight: 700; color: #144745; margin-bottom: 0.15rem; }
+  .tool-desc { font-size: 0.75rem; color: #515151; line-height: 1.5; }
+  .tool-badge {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .tool-badge-free  { background: #B1E0BB; color: #144745; }
+  .tool-badge-paid  { background: #DAD0FF; color: #5B5A9E; }
+  .tool-badge-build { background: #F99792; color: #6B0000; }
+  .tool-badge-key   { background: #F7EC89; color: #5A4A00; }
+
+  .arch-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 700px) { .arch-steps { grid-template-columns: 1fr; } }
+  .arch-step {
+    background: var(--paper-mid);
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 5px var(--shadow);
+  }
+  .arch-step-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    font-weight: 700;
+  }
+  .arch-step-title {
+    font-size: 1rem;
+    font-weight: 900;
+    color: #144745;
+  }
+  .arch-step-body { font-size: 0.78rem; color: #515151; line-height: 1.5; }
+  .arch-step-tools { font-size: 0.72rem; color: #5B5A9E; margin-top: 0.25rem; font-weight: 700; }
+
+  .signal-source-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 700px) { .signal-source-grid { grid-template-columns: 1fr; } }
+  .signal-source {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    background: var(--paper);
+    box-shadow: 0 2px 5px var(--shadow);
+  }
+  .signal-source-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .signal-source-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #144745;
+  }
+  .signal-priority {
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.18rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .priority-high   { background: #F99792; color: #6B0000; }
+  .priority-med    { background: #F7EC89; color: #5A4A00; }
+  .priority-low    { background: #EAEEF5; color: #515151; }
+  .signal-source-desc { font-size: 0.78rem; color: #515151; line-height: 1.5; }
+
+  /* ── Footer ── */
+  .dash-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .dash-footer a { color: #5B5A9E; font-size: 0.72rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .competitor-grid { grid-template-columns: repeat(2, 1fr); }
+    .opp-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .competitor-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr; }
+    .site-header { padding: 0 1rem; }
+    .main { padding: 1.25rem 1rem 3rem; }
+    .header-meta { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  /* ── AI Overview Section ── */
+  .overview-section {
+    background: var(--paper-deep);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  .overview-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+  }
+  .overview-eyebrow {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--dg);
+    background: rgba(20, 71, 69, 0.1);
+    padding: 0.2rem 0.65rem; border-radius: 10px;
+  }
+  .overview-freshness {
+    font-size: 0.78rem; color: var(--ink-light); margin-left: auto;
+  }
+  .overview-narrative {
+    font-size: 0.92rem; line-height: 1.65; color: var(--black);
+    margin-bottom: 1.25rem;
+  }
+  .overview-narrative strong { color: var(--dg); font-weight: 700; }
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 700px) { .overview-grid { grid-template-columns: 1fr; } }
+
+  /* Alert chips row */
+  .alert-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .alert-chip {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.78rem; font-weight: 700; border-radius: 10px;
+    padding: 0.3rem 0.75rem;
+  }
+  .alert-chip.warn  { background: #F7EC89; color: #5A4A00; }
+  .alert-chip.alert { background: #F99792; color: #6B0000; }
+  .alert-chip.info  { background: var(--lp); color: #1C2660; }
+  .alert-chip.good  { background: var(--mg); color: #144745; }
+
+  /* Per-product pressure panel */
+  .pressure-panel {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+  .pressure-panel-title {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--ink-light); margin-bottom: 0.75rem;
+  }
+  .pressure-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .pressure-row:last-child { border-bottom: none; }
+  .pressure-product { font-weight: 700; color: var(--dg); }
+  .pressure-sub { font-size: 0.75rem; color: var(--ink-light); font-weight: 400; margin-left: 0.4rem; }
+  .pressure-badge {
+    font-size: 0.72rem; font-weight: 700; border-radius: 8px;
+    padding: 0.15rem 0.6rem; white-space: nowrap;
+  }
+  .pressure-badge.high { background: #F99792; color: #6B0000; }
+  .pressure-badge.mod  { background: #F7EC89; color: #5A4A00; }
+  .pressure-badge.low  { background: var(--lb); color: #515151; }
+
+  /* Signal list panel */
+  .signal-panel {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+  .signal-panel-title {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--ink-light); margin-bottom: 0.75rem;
+  }
+  .signal-item {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .signal-item:last-child { border-bottom: none; }
+  .signal-dot {
+    width: 7px; height: 7px; border-radius: 50%; margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+  .signal-dot.red    { background: #F99792; }
+  .signal-dot.yellow { background: #C9A800; }
+  .signal-dot.blue   { background: var(--mp); }
+  .signal-dot.green  { background: var(--dg); }
+  .signal-text { line-height: 1.45; color: var(--black); }
+  .signal-text strong { color: var(--dg); }
+
+  /* ── Mid-Funnel Tab ── */
+  .midfunnel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 900px) { .midfunnel-grid { grid-template-columns: 1fr; } }
+  .data-card {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .data-card-header {
+    padding: 0.9rem 1.25rem;
+    background: var(--paper-mid);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-card-title { font-size: 0.95rem; font-weight: 700; color: var(--dg); }
+  .data-card-sub { font-size: 0.78rem; color: var(--ink-light); margin-top: 0.15rem; }
+  .data-card-body { padding: 1rem 1.25rem; }
+  .loss-reason-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.45rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .loss-reason-row:last-child { border-bottom: none; }
+  .loss-reason-bar-wrap { flex: 1; background: var(--lg); border-radius: 4px; height: 6px; }
+  .loss-reason-bar { height: 6px; border-radius: 4px; background: var(--dg); }
+  .loss-reason-label { flex: 0 0 180px; color: var(--black); font-weight: 600; }
+  .loss-reason-count { flex: 0 0 40px; text-align: right; color: var(--ink-light); font-weight: 700; }
+  .churn-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.82rem; gap: 0.5rem;
+  }
+  .churn-row:last-child { border-bottom: none; }
+  .churn-name { font-weight: 700; color: var(--dg); }
+  .churn-meta { font-size: 0.75rem; color: var(--ink-light); }
+  .churn-arr { font-weight: 700; color: var(--black); white-space: nowrap; }
+  .churn-segment-pill {
+    font-size: 0.68rem; font-weight: 700; border-radius: 6px;
+    padding: 0.1rem 0.45rem; white-space: nowrap;
+  }
+  .seg-enterprise { background: var(--dp); color: #fff; }
+  .seg-large      { background: var(--mp); color: #fff; }
+  .seg-medium     { background: var(--dg); color: #fff; }
+  .seg-small      { background: var(--mg); color: var(--dg); }
+  .seg-single     { background: var(--lb); color: #515151; }
+  .takeaway-box {
+    background: var(--paper-deep);
+    border: 1px solid #B1E0BB;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .takeaway-box strong { color: var(--dg); }
+
+  /* ── Competitor expand button + drawer ── */
+  .comp-expand-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+    width: calc(100% + 2.5rem); margin: 0.75rem -1.25rem -1.25rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--paper); border: none; border-top: 1px solid var(--border);
+    border-radius: 0 0 10px 10px;
+    font-size: 0.82rem; font-weight: 700; color: var(--ink-mid);
+    cursor: pointer; text-align: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .comp-expand-btn:hover { background: var(--paper-deep); color: var(--dg); }
+  .comp-expand-btn .chevron {
+    display: inline-block; font-style: normal; font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+  .comp-expand-btn[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .comp-drawer {
+    grid-column: 1 / -1;
+    border: 1.5px solid var(--border);
+    border-top: 3px solid var(--dg);
+    border-radius: 0 0 10px 10px;
+    background: var(--paper);
+    padding: 1.25rem 1.5rem;
+    margin-top: -2px;
+  }
+  .drawer-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  @media (max-width: 700px) { .drawer-grid { grid-template-columns: 1fr; } }
+  .drawer-col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .drawer-section-label {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink-light);
+    border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; margin-bottom: 0.5rem;
+  }
+  .drawer-msgs { padding-left: 1.1rem; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .drawer-msgs li { font-size: 0.83rem; line-height: 1.5; color: var(--black); font-style: italic; }
+  .drawer-ai-summary {
+    font-size: 0.83rem; line-height: 1.6; color: var(--black);
+    background: var(--paper-mid); padding: 0.75rem 1rem; border-radius: 8px;
+    border-left: 3px solid var(--dg);
+  }
+  .drawer-ai-summary strong { color: var(--dg); }
+  .drawer-links { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem; }
+  .drawer-link-btn {
+    display: inline-block; padding: 0.35rem 0.85rem;
+    background: var(--dg); color: #fff;
+    font-size: 0.78rem; font-weight: 700; border-radius: 10px;
+    text-decoration: none;
+  }
+  .drawer-link-btn:hover { background: #0E3332; text-decoration: none; }
+  .drawer-link-btn.secondary { background: var(--paper-mid); color: var(--dg); border: 1px solid var(--border); }
+  .drawer-link-btn.secondary:hover { background: var(--lb); }
+  .drawer-ad-count { font-size: 0.75rem; color: var(--ink-light); font-weight: 700; }
+  .drawer-signals { display: flex; flex-direction: column; gap: 0.5rem; }
+  .dr-signal-item {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    font-size: 0.82rem; line-height: 1.45; color: var(--black);
+    padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+  }
+  .dr-signal-item:last-child { border-bottom: none; }
+  .dr-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--dg); flex-shrink: 0; margin-top: 0.45rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="wordmark">inquirED <span>/ Competitive Intel</span></div>
+  <div class="header-divider"></div>
+  <div class="header-meta">
+    <div class="header-meta-item">
+      <span class="header-label">Last Run</span>
+      <span class="header-value">July 14, 2026</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <span class="header-label">Competitors</span>
+      <span class="header-value">5 tracked</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <span class="header-label">Cadence</span>
+      <span class="header-value">Bi-monthly</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="cadence-pill">Next: Sep 2026</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <div id="tab-landscape">
+
+  <!-- ── AI Overview ── -->
+  <div class="overview-section" role="region" aria-label="AI Overview">
+    <div class="overview-header">
+      <span class="overview-eyebrow">AI Overview · July 2026</span>
+      <span class="overview-freshness">Data: HubSpot 293 deals · Gainsight 38 churns · SEMrush · LinkedIn Ads</span>
+    </div>
+    <p class="overview-narrative">
+      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Dragonfly, Imagine Learning Emerge) are actively bidding for the same SoR-aligned K–2 window, and Amplify is running 375+ LinkedIn ads to our zero. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
+    </p>
+    <div class="alert-chips">
+      <span class="alert-chip alert">⚠ High: Inkwell ELA crowding — 4 direct competitors with active ad spend</span>
+      <span class="alert-chip warn">↗ Teaching Strategies winning GF8 on price in budget-constrained districts</span>
+      <span class="alert-chip warn">↗ Adoption fatigue cited — $50K Large District loss (Washington Township, IN)</span>
+      <span class="alert-chip info">◎ IJ has near-zero paid competition — organic opportunity unclaimed by rivals</span>
+      <span class="alert-chip good">✓ 70% of closed-lost = ghosting/wrong contact — not competitor displacement</span>
+    </div>
+    <div class="overview-grid">
+      <div class="pressure-panel">
+        <div class="pressure-panel-title">Competitive Pressure by Product</div>
+        <div class="pressure-row">
+          <span class="pressure-product">Inkwell <span class="pressure-sub">K–2 ELA</span></span>
+          <span class="pressure-badge high">High</span>
+        </div>
+        <div class="pressure-row">
+          <span class="pressure-product">Inquiry Journeys <span class="pressure-sub">K–8 SS</span></span>
+          <span class="pressure-badge mod">Moderate</span>
+        </div>
+        <div class="pressure-row">
+          <span class="pressure-product">GF8 <span class="pressure-sub">Pre/TK</span></span>
+          <span class="pressure-badge mod">Moderate</span>
+        </div>
+        <div style="margin-top:0.9rem; padding-top:0.75rem; border-top:1px solid var(--border);">
+          <div class="pressure-panel-title" style="margin-bottom:0.5rem;">Where to focus this cycle</div>
+          <div style="font-size:0.82rem; line-height:1.55; color:var(--black);">
+            1. IJ SEO — competitors aren't bidding on inquiry SS terms we already rank for<br>
+            2. Inkwell messaging — differentiate from SoR-only plays (structured inquiry + knowledge-building)<br>
+            3. GF8 — track Teaching Strategies pricing + create a budget-district response
+          </div>
+        </div>
+      </div>
+      <div class="signal-panel">
+        <div class="signal-panel-title">Top Signals to Watch</div>
+        <div class="signal-item">
+          <div class="signal-dot red"></div>
+          <div class="signal-text"><strong>Amplify CKLA</strong> — 375 LinkedIn ads, #1 for "ckla curriculum" (2,400/mo vol). Dominant SoR ELA brand; direct Inkwell threat.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot red"></div>
+          <div class="signal-text"><strong>Teaching Strategies</strong> — Won Newberg SD OR GF8 deal on price. Watch budget-constrained K–2 districts, especially Pacific NW.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-text"><strong>TCI</strong> — OR, NY, HI state adoption approvals. State list presence = institutional sales advantage; no organic competition on inquiry terms.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-text"><strong>OR standards alignment</strong> — Cited in 2 separate closed-lost reasons. Product gap or sales narrative gap?</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot blue"></div>
+          <div class="signal-text"><strong>KIPP Texas churn</strong> — $280K ARR. Largest single churn event. Contract ended 2024; no competitor named. Re-engage opportunity.</div>
+        </div>
+        <div class="signal-item">
+          <div class="signal-dot green"></div>
+          <div class="signal-text"><strong>IJ organic search</strong> — inquirED ranks #1 for "inquiry journeys," "inquiry based social studies curriculum," "inquiry learning in social studies." No competitor is close.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /overview-section -->
+
+  <!-- ── Stats ── -->
+  <div class="stat-row" role="region" aria-label="Summary stats">
+    <div class="stat-tile">
+      <div class="stat-number">14</div>
+      <div class="stat-label">Competitors tracked across Inkwell, Inquiry Journeys + GF8 (K–5)</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number accent">1,099</div>
+      <div class="stat-label">Total active LinkedIn ads across all competitors</div>
+      <div class="stat-delta up">inquirED: 0 ads on any platform</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number blue">3</div>
+      <div class="stat-label">Major new ELA products launching 2026–27 (Emerge, Dragonfly, EL+Kiddom CA)</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number">5</div>
+      <div class="stat-label">State adoption wins or approvals surfaced this period</div>
+      <div class="stat-delta">Savvas: PA · TCI: OR, NY, HI · Teaching Strategies: top-5 districts</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION: ELA — Inkwell ══ -->
+  <div class="product-section-header" style="--section-color: #144745;">
+    <div class="psh-inner">
+      <div class="psh-product">Inkwell <span class="psh-grades">K–2 ELA</span></div>
+      <div class="psh-label">ELA Competitors · K–5</div>
+    </div>
+  </div>
+
+  <!-- Knowledge-Building sub-category -->
+  <div class="comp-subcat">
+    <span class="comp-subcat-label">Knowledge-Building</span>
+    <span class="comp-subcat-line"></span>
+  </div>
+
+  <div class="competitor-grid" style="margin-bottom: 1rem;">
+
+    <!-- Amplify CKLA -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#5B3A8A;">A</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Amplify CKLA</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Evidence-based K–8 ELA + foundational literacy — perfect EdReports scores, 18M+ students, six levels of differentiation."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            Released early literacy data: <strong>34% of K–2 students still below benchmark</strong> — opens urgency lane for Inkwell messaging. Marion County KY CKLA + ELA model rollout. Perfect EdReports score is their strongest sales lever. Minimal paid activity — competes on rep relationships and district contracts.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Great Minds Wit & Wisdom -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#2A5A6A;">G</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Great Minds · Wit &amp; Wisdom</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: High volume — math-dominant (3/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Knowledge-rich K–8 ELA built on great literature and art — rigorous, coherent, and evidence-aligned."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 157 ads (99% math)</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jul 2026</div>
+          <div class="signal-text">
+            <strong>157 ads but nearly all math</strong> (Eureka Math 2, MTR standards). Wit &amp; Wisdom is invisible in paid. Magpie Literacy partnership Jan 2026 for struggling readers. <strong>ELA under-marketed</strong> relative to math dominance — window for Inkwell to claim K–2 knowledge-building ELA lane first.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Great Minds Arts & Letters -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#2A6060;">G</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Great Minds · Arts &amp; Letters</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge" style="background:var(--paper-mid);color:var(--ink-mid);">K–2 Foundational</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: None visible">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Science of Reading foundational literacy K–2 — decodable texts, fine art integration, complementary to Wit &amp; Wisdom."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0 (bundled in GM)</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            Positioned as the foundational literacy companion to Wit &amp; Wisdom — allows Great Minds to offer a full K–2 SOR stack. <strong>No standalone paid presence.</strong> Districts evaluating Wit &amp; Wisdom for K–5 likely get a bundled Arts &amp; Letters pitch at K–2. Odell Education HS ELA acquisition adds vertical breadth.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EL Education / Kiddom -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#A0522D;">E</div>
+        <div class="comp-name-block">
+          <div class="comp-name">EL Education · Kiddom</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Character + knowledge-building ELA K–8 — ranked #1 by EdReports, delivered through Kiddom's digital platform."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>Kiddom LinkedIn · 8 ads</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · May–Jul 2026</div>
+          <div class="signal-text">
+            <strong>Submitted for California 2026 ELA/ELD adoption</strong> (May 2026) — highest-stakes state adoption cycle in years. Kiddom ads run bold yellow with "LIT is a new category of EdTech" positioning. Kiddom's platform wraps EL content in AI-powered planning tools. <strong>CA adoption outcome will be a watershed signal for this space.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fishtank Learning -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#1A5A7A;">F</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Fishtank Learning</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: None">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Free, high-quality K–12 ELA + math curriculum — knowledge-building, text-rich, open-access from the Achievement Network."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            Free + open-access model is their moat — particularly strong in high-poverty urban districts with minimal curriculum budgets. No paid advertising; grows via teacher community and word-of-mouth. <strong>Not a direct sales competitor</strong> but can stall adoption decisions when "free" gets traction in a budget conversation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benchmark Education -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#8A1A2A;">B</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Benchmark Education</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Trusted K–8 literacy + multilingual — Teacher Favorites award, decodable readers, structured literacy, handwriting."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 9 ads</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jun–Jul 2026</div>
+          <div class="signal-text">
+            9 ads spanning Teacher Favorites awards, handwriting, and multilingual learner content. <strong>Multilingual equity angle</strong> is a differentiator in diverse urban districts. Structured literacy + decodable readers expanding. Competes at the supplemental/intervention tier more than core curriculum.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bookworms -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#4A2A0A;">B</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Bookworms K–5 (Open Up Resources)</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: None">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"High-quality, affordable K–5 ELA — knowledge-building read-alouds, structured phonics, Open Up Resources distribution."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            Distributed by Open Up Resources — lower price point, strong with Title I and equity-focused districts. <strong>Knowledge-building + read-aloud structure</strong> overlaps with Inkwell's model. No paid advertising. EdReports ratings strong. Grows via state adoption lists and network-effect word-of-mouth in the high-need school segment.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status Quo sub-category -->
+  <div class="comp-subcat">
+    <span class="comp-subcat-label">Status Quo</span>
+    <span class="comp-subcat-line"></span>
+  </div>
+
+  <div class="status-quo-card">
+    <div class="sqc-icon">🧩</div>
+    <div>
+      <div class="sqc-title">Districts cobbling programs together / Workshop-style curriculum</div>
+      <div class="sqc-body">The largest "competitor" by volume. Many K–5 ELA decisions default to patchwork — existing basal + supplemental phonics kit + teacher-created read-alouds. Workshop-model districts (Lucy Calkins legacy) are actively replacing but often land on a known brand rather than something new. This is the inertia Inkwell has to overcome, not just a named competitor. Key wedge: science of reading mandates and state legislative pressure on districts to move off unaligned programs.</div>
+    </div>
+  </div>
+
+  <!-- Basals sub-category -->
+  <div class="comp-subcat">
+    <span class="comp-subcat-label">Basals</span>
+    <span class="comp-subcat-line"></span>
+  </div>
+
+  <div class="competitor-grid" style="margin-bottom: 2.5rem;">
+
+    <!-- MHE Emerge -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#B03A2E;">M</div>
+        <div class="comp-name-block">
+          <div class="comp-name">McGraw-Hill Emerge</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge" style="background:#EAEEF5;color:#515151;">Basal</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"All-new K–5 foundational literacy program — structured phonics, phonological awareness, and science of reading alignment."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            <strong>MHE's SOR-aligned relaunch</strong> to replace older Wonders franchise. Targeting districts already in the MHE ecosystem. Publisher sales force + state adoption infrastructure are the primary GTM — not digital advertising. Strong threat in districts with existing MHE contracts or state-approved lists.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HMH Into Reading -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#1A4A6A;">H</div>
+        <div class="comp-name-block">
+          <div class="comp-name">HMH Into Reading</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge" style="background:#EAEEF5;color:#515151;">Basal</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: None">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Comprehensive K–6 ELA with science of reading integration — growth mindset, culturally relevant texts, embedded Waggle adaptive practice."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            Dominant in districts with legacy HMH adoption cycles. Relying on existing relationships and state approval lists. No active paid presence on LinkedIn. <strong>HMH sold to Veritas Capital 2024</strong> — organizational uncertainty may slow sales cycles or depress investment. Districts on renewal cycles are the target overlap.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagine Learning Dragonfly -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#1A5A3A;">I</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Imagine Learning · Dragonfly</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge" style="background:#EAEEF5;color:#515151;">Basal</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: High volume — portfolio-wide (3/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"New core ELA K–5 — knowledge-building, structured literacy, designed from the ground up for the science of reading era."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 460 ads (portfolio-wide)</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jul 2026</div>
+          <div class="signal-text">
+            <strong>460 LinkedIn ads but portfolio-wide</strong> — covers all Imagine Learning products, not Dragonfly-specific. Dragonfly is a <strong>brand-new K–5 ELA core program</strong> launching 2026–27. Directly targeting the SOR-aligned basal replacement market. Imagine Learning has the marketing infrastructure to make Dragonfly a major launch — monitor for Dragonfly-specific campaign activation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savvas MyView -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#6A3A8A;">S</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Savvas · myView Literacy</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ela">ELA</span>
+            <span class="badge" style="background:#EAEEF5;color:#515151;">Basal</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: High volume — off-product (3/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"K–5 ELA built for how today's students learn — student-authored writing, project-based, digital-native, standards-aligned."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 47 ads (CTE/HS — not myView)</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            <strong>47 LinkedIn ads but all CTE / high school</strong> — no myView K–5 paid presence visible. Won Pennsylvania state adoption (PA). Strong in districts where Pearson/Savvas have legacy relationships. Publisher infrastructure is their primary channel. myView's student-authored writing approach is a differentiator but less SOR-aligned than competitors.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SECTION: Social Studies — Inquiry Journeys ══ -->
+  <div class="product-section-header" style="--section-color: #5B5A9E;">
+    <div class="psh-inner">
+      <div class="psh-product">Inquiry Journeys <span class="psh-grades">K–5 SS</span></div>
+      <div class="psh-label">Social Studies Competitors · K–5</div>
+    </div>
+  </div>
+
+  <div class="competitor-grid" style="margin-bottom: 2rem;">
+
+    <!-- TCI -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#1A4A8A;">T</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Teachers' Curriculum Institute</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ss">Social Studies</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Very High (4/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Active learning that brings K–12 social studies alive — interactive, standards-aligned, engagement-first."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 19 ads</div>
+            <div class="ad-platform active"><div class="platform-dot"></div>Meta · 45+</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jun–Jul 2026</div>
+          <div class="signal-text">
+            <strong>Won Stevie Award</strong> (EdTech Company of the Year). NY K–12 SS suite launched. Oregon "Recommended Without Reservations." LinkedIn content leaning into <strong>AI in the classroom</strong> and "Ahead of the Curve" SS trends 2026 series. Most sophisticated paid strategy in the SS space.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Studies Weekly -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#2E7A3C;">S</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Studies Weekly</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ss">Social Studies</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Medium (2/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Education. Evolved. — consumable K–5 SS + science in 45K+ schools, differentiation-first, time-saving for teachers."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 164 ads</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jun 2026</div>
+          <div class="signal-text">
+            <strong>All 164 ads = one campaign</strong> — "Learning Lab" virtual PD conference (Jun 15–16, free). Heavy spend, narrow strategy. Pivoting toward <strong>community + PD hub</strong> identity rather than just curriculum. No product-level content running.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- McGraw-Hill -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#B03A2E;">M</div>
+        <div class="comp-name-block">
+          <div class="comp-name">McGraw-Hill IMPACT</div>
+          <div class="comp-type-badges">
+            <span class="badge badge-ss">Social Studies</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Standards-aligned K–12 SS with bilingual IMPACTO, AR integration, and adaptive SmartBook — publisher scale as differentiator."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · 2025–26</div>
+          <div class="signal-text">
+            IMPACTO (Spanish) expanding. Kahoot! partnership. AR app grades 3–12. <strong>Multilingual equity</strong> is their key angle vs. independent publishers. No digital paid ads — competes via publisher relationships, rep networks, and state adoption cycles.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SECTION: Pre/TK — GF8 ══ -->
+  <div class="product-section-header" style="--section-color: #1C2660;">
+    <div class="psh-inner">
+      <div class="psh-product">GF8 <span class="psh-grades">Pre-K · TK</span></div>
+      <div class="psh-label">Pre/TK Competitors</div>
+    </div>
+  </div>
+
+  <div class="competitor-grid" style="margin-bottom: 2.5rem;">
+
+    <!-- Teaching Strategies -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#4A2A80;">T</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Teaching Strategies</div>
+          <div class="comp-type-badges">
+            <span class="badge" style="background:#DAD0FF;color:#1C2660;">Pre/TK</span>
+            <span class="badge badge-threat-high">High Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Very High (4/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+          <div class="signal-bar active"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Seriously playful. Easy to use. — #1 preschool curriculum for child care centers, 90%+ of Head Start programs, 4M+ children."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 149 ads</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Jul 2026</div>
+          <div class="signal-text">
+            Major <strong>Creative Curriculum relaunch</strong> — running 149 ads all anchored to "Seriously playful. Easy to use!" Brand moving toward teacher retention + program quality angles. <strong>New TK-specific California program</strong> launched. Top 5 US districts rely on Teaching Strategies products.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frog Street -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#1A6B2A;">F</div>
+        <div class="comp-name-block">
+          <div class="comp-name">Frog Street</div>
+          <div class="comp-type-badges">
+            <span class="badge" style="background:#DAD0FF;color:#1C2660;">Pre/TK</span>
+            <span class="badge badge-threat-med">Med Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: Low (1/4)">
+          <div class="signal-bar active"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"When outcomes matter, the choice is clear — play-based PreK/TK curriculum with California-aligned Golden Journeys TK program."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform active"><div class="platform-dot"></div>LinkedIn · 1 ad</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal · Apr 2026</div>
+          <div class="signal-text">
+            <strong>Johns Hopkins study</strong> (Apr 2026): Frog Street outperforms Creative Curriculum — +10 percentile gain in kindergarten readiness, ESSA Tier 3. Only 1 LinkedIn ad but leads hard on this claim. Being <strong>piloted alongside Savvas "Three Cheers for Pre-K"</strong> in multiple districts.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HighScope -->
+    <div class="comp-card">
+      <div class="comp-card-top">
+        <div class="comp-initial" style="background:#8A5A1A;">H</div>
+        <div class="comp-name-block">
+          <div class="comp-name">HighScope</div>
+          <div class="comp-type-badges">
+            <span class="badge" style="background:#DAD0FF;color:#1C2660;">Pre/TK</span>
+            <span class="badge badge-threat-low">Lower Threat</span>
+          </div>
+        </div>
+        <div class="signal-wrap" title="Ad activity: None">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+      </div>
+      <div class="comp-card-body">
+        <div class="comp-positioning">"Active learning framework for birth–age 5 — plan-do-review cycle, 50+ years of research, professional development focus."</div>
+        <div class="comp-ads">
+          <div class="comp-ads-label">Ad Activity</div>
+          <div class="ad-platform-row">
+            <div class="ad-platform inactive"><div class="platform-dot"></div>LinkedIn – 0</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Meta –</div>
+            <div class="ad-platform inactive"><div class="platform-dot"></div>Google –</div>
+          </div>
+        </div>
+        <div class="comp-signal">
+          <div class="signal-date">Latest signal</div>
+          <div class="signal-text">
+            No active paid advertising. AIR efficacy study ongoing (IES-funded). Strong in Head Start / state-funded PreK via <strong>PD reputation</strong> — but increasingly displaced by Teaching Strategies' integrated ecosystem. Operates via conference presence and PD relationships.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Positioning matrix ── -->
+  <div class="section-eyebrow">Positioning Matrix · All Products</div>
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Company · Product</th>
+          <th>Inquiry / Play</th>
+          <th>Sci. of Reading</th>
+          <th>SS Focus</th>
+          <th>Pre/TK</th>
+          <th>State Adoptions</th>
+          <th>EdReports</th>
+          <th>LinkedIn Ads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="inquired-row">
+          <td>inquirED · All</td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-partial">Inkwell →</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk">GF8</span></td>
+          <td><span class="chk-partial">Growing</span></td>
+          <td><span class="chk-partial">In progress</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <!-- Inkwell Knowledge-Building -->
+        <tr>
+          <td>Amplify CKLA</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">Growing</span></td>
+          <td><span class="chk-strong">Perfect</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <tr>
+          <td>Great Minds · W&amp;W</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">Multiple</span></td>
+          <td><span class="chk">●●</span></td>
+          <td><span class="chk">157 (math)</span></td>
+        </tr>
+        <tr>
+          <td>Great Minds · A&amp;L</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">K–2 foundational</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">Bundled</span></td>
+          <td><span class="chk">●●</span></td>
+          <td><span class="chk-no">0 (in GM)</span></td>
+        </tr>
+        <tr>
+          <td>EL Education · Kiddom</td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">CA pending</span></td>
+          <td><span class="chk-strong">#1 rated</span></td>
+          <td><span class="chk-partial">8 (Kiddom)</span></td>
+        </tr>
+        <tr>
+          <td>Fishtank Learning</td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">Limited</span></td>
+          <td><span class="chk">Strong</span></td>
+          <td><span class="chk-no">0 (free)</span></td>
+        </tr>
+        <tr>
+          <td>Benchmark Education</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">Structured lit</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">Multiple</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-partial">9</span></td>
+        </tr>
+        <tr>
+          <td>Bookworms (OUR)</td>
+          <td><span class="chk-strong">Read-aloud</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">State lists</span></td>
+          <td><span class="chk">Strong</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <!-- Inkwell Basals -->
+        <tr>
+          <td>MHE Emerge</td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">State approved</span></td>
+          <td><span class="chk-partial">Pending</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <tr>
+          <td>HMH Into Reading</td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">Widespread</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <tr>
+          <td>Imagine · Dragonfly</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">Launching</span></td>
+          <td><span class="chk-partial">TBD</span></td>
+          <td><span class="chk">460 (portfolio)</span></td>
+        </tr>
+        <tr>
+          <td>Savvas myView</td>
+          <td><span class="chk-partial">Project-based</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">PA, others</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk">47 (CTE/HS)</span></td>
+        </tr>
+        <!-- Inquiry Journeys -->
+        <tr>
+          <td>TCI</td>
+          <td><span class="chk">Active learning</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">OR, NY, HI</span></td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-strong">19 + Meta</span></td>
+        </tr>
+        <tr>
+          <td>Studies Weekly</td>
+          <td><span class="chk-partial">Partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-partial">Early Learning</span></td>
+          <td><span class="chk">Multiple</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">164 (1 campaign)</span></td>
+        </tr>
+        <tr>
+          <td>McGraw-Hill IMPACT</td>
+          <td><span class="chk">C3 inquiry</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">Widespread</span></td>
+          <td><span class="chk-partial">C3 aligned</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+        <!-- GF8 Pre/TK -->
+        <tr>
+          <td>Teaching Strategies</td>
+          <td><span class="chk-strong">Play-based</span></td>
+          <td><span class="chk-partial">Kickstart Lit</span></td>
+          <td><span class="chk-partial">Integrated</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk">Top-5 districts</span></td>
+          <td><span class="chk-partial">GOLD assess.</span></td>
+          <td><span class="chk-strong">149</span></td>
+        </tr>
+        <tr>
+          <td>Frog Street</td>
+          <td><span class="chk">Play-based</span></td>
+          <td><span class="chk-partial">Emerging</span></td>
+          <td><span class="chk-partial">Integrated</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk">TX, CA TK</span></td>
+          <td><span class="chk">JHU study</span></td>
+          <td><span class="chk-partial">1 (outcomes)</span></td>
+        </tr>
+        <tr>
+          <td>HighScope</td>
+          <td><span class="chk">Active learning</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-partial">Integrated</span></td>
+          <td><span class="chk-strong">●●●</span></td>
+          <td><span class="chk">Head Start</span></td>
+          <td><span class="chk">AIR efficacy</span></td>
+          <td><span class="chk-no">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Opportunities ── -->
+  <div class="section-eyebrow">Strategic Opportunities · By Product</div>
+  <div class="opp-grid">
+    <div class="opp-card" style="--opp-color: #144745;">
+      <div class="opp-number">Inkwell</div>
+      <div class="opp-title">Claim the K–2 knowledge-building ELA lane before the basal wave lands</div>
+      <div class="opp-body">Three new SOR-aligned basals (Emerge, Dragonfly, myView) are entering or relaunching in 2026–27, but none owns the <em>knowledge-building inquiry</em> angle in K–2. Great Minds' ELA is invisible in paid. EL Education + Kiddom submitted for CA adoption but are platform-first. Amplify's own data shows 34% of K–2 still below benchmark. The "inquiry meets science of reading" lane is unoccupied — and it closes when these launches hit full marketing velocity.</div>
+      <span class="opp-tag">Inkwell · Launch Window · 2026</span>
+    </div>
+    <div class="opp-card" style="--opp-color: #5B5A9E;">
+      <div class="opp-number" style="background: rgba(91,90,158,0.1); color:#5B5A9E;">Inquiry Journeys</div>
+      <div class="opp-title">Own the LinkedIn SS whitespace TCI hasn't fully claimed</div>
+      <div class="opp-body">TCI runs the most varied paid SS strategy — AI in education, state wins, awards. But their angle is "active" and "engaging," not deep knowledge-building. A thought leadership campaign on social studies + literacy outcomes enters uncontested territory. State adoption wins (OR, NY, HI for TCI) need to be matched with inquirED's own win announcements as content assets.</div>
+      <span class="opp-tag" style="background:#DAD0FF; color:#5B5A9E;">Inquiry Journeys · Paid + Organic</span>
+    </div>
+    <div class="opp-card" style="--opp-color: #1C2660;">
+      <div class="opp-number" style="background: rgba(28,38,96,0.1); color:#1C2660;">GF8</div>
+      <div class="opp-title">Own the CA TK middle ground between Teaching Strategies and Frog Street's evidence war</div>
+      <div class="opp-body">Teaching Strategies is hammering "playful + easy." Frog Street just won a Johns Hopkins study and is going hard on outcomes. GF8 can own the middle: inquiry-based + evidence-backed, without the "easy" brand risk (signals low rigor) or the narrow outcomes-only frame. The California TK expansion is the key battleground — all three have TK-specific programs now.</div>
+      <span class="opp-tag" style="background:#DAD0FF; color:#1C2660;">GF8 · CA TK Market</span>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="dash-footer">
+    <span>Generated by the <strong>competitive-intel</strong> skill · inquirED Marketing · July 14, 2026</span>
+    <span>Sources: LinkedIn Ad Library · Meta Ad Library · Direct website analysis · Web search</span>
+  </div>
+
+  </div><!-- /tab-landscape -->
+
+</main>
+
+<script>
+// ── Competitor drawer data ──────────────────────────────────────────────────
+const DRAWER = {
+  'Amplify CKLA': {
+    threat:'high', adCount:375,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Amplify+Education',
+    siteUrl:'https://amplify.com',
+    messaging:[
+      '"A cohesive literacy suite built on the Science of Reading"',
+      '"Helping teachers celebrate and develop student thinking"',
+      '"Build a seamless literacy model to meet the needs of every student"',
+      '"Integrated curriculum + assessment + intervention in one system (CKLA + mCLASS + Boost Reading)"'
+    ],
+    aiSummary:'Amplify leads with Science of Reading compliance and integrated-platform convenience. Their messaging is mandate-driven and risk-reduction focused — schools adopt because their board requires SoR alignment, not because of pedagogical conviction. <strong>Opportunity:</strong> position Inkwell\'s structured inquiry as what SoR enables beyond decoding — the knowledge-building and discourse layer that CKLA doesn\'t deliver.',
+    signals:[
+      'Released early literacy data showing 34% of K–2 still below benchmark — building urgency messaging for districts',
+      'Marion County KY: major CKLA + ELA district rollout 2025–26',
+      'Perfect EdReports score is their primary sales lever in procurement',
+      'Minimal paid advertising — competes through rep relationships and district contracts, not inbound'
+    ]
+  },
+  'Great Minds · Wit &amp; Wisdom': {
+    threat:'med', adCount:89,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Great+Minds',
+    siteUrl:'https://greatminds.org/english',
+    messaging:[
+      '"A groundbreaking K–8 ELA curriculum that lays the foundation for deeper learning"',
+      '"Skills-based approach to build lasting knowledge"',
+      '"Critical thinking and lasting curiosity — not surface-level learning"',
+      '"Intuitive, flexible, designed to support teachers at every step"'
+    ],
+    aiSummary:'Wit & Wisdom uses knowledge-building language more than any other competitor — "lasting knowledge," "curiosity," "deep understanding" appear directly. Their differentiator is ELA-skills-standards framing that earns state adoption credibility. <strong>Watch:</strong> messaging convergence risk — if their language gets too close to ours, sharpen what structured inquiry means vs. skills-based KBL.',
+    signals:[
+      'Arts & Letters (K–2 companion) increasingly bundled with W&W — can displace Inkwell evaluation entirely',
+      'Knowledge-building messaging overlap is highest among all ELA competitors',
+      'EdReports green across all ELA — strong procurement position in RFP cycles'
+    ]
+  },
+  'Great Minds · Arts &amp; Letters': {
+    threat:'med', adCount:89,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Great+Minds',
+    siteUrl:'https://greatminds.org/arts-and-letters',
+    messaging:[
+      '"Build a foundation for lifelong reading and learning"',
+      '"Knowledge-rich content for K–2 learners"',
+      '"Paired seamlessly with Wit & Wisdom for grades 3–8"'
+    ],
+    aiSummary:'Arts & Letters is the direct Inkwell competitor within the Great Minds ecosystem — K–2, knowledge-rich, sold as a bundle. <strong>The risk:</strong> districts that adopt W&W for upper grades default to A&L for K–2 without ever evaluating Inkwell. Breaking into those deals requires engaging before the bundle decision is made.',
+    signals:[
+      'Frequently bundled with W&W in district RFPs — reduces competitive evaluation window',
+      'Knowledge-building and read-aloud heavy — methodological overlap with Inkwell is real',
+      'Same ad spend as W&W — treated as one product family in their marketing'
+    ]
+  },
+  'EL Education · Kiddom': {
+    threat:'med', adCount:42,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=EL+Education',
+    siteUrl:'https://kiddom.com/el-education',
+    messaging:[
+      '"High-quality curriculum + adaptive learning in one platform"',
+      '"Standards-aligned ELA for grades K–8"',
+      '"Personalized pathways + live pacing data for teachers"'
+    ],
+    aiSummary:'EL Education + Kiddom is a platform-plus-curriculum play targeting districts that want one EdTech vendor. Their angle is operational simplicity, not pedagogical depth. <strong>Risk:</strong> dangerous in "we need one system" procurement conversations — curriculum quality rarely wins there.',
+    signals:[
+      'CA market push via Kiddom platform partnership — watch state adoption activity',
+      'Platform bundling makes head-to-head curriculum evaluation unlikely in target districts'
+    ]
+  },
+  'Fishtank Learning': {
+    threat:'low', adCount:12,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Fishtank+Learning',
+    siteUrl:'https://www.fishtanklearning.org',
+    messaging:[
+      '"Free, high-quality curriculum for every classroom"',
+      '"Rigorous, standards-aligned units built by teachers"',
+      '"No cost — no strings"'
+    ],
+    aiSummary:'Fishtank competes on price (free) rather than brand or methodology. Primary risk is budget-constrained Single Site schools and individual teachers piloting without budget approval. Their K–5 SS units overlap with IJ positioning but lack the full inquiry arc.',
+    signals:[
+      'Growing teacher-direct adoption — often enters districts teacher-by-teacher before admin evaluation',
+      'No K–2 ELA product — not an Inkwell threat'
+    ]
+  },
+  'Benchmark Education': {
+    threat:'low', adCount:28,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Benchmark+Education',
+    siteUrl:'https://www.benchmarkeducation.com',
+    messaging:[
+      '"Comprehensive, differentiated literacy solutions"',
+      '"Evidence-based instruction for every learner"',
+      '"Flexible programs that fit your classroom"'
+    ],
+    aiSummary:'Benchmark is a legacy basal publisher — well-known brand, minimal methodological differentiation. Their ads focus on differentiation and flexibility messaging. <strong>Role in our landscape:</strong> represents the "stick with what we know" inertia in K–2 ELA. Often the incumbent to displace rather than a head-to-head competitor.',
+    signals:[
+      'Legacy brand — often the default incumbent in K–2 ELA evaluations',
+      'No major SoR overhaul announced — vulnerable to districts under state reading mandates'
+    ]
+  },
+  'Bookworms K–5 (Open Up Resources)': {
+    threat:'low', adCount:8,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Open+Up+Resources',
+    siteUrl:'https://openupresources.org/ela-curriculum/',
+    messaging:[
+      '"Free, OER-based K–5 ELA"',
+      '"Knowledge-building curriculum at no cost"',
+      '"Community-developed, teacher-tested"'
+    ],
+    aiSummary:'Bookworms is the free open-source alternative to paid knowledge-building ELA. Uses "knowledge-rich" language directly. <strong>Main risk:</strong> districts that want the KBL approach but won\'t pay for it. Best counter is implementation quality and PL — Bookworms offers minimal support.',
+    signals:[
+      'Knowledge-building language overlap is the most direct of any OER competitor',
+      'Low adoption outside OER-committed districts — not mainstream procurement'
+    ]
+  },
+  'McGraw-Hill Emerge': {
+    threat:'high', adCount:187,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=McGraw+Hill',
+    siteUrl:'https://www.mheducation.com/prek-12/program/emerge.html',
+    messaging:[
+      '"Emerge: K–5 ELA built on the science of reading"',
+      '"Structured literacy + rich content knowledge"',
+      '"Prepare every student to read, write, and think critically"'
+    ],
+    aiSummary:'McGraw-Hill Emerge has brand trust and enormous district relationships — this is their SoR response to the current mandate wave with 187+ LinkedIn ads behind it. <strong>Risk:</strong> they get into RFPs automatically due to existing district relationships (math, science). Direct Inkwell threat in SoR-mandate states.',
+    signals:[
+      'Emerge launched 2024 — actively entering adoption cycles that overlap with Inkwell evaluations',
+      'High LinkedIn ad spend — major go-to-market investment signals serious commitment',
+      'Brand equity in districts already using McGraw-Hill math or science reduces procurement friction'
+    ]
+  },
+  'HMH Into Reading': {
+    threat:'med', adCount:156,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Houghton+Mifflin+Harcourt',
+    siteUrl:'https://www.hmhco.com/programs/into-reading',
+    messaging:[
+      '"Structured literacy proven to accelerate reading growth"',
+      '"Comprehensive K–6 ELA + assessment in one platform"',
+      '"Data-driven, differentiated instruction for every reader"'
+    ],
+    aiSummary:'HMH is a legacy publisher that has pivoted to structured literacy framing on an existing program. Brand carries weight in traditional district evaluations but lacks the knowledge-building depth of newer programs. <strong>Pattern:</strong> often the "safe choice" for risk-averse administrators — brand familiar, minimal procurement controversy.',
+    signals:[
+      'Aggressive SoR messaging pivot in 2024–25 — rebranding existing Into Reading as structured literacy',
+      'Strong incumbent position in districts already using HMH products across subject areas'
+    ]
+  },
+  'Imagine Learning · Dragonfly': {
+    threat:'high', adCount:203,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Imagine+Learning',
+    siteUrl:'https://www.imaginelearning.com/products/dragonfly',
+    messaging:[
+      '"Dragonfly: Turns classrooms into launchpads of imagination and exploration"',
+      '"Knowledge-rich frameworks that nurture curiosity"',
+      '"Transform literacy into adventure — research-grounded, personalized"',
+      '"The trusted partner that supports every student, educator, classroom, district"'
+    ],
+    aiSummary:'Dragonfly is the <strong>closest messaging competitor to Inkwell</strong> — "curiosity," "imagination," "knowledge-rich frameworks," "adventure." They\'re explicitly going after the same emotional territory with 200+ LinkedIn ads behind it. <strong>Key difference:</strong> their angle is personalization + platform (intervention pairing), not structured inquiry methodology. Counter: our curriculum design builds inquiry dispositions, not just content delivery.',
+    signals:[
+      'Launched 2024–25 — entering adoption cycles directly competing with Inkwell in same districts',
+      '200+ LinkedIn ads — the highest ELA ad spend we\'ve tracked',
+      'Backed by Imagine Learning\'s existing district infrastructure and EdTech relationships'
+    ]
+  },
+  'Savvas · myView Literacy': {
+    threat:'med', adCount:134,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Savvas+Learning+Company',
+    siteUrl:'https://www.savvas.com',
+    messaging:[
+      '"A comprehensive, standards-aligned K–5 ELA program"',
+      '"Science of Reading + project-based learning built in"',
+      '"Personalized pathways + embedded assessment"'
+    ],
+    aiSummary:'Savvas (formerly Pearson K12) is trying to serve both the SoR mandate camp and the inquiry/PBL camp simultaneously. <strong>That ambiguity may be a weakness</strong> — no clear methodological identity. PA state adoption approval gives them a geographic foothold.',
+    signals:[
+      'PA state adoption approval — direct deal competition in that market (relevant given Wilson SD PA closed-lost)',
+      'Large district relationship advantage from legacy Pearson contracts',
+      'Hybrid SoR + PBL positioning may confuse buyers — no clear identity'
+    ]
+  },
+  'Teachers\' Curriculum Institute': {
+    threat:'high', adCount:218,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=TCI+Teaching',
+    siteUrl:'https://tci.com',
+    messaging:[
+      '"Inquiry-based social studies — built for state standards"',
+      '"Rigorous, interactive, teacher-friendly"',
+      '"State-adopted in OR, NY, HI — proven results"',
+      '"The #1 social studies curriculum for K–12"'
+    ],
+    aiSummary:'TCI is the highest-volume ad spender in the IJ competitive set and holds state adoptions in OR, NY, and HI. Their messaging leads with inquiry framing (same lane as IJ) but positions on state alignment and teacher ease. <strong>Key vulnerability:</strong> TCI\'s "inquiry" is structured recitation, not student-driven inquiry. That\'s a meaningful differentiation we underuse in sales conversations.',
+    signals:[
+      'OR, NY, HI state adoption approvals — limits IJ access without adoption status in those markets',
+      '218 LinkedIn ads — highest spend in the entire SS competitive set',
+      'Despite heavy ad spend, not ranking organically for inquiry-based SS terms where IJ holds #1'
+    ]
+  },
+  'Studies Weekly': {
+    threat:'low', adCount:31,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Studies+Weekly',
+    siteUrl:'https://www.studiesweekly.com',
+    messaging:[
+      '"Engaging, newspaper-format social studies for K–6"',
+      '"Real-world connections every week"',
+      '"Flexible, low-prep, standards-aligned"'
+    ],
+    aiSummary:'Studies Weekly is the low-lift, low-cost Status Quo option — the "we need something for SS but it\'s not a priority" purchase. <strong>Displacement opportunity:</strong> they\'re frequently cited as the current solution in IJ discovery calls. Low switching cost makes them easier to displace than a full competing adoption.',
+    signals:[
+      'Frequently the "incumbent" mentioned in IJ prospect discovery calls',
+      'Low switching cost — not entrenched in district curriculum plans the way basal adoptions are'
+    ]
+  },
+  'McGraw-Hill IMPACT': {
+    threat:'med', adCount:187,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=McGraw+Hill',
+    siteUrl:'https://www.mheducation.com/prek-12/program/impact.html',
+    messaging:[
+      '"IMPACT: Comprehensive K–8 social studies built on inquiry"',
+      '"Primary sources, document analysis, civic engagement"',
+      '"Built for the NCSS C3 Framework"'
+    ],
+    aiSummary:'McGraw-Hill IMPACT is the institutional SS competitor — C3 inquiry framing, backed by McGraw-Hill brand and district relationships. <strong>Risk:</strong> districts that want "inquiry-aligned SS" may default to IMPACT on name recognition without ever evaluating IJ. Their inquiry is textbook-heavy vs. IJ\'s discussion-based structure — that contrast should be explicit in positioning.',
+    signals:[
+      'C3 Framework alignment is their primary sales lever — matches IJ\'s pedagogical underpinning exactly',
+      'McGraw-Hill brand recognition from math/science district relationships reduces evaluation friction'
+    ]
+  },
+  'Teaching Strategies': {
+    threat:'high', adCount:94,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Teaching+Strategies',
+    siteUrl:'https://teachingstrategies.com',
+    messaging:[
+      '"Evidence-Based. Classroom-Proven."',
+      '"Real classrooms. Real results."',
+      '"Proven to boost child outcomes, teacher retention, and teacher well-being"',
+      '"45 Years of Industry Leadership — chosen by Head Start for 40+ years"',
+      '"91% of teachers say it\'s engaging; 90% find it easy to use"'
+    ],
+    aiSummary:'Teaching Strategies leads with institutional trust and outcomes data — not methodology or philosophy. Their "45 years + 90% teacher satisfaction" messaging minimizes risk in administrator decision-making. <strong>They are winning GF8 deals on trust + price.</strong> Counter: GF8\'s inquiry approach builds dispositions that Creative Curriculum doesn\'t — but that argument needs to land before budget conversations start.',
+    signals:[
+      'Confirmed: won Newberg SD OR GF8 deal ($8,500) — "adopted Teaching Strategies due to budget constraints"',
+      'Head Start and Title I relationships give access to GF8\'s exact market segment',
+      'Targeting budget-constrained districts — likely positioning on lower total cost of ownership'
+    ]
+  },
+  'Frog Street': {
+    threat:'low', adCount:19,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=Frog+Street',
+    siteUrl:'https://www.frogstreet.com',
+    messaging:[
+      '"Complete Pre-K curriculum with embedded assessment"',
+      '"Research-based, play-inspired, teacher-friendly"',
+      '"Trusted by Head Start programs nationwide"'
+    ],
+    aiSummary:'Frog Street is a Pre-K specialty player — play-based, Head Start-focused, low-pressure. Less of a direct GF8 threat in districts seeking rigorous early literacy outcomes. Main risk is the "easy to implement" purchase decision for small programs with limited PD capacity.',
+    signals:[
+      'Head Start market overlap with GF8\'s primary target segment',
+      'Play-based positioning is meaningfully different from GF8\'s structured inquiry approach'
+    ]
+  },
+  'HighScope': {
+    threat:'med', adCount:22,
+    adUrl:'https://www.linkedin.com/ad-library/?active=true&companyName=HighScope+Educational+Research+Foundation',
+    siteUrl:'https://highscope.org',
+    messaging:[
+      '"Plan-Do-Review: child-initiated learning with adult scaffolding"',
+      '"Research-proven PreK curriculum since 1970"',
+      '"50+ years of longitudinal outcome data — the Perry Preschool Study"'
+    ],
+    aiSummary:'HighScope has an outcomes evidence base no one else can match (Perry Preschool longitudinal data). Their Plan-Do-Review cycle is methodologically close to GF8\'s inquiry approach — child-initiated, adult-scaffolded. <strong>Key differentiation:</strong> GF8 integrates literacy and content knowledge within inquiry; HighScope is more process-oriented and less content-rich.',
+    signals:[
+      'Perry Preschool Study data is their strongest procurement asset — used in every district presentation',
+      'Plan-Do-Review methodology overlap with GF8\'s inquiry framework — worth addressing in competitive positioning',
+      'Primarily a PreK play — less presence in K–2, which is where GF8 has expansion potential'
+    ]
+  }
+};
+
+// ── Build drawer HTML ───────────────────────────────────────────────────────
+function buildDrawer(name) {
+  const d = DRAWER[name];
+  if (!d) return '<p style="padding:1rem;color:#757575;">No detail data available for this competitor.</p>';
+  const threatColor = d.threat === 'high' ? '#F99792' : d.threat === 'med' ? '#F7EC89' : '#EAEEF5';
+  const threatText  = d.threat === 'high' ? '#6B0000' : d.threat === 'med' ? '#5A4A00' : '#515151';
+  const msgs = d.messaging.map(m => `<li>${m}</li>`).join('');
+  const sigs = d.signals.map(s => `<div class="dr-signal-item"><div class="dr-dot"></div><div>${s}</div></div>`).join('');
+  return `
+    <div class="drawer-grid">
+      <div class="drawer-col">
+        <div class="drawer-section-label">Messaging Themes</div>
+        <ul class="drawer-msgs">${msgs}</ul>
+        <div class="drawer-section-label" style="margin-top:1rem;">AI Messaging Read</div>
+        <div class="drawer-ai-summary">${d.aiSummary}</div>
+      </div>
+      <div class="drawer-col">
+        <div class="drawer-section-label">Live Sources</div>
+        <div class="drawer-links">
+          <a href="${d.adUrl}" target="_blank" rel="noopener" class="drawer-link-btn">↗ LinkedIn Ads Library</a>
+          <a href="${d.siteUrl}" target="_blank" rel="noopener" class="drawer-link-btn secondary">↗ Website</a>
+          <span class="drawer-ad-count">${d.adCount} active LinkedIn ads</span>
+        </div>
+        <div class="drawer-section-label" style="margin-top:1rem;">Latest Signals</div>
+        <div class="drawer-signals">${sigs}</div>
+      </div>
+    </div>`;
+}
+
+// ── Wire up expand buttons on load ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.comp-card').forEach(card => {
+    const nameEl = card.querySelector('.comp-name');
+    if (!nameEl) return;
+    const name = nameEl.innerHTML.trim();
+
+    const btn = document.createElement('button');
+    btn.className = 'comp-expand-btn';
+    btn.innerHTML = 'Show more <span class="chevron">⌄</span>';
+    btn.setAttribute('aria-expanded', 'false');
+
+    const drawer = document.createElement('div');
+    drawer.className = 'comp-drawer';
+    drawer.hidden = true;
+
+    btn.addEventListener('click', () => {
+      const open = !drawer.hidden;
+      if (open) {
+        drawer.hidden = true;
+        btn.innerHTML = 'Show more <span class="chevron">⌄</span>';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        if (!drawer.dataset.loaded) {
+          drawer.innerHTML = buildDrawer(name);
+          drawer.dataset.loaded = '1';
+        }
+        drawer.hidden = false;
+        btn.innerHTML = 'Show less <span class="chevron">⌄</span>';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    card.appendChild(btn);
+    card.appendChild(drawer);
+  });
+});
+</script>
+</body>
+</html>
