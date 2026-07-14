@@ -258,11 +258,6 @@ function renderMonthly(d) {
   const sqlToOpp = rate(fu(last, "opp"), fu(last, "sql"));
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar">
-      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · trailing 12 months (${m[0].label} – ${last.label})</span>
-      <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
-    </div>
-
     <!-- HIH HERO -->
     <div class="hih-hero">
       <div class="hih-hero-top">
@@ -631,11 +626,6 @@ function renderWeekly(d) {
   const segGet = (k, s) => (last.by_segment && last.by_segment[k]) ? last.by_segment[k][s] : 0;
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar">
-      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
-      <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
-    </div>
-
     <div class="hih-hero">
       <div class="hih-hero-top">
         <div class="hih-hero-main">
@@ -763,10 +753,6 @@ function renderCampaign(d) {
   const months = d.months || [];
   if (!months.length) {
     document.getElementById("view").innerHTML = `
-      <div class="contextbar">
-        <span class="asof">📅 As of <strong>${d.updated}</strong></span>
-        <span class="timing">Campaign quality — full report is a private DM to Kelsey</span>
-      </div>
       <div class="panel"><h3>Campaign Health — awaiting first run</h3>
         <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (monthly).</p>
         <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong style="color:${gColor(g)}">${g}</strong>`).join(" · ")}.</p>
@@ -842,7 +828,6 @@ function renderCampaign(d) {
     : "").join("");
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group · full detail is a private DM to Kelsey</span></div>
     ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
     <div class="cards">
       ${card("Active campaigns", fmtN(t.active_campaigns ?? camps.length))}
@@ -1047,10 +1032,6 @@ function renderAccountPulse(d) {
     + '</div>';
 
   document.getElementById('view').innerHTML =
-    '<div class="contextbar">'
-    + '<span class="asof">📅 Data as of <strong>' + d.updated + '</strong></span>'
-    + '<span class="timing">' + d.universe + '</span>'
-    + '</div>'
     + openDecisions
 
     // Trend strip
@@ -1135,7 +1116,7 @@ function renderAccountPulse(d) {
 }
 
 function renderCompetitiveIntel() {
-  document.getElementById("updated").textContent = "Updated July 14, 2026";
+  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
   const view = document.getElementById("view");
   view.style.cssText = "padding:0;max-width:none;margin:0;";
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
@@ -1168,7 +1149,7 @@ async function loadTab(tab) {
     const res = await fetch(tab.data, { cache: "no-store" });
     DATA = await res.json();
     const lastRun = DATA.updated || "—";
-    document.getElementById("updated").textContent = DATA.updated ? "Updated " + DATA.updated : "";
+    const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = DATA.updated ? "Updated " + DATA.updated : "";
     renderTabMeta(tab, lastRun);
     tab.render(DATA);
   } catch (e) { document.getElementById("view").innerHTML = `<div class="loading">Could not load ${tab.data} — ${e}</div>`; }
