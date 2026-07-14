@@ -1,25 +1,68 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-07-13",
-  "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts \u2014 a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
+  "updated": "2026-07-14",
+  "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts — a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
   "strategic_groups": [
-    "Evergreen + Thought Leadership",
-    "ABM",
     "Inkwell",
     "Inquiry Journeys",
+    "Evergreen + Thought Leadership",
+    "ABM",
     "Great First Eight"
   ],
-  "months": [],
+  "months": [
+    {
+      "period": "2026-07",
+      "label": "Jul 2026",
+      "run_type": "mid-month",
+      "run_date": "2026-07-14",
+      "verdict": "SY26-27 baseline — lists launched July 13; IJ Product Webinars leads with 6 HIH (75% share); all other campaigns at 0 contacts (run #1, no MoM yet).",
+      "total": {
+        "active_campaigns": 12,
+        "contacts": 8,
+        "hih": 6,
+        "hih_pct": 75.0,
+        "mql": 0,
+        "mql_prior": null
+      },
+      "groups": [
+        {"group": "Inkwell",                       "contacts": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null},
+        {"group": "Inquiry Journeys",              "contacts": 8, "hih": 6, "hih_pct": 75.0, "mql": 0, "mql_prior": null},
+        {"group": "Evergreen + Thought Leadership","contacts": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null},
+        {"group": "ABM",                           "contacts": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null},
+        {"group": "Great First Eight",             "contacts": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null}
+      ],
+      "campaigns": [
+        {"name": "Inkwell K2 Launch",     "group": "Inkwell",                        "channel_type": "content", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "IJ In Practice",        "group": "Inquiry Journeys",               "channel_type": "content", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "IJ Product Webinars",   "group": "Inquiry Journeys",               "channel_type": "event",   "total": 8, "hih": 6, "hih_pct": 75.0, "mql": 0, "mql_prior": null, "intent": {"high": 6, "medium": null, "low": null, "unknown": null}, "flags": ["8 contacts — below 10-contact floor; building for active webinar series"]},
+        {"name": "Inquiry Work Contest",  "group": "Inquiry Journeys",               "channel_type": "content", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Back to School",        "group": "Inquiry Journeys",               "channel_type": "email",   "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Partner Newsletters",   "group": "Inquiry Journeys",               "channel_type": "email",   "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Marketing Nurture",     "group": "Evergreen + Thought Leadership", "channel_type": "nurture", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Evergreen",             "group": "Evergreen + Thought Leadership", "channel_type": "content", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Symposium",             "group": "Evergreen + Thought Leadership", "channel_type": "event",   "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — target-list-driven; engagement-only until list-membership OR added"]},
+        {"name": "Lit Talk with Nell Duke","group": "Evergreen + Thought Leadership","channel_type": "event",   "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]},
+        {"name": "Account Driven",        "group": "ABM",                            "channel_type": "abm",     "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — new SY26-27 list; verify list-membership OR configuration"]},
+        {"name": "GF8 Campaign",          "group": "Great First Eight",              "channel_type": "nurture", "total": 0, "hih": 0, "hih_pct": 0,    "mql": 0, "mql_prior": null, "intent": null, "flags": ["0 contacts — asset-attachment audit recommended"]}
+      ],
+      "flags": [
+        "11 of 12 campaigns at 0 contacts — Day 1 baseline for SY26-27; re-audit at July 28 close-out",
+        "Symposium (10097): target-list-driven; engagement-only until list-membership OR group added",
+        "Account Driven (10216): new SY26-27 list; verify list-membership OR configuration",
+        "Excluded: Conferences_SY2627, Think-Time-with-NCSS_SY2627 (no HubSpot list IDs); Inquiry Week (Mailchimp-only)"
+      ]
+    }
+  ],
   "placeholder": {
-    "state": "awaiting_first_run",
-    "message": "Campaign health data will appear here after the first SY26-27 run (expected July 28, 2026).",
+    "state": "has_data",
+    "message": "First SY26-27 run complete (2026-07-14). Lists went live 2026-07-13.",
     "campaigns_configured": 12,
     "groups": [
-      "Evergreen + Thought Leadership",
-      "ABM",
       "Inkwell",
       "Inquiry Journeys",
+      "Evergreen + Thought Leadership",
+      "ABM",
       "Great First Eight"
     ],
     "panels_planned": [
