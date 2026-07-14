@@ -1,12 +1,19 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
-  { id: "overview", label: "Overview", data: "data/overview.json", render: renderOverview },
-  { id: "monthly", label: "Monthly Digest", data: "data/monthly-digest.json", render: renderMonthly },
-  { id: "weekly", label: "Weekly Digest", data: "data/weekly-digest.json", render: renderWeekly },
-  { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
-  { id: "pulse", label: "Account Pulse (MQA)", data: "data/account-pulse.json", render: renderAccountPulse },
-  { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
-  { id: "competitive", label: "Competitive Intel", static: true, render: renderCompetitiveIntel },
+  { id: "overview",    label: "Overview",           data: "data/overview.json",          render: renderOverview,
+    meta: { desc: "Command center — funnel health, campaign signals, and weekly pulse across all products.", cadence: "Live", next: "Always current" } },
+  { id: "monthly",    label: "Monthly Digest",      data: "data/monthly-digest.json",    render: renderMonthly,
+    meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+  { id: "weekly",     label: "Weekly Digest",       data: "data/weekly-digest.json",     render: renderWeekly,
+    meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "campaign",   label: "Campaign Health",     data: "data/campaign-analytics.json", render: renderCampaign,
+    meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+  { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
+    meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
+    meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
+  { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
+    meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change" } },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
 const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
@@ -1134,16 +1141,35 @@ function renderCompetitiveIntel() {
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
 }
 
+function renderTabMeta(tab, lastRun) {
+  const el = document.getElementById("tab-meta");
+  if (!tab.meta) { el.hidden = true; return; }
+  const { desc, cadence, next } = tab.meta;
+  el.hidden = false;
+  el.innerHTML = `
+    <div class="tab-meta-name">${tab.label}</div>
+    <div class="tab-meta-desc">${desc}</div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRun || "—"}</div></div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${next}</div></div>`;
+}
+
 // ---- shell ----
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").style.cssText = "";
-  if (tab.static) { tab.render(); return; }
+  if (tab.static) {
+    renderTabMeta(tab, "July 14, 2026");
+    tab.render();
+    return;
+  }
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });
     DATA = await res.json();
+    const lastRun = DATA.updated || "—";
     document.getElementById("updated").textContent = DATA.updated ? "Updated " + DATA.updated : "";
+    renderTabMeta(tab, lastRun);
     tab.render(DATA);
   } catch (e) { document.getElementById("view").innerHTML = `<div class="loading">Could not load ${tab.data} — ${e}</div>`; }
 }

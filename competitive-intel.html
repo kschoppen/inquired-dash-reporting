@@ -235,7 +235,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 2px 6px var(--shadow);
     transition: box-shadow 0.2s, transform 0.15s;
   }
@@ -243,6 +243,7 @@
   .comp-card-top {
     padding: 1.1rem 1.25rem 0.9rem;
     border-bottom: 1px solid var(--border);
+    border-radius: 10px 10px 0 0;
     display: flex;
     align-items: flex-start;
     gap: 0.85rem;
@@ -2401,6 +2402,14 @@ function buildDrawer(name) {
 }
 
 // ── Wire up expand buttons on load ─────────────────────────────────────────
+// Hide our own header when embedded inside the reporting dash iframe
+if (window.self !== window.top) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const h = document.querySelector('.site-header');
+    if (h) h.style.display = 'none';
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.comp-card').forEach(card => {
     const nameEl = card.querySelector('.comp-name');
