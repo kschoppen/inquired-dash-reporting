@@ -1174,16 +1174,16 @@ async function loadTab(tab) {
   } catch (e) { document.getElementById("view").innerHTML = `<div class="loading">Could not load ${tab.data} — ${e}</div>`; }
 }
 function switchToTab(id) {
-  const btn = document.querySelector(`.tabs button[data-tabid="${id}"]`);
+  const btn = document.querySelector(`.tabs-btns button[data-tabid="${id}"]`);
   if (btn) btn.click();
 }
 function init() {
-  const nav = document.getElementById("tabs");
+  const nav = document.getElementById("tabs-btns");
   TABS.forEach((tab, i) => {
     const b = document.createElement("button"); b.textContent = tab.label;
     b.setAttribute("data-tabid", tab.id);
     if (i === 0) b.classList.add("active");
-    b.onclick = () => { document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
+    b.onclick = () => { document.querySelectorAll(".tabs-btns button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
     nav.appendChild(b);
   });
   if (TABS.length) loadTab(TABS[0]);
