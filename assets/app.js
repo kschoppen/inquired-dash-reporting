@@ -1032,7 +1032,7 @@ function renderAccountPulse(d) {
     + '</div>';
 
   document.getElementById('view').innerHTML =
-    + openDecisions
+    openDecisions
 
     // Trend strip
     + sectionHdr('★ This week at a glance <span class="muted">(WoW Δ collects after 2+ snapshots)</span>', '#0a7c4a')

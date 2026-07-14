@@ -240,6 +240,21 @@
     transition: box-shadow 0.2s, transform 0.15s;
   }
   .comp-card:hover { box-shadow: 0 6px 18px var(--shadow); transform: translateY(-1px); }
+  .comp-card.expanded {
+    grid-column: 1 / -1;
+    box-shadow: 0 6px 24px var(--shadow);
+    transform: none;
+  }
+  .comp-card.expanded .comp-card-top { border-radius: 10px 10px 0 0; }
+  .comp-card.expanded .comp-expanded-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+  }
+  .comp-card.expanded .comp-card-body {
+    border-right: 1px solid var(--border);
+  }
+  .comp-expanded-layout { display: contents; }
   .comp-card-top {
     padding: 1.1rem 1.25rem 0.9rem;
     border-bottom: 1px solid var(--border);
@@ -970,29 +985,27 @@
   /* ── Competitor expand button + drawer ── */
   .comp-expand-btn {
     display: flex; align-items: center; justify-content: center; gap: 0.35rem;
-    width: calc(100% + 2.5rem); margin: 0.75rem -1.25rem -1.25rem;
-    padding: 0.65rem 1.25rem;
-    background: var(--paper); border: none; border-top: 1px solid var(--border);
+    width: calc(100% + 2.5rem); margin: auto -1.25rem -1.25rem;
+    padding: 0.6rem 1.25rem;
+    background: none; border: none; border-top: 1px solid var(--border);
     border-radius: 0 0 10px 10px;
-    font-size: 0.82rem; font-weight: 700; color: var(--ink-mid);
+    font-size: 0.78rem; font-weight: 700; color: var(--dg);
     cursor: pointer; text-align: center;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.15s;
   }
-  .comp-expand-btn:hover { background: var(--paper-deep); color: var(--dg); }
+  .comp-expand-btn:hover { background: var(--paper-deep); }
   .comp-expand-btn .chevron {
-    display: inline-block; font-style: normal; font-size: 0.9rem;
+    display: inline-block; font-style: normal; font-size: 0.85rem;
     transition: transform 0.2s;
   }
   .comp-expand-btn[aria-expanded="true"] .chevron { transform: rotate(180deg); }
   .comp-drawer {
-    grid-column: 1 / -1;
-    border: 1.5px solid var(--border);
-    border-top: 3px solid var(--dg);
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--border);
     border-radius: 0 0 10px 10px;
     background: var(--paper);
-    padding: 1.25rem 1.5rem;
-    margin-top: -2px;
   }
+  .comp-card:not(.expanded) .comp-drawer { display: none; }
   .drawer-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
   }
@@ -2418,32 +2431,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btn = document.createElement('button');
     btn.className = 'comp-expand-btn';
-    btn.innerHTML = 'Show more <span class="chevron">⌄</span>';
+    btn.innerHTML = 'View details <span class="chevron">⌄</span>';
     btn.setAttribute('aria-expanded', 'false');
 
     const drawer = document.createElement('div');
     drawer.className = 'comp-drawer';
-    drawer.hidden = true;
+
+    // Wrap card-body + drawer in the expanded layout container
+    const body = card.querySelector('.comp-card-body');
+    const layout = document.createElement('div');
+    layout.className = 'comp-expanded-layout';
+    card.insertBefore(layout, body);
+    layout.appendChild(body);
+    layout.appendChild(drawer);
+
+    // Button goes at the bottom of card-body
+    body.appendChild(btn);
 
     btn.addEventListener('click', () => {
-      const open = !drawer.hidden;
+      const open = card.classList.contains('expanded');
       if (open) {
-        drawer.hidden = true;
-        btn.innerHTML = 'Show more <span class="chevron">⌄</span>';
+        card.classList.remove('expanded');
+        btn.innerHTML = 'View details <span class="chevron">⌄</span>';
         btn.setAttribute('aria-expanded', 'false');
       } else {
         if (!drawer.dataset.loaded) {
           drawer.innerHTML = buildDrawer(name);
           drawer.dataset.loaded = '1';
         }
-        drawer.hidden = false;
-        btn.innerHTML = 'Show less <span class="chevron">⌄</span>';
+        card.classList.add('expanded');
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        btn.innerHTML = 'Collapse <span class="chevron">⌄</span>';
         btn.setAttribute('aria-expanded', 'true');
       }
     });
-
-    card.appendChild(btn);
-    card.appendChild(drawer);
   });
 });
 </script>
