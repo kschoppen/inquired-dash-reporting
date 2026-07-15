@@ -14,14 +14,14 @@
   <script src="assets/chart.umd.min.js"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand-main">inquir<span>ED</span> &nbsp;Reporting</div>
+  <nav class="tabs" id="tabs">
+    <div class="brand-main">inquir<span>ED</span>&nbsp;Reporting</div>
+    <div class="tabs-btns" id="tabs-btns"></div>
     <div class="header-right">
       <span class="header-badge">Internal</span>
-      <span class="updated" id="updated"></span>
     </div>
-  </header>
-  <nav class="tabs" id="tabs"></nav>
+  </nav>
+  <div id="tab-meta" class="tab-meta" hidden></div>
   <main id="view"><div class="loading">Loading…</div></main>
   <footer class="foot">
     Internal reporting dashboard · managed in <a href="https://github.com/kschoppen/inquired-dash-reporting" target="_blank" rel="noopener">kschoppen/inquired-dash-reporting</a> · Netlify auto-deploys on push to main

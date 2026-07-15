@@ -1,11 +1,19 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
-  { id: "overview", label: "Overview", data: "data/overview.json", render: renderOverview },
-  { id: "monthly", label: "Monthly Funnel", data: "data/monthly-digest.json", render: renderMonthly },
-  { id: "weekly", label: "Weekly Funnel", data: "data/weekly-digest.json", render: renderWeekly },
-  { id: "campaign", label: "Campaign Health", data: "data/campaign-analytics.json", render: renderCampaign },
-  { id: "pulse", label: "Account Pulse (MQA)", data: "data/account-pulse.json", render: renderAccountPulse },
-  { id: "defs", label: "Definitions", data: "data/definitions.json", render: renderDefinitions },
+  { id: "overview",    label: "Overview",           data: "data/overview.json",          render: renderOverview,
+    meta: { desc: "Command center — funnel health, campaign signals, and weekly pulse across all products.", cadence: "Live", next: "Always current" } },
+  { id: "monthly",    label: "Monthly Digest",      data: "data/monthly-digest.json",    render: renderMonthly,
+    meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+  { id: "weekly",     label: "Weekly Digest",       data: "data/weekly-digest.json",     render: renderWeekly,
+    meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "campaign",   label: "Campaign Health",     data: "data/campaign-analytics.json", render: renderCampaign,
+    meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+  { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
+    meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
+    meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
+  { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
+    meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change" } },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
 const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
@@ -131,11 +139,11 @@ function renderOverview(d) {
     </div>`).join("");
 
   const CARDS = [
-    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Funnel",
+    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Digest",
       desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
       statLabel: "Latest month", statValue: "—", dataFile: "data/monthly-digest.json",
       statFn: (j) => { const m = j.months; return m && m.length ? m[m.length - 1].label : "—"; } },
-    { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Funnel",
+    { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Digest",
       desc: "This week's new contacts, MQL conversions, and a drillable account list. Refreshes every Monday. Use for weekly standups and pipeline reviews.",
       statLabel: "Week of", statValue: "—", dataFile: "data/weekly-digest.json",
       statFn: (j) => { const w = j.weeks; return w && w.length ? w[w.length - 1].label : "—"; } },
@@ -176,16 +184,27 @@ function renderOverview(d) {
       </div>
     </button>`).join("");
 
+  const ws = d.weekly_signal;
+  const weeklySignalHTML = ws ? `
+    <div class="ov-weekly-signal">
+      <div class="ov-ws-meta">
+        <span class="ov-ws-badge">AI Weekly Digest Summary</span>
+        <span class="ov-ws-label">${ws.week_label} · updated ${ws.updated}</span>
+      </div>
+      <div class="ov-ws-narrative">${ws.narrative}</div>
+    </div>` : "";
+
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">
       <div class="ov-narr-meta">
-        <span class="ov-ai-badge">AI Summary</span>
+        <span class="ov-ai-badge">AI Monthly Digest Summary</span>
         <span class="ov-narr-date">Generated ${d.updated} · data through prior month</span>
       </div>
       <div class="ov-narr-headline">${s.headline || ""}</div>
       <div class="ov-narr-body">${s.body || ""}</div>
       <div class="ov-signals">${signals}</div>
     </div>
+    ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
     <div class="ov-section-label">Drill into a dashboard</div>
@@ -239,11 +258,6 @@ function renderMonthly(d) {
   const sqlToOpp = rate(fu(last, "opp"), fu(last, "sql"));
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar">
-      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · trailing 12 months (${m[0].label} – ${last.label})</span>
-      <span class="timing">Close year Oct 1–Sep 30 · district buying peaks Apr–Aug · ⚡ Oct 2025 spike = list upload</span>
-    </div>
-
     <!-- HIH HERO -->
     <div class="hih-hero">
       <div class="hih-hero-top">
@@ -612,11 +626,6 @@ function renderWeekly(d) {
   const segGet = (k, s) => (last.by_segment && last.by_segment[k]) ? last.by_segment[k][s] : 0;
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar">
-      <span class="asof">📅 Data as of <strong>${d.updated}</strong> · last ${w.length} complete weeks</span>
-      <span class="timing">Weekly funnel velocity (ISO weeks) · current partial week excluded</span>
-    </div>
-
     <div class="hih-hero">
       <div class="hih-hero-top">
         <div class="hih-hero-main">
@@ -744,10 +753,6 @@ function renderCampaign(d) {
   const months = d.months || [];
   if (!months.length) {
     document.getElementById("view").innerHTML = `
-      <div class="contextbar">
-        <span class="asof">📅 As of <strong>${d.updated}</strong></span>
-        <span class="timing">Campaign quality — full report is a private DM to Kelsey</span>
-      </div>
       <div class="panel"><h3>Campaign Health — awaiting first run</h3>
         <p class="insight">This tab populates on the next <strong>campaign-analytics-report</strong> run (monthly).</p>
         <p style="font-size:14px;color:#3a3a3a">Strategic groups tracked: ${(d.strategic_groups || []).map((g) => `<strong style="color:${gColor(g)}">${g}</strong>`).join(" · ")}.</p>
@@ -823,7 +828,6 @@ function renderCampaign(d) {
     : "").join("");
 
   document.getElementById("view").innerHTML = `
-    <div class="contextbar"><span class="asof">📅 As of <strong>${d.updated}</strong> · ${last.label}</span><span class="timing">Campaign quality by strategic group · full detail is a private DM to Kelsey</span></div>
     ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
     <div class="cards">
       ${card("Active campaigns", fmtN(t.active_campaigns ?? camps.length))}
@@ -1028,11 +1032,7 @@ function renderAccountPulse(d) {
     + '</div>';
 
   document.getElementById('view').innerHTML =
-    '<div class="contextbar">'
-    + '<span class="asof">📅 Data as of <strong>' + d.updated + '</strong></span>'
-    + '<span class="timing">' + d.universe + '</span>'
-    + '</div>'
-    + openDecisions
+    openDecisions
 
     // Trend strip
     + sectionHdr('★ This week at a glance <span class="muted">(WoW Δ collects after 2+ snapshots)</span>', '#0a7c4a')
@@ -1115,28 +1115,56 @@ function renderAccountPulse(d) {
   });
 }
 
+function renderCompetitiveIntel() {
+  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
+  const view = document.getElementById("view");
+  view.style.cssText = "padding:0;max-width:none;margin:0;";
+  view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
+}
+
+function renderTabMeta(tab, lastRun) {
+  const el = document.getElementById("tab-meta");
+  if (!tab.meta) { el.hidden = true; return; }
+  const { desc, cadence, next } = tab.meta;
+  el.hidden = false;
+  el.innerHTML = `
+    <div class="tab-meta-name">${tab.label}</div>
+    <div class="tab-meta-desc">${desc}</div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRun || "—"}</div></div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${next}</div></div>`;
+}
+
 // ---- shell ----
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
+  document.getElementById("view").style.cssText = "";
+  if (tab.static) {
+    renderTabMeta(tab, "July 14, 2026");
+    tab.render();
+    return;
+  }
   document.getElementById("view").innerHTML = '<div class="loading">Loading…</div>';
   try {
     const res = await fetch(tab.data, { cache: "no-store" });
     DATA = await res.json();
-    document.getElementById("updated").textContent = DATA.updated ? "Updated " + DATA.updated : "";
+    const lastRun = DATA.updated || "—";
+    const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = DATA.updated ? "Updated " + DATA.updated : "";
+    renderTabMeta(tab, lastRun);
     tab.render(DATA);
   } catch (e) { document.getElementById("view").innerHTML = `<div class="loading">Could not load ${tab.data} — ${e}</div>`; }
 }
 function switchToTab(id) {
-  const btn = document.querySelector(`.tabs button[data-tabid="${id}"]`);
+  const btn = document.querySelector(`.tabs-btns button[data-tabid="${id}"]`);
   if (btn) btn.click();
 }
 function init() {
-  const nav = document.getElementById("tabs");
+  const nav = document.getElementById("tabs-btns");
   TABS.forEach((tab, i) => {
     const b = document.createElement("button"); b.textContent = tab.label;
     b.setAttribute("data-tabid", tab.id);
     if (i === 0) b.classList.add("active");
-    b.onclick = () => { document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
+    b.onclick = () => { document.querySelectorAll(".tabs-btns button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
     nav.appendChild(b);
   });
   if (TABS.length) loadTab(TABS[0]);
