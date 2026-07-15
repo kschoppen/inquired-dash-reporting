@@ -1,7 +1,7 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-07-14",
+  "updated": "2026-07-15",
   "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts \u2014 a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
   "strategic_groups": [
     "Evergreen + Thought Leadership",
@@ -14,7 +14,10 @@
     {
       "period": "2026-07",
       "label": "Jul 2026",
-      "verdict": "Run #1 baseline \u2014 SY26-27 lists reset July 13; 12 campaigns confirmed, IJ Product Webinars leads with 6 HIH (75%) in 8 contacts. (No MoM yet \u2014 native trends from run #2.)",
+      "baseline_period": true,
+      "campaigns_readable": 0,
+      "campaigns_total": 12,
+      "verdict": "Baseline month \u2014 all 12 SY26-27 campaigns are accumulating after the July 13 list reset; IJ Product Webinars leads with 6 HIH in 8 contacts but is below the readability floor",
       "total": {
         "active_campaigns": 12,
         "contacts": 8,
@@ -24,22 +27,6 @@
         "mql_prior": null
       },
       "groups": [
-        {
-          "group": "Evergreen + Thought Leadership",
-          "contacts": 0,
-          "hih": 0,
-          "hih_pct": 0,
-          "mql": 0,
-          "mql_prior": null
-        },
-        {
-          "group": "ABM",
-          "contacts": 0,
-          "hih": 0,
-          "hih_pct": 0,
-          "mql": 0,
-          "mql_prior": null
-        },
         {
           "group": "Inkwell",
           "contacts": 0,
@@ -57,6 +44,22 @@
           "mql_prior": null
         },
         {
+          "group": "Evergreen + Thought Leadership",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": null
+        },
+        {
+          "group": "ABM",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": null
+        },
+        {
           "group": "Great First Eight",
           "contacts": 0,
           "hih": 0,
@@ -70,6 +73,7 @@
           "name": "Inkwell K2 Launch",
           "group": "Inkwell",
           "channel_type": "content",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -84,6 +88,7 @@
           "name": "IJ In Practice",
           "group": "Inquiry Journeys",
           "channel_type": "content",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -98,6 +103,7 @@
           "name": "IJ Product Webinars",
           "group": "Inquiry Journeys",
           "channel_type": "event",
+          "readable": false,
           "total": 8,
           "hih": 6,
           "hih_pct": 75.0,
@@ -117,6 +123,7 @@
           "name": "Inquiry Work Contest",
           "group": "Inquiry Journeys",
           "channel_type": "content",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -131,6 +138,7 @@
           "name": "Back to School",
           "group": "Inquiry Journeys",
           "channel_type": "content",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -145,6 +153,7 @@
           "name": "Partner Newsletters",
           "group": "Inquiry Journeys",
           "channel_type": "email",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -159,6 +168,7 @@
           "name": "Marketing Nurture",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "nurture",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -173,6 +183,7 @@
           "name": "Evergreen",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "content",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -187,6 +198,7 @@
           "name": "Symposium",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "event",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -201,6 +213,7 @@
           "name": "Lit Talk with Nell Duke",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "event",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -215,6 +228,7 @@
           "name": "Account Driven",
           "group": "ABM",
           "channel_type": "abm",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -229,6 +243,7 @@
           "name": "GF8 Campaign",
           "group": "Great First Eight",
           "channel_type": "nurture",
+          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
