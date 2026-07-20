@@ -37,16 +37,20 @@ Preserve all other JSON fields — do not delete or restructure.
 
 ## PHASE 2: Competitive intel scan
 
-### Part A — Signal check (WebFetch)
+### Part A — Signal check (WebSearch)
 
-WebFetch each of these 6 competitor sites. Note any obvious new content: new product pages, press releases, major messaging changes, new pricing, new partnerships.
+Do NOT use WebFetch — competitor sites block cloud IPs with 403s. Use WebSearch instead.
 
-- Amplify CKLA: `amplify.com/ela`
-- Great Minds Wit & Wisdom: `greatminds.org/english`
-- Great Minds Arts & Letters: `greatminds.org`
-- Benchmark Education: `benchmarkeducation.com`
-- TCI (Social Studies): `teachtci.com`
-- National Geographic Learning (SS): `ngl.cengage.com/k12`
+For each of these 6 competitors, run a WebSearch for recent news, product updates, press releases, pricing changes, or partnerships from the past 7 days. Search query pattern: `"[company/product name]" (announcement OR launch OR update OR pricing OR partnership) after:YYYY-MM-DD` (use the date 7 days ago).
+
+- Amplify CKLA: search `"Amplify CKLA" OR "Amplify ELA" site:amplify.com OR news`
+- Great Minds Wit & Wisdom: search `"Wit & Wisdom" OR "Great Minds ELA"`
+- Great Minds Arts & Letters: search `"Great Minds" curriculum announcement`
+- Benchmark Education: search `"Benchmark Education" curriculum`
+- TCI (Social Studies): search `"TCI" OR "TeachTCI" social studies curriculum`
+- National Geographic Learning (SS): search `"National Geographic Learning" social studies`
+
+Note any obvious new content: new product pages, press releases, major messaging changes, new pricing, new partnerships. If a search returns nothing newsworthy from the past week, skip — no update needed.
 
 Update `competitive-intel.html` in `inquired-dash-reporting` — DRAWER JS object:
 - Prepend any new signals to each competitor's `signals` array, keep max 5. Format: `[Finding] — [implication for inquirED]`
@@ -155,7 +159,7 @@ Message format (Slack mrkdwn), two parts:
 ---
 *Updated this run:*
 • [✓/✗] Weekly overview + funnel data → data/overview.json + data/weekly-digest.json [N records]
-• [✓/✗] Competitor signals refreshed → competitive-intel.html [N scanned, N new signals]
+• [✓/✗] Competitor signals refreshed → competitive-intel.html [N searched, N new signals]
 • [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]
