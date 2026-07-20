@@ -293,19 +293,18 @@ curl -sS -X POST https://slack.com/api/chat.postMessage \
 ```
 📆 Weekly Marketing Data — [Mon D, YYYY]
 
-[2–3 sentence narrative prose. Numbers woven in naturally — don't open with a raw number or a label. Give the talk-track: what the data means, not just what it says. If nothing unusual happened, "steady" IS the story — say so with the numbers that confirm it.]
+[1–2 sentences: what moved and why. Weave actual numbers in naturally — e.g. "47 High Intent Handraisers came in, up 8% vs last week and in line with July norms. MQL→SQL held at 22%, with IJ driving most lower-funnel movement."]
 
-[Flags block — only include lines that crossed a threshold. Omit entire block if nothing crossed. Max 3 lines total.]
-🔥 [Bright spot: short label — one clause on why it matters]
-⚠️ [Watch item: short label — one clause on what to track]
+🔥 [Bright spot — only include if something crossed +50%. Omit line entirely if not.]
+⚠️ [Watch item — only include if something dropped >10%. Omit line entirely if not.]
 
-Dashboard: https://inquired-marketing-dash.netlify.app/
+📊 Dashboard → https://inquired-marketing-dash.netlify.app/
 ```
 
 **Formatting rules:**
-- Title date: "Jul 7, 2026" format — full date, no ISO week notation
-- Narrative: prose only, no bullets, no tables, no charts, no thread reply
-- Flags: only 🔥 (Δ ≥ +50%), ⚠️ (-10% to -25%), 🚨 (≤ -25%). Omit block entirely if none crossed.
+- Title date: "Jul 14, 2026" format — full date, no ISO week notation
+- Narrative: 1–2 sentences, prose only, no bullets, no tables, no thread reply
+- Flag lines: omit entirely if the threshold wasn't crossed — no placeholder text
 - Dashboard link is always last. All segment/product/disposition/pipeline detail lives there.
 
 **Posting failure = hard stop.** If `chat.postMessage` returns non-`ok:true` or any HTTP error: STOP the run. Do NOT fall back to `slack_send_message` MCP — that posts as Kelsey, not Dash, breaking bot identity. Report the exact error and likely cause (`$DASH_BOT_TOKEN` not set / not in allowlist / token revoked). Nothing else should reach Slack on failure.
