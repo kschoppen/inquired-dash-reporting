@@ -168,6 +168,8 @@ keywords: {
 
 Replace the entire keywords object with fresh data. `greatminds.org` covers both Great Minds entries — use the same data for both. If SEMrush returns no paid data for a domain, set `paid: []`.
 
+**String safety:** keyword strings are written into single-quoted JS literals. Before writing, replace any apostrophe (`'`) in a keyword with a double-quoted wrapper — i.e. use `"keyword with apostrophe's"` instead of `'keyword with apostrophe's'`. Unescaped apostrophes break the entire script block and silently disable the page's expand buttons.
+
 ---
 
 ## PHASE 3: Write data files + push inquired-dash-reporting → Netlify
