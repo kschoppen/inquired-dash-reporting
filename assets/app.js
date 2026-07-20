@@ -190,7 +190,7 @@ function renderOverview(d) {
     return `<div class="ov-weekly-signal${label === "previous" ? " ov-ws-previous" : ""}">
       <div class="ov-ws-meta">
         <span class="ov-ws-badge">AI Weekly Digest Summary</span>
-        <span class="ov-ws-label">${entry.week_label} · updated ${entry.updated}</span>
+        <span class="ov-ws-label">Data pulled ${new Date(entry.updated + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · ${entry.week_label}</span>
       </div>
       <div class="ov-ws-narrative">${entry.narrative}</div>
     </div>`;
