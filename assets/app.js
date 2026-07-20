@@ -1122,17 +1122,31 @@ function renderCompetitiveIntel() {
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
 }
 
+function nextRunLabel(cadence, lastRun) {
+  if (!lastRun || lastRun === "—") return "—";
+  if (cadence === "Weekly · Mondays") {
+    // compute next Monday after lastRun
+    const d = new Date(lastRun + "T12:00:00Z");
+    const day = d.getUTCDay(); // 0=Sun, 1=Mon
+    const daysUntilMonday = day === 1 ? 7 : (8 - day) % 7;
+    d.setUTCDate(d.getUTCDate() + daysUntilMonday);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+  }
+  return null; // use hardcoded meta.next for non-weekly tabs
+}
+
 function renderTabMeta(tab, lastRun) {
   const el = document.getElementById("tab-meta");
   if (!tab.meta) { el.hidden = true; return; }
   const { desc, cadence, next } = tab.meta;
+  const computedNext = nextRunLabel(cadence, lastRun) || next;
   el.hidden = false;
   el.innerHTML = `
     <div class="tab-meta-name">${tab.label}</div>
     <div class="tab-meta-desc">${desc}</div>
     <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRun || "—"}</div></div>
     <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${next}</div></div>`;
+    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>`;
 }
 
 // ---- shell ----
