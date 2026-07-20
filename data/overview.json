@@ -1,17 +1,17 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-07-13",
+  "updated": "2026-07-20",
   "summary": {
     "headline": "Revenue closed $970K in June on the spring buying peak; genuine HIH softened seasonally to 77; funnel totals inflated by a lifecycle import.",
-    "body": "June's headline number is revenue: $970K closed won (34 deals, 82% district) \u2014 the strongest month this fiscal year and on-cycle for the spring\u2013summer district buying peak. Two mega-deals drove it: Idea Public Schools ($641K) and Yonkers ($160K) together = 82% of the total. Genuine demand softened as expected entering summer: HIH at 77 (down from 101 in May, \u221224%) \u2014 seasonal, not a signal problem. MQL/SQL/Opp totals are inflated by a lifecycle import event (~95% OFFLINE-source, no product tagging); product-tagged funnel is flat vs May (IJ HIH 55, SQL 30). Web traffic pulled back to 28,599 sessions (from 39K in May \u2014 normal summer softening). Win rate context: 63% count / 83% dollar on close-date basis, but 13 of 20 losses are aged deals (backlog flush \u2014 not current selling).",
+    "body": "June's headline number is revenue: $970K closed won (34 deals, 82% district) — the strongest month this fiscal year and on-cycle for the spring–summer district buying peak. Two mega-deals drove it: Idea Public Schools ($641K) and Yonkers ($160K) together = 82% of the total. Genuine demand softened as expected entering summer: HIH at 77 (down from 101 in May, −24%) — seasonal, not a signal problem. MQL/SQL/Opp totals are inflated by a lifecycle import event (~95% OFFLINE-source, no product tagging); product-tagged funnel is flat vs May (IJ HIH 55, SQL 30). Web traffic pulled back to 28,599 sessions (from 39K in May — normal summer softening). Win rate context: 63% count / 83% dollar on close-date basis, but 13 of 20 losses are aged deals (backlog flush — not current selling).",
     "signals": [
       {
-        "label": "Revenue $970K \u2014 spring buying peak (on-cycle)",
+        "label": "Revenue $970K — spring buying peak (on-cycle)",
         "dir": "up"
       },
       {
-        "label": "HIH 77 \u2014 seasonal summer softening, expected",
+        "label": "HIH 77 — seasonal summer softening, expected",
         "dir": "watch"
       },
       {
@@ -27,26 +27,26 @@
   "kpis": [
     {
       "label": "HIH Velocity",
-      "value": "77",
-      "delta": "\u221224% MoM",
+      "value": "15",
+      "delta": "−81% vs Jun",
       "delta_dir": "down",
-      "sub": "Seasonal summer dip \u00b7 June",
+      "sub": "Jul MTD (partial) · deep summer low",
       "spark": [
-        36,
         75,
         89,
         70,
         72,
         101,
-        77
+        77,
+        15
       ]
     },
     {
-      "label": "MQL \u2192 SQL Conv.",
-      "value": "~36%",
-      "delta": "import inflates blended",
+      "label": "MQL → SQL Conv.",
+      "value": "85%",
+      "delta": "migration inflated · unreliable",
       "delta_dir": "flat",
-      "sub": "Product-tagged genuine est. \u00b7 June",
+      "sub": "Week of Jul 13 · offline lifecycle still loading",
       "spark": [
         51.5,
         25.5,
@@ -54,31 +54,31 @@
         15.6,
         37.9,
         36.8,
-        36.0
+        85.0
       ]
     },
     {
       "label": "Closed-Won Revenue",
-      "value": "$970K",
-      "delta": "+225% MoM",
-      "delta_dir": "up",
-      "sub": "34 deals \u00b7 spring buying peak",
+      "value": "$704K",
+      "delta": "−27% vs June",
+      "delta_dir": "down",
+      "sub": "44 deals · July MTD",
       "spark": [
-        4,
         104,
         192,
         295,
         299,
         299,
-        970
+        970,
+        704
       ]
     },
     {
       "label": "Web Sessions",
       "value": "28,599",
-      "delta": "\u221227% MoM",
+      "delta": "−27% MoM",
       "delta_dir": "down",
-      "sub": "Summer traffic dip \u00b7 June",
+      "sub": "Summer traffic dip · June",
       "spark": [
         23590,
         17696,
@@ -88,8 +88,8 @@
     }
   ],
   "weekly_signal": {
-    "week_label": "Week of Jul 6",
-    "updated": "2026-07-13",
-    "narrative": "Week of Jul 6: 7 new MQLs (avg), pipeline stable at 3 open opportunities. HIH at 77 \u2014 seasonal summer softening as expected entering summer. No new SQLs this week; 2 deals moved to proposal stage. Focus accounts: Yonkers CSD (active engagement), Idea Public Schools (contract in review)."
+    "week_label": "Week of Jul 13",
+    "updated": "2026-07-20",
+    "narrative": "Week of Jul 13: 27 new MQLs, 23 SQLs, 23 Opps — raw velocity up WoW but MQL→SQL at 85% (23/27) is inflated by ongoing offline lifecycle migration, consistent with prior weeks. HIH at 5 new entries — deepest summer low of the season, expected. Closed-won July MTD: $704K across 44 deals, pacing well for a summer month. Open pipeline: 151 deals (110 district, 41 school). No competitor site signals this run — sites returned 403."
   }
 }
