@@ -1147,11 +1147,14 @@ function renderTabMeta(tab, lastRun) {
   const { desc, cadence, next } = tab.meta;
   const computedNext = nextRunLabel(cadence, lastRun) || next;
   el.hidden = false;
+  const lastRunFormatted = lastRun && lastRun !== "—"
+    ? new Date(lastRun + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })
+    : lastRun || "—";
   el.innerHTML = `
     <div class="tab-meta-name">${tab.label}</div>
     <div class="tab-meta-desc">${desc}</div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRun || "—"}</div></div>
     <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
+    <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRunFormatted}</div></div>
     <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>`;
 }
 
