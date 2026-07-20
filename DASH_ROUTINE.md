@@ -293,7 +293,7 @@ curl -sS -X POST https://slack.com/api/chat.postMessage \
 **Post format:**
 
 ```
-📆 Weekly Marketing Data — [Mon D, YYYY]
+📆 Weekly Marketing Data Dash (Generated [Mon D, YYYY] · Data week of [Mon D, YYYY])
 
 [1–2 sentences: what moved and why. Weave actual numbers in naturally — e.g. "47 High Intent Handraisers came in, up 8% vs last week and in line with July norms. MQL→SQL held at 22%, with IJ driving most lower-funnel movement."]
 
