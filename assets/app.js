@@ -190,7 +190,7 @@ function renderOverview(d) {
     return `<div class="ov-weekly-signal${label === "previous" ? " ov-ws-previous" : ""}">
       <div class="ov-ws-meta">
         <span class="ov-ws-badge">AI Weekly Digest Summary</span>
-        <span class="ov-ws-label">Data pulled ${new Date(entry.updated + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · ${entry.week_label}</span>
+        <span class="ov-ws-label">Generated ${new Date(entry.updated + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · Data week of ${entry.week_label.replace("Week of ", "")+", "+entry.updated.slice(0,4)}</span>
       </div>
       <div class="ov-ws-narrative">${entry.narrative}</div>
     </div>`;
@@ -204,7 +204,7 @@ function renderOverview(d) {
     <div class="ov-narrative">
       <div class="ov-narr-meta">
         <span class="ov-ai-badge">AI Monthly Digest Summary</span>
-        <span class="ov-narr-date">Generated ${d.updated} · data through prior month</span>
+        <span class="ov-narr-date">Generated ${new Date(d.updated + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · Data month of ${(() => { const r = new Date(d.updated + "T12:00:00Z"); r.setUTCMonth(r.getUTCMonth() - 1); return r.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }); })()}</span>
       </div>
       <div class="ov-narr-headline">${s.headline || ""}</div>
       <div class="ov-narr-body">${s.body || ""}</div>
