@@ -185,14 +185,20 @@ function renderOverview(d) {
     </button>`).join("");
 
   const ws = d.weekly_signal;
-  const weeklySignalHTML = ws ? `
-    <div class="ov-weekly-signal">
+  function wsCard(entry, label) {
+    if (!entry) return "";
+    return `<div class="ov-weekly-signal${label === "previous" ? " ov-ws-previous" : ""}">
       <div class="ov-ws-meta">
         <span class="ov-ws-badge">AI Weekly Digest Summary</span>
-        <span class="ov-ws-label">${ws.week_label} · updated ${ws.updated}</span>
+        <span class="ov-ws-label">${entry.week_label} · updated ${entry.updated}</span>
       </div>
-      <div class="ov-ws-narrative">${ws.narrative}</div>
-    </div>` : "";
+      <div class="ov-ws-narrative">${entry.narrative}</div>
+    </div>`;
+  }
+  // Support both old flat shape and new {current, previous} shape
+  const wsCurrent = ws && ws.current ? ws.current : ws;
+  const wsPrevious = ws && ws.previous ? ws.previous : null;
+  const weeklySignalHTML = ws ? wsCard(wsCurrent) + wsCard(wsPrevious, "previous") : "";
 
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">

@@ -4,14 +4,14 @@
   "updated": "2026-07-20",
   "summary": {
     "headline": "Revenue closed $970K in June on the spring buying peak; genuine HIH softened seasonally to 77; funnel totals inflated by a lifecycle import.",
-    "body": "June's headline number is revenue: $970K closed won (34 deals, 82% district) — the strongest month this fiscal year and on-cycle for the spring–summer district buying peak. Two mega-deals drove it: Idea Public Schools ($641K) and Yonkers ($160K) together = 82% of the total. Genuine demand softened as expected entering summer: HIH at 77 (down from 101 in May, −24%) — seasonal, not a signal problem. MQL/SQL/Opp totals are inflated by a lifecycle import event (~95% OFFLINE-source, no product tagging); product-tagged funnel is flat vs May (IJ HIH 55, SQL 30). Web traffic pulled back to 28,599 sessions (from 39K in May — normal summer softening). Win rate context: 63% count / 83% dollar on close-date basis, but 13 of 20 losses are aged deals (backlog flush — not current selling).",
+    "body": "June's headline number is revenue: $970K closed won (34 deals, 82% district) \u2014 the strongest month this fiscal year and on-cycle for the spring\u2013summer district buying peak. Two mega-deals drove it: Idea Public Schools ($641K) and Yonkers ($160K) together = 82% of the total. Genuine demand softened as expected entering summer: HIH at 77 (down from 101 in May, \u221224%) \u2014 seasonal, not a signal problem. MQL/SQL/Opp totals are inflated by a lifecycle import event (~95% OFFLINE-source, no product tagging); product-tagged funnel is flat vs May (IJ HIH 55, SQL 30). Web traffic pulled back to 28,599 sessions (from 39K in May \u2014 normal summer softening). Win rate context: 63% count / 83% dollar on close-date basis, but 13 of 20 losses are aged deals (backlog flush \u2014 not current selling).",
     "signals": [
       {
-        "label": "Revenue $970K — spring buying peak (on-cycle)",
+        "label": "Revenue $970K \u2014 spring buying peak (on-cycle)",
         "dir": "up"
       },
       {
-        "label": "HIH 77 — seasonal summer softening, expected",
+        "label": "HIH 77 \u2014 seasonal summer softening, expected",
         "dir": "watch"
       },
       {
@@ -28,9 +28,9 @@
     {
       "label": "HIH Velocity",
       "value": "15",
-      "delta": "−81% vs Jun",
+      "delta": "\u221281% vs Jun",
       "delta_dir": "down",
-      "sub": "Jul MTD (partial) · deep summer low",
+      "sub": "Jul MTD (partial) \u00b7 deep summer low",
       "spark": [
         75,
         89,
@@ -42,11 +42,11 @@
       ]
     },
     {
-      "label": "MQL → SQL Conv.",
+      "label": "MQL \u2192 SQL Conv.",
       "value": "85%",
-      "delta": "migration inflated · unreliable",
+      "delta": "migration inflated \u00b7 unreliable",
       "delta_dir": "flat",
-      "sub": "Week of Jul 13 · offline lifecycle still loading",
+      "sub": "Week of Jul 13 \u00b7 offline lifecycle still loading",
       "spark": [
         51.5,
         25.5,
@@ -60,9 +60,9 @@
     {
       "label": "Closed-Won Revenue",
       "value": "$704K",
-      "delta": "−27% vs June",
+      "delta": "\u221227% vs June",
       "delta_dir": "down",
-      "sub": "44 deals · July MTD",
+      "sub": "44 deals \u00b7 July MTD",
       "spark": [
         104,
         192,
@@ -76,9 +76,9 @@
     {
       "label": "Web Sessions",
       "value": "28,599",
-      "delta": "−27% MoM",
+      "delta": "\u221227% MoM",
       "delta_dir": "down",
-      "sub": "Summer traffic dip · June",
+      "sub": "Summer traffic dip \u00b7 June",
       "spark": [
         23590,
         17696,
@@ -88,8 +88,11 @@
     }
   ],
   "weekly_signal": {
-    "week_label": "Week of Jul 13",
-    "updated": "2026-07-20",
-    "narrative": "Week of Jul 13: 27 new MQLs, 23 SQLs, 23 Opps — raw velocity up WoW but MQL→SQL at 85% (23/27) is inflated by ongoing offline lifecycle migration, consistent with prior weeks. HIH at 5 new entries — deepest summer low of the season, expected. Closed-won July MTD: $704K across 44 deals, pacing well for a summer month. Open pipeline: 151 deals (110 district, 41 school). No competitor site signals this run — sites returned 403."
+    "current": {
+      "week_label": "Week of Jul 13",
+      "updated": "2026-07-20",
+      "narrative": "Week of Jul 13: 27 new MQLs, 23 SQLs, 23 Opps \u2014 raw velocity up WoW but MQL\u2192SQL at 85% (23/27) is inflated by ongoing offline lifecycle migration, consistent with prior weeks. HIH at 5 new entries \u2014 deepest summer low of the season, expected. Closed-won July MTD: $704K across 44 deals, pacing well for a summer month. Open pipeline: 151 deals (110 district, 41 school). No competitor site signals this run \u2014 sites returned 403."
+    },
+    "previous": null
   }
 }

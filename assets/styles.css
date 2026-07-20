@@ -439,6 +439,12 @@ details.kwd table { margin-top: 8px; }
 .ov-ws-narrative {
   font-size: 14px; color: var(--body); line-height: 1.65; max-width: 720px;
 }
+.ov-ws-previous {
+  opacity: 0.6;
+  margin-top: -12px;
+  border-left-color: rgba(75,119,116,0.45);
+  background: rgba(75,119,116,0.03);
+}
 
 .ov-kpi-strip {
   display: grid;
