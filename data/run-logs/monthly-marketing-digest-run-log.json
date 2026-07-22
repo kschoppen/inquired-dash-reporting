@@ -1,0 +1,456 @@
+[
+  {
+    "run_date": "2026-07-22",
+    "period_label": "2026-06",
+    "window_current": [
+      "2026-06-01",
+      "2026-06-30"
+    ],
+    "window_prior": [
+      "2026-05-01",
+      "2026-05-31"
+    ],
+    "slack_message_ts": "1784723515.885619",
+    "totals": {
+      "hih_current": 76,
+      "hih_prior": 98,
+      "hih_mom_pct": -22.4,
+      "mql_current": 336,
+      "mql_prior": 142,
+      "mql_mom_pct": 136.6,
+      "sql_current": 276,
+      "sql_prior": 281,
+      "sql_mom_pct": -1.8,
+      "opp_current": 67,
+      "opp_prior": 66,
+      "opp_mom_pct": 1.5,
+      "mql_to_sql_rate_pct": 82.1
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          54,
+          79
+        ],
+        "mql": [
+          69,
+          73
+        ],
+        "sql": [
+          30,
+          28
+        ],
+        "opp": [
+          33,
+          28
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          9,
+          15
+        ],
+        "mql": [
+          16,
+          21
+        ],
+        "sql": [
+          5,
+          0
+        ],
+        "opp": [
+          5,
+          1
+        ]
+      },
+      "wh": {
+        "hih": [
+          21,
+          15
+        ],
+        "mql": [
+          20,
+          16
+        ],
+        "sql": [
+          4,
+          4
+        ],
+        "opp": [
+          5,
+          4
+        ]
+      },
+      "gf8": null
+    },
+    "coverage_pct": {
+      "hih": 94.7,
+      "mql": 27.4,
+      "sql": 13.0,
+      "opp": 59.7
+    },
+    "revenue": {
+      "district_won_count": 22,
+      "district_won_revenue": 924843.86,
+      "school_won_count": 12,
+      "school_won_revenue": 45285.08,
+      "total_won_count": 34,
+      "total_won_revenue": 970128.94,
+      "nb_won_count": 29,
+      "nb_won_revenue": 970128.94,
+      "existing_won_count": 5,
+      "existing_won_revenue": 0.0,
+      "pilot_count_zero_amount": 6,
+      "paid_deal_count": 28,
+      "avg_paid_deal_size": 34647.46,
+      "closed_lost_count": 20,
+      "closed_lost_revenue": 203614.0,
+      "win_rate_monthly_count_pct": 63.0,
+      "win_rate_monthly_dollar_pct": 82.7,
+      "win_rate_nb_count_pct": 60.4,
+      "by_segment": {
+        "single_small": {
+          "won_count": 23,
+          "lost_count": 14,
+          "won_revenue": 92833.98,
+          "lost_revenue": 39443.0,
+          "win_rate_count_pct": 62.2,
+          "win_rate_dollar_pct": 70.2
+        },
+        "medium": {
+          "won_count": 3,
+          "lost_count": 5,
+          "won_revenue": 9450.0,
+          "lost_revenue": 114171.0,
+          "win_rate_count_pct": 37.5,
+          "win_rate_dollar_pct": 7.6
+        },
+        "large": {
+          "won_count": 3,
+          "lost_count": 1,
+          "won_revenue": 58365.36,
+          "lost_revenue": 50000.0,
+          "win_rate_count_pct": 75.0,
+          "win_rate_dollar_pct": 53.9
+        },
+        "enterprise": {
+          "won_count": 4,
+          "lost_count": 0,
+          "won_revenue": 800540.6,
+          "lost_revenue": 0,
+          "win_rate_count_pct": 100.0,
+          "win_rate_dollar_pct": 100.0
+        }
+      },
+      "cumulative_fytd": {
+        "fiscal_year_start": "2025-10-01",
+        "won_count": null,
+        "lost_count": null,
+        "win_rate_count_pct": null,
+        "win_rate_dollar_pct": null,
+        "win_rate_nb_count_pct": null,
+        "by_segment": {},
+        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+      },
+      "segment_coverage_pct": 100.0,
+      "dealtype_unclassified_count": 1,
+      "rfp_excluded_count": 0,
+      "rfp_excluded_revenue": 0,
+      "possible_unflagged_rfp": [],
+      "backlog_flush_flag": true,
+      "backlog_flush_detail": "13 of 20 losses aged >90d",
+      "test_deals_excluded": 0
+    },
+    "pipeline": {
+      "district_open_deals": 109,
+      "school_open_deals": 37,
+      "district_open_by_segment": {
+        "unassigned": {
+          "count": 5,
+          "amount": 120452.33
+        },
+        "single_small": {
+          "count": 31,
+          "amount": 403275.25
+        },
+        "medium": {
+          "count": 45,
+          "amount": 687458.52
+        },
+        "large": {
+          "count": 16,
+          "amount": 971423.91
+        },
+        "enterprise": {
+          "count": 10,
+          "amount": 706354
+        },
+        "other": {
+          "count": 2,
+          "amount": 18500
+        }
+      }
+    },
+    "breakouts": {
+      "sql_by_source_top5": [
+        [
+          "OFFLINE",
+          190
+        ],
+        [
+          "DIRECT_TRAFFIC",
+          7
+        ],
+        [
+          "EMAIL_MARKETING",
+          2
+        ],
+        [
+          "ORGANIC_SEARCH",
+          1
+        ]
+      ],
+      "top_campaigns_top5": [],
+      "utm_completeness_pct": 2.1
+    },
+    "hubspot_marketing_email": {
+      "sends": null,
+      "delivered": null,
+      "open_rate_pct": null,
+      "ctr_pct": null,
+      "top_performer": {
+        "id": "",
+        "name": "",
+        "sent": 0,
+        "open_rate_pct": 0,
+        "ctr_pct": 0
+      },
+      "low_ctr_flags": [],
+      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
+    },
+    "mailchimp": {
+      "sends": 17191,
+      "delivered": 17191,
+      "open_rate_pct": 29.3,
+      "ctr_pct": 4.9,
+      "top_performer": {
+        "id": "a9c7421aab",
+        "title": "May PE Newsletter (copy 01)",
+        "sent": 17191,
+        "open_rate_pct": 29.3,
+        "ctr_pct": 4.9,
+        "top_links": [
+          {
+            "url": "https://hub.inquired.com/student/path/1505761-end-of-year-reflection",
+            "clicks": 1664
+          },
+          {
+            "url": "https://www.inquired.org/post/storytime-in-social-studies-using-picture-books-across-an-inquiry",
+            "clicks": 1658
+          },
+          {
+            "url": "https://www.inquired.org/post/inquiry-skills-in-social-studies",
+            "clicks": 1648
+          }
+        ]
+      },
+      "low_ctr_flags": []
+    },
+    "ga4": {
+      "sessions": 28599,
+      "active_users": 10971,
+      "page_views": 27167,
+      "top_pages_top5": [
+        [
+          "/",
+          9928
+        ],
+        [
+          "/careers",
+          2412
+        ],
+        [
+          "/inquiry-based-social-studies/elementary-curriculum",
+          2087
+        ],
+        [
+          "/integrated-ela-curriculum/elementary-curriculum",
+          859
+        ],
+        [
+          "/webinar-sign-up/social-studies",
+          855
+        ]
+      ],
+      "top_sources_top5": [
+        [
+          "google",
+          14589
+        ],
+        [
+          "(direct)",
+          10540
+        ],
+        [
+          "hs_email",
+          956
+        ],
+        [
+          "inquired.storylane.io",
+          520
+        ],
+        [
+          "(not set)",
+          464
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "(direct)",
+          10540
+        ],
+        [
+          "(organic)",
+          9897
+        ],
+        [
+          "Sonar | Brand | Search",
+          2547
+        ],
+        [
+          "(referral)",
+          1615
+        ],
+        [
+          "Sonar | Social Studies | PMax",
+          850
+        ]
+      ],
+      "sessions_by_content_group": {
+        "(not set)": 21317,
+        "Other": 8589,
+        "Inquiry Journeys": 998,
+        "Inkwell": 236
+      },
+      "content_group_populated": true,
+      "engaged_pct": 74.1,
+      "channels": [
+        [
+          "Organic Search",
+          9908
+        ],
+        [
+          "Direct",
+          10540
+        ],
+        [
+          "Paid Search",
+          3529
+        ],
+        [
+          "Email",
+          1066
+        ],
+        [
+          "Referral",
+          1321
+        ],
+        [
+          "Organic Social",
+          330
+        ],
+        [
+          "Other",
+          2147
+        ]
+      ],
+      "conversions": [
+        [
+          "Form thank-you",
+          235
+        ],
+        [
+          "Resource downloads",
+          294
+        ],
+        [
+          "Webinar signups",
+          333
+        ],
+        [
+          "Contact sales",
+          57
+        ],
+        [
+          "Curriculum guide",
+          1
+        ]
+      ],
+      "yoy": {
+        "sessions": 9508,
+        "users": 7404,
+        "views": 11179
+      }
+    },
+    "semrush": {
+      "project_id": "30090954",
+      "tracked_keywords_total": null,
+      "keywords_in_top_10": null,
+      "keywords_in_top_10_prior": null,
+      "avg_position": null,
+      "avg_position_prior": null,
+      "top_movers_up": [],
+      "top_movers_down": [],
+      "top_performers": [],
+      "api_status": "error \u2014 project 30090954 confirmed valid (Management API: OWNER access, tracking tool enabled) but tracking_position_organic / REST tracking endpoint returns 'campaign not found' for campaign_id=30090954. campaigns listing for the project returns null targets. Needs Semrush account investigation to find correct campaign_id. Section skipped this run.",
+      "gsc": {
+        "property": "inquired.com",
+        "clicks_total": null,
+        "clicks_total_prior": null,
+        "impressions_total": null,
+        "impressions_total_prior": null,
+        "avg_ctr_pct": null,
+        "avg_position_actual": null,
+        "top_queries_by_clicks_top5": [],
+        "optimization_targets_top5": [],
+        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+      }
+    },
+    "paid_ads": {
+      "google_ads": {
+        "spend": null,
+        "impressions": null,
+        "clicks": null,
+        "ctr_pct": null,
+        "top_campaign": "",
+        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN not configured"
+      },
+      "linkedin": {
+        "spend": null,
+        "impressions": null,
+        "clicks": null,
+        "ctr_pct": null,
+        "top_campaign": "",
+        "api_status": "unreachable \u2014 api.linkedin.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
+      }
+    },
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Lifecycle import suspected in MQL/SQL: MQL +137% MoM (336 vs 142), SQL sample is 95% OFFLINE-sourced (190/200) with 0% utm_campaign presence in-sample; 73% of MQLs (244/336) and 87% of SQLs (240/276) have no product_interest set. Product-tagged funnel (IJ/Inkwell/WH) is roughly flat MoM. Treat headline MQL/SQL/MQL-to-SQL-rate as inflated; the by-product figures are the clean read.",
+      "UTM completeness collapsed to 2.1% (14/683 new contacts) from 24.8% in May \u2014 well below the 30% healthy threshold and a large MoM drop; likely tied to the same lifecycle import (offline-sourced contacts lack UTM by nature).",
+      "product_interest is a multi-select property for contacts \u2014 by-product funnel counts are directional and will not sum to stage totals (contacts can carry more than one product interest).",
+      "MQL coverage 27.4% and SQL coverage 13.0% (both current month) are below the 30% coverage threshold \u2014 flagged per Step 6.",
+      "Win rate depressed by backlog flush: 13 of 20 closed-lost deals (65%) were created >90 days before window start \u2014 this month's monthly win rate reflects stale-deal cleanup, not current selling velocity.",
+      "Medium segment lost the month: 3 won ($9,450) vs 5 lost ($114,171) \u2014 37.5% count / 7.6% dollar win rate, while Enterprise and Single/Small carried the blended rate.",
+      "Revenue concentration: 2 deals (Idea Public Schools $640,511 + Yonkers $160,030) = 82.5% of total won revenue ($970,129) \u2014 hold as context, not broad-based momentum.",
+      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
+      "LinkedIn Ads API unreachable this run \u2014 api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
+      "Google Ads data unavailable (credentials not configured) \u2014 GOOGLE_ADS_DEVELOPER_TOKEN not set; soft-skipped per SKILL.md.",
+      "Semrush Position Tracking unavailable \u2014 project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the tracking campaign itself returns 'campaign not found' via both the REST endpoint and the equivalent Semrush MCP report; project's campaign listing returns null targets. Needs Semrush account-side investigation. SEO section skipped.",
+      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps deal-inclusion-rule reconciliation.",
+      "A pre-existing '2026-06' entry was already present in monthly-digest.json (missing required 'label' field, funnel.opp=281 which looks swapped with the prior-month SQL count, and a differently-worded SEO gap note) \u2014 this run's freshly-pulled, cross-verified figures replaced it per the upsert rule.",
+      "xlsx upload to Slack thread failed \u2014 files.slack.com blocked by sandbox egress policy (403 on CONNECT); file bytes never reached Slack despite files.completeUploadExternal returning ok:true. Local copy saved at Reporting/monthly-marketing-digest-2026-06.xlsx; posted a one-line follow-up in the Slack thread."
+    ]
+  }
+]
