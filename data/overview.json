@@ -1,7 +1,7 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-07-22",
+  "updated": "2026-07-27",
   "summary": {
     "headline": "June closed $970K on the spring buying peak; HIH softened seasonally to 76; MQL/SQL inflated by an offline lifecycle import.",
     "body": "June's story is revenue: $970,129 closed won across 34 deals (63% win rate by count, 83% by dollar) \u2014 the strongest month this fiscal year and on-cycle for the spring-summer district buying peak, though 82% of it came from two deals (Idea Public Schools $641K, Yonkers $160K). Genuine demand softened as expected heading into summer: HIH came in at 76, down 22% from May's 101, which is seasonal, not a signal problem. MQL and SQL totals are inflated by a large offline lifecycle import (95% OFFLINE-sourced, no UTM); the product-tagged funnel is roughly flat versus May (IJ 54 HIH, 30 SQL). Two watch items: UTM completeness collapsed to 2.1%, and Medium-segment deals lost the month (3 won vs 5 lost, $114K in losses).",
@@ -78,10 +78,14 @@
   ],
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Jul 20",
+      "updated": "2026-07-27",
+      "narrative": "MQL came in at 40 this week (Jul 20\u201326), up 48% from 27 the prior week and the strongest MQL week since late June, with Single/Small inbound driving 67% of new qualified leads. SQL and Opp both held at 27, and MQL\u2192SQL sits at 67.5% \u2014 still elevated by the ongoing offline lifecycle migration. HIH remained flat at 5, a deep-summer seasonal low, while open pipeline stays strong at 104 district and 34 school deals. Closed-won July MTD has reached approximately $700K across 56 deals."
+    },
+    "previous": {
       "week_label": "Week of Jul 13",
       "updated": "2026-07-20",
       "narrative": "Week of Jul 13: 27 new MQLs, 23 SQLs, 23 Opps \u2014 raw velocity up WoW but MQL\u2192SQL at 85% (23/27) is inflated by ongoing offline lifecycle migration, consistent with prior weeks. HIH at 5 new entries \u2014 deepest summer low of the season, expected. Closed-won July MTD: $704K across 44 deals, pacing well for a summer month. Open pipeline: 151 deals (110 district, 41 school). No competitor site signals this run \u2014 sites returned 403."
-    },
-    "previous": null
+    }
   }
 }
