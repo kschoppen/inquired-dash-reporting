@@ -1,0 +1,173 @@
+[
+  {
+    "run_date": "2026-07-27",
+    "period_label": "2026-W30",
+    "window_current": [
+      "2026-07-20",
+      "2026-07-26"
+    ],
+    "window_prior": [
+      "2026-07-13",
+      "2026-07-19"
+    ],
+    "slack_message_ts": "1785149176.778829",
+    "totals": {
+      "hih_current": 5,
+      "hih_prior": 5,
+      "hih_wow_pct": 0,
+      "mql_current": 40,
+      "mql_prior": 27,
+      "mql_wow_pct": 48,
+      "sql_current": 27,
+      "sql_prior": 23,
+      "sql_wow_pct": 17,
+      "opp_current": 27,
+      "opp_prior": 23,
+      "opp_wow_pct": 17
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          4,
+          5
+        ],
+        "mql": [
+          10,
+          9
+        ],
+        "sql": [
+          4,
+          7
+        ],
+        "opp": [
+          4,
+          7
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          7,
+          3
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "wh": null,
+      "gf8": null
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          2,
+          2
+        ],
+        "mql": [
+          27,
+          11
+        ],
+        "sql": [
+          22,
+          13
+        ],
+        "opp": [
+          22,
+          13
+        ]
+      },
+      "medium": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          1,
+          7
+        ],
+        "sql": [
+          1,
+          6
+        ],
+        "opp": [
+          1,
+          6
+        ]
+      },
+      "large": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          0,
+          0
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          1,
+          1
+        ],
+        "mql": [
+          1,
+          2
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 80,
+        "mql": 43,
+        "sql": 15,
+        "opp": 15
+      },
+      "segment": {
+        "hih": 60,
+        "mql": 73,
+        "sql": 85,
+        "opp": 85
+      }
+    },
+    "disposition": {
+      "disqualified_current": 100,
+      "disqualified_prior": 170,
+      "entered_nurture_current": 47,
+      "entered_nurture_prior": 119
+    },
+    "pipeline": {
+      "district_open_deals": 104,
+      "school_open_deals": 34
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Product coverage below 30% for SQL (14.8%) and Opp (14.8%) \u2014 consistent with ongoing offline lifecycle migration",
+      "Run log not found \u2014 first run, prior window re-pulled from HubSpot"
+    ]
+  }
+]

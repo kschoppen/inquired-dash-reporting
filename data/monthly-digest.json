@@ -1,7 +1,7 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Digest",
-  "updated": "2026-07-09",
+  "updated": "2026-07-22",
   "fiscal_year_start_month": 10,
   "seasonality": {
     "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
@@ -1173,19 +1173,19 @@
     },
     {
       "period": "2026-06",
+      "label": "Jun 2026",
       "funnel": {
-        "hih": 77,
+        "hih": 76,
         "mql": 336,
         "sql": 276,
-        "opp": 281,
-        "lead": 259
+        "opp": 67
       },
       "revenue": {
         "district_won": 924843.86,
         "school_won": 45285.08,
         "total_won": 970128.94,
         "nb_won": 970128.94,
-        "existing_won": 0,
+        "existing_won": 0.0,
         "wins": 34,
         "win_rate_count_pct": 63.0,
         "win_rate_dollar_pct": 82.7,
@@ -1212,32 +1212,32 @@
         "sessions": 28599,
         "users": 10971,
         "views": 27167,
-        "engaged_pct": 74.1,
         "yoy": {
           "sessions": 9508,
           "users": 7404,
           "views": 11179
         },
+        "engaged_pct": 74.1,
         "channels": [
-          [
-            "Direct",
-            10540
-          ],
           [
             "Organic Search",
             9908
+          ],
+          [
+            "Direct",
+            10540
           ],
           [
             "Paid Search",
             3529
           ],
           [
-            "Referral",
-            1321
-          ],
-          [
             "Email",
             1066
+          ],
+          [
+            "Referral",
+            1321
           ],
           [
             "Organic Social",
@@ -1250,20 +1250,20 @@
         ],
         "conversions": [
           [
-            "Resource downloads",
-            294
-          ],
-          [
             "Form thank-you",
             235
           ],
           [
-            "Contact sales",
-            57
+            "Resource downloads",
+            294
           ],
           [
             "Webinar signups",
             333
+          ],
+          [
+            "Contact sales",
+            57
           ],
           [
             "Curriculum guide",
@@ -1271,38 +1271,45 @@
           ]
         ]
       },
-      "seo": null,
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null,
+        "ranked": null
+      },
       "by_product": {
         "ij": {
-          "hih": 55,
-          "mql": 71,
+          "hih": 54,
+          "mql": 69,
           "sql": 30
         },
         "inkwell": {
           "hih": 9,
-          "mql": 15,
+          "mql": 16,
           "sql": 5
         },
         "wh": {
-          "hih": 22,
-          "mql": 21,
+          "hih": 21,
+          "mql": 20,
           "sql": 4
         },
         "gf8": {
-          "hih": null,
+          "hih": 3,
           "mql": 5,
-          "sql": null
+          "sql": 0
         }
       },
       "rev_by_product": {
         "ij": 964368.94,
         "inkwell": 4640,
         "wh": 181043.93,
-        "gf8": 0
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional; won't sum to totals"
       },
       "quality": {
-        "mql_to_sql_pct": 82.14,
-        "utm_completeness_pct": 2.05,
+        "mql_to_sql_pct": 82.1,
+        "utm_completeness_pct": 2.1,
+        "utm_gap_flag": "UTM completeness collapsed to 2.1% (14/683) from 24.8% in May \u2014 severe drop, tied to offline lifecycle import which lacks UTM by nature.",
         "sql_by_source": [
           [
             "OFFLINE",
@@ -1320,12 +1327,13 @@
             "ORGANIC_SEARCH",
             1
           ]
-        ]
+        ],
+        "top_utm_campaigns": []
       },
       "hih_by_source": [
         [
           "Direct",
-          66
+          65
         ],
         [
           "Paid Search",
@@ -1336,86 +1344,70 @@
           4
         ],
         [
-          "AI Tool / LLM",
+          "Other Campaigns",
           1
         ],
         [
-          "Other campaigns",
+          "AI Referrals",
           1
         ]
       ],
       "deals": [
         {
-          "name": "Bellevue School District - Add Ons",
-          "segment": "Large",
-          "pipeline": "District",
-          "type": "Add On",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61205703965"
-        },
-        {
-          "name": "San Francisco Unified School District, Add Ons",
+          "name": "Idea Public Schools (District), TX - IJ K - 5 + PM & TE",
           "segment": "Enterprise",
           "pipeline": "District",
-          "type": "Add On",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61129284409"
+          "type": "newbusiness",
+          "amount": 640511.1,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/18150956170"
         },
         {
-          "name": "Alameda Unified School District, CA - Books",
+          "name": "Yonkers City School District, NY - SS Pilot Expansion - Grades k-6",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 160029.5,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/31201270425"
+        },
+        {
+          "name": "Lakeville Public School District, MN - SS Pilot Expansion",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 58365.36,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40397186691"
+        },
+        {
+          "name": "Central Queens Academy Charter School 1, NY - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 9900.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58289365668"
+        },
+        {
+          "name": "South Windsor Public Schools, CT, SS",
           "segment": "Medium",
           "pipeline": "District",
-          "type": "Add On",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60962199625"
-        },
-        {
-          "name": "Cape Elizabeth School Department, ME - 5th + 6th",
-          "segment": "Single/Small",
-          "pipeline": "District",
           "type": "Pilot",
-          "amount": 4646.4,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60846292908"
+          "amount": 9450.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/15343124586"
         },
         {
-          "name": "Idea Public Schools - TX, - Regional Academic Leaders Printed Materials",
-          "segment": "Enterprise",
+          "name": "The Menta Group, IL - SS Pilot Expansion",
+          "segment": "Other",
           "pipeline": "District",
-          "type": "newbusiness",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60459535699"
+          "type": "Pilot Expansion",
+          "amount": 8939.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/37294415373"
         },
         {
-          "name": "Athena-Weston School District, OR - SS",
+          "name": "Central Queens Academy Charter School #2, NY - SS",
           "segment": "Single/Small",
-          "pipeline": "District",
+          "pipeline": "School",
           "type": "newbusiness",
-          "amount": 3915,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59419222153"
-        },
-        {
-          "name": "Allendale School District, NJ - WH only",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "newbusiness",
-          "amount": 2760,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59369633931"
-        },
-        {
-          "name": "Syracuse City School District, NY - PD",
-          "segment": "Large",
-          "pipeline": "District",
-          "type": "Add On",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58295772306"
-        },
-        {
-          "name": "Martensdale-st Marys Community School District, IA - SS",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "Pilot",
-          "amount": 2573.6,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57019346246"
+          "amount": 7800.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57856101428"
         },
         {
           "name": "Elizabethtown Independent Schools, KY - SS Pilot Expansion",
@@ -1438,227 +1430,8 @@
           "segment": "Single/Small",
           "pipeline": "District",
           "type": "Pilot Expansion",
-          "amount": 5145,
+          "amount": 5145.0,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53553119662"
-        },
-        {
-          "name": "Charlotte Latin School, NC - 5th grade Pilot Expansion",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 2100,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53263523238"
-        },
-        {
-          "name": "School District Of Fort Atkinson, - Add Ons",
-          "segment": "Medium",
-          "pipeline": "District",
-          "type": "Add On",
-          "amount": 0,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51663146326"
-        },
-        {
-          "name": "Emmetsburg Community School District, IA - SS",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "newbusiness",
-          "amount": 2636.55,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44081326241"
-        },
-        {
-          "name": "Carolina Day School, NC - SS Pilot Expansion",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 4164,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/41344397086"
-        },
-        {
-          "name": "Lakeville Public School District, MN - SS Pilot Expansion",
-          "segment": "Large",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 58365.36,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40397186691"
-        },
-        {
-          "name": "North Ottawa County School District, KS - SS Pilot Expansion",
-          "segment": "Single/Small",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 5108.03,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/39622785563"
-        },
-        {
-          "name": "The Menta Group, IL - SS Pilot Expansion",
-          "segment": "Other",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 8939,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/37294415373"
-        },
-        {
-          "name": "Yonkers City School District, NY - SS Pilot Expansion - Grades k-6",
-          "segment": "Enterprise",
-          "pipeline": "District",
-          "type": "Pilot Expansion",
-          "amount": 160029.5,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/31201270425"
-        },
-        {
-          "name": "Idea Public Schools (District), TX - IJ K - 5 + PM & TE",
-          "segment": "Enterprise",
-          "pipeline": "District",
-          "type": "newbusiness",
-          "amount": 640511.1,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/18150956170"
-        },
-        {
-          "name": "South Windsor Public Schools, CT, SS",
-          "segment": "Medium",
-          "pipeline": "District",
-          "type": "Pilot",
-          "amount": 9450,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/15343124586"
-        },
-        {
-          "name": "Peninsula School Ltd, CA - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 2500,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60964783494"
-        },
-        {
-          "name": "Elm Community Charter School, NY - WH only",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 3000,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60964810418"
-        },
-        {
-          "name": "Grace International School, IT - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 4600.32,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60239696465"
-        },
-        {
-          "name": "Willowwind, IA - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 1290.76,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59728021292"
-        },
-        {
-          "name": "Washington International Academy, VA - SS + IW",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 4640,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58686630461"
-        },
-        {
-          "name": "Roland Park Country School, MD - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 2500,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58556492968"
-        },
-        {
-          "name": "Central Queens Academy Charter School 1, NY - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 9900,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58289365668"
-        },
-        {
-          "name": "Central Queens Academy Charter School #2, NY - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 7800,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/57856101428"
-        },
-        {
-          "name": "Greenhills School, MI - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 2002,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/47831548042"
-        },
-        {
-          "name": "Saint Andrew's Episcopal School, CA - SS",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 4200,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/44462248495"
-        },
-        {
-          "name": "Saint Dominics Family Services, NY microschool",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "newbusiness",
-          "amount": 500,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40011166211"
-        },
-        {
-          "name": "Wissahickon Charter School, PA- SS 5th grade Pilot Expansion",
-          "segment": "Single/Small",
-          "pipeline": "School",
-          "type": "Pilot Expansion",
-          "amount": 2352,
-          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/39053995028"
-        }
-      ],
-      "notes": "Funnel MQL/SQL/Opp inflated by a large offline list import (~240 contacts, 95% OFFLINE, no product tag) \u2014 product-tagged funnel is flat vs May. Revenue on-cycle for spring\u2013summer district buying peak; 82% from 2 enterprise deals (Idea $640K, Yonkers $160K). Win rate distorted by backlog flush (13/20 losses aged >90d). SEO omitted (Search Atlas key unset).",
-      "seo_top_pages": [
-        {
-          "page": "inquired.com/",
-          "visits": 2212
-        },
-        {
-          "page": "inquired.com/post/give-and-inquiry-shout-out",
-          "visits": 940
-        },
-        {
-          "page": "inquired.com/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
-          "visits": 244
-        },
-        {
-          "page": "inquired.com/inquiry-based-social-studies/elementary-curriculum",
-          "visits": 175
-        },
-        {
-          "page": "inquired.com/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
-          "visits": 154
-        },
-        {
-          "page": "inquired.com/post/see-think-wonder",
-          "visits": 138
-        },
-        {
-          "page": "inquired.com/post/inquiry-unit-design",
-          "visits": 100
-        },
-        {
-          "page": "inquired.com/inquiry-based-social-studies",
-          "visits": 95
-        },
-        {
-          "page": "inquired.com/careers",
-          "visits": 90
-        },
-        {
-          "page": "inquired.com/inquiry-based-social-studies/elementary-curriculum/oregon",
-          "visits": 83
         }
       ]
     }

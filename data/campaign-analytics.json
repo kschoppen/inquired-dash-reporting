@@ -14,10 +14,11 @@
     {
       "period": "2026-07",
       "label": "Jul 2026",
+      "updated": "2026-07-28T00:00:00Z",
       "baseline_period": true,
       "campaigns_readable": 0,
       "campaigns_total": 12,
-      "verdict": "Baseline month \u2014 all 12 SY26-27 campaigns are accumulating after the July 13 list reset; IJ Product Webinars leads with 6 HIH in 8 contacts but is below the readability floor",
+      "verdict": "Baseline month \u2014 0 of 12 campaigns have reached the 20-contact readable threshold after the SY26-27 list reset; only IJ Product Webinars has contacts (8 contacts, 6 High-Intent Handraisers at 75%) from carryover registrants.",
       "total": {
         "active_campaigns": 12,
         "contacts": 8,
@@ -73,12 +74,12 @@
           "name": "Inkwell K2 Launch",
           "group": "Inkwell",
           "channel_type": "content",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -88,12 +89,12 @@
           "name": "IJ In Practice",
           "group": "Inquiry Journeys",
           "channel_type": "content",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -103,12 +104,12 @@
           "name": "IJ Product Webinars",
           "group": "Inquiry Journeys",
           "channel_type": "event",
-          "readable": false,
           "total": 8,
           "hih": 6,
           "hih_pct": 75.0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": {
             "high": 6,
             "medium": 0,
@@ -123,12 +124,12 @@
           "name": "Inquiry Work Contest",
           "group": "Inquiry Journeys",
           "channel_type": "content",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -137,13 +138,13 @@
         {
           "name": "Back to School",
           "group": "Inquiry Journeys",
-          "channel_type": "content",
-          "readable": false,
+          "channel_type": "email",
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -153,12 +154,12 @@
           "name": "Partner Newsletters",
           "group": "Inquiry Journeys",
           "channel_type": "email",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -168,12 +169,12 @@
           "name": "Marketing Nurture",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "nurture",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -183,12 +184,12 @@
           "name": "Evergreen",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "content",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -198,27 +199,27 @@
           "name": "Symposium",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "event",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
-            "target-list-driven; engagement-only until OR added"
+            "target-list-driven; engagement-only count until list-membership OR added"
           ]
         },
         {
           "name": "Lit Talk with Nell Duke",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "event",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -228,27 +229,27 @@
           "name": "Account Driven",
           "group": "ABM",
           "channel_type": "abm",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
-            "target-list-driven; verify engagement-only vs. list-membership OR"
+            "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
           ]
         },
         {
           "name": "GF8 Campaign",
           "group": "Great First Eight",
           "channel_type": "nurture",
-          "readable": false,
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
           "mql": 0,
           "mql_prior": null,
+          "readable": false,
           "intent": null,
           "flags": [
             "total < 10 \u2014 asset-attachment audit"
@@ -256,14 +257,10 @@
         }
       ],
       "flags": [
-        "11 of 12 campaigns: 0 contacts \u2014 SY26-27 list reset July 13; ramp expected over F26",
-        "IJ Product Webinars (10208): 8 contacts < 10 \u2014 asset-attachment audit recommended",
-        "Symposium (10097): target-list-driven; engagement-only until list-membership OR added (Owner: Kelsey)",
-        "Account Driven (10216): new SY26-27 list; verify engagement-only vs. list-membership OR",
-        "Excluded \u2014 Conferences_SY2627: No HubSpot List ID yet",
-        "Excluded \u2014 Think-Time-with-NCSS_SY2627: No HubSpot List ID yet",
-        "Excluded \u2014 Inquiry Week: Mailchimp-only audience (not in scope)",
-        "Strategic gap: No campaign targets existing partner districts"
+        "11 of 12 campaigns at 0 contacts \u2014 asset-attachment audit recommended for SY26-27 HubSpot lists",
+        "IJ Product Webinars \u2014 8 contacts < 10; asset-attachment audit",
+        "Symposium (10097) \u2014 target-list-driven; engagement-only until list-membership OR added",
+        "Account Driven (10216) \u2014 new SY26-27 list; verify engagement-only vs. list-membership OR"
       ]
     }
   ]

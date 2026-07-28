@@ -1,87 +1,27 @@
 {
  "skill": "weekly-marketing-digest",
  "title": "Weekly Digest",
- "updated": "2026-07-20",
+ "updated": "2026-07-27",
  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
  "pipeline": {
-  "district_open": 110,
-  "school_open": 41,
-  "as_of": "2026-07-20",
+  "district_open": 104,
+  "school_open": 34,
+  "as_of": "2026-07-27",
   "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
  },
  "segment_coverage": {
   "hih": 60,
-  "mql": 74,
-  "sql": 94,
-  "opp": 94
+  "mql": 73,
+  "sql": 85,
+  "opp": 85
  },
- "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total — the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). GF8 omitted (below the 5-contact relevance threshold every week).",
+ "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). GF8 omitted (below the 5-contact relevance threshold every week).",
  "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
  "products_included": [
   "ij",
   "inkwell"
  ],
  "weeks": [
-  {
-   "period": "2026-05-04",
-   "label": "May 4",
-   "funnel": {
-    "hih": 35,
-    "mql": 38,
-    "sql": 15,
-    "opp": 16
-   },
-   "by_product": {
-    "ij": {
-     "hih": 24,
-     "mql": 20,
-     "sql": 4,
-     "opp": 4
-    },
-    "inkwell": {
-     "hih": 4,
-     "mql": 4,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": {
-     "hih": 3,
-     "mql": 2,
-     "sql": 2,
-     "opp": 2
-    }
-   },
-   "by_segment": {
-    "single_small": {
-     "hih": 11,
-     "mql": 15,
-     "sql": 7,
-     "opp": 7
-    },
-    "medium": {
-     "hih": 2,
-     "mql": 6,
-     "sql": 2,
-     "opp": 3
-    },
-    "large": {
-     "hih": 4,
-     "mql": 3,
-     "sql": 2,
-     "opp": 2
-    },
-    "enterprise": {
-     "hih": 1,
-     "mql": 6,
-     "sql": 4,
-     "opp": 4
-    }
-   },
-   "disposition": {
-    "dq": 30,
-    "nurture": 15
-   }
-  },
   {
    "period": "2026-05-11",
    "label": "May 11",
@@ -2607,8 +2547,573 @@
      "opp": 0
     }
    },
-   "note": "HIH low (5) — deep summer seasonal. MQL→SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+   "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+  },
+  {
+   "period": "2026-07-20",
+   "label": "Jul 20",
+   "funnel": {
+    "hih": 5,
+    "mql": 40,
+    "sql": 27,
+    "opp": 27
+   },
+   "by_product": {
+    "ij": {
+     "hih": 4,
+     "mql": 10,
+     "sql": 4,
+     "opp": 4
+    },
+    "inkwell": {
+     "hih": 0,
+     "mql": 7,
+     "sql": 0,
+     "opp": 0
+    },
+    "wh": null,
+    "gf8": null
+   },
+   "products_included": [
+    "ij",
+    "inkwell"
+   ],
+   "by_segment": {
+    "single_small": {
+     "hih": 2,
+     "mql": 27,
+     "sql": 22,
+     "opp": 22
+    },
+    "medium": {
+     "hih": 0,
+     "mql": 1,
+     "sql": 1,
+     "opp": 1
+    },
+    "large": {
+     "hih": 0,
+     "mql": 0,
+     "sql": 0,
+     "opp": 0
+    },
+    "enterprise": {
+     "hih": 1,
+     "mql": 1,
+     "sql": 0,
+     "opp": 0
+    }
+   },
+   "disposition": {
+    "dq": 100,
+    "nurture": 47
+   },
+   "drill": {
+    "hih": [
+     [
+      237771022241,
+      "Single",
+      "Direct"
+     ],
+     [
+      236923836291,
+      "",
+      "Direct"
+     ],
+     [
+      236923154263,
+      "Single",
+      "Direct"
+     ],
+     [
+      236545762816,
+      "Enterprise",
+      "Direct"
+     ],
+     [
+      236308536906,
+      "",
+      "Direct"
+     ]
+    ],
+    "mql": [
+     [
+      237771022241,
+      "Single",
+      "Direct"
+     ],
+     [
+      237662821420,
+      "Medium",
+      "Direct"
+     ],
+     [
+      237385511937,
+      "",
+      "Paid"
+     ],
+     [
+      237265082922,
+      "",
+      "Direct"
+     ],
+     [
+      237226797897,
+      "",
+      "Paid"
+     ],
+     [
+      237223782960,
+      "Small",
+      "Offline"
+     ],
+     [
+      237223772771,
+      "Small",
+      "Offline"
+     ],
+     [
+      237200142181,
+      "Small",
+      "Offline"
+     ],
+     [
+      236866131229,
+      "Single",
+      "Offline"
+     ],
+     [
+      237161415757,
+      "Single",
+      "Offline"
+     ],
+     [
+      236803201950,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866120347,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866304348,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866303598,
+      "Single",
+      "Offline"
+     ],
+     [
+      237005732770,
+      "Single",
+      "Direct"
+     ],
+     [
+      236866234752,
+      "Small",
+      "Offline"
+     ],
+     [
+      236803091048,
+      "Small",
+      "Offline"
+     ],
+     [
+      236925609110,
+      "Small",
+      "Paid"
+     ],
+     [
+      236923836291,
+      "",
+      "Direct"
+     ],
+     [
+      236923154263,
+      "Single",
+      "Direct"
+     ],
+     [
+      236912820048,
+      "",
+      "Paid"
+     ],
+     [
+      236862066716,
+      "",
+      "Direct"
+     ],
+     [
+      236698868588,
+      "Single",
+      "Offline"
+     ],
+     [
+      236698741296,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802850592,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802657718,
+      "Single",
+      "Offline"
+     ],
+     [
+      236705231463,
+      "Single",
+      "Offline"
+     ],
+     [
+      236545762816,
+      "Enterprise",
+      "Direct"
+     ],
+     [
+      236512093062,
+      "",
+      "Paid"
+     ],
+     [
+      236459543565,
+      "Single",
+      "Offline"
+     ],
+     [
+      236411229310,
+      "",
+      "Direct"
+     ],
+     [
+      236330835805,
+      "",
+      "Paid"
+     ],
+     [
+      236308536906,
+      "",
+      "Direct"
+     ],
+     [
+      235983285020,
+      "Single",
+      "Direct"
+     ],
+     [
+      235673209622,
+      "",
+      "Offline"
+     ],
+     [
+      235731722420,
+      "Single",
+      "Offline"
+     ],
+     [
+      235207947387,
+      "Small",
+      "Offline"
+     ],
+     [
+      232976948883,
+      "Single",
+      "Offline"
+     ],
+     [
+      135644140598,
+      "Small",
+      "Offline"
+     ],
+     [
+      94757640310,
+      "Small",
+      "Direct"
+     ]
+    ],
+    "sql": [
+     [
+      237223782960,
+      "Small",
+      "Offline"
+     ],
+     [
+      237223772771,
+      "Small",
+      "Offline"
+     ],
+     [
+      237200142181,
+      "Small",
+      "Offline"
+     ],
+     [
+      236866131229,
+      "Single",
+      "Offline"
+     ],
+     [
+      237161415757,
+      "Single",
+      "Offline"
+     ],
+     [
+      236803201950,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866120347,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866304348,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866303598,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866234752,
+      "Small",
+      "Offline"
+     ],
+     [
+      236803091048,
+      "Small",
+      "Offline"
+     ],
+     [
+      236698868588,
+      "Single",
+      "Offline"
+     ],
+     [
+      236698741296,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802850592,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802657718,
+      "Single",
+      "Offline"
+     ],
+     [
+      236705231463,
+      "Single",
+      "Offline"
+     ],
+     [
+      236459543565,
+      "Single",
+      "Offline"
+     ],
+     [
+      236411229310,
+      "",
+      "Direct"
+     ],
+     [
+      235673209622,
+      "",
+      "Offline"
+     ],
+     [
+      235731722420,
+      "Single",
+      "Offline"
+     ],
+     [
+      235704482620,
+      "Medium",
+      "Direct"
+     ],
+     [
+      235207947387,
+      "Small",
+      "Offline"
+     ],
+     [
+      232976948883,
+      "Single",
+      "Offline"
+     ],
+     [
+      230343517339,
+      "Single",
+      "Direct"
+     ],
+     [
+      230341827463,
+      "",
+      "Direct"
+     ],
+     [
+      149360326425,
+      "",
+      "Organic"
+     ],
+     [
+      135644140598,
+      "Small",
+      "Offline"
+     ]
+    ],
+    "opp": [
+     [
+      237223782960,
+      "Small",
+      "Offline"
+     ],
+     [
+      237223772771,
+      "Small",
+      "Offline"
+     ],
+     [
+      237200142181,
+      "Small",
+      "Offline"
+     ],
+     [
+      236866131229,
+      "Single",
+      "Offline"
+     ],
+     [
+      237161415757,
+      "Single",
+      "Offline"
+     ],
+     [
+      236803201950,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866120347,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866304348,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866303598,
+      "Single",
+      "Offline"
+     ],
+     [
+      236866234752,
+      "Small",
+      "Offline"
+     ],
+     [
+      236803091048,
+      "Small",
+      "Offline"
+     ],
+     [
+      236698868588,
+      "Single",
+      "Offline"
+     ],
+     [
+      236698741296,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802850592,
+      "Small",
+      "Offline"
+     ],
+     [
+      236802657718,
+      "Single",
+      "Offline"
+     ],
+     [
+      236705231463,
+      "Single",
+      "Offline"
+     ],
+     [
+      236459543565,
+      "Single",
+      "Offline"
+     ],
+     [
+      236411229310,
+      "",
+      "Direct"
+     ],
+     [
+      235673209622,
+      "",
+      "Offline"
+     ],
+     [
+      235731722420,
+      "Single",
+      "Offline"
+     ],
+     [
+      235704482620,
+      "Medium",
+      "Direct"
+     ],
+     [
+      235207947387,
+      "Small",
+      "Offline"
+     ],
+     [
+      232976948883,
+      "Single",
+      "Offline"
+     ],
+     [
+      230343517339,
+      "Single",
+      "Direct"
+     ],
+     [
+      230341827463,
+      "",
+      "Direct"
+     ],
+     [
+      149360326425,
+      "",
+      "Organic"
+     ],
+     [
+      135644140598,
+      "Small",
+      "Offline"
+     ]
+    ]
+   }
   }
  ],
- "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record."
+ "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
 }
