@@ -172,6 +172,20 @@ Replace the entire keywords object with fresh data. `greatminds.org` covers both
 
 ---
 
+## PHASE 2.5: Brand lift metrics (GSC — DEFERRED until API wired)
+
+The Overview tab has a `brand_lift` block in `data/overview.json` — Google Search brand-lift signals reported WoW alongside organic branded search: branded-query clicks on inquired.com, plus the **YouTube** and **Instagram** GSC Social Signals properties (verified 2026-07-30). These measure how our brand and channels surface in **Google Search**, NOT social engagement. LinkedIn has no GSC connector (Microsoft-owned, not integrated with Google).
+
+**Current status: the GSC Search Analytics API is NOT wired up** (needs the `webmasters.readonly` OAuth scope + re-auth; whether the social properties are exposed via the API is unconfirmed — may be UI-only at launch). Until wired:
+
+- Do NOT call any GSC endpoint. NEVER fabricate values.
+- Leave the `brand_lift` block in `data/overview.json` untouched (`status: "collecting"`, null values — the dashboard renders the collecting state).
+- Mark the STEP 6 checklist line as deferred.
+
+Once wired (this section will be rewritten with endpoints): pull current + prior ISO week for (1) branded-query clicks/impressions on `inquired.com` (query contains inquired / inquiry journeys / inkwell / great first eight / gf8), (2) YouTube property totals, (3) Instagram property totals. Update `brand_lift.metrics` (value = current-week total, WoW delta, spark capped at 13 weeks), set `status: "live"`, apply the standard WoW emoji thresholds. No backfill exists before 2026-07-30 — first meaningful WoW is the Aug 17, 2026 run.
+
+---
+
 ## PHASE 3: Write data files + push inquired-dash-reporting → Netlify
 
 ### weekly-digest.json
@@ -352,6 +366,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Run log updated → data/run-logs/weekly-marketing-digest-run-log.json [run N]
 • [✓/✗] Competitor signals refreshed → competitive-intel.html [N searched, N new signals]
 • [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
+• [✓/—] Brand lift (GSC) → data/overview.json [deferred until GSC API wired]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]

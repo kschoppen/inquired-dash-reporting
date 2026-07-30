@@ -200,6 +200,21 @@ function renderOverview(d) {
   const wsPrevious = ws && ws.previous ? ws.previous : null;
   const weeklySignalHTML = ws ? wsCard(wsCurrent) + wsCard(wsPrevious, "previous") : "";
 
+  // Brand lift (GSC branded search + Social Signals) — renders only when data/overview.json has a brand_lift block
+  const bl = d.brand_lift;
+  const blCollecting = bl && bl.status === "collecting";
+  const blHTML = bl ? `
+    <div class="ov-section-label">Brand lift · Google Search</div>
+    ${bl.note ? `<div class="ov-bl-note">${blCollecting ? "⏳ " : ""}${bl.note}</div>` : ""}
+    <div class="ov-kpi-strip ov-bl-strip">${(bl.metrics || []).map((m, i) => `
+      <div class="ov-kpi">
+        <div class="ov-kpi-label">${m.label}</div>
+        <div class="ov-kpi-value">${m.value != null ? m.value : "—"}</div>
+        <span class="ov-kpi-delta ${m.delta_dir || "flat"}">${m.delta != null ? m.delta : (blCollecting ? "Collecting" : "—")}</span>
+        <div class="ov-kpi-sub">${m.sub || ""}</div>
+        <div class="ov-kpi-spk"><canvas id="ovBlSpk${i}"></canvas></div>
+      </div>`).join("")}</div>` : "";
+
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">
       <div class="ov-narr-meta">
@@ -213,9 +228,29 @@ function renderOverview(d) {
     ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
+    ${blHTML}
     <div class="ov-section-label">Drill into a dashboard</div>
     <div class="ov-dash-grid">${cardsHTML}</div>
     <div class="ov-defs-link"><a href="#" onclick="switchToTab('defs');return false;">View metric definitions →</a></div>`;
+
+  // brand lift sparklines (skip while collecting — empty spark arrays)
+  if (bl) (bl.metrics || []).forEach((m, i) => {
+    const el = document.getElementById(`ovBlSpk${i}`);
+    if (!el || !m.spark || !m.spark.length) return;
+    charts.push(new Chart(el, {
+      type: "line",
+      data: {
+        labels: m.spark.map((_, j) => j),
+        datasets: [{ data: m.spark, borderColor: IJ, borderWidth: 2,
+          backgroundColor: IJ + "18", tension: 0.4, pointRadius: 0, fill: true }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: { x: { display: false }, y: { display: false, beginAtZero: false } }
+      }
+    }));
+  });
 
   // sparklines
   const spkColors = [IJ, PLUM, ROSE, "#1C6854"];

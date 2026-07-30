@@ -76,6 +76,40 @@
       "spark": []
     }
   ],
+  "brand_lift": {
+    "updated": "2026-07-30",
+    "status": "collecting",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google.",
+    "metrics": [
+      {
+        "key": "branded_search",
+        "label": "Branded Search Clicks",
+        "sub": "Organic clicks on branded queries · inquired.com property",
+        "value": null,
+        "delta": null,
+        "delta_dir": "flat",
+        "spark": []
+      },
+      {
+        "key": "youtube",
+        "label": "YouTube in Google Search",
+        "sub": "Impressions + clicks on our channel · GSC Social Signals",
+        "value": null,
+        "delta": null,
+        "delta_dir": "flat",
+        "spark": []
+      },
+      {
+        "key": "instagram",
+        "label": "Instagram in Google Search",
+        "sub": "Impressions + clicks on our profile · GSC Social Signals",
+        "value": null,
+        "delta": null,
+        "delta_dir": "flat",
+        "spark": []
+      }
+    ]
+  },
   "weekly_signal": {
     "current": {
       "week_label": "Week of Jul 20",
