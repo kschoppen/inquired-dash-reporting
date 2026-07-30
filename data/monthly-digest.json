@@ -1275,6 +1275,58 @@
             "Curriculum guide",
             1
           ]
+        ],
+        "top_conversion_pages": [
+          {
+            "path": "/webinar-sign-up-thank-you",
+            "completions": 339,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/inquiry-based-social-studies/elementary-curriculum",
+            "completions": 203,
+            "type": "resource"
+          },
+          {
+            "path": "/webinar-sign-up/social-studies",
+            "completions": 179,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/thank-you/inquiry-journeys-scope-and-sequence",
+            "completions": 157,
+            "type": "resource"
+          },
+          {
+            "path": "/thank-you/pacing-guide",
+            "completions": 123,
+            "type": "resource"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 109,
+            "type": "contact sales"
+          },
+          {
+            "path": "/thank-you/wh-scope-and-sequence",
+            "completions": 88,
+            "type": "resource"
+          },
+          {
+            "path": "/thank-you/social-studies-curriculum-review",
+            "completions": 74,
+            "type": "resource"
+          },
+          {
+            "path": "/webinar-sign-up/product",
+            "completions": 59,
+            "type": "webinar signup"
+          },
+          {
+            "path": "/thank-you/inquiry-journeys-demo",
+            "completions": 36,
+            "type": "demo request"
+          }
         ]
       },
       "seo": {
@@ -1500,7 +1552,64 @@
             "vol": 140
           }
         ]
-      }
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "keywords": 125,
+          "visits": 1322
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "keywords": 17,
+          "visits": 286,
+          "type": "resource"
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "keywords": 8,
+          "visits": 199,
+          "type": "resource"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "keywords": 60,
+          "visits": 177
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "keywords": 38,
+          "visits": 174,
+          "type": "resource"
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "keywords": 55,
+          "visits": 166
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "keywords": 31,
+          "visits": 138,
+          "type": "resource"
+        },
+        {
+          "path": "/careers",
+          "keywords": 16,
+          "visits": 98
+        },
+        {
+          "path": "/post/high-quality-instructional-materials-in-social-studies",
+          "keywords": 5,
+          "visits": 48,
+          "type": "resource"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
+          "keywords": 16,
+          "visits": 36
+        }
+      ]
     }
   ],
   "seo_topics": [

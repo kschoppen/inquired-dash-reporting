@@ -441,7 +441,7 @@ function renderMonthly(d) {
       <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request) in ${last.label} — ranked by completions</p>
       ${last.web && last.web.top_conversion_pages
         ? topPageRows(last.web.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`)
-        : `<p class="data-empty">— Populated on local runs (requires GA4 OAuth)</p>`}
+        : `<p class="data-empty">— Data pending — populated by the monthly digest run (GA4 API; credentials in the routine env)</p>`}
     </div>` : ""}
 
     <!-- SEO -->
@@ -458,7 +458,7 @@ function renderMonthly(d) {
         <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
         ${last.seo_top_pages
           ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-          : `<p class="data-empty">— Populated on local runs (requires Semrush API)</p>`}
+          : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
       </div>
     </div>
 
