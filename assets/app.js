@@ -620,7 +620,7 @@ function seoSection(d) {
 // ---- AI visibility section ----
 function aiVisSection(m) {
   const av = m.ai_visibility;
-  if (!av) return '<p class="data-empty">— Populated on local runs (requires Semrush AI Visibility report)</p>';
+  if (!av) return '<p class="data-empty">— Data pending — the monthly digest run reads the Semrush AI Visibility PDF from Google Drive (cloud-capable)</p>';
   const llms = av.by_llm || [];
   return `<div class="ai-vis-score">
       <span class="ai-vis-num">${av.score}</span><span class="ai-vis-denom">/100</span>
@@ -640,7 +640,7 @@ function aiVisSection(m) {
 // ---- keyword gap section ----
 function kwGapSection(m) {
   const kg = m.keyword_gap;
-  if (!kg) return '<p class="data-empty">— Populated on local runs (requires Semrush Keyword Gap report)</p>';
+  if (!kg) return '<p class="data-empty">— Data pending — the monthly digest run reads the Semrush Keyword Gap PDF from Google Drive (cloud-capable)</p>';
   const gaps = kg.top_gaps || [];
   return `<div class="kw-gap-hero"><span class="kw-gap-n">${kg.relevant_missing}</span> ELA/SS keywords we're missing <span class="muted">(of ${fmtN(kg.total_missing)} total — math excluded)</span></div>
     ${gaps.length ? `<table><thead><tr><th>Keyword</th><th>Est. volume</th></tr></thead><tbody>
