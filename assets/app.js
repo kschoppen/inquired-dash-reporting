@@ -120,6 +120,42 @@ function kpiCard(label, value, momPrev, yoyPrev, sparkId, capText) {
   </div>`;
 }
 
+// ---- Brand lift (GSC branded search + Social Signals) — shared by Weekly + Monthly tabs ----
+// Data contract: { updated, status: "collecting"|"live", note, series: [ { period, label,
+//   branded: {clicks, impressions}, youtube: {clicks, impressions}, instagram: {clicks, impressions} } ] }
+const BL_CHANNELS = [
+  { key: "branded",   label: "Branded Search",             cap: "Organic clicks on branded queries · inquired.com", color: IJ },
+  { key: "youtube",   label: "YouTube in Google Search",   cap: "Clicks on our channel in Google Search",           color: ROSE },
+  { key: "instagram", label: "Instagram in Google Search", cap: "Clicks on our profile in Google Search",           color: PLUM },
+];
+function brandLiftSection(bl, deltaLabel, chartId) {
+  if (!bl) return "";
+  const series = bl.series || [];
+  const last = series[series.length - 1] || {}, prev = series[series.length - 2] || {};
+  const collecting = bl.status === "collecting" || !series.length;
+  const clk = (e, k) => (e && e[k]) ? e[k].clicks : null;
+  const imp = (e, k) => (e && e[k]) ? e[k].impressions : null;
+  const cards = BL_CHANNELS.map((c) => card(
+    c.label,
+    collecting ? "—" : fmtN(clk(last, c.key)),
+    collecting ? '<span class="delta flat">Collecting</span>' : deltaHTML(clk(last, c.key), clk(prev, c.key), { label: deltaLabel }),
+    collecting ? c.cap : `${c.cap} · ${fmtN(imp(last, c.key))} impressions`
+  )).join("");
+  return `
+    <div class="section-label">📡 Brand lift — Google Search${!collecting && last.label ? ` · ${last.label}` : ""} <span class="muted">(GSC branded search + Social Signals)</span></div>
+    ${bl.note ? `<div class="panel"><p class="insight" style="margin:0">${collecting ? "⏳" : "🛈"} ${bl.note}</p></div>` : ""}
+    <div class="cards">${cards}</div>
+    ${series.length >= 2 ? `<div class="panel"><h3>Brand lift — clicks by ${deltaLabel === "WoW" ? "week" : "month"}</h3><div class="chartbox sm"><canvas id="${chartId}"></canvas></div>${note("Clicks in Google Search per channel. These are <strong>search visibility</strong> numbers — how often people find our brand and channels when they search — not social engagement.")}</div>` : ""}`;
+}
+function brandLiftChart(bl, chartId) {
+  const series = (bl && bl.series) || [];
+  if (series.length < 2) return;
+  mkChart(chartId, { type: "line", data: {
+    labels: series.map((s) => s.label),
+    datasets: BL_CHANNELS.map((c) => ({ label: c.label, data: series.map((s) => (s[c.key] ? s[c.key].clicks : null)), borderColor: c.color, backgroundColor: c.color + "22", tension: 0.3, pointRadius: 2, spanGaps: true }))
+  }, options: { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false } });
+}
+
 // ---- Overview: command center ----
 function renderOverview(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
@@ -426,6 +462,9 @@ function renderMonthly(d) {
       </div>
     </div>
 
+    <!-- BRAND LIFT -->
+    ${brandLiftSection(d.brand_lift, "MoM", "mBrandLift")}
+
     <!-- AI VISIBILITY + KEYWORD GAP -->
     <div class="section-label">🤖 AI &amp; competitive search visibility · ${last.label} <span class="muted">(Semrush)</span></div>
     <div class="grid2">
@@ -498,6 +537,8 @@ function renderMonthly(d) {
   mkChart("cSrc", { type: "bar", data: { labels: hsrc.map((s) => s[0]), datasets: [{ data: hsrc.map((s) => s[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 
   // Web channels + conversions
+  brandLiftChart(d.brand_lift, "mBrandLift");
+
   if (wv.channels) mkChart("mWebChannel", { type: "bar", data: { labels: wv.channels.map((c) => c[0]), datasets: [{ data: wv.channels.map((c) => c[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
   if (wv.conversions) mkChart("mWebConv", { type: "bar", data: { labels: wv.conversions.map((c) => c[0]), datasets: [{ data: wv.conversions.map((c) => c[1]), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
 
@@ -735,6 +776,8 @@ function renderWeekly(d) {
       ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
     </div>` : ""}
 
+    ${brandLiftSection(d.brand_lift, "WoW", "wBrandLift")}
+
     ${last.note ? `<div class="panel"><p class="insight" style="color:#b45309">⚠ <strong>Data note — ${last.label}:</strong> ${last.note}</p></div>` : ""}
 
     <div class="panel"><h3>Weekly detail</h3>
@@ -752,6 +795,8 @@ function renderWeekly(d) {
 
   const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
   const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+
+  brandLiftChart(d.brand_lift, "wBrandLift");
 
   mkChart("wHihMini", { type: "line", data: { labels, datasets: [{ label: "HIH", data: w.map((x) => f(x,"hih")), borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, pointRadius: 2, spanGaps: true }] }, options: { ...noLeg } });
 

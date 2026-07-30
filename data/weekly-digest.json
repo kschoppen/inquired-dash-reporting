@@ -3,6 +3,12 @@
  "title": "Weekly Digest",
  "updated": "2026-07-27",
  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
+ "brand_lift": {
+  "updated": null,
+  "status": "collecting",
+  "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill — first WoW read lands the week of Aug 17). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the Monday weekly run once the GSC API is wired.",
+  "series": []
+ },
  "pipeline": {
   "district_open": 104,
   "school_open": 34,

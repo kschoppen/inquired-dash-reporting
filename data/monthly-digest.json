@@ -3,6 +3,12 @@
   "title": "Monthly Digest",
   "updated": "2026-07-29",
   "fiscal_year_start_month": 10,
+  "brand_lift": {
+    "updated": null,
+    "status": "collecting",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill — August 2026 is the baseline month, so the first clean MoM comparison lands in the early-October digest). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the monthly digest run once the GSC API is wired.",
+    "series": []
+  },
   "seasonality": {
     "note": "Close/fiscal year Oct 1–Sep 30. District purchasing peaks spring–summer (Apr–Aug) for the next school year."
   },

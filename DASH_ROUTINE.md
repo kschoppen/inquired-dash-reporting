@@ -179,10 +179,10 @@ The Overview tab has a `brand_lift` block in `data/overview.json` — Google Sea
 **Current status: the GSC Search Analytics API is NOT wired up** (needs the `webmasters.readonly` OAuth scope + re-auth; whether the social properties are exposed via the API is unconfirmed — may be UI-only at launch). Until wired:
 
 - Do NOT call any GSC endpoint. NEVER fabricate values.
-- Leave the `brand_lift` block in `data/overview.json` untouched (`status: "collecting"`, null values — the dashboard renders the collecting state).
+- Leave the `brand_lift` blocks in `data/overview.json` AND `data/weekly-digest.json` untouched (`status: "collecting"`, null values / empty series — the dashboard renders the collecting state on the Overview and Weekly tabs). The Monthly tab's block in `data/monthly-digest.json` belongs to the monthly digest — never touch it here.
 - Mark the STEP 6 checklist line as deferred.
 
-Once wired (this section will be rewritten with endpoints): pull current + prior ISO week for (1) branded-query clicks/impressions on `inquired.com` (query contains inquired / inquiry journeys / inkwell / great first eight / gf8), (2) YouTube property totals, (3) Instagram property totals. Update `brand_lift.metrics` (value = current-week total, WoW delta, spark capped at 13 weeks), set `status: "live"`, apply the standard WoW emoji thresholds. No backfill exists before 2026-07-30 — first meaningful WoW is the Aug 17, 2026 run.
+Once wired (this section will be rewritten with endpoints): pull current + prior ISO week for (1) branded-query clicks/impressions on `inquired.com` (query contains inquired / inquiry journeys / inkwell / great first eight / gf8), (2) YouTube property totals, (3) Instagram property totals. Then update BOTH weekly-owned blocks in the same commit as the other data files: `brand_lift.metrics` in `data/overview.json` (value = current-week clicks, WoW delta, spark capped at 13 weeks) and `brand_lift.series[]` in `data/weekly-digest.json` (upsert the just-completed week keyed by `period` = week Monday, entries `{period, label, branded/youtube/instagram: {clicks, impressions}}`, cap ~13 weeks). Set `status: "live"` + `updated` in both, and apply the standard WoW emoji thresholds. No backfill exists before 2026-07-30 — first meaningful WoW is the Aug 17, 2026 run.
 
 ---
 
