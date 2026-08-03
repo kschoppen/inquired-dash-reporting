@@ -27,116 +27,44 @@
     },
     "by_product": {
       "ij": {
-        "hih": [
-          4,
-          5
-        ],
-        "mql": [
-          10,
-          9
-        ],
-        "sql": [
-          4,
-          7
-        ],
-        "opp": [
-          4,
-          7
-        ]
+        "hih": [4, 5],
+        "mql": [10, 9],
+        "sql": [4, 7],
+        "opp": [4, 7]
       },
       "inkwell": {
-        "hih": [
-          0,
-          0
-        ],
-        "mql": [
-          7,
-          3
-        ],
-        "sql": [
-          0,
-          0
-        ],
-        "opp": [
-          0,
-          0
-        ]
+        "hih": [0, 0],
+        "mql": [7, 3],
+        "sql": [0, 0],
+        "opp": [0, 0]
       },
       "wh": null,
       "gf8": null
     },
     "by_segment": {
       "single_small": {
-        "hih": [
-          2,
-          2
-        ],
-        "mql": [
-          27,
-          11
-        ],
-        "sql": [
-          22,
-          13
-        ],
-        "opp": [
-          22,
-          13
-        ]
+        "hih": [2, 2],
+        "mql": [27, 11],
+        "sql": [22, 13],
+        "opp": [22, 13]
       },
       "medium": {
-        "hih": [
-          0,
-          1
-        ],
-        "mql": [
-          1,
-          7
-        ],
-        "sql": [
-          1,
-          6
-        ],
-        "opp": [
-          1,
-          6
-        ]
+        "hih": [0, 1],
+        "mql": [1, 7],
+        "sql": [1, 6],
+        "opp": [1, 6]
       },
       "large": {
-        "hih": [
-          0,
-          0
-        ],
-        "mql": [
-          0,
-          0
-        ],
-        "sql": [
-          0,
-          1
-        ],
-        "opp": [
-          0,
-          1
-        ]
+        "hih": [0, 0],
+        "mql": [0, 0],
+        "sql": [0, 1],
+        "opp": [0, 1]
       },
       "enterprise": {
-        "hih": [
-          1,
-          1
-        ],
-        "mql": [
-          1,
-          2
-        ],
-        "sql": [
-          0,
-          0
-        ],
-        "opp": [
-          0,
-          0
-        ]
+        "hih": [1, 1],
+        "mql": [1, 2],
+        "sql": [0, 0],
+        "opp": [0, 0]
       }
     },
     "coverage_pct": {
@@ -166,8 +94,107 @@
     "list_event_detected": false,
     "acknowledged_events": [],
     "data_flags": [
-      "Product coverage below 30% for SQL (14.8%) and Opp (14.8%) \u2014 consistent with ongoing offline lifecycle migration",
-      "Run log not found \u2014 first run, prior window re-pulled from HubSpot"
+      "Product coverage below 30% for SQL (14.8%) and Opp (14.8%) — consistent with ongoing offline lifecycle migration",
+      "Run log not found — first run, prior window re-pulled from HubSpot"
+    ]
+  },
+  {
+    "run_date": "2026-08-03",
+    "period_label": "2026-W31",
+    "window_current": [
+      "2026-07-27",
+      "2026-08-02"
+    ],
+    "window_prior": [
+      "2026-07-20",
+      "2026-07-26"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 4,
+      "hih_prior": 5,
+      "hih_wow_pct": -20,
+      "mql_current": 33,
+      "mql_prior": 40,
+      "mql_wow_pct": -18,
+      "sql_current": 23,
+      "sql_prior": 27,
+      "sql_wow_pct": -15,
+      "opp_current": 22,
+      "opp_prior": 27,
+      "opp_wow_pct": -19
+    },
+    "by_product": {
+      "ij": {
+        "hih": [3, 4],
+        "mql": [13, 10],
+        "sql": [6, 4],
+        "opp": [5, 4]
+      },
+      "inkwell": {
+        "hih": [1, 0],
+        "mql": [2, 7],
+        "sql": [0, 0],
+        "opp": [0, 0]
+      },
+      "wh": null,
+      "gf8": null
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [null, 2],
+        "mql": [14, 27],
+        "sql": [12, 22],
+        "opp": [12, 22]
+      },
+      "medium": {
+        "hih": [null, 0],
+        "mql": [9, 1],
+        "sql": [5, 1],
+        "opp": [4, 1]
+      },
+      "large": {
+        "hih": [null, 0],
+        "mql": [0, 0],
+        "sql": [0, 0],
+        "opp": [0, 0]
+      },
+      "enterprise": {
+        "hih": [null, 1],
+        "mql": [3, 1],
+        "sql": [2, 0],
+        "opp": [2, 0]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100,
+        "mql": 45,
+        "sql": 26,
+        "opp": 23
+      },
+      "segment": {
+        "hih": 0,
+        "mql": 79,
+        "sql": 83,
+        "opp": 82
+      }
+    },
+    "disposition": {
+      "disqualified_current": 82,
+      "disqualified_prior": 100,
+      "entered_nurture_current": 63,
+      "entered_nurture_prior": 47
+    },
+    "pipeline": {
+      "district_open_deals": 30,
+      "school_open_deals": 24
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Product coverage below 30% for SQL (26.1%) and Opp (22.7%) — consistent with ongoing offline lifecycle migration",
+      "HIH segment pulls skipped — current+prior total (4+5=9) below 10-contact threshold"
     ]
   }
 ]
