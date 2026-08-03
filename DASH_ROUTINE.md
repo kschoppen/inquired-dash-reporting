@@ -172,17 +172,25 @@ Replace the entire keywords object with fresh data. `greatminds.org` covers both
 
 ---
 
-## PHASE 2.5: Brand lift metrics (GSC — DEFERRED until API wired)
+## PHASE 2.5: Brand lift metrics (GSC)
 
-The Overview tab has a `brand_lift` block in `data/overview.json` — Google Search brand-lift signals reported WoW alongside organic branded search: branded-query clicks on inquired.com, plus the **YouTube** and **Instagram** GSC Social Signals properties (verified 2026-07-30). These measure how our brand and channels surface in **Google Search**, NOT social engagement. LinkedIn has no GSC connector (Microsoft-owned, not integrated with Google).
+Wired via **`scripts/gsc_brand_lift.py`** (stdlib-only, no pip installs). It pulls the GSC Search Analytics API and updates BOTH weekly-owned blocks in place: `brand_lift.metrics` in `data/overview.json` (Overview tiles: value = latest-week clicks, WoW delta with standard emoji thresholds, spark capped at 13) and `brand_lift.series[]` in `data/weekly-digest.json` (Weekly tab trend, upserted by `period` = week Monday, capped at 13 weeks). These measure how our brand and channels surface in **Google Search**, NOT social engagement. The Monthly tab's block in `data/monthly-digest.json` belongs to the monthly digest — never touch it here (the script doesn't).
 
-**Current status: the GSC Search Analytics API is NOT wired up** (needs the `webmasters.readonly` OAuth scope + re-auth; whether the social properties are exposed via the API is unconfirmed — may be UI-only at launch). Until wired:
+**Credentials (env vars, never echo):** `GSC_CLIENT_ID` / `GSC_CLIENT_SECRET` (the GA4 OAuth client) + `GSC_REFRESH_TOKEN` (refresh token minted with the `https://www.googleapis.com/auth/webmasters.readonly` scope).
 
-- Do NOT call any GSC endpoint. NEVER fabricate values.
-- Leave the `brand_lift` blocks in `data/overview.json` AND `data/weekly-digest.json` untouched (`status: "collecting"`, null values / empty series — the dashboard renders the collecting state on the Overview and Weekly tabs). The Monthly tab's block in `data/monthly-digest.json` belongs to the monthly digest — never touch it here.
-- Mark the STEP 6 checklist line as deferred.
+```bash
+cd inquired-dash-reporting
+python3 scripts/gsc_brand_lift.py   # edits the two data files in place; prints a JSON summary
+```
 
-Once wired (this section will be rewritten with endpoints): pull current + prior ISO week for (1) branded-query clicks/impressions on `inquired.com` (query contains inquired / inquiry journeys / inkwell / great first eight / gf8), (2) YouTube property totals, (3) Instagram property totals. Then update BOTH weekly-owned blocks in the same commit as the other data files: `brand_lift.metrics` in `data/overview.json` (value = current-week clicks, WoW delta, spark capped at 13 weeks) and `brand_lift.series[]` in `data/weekly-digest.json` (upsert the just-completed week keyed by `period` = week Monday, entries `{period, label, branded/youtube/instagram: {clicks, impressions}}`, cap ~13 weeks). Set `status: "live"` + `updated` in both, and apply the standard WoW emoji thresholds. No backfill exists before 2026-07-30 — first meaningful WoW is the Aug 17, 2026 run.
+**Exit codes → STEP 6 checklist line:**
+- `0` = updated ✓ — stdout JSON lists `weeks_upserted` + `flags`; copy any flags into `data_flags`
+- `2` = deferred — (env vars not set; blocks left untouched in their `"collecting"` state)
+- `1` = error ✗ — auth/API failure; report the flag text; blocks left untouched. Do NOT hand-edit values in as a fallback — NEVER fabricate.
+
+The script upserts the TWO most recently completed ISO weeks each run — re-pulling the prior week finalizes GSC's fresh-data revisions (2–3 day lag), so Monday-morning numbers self-heal a week later. Branded-query rule (in the script — keep in sync with the weekly digest skill): query contains inquired / inquiry journeys / inkwell / great first eight / gf8. Social properties (YouTube / Instagram) have no backfill before 2026-07-30 — the script leaves weeks before Aug 3 null, and flags if a social property isn't exposed via the API (possible — may be UI-only). First meaningful WoW is the Aug 17, 2026 run.
+
+No extra git step: the two files are already in PHASE 3's `git add`.
 
 ---
 
@@ -366,7 +374,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Run log updated → data/run-logs/weekly-marketing-digest-run-log.json [run N]
 • [✓/✗] Competitor signals refreshed → competitive-intel.html [N searched, N new signals]
 • [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
-• [✓/—] Brand lift (GSC) → data/overview.json [deferred until GSC API wired]
+• [✓/—/✗] Brand lift (GSC) → data/overview.json + data/weekly-digest.json [N weeks upserted / deferred: creds not set / error]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]
