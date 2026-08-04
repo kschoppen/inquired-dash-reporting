@@ -64,8 +64,15 @@
     ]
   },
   "weekly_signal": {
-    "updated": "2026-08-03",
-    "week_label": "Week of Jul 27",
-    "narrative": "MQL came in at 33 this week (Jul 27–Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 — all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
+    "current": {
+      "week_label": "Week of Jul 27",
+      "updated": "2026-08-03",
+      "narrative": "MQL came in at 33 this week (Jul 27–Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 — all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
+    },
+    "previous": {
+      "week_label": "Week of Jul 20",
+      "updated": "2026-07-27",
+      "narrative": "MQL came in at 40 this week (Jul 20–26), up 48% from 27 the prior week and the strongest MQL week since late June, with Single/Small inbound driving 67% of new qualified leads. SQL and Opp both held at 27, and MQL→SQL sits at 67.5% — still elevated by the ongoing offline lifecycle migration. HIH remained flat at 5, a deep-summer seasonal low, while open pipeline stays strong at 104 district and 34 school deals. Closed-won July MTD has reached approximately $700K across 56 deals."
+    }
   }
 }

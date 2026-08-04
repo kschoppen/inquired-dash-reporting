@@ -157,6 +157,29 @@ function brandLiftChart(bl, chartId) {
 }
 
 // ---- Overview: command center ----
+// The KPI strip accepts either shape overview.json has shipped: the rich tile array
+// (label/value/delta/sub/spark) or the flat block the weekly routine writes
+// ({hih_pool, mql_to_sql_pct, closed_won_mtd}). Anything else degrades to no tiles
+// rather than throwing and blanking the whole tab.
+const KPI_FLAT_META = {
+  hih_pool:       { label: "HIH Pool",        sub: "High-intent contacts · 90-day rolling pool", fmt: fmtN },
+  mql_to_sql_pct: { label: "MQL → SQL Conv.", sub: "Latest weekly run",                          fmt: (v) => v + "%" },
+  closed_won_mtd: { label: "Closed Won MTD",  sub: "Month to date",                              fmt: (v) => v },
+};
+function normalizeKpis(k) {
+  if (Array.isArray(k)) return k;
+  if (!k || typeof k !== "object") return [];
+  return Object.keys(k).map((key) => {
+    const meta = KPI_FLAT_META[key] || {};
+    const raw = k[key];
+    return {
+      label: meta.label || key.replace(/_/g, " "),
+      value: raw == null ? "—" : (meta.fmt ? meta.fmt(raw) : raw),
+      delta: "", delta_dir: "flat", sub: meta.sub || "", spark: [],
+    };
+  });
+}
+
 function renderOverview(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
 
@@ -165,12 +188,13 @@ function renderOverview(d) {
     `<span class="ov-chip ${sig.dir}">${sig.dir === "up" ? "↑" : sig.dir === "down" ? "↓" : "⚠"} ${sig.label}</span>`
   ).join("");
 
-  const kpiHTML = (d.kpis || []).map((k, i) => `
+  const kpis = normalizeKpis(d.kpis);
+  const kpiHTML = kpis.map((k, i) => `
     <div class="ov-kpi">
       <div class="ov-kpi-label">${k.label}</div>
-      <div class="ov-kpi-value">${k.value}</div>
-      <span class="ov-kpi-delta ${k.delta_dir}">${k.delta}</span>
-      <div class="ov-kpi-sub">${k.sub}</div>
+      <div class="ov-kpi-value">${k.value != null ? k.value : "—"}</div>
+      ${k.delta ? `<span class="ov-kpi-delta ${k.delta_dir || "flat"}">${k.delta}</span>` : ""}
+      <div class="ov-kpi-sub">${k.sub || ""}</div>
       <div class="ov-kpi-spk"><canvas id="ovSpk${i}"></canvas></div>
     </div>`).join("");
 
@@ -290,9 +314,9 @@ function renderOverview(d) {
 
   // sparklines
   const spkColors = [IJ, PLUM, ROSE, "#1C6854"];
-  (d.kpis || []).forEach((k, i) => {
+  kpis.forEach((k, i) => {
     const el = document.getElementById(`ovSpk${i}`);
-    if (!el || !k.spark) return;
+    if (!el || !k.spark || !k.spark.length) return;
     const color = spkColors[i] || IJ;
     charts.push(new Chart(el, {
       type: "line",

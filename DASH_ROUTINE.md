@@ -258,9 +258,12 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 ```json
 "weekly_signal": {
-  "updated": "YYYY-MM-DD",
-  "week_label": "Week of Mon D",
-  "narrative": "[the 2–4 sentence prose narrative composed in Phase 1]"
+  "current": {
+    "week_label": "Week of Mon D",
+    "updated": "YYYY-MM-DD",
+    "narrative": "[the 2–4 sentence prose narrative composed in Phase 1]"
+  },
+  "previous": "[last run's `current` block, moved down verbatim]"
 },
 "kpis": {
   "hih_pool": N,
@@ -268,6 +271,19 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
   "closed_won_mtd": "$N"
 }
 ```
+
+**Shape rules — the Overview tab renders straight off these keys:**
+- `weekly_signal` rotates: this run's block becomes `current`, and the block that was
+  `current` moves to `previous` verbatim. The Overview tab shows both cards. Writing a
+  flat `weekly_signal` (no `current`/`previous`) still renders, but silently drops the
+  prior week's card — don't.
+- `kpis` must stay the flat three-key object above, or the rich tile array
+  (`[{label, value, delta, delta_dir, sub, spark[]}, …]`). No other shape. `assets/app.js`
+  normalizes both; anything else renders an empty KPI strip.
+- After pushing, load https://inquired-marketing-dash.netlify.app/ and confirm the
+  Overview tab renders (it fetches `data/overview.json` client-side — a bad shape shows
+  "Could not load data/overview.json", not a build failure, so Netlify deploying green
+  is not proof the tab works).
 
 ### Push
 
