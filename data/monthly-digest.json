@@ -1,18 +1,18 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Digest",
-  "updated": "2026-07-29",
+  "updated": "2026-08-05",
   "fiscal_year_start_month": 10,
   "brand_lift": {
     "updated": null,
     "status": "collecting",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill — August 2026 is the baseline month, so the first clean MoM comparison lands in the early-October digest). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the monthly digest run once the GSC API is wired.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill \u2014 August 2026 is the baseline month, so the first clean MoM comparison lands in the early-October digest). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the monthly digest run once the GSC API is wired.",
     "series": []
   },
   "seasonality": {
-    "note": "Close/fiscal year Oct 1–Sep 30. District purchasing peaks spring–summer (Apr–Aug) for the next school year."
+    "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
   },
-  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025–May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) — directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run).",
+  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run).",
   "months": [
     {
       "period": "2025-06",
@@ -641,7 +641,7 @@
         "paid_deals": 20,
         "data_flags": [
           "Win rate depressed by backlog flush: 21 of 37 losses are aged deals (created >90d ago). Dollar win rate (24.6%) is further depressed by several large-dollar losses ($100K+ deals).",
-          "May is on-cycle for district buying season — 24 wins and $299K in closes are seasonally expected."
+          "May is on-cycle for district buying season \u2014 24 wins and $299K in closes are seasonally expected."
         ]
       },
       "web": {
@@ -873,7 +873,7 @@
       "quality": {
         "mql_to_sql_pct": 36.8,
         "utm_completeness_pct": 24.8,
-        "utm_gap_flag": "UTM completeness 24.8% — below 30% threshold. Data flag: ~75% of new contacts lack utm_campaign.",
+        "utm_gap_flag": "UTM completeness 24.8% \u2014 below 30% threshold. Data flag: ~75% of new contacts lack utm_campaign.",
         "sql_by_source": [
           [
             "DIRECT_TRAFFIC",
@@ -928,7 +928,7 @@
             48
           ],
           [
-            "NCSS Webinar – Deeper Learning in Social Studies",
+            "NCSS Webinar \u2013 Deeper Learning in Social Studies",
             37
           ],
           [
@@ -985,7 +985,7 @@
       ],
       "deals": [
         {
-          "name": "Yonkers City SD, NY — SS Grades 3-6 Paid Pilot",
+          "name": "Yonkers City SD, NY \u2014 SS Grades 3-6 Paid Pilot",
           "segment": "Enterprise",
           "pipeline": "District",
           "type": "Pilot",
@@ -993,7 +993,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/28699403650"
         },
         {
-          "name": "Maywood School District 89 — TEs and Print",
+          "name": "Maywood School District 89 \u2014 TEs and Print",
           "segment": "Medium",
           "pipeline": "District",
           "type": "Add On",
@@ -1001,7 +1001,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/22642727261"
         },
         {
-          "name": "Elmhurst District 205 Public Schools — Print",
+          "name": "Elmhurst District 205 Public Schools \u2014 Print",
           "segment": "Medium",
           "pipeline": "District",
           "type": "Add On",
@@ -1009,7 +1009,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/22641963596"
         },
         {
-          "name": "Eastern Carver County SD 112 — IJ TEs",
+          "name": "Eastern Carver County SD 112 \u2014 IJ TEs",
           "segment": "Medium",
           "pipeline": "District",
           "type": "New Business",
@@ -1017,7 +1017,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/38148333112"
         },
         {
-          "name": "Jefferson County Schools — Pilot Printed Materials",
+          "name": "Jefferson County Schools \u2014 Pilot Printed Materials",
           "segment": "Enterprise",
           "pipeline": "District",
           "type": "Add On",
@@ -1025,7 +1025,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/35099872943"
         },
         {
-          "name": "Batavia Public SD 101 — SS Pilot Expansion",
+          "name": "Batavia Public SD 101 \u2014 SS Pilot Expansion",
           "segment": "Medium",
           "pipeline": "District",
           "type": "Pilot Expansion",
@@ -1033,7 +1033,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/18175173710"
         },
         {
-          "name": "School District of Fort Atkinson, WI — SS",
+          "name": "School District of Fort Atkinson, WI \u2014 SS",
           "segment": "Medium",
           "pipeline": "District",
           "type": "New Business",
@@ -1041,7 +1041,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/16623669375"
         },
         {
-          "name": "Christian Heritage Academy, IL — Print",
+          "name": "Christian Heritage Academy, IL \u2014 Print",
           "segment": "Single/Small",
           "pipeline": "School",
           "type": "New Business",
@@ -1049,7 +1049,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/38130923898"
         },
         {
-          "name": "Sinai Akiba Academy, CA — SS",
+          "name": "Sinai Akiba Academy, CA \u2014 SS",
           "segment": "Single/Small",
           "pipeline": "School",
           "type": "New Business",
@@ -1057,7 +1057,7 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/28274449269"
         },
         {
-          "name": "Mount Tamalpais School, CA — SS",
+          "name": "Mount Tamalpais School, CA \u2014 SS",
           "segment": "Single/Small",
           "pipeline": "School",
           "type": "New Business",
@@ -1100,7 +1100,7 @@
       "keyword_gap": {
         "total_missing": 129,
         "relevant_missing": 20,
-        "filter_note": "Math keywords excluded — competitors' products include math curricula not relevant to IJ/Inkwell/WH. ~20 of 129 missing keywords are ELA/literacy/social studies.",
+        "filter_note": "Math keywords excluded \u2014 competitors' products include math curricula not relevant to IJ/Inkwell/WH. ~20 of 129 missing keywords are ELA/literacy/social studies.",
         "top_gaps": [
           {
             "kw": "ela curriculum",
@@ -1367,7 +1367,7 @@
       "quality": {
         "mql_to_sql_pct": 82.1,
         "utm_completeness_pct": 2.1,
-        "utm_gap_flag": "UTM completeness collapsed to 2.1% (14/683) from 24.8% in May — severe drop, tied to offline lifecycle import which lacks UTM by nature.",
+        "utm_gap_flag": "UTM completeness collapsed to 2.1% (14/683) from 24.8% in May \u2014 severe drop, tied to offline lifecycle import which lacks UTM by nature.",
         "sql_by_source": [
           [
             "OFFLINE",
@@ -1529,7 +1529,7 @@
         "total_missing": 129,
         "relevant_missing": 20,
         "as_of": "2026-06-17",
-        "filter_note": "Math keywords excluded — competitors' products include math curricula not relevant to IJ/Inkwell/WH. Job-search and login keywords also excluded. 20 of 129 missing keywords are ELA/literacy/social studies.",
+        "filter_note": "Math keywords excluded \u2014 competitors' products include math curricula not relevant to IJ/Inkwell/WH. Job-search and login keywords also excluded. 20 of 129 missing keywords are ELA/literacy/social studies.",
         "top_gaps": [
           {
             "kw": "ela curriculum",
@@ -1608,6 +1608,283 @@
           "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
           "keywords": 16,
           "visits": 36
+        }
+      ]
+    },
+    {
+      "period": "2026-07",
+      "label": "Jul 2026",
+      "funnel": {
+        "hih": 26,
+        "mql": 158,
+        "sql": 112,
+        "opp": 113
+      },
+      "revenue": {
+        "district_won": 658504.61,
+        "school_won": 19410.0,
+        "total_won": 677914.61,
+        "nb_won": 675914.61,
+        "existing_won": 2000.0,
+        "wins": 30,
+        "win_rate_count_pct": 55.6,
+        "win_rate_dollar_pct": 79.9,
+        "by_segment": {
+          "single_small": {
+            "won": 15,
+            "lost": 19
+          },
+          "medium": {
+            "won": 6,
+            "lost": 3
+          },
+          "large": {
+            "won": 5,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 2,
+            "lost": 2
+          }
+        }
+      },
+      "web": {
+        "sessions": 25711,
+        "users": 11875,
+        "views": 20004,
+        "yoy": {
+          "sessions": 7962,
+          "users": 5941,
+          "views": 9068
+        },
+        "engaged_pct": 72.4,
+        "channels": [
+          [
+            "Organic Search",
+            9029
+          ],
+          [
+            "Direct",
+            7951
+          ],
+          [
+            "Paid Search",
+            3326
+          ],
+          [
+            "Email",
+            524
+          ],
+          [
+            "Referral",
+            2466
+          ],
+          [
+            "Organic Social",
+            299
+          ],
+          [
+            "Other",
+            2244
+          ]
+        ],
+        "conversions": [
+          [
+            "Form thank-you",
+            259
+          ],
+          [
+            "Resource downloads",
+            203
+          ],
+          [
+            "Webinar signups",
+            1
+          ],
+          [
+            "Contact sales",
+            37
+          ],
+          [
+            "Curriculum guide",
+            0
+          ]
+        ]
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null,
+        "ranked": null
+      },
+      "by_product": {
+        "ij": {
+          "hih": 23,
+          "mql": 52,
+          "sql": 23
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 21,
+          "sql": 2
+        },
+        "wh": {
+          "hih": 5,
+          "mql": 5,
+          "sql": 4
+        },
+        "gf8": {
+          "hih": 3,
+          "mql": 2,
+          "sql": 1
+        }
+      },
+      "rev_by_product": {
+        "ij": 617504.61,
+        "inkwell": 59591.0,
+        "wh": 37599.45,
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional; won't sum to totals"
+      },
+      "quality": {
+        "mql_to_sql_pct": 70.9,
+        "utm_completeness_pct": 7.7,
+        "utm_gap_flag": "UTM completeness improved to 7.7% (26/337) from 2.0% in June, but still well below the 30% healthy-gap threshold.",
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            83
+          ],
+          [
+            "DIRECT_TRAFFIC",
+            20
+          ],
+          [
+            "EMAIL_MARKETING",
+            4
+          ],
+          [
+            "OTHER_CAMPAIGNS",
+            3
+          ],
+          [
+            "PAID_SEARCH",
+            2
+          ]
+        ],
+        "top_utm_campaigns": [
+          [
+            "MQL Campaign_F24",
+            2
+          ],
+          [
+            "Sonar | Evaluation Social Studies | Search",
+            1
+          ],
+          [
+            "Sonar | Brand | Search",
+            1
+          ]
+        ]
+      },
+      "hih_by_source": [
+        [
+          "Direct Traffic",
+          17
+        ],
+        [
+          "Organic Search",
+          4
+        ],
+        [
+          "Paid Search",
+          4
+        ],
+        [
+          "Email Marketing",
+          2
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Harmony Public Schools, TX - SS Pilot Expansion",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 182231.28,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/40707619936"
+        },
+        {
+          "name": "Bellevue School District, WA - SS Pilot Expansion",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 128256.5,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/43270792348"
+        },
+        {
+          "name": "Alexandria City Public Schools, VA - SS Pilot Expansion",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 100701.9,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/19543147092"
+        },
+        {
+          "name": "Leander ISD, - Inkwell",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 53890.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/45326970755"
+        },
+        {
+          "name": "Roseville Area Schools, MN - SS Pilot Expansion",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 50040.05,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56934250614"
+        },
+        {
+          "name": "Distinctive Schools, IL - SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 42092.18,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/50712953453"
+        },
+        {
+          "name": "Mcminnville School District 40, OR - SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 38527.65,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56896715703"
+        },
+        {
+          "name": "Wilton Community School District, IA - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 19646.55,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53288536673"
+        },
+        {
+          "name": "Bright Star Schools Charter, CA - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 15365.6,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/35751100416"
+        },
+        {
+          "name": "Doral Academy, NV - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 12800.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51688242860"
         }
       ]
     }
@@ -1836,7 +2113,6 @@
   ],
   "web_trend": {
     "labels": [
-      "Jul",
       "Aug",
       "Sep",
       "Oct",
@@ -1847,10 +2123,10 @@
       "Mar",
       "Apr",
       "May",
-      "Jun"
+      "Jun",
+      "Jul"
     ],
     "current": [
-      7962,
       11372,
       26003,
       35976,
@@ -1861,10 +2137,10 @@
       23590,
       17696,
       39181,
-      28599
+      28599,
+      25711
     ],
     "prior": [
-      12663,
       19127,
       24368,
       25022,
@@ -1875,11 +2151,12 @@
       18734,
       18428,
       14781,
-      9508
+      9508,
+      7962
     ],
-    "current_total": 267664,
-    "prior_total": 211199,
-    "yoy_pct": 26.7
+    "current_total": 285413,
+    "prior_total": 206498,
+    "yoy_pct": 38.2
   },
-  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) — independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
+  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
 }

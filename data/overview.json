@@ -1,43 +1,43 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-08-03",
+  "updated": "2026-08-05",
   "summary": {
-    "headline": "June closed $970K on the spring buying peak; HIH softened seasonally to 76; MQL/SQL inflated by an offline lifecycle import.",
-    "body": "June's story is revenue: $970,129 closed won across 34 deals (63% win rate by count, 83% by dollar) — the strongest month this fiscal year and on-cycle for the spring-summer district buying peak, though 82% of it came from two deals (Idea Public Schools $641K, Yonkers $160K). Genuine demand softened as expected heading into summer: HIH came in at 76, down 22% from May's 101, which is seasonal, not a signal problem. MQL and SQL totals are inflated by a large offline lifecycle import (95% OFFLINE-sourced, no UTM); the product-tagged funnel is roughly flat versus May (IJ 54 HIH, 30 SQL). Two watch items: UTM completeness collapsed to 2.1%, and Medium-segment deals lost the month (3 won vs 5 lost, $114K in losses).",
+    "headline": "July cooled to seasonal norms: $678K closed won, HIH fell to 26, and June's inflated MQL/SQL numbers washed out of the base.",
+    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) \u2014 down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
     "signals": [
       {
-        "label": "Revenue $970K — on-cycle spring buying peak",
+        "label": "Medium segment win rate 66.7% (up from 37.5%)",
         "dir": "up"
       },
       {
-        "label": "MQL/SQL inflated by offline lifecycle import",
+        "label": "MQL-to-SQL normalized to 70.9% post-import",
+        "dir": "up"
+      },
+      {
+        "label": "UTM completeness still 7.7% vs 30% floor",
         "dir": "watch"
       },
       {
-        "label": "Medium segment: 3 won vs 5 lost, -$105K net",
-        "dir": "watch"
-      },
-      {
-        "label": "HIH 76 — seasonal buying-crunch softening",
+        "label": "Enterprise win rate 50% (2 of 4, small-N)",
         "dir": "watch"
       }
     ]
   },
   "kpis": {
     "hih_pool": 2259,
-    "mql_to_sql_pct": 69.7,
+    "mql_to_sql_pct": 70.9,
     "closed_won_mtd": "$0"
   },
   "brand_lift": {
     "updated": "2026-07-30",
     "status": "collecting",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries · inquired.com property",
+        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -46,7 +46,7 @@
       {
         "key": "youtube",
         "label": "YouTube in Google Search",
-        "sub": "Impressions + clicks on our channel · GSC Social Signals",
+        "sub": "Impressions + clicks on our channel \u00b7 GSC Social Signals",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -55,7 +55,7 @@
       {
         "key": "instagram",
         "label": "Instagram in Google Search",
-        "sub": "Impressions + clicks on our profile · GSC Social Signals",
+        "sub": "Impressions + clicks on our profile \u00b7 GSC Social Signals",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -67,12 +67,12 @@
     "current": {
       "week_label": "Week of Jul 27",
       "updated": "2026-08-03",
-      "narrative": "MQL came in at 33 this week (Jul 27–Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 — all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
+      "narrative": "MQL came in at 33 this week (Jul 27\u2013Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 \u2014 all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
     },
     "previous": {
       "week_label": "Week of Jul 20",
       "updated": "2026-07-27",
-      "narrative": "MQL came in at 40 this week (Jul 20–26), up 48% from 27 the prior week and the strongest MQL week since late June, with Single/Small inbound driving 67% of new qualified leads. SQL and Opp both held at 27, and MQL→SQL sits at 67.5% — still elevated by the ongoing offline lifecycle migration. HIH remained flat at 5, a deep-summer seasonal low, while open pipeline stays strong at 104 district and 34 school deals. Closed-won July MTD has reached approximately $700K across 56 deals."
+      "narrative": "MQL came in at 40 this week (Jul 20\u201326), up 48% from 27 the prior week and the strongest MQL week since late June, with Single/Small inbound driving 67% of new qualified leads. SQL and Opp both held at 27, and MQL\u2192SQL sits at 67.5% \u2014 still elevated by the ongoing offline lifecycle migration. HIH remained flat at 5, a deep-summer seasonal low, while open pipeline stays strong at 104 district and 34 school deals. Closed-won July MTD has reached approximately $700K across 56 deals."
     }
   }
 }
