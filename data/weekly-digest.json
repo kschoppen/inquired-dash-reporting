@@ -1,3606 +1,4333 @@
 {
- "skill": "weekly-marketing-digest",
- "title": "Weekly Digest",
- "updated": "2026-08-03",
- "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
- "brand_lift": {
-  "updated": null,
-  "status": "collecting",
-  "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill — first WoW read lands the week of Aug 17). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the Monday weekly run once the GSC API is wired.",
-  "series": []
- },
- "pipeline": {
-  "district_open": 30,
-  "school_open": 24,
-  "as_of": "2026-08-03",
-  "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
- },
- "segment_coverage": {
-  "hih": null,
-  "mql": 79,
-  "sql": 83,
-  "opp": 82
- },
- "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). GF8 omitted (below the 5-contact relevance threshold every week).",
- "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
- "products_included": [
-  "ij",
-  "inkwell"
- ],
- "weeks": [
-  {
-   "period": "2026-05-11",
-   "label": "May 11",
-   "funnel": {
-    "hih": 20,
-    "mql": 35,
-    "sql": 14,
-    "opp": 12
-   },
-   "by_product": {
-    "ij": {
-     "hih": 13,
-     "mql": 16,
-     "sql": 7,
-     "opp": 7
-    },
-    "inkwell": {
-     "hih": 6,
-     "mql": 8,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": {
-     "hih": 1,
-     "mql": 1,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "by_segment": {
-    "single_small": {
-     "hih": 7,
-     "mql": 16,
-     "sql": 10,
-     "opp": 10
-    },
-    "medium": {
-     "hih": 0,
-     "mql": 4,
-     "sql": 1,
-     "opp": 0
-    },
-    "large": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    },
-    "enterprise": {
-     "hih": 2,
-     "mql": 4,
-     "sql": 2,
-     "opp": 2
-    }
-   },
-   "disposition": {
-    "dq": 141,
-    "nurture": 25
-   }
+  "skill": "weekly-marketing-digest",
+  "title": "Weekly Digest",
+  "updated": "2026-08-10",
+  "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
+  "brand_lift": {
+    "updated": null,
+    "status": "collecting",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill \u2014 first WoW read lands the week of Aug 17). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the Monday weekly run once the GSC API is wired.",
+    "series": []
   },
-  {
-   "period": "2026-05-18",
-   "label": "May 18",
-   "funnel": {
-    "hih": 25,
-    "mql": 30,
-    "sql": 21,
-    "opp": 19
-   },
-   "by_product": {
-    "ij": {
-     "hih": 22,
-     "mql": 16,
-     "sql": 10,
-     "opp": 8
-    },
-    "inkwell": {
-     "hih": 1,
-     "mql": 1,
-     "sql": 0,
-     "opp": 1
-    },
-    "wh": {
-     "hih": 1,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "by_segment": {
-    "single_small": {
-     "hih": 10,
-     "mql": 12,
-     "sql": 9,
-     "opp": 10
-    },
-    "medium": {
-     "hih": 3,
-     "mql": 5,
-     "sql": 6,
-     "opp": 4
-    },
-    "large": {
-     "hih": 0,
-     "mql": 1,
-     "sql": 1,
-     "opp": 1
-    },
-    "enterprise": {
-     "hih": 3,
-     "mql": 6,
-     "sql": 4,
-     "opp": 4
-    }
-   },
-   "disposition": {
-    "dq": 76,
-    "nurture": 12
-   }
+  "pipeline": {
+    "district_open": 29,
+    "school_open": 23,
+    "as_of": "2026-08-10",
+    "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
   },
-  {
-   "period": "2026-05-25",
-   "label": "May 25",
-   "funnel": {
-    "hih": 17,
-    "mql": 34,
-    "sql": 15,
-    "opp": 17
-   },
-   "by_product": {
-    "ij": {
-     "hih": 11,
-     "mql": 10,
-     "sql": 5,
-     "opp": 7
-    },
-    "inkwell": {
-     "hih": 4,
-     "mql": 6,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": {
-     "hih": 1,
-     "mql": 4,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "by_segment": {
-    "single_small": {
-     "hih": 4,
-     "mql": 11,
-     "sql": 8,
-     "opp": 8
-    },
-    "medium": {
-     "hih": 2,
-     "mql": 4,
-     "sql": 2,
-     "opp": 5
-    },
-    "large": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 1,
-     "opp": 1
-    },
-    "enterprise": {
-     "hih": 3,
-     "mql": 5,
-     "sql": 2,
-     "opp": 1
-    }
-   },
-   "disposition": {
-    "dq": 188,
-    "nurture": 13
-   }
+  "segment_coverage": {
+    "hih": 70,
+    "mql": 62,
+    "sql": 93,
+    "opp": 97
   },
-  {
-   "period": "2026-06-01",
-   "label": "Jun 1",
-   "funnel": {
-    "hih": 25,
-    "mql": 45,
-    "sql": 30,
-    "opp": 31
-   },
-   "by_product": {
-    "ij": {
-     "hih": 19,
-     "mql": 23,
-     "sql": 9,
-     "opp": 9
-    },
-    "inkwell": {
-     "hih": 1,
-     "mql": 2,
-     "sql": 1,
-     "opp": 1
-    },
-    "wh": {
-     "hih": 6,
-     "mql": 3,
-     "sql": 1,
-     "opp": 1
-    }
-   },
-   "by_segment": {
-    "single_small": {
-     "hih": 10,
-     "mql": 24,
-     "sql": 21,
-     "opp": 21
-    },
-    "medium": {
-     "hih": 2,
-     "mql": 6,
-     "sql": 3,
-     "opp": 3
-    },
-    "large": {
-     "hih": 1,
-     "mql": 1,
-     "sql": 0,
-     "opp": 0
-    },
-    "enterprise": {
-     "hih": 3,
-     "mql": 7,
-     "sql": 5,
-     "opp": 5
-    }
-   },
-   "disposition": {
-    "dq": 132,
-    "nurture": 47
-   }
-  },
-  {
-   "period": "2026-06-08",
-   "label": "Jun 8",
-   "funnel": {
-    "hih": 16,
-    "mql": 38,
-    "sql": 27,
-    "opp": 30
-   },
-   "by_product": {
-    "ij": {
-     "hih": 10,
-     "mql": 9,
-     "sql": 5,
-     "opp": 7
-    },
-    "inkwell": {
-     "hih": 3,
-     "mql": 3,
-     "sql": 2,
-     "opp": 2
-    },
-    "wh": {
-     "hih": 3,
-     "mql": 3,
-     "sql": 0,
-     "opp": 1
-    }
-   },
-   "products_included": [
-    "ij",
-    "inkwell",
-    "wh"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 5,
-     "mql": 16,
-     "sql": 18,
-     "opp": 19
-    },
-    "medium": {
-     "hih": 1,
-     "mql": 0,
-     "sql": 0,
-     "opp": 1
-    },
-    "large": {
-     "hih": 2,
-     "mql": 5,
-     "sql": 2,
-     "opp": 2
-    },
-    "enterprise": {
-     "hih": 0,
-     "mql": 3,
-     "sql": 2,
-     "opp": 2
-    }
-   },
-   "disposition": {
-    "dq": 53,
-    "nurture": 30
-   },
-   "drill": {
-    "hih": [
-     [
-      228189864734,
-      "Other",
-      "Direct"
-     ],
-     [
-      228066059110,
-      "Large",
-      "Direct"
-     ],
-     [
-      228057872551,
-      "",
-      "Direct"
-     ],
-     [
-      227999605811,
-      "",
-      "Direct"
-     ],
-     [
-      227972138248,
-      "",
-      "Direct"
-     ],
-     [
-      227918969990,
-      "",
-      "Direct"
-     ],
-     [
-      227806066279,
-      "Single",
-      "Direct"
-     ],
-     [
-      227622340885,
-      "Single",
-      "Direct"
-     ],
-     [
-      227590123648,
-      "Medium",
-      "Direct"
-     ],
-     [
-      227575653402,
-      "Single",
-      "Direct"
-     ],
-     [
-      227430029161,
-      "Single",
-      "Direct"
-     ],
-     [
-      227339624751,
-      "Single",
-      "Direct"
-     ],
-     [
-      227159962446,
-      "",
-      "Direct"
-     ],
-     [
-      227144456231,
-      "Other",
-      "Direct"
-     ],
-     [
-      227142715482,
-      "Large",
-      "Direct"
-     ],
-     [
-      227122334231,
-      "Other",
-      "Direct"
-     ]
-    ],
-    "mql": [
-     [
-      228189864734,
-      "Other",
-      "Direct"
-     ],
-     [
-      228066059110,
-      "Large",
-      "Direct"
-     ],
-     [
-      228057872551,
-      "",
-      "Direct"
-     ],
-     [
-      199833698650,
-      "Large",
-      "Direct"
-     ],
-     [
-      228054741937,
-      "Small",
-      "Direct"
-     ],
-     [
-      227999605811,
-      "",
-      "Direct"
-     ],
-     [
-      227972138248,
-      "",
-      "Direct"
-     ],
-     [
-      227806066279,
-      "Single",
-      "Direct"
-     ],
-     [
-      227622340885,
-      "Single",
-      "Direct"
-     ],
-     [
-      227601621534,
-      "Single",
-      "Offline"
-     ],
-     [
-      227601619625,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575626093,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575541786,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      227431955623,
-      "",
-      "Offline"
-     ],
-     [
-      227431951939,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413495979,
-      "Small",
-      "Offline"
-     ],
-     [
-      227413488952,
-      "Small",
-      "Offline"
-     ],
-     [
-      227367504144,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413475102,
-      "",
-      "Offline"
-     ],
-     [
-      227367496464,
-      "Large",
-      "Offline"
-     ],
-     [
-      227339624751,
-      "Single",
-      "Direct"
-     ],
-     [
-      227225079174,
-      "Single",
-      "Offline"
-     ],
-     [
-      227194003502,
-      "Large",
-      "Offline"
-     ],
-     [
-      227159962446,
-      "",
-      "Direct"
-     ],
-     [
-      183440021056,
-      "",
-      "Direct"
-     ],
-     [
-      227144456231,
-      "Other",
-      "Direct"
-     ],
-     [
-      227091615305,
-      "",
-      "Offline"
-     ],
-     [
-      226578583218,
-      "",
-      "Offline"
-     ],
-     [
-      222296648805,
-      "Single",
-      "Offline"
-     ],
-     [
-      215794099525,
-      "",
-      "Direct"
-     ],
-     [
-      215741665412,
-      "Single",
-      "Direct"
-     ],
-     [
-      212733926772,
-      "",
-      "Offline"
-     ],
-     [
-      212524113841,
-      "Single",
-      "Offline"
-     ],
-     [
-      182860771477,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      181521560248,
-      "Large",
-      "Direct"
-     ],
-     [
-      139995499412,
-      "",
-      "Direct"
-     ],
-     [
-      93948816237,
-      "Single",
-      "Offline"
-     ],
-     [
-      20892801,
-      "Enterprise",
-      "Offline"
-     ]
-    ],
-    "sql": [
-     [
-      228054741937,
-      "Small",
-      "Direct"
-     ],
-     [
-      227601621534,
-      "Single",
-      "Offline"
-     ],
-     [
-      227601619625,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575626093,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575541786,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      227431955623,
-      "",
-      "Offline"
-     ],
-     [
-      227431951939,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413495979,
-      "Small",
-      "Offline"
-     ],
-     [
-      227413488952,
-      "Small",
-      "Offline"
-     ],
-     [
-      227367504144,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413475102,
-      "",
-      "Offline"
-     ],
-     [
-      227367496464,
-      "Large",
-      "Offline"
-     ],
-     [
-      227225079174,
-      "Single",
-      "Offline"
-     ],
-     [
-      227194003502,
-      "Large",
-      "Offline"
-     ],
-     [
-      227091615305,
-      "",
-      "Offline"
-     ],
-     [
-      226578583218,
-      "",
-      "Offline"
-     ],
-     [
-      222296648805,
-      "Single",
-      "Offline"
-     ],
-     [
-      215741665412,
-      "Single",
-      "Direct"
-     ],
-     [
-      212733926772,
-      "",
-      "Offline"
-     ],
-     [
-      212524113841,
-      "Single",
-      "Offline"
-     ],
-     [
-      176826686571,
-      "Single",
-      "Organic"
-     ],
-     [
-      183114515771,
-      "Single",
-      "Organic"
-     ],
-     [
-      126253066604,
-      "Single",
-      "Direct"
-     ],
-     [
-      93948816237,
-      "Single",
-      "Offline"
-     ],
-     [
-      16107381249,
-      "Single",
-      "Direct"
-     ],
-     [
-      20892801,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      17204473,
-      "Single",
-      "Organic"
-     ]
-    ],
-    "opp": [
-     [
-      228054741937,
-      "Small",
-      "Direct"
-     ],
-     [
-      227601621534,
-      "Single",
-      "Offline"
-     ],
-     [
-      227601619625,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575626093,
-      "Single",
-      "Offline"
-     ],
-     [
-      227575541786,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      227431955623,
-      "",
-      "Offline"
-     ],
-     [
-      227431951939,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413495979,
-      "Small",
-      "Offline"
-     ],
-     [
-      227413488952,
-      "Small",
-      "Offline"
-     ],
-     [
-      227367504144,
-      "Single",
-      "Offline"
-     ],
-     [
-      227413475102,
-      "",
-      "Offline"
-     ],
-     [
-      227367496464,
-      "Large",
-      "Offline"
-     ],
-     [
-      227225079174,
-      "Single",
-      "Offline"
-     ],
-     [
-      227194003502,
-      "Large",
-      "Offline"
-     ],
-     [
-      227091615305,
-      "",
-      "Offline"
-     ],
-     [
-      226578583218,
-      "",
-      "Offline"
-     ],
-     [
-      222296648805,
-      "Single",
-      "Offline"
-     ],
-     [
-      222169910825,
-      "",
-      "Direct"
-     ],
-     [
-      215741665412,
-      "Single",
-      "Direct"
-     ],
-     [
-      212733926772,
-      "",
-      "Offline"
-     ],
-     [
-      212524113841,
-      "Single",
-      "Offline"
-     ],
-     [
-      176826686571,
-      "Single",
-      "Organic"
-     ],
-     [
-      183114515771,
-      "Single",
-      "Organic"
-     ],
-     [
-      126253066604,
-      "Single",
-      "Direct"
-     ],
-     [
-      65781589290,
-      "Single",
-      "Organic"
-     ],
-     [
-      16107381249,
-      "Single",
-      "Direct"
-     ],
-     [
-      20892801,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      19958301,
-      "Single",
-      "Direct"
-     ],
-     [
-      18309934,
-      "Medium",
-      "Direct"
-     ],
-     [
-      17204473,
-      "Single",
-      "Organic"
-     ]
-    ]
-   }
-  },
-  {
-   "period": "2026-06-22",
-   "label": "Jun 22",
-   "funnel": {
-    "hih": 12,
-    "mql": 28,
-    "sql": 11,
-    "opp": 11
-   },
-   "by_product": {
-    "ij": {
-     "hih": 7,
-     "mql": 14,
-     "sql": 2,
-     "opp": 2
-    },
-    "inkwell": {
-     "hih": 1,
-     "mql": 2,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": {
-     "hih": 3,
-     "mql": 3,
-     "sql": 1,
-     "opp": 1
-    }
-   },
-   "products_included": [
-    "ij",
-    "inkwell",
-    "wh"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 5,
-     "mql": 17,
-     "sql": 10,
-     "opp": 10
-    },
-    "medium": {
-     "hih": 1,
-     "mql": 3,
-     "sql": 1,
-     "opp": 1
-    },
-    "large": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    },
-    "enterprise": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "disposition": {
-    "dq": 113,
-    "nurture": 89
-   },
-   "drill": {
-    "hih": [
-     [
-      231716657217,
-      "Single",
-      "Direct"
-     ],
-     [
-      230871469837,
-      "",
-      "Direct"
-     ],
-     [
-      230850609487,
-      "Single",
-      "Direct"
-     ],
-     [
-      230822291740,
-      "",
-      "Direct"
-     ],
-     [
-      230630559380,
-      "Single",
-      "Direct"
-     ],
-     [
-      230540114000,
-      "",
-      "Direct"
-     ],
-     [
-      230385490439,
-      "Medium",
-      "Direct"
-     ],
-     [
-      230381133096,
-      "",
-      "Direct"
-     ],
-     [
-      230361910441,
-      "",
-      "Direct"
-     ],
-     [
-      230343517339,
-      "Single",
-      "Direct"
-     ],
-     [
-      230342295124,
-      "Single",
-      "Direct"
-     ],
-     [
-      230341827463,
-      "",
-      "Direct"
-     ]
-    ],
-    "mql": [
-     [
-      231870703666,
-      "Medium",
-      "Other"
-     ],
-     [
-      231716657217,
-      "Single",
-      "Direct"
-     ],
-     [
-      231388879110,
-      "Medium",
-      "Offline"
-     ],
-     [
-      231283178816,
-      "",
-      "Organic"
-     ],
-     [
-      231028842872,
-      "",
-      "Direct"
-     ],
-     [
-      230871469837,
-      "",
-      "Direct"
-     ],
-     [
-      230898179248,
-      "Single",
-      "Offline"
-     ],
-     [
-      230870075717,
-      "Single",
-      "Direct"
-     ],
-     [
-      230850609487,
-      "Single",
-      "Direct"
-     ],
-     [
-      230822291740,
-      "",
-      "Direct"
-     ],
-     [
-      230728985980,
-      "Medium",
-      "Direct"
-     ],
-     [
-      230710613073,
-      "Single",
-      "Direct"
-     ],
-     [
-      230688981786,
-      "Single",
-      "Direct"
-     ],
-     [
-      230661676188,
-      "",
-      "Direct"
-     ],
-     [
-      230630559380,
-      "Single",
-      "Direct"
-     ],
-     [
-      230638754640,
-      "Small",
-      "Offline"
-     ],
-     [
-      230573897364,
-      "",
-      "Paid"
-     ],
-     [
-      230428718346,
-      "",
-      "Direct"
-     ],
-     [
-      230377346895,
-      "Single",
-      "Direct"
-     ],
-     [
-      230381898041,
-      "Single",
-      "Email"
-     ],
-     [
-      230343517339,
-      "Single",
-      "Direct"
-     ],
-     [
-      230342295124,
-      "Single",
-      "Direct"
-     ],
-     [
-      230341827463,
-      "",
-      "Direct"
-     ],
-     [
-      229709090481,
-      "Single",
-      "Offline"
-     ],
-     [
-      229709281099,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708476074,
-      "Single",
-      "Offline"
-     ],
-     [
-      229676781174,
-      "Single",
-      "Offline"
-     ],
-     [
-      228805190967,
-      "Single",
-      "Offline"
-     ]
-    ],
-    "sql": [
-     [
-      231388879110,
-      "Medium",
-      "Offline"
-     ],
-     [
-      230898179248,
-      "Single",
-      "Offline"
-     ],
-     [
-      230710613073,
-      "Single",
-      "Direct"
-     ],
-     [
-      230638754640,
-      "Small",
-      "Offline"
-     ],
-     [
-      230377346895,
-      "Single",
-      "Direct"
-     ],
-     [
-      230381898041,
-      "Single",
-      "Email"
-     ],
-     [
-      229709090481,
-      "Single",
-      "Offline"
-     ],
-     [
-      229709281099,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708476074,
-      "Single",
-      "Offline"
-     ],
-     [
-      229676781174,
-      "Single",
-      "Offline"
-     ],
-     [
-      228805190967,
-      "Single",
-      "Offline"
-     ]
-    ],
-    "opp": [
-     [
-      231388879110,
-      "Medium",
-      "Offline"
-     ],
-     [
-      230898179248,
-      "Single",
-      "Offline"
-     ],
-     [
-      230710613073,
-      "Single",
-      "Direct"
-     ],
-     [
-      230638754640,
-      "Small",
-      "Offline"
-     ],
-     [
-      230377346895,
-      "Single",
-      "Direct"
-     ],
-     [
-      230381898041,
-      "Single",
-      "Email"
-     ],
-     [
-      229709090481,
-      "Single",
-      "Offline"
-     ],
-     [
-      229709281099,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708476074,
-      "Single",
-      "Offline"
-     ],
-     [
-      229676781174,
-      "Single",
-      "Offline"
-     ],
-     [
-      228805190967,
-      "Single",
-      "Offline"
-     ]
-    ]
-   }
-  },
-  {
-   "period": "2026-06-29",
-   "label": "Jun 29",
-   "funnel": {
-    "hih": 6,
-    "mql": 34,
-    "sql": 26,
-    "opp": 27
-   },
-   "by_product": {
-    "ij": {
-     "hih": 2,
-     "mql": 5,
-     "sql": 6,
-     "opp": 6
-    },
-    "inkwell": {
-     "hih": 3,
-     "mql": 7,
-     "sql": 1,
-     "opp": 1
-    },
-    "wh": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "products_included": [
-    "ij",
-    "inkwell",
-    "wh"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 1,
-     "mql": 15,
-     "sql": 15,
-     "opp": 15
-    },
-    "medium": {
-     "hih": 0,
-     "mql": 3,
-     "sql": 4,
-     "opp": 5
-    },
-    "large": {
-     "hih": 1,
-     "mql": 5,
-     "sql": 3,
-     "opp": 3
-    },
-    "enterprise": {
-     "hih": 0,
-     "mql": 1,
-     "sql": 1,
-     "opp": 1
-    }
-   },
-   "disposition": {
-    "dq": 223,
-    "nurture": 167
-   },
-   "drill": {
-    "hih": [
-     [
-      233443793446,
-      "",
-      "Email"
-     ],
-     [
-      232760953235,
-      "Single",
-      "Direct"
-     ],
-     [
-      232450575464,
-      "",
-      "Direct"
-     ],
-     [
-      232192552450,
-      "Large",
-      "Direct"
-     ],
-     [
-      232172696162,
-      "",
-      "Direct"
-     ],
-     [
-      232103760151,
-      "",
-      "Direct"
-     ]
-    ],
-    "mql": [
-     [
-      233479922798,
-      "",
-      "Direct"
-     ],
-     [
-      233440210747,
-      "",
-      "Paid"
-     ],
-     [
-      232964767876,
-      "Large",
-      "Direct"
-     ],
-     [
-      232964571556,
-      "Medium",
-      "Offline"
-     ],
-     [
-      232817549827,
-      "Large",
-      "Offline"
-     ],
-     [
-      232737493562,
-      "Large",
-      "Offline"
-     ],
-     [
-      232760953235,
-      "Single",
-      "Direct"
-     ],
-     [
-      232736994324,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476492565,
-      "Single",
-      "Offline"
-     ],
-     [
-      232736994177,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476212309,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476162310,
-      "Single",
-      "Offline"
-     ],
-     [
-      232657851319,
-      "Single",
-      "Direct"
-     ],
-     [
-      232641837453,
-      "Medium",
-      "Other"
-     ],
-     [
-      232575710753,
-      "",
-      "Paid"
-     ],
-     [
-      232450575464,
-      "",
-      "Direct"
-     ],
-     [
-      232399842058,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399841148,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399346773,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400084833,
-      "",
-      "Offline"
-     ],
-     [
-      232399282486,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399896834,
-      "Single",
-      "Offline"
-     ],
-     [
-      232334290268,
-      "",
-      "Paid"
-     ],
-     [
-      232192552450,
-      "Large",
-      "Direct"
-     ],
-     [
-      232163252618,
-      "Small",
-      "Offline"
-     ],
-     [
-      232172696162,
-      "",
-      "Direct"
-     ],
-     [
-      232167839849,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      232111727881,
-      "Single",
-      "Offline"
-     ],
-     [
-      232103760151,
-      "",
-      "Direct"
-     ],
-     [
-      231141869370,
-      "",
-      "Offline"
-     ],
-     [
-      229709156358,
-      "Medium",
-      "Offline"
-     ],
-     [
-      228885271050,
-      "Single",
-      "Offline"
-     ],
-     [
-      152406463641,
-      "Large",
-      "Offline"
-     ],
-     [
-      64077107349,
-      "",
-      "Direct"
-     ]
-    ],
-    "sql": [
-     [
-      232964571556,
-      "Medium",
-      "Offline"
-     ],
-     [
-      232817549827,
-      "Large",
-      "Offline"
-     ],
-     [
-      232737493562,
-      "Large",
-      "Offline"
-     ],
-     [
-      232736994324,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476492565,
-      "Single",
-      "Offline"
-     ],
-     [
-      232736994177,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476212309,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476162310,
-      "Single",
-      "Offline"
-     ],
-     [
-      232641837453,
-      "Medium",
-      "Other"
-     ],
-     [
-      232399842058,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399841148,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399346773,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400084833,
-      "",
-      "Offline"
-     ],
-     [
-      232399282486,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399896834,
-      "Single",
-      "Offline"
-     ],
-     [
-      232163252618,
-      "Small",
-      "Offline"
-     ],
-     [
-      232167839849,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      232111727881,
-      "Single",
-      "Offline"
-     ],
-     [
-      231141869370,
-      "",
-      "Offline"
-     ],
-     [
-      230630559380,
-      "Single",
-      "Direct"
-     ],
-     [
-      229709156358,
-      "Medium",
-      "Offline"
-     ],
-     [
-      228557558788,
-      "Single",
-      "Direct"
-     ],
-     [
-      212509245200,
-      "",
-      "Paid"
-     ],
-     [
-      162404756588,
-      "Single",
-      "Direct"
-     ],
-     [
-      152406463641,
-      "Large",
-      "Offline"
-     ],
-     [
-      83730055786,
-      "Medium",
-      "Direct"
-     ]
-    ],
-    "opp": [
-     [
-      232964571556,
-      "Medium",
-      "Offline"
-     ],
-     [
-      232817549827,
-      "Large",
-      "Offline"
-     ],
-     [
-      232737493562,
-      "Large",
-      "Offline"
-     ],
-     [
-      232736994324,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476492565,
-      "Single",
-      "Offline"
-     ],
-     [
-      232736994177,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476212309,
-      "Single",
-      "Offline"
-     ],
-     [
-      232476162310,
-      "Single",
-      "Offline"
-     ],
-     [
-      232641837453,
-      "Medium",
-      "Other"
-     ],
-     [
-      232399842058,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399841148,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399346773,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400084833,
-      "",
-      "Offline"
-     ],
-     [
-      232399282486,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399896834,
-      "Single",
-      "Offline"
-     ],
-     [
-      232163252618,
-      "Small",
-      "Offline"
-     ],
-     [
-      232167839849,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      232111727881,
-      "Single",
-      "Offline"
-     ],
-     [
-      231141869370,
-      "",
-      "Offline"
-     ],
-     [
-      230630559380,
-      "Single",
-      "Direct"
-     ],
-     [
-      229709156358,
-      "Medium",
-      "Offline"
-     ],
-     [
-      228557558788,
-      "Single",
-      "Direct"
-     ],
-     [
-      212509245200,
-      "",
-      "Paid"
-     ],
-     [
-      162404756588,
-      "Single",
-      "Direct"
-     ],
-     [
-      152406463641,
-      "Large",
-      "Offline"
-     ],
-     [
-      83730055786,
-      "Medium",
-      "Direct"
-     ],
-     [
-      840651,
-      "Medium",
-      "Direct"
-     ]
-    ]
-   },
-   "note": "SQL/Opp inflated by still-loading offline lifecycle migration (23 of 26 SQL customer-stage). Genuine organic down-funnel ~3-4."
-  },
-  {
-   "period": "2026-07-06",
-   "label": "Jul 6",
-   "funnel": {
-    "hih": 10,
-    "mql": 47,
-    "sql": 31,
-    "opp": 32
-   },
-   "by_product": {
-    "ij": {
-     "hih": 8,
-     "mql": 17,
-     "sql": 6,
-     "opp": 6
-    },
-    "inkwell": {
-     "hih": 1,
-     "mql": 5,
-     "sql": 1,
-     "opp": 1
-    }
-   },
-   "products_included": [
+  "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History > GF8; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). WH omitted (below the 5-contact relevance threshold). GF8 included from week of Aug 3 (crossed \u22655 threshold \u2014 22 MQLs).",
+  "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
+  "products_included": [
     "ij",
     "inkwell"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 6,
-     "mql": 26,
-     "sql": 21,
-     "opp": 21
+  ],
+  "weeks": [
+    {
+      "period": "2026-05-11",
+      "label": "May 11",
+      "funnel": {
+        "hih": 20,
+        "mql": 35,
+        "sql": 14,
+        "opp": 12
+      },
+      "by_product": {
+        "ij": {
+          "hih": 13,
+          "mql": 16,
+          "sql": 7,
+          "opp": 7
+        },
+        "inkwell": {
+          "hih": 6,
+          "mql": 8,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 7,
+          "mql": 16,
+          "sql": 10,
+          "opp": 10
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 4,
+          "sql": 1,
+          "opp": 0
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 2,
+          "mql": 4,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "disposition": {
+        "dq": 141,
+        "nurture": 25
+      }
     },
-    "medium": {
-     "hih": 0,
-     "mql": 4,
-     "sql": 2,
-     "opp": 2
+    {
+      "period": "2026-05-18",
+      "label": "May 18",
+      "funnel": {
+        "hih": 25,
+        "mql": 30,
+        "sql": 21,
+        "opp": 19
+      },
+      "by_product": {
+        "ij": {
+          "hih": 22,
+          "mql": 16,
+          "sql": 10,
+          "opp": 8
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0,
+          "opp": 1
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 10,
+          "mql": 12,
+          "sql": 9,
+          "opp": 10
+        },
+        "medium": {
+          "hih": 3,
+          "mql": 5,
+          "sql": 6,
+          "opp": 4
+        },
+        "large": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 1,
+          "opp": 1
+        },
+        "enterprise": {
+          "hih": 3,
+          "mql": 6,
+          "sql": 4,
+          "opp": 4
+        }
+      },
+      "disposition": {
+        "dq": 76,
+        "nurture": 12
+      }
     },
-    "large": {
-     "hih": 0,
-     "mql": 4,
-     "sql": 4,
-     "opp": 5
+    {
+      "period": "2026-05-25",
+      "label": "May 25",
+      "funnel": {
+        "hih": 17,
+        "mql": 34,
+        "sql": 15,
+        "opp": 17
+      },
+      "by_product": {
+        "ij": {
+          "hih": 11,
+          "mql": 10,
+          "sql": 5,
+          "opp": 7
+        },
+        "inkwell": {
+          "hih": 4,
+          "mql": 6,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 4,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 4,
+          "mql": 11,
+          "sql": 8,
+          "opp": 8
+        },
+        "medium": {
+          "hih": 2,
+          "mql": 4,
+          "sql": 2,
+          "opp": 5
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 1,
+          "opp": 1
+        },
+        "enterprise": {
+          "hih": 3,
+          "mql": 5,
+          "sql": 2,
+          "opp": 1
+        }
+      },
+      "disposition": {
+        "dq": 188,
+        "nurture": 13
+      }
     },
-    "enterprise": {
-     "hih": 0,
-     "mql": 1,
-     "sql": 2,
-     "opp": 2
+    {
+      "period": "2026-06-01",
+      "label": "Jun 1",
+      "funnel": {
+        "hih": 25,
+        "mql": 45,
+        "sql": 30,
+        "opp": 31
+      },
+      "by_product": {
+        "ij": {
+          "hih": 19,
+          "mql": 23,
+          "sql": 9,
+          "opp": 9
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 2,
+          "sql": 1,
+          "opp": 1
+        },
+        "wh": {
+          "hih": 6,
+          "mql": 3,
+          "sql": 1,
+          "opp": 1
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 10,
+          "mql": 24,
+          "sql": 21,
+          "opp": 21
+        },
+        "medium": {
+          "hih": 2,
+          "mql": 6,
+          "sql": 3,
+          "opp": 3
+        },
+        "large": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 3,
+          "mql": 7,
+          "sql": 5,
+          "opp": 5
+        }
+      },
+      "disposition": {
+        "dq": 132,
+        "nurture": 47
+      }
+    },
+    {
+      "period": "2026-06-08",
+      "label": "Jun 8",
+      "funnel": {
+        "hih": 16,
+        "mql": 38,
+        "sql": 27,
+        "opp": 30
+      },
+      "by_product": {
+        "ij": {
+          "hih": 10,
+          "mql": 9,
+          "sql": 5,
+          "opp": 7
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 3,
+          "sql": 2,
+          "opp": 2
+        },
+        "wh": {
+          "hih": 3,
+          "mql": 3,
+          "sql": 0,
+          "opp": 1
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 5,
+          "mql": 16,
+          "sql": 18,
+          "opp": 19
+        },
+        "medium": {
+          "hih": 1,
+          "mql": 0,
+          "sql": 0,
+          "opp": 1
+        },
+        "large": {
+          "hih": 2,
+          "mql": 5,
+          "sql": 2,
+          "opp": 2
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 3,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "disposition": {
+        "dq": 53,
+        "nurture": 30
+      },
+      "drill": {
+        "hih": [
+          [
+            228189864734,
+            "Other",
+            "Direct"
+          ],
+          [
+            228066059110,
+            "Large",
+            "Direct"
+          ],
+          [
+            228057872551,
+            "",
+            "Direct"
+          ],
+          [
+            227999605811,
+            "",
+            "Direct"
+          ],
+          [
+            227972138248,
+            "",
+            "Direct"
+          ],
+          [
+            227918969990,
+            "",
+            "Direct"
+          ],
+          [
+            227806066279,
+            "Single",
+            "Direct"
+          ],
+          [
+            227622340885,
+            "Single",
+            "Direct"
+          ],
+          [
+            227590123648,
+            "Medium",
+            "Direct"
+          ],
+          [
+            227575653402,
+            "Single",
+            "Direct"
+          ],
+          [
+            227430029161,
+            "Single",
+            "Direct"
+          ],
+          [
+            227339624751,
+            "Single",
+            "Direct"
+          ],
+          [
+            227159962446,
+            "",
+            "Direct"
+          ],
+          [
+            227144456231,
+            "Other",
+            "Direct"
+          ],
+          [
+            227142715482,
+            "Large",
+            "Direct"
+          ],
+          [
+            227122334231,
+            "Other",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            228189864734,
+            "Other",
+            "Direct"
+          ],
+          [
+            228066059110,
+            "Large",
+            "Direct"
+          ],
+          [
+            228057872551,
+            "",
+            "Direct"
+          ],
+          [
+            199833698650,
+            "Large",
+            "Direct"
+          ],
+          [
+            228054741937,
+            "Small",
+            "Direct"
+          ],
+          [
+            227999605811,
+            "",
+            "Direct"
+          ],
+          [
+            227972138248,
+            "",
+            "Direct"
+          ],
+          [
+            227806066279,
+            "Single",
+            "Direct"
+          ],
+          [
+            227622340885,
+            "Single",
+            "Direct"
+          ],
+          [
+            227601621534,
+            "Single",
+            "Offline"
+          ],
+          [
+            227601619625,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575626093,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575541786,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            227431955623,
+            "",
+            "Offline"
+          ],
+          [
+            227431951939,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413495979,
+            "Small",
+            "Offline"
+          ],
+          [
+            227413488952,
+            "Small",
+            "Offline"
+          ],
+          [
+            227367504144,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413475102,
+            "",
+            "Offline"
+          ],
+          [
+            227367496464,
+            "Large",
+            "Offline"
+          ],
+          [
+            227339624751,
+            "Single",
+            "Direct"
+          ],
+          [
+            227225079174,
+            "Single",
+            "Offline"
+          ],
+          [
+            227194003502,
+            "Large",
+            "Offline"
+          ],
+          [
+            227159962446,
+            "",
+            "Direct"
+          ],
+          [
+            183440021056,
+            "",
+            "Direct"
+          ],
+          [
+            227144456231,
+            "Other",
+            "Direct"
+          ],
+          [
+            227091615305,
+            "",
+            "Offline"
+          ],
+          [
+            226578583218,
+            "",
+            "Offline"
+          ],
+          [
+            222296648805,
+            "Single",
+            "Offline"
+          ],
+          [
+            215794099525,
+            "",
+            "Direct"
+          ],
+          [
+            215741665412,
+            "Single",
+            "Direct"
+          ],
+          [
+            212733926772,
+            "",
+            "Offline"
+          ],
+          [
+            212524113841,
+            "Single",
+            "Offline"
+          ],
+          [
+            182860771477,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            181521560248,
+            "Large",
+            "Direct"
+          ],
+          [
+            139995499412,
+            "",
+            "Direct"
+          ],
+          [
+            93948816237,
+            "Single",
+            "Offline"
+          ],
+          [
+            20892801,
+            "Enterprise",
+            "Offline"
+          ]
+        ],
+        "sql": [
+          [
+            228054741937,
+            "Small",
+            "Direct"
+          ],
+          [
+            227601621534,
+            "Single",
+            "Offline"
+          ],
+          [
+            227601619625,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575626093,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575541786,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            227431955623,
+            "",
+            "Offline"
+          ],
+          [
+            227431951939,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413495979,
+            "Small",
+            "Offline"
+          ],
+          [
+            227413488952,
+            "Small",
+            "Offline"
+          ],
+          [
+            227367504144,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413475102,
+            "",
+            "Offline"
+          ],
+          [
+            227367496464,
+            "Large",
+            "Offline"
+          ],
+          [
+            227225079174,
+            "Single",
+            "Offline"
+          ],
+          [
+            227194003502,
+            "Large",
+            "Offline"
+          ],
+          [
+            227091615305,
+            "",
+            "Offline"
+          ],
+          [
+            226578583218,
+            "",
+            "Offline"
+          ],
+          [
+            222296648805,
+            "Single",
+            "Offline"
+          ],
+          [
+            215741665412,
+            "Single",
+            "Direct"
+          ],
+          [
+            212733926772,
+            "",
+            "Offline"
+          ],
+          [
+            212524113841,
+            "Single",
+            "Offline"
+          ],
+          [
+            176826686571,
+            "Single",
+            "Organic"
+          ],
+          [
+            183114515771,
+            "Single",
+            "Organic"
+          ],
+          [
+            126253066604,
+            "Single",
+            "Direct"
+          ],
+          [
+            93948816237,
+            "Single",
+            "Offline"
+          ],
+          [
+            16107381249,
+            "Single",
+            "Direct"
+          ],
+          [
+            20892801,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            17204473,
+            "Single",
+            "Organic"
+          ]
+        ],
+        "opp": [
+          [
+            228054741937,
+            "Small",
+            "Direct"
+          ],
+          [
+            227601621534,
+            "Single",
+            "Offline"
+          ],
+          [
+            227601619625,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575626093,
+            "Single",
+            "Offline"
+          ],
+          [
+            227575541786,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            227431955623,
+            "",
+            "Offline"
+          ],
+          [
+            227431951939,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413495979,
+            "Small",
+            "Offline"
+          ],
+          [
+            227413488952,
+            "Small",
+            "Offline"
+          ],
+          [
+            227367504144,
+            "Single",
+            "Offline"
+          ],
+          [
+            227413475102,
+            "",
+            "Offline"
+          ],
+          [
+            227367496464,
+            "Large",
+            "Offline"
+          ],
+          [
+            227225079174,
+            "Single",
+            "Offline"
+          ],
+          [
+            227194003502,
+            "Large",
+            "Offline"
+          ],
+          [
+            227091615305,
+            "",
+            "Offline"
+          ],
+          [
+            226578583218,
+            "",
+            "Offline"
+          ],
+          [
+            222296648805,
+            "Single",
+            "Offline"
+          ],
+          [
+            222169910825,
+            "",
+            "Direct"
+          ],
+          [
+            215741665412,
+            "Single",
+            "Direct"
+          ],
+          [
+            212733926772,
+            "",
+            "Offline"
+          ],
+          [
+            212524113841,
+            "Single",
+            "Offline"
+          ],
+          [
+            176826686571,
+            "Single",
+            "Organic"
+          ],
+          [
+            183114515771,
+            "Single",
+            "Organic"
+          ],
+          [
+            126253066604,
+            "Single",
+            "Direct"
+          ],
+          [
+            65781589290,
+            "Single",
+            "Organic"
+          ],
+          [
+            16107381249,
+            "Single",
+            "Direct"
+          ],
+          [
+            20892801,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            19958301,
+            "Single",
+            "Direct"
+          ],
+          [
+            18309934,
+            "Medium",
+            "Direct"
+          ],
+          [
+            17204473,
+            "Single",
+            "Organic"
+          ]
+        ]
+      }
+    },
+    {
+      "period": "2026-06-22",
+      "label": "Jun 22",
+      "funnel": {
+        "hih": 12,
+        "mql": 28,
+        "sql": 11,
+        "opp": 11
+      },
+      "by_product": {
+        "ij": {
+          "hih": 7,
+          "mql": 14,
+          "sql": 2,
+          "opp": 2
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 2,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 3,
+          "mql": 3,
+          "sql": 1,
+          "opp": 1
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 5,
+          "mql": 17,
+          "sql": 10,
+          "opp": 10
+        },
+        "medium": {
+          "hih": 1,
+          "mql": 3,
+          "sql": 1,
+          "opp": 1
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "disposition": {
+        "dq": 113,
+        "nurture": 89
+      },
+      "drill": {
+        "hih": [
+          [
+            231716657217,
+            "Single",
+            "Direct"
+          ],
+          [
+            230871469837,
+            "",
+            "Direct"
+          ],
+          [
+            230850609487,
+            "Single",
+            "Direct"
+          ],
+          [
+            230822291740,
+            "",
+            "Direct"
+          ],
+          [
+            230630559380,
+            "Single",
+            "Direct"
+          ],
+          [
+            230540114000,
+            "",
+            "Direct"
+          ],
+          [
+            230385490439,
+            "Medium",
+            "Direct"
+          ],
+          [
+            230381133096,
+            "",
+            "Direct"
+          ],
+          [
+            230361910441,
+            "",
+            "Direct"
+          ],
+          [
+            230343517339,
+            "Single",
+            "Direct"
+          ],
+          [
+            230342295124,
+            "Single",
+            "Direct"
+          ],
+          [
+            230341827463,
+            "",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            231870703666,
+            "Medium",
+            "Other"
+          ],
+          [
+            231716657217,
+            "Single",
+            "Direct"
+          ],
+          [
+            231388879110,
+            "Medium",
+            "Offline"
+          ],
+          [
+            231283178816,
+            "",
+            "Organic"
+          ],
+          [
+            231028842872,
+            "",
+            "Direct"
+          ],
+          [
+            230871469837,
+            "",
+            "Direct"
+          ],
+          [
+            230898179248,
+            "Single",
+            "Offline"
+          ],
+          [
+            230870075717,
+            "Single",
+            "Direct"
+          ],
+          [
+            230850609487,
+            "Single",
+            "Direct"
+          ],
+          [
+            230822291740,
+            "",
+            "Direct"
+          ],
+          [
+            230728985980,
+            "Medium",
+            "Direct"
+          ],
+          [
+            230710613073,
+            "Single",
+            "Direct"
+          ],
+          [
+            230688981786,
+            "Single",
+            "Direct"
+          ],
+          [
+            230661676188,
+            "",
+            "Direct"
+          ],
+          [
+            230630559380,
+            "Single",
+            "Direct"
+          ],
+          [
+            230638754640,
+            "Small",
+            "Offline"
+          ],
+          [
+            230573897364,
+            "",
+            "Paid"
+          ],
+          [
+            230428718346,
+            "",
+            "Direct"
+          ],
+          [
+            230377346895,
+            "Single",
+            "Direct"
+          ],
+          [
+            230381898041,
+            "Single",
+            "Email"
+          ],
+          [
+            230343517339,
+            "Single",
+            "Direct"
+          ],
+          [
+            230342295124,
+            "Single",
+            "Direct"
+          ],
+          [
+            230341827463,
+            "",
+            "Direct"
+          ],
+          [
+            229709090481,
+            "Single",
+            "Offline"
+          ],
+          [
+            229709281099,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708476074,
+            "Single",
+            "Offline"
+          ],
+          [
+            229676781174,
+            "Single",
+            "Offline"
+          ],
+          [
+            228805190967,
+            "Single",
+            "Offline"
+          ]
+        ],
+        "sql": [
+          [
+            231388879110,
+            "Medium",
+            "Offline"
+          ],
+          [
+            230898179248,
+            "Single",
+            "Offline"
+          ],
+          [
+            230710613073,
+            "Single",
+            "Direct"
+          ],
+          [
+            230638754640,
+            "Small",
+            "Offline"
+          ],
+          [
+            230377346895,
+            "Single",
+            "Direct"
+          ],
+          [
+            230381898041,
+            "Single",
+            "Email"
+          ],
+          [
+            229709090481,
+            "Single",
+            "Offline"
+          ],
+          [
+            229709281099,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708476074,
+            "Single",
+            "Offline"
+          ],
+          [
+            229676781174,
+            "Single",
+            "Offline"
+          ],
+          [
+            228805190967,
+            "Single",
+            "Offline"
+          ]
+        ],
+        "opp": [
+          [
+            231388879110,
+            "Medium",
+            "Offline"
+          ],
+          [
+            230898179248,
+            "Single",
+            "Offline"
+          ],
+          [
+            230710613073,
+            "Single",
+            "Direct"
+          ],
+          [
+            230638754640,
+            "Small",
+            "Offline"
+          ],
+          [
+            230377346895,
+            "Single",
+            "Direct"
+          ],
+          [
+            230381898041,
+            "Single",
+            "Email"
+          ],
+          [
+            229709090481,
+            "Single",
+            "Offline"
+          ],
+          [
+            229709281099,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708476074,
+            "Single",
+            "Offline"
+          ],
+          [
+            229676781174,
+            "Single",
+            "Offline"
+          ],
+          [
+            228805190967,
+            "Single",
+            "Offline"
+          ]
+        ]
+      }
+    },
+    {
+      "period": "2026-06-29",
+      "label": "Jun 29",
+      "funnel": {
+        "hih": 6,
+        "mql": 34,
+        "sql": 26,
+        "opp": 27
+      },
+      "by_product": {
+        "ij": {
+          "hih": 2,
+          "mql": 5,
+          "sql": 6,
+          "opp": 6
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 7,
+          "sql": 1,
+          "opp": 1
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 1,
+          "mql": 15,
+          "sql": 15,
+          "opp": 15
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 3,
+          "sql": 4,
+          "opp": 5
+        },
+        "large": {
+          "hih": 1,
+          "mql": 5,
+          "sql": 3,
+          "opp": 3
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 1,
+          "opp": 1
+        }
+      },
+      "disposition": {
+        "dq": 223,
+        "nurture": 167
+      },
+      "drill": {
+        "hih": [
+          [
+            233443793446,
+            "",
+            "Email"
+          ],
+          [
+            232760953235,
+            "Single",
+            "Direct"
+          ],
+          [
+            232450575464,
+            "",
+            "Direct"
+          ],
+          [
+            232192552450,
+            "Large",
+            "Direct"
+          ],
+          [
+            232172696162,
+            "",
+            "Direct"
+          ],
+          [
+            232103760151,
+            "",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            233479922798,
+            "",
+            "Direct"
+          ],
+          [
+            233440210747,
+            "",
+            "Paid"
+          ],
+          [
+            232964767876,
+            "Large",
+            "Direct"
+          ],
+          [
+            232964571556,
+            "Medium",
+            "Offline"
+          ],
+          [
+            232817549827,
+            "Large",
+            "Offline"
+          ],
+          [
+            232737493562,
+            "Large",
+            "Offline"
+          ],
+          [
+            232760953235,
+            "Single",
+            "Direct"
+          ],
+          [
+            232736994324,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476492565,
+            "Single",
+            "Offline"
+          ],
+          [
+            232736994177,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476212309,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476162310,
+            "Single",
+            "Offline"
+          ],
+          [
+            232657851319,
+            "Single",
+            "Direct"
+          ],
+          [
+            232641837453,
+            "Medium",
+            "Other"
+          ],
+          [
+            232575710753,
+            "",
+            "Paid"
+          ],
+          [
+            232450575464,
+            "",
+            "Direct"
+          ],
+          [
+            232399842058,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399841148,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399346773,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400084833,
+            "",
+            "Offline"
+          ],
+          [
+            232399282486,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399896834,
+            "Single",
+            "Offline"
+          ],
+          [
+            232334290268,
+            "",
+            "Paid"
+          ],
+          [
+            232192552450,
+            "Large",
+            "Direct"
+          ],
+          [
+            232163252618,
+            "Small",
+            "Offline"
+          ],
+          [
+            232172696162,
+            "",
+            "Direct"
+          ],
+          [
+            232167839849,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            232111727881,
+            "Single",
+            "Offline"
+          ],
+          [
+            232103760151,
+            "",
+            "Direct"
+          ],
+          [
+            231141869370,
+            "",
+            "Offline"
+          ],
+          [
+            229709156358,
+            "Medium",
+            "Offline"
+          ],
+          [
+            228885271050,
+            "Single",
+            "Offline"
+          ],
+          [
+            152406463641,
+            "Large",
+            "Offline"
+          ],
+          [
+            64077107349,
+            "",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            232964571556,
+            "Medium",
+            "Offline"
+          ],
+          [
+            232817549827,
+            "Large",
+            "Offline"
+          ],
+          [
+            232737493562,
+            "Large",
+            "Offline"
+          ],
+          [
+            232736994324,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476492565,
+            "Single",
+            "Offline"
+          ],
+          [
+            232736994177,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476212309,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476162310,
+            "Single",
+            "Offline"
+          ],
+          [
+            232641837453,
+            "Medium",
+            "Other"
+          ],
+          [
+            232399842058,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399841148,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399346773,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400084833,
+            "",
+            "Offline"
+          ],
+          [
+            232399282486,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399896834,
+            "Single",
+            "Offline"
+          ],
+          [
+            232163252618,
+            "Small",
+            "Offline"
+          ],
+          [
+            232167839849,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            232111727881,
+            "Single",
+            "Offline"
+          ],
+          [
+            231141869370,
+            "",
+            "Offline"
+          ],
+          [
+            230630559380,
+            "Single",
+            "Direct"
+          ],
+          [
+            229709156358,
+            "Medium",
+            "Offline"
+          ],
+          [
+            228557558788,
+            "Single",
+            "Direct"
+          ],
+          [
+            212509245200,
+            "",
+            "Paid"
+          ],
+          [
+            162404756588,
+            "Single",
+            "Direct"
+          ],
+          [
+            152406463641,
+            "Large",
+            "Offline"
+          ],
+          [
+            83730055786,
+            "Medium",
+            "Direct"
+          ]
+        ],
+        "opp": [
+          [
+            232964571556,
+            "Medium",
+            "Offline"
+          ],
+          [
+            232817549827,
+            "Large",
+            "Offline"
+          ],
+          [
+            232737493562,
+            "Large",
+            "Offline"
+          ],
+          [
+            232736994324,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476492565,
+            "Single",
+            "Offline"
+          ],
+          [
+            232736994177,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476212309,
+            "Single",
+            "Offline"
+          ],
+          [
+            232476162310,
+            "Single",
+            "Offline"
+          ],
+          [
+            232641837453,
+            "Medium",
+            "Other"
+          ],
+          [
+            232399842058,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399841148,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399346773,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400084833,
+            "",
+            "Offline"
+          ],
+          [
+            232399282486,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399896834,
+            "Single",
+            "Offline"
+          ],
+          [
+            232163252618,
+            "Small",
+            "Offline"
+          ],
+          [
+            232167839849,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            232111727881,
+            "Single",
+            "Offline"
+          ],
+          [
+            231141869370,
+            "",
+            "Offline"
+          ],
+          [
+            230630559380,
+            "Single",
+            "Direct"
+          ],
+          [
+            229709156358,
+            "Medium",
+            "Offline"
+          ],
+          [
+            228557558788,
+            "Single",
+            "Direct"
+          ],
+          [
+            212509245200,
+            "",
+            "Paid"
+          ],
+          [
+            162404756588,
+            "Single",
+            "Direct"
+          ],
+          [
+            152406463641,
+            "Large",
+            "Offline"
+          ],
+          [
+            83730055786,
+            "Medium",
+            "Direct"
+          ],
+          [
+            840651,
+            "Medium",
+            "Direct"
+          ]
+        ]
+      },
+      "note": "SQL/Opp inflated by still-loading offline lifecycle migration (23 of 26 SQL customer-stage). Genuine organic down-funnel ~3-4."
+    },
+    {
+      "period": "2026-07-06",
+      "label": "Jul 6",
+      "funnel": {
+        "hih": 10,
+        "mql": 47,
+        "sql": 31,
+        "opp": 32
+      },
+      "by_product": {
+        "ij": {
+          "hih": 8,
+          "mql": 17,
+          "sql": 6,
+          "opp": 6
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 5,
+          "sql": 1,
+          "opp": 1
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 6,
+          "mql": 26,
+          "sql": 21,
+          "opp": 21
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 4,
+          "sql": 2,
+          "opp": 2
+        },
+        "large": {
+          "hih": 0,
+          "mql": 4,
+          "sql": 4,
+          "opp": 5
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "disposition": {
+        "dq": 534,
+        "nurture": 364
+      },
+      "drill": {
+        "hih": [
+          [
+            234820468616,
+            "Single",
+            "Organic"
+          ],
+          [
+            234498554436,
+            "Other",
+            "Paid"
+          ],
+          [
+            234489213100,
+            "Single",
+            "Direct"
+          ],
+          [
+            234371466416,
+            "",
+            "Direct"
+          ],
+          [
+            234333812127,
+            "Other",
+            "Direct"
+          ],
+          [
+            234057176645,
+            "Single",
+            "Organic"
+          ],
+          [
+            233912625291,
+            "",
+            "Organic"
+          ],
+          [
+            233850687383,
+            "Small",
+            "Direct"
+          ],
+          [
+            233720582252,
+            "Single",
+            "Direct"
+          ],
+          [
+            233649764354,
+            "Single",
+            "Paid"
+          ]
+        ],
+        "mql": [
+          [
+            234820468616,
+            "Single",
+            "Organic"
+          ],
+          [
+            234498554436,
+            "Other",
+            "Paid"
+          ],
+          [
+            234489213100,
+            "Single",
+            "Direct"
+          ],
+          [
+            234493219702,
+            "",
+            "Paid"
+          ],
+          [
+            234493817661,
+            "",
+            "Direct"
+          ],
+          [
+            234378874963,
+            "",
+            "Direct"
+          ],
+          [
+            234371466416,
+            "",
+            "Direct"
+          ],
+          [
+            234361010060,
+            "",
+            "Direct"
+          ],
+          [
+            234330373043,
+            "Other",
+            "Direct"
+          ],
+          [
+            234278024851,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278023064,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278015823,
+            "Small",
+            "Offline"
+          ],
+          [
+            234277999996,
+            "Small",
+            "Offline"
+          ],
+          [
+            234278011043,
+            "",
+            "Offline"
+          ],
+          [
+            234083788905,
+            "Small",
+            "Offline"
+          ],
+          [
+            234096277782,
+            "Small",
+            "Offline"
+          ],
+          [
+            234057176645,
+            "Single",
+            "Organic"
+          ],
+          [
+            233912625291,
+            "",
+            "Organic"
+          ],
+          [
+            233858617784,
+            "Medium",
+            "Direct"
+          ],
+          [
+            233850687383,
+            "Small",
+            "Direct"
+          ],
+          [
+            233848720818,
+            "",
+            "Paid"
+          ],
+          [
+            233730990487,
+            "Single",
+            "Direct"
+          ],
+          [
+            233720582252,
+            "Single",
+            "Direct"
+          ],
+          [
+            233700569445,
+            "Single",
+            "Email"
+          ],
+          [
+            233669136280,
+            "Large",
+            "Offline"
+          ],
+          [
+            233649764354,
+            "Single",
+            "Paid"
+          ],
+          [
+            233627379066,
+            "Small",
+            "Direct"
+          ],
+          [
+            233443793446,
+            "",
+            "Email"
+          ],
+          [
+            232737493768,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399535113,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399533905,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399527986,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400327717,
+            "Single",
+            "Offline"
+          ],
+          [
+            230354155104,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708342850,
+            "Large",
+            "Offline"
+          ],
+          [
+            228516650519,
+            "Single",
+            "Offline"
+          ],
+          [
+            228562089077,
+            "Single",
+            "Offline"
+          ],
+          [
+            220516964950,
+            "Large",
+            "Direct"
+          ],
+          [
+            208279145615,
+            "Large",
+            "Offline"
+          ],
+          [
+            193314074932,
+            "Small",
+            "Offline"
+          ],
+          [
+            191181204127,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            160122369920,
+            "Medium",
+            "Direct"
+          ],
+          [
+            135951224109,
+            "Single",
+            "Offline"
+          ],
+          [
+            30068633094,
+            "Single",
+            "Offline"
+          ],
+          [
+            24056751,
+            "Other",
+            "Direct"
+          ],
+          [
+            22684577,
+            "Medium",
+            "Direct"
+          ],
+          [
+            10626137,
+            "Medium",
+            "Offline"
+          ]
+        ],
+        "sql": [
+          [
+            234278024851,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278023064,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278015823,
+            "Small",
+            "Offline"
+          ],
+          [
+            234277999996,
+            "Small",
+            "Offline"
+          ],
+          [
+            234278011043,
+            "",
+            "Offline"
+          ],
+          [
+            234083788905,
+            "Small",
+            "Offline"
+          ],
+          [
+            234096277782,
+            "Small",
+            "Offline"
+          ],
+          [
+            233858617784,
+            "Medium",
+            "Direct"
+          ],
+          [
+            233720582252,
+            "Single",
+            "Direct"
+          ],
+          [
+            233669136280,
+            "Large",
+            "Offline"
+          ],
+          [
+            232964767876,
+            "Large",
+            "Direct"
+          ],
+          [
+            232737493768,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399535113,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399533905,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399527986,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400327717,
+            "Single",
+            "Offline"
+          ],
+          [
+            230354155104,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708342850,
+            "Large",
+            "Offline"
+          ],
+          [
+            228516650519,
+            "Single",
+            "Offline"
+          ],
+          [
+            228562089077,
+            "Single",
+            "Offline"
+          ],
+          [
+            219941398930,
+            "Single",
+            "Direct"
+          ],
+          [
+            208279145615,
+            "Large",
+            "Offline"
+          ],
+          [
+            193314074932,
+            "Small",
+            "Offline"
+          ],
+          [
+            191181204127,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            161387212079,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            135951224109,
+            "Single",
+            "Offline"
+          ],
+          [
+            97763732040,
+            "Single",
+            "Direct"
+          ],
+          [
+            30068633094,
+            "Single",
+            "Offline"
+          ],
+          [
+            13245651,
+            "Other",
+            "Direct"
+          ],
+          [
+            10626137,
+            "Medium",
+            "Offline"
+          ],
+          [
+            1742651,
+            "Single",
+            "Email"
+          ]
+        ],
+        "opp": [
+          [
+            234278024851,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278023064,
+            "Single",
+            "Offline"
+          ],
+          [
+            234278015823,
+            "Small",
+            "Offline"
+          ],
+          [
+            234277999996,
+            "Small",
+            "Offline"
+          ],
+          [
+            234278011043,
+            "",
+            "Offline"
+          ],
+          [
+            234083788905,
+            "Small",
+            "Offline"
+          ],
+          [
+            234096277782,
+            "Small",
+            "Offline"
+          ],
+          [
+            233858617784,
+            "Medium",
+            "Direct"
+          ],
+          [
+            233720582252,
+            "Single",
+            "Direct"
+          ],
+          [
+            233669136280,
+            "Large",
+            "Offline"
+          ],
+          [
+            232964767876,
+            "Large",
+            "Direct"
+          ],
+          [
+            232737493768,
+            "Single",
+            "Offline"
+          ],
+          [
+            232399535113,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399533905,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399527986,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400327717,
+            "Single",
+            "Offline"
+          ],
+          [
+            230354155104,
+            "Single",
+            "Offline"
+          ],
+          [
+            229708342850,
+            "Large",
+            "Offline"
+          ],
+          [
+            228516650519,
+            "Single",
+            "Offline"
+          ],
+          [
+            228562089077,
+            "Single",
+            "Offline"
+          ],
+          [
+            219941398930,
+            "Single",
+            "Direct"
+          ],
+          [
+            208279145615,
+            "Large",
+            "Offline"
+          ],
+          [
+            193314074932,
+            "Small",
+            "Offline"
+          ],
+          [
+            191181204127,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            181968136271,
+            "Single",
+            "Direct"
+          ],
+          [
+            161387212079,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            135951224109,
+            "Single",
+            "Offline"
+          ],
+          [
+            89973170298,
+            "Large",
+            "Offline"
+          ],
+          [
+            30068633094,
+            "Single",
+            "Offline"
+          ],
+          [
+            13245651,
+            "Other",
+            "Direct"
+          ],
+          [
+            10626137,
+            "Medium",
+            "Offline"
+          ],
+          [
+            1742651,
+            "Single",
+            "Email"
+          ]
+        ]
+      },
+      "note": "Offline customer-stage migration (flagged since W25) STILL loading: 22 of 31 SQL and 23 of 32 Opp are OFFLINE customer-stage; ~half of MQL too. Genuine organic down-funnel ~5-6; HIH (10) clean. SQL/Opp WoW not comparable. WH & GF8 below threshold this week."
+    },
+    {
+      "period": "2026-07-13",
+      "label": "Jul 13",
+      "funnel": {
+        "hih": 5,
+        "mql": 27,
+        "sql": 23,
+        "opp": 23
+      },
+      "by_product": {
+        "ij": {
+          "hih": 0,
+          "mql": 11,
+          "sql": 7,
+          "opp": 7
+        },
+        "inkwell": {
+          "hih": 0,
+          "mql": 4,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 0,
+          "mql": 11,
+          "sql": 13,
+          "opp": 13
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 7,
+          "sql": 6,
+          "opp": 6
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 1,
+          "opp": 1
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 2,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+    },
+    {
+      "period": "2026-07-20",
+      "label": "Jul 20",
+      "funnel": {
+        "hih": 5,
+        "mql": 40,
+        "sql": 27,
+        "opp": 27
+      },
+      "by_product": {
+        "ij": {
+          "hih": 4,
+          "mql": 10,
+          "sql": 4,
+          "opp": 4
+        },
+        "inkwell": {
+          "hih": 0,
+          "mql": 7,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": null,
+        "gf8": null
+      },
+      "products_included": [
+        "ij",
+        "inkwell"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 2,
+          "mql": 27,
+          "sql": 22,
+          "opp": 22
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 1,
+          "opp": 1
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "disposition": {
+        "dq": 100,
+        "nurture": 47
+      },
+      "drill": {
+        "hih": [
+          [
+            237771022241,
+            "Single",
+            "Direct"
+          ],
+          [
+            236923836291,
+            "",
+            "Direct"
+          ],
+          [
+            236923154263,
+            "Single",
+            "Direct"
+          ],
+          [
+            236545762816,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            236308536906,
+            "",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            237771022241,
+            "Single",
+            "Direct"
+          ],
+          [
+            237662821420,
+            "Medium",
+            "Direct"
+          ],
+          [
+            237385511937,
+            "",
+            "Paid"
+          ],
+          [
+            237265082922,
+            "",
+            "Direct"
+          ],
+          [
+            237226797897,
+            "",
+            "Paid"
+          ],
+          [
+            237223782960,
+            "Small",
+            "Offline"
+          ],
+          [
+            237223772771,
+            "Small",
+            "Offline"
+          ],
+          [
+            237200142181,
+            "Small",
+            "Offline"
+          ],
+          [
+            236866131229,
+            "Single",
+            "Offline"
+          ],
+          [
+            237161415757,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803201950,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866120347,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866304348,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866303598,
+            "Single",
+            "Offline"
+          ],
+          [
+            237005732770,
+            "Single",
+            "Direct"
+          ],
+          [
+            236866234752,
+            "Small",
+            "Offline"
+          ],
+          [
+            236803091048,
+            "Small",
+            "Offline"
+          ],
+          [
+            236925609110,
+            "Small",
+            "Paid"
+          ],
+          [
+            236923836291,
+            "",
+            "Direct"
+          ],
+          [
+            236923154263,
+            "Single",
+            "Direct"
+          ],
+          [
+            236912820048,
+            "",
+            "Paid"
+          ],
+          [
+            236862066716,
+            "",
+            "Direct"
+          ],
+          [
+            236698868588,
+            "Single",
+            "Offline"
+          ],
+          [
+            236698741296,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802850592,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802657718,
+            "Single",
+            "Offline"
+          ],
+          [
+            236705231463,
+            "Single",
+            "Offline"
+          ],
+          [
+            236545762816,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            236512093062,
+            "",
+            "Paid"
+          ],
+          [
+            236459543565,
+            "Single",
+            "Offline"
+          ],
+          [
+            236411229310,
+            "",
+            "Direct"
+          ],
+          [
+            236330835805,
+            "",
+            "Paid"
+          ],
+          [
+            236308536906,
+            "",
+            "Direct"
+          ],
+          [
+            235983285020,
+            "Single",
+            "Direct"
+          ],
+          [
+            235673209622,
+            "",
+            "Offline"
+          ],
+          [
+            235731722420,
+            "Single",
+            "Offline"
+          ],
+          [
+            235207947387,
+            "Small",
+            "Offline"
+          ],
+          [
+            232976948883,
+            "Single",
+            "Offline"
+          ],
+          [
+            135644140598,
+            "Small",
+            "Offline"
+          ],
+          [
+            94757640310,
+            "Small",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            237223782960,
+            "Small",
+            "Offline"
+          ],
+          [
+            237223772771,
+            "Small",
+            "Offline"
+          ],
+          [
+            237200142181,
+            "Small",
+            "Offline"
+          ],
+          [
+            236866131229,
+            "Single",
+            "Offline"
+          ],
+          [
+            237161415757,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803201950,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866120347,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866304348,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866303598,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866234752,
+            "Small",
+            "Offline"
+          ],
+          [
+            236803091048,
+            "Small",
+            "Offline"
+          ],
+          [
+            236698868588,
+            "Single",
+            "Offline"
+          ],
+          [
+            236698741296,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802850592,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802657718,
+            "Single",
+            "Offline"
+          ],
+          [
+            236705231463,
+            "Single",
+            "Offline"
+          ],
+          [
+            236459543565,
+            "Single",
+            "Offline"
+          ],
+          [
+            236411229310,
+            "",
+            "Direct"
+          ],
+          [
+            235673209622,
+            "",
+            "Offline"
+          ],
+          [
+            235731722420,
+            "Single",
+            "Offline"
+          ],
+          [
+            235704482620,
+            "Medium",
+            "Direct"
+          ],
+          [
+            235207947387,
+            "Small",
+            "Offline"
+          ],
+          [
+            232976948883,
+            "Single",
+            "Offline"
+          ],
+          [
+            230343517339,
+            "Single",
+            "Direct"
+          ],
+          [
+            230341827463,
+            "",
+            "Direct"
+          ],
+          [
+            149360326425,
+            "",
+            "Organic"
+          ],
+          [
+            135644140598,
+            "Small",
+            "Offline"
+          ]
+        ],
+        "opp": [
+          [
+            237223782960,
+            "Small",
+            "Offline"
+          ],
+          [
+            237223772771,
+            "Small",
+            "Offline"
+          ],
+          [
+            237200142181,
+            "Small",
+            "Offline"
+          ],
+          [
+            236866131229,
+            "Single",
+            "Offline"
+          ],
+          [
+            237161415757,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803201950,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866120347,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866304348,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866303598,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866234752,
+            "Small",
+            "Offline"
+          ],
+          [
+            236803091048,
+            "Small",
+            "Offline"
+          ],
+          [
+            236698868588,
+            "Single",
+            "Offline"
+          ],
+          [
+            236698741296,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802850592,
+            "Small",
+            "Offline"
+          ],
+          [
+            236802657718,
+            "Single",
+            "Offline"
+          ],
+          [
+            236705231463,
+            "Single",
+            "Offline"
+          ],
+          [
+            236459543565,
+            "Single",
+            "Offline"
+          ],
+          [
+            236411229310,
+            "",
+            "Direct"
+          ],
+          [
+            235673209622,
+            "",
+            "Offline"
+          ],
+          [
+            235731722420,
+            "Single",
+            "Offline"
+          ],
+          [
+            235704482620,
+            "Medium",
+            "Direct"
+          ],
+          [
+            235207947387,
+            "Small",
+            "Offline"
+          ],
+          [
+            232976948883,
+            "Single",
+            "Offline"
+          ],
+          [
+            230343517339,
+            "Single",
+            "Direct"
+          ],
+          [
+            230341827463,
+            "",
+            "Direct"
+          ],
+          [
+            149360326425,
+            "",
+            "Organic"
+          ],
+          [
+            135644140598,
+            "Small",
+            "Offline"
+          ]
+        ]
+      }
+    },
+    {
+      "period": "2026-07-27",
+      "label": "Jul 27",
+      "funnel": {
+        "hih": 4,
+        "mql": 33,
+        "sql": 23,
+        "opp": 22
+      },
+      "by_product": {
+        "ij": {
+          "hih": 3,
+          "mql": 13,
+          "sql": 6,
+          "opp": 5
+        },
+        "inkwell": {
+          "hih": 1,
+          "mql": 2,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": null,
+        "gf8": null
+      },
+      "products_included": [
+        "ij",
+        "inkwell"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": null,
+          "mql": 14,
+          "sql": 12,
+          "opp": 12
+        },
+        "medium": {
+          "hih": null,
+          "mql": 9,
+          "sql": 5,
+          "opp": 4
+        },
+        "large": {
+          "hih": null,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": null,
+          "mql": 3,
+          "sql": 2,
+          "opp": 2
+        }
+      },
+      "disposition": {
+        "dq": 82,
+        "nurture": 63
+      },
+      "note": "HIH at 4 \u2014 deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 \u2014 summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration.",
+      "drill": {
+        "hih": [
+          [
+            238936886067,
+            "Small",
+            "Organic"
+          ],
+          [
+            238746493094,
+            "Single",
+            "Email"
+          ],
+          [
+            238724268698,
+            "Single",
+            "Paid"
+          ],
+          [
+            238616859679,
+            "Enterprise",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            239250691599,
+            "Medium",
+            "Paid"
+          ],
+          [
+            239168411693,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            239021797559,
+            "Medium",
+            "Direct"
+          ],
+          [
+            238987764354,
+            "Single",
+            "Offline"
+          ],
+          [
+            238936886067,
+            "Small",
+            "Organic"
+          ],
+          [
+            238746493094,
+            "Single",
+            "Email"
+          ],
+          [
+            238724268698,
+            "Single",
+            "Paid"
+          ],
+          [
+            238729095188,
+            "",
+            "Direct"
+          ],
+          [
+            238616859679,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238593376320,
+            "Single",
+            "Email"
+          ],
+          [
+            238363637852,
+            "Medium",
+            "Direct"
+          ],
+          [
+            238297730163,
+            "Medium",
+            "Direct"
+          ],
+          [
+            238297539638,
+            "Medium",
+            "Offline"
+          ],
+          [
+            238297581082,
+            "Other",
+            "Offline"
+          ],
+          [
+            238297509892,
+            "Single",
+            "Offline"
+          ],
+          [
+            238119112327,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            238073196153,
+            "Small",
+            "Offline"
+          ],
+          [
+            238058404393,
+            "Small",
+            "Offline"
+          ],
+          [
+            238021670826,
+            "Medium",
+            "Direct"
+          ],
+          [
+            237487164981,
+            "Single",
+            "Offline"
+          ],
+          [
+            237487273066,
+            "Single",
+            "Offline"
+          ],
+          [
+            237989305363,
+            "Small",
+            "Direct"
+          ],
+          [
+            237442265963,
+            "Single",
+            "Offline"
+          ],
+          [
+            237442389794,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803204429,
+            "",
+            "Offline"
+          ],
+          [
+            236866347944,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866362463,
+            "",
+            "Offline"
+          ],
+          [
+            236866136367,
+            "Medium",
+            "Offline"
+          ],
+          [
+            235672225152,
+            "Medium",
+            "Offline"
+          ],
+          [
+            235504491704,
+            "",
+            "Direct"
+          ],
+          [
+            157959615917,
+            "",
+            "Offline"
+          ],
+          [
+            150902106202,
+            "Medium",
+            "Direct"
+          ],
+          [
+            94725806976,
+            "Other",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            239250691599,
+            "Medium",
+            "Paid"
+          ],
+          [
+            239168411693,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238987764354,
+            "Single",
+            "Offline"
+          ],
+          [
+            238297539638,
+            "Medium",
+            "Offline"
+          ],
+          [
+            238297581082,
+            "Other",
+            "Offline"
+          ],
+          [
+            238297509892,
+            "Single",
+            "Offline"
+          ],
+          [
+            238119112327,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            238073196153,
+            "Small",
+            "Offline"
+          ],
+          [
+            238058404393,
+            "Small",
+            "Offline"
+          ],
+          [
+            237487164981,
+            "Single",
+            "Offline"
+          ],
+          [
+            237487273066,
+            "Single",
+            "Offline"
+          ],
+          [
+            237989305363,
+            "Small",
+            "Direct"
+          ],
+          [
+            237442265963,
+            "Single",
+            "Offline"
+          ],
+          [
+            237442389794,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803204429,
+            "",
+            "Offline"
+          ],
+          [
+            236866347944,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866362463,
+            "",
+            "Offline"
+          ],
+          [
+            236866136367,
+            "Medium",
+            "Offline"
+          ],
+          [
+            235672225152,
+            "Medium",
+            "Offline"
+          ],
+          [
+            214438544932,
+            "Small",
+            "Direct"
+          ],
+          [
+            206305948312,
+            "Small",
+            "Direct"
+          ],
+          [
+            157959615917,
+            "",
+            "Offline"
+          ],
+          [
+            10626866,
+            "Medium",
+            "Email"
+          ]
+        ],
+        "opp": [
+          [
+            239250691599,
+            "Medium",
+            "Paid"
+          ],
+          [
+            239168411693,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238987764354,
+            "Single",
+            "Offline"
+          ],
+          [
+            238297539638,
+            "Medium",
+            "Offline"
+          ],
+          [
+            238297581082,
+            "Other",
+            "Offline"
+          ],
+          [
+            238297509892,
+            "Single",
+            "Offline"
+          ],
+          [
+            238119112327,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            238073196153,
+            "Small",
+            "Offline"
+          ],
+          [
+            238058404393,
+            "Small",
+            "Offline"
+          ],
+          [
+            237487164981,
+            "Single",
+            "Offline"
+          ],
+          [
+            237487273066,
+            "Single",
+            "Offline"
+          ],
+          [
+            237989305363,
+            "Small",
+            "Direct"
+          ],
+          [
+            237442265963,
+            "Single",
+            "Offline"
+          ],
+          [
+            237442389794,
+            "Single",
+            "Offline"
+          ],
+          [
+            236803204429,
+            "",
+            "Offline"
+          ],
+          [
+            236866347944,
+            "Single",
+            "Offline"
+          ],
+          [
+            236866362463,
+            "",
+            "Offline"
+          ],
+          [
+            236866136367,
+            "Medium",
+            "Offline"
+          ],
+          [
+            235672225152,
+            "Medium",
+            "Offline"
+          ],
+          [
+            214438544932,
+            "Small",
+            "Direct"
+          ],
+          [
+            206305948312,
+            "Small",
+            "Direct"
+          ],
+          [
+            157959615917,
+            "",
+            "Offline"
+          ]
+        ]
+      }
+    },
+    {
+      "period": "2026-08-03",
+      "label": "Aug 3",
+      "funnel": {
+        "hih": 10,
+        "mql": 60,
+        "sql": 30,
+        "opp": 30
+      },
+      "by_product": {
+        "ij": {
+          "hih": 6,
+          "mql": 14,
+          "sql": 9,
+          "opp": 10
+        },
+        "inkwell": {
+          "hih": 2,
+          "mql": 3,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": null,
+        "gf8": {
+          "hih": 2,
+          "mql": 22,
+          "sql": 1,
+          "opp": 0
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "gf8"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 6,
+          "mql": 23,
+          "sql": 18,
+          "opp": 18
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 2,
+          "sql": 3,
+          "opp": 4
+        },
+        "large": {
+          "hih": 1,
+          "mql": 2,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 10,
+          "sql": 7,
+          "opp": 7
+        }
+      },
+      "disposition": {
+        "dq": 53,
+        "nurture": 29
+      },
+      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 \u2014 highest since early July. GF8 (TK/Pre-K) crossed the \u22655 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
+      "drill": {
+        "hih": [
+          [
+            240597464927,
+            "",
+            "Direct"
+          ],
+          [
+            240596288924,
+            "",
+            "Referral"
+          ],
+          [
+            240368358778,
+            "Single",
+            "Direct"
+          ],
+          [
+            240311886493,
+            "",
+            "Direct"
+          ],
+          [
+            240294426134,
+            "Small",
+            "Direct"
+          ],
+          [
+            240268644527,
+            "Single",
+            "Direct"
+          ],
+          [
+            240150109734,
+            "Small",
+            "Organic"
+          ],
+          [
+            240122675485,
+            "Small",
+            ""
+          ],
+          [
+            239918432417,
+            "Single",
+            "Direct"
+          ],
+          [
+            239462990355,
+            "Large",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            240917624592,
+            "Single",
+            "Direct"
+          ],
+          [
+            240597464927,
+            "",
+            "Direct"
+          ],
+          [
+            240596288924,
+            "",
+            "Referral"
+          ],
+          [
+            161505245190,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240414090274,
+            "Single",
+            "Direct"
+          ],
+          [
+            240275261838,
+            "",
+            "Direct"
+          ],
+          [
+            240368358778,
+            "Single",
+            "Direct"
+          ],
+          [
+            240343924089,
+            "Single",
+            "Offline"
+          ],
+          [
+            240275319200,
+            "",
+            "Direct"
+          ],
+          [
+            240275314308,
+            "Single",
+            "Offline"
+          ],
+          [
+            240124623961,
+            "",
+            "Direct"
+          ],
+          [
+            240323576587,
+            "",
+            "Direct"
+          ],
+          [
+            240124647455,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240311886493,
+            "",
+            "Direct"
+          ],
+          [
+            240268644527,
+            "Single",
+            "Direct"
+          ],
+          [
+            240150613570,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            240150109734,
+            "Small",
+            "Organic"
+          ],
+          [
+            240124407881,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            239629074045,
+            "Medium",
+            "Offline"
+          ],
+          [
+            240122675485,
+            "Small",
+            ""
+          ],
+          [
+            240120138118,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238788542745,
+            "",
+            "Offline"
+          ],
+          [
+            240129304890,
+            "Enterprise",
+            ""
+          ],
+          [
+            109679888823,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            239629832549,
+            "Single",
+            "Offline"
+          ],
+          [
+            231137044799,
+            "Single",
+            "Offline"
+          ],
+          [
+            239927050125,
+            "Medium",
+            "Direct"
+          ],
+          [
+            239629496991,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629829688,
+            "Single",
+            "Offline"
+          ],
+          [
+            239918432417,
+            "Single",
+            "Direct"
+          ],
+          [
+            239629010049,
+            "Single",
+            "Offline"
+          ],
+          [
+            228031959218,
+            "Other",
+            "Direct"
+          ],
+          [
+            239820243484,
+            "",
+            "Direct"
+          ],
+          [
+            239822415796,
+            "",
+            "Referral"
+          ],
+          [
+            239823016843,
+            "",
+            "Direct"
+          ],
+          [
+            239825871477,
+            "Small",
+            "Organic"
+          ],
+          [
+            239820534699,
+            "",
+            "Referral"
+          ],
+          [
+            239820534703,
+            "Other",
+            "Direct"
+          ],
+          [
+            239823016799,
+            "",
+            "Direct"
+          ],
+          [
+            239823016805,
+            "",
+            "Direct"
+          ],
+          [
+            239826589450,
+            "",
+            "Direct"
+          ],
+          [
+            239822614045,
+            "Single",
+            "Organic"
+          ],
+          [
+            239823016800,
+            "",
+            "Organic"
+          ],
+          [
+            239825871459,
+            "Single",
+            "Referral"
+          ],
+          [
+            239820243483,
+            "",
+            "Direct"
+          ],
+          [
+            239820534702,
+            "",
+            "Direct"
+          ],
+          [
+            239826589446,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            239823016801,
+            "",
+            "Organic"
+          ],
+          [
+            239822614030,
+            "",
+            "Direct"
+          ],
+          [
+            239822415878,
+            "Large",
+            "Organic"
+          ],
+          [
+            239820122471,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            232399533205,
+            "Small",
+            "Offline"
+          ],
+          [
+            232400337970,
+            "Small",
+            "Offline"
+          ],
+          [
+            235015076407,
+            "Single",
+            "Offline"
+          ],
+          [
+            235003116369,
+            "Single",
+            "Offline"
+          ],
+          [
+            239668365736,
+            "Other",
+            "Paid"
+          ],
+          [
+            239629076613,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629632945,
+            "Single",
+            "Offline"
+          ],
+          [
+            239647764660,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            239462990355,
+            "Large",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            161505245190,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240122675485,
+            "Small",
+            ""
+          ],
+          [
+            240414090274,
+            "Single",
+            "Direct"
+          ],
+          [
+            240343924089,
+            "Single",
+            "Offline"
+          ],
+          [
+            240275314308,
+            "Single",
+            "Offline"
+          ],
+          [
+            240124647455,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240150613570,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            240124407881,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            239629074045,
+            "Medium",
+            "Offline"
+          ],
+          [
+            240120138118,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238788542745,
+            "",
+            "Offline"
+          ],
+          [
+            238746493094,
+            "Single",
+            "Email"
+          ],
+          [
+            240129304890,
+            "Enterprise",
+            ""
+          ],
+          [
+            109679888823,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            231137044799,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629832549,
+            "Single",
+            "Offline"
+          ],
+          [
+            239927050125,
+            "Medium",
+            "Direct"
+          ],
+          [
+            239629496991,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629829688,
+            "Single",
+            "Offline"
+          ],
+          [
+            233912625291,
+            "Single",
+            "Organic"
+          ],
+          [
+            155833949068,
+            "Medium",
+            "Direct"
+          ],
+          [
+            239629010049,
+            "Single",
+            "Offline"
+          ],
+          [
+            133679956886,
+            "Single",
+            "Offline"
+          ],
+          [
+            239823016843,
+            "",
+            "Direct"
+          ],
+          [
+            232399533205,
+            "Small",
+            "Offline"
+          ],
+          [
+            232400337970,
+            "Small",
+            "Offline"
+          ],
+          [
+            235015076407,
+            "Single",
+            "Offline"
+          ],
+          [
+            235003116369,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629076613,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629632945,
+            "Single",
+            "Offline"
+          ]
+        ],
+        "opp": [
+          [
+            161505245190,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240122675485,
+            "Small",
+            ""
+          ],
+          [
+            240414090274,
+            "Single",
+            "Direct"
+          ],
+          [
+            240343924089,
+            "Single",
+            "Offline"
+          ],
+          [
+            240275314308,
+            "Single",
+            "Offline"
+          ],
+          [
+            240124647455,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            240150613570,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            240124407881,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            239629074045,
+            "Medium",
+            "Offline"
+          ],
+          [
+            240120138118,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            238788542745,
+            "",
+            "Offline"
+          ],
+          [
+            238746493094,
+            "Single",
+            "Email"
+          ],
+          [
+            240129304890,
+            "Enterprise",
+            ""
+          ],
+          [
+            109679888823,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            231137044799,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629832549,
+            "Single",
+            "Offline"
+          ],
+          [
+            239927050125,
+            "Medium",
+            "Direct"
+          ],
+          [
+            239629496991,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629829688,
+            "Single",
+            "Offline"
+          ],
+          [
+            233912625291,
+            "Single",
+            "Organic"
+          ],
+          [
+            155833949068,
+            "Medium",
+            "Direct"
+          ],
+          [
+            239629010049,
+            "Single",
+            "Offline"
+          ],
+          [
+            133679956886,
+            "Single",
+            "Offline"
+          ],
+          [
+            232400337970,
+            "Small",
+            "Offline"
+          ],
+          [
+            232399533205,
+            "Small",
+            "Offline"
+          ],
+          [
+            235015076407,
+            "Single",
+            "Offline"
+          ],
+          [
+            235003116369,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629076613,
+            "Single",
+            "Offline"
+          ],
+          [
+            239629632945,
+            "Single",
+            "Offline"
+          ],
+          [
+            15111751,
+            "Medium",
+            "Email"
+          ]
+        ]
+      }
     }
-   },
-   "disposition": {
-    "dq": 534,
-    "nurture": 364
-   },
-   "drill": {
-    "hih": [
-     [
-      234820468616,
-      "Single",
-      "Organic"
-     ],
-     [
-      234498554436,
-      "Other",
-      "Paid"
-     ],
-     [
-      234489213100,
-      "Single",
-      "Direct"
-     ],
-     [
-      234371466416,
-      "",
-      "Direct"
-     ],
-     [
-      234333812127,
-      "Other",
-      "Direct"
-     ],
-     [
-      234057176645,
-      "Single",
-      "Organic"
-     ],
-     [
-      233912625291,
-      "",
-      "Organic"
-     ],
-     [
-      233850687383,
-      "Small",
-      "Direct"
-     ],
-     [
-      233720582252,
-      "Single",
-      "Direct"
-     ],
-     [
-      233649764354,
-      "Single",
-      "Paid"
-     ]
-    ],
-    "mql": [
-     [
-      234820468616,
-      "Single",
-      "Organic"
-     ],
-     [
-      234498554436,
-      "Other",
-      "Paid"
-     ],
-     [
-      234489213100,
-      "Single",
-      "Direct"
-     ],
-     [
-      234493219702,
-      "",
-      "Paid"
-     ],
-     [
-      234493817661,
-      "",
-      "Direct"
-     ],
-     [
-      234378874963,
-      "",
-      "Direct"
-     ],
-     [
-      234371466416,
-      "",
-      "Direct"
-     ],
-     [
-      234361010060,
-      "",
-      "Direct"
-     ],
-     [
-      234330373043,
-      "Other",
-      "Direct"
-     ],
-     [
-      234278024851,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278023064,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278015823,
-      "Small",
-      "Offline"
-     ],
-     [
-      234277999996,
-      "Small",
-      "Offline"
-     ],
-     [
-      234278011043,
-      "",
-      "Offline"
-     ],
-     [
-      234083788905,
-      "Small",
-      "Offline"
-     ],
-     [
-      234096277782,
-      "Small",
-      "Offline"
-     ],
-     [
-      234057176645,
-      "Single",
-      "Organic"
-     ],
-     [
-      233912625291,
-      "",
-      "Organic"
-     ],
-     [
-      233858617784,
-      "Medium",
-      "Direct"
-     ],
-     [
-      233850687383,
-      "Small",
-      "Direct"
-     ],
-     [
-      233848720818,
-      "",
-      "Paid"
-     ],
-     [
-      233730990487,
-      "Single",
-      "Direct"
-     ],
-     [
-      233720582252,
-      "Single",
-      "Direct"
-     ],
-     [
-      233700569445,
-      "Single",
-      "Email"
-     ],
-     [
-      233669136280,
-      "Large",
-      "Offline"
-     ],
-     [
-      233649764354,
-      "Single",
-      "Paid"
-     ],
-     [
-      233627379066,
-      "Small",
-      "Direct"
-     ],
-     [
-      233443793446,
-      "",
-      "Email"
-     ],
-     [
-      232737493768,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399535113,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399533905,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399527986,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400327717,
-      "Single",
-      "Offline"
-     ],
-     [
-      230354155104,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708342850,
-      "Large",
-      "Offline"
-     ],
-     [
-      228516650519,
-      "Single",
-      "Offline"
-     ],
-     [
-      228562089077,
-      "Single",
-      "Offline"
-     ],
-     [
-      220516964950,
-      "Large",
-      "Direct"
-     ],
-     [
-      208279145615,
-      "Large",
-      "Offline"
-     ],
-     [
-      193314074932,
-      "Small",
-      "Offline"
-     ],
-     [
-      191181204127,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      160122369920,
-      "Medium",
-      "Direct"
-     ],
-     [
-      135951224109,
-      "Single",
-      "Offline"
-     ],
-     [
-      30068633094,
-      "Single",
-      "Offline"
-     ],
-     [
-      24056751,
-      "Other",
-      "Direct"
-     ],
-     [
-      22684577,
-      "Medium",
-      "Direct"
-     ],
-     [
-      10626137,
-      "Medium",
-      "Offline"
-     ]
-    ],
-    "sql": [
-     [
-      234278024851,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278023064,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278015823,
-      "Small",
-      "Offline"
-     ],
-     [
-      234277999996,
-      "Small",
-      "Offline"
-     ],
-     [
-      234278011043,
-      "",
-      "Offline"
-     ],
-     [
-      234083788905,
-      "Small",
-      "Offline"
-     ],
-     [
-      234096277782,
-      "Small",
-      "Offline"
-     ],
-     [
-      233858617784,
-      "Medium",
-      "Direct"
-     ],
-     [
-      233720582252,
-      "Single",
-      "Direct"
-     ],
-     [
-      233669136280,
-      "Large",
-      "Offline"
-     ],
-     [
-      232964767876,
-      "Large",
-      "Direct"
-     ],
-     [
-      232737493768,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399535113,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399533905,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399527986,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400327717,
-      "Single",
-      "Offline"
-     ],
-     [
-      230354155104,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708342850,
-      "Large",
-      "Offline"
-     ],
-     [
-      228516650519,
-      "Single",
-      "Offline"
-     ],
-     [
-      228562089077,
-      "Single",
-      "Offline"
-     ],
-     [
-      219941398930,
-      "Single",
-      "Direct"
-     ],
-     [
-      208279145615,
-      "Large",
-      "Offline"
-     ],
-     [
-      193314074932,
-      "Small",
-      "Offline"
-     ],
-     [
-      191181204127,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      161387212079,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      135951224109,
-      "Single",
-      "Offline"
-     ],
-     [
-      97763732040,
-      "Single",
-      "Direct"
-     ],
-     [
-      30068633094,
-      "Single",
-      "Offline"
-     ],
-     [
-      13245651,
-      "Other",
-      "Direct"
-     ],
-     [
-      10626137,
-      "Medium",
-      "Offline"
-     ],
-     [
-      1742651,
-      "Single",
-      "Email"
-     ]
-    ],
-    "opp": [
-     [
-      234278024851,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278023064,
-      "Single",
-      "Offline"
-     ],
-     [
-      234278015823,
-      "Small",
-      "Offline"
-     ],
-     [
-      234277999996,
-      "Small",
-      "Offline"
-     ],
-     [
-      234278011043,
-      "",
-      "Offline"
-     ],
-     [
-      234083788905,
-      "Small",
-      "Offline"
-     ],
-     [
-      234096277782,
-      "Small",
-      "Offline"
-     ],
-     [
-      233858617784,
-      "Medium",
-      "Direct"
-     ],
-     [
-      233720582252,
-      "Single",
-      "Direct"
-     ],
-     [
-      233669136280,
-      "Large",
-      "Offline"
-     ],
-     [
-      232964767876,
-      "Large",
-      "Direct"
-     ],
-     [
-      232737493768,
-      "Single",
-      "Offline"
-     ],
-     [
-      232399535113,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399533905,
-      "Small",
-      "Offline"
-     ],
-     [
-      232399527986,
-      "Single",
-      "Offline"
-     ],
-     [
-      232400327717,
-      "Single",
-      "Offline"
-     ],
-     [
-      230354155104,
-      "Single",
-      "Offline"
-     ],
-     [
-      229708342850,
-      "Large",
-      "Offline"
-     ],
-     [
-      228516650519,
-      "Single",
-      "Offline"
-     ],
-     [
-      228562089077,
-      "Single",
-      "Offline"
-     ],
-     [
-      219941398930,
-      "Single",
-      "Direct"
-     ],
-     [
-      208279145615,
-      "Large",
-      "Offline"
-     ],
-     [
-      193314074932,
-      "Small",
-      "Offline"
-     ],
-     [
-      191181204127,
-      "Enterprise",
-      "Offline"
-     ],
-     [
-      181968136271,
-      "Single",
-      "Direct"
-     ],
-     [
-      161387212079,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      135951224109,
-      "Single",
-      "Offline"
-     ],
-     [
-      89973170298,
-      "Large",
-      "Offline"
-     ],
-     [
-      30068633094,
-      "Single",
-      "Offline"
-     ],
-     [
-      13245651,
-      "Other",
-      "Direct"
-     ],
-     [
-      10626137,
-      "Medium",
-      "Offline"
-     ],
-     [
-      1742651,
-      "Single",
-      "Email"
-     ]
-    ]
-   },
-   "note": "Offline customer-stage migration (flagged since W25) STILL loading: 22 of 31 SQL and 23 of 32 Opp are OFFLINE customer-stage; ~half of MQL too. Genuine organic down-funnel ~5-6; HIH (10) clean. SQL/Opp WoW not comparable. WH & GF8 below threshold this week."
-  },
-  {
-   "period": "2026-07-13",
-   "label": "Jul 13",
-   "funnel": {
-    "hih": 5,
-    "mql": 27,
-    "sql": 23,
-    "opp": 23
-   },
-   "by_product": {
-    "ij": {
-     "hih": 0,
-     "mql": 11,
-     "sql": 7,
-     "opp": 7
-    },
-    "inkwell": {
-     "hih": 0,
-     "mql": 4,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": {
-     "hih": 0,
-     "mql": 1,
-     "sql": 2,
-     "opp": 2
-    }
-   },
-   "products_included": [
-    "ij",
-    "inkwell",
-    "wh"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 0,
-     "mql": 11,
-     "sql": 13,
-     "opp": 13
-    },
-    "medium": {
-     "hih": 0,
-     "mql": 7,
-     "sql": 6,
-     "opp": 6
-    },
-    "large": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 1,
-     "opp": 1
-    },
-    "enterprise": {
-     "hih": 0,
-     "mql": 2,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
-  },
-  {
-   "period": "2026-07-20",
-   "label": "Jul 20",
-   "funnel": {
-    "hih": 5,
-    "mql": 40,
-    "sql": 27,
-    "opp": 27
-   },
-   "by_product": {
-    "ij": {
-     "hih": 4,
-     "mql": 10,
-     "sql": 4,
-     "opp": 4
-    },
-    "inkwell": {
-     "hih": 0,
-     "mql": 7,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": null,
-    "gf8": null
-   },
-   "products_included": [
-    "ij",
-    "inkwell"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": 2,
-     "mql": 27,
-     "sql": 22,
-     "opp": 22
-    },
-    "medium": {
-     "hih": 0,
-     "mql": 1,
-     "sql": 1,
-     "opp": 1
-    },
-    "large": {
-     "hih": 0,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    },
-    "enterprise": {
-     "hih": 1,
-     "mql": 1,
-     "sql": 0,
-     "opp": 0
-    }
-   },
-   "disposition": {
-    "dq": 100,
-    "nurture": 47
-   },
-   "drill": {
-    "hih": [
-     [
-      237771022241,
-      "Single",
-      "Direct"
-     ],
-     [
-      236923836291,
-      "",
-      "Direct"
-     ],
-     [
-      236923154263,
-      "Single",
-      "Direct"
-     ],
-     [
-      236545762816,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      236308536906,
-      "",
-      "Direct"
-     ]
-    ],
-    "mql": [
-     [
-      237771022241,
-      "Single",
-      "Direct"
-     ],
-     [
-      237662821420,
-      "Medium",
-      "Direct"
-     ],
-     [
-      237385511937,
-      "",
-      "Paid"
-     ],
-     [
-      237265082922,
-      "",
-      "Direct"
-     ],
-     [
-      237226797897,
-      "",
-      "Paid"
-     ],
-     [
-      237223782960,
-      "Small",
-      "Offline"
-     ],
-     [
-      237223772771,
-      "Small",
-      "Offline"
-     ],
-     [
-      237200142181,
-      "Small",
-      "Offline"
-     ],
-     [
-      236866131229,
-      "Single",
-      "Offline"
-     ],
-     [
-      237161415757,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803201950,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866120347,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866304348,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866303598,
-      "Single",
-      "Offline"
-     ],
-     [
-      237005732770,
-      "Single",
-      "Direct"
-     ],
-     [
-      236866234752,
-      "Small",
-      "Offline"
-     ],
-     [
-      236803091048,
-      "Small",
-      "Offline"
-     ],
-     [
-      236925609110,
-      "Small",
-      "Paid"
-     ],
-     [
-      236923836291,
-      "",
-      "Direct"
-     ],
-     [
-      236923154263,
-      "Single",
-      "Direct"
-     ],
-     [
-      236912820048,
-      "",
-      "Paid"
-     ],
-     [
-      236862066716,
-      "",
-      "Direct"
-     ],
-     [
-      236698868588,
-      "Single",
-      "Offline"
-     ],
-     [
-      236698741296,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802850592,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802657718,
-      "Single",
-      "Offline"
-     ],
-     [
-      236705231463,
-      "Single",
-      "Offline"
-     ],
-     [
-      236545762816,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      236512093062,
-      "",
-      "Paid"
-     ],
-     [
-      236459543565,
-      "Single",
-      "Offline"
-     ],
-     [
-      236411229310,
-      "",
-      "Direct"
-     ],
-     [
-      236330835805,
-      "",
-      "Paid"
-     ],
-     [
-      236308536906,
-      "",
-      "Direct"
-     ],
-     [
-      235983285020,
-      "Single",
-      "Direct"
-     ],
-     [
-      235673209622,
-      "",
-      "Offline"
-     ],
-     [
-      235731722420,
-      "Single",
-      "Offline"
-     ],
-     [
-      235207947387,
-      "Small",
-      "Offline"
-     ],
-     [
-      232976948883,
-      "Single",
-      "Offline"
-     ],
-     [
-      135644140598,
-      "Small",
-      "Offline"
-     ],
-     [
-      94757640310,
-      "Small",
-      "Direct"
-     ]
-    ],
-    "sql": [
-     [
-      237223782960,
-      "Small",
-      "Offline"
-     ],
-     [
-      237223772771,
-      "Small",
-      "Offline"
-     ],
-     [
-      237200142181,
-      "Small",
-      "Offline"
-     ],
-     [
-      236866131229,
-      "Single",
-      "Offline"
-     ],
-     [
-      237161415757,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803201950,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866120347,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866304348,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866303598,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866234752,
-      "Small",
-      "Offline"
-     ],
-     [
-      236803091048,
-      "Small",
-      "Offline"
-     ],
-     [
-      236698868588,
-      "Single",
-      "Offline"
-     ],
-     [
-      236698741296,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802850592,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802657718,
-      "Single",
-      "Offline"
-     ],
-     [
-      236705231463,
-      "Single",
-      "Offline"
-     ],
-     [
-      236459543565,
-      "Single",
-      "Offline"
-     ],
-     [
-      236411229310,
-      "",
-      "Direct"
-     ],
-     [
-      235673209622,
-      "",
-      "Offline"
-     ],
-     [
-      235731722420,
-      "Single",
-      "Offline"
-     ],
-     [
-      235704482620,
-      "Medium",
-      "Direct"
-     ],
-     [
-      235207947387,
-      "Small",
-      "Offline"
-     ],
-     [
-      232976948883,
-      "Single",
-      "Offline"
-     ],
-     [
-      230343517339,
-      "Single",
-      "Direct"
-     ],
-     [
-      230341827463,
-      "",
-      "Direct"
-     ],
-     [
-      149360326425,
-      "",
-      "Organic"
-     ],
-     [
-      135644140598,
-      "Small",
-      "Offline"
-     ]
-    ],
-    "opp": [
-     [
-      237223782960,
-      "Small",
-      "Offline"
-     ],
-     [
-      237223772771,
-      "Small",
-      "Offline"
-     ],
-     [
-      237200142181,
-      "Small",
-      "Offline"
-     ],
-     [
-      236866131229,
-      "Single",
-      "Offline"
-     ],
-     [
-      237161415757,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803201950,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866120347,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866304348,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866303598,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866234752,
-      "Small",
-      "Offline"
-     ],
-     [
-      236803091048,
-      "Small",
-      "Offline"
-     ],
-     [
-      236698868588,
-      "Single",
-      "Offline"
-     ],
-     [
-      236698741296,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802850592,
-      "Small",
-      "Offline"
-     ],
-     [
-      236802657718,
-      "Single",
-      "Offline"
-     ],
-     [
-      236705231463,
-      "Single",
-      "Offline"
-     ],
-     [
-      236459543565,
-      "Single",
-      "Offline"
-     ],
-     [
-      236411229310,
-      "",
-      "Direct"
-     ],
-     [
-      235673209622,
-      "",
-      "Offline"
-     ],
-     [
-      235731722420,
-      "Single",
-      "Offline"
-     ],
-     [
-      235704482620,
-      "Medium",
-      "Direct"
-     ],
-     [
-      235207947387,
-      "Small",
-      "Offline"
-     ],
-     [
-      232976948883,
-      "Single",
-      "Offline"
-     ],
-     [
-      230343517339,
-      "Single",
-      "Direct"
-     ],
-     [
-      230341827463,
-      "",
-      "Direct"
-     ],
-     [
-      149360326425,
-      "",
-      "Organic"
-     ],
-     [
-      135644140598,
-      "Small",
-      "Offline"
-     ]
-    ]
-   }
-  },
-  {
-   "period": "2026-07-27",
-   "label": "Jul 27",
-   "funnel": {
-    "hih": 4,
-    "mql": 33,
-    "sql": 23,
-    "opp": 22
-   },
-   "by_product": {
-    "ij": {
-     "hih": 3,
-     "mql": 13,
-     "sql": 6,
-     "opp": 5
-    },
-    "inkwell": {
-     "hih": 1,
-     "mql": 2,
-     "sql": 0,
-     "opp": 0
-    },
-    "wh": null,
-    "gf8": null
-   },
-   "products_included": [
-    "ij",
-    "inkwell"
-   ],
-   "by_segment": {
-    "single_small": {
-     "hih": null,
-     "mql": 14,
-     "sql": 12,
-     "opp": 12
-    },
-    "medium": {
-     "hih": null,
-     "mql": 9,
-     "sql": 5,
-     "opp": 4
-    },
-    "large": {
-     "hih": null,
-     "mql": 0,
-     "sql": 0,
-     "opp": 0
-    },
-    "enterprise": {
-     "hih": null,
-     "mql": 3,
-     "sql": 2,
-     "opp": 2
-    }
-   },
-   "disposition": {
-    "dq": 82,
-    "nurture": 63
-   },
-   "note": "HIH at 4 \u2014 deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 \u2014 summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration.",
-   "drill": {
-    "hih": [
-     [
-      238936886067,
-      "Small",
-      "Organic"
-     ],
-     [
-      238746493094,
-      "Single",
-      "Email"
-     ],
-     [
-      238724268698,
-      "Single",
-      "Paid"
-     ],
-     [
-      238616859679,
-      "Enterprise",
-      "Direct"
-     ]
-    ],
-    "mql": [
-     [
-      239250691599,
-      "Medium",
-      "Paid"
-     ],
-     [
-      239168411693,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      239021797559,
-      "Medium",
-      "Direct"
-     ],
-     [
-      238987764354,
-      "Single",
-      "Offline"
-     ],
-     [
-      238936886067,
-      "Small",
-      "Organic"
-     ],
-     [
-      238746493094,
-      "Single",
-      "Email"
-     ],
-     [
-      238724268698,
-      "Single",
-      "Paid"
-     ],
-     [
-      238729095188,
-      "",
-      "Direct"
-     ],
-     [
-      238616859679,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      238593376320,
-      "Single",
-      "Email"
-     ],
-     [
-      238363637852,
-      "Medium",
-      "Direct"
-     ],
-     [
-      238297730163,
-      "Medium",
-      "Direct"
-     ],
-     [
-      238297539638,
-      "Medium",
-      "Offline"
-     ],
-     [
-      238297581082,
-      "Other",
-      "Offline"
-     ],
-     [
-      238297509892,
-      "Single",
-      "Offline"
-     ],
-     [
-      238119112327,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      238073196153,
-      "Small",
-      "Offline"
-     ],
-     [
-      238058404393,
-      "Small",
-      "Offline"
-     ],
-     [
-      238021670826,
-      "Medium",
-      "Direct"
-     ],
-     [
-      237487164981,
-      "Single",
-      "Offline"
-     ],
-     [
-      237487273066,
-      "Single",
-      "Offline"
-     ],
-     [
-      237989305363,
-      "Small",
-      "Direct"
-     ],
-     [
-      237442265963,
-      "Single",
-      "Offline"
-     ],
-     [
-      237442389794,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803204429,
-      "",
-      "Offline"
-     ],
-     [
-      236866347944,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866362463,
-      "",
-      "Offline"
-     ],
-     [
-      236866136367,
-      "Medium",
-      "Offline"
-     ],
-     [
-      235672225152,
-      "Medium",
-      "Offline"
-     ],
-     [
-      235504491704,
-      "",
-      "Direct"
-     ],
-     [
-      157959615917,
-      "",
-      "Offline"
-     ],
-     [
-      150902106202,
-      "Medium",
-      "Direct"
-     ],
-     [
-      94725806976,
-      "Other",
-      "Direct"
-     ]
-    ],
-    "sql": [
-     [
-      239250691599,
-      "Medium",
-      "Paid"
-     ],
-     [
-      239168411693,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      238987764354,
-      "Single",
-      "Offline"
-     ],
-     [
-      238297539638,
-      "Medium",
-      "Offline"
-     ],
-     [
-      238297581082,
-      "Other",
-      "Offline"
-     ],
-     [
-      238297509892,
-      "Single",
-      "Offline"
-     ],
-     [
-      238119112327,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      238073196153,
-      "Small",
-      "Offline"
-     ],
-     [
-      238058404393,
-      "Small",
-      "Offline"
-     ],
-     [
-      237487164981,
-      "Single",
-      "Offline"
-     ],
-     [
-      237487273066,
-      "Single",
-      "Offline"
-     ],
-     [
-      237989305363,
-      "Small",
-      "Direct"
-     ],
-     [
-      237442265963,
-      "Single",
-      "Offline"
-     ],
-     [
-      237442389794,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803204429,
-      "",
-      "Offline"
-     ],
-     [
-      236866347944,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866362463,
-      "",
-      "Offline"
-     ],
-     [
-      236866136367,
-      "Medium",
-      "Offline"
-     ],
-     [
-      235672225152,
-      "Medium",
-      "Offline"
-     ],
-     [
-      214438544932,
-      "Small",
-      "Direct"
-     ],
-     [
-      206305948312,
-      "Small",
-      "Direct"
-     ],
-     [
-      157959615917,
-      "",
-      "Offline"
-     ],
-     [
-      10626866,
-      "Medium",
-      "Email"
-     ]
-    ],
-    "opp": [
-     [
-      239250691599,
-      "Medium",
-      "Paid"
-     ],
-     [
-      239168411693,
-      "Enterprise",
-      "Direct"
-     ],
-     [
-      238987764354,
-      "Single",
-      "Offline"
-     ],
-     [
-      238297539638,
-      "Medium",
-      "Offline"
-     ],
-     [
-      238297581082,
-      "Other",
-      "Offline"
-     ],
-     [
-      238297509892,
-      "Single",
-      "Offline"
-     ],
-     [
-      238119112327,
-      "Enterprise",
-      "Email"
-     ],
-     [
-      238073196153,
-      "Small",
-      "Offline"
-     ],
-     [
-      238058404393,
-      "Small",
-      "Offline"
-     ],
-     [
-      237487164981,
-      "Single",
-      "Offline"
-     ],
-     [
-      237487273066,
-      "Single",
-      "Offline"
-     ],
-     [
-      237989305363,
-      "Small",
-      "Direct"
-     ],
-     [
-      237442265963,
-      "Single",
-      "Offline"
-     ],
-     [
-      237442389794,
-      "Single",
-      "Offline"
-     ],
-     [
-      236803204429,
-      "",
-      "Offline"
-     ],
-     [
-      236866347944,
-      "Single",
-      "Offline"
-     ],
-     [
-      236866362463,
-      "",
-      "Offline"
-     ],
-     [
-      236866136367,
-      "Medium",
-      "Offline"
-     ],
-     [
-      235672225152,
-      "Medium",
-      "Offline"
-     ],
-     [
-      214438544932,
-      "Small",
-      "Direct"
-     ],
-     [
-      206305948312,
-      "Small",
-      "Direct"
-     ],
-     [
-      157959615917,
-      "",
-      "Offline"
-     ]
-    ]
-   }
-  }
- ],
- "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
+  ],
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
 }

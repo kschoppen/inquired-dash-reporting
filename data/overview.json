@@ -25,9 +25,9 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2259,
-    "mql_to_sql_pct": 70.9,
-    "closed_won_mtd": "$0"
+    "hih_pool": 2267,
+    "mql_to_sql_pct": 50,
+    "closed_won_mtd": "$413K"
   },
   "brand_lift": {
     "updated": "2026-07-30",
@@ -65,14 +65,14 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Aug 3",
+      "updated": "2026-08-10",
+      "narrative": "The week of Aug 3 brought a strong back-to-school inbound wave: 60 MQLs came in \u2014 up 82% from 33 last week \u2014 and High Intent Handraisers [HIH] tripled to 10, the highest since early July. IJ led lower-funnel momentum with 14 MQLs and 9 SQLs, while GF8 (TK/Pre-K) surfaced meaningfully for the first time this season with 22 MQLs \u2014 a signal worth tracking as early TK adopters gear up. SQL and Opp held at 30 each with healthy conversion, Single/Small inbound accounting for 60% of new high-intent leads. Open pipeline at 29 district and 23 school deals as several SY26-27 renewals closed won this week ($413K MTD)."
+    },
+    "previous": {
       "week_label": "Week of Jul 27",
       "updated": "2026-08-03",
       "narrative": "MQL came in at 33 this week (Jul 27\u2013Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 \u2014 all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
-    },
-    "previous": {
-      "week_label": "Week of Jul 20",
-      "updated": "2026-07-27",
-      "narrative": "MQL came in at 40 this week (Jul 20\u201326), up 48% from 27 the prior week and the strongest MQL week since late June, with Single/Small inbound driving 67% of new qualified leads. SQL and Opp both held at 27, and MQL\u2192SQL sits at 67.5% \u2014 still elevated by the ongoing offline lifecycle migration. HIH remained flat at 5, a deep-summer seasonal low, while open pipeline stays strong at 104 district and 34 school deals. Closed-won July MTD has reached approximately $700K across 56 deals."
     }
   }
 }
