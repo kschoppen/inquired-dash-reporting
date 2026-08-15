@@ -1,7 +1,7 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-07-15",
+  "updated": "2026-08-15",
   "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts \u2014 a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
   "strategic_groups": [
     "Evergreen + Thought Leadership",
@@ -261,6 +261,247 @@
         "IJ Product Webinars \u2014 8 contacts < 10; asset-attachment audit",
         "Symposium (10097) \u2014 target-list-driven; engagement-only until list-membership OR added",
         "Account Driven (10216) \u2014 new SY26-27 list; verify engagement-only vs. list-membership OR"
+      ]
+    },
+    {
+      "period": "2026-08",
+      "label": "Aug 2026",
+      "updated": "2026-08-15T00:00:00Z",
+      "baseline_period": true,
+      "campaigns_readable": 3,
+      "campaigns_total": 12,
+      "verdict": "Fall campaigns launched Aug 1 and three of 12 crossed the 20-contact readable threshold at mid-month, with Inkwell K2 Launch generating 9 MQLs on 21 contacts in 15 days.",
+      "total": {
+        "active_campaigns": 12,
+        "contacts": 113,
+        "hih": 17,
+        "hih_pct": 15.0,
+        "mql": 13,
+        "mql_prior": 0
+      },
+      "groups": [
+        {
+          "group": "Inkwell",
+          "contacts": 21,
+          "hih": 4,
+          "hih_pct": 19.0,
+          "mql": 9,
+          "mql_prior": 0
+        },
+        {
+          "group": "Inquiry Journeys",
+          "contacts": 38,
+          "hih": 11,
+          "hih_pct": 28.9,
+          "mql": 4,
+          "mql_prior": 0
+        },
+        {
+          "group": "Evergreen + Thought Leadership",
+          "contacts": 54,
+          "hih": 2,
+          "hih_pct": 3.7,
+          "mql": 0,
+          "mql_prior": 0
+        },
+        {
+          "group": "ABM",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0
+        },
+        {
+          "group": "Great First Eight",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0
+        }
+      ],
+      "campaigns": [
+        {
+          "name": "Inkwell K2 Launch",
+          "group": "Inkwell",
+          "channel_type": "content",
+          "total": 21,
+          "hih": 4,
+          "hih_pct": 19.0,
+          "mql": 9,
+          "mql_prior": 0,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "IJ In Practice",
+          "group": "Inquiry Journeys",
+          "channel_type": "content",
+          "total": 29,
+          "hih": 4,
+          "hih_pct": 13.8,
+          "mql": 4,
+          "mql_prior": 0,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "IJ Product Webinars",
+          "group": "Inquiry Journeys",
+          "channel_type": "event",
+          "total": 9,
+          "hih": 7,
+          "hih_pct": 77.8,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Inquiry Work Contest",
+          "group": "Inquiry Journeys",
+          "channel_type": "social",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Back to School",
+          "group": "Inquiry Journeys",
+          "channel_type": "email",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Partner Newsletters",
+          "group": "Inquiry Journeys",
+          "channel_type": "email",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Marketing Nurture",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "nurture",
+          "total": 53,
+          "hih": 2,
+          "hih_pct": 3.8,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "Evergreen",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "content",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Symposium",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "event",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "target-list-driven; engagement-only count until list-membership OR added"
+          ]
+        },
+        {
+          "name": "Lit Talk with Nell Duke",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "event",
+          "total": 1,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Account Driven",
+          "group": "ABM",
+          "channel_type": "abm",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+          ]
+        },
+        {
+          "name": "GF8 Campaign",
+          "group": "Great First Eight",
+          "channel_type": "content",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 \u2014 asset-attachment audit"
+          ]
+        }
+      ],
+      "flags": [
+        "IJ Product Webinars: total < 10 \u2014 asset-attachment audit",
+        "Lit Talk with Nell Duke: total < 10 \u2014 asset-attachment audit",
+        "Symposium: target-list-driven; engagement-only count until list-membership OR group added",
+        "Account Driven: target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
       ]
     }
   ]

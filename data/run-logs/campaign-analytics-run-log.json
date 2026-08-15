@@ -949,5 +949,261 @@
         "mom_pct": null
       }
     }
+  },
+  {
+    "run_date": "2026-08-15",
+    "period_label": "2026-08 (MTD)",
+    "window_current": [
+      "2026-08-01",
+      "2026-08-15"
+    ],
+    "window_prior": [
+      "2026-07-01",
+      "2026-07-15"
+    ],
+    "slack_message_ts": "1786781361.987989",
+    "totals": {
+      "active_campaigns": 12,
+      "total_contacts": 113,
+      "hih_count": 17,
+      "hih_share_pct": 15.0,
+      "mqls_current": 13,
+      "mqls_prior": 0,
+      "mom_pct": null
+    },
+    "campaigns": {
+      "Inkwell K2 Launch": {
+        "list_id": "10204",
+        "campaign_id": "43367560",
+        "group": "Inkwell",
+        "total": 21,
+        "hih_count": 4,
+        "hih_share_pct": 19.0,
+        "intent_dist": null,
+        "mqls_current": 9,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [
+          "ELA-DL: Inkwell K2 Curriculum Map_SY2627 (4)",
+          "ELA-DL: Inkwell The Case for Integrated Core Curricula_F26 (3)",
+          "Download: Inkwell 1:1 Unit Overview_S26 (1)"
+        ],
+        "data_flags": []
+      },
+      "IJ In Practice": {
+        "list_id": "10206",
+        "campaign_id": "43370070",
+        "group": "Inquiry Journeys",
+        "total": 29,
+        "hih_count": 4,
+        "hih_share_pct": 13.8,
+        "intent_dist": null,
+        "mqls_current": 4,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": []
+      },
+      "IJ Product Webinars": {
+        "list_id": "10208",
+        "campaign_id": "43367696",
+        "group": "Inquiry Journeys",
+        "total": 9,
+        "hih_count": 7,
+        "hih_share_pct": 77.8,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Inquiry Work Contest": {
+        "list_id": "10214",
+        "campaign_id": "43367546",
+        "group": "Inquiry Journeys",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Back to School": {
+        "list_id": "10212",
+        "campaign_id": "43370062",
+        "group": "Inquiry Journeys",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Partner Newsletters": {
+        "list_id": "10218",
+        "campaign_id": "43370150",
+        "group": "Inquiry Journeys",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Marketing Nurture": {
+        "list_id": "10220",
+        "campaign_id": "43370025",
+        "group": "Evergreen + Thought Leadership",
+        "total": 53,
+        "hih_count": 2,
+        "hih_share_pct": 3.8,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": []
+      },
+      "Evergreen": {
+        "list_id": "10222",
+        "campaign_id": "43367699",
+        "group": "Evergreen + Thought Leadership",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Symposium": {
+        "list_id": "10097",
+        "campaign_id": "28285242",
+        "group": "Evergreen + Thought Leadership",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
+      },
+      "Lit Talk with Nell Duke": {
+        "list_id": "10695",
+        "campaign_id": "48569514",
+        "group": "Evergreen + Thought Leadership",
+        "total": 1,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Account Driven": {
+        "list_id": "10216",
+        "campaign_id": "43370146",
+        "group": "ABM",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
+      },
+      "GF8 Campaign": {
+        "list_id": "10210",
+        "campaign_id": "43370120",
+        "group": "Great First Eight",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      }
+    },
+    "groups": {
+      "Inkwell": {
+        "total": 21,
+        "hih_count": 4,
+        "hih_pct": 19.0,
+        "mqls_current": 9,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 38,
+        "hih_count": 11,
+        "hih_pct": 28.9,
+        "mqls_current": 4,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 54,
+        "hih_count": 2,
+        "hih_pct": 3.7,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
+    }
   }
 ]
