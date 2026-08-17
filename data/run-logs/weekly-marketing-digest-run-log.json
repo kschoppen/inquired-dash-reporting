@@ -541,7 +541,7 @@
       "2026-08-03",
       "2026-08-09"
     ],
-    "slack_message_ts": null,
+    "slack_message_ts": "1786964049.980399",
     "totals": {
       "hih_current": 14,
       "hih_prior": 10,
