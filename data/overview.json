@@ -1,10 +1,10 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-08-05",
+  "updated": "2026-08-17",
   "summary": {
     "headline": "July cooled to seasonal norms: $678K closed won, HIH fell to 26, and June's inflated MQL/SQL numbers washed out of the base.",
-    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) \u2014 down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
+    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) — down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
     "signals": [
       {
         "label": "Medium segment win rate 66.7% (up from 37.5%)",
@@ -25,19 +25,19 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2267,
-    "mql_to_sql_pct": 50,
-    "closed_won_mtd": "$413K"
+    "hih_pool": 2281,
+    "mql_to_sql_pct": 39,
+    "closed_won_mtd": "$700K"
   },
   "brand_lift": {
     "updated": "2026-07-30",
     "status": "collecting",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
+        "sub": "Organic clicks on branded queries · inquired.com property",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -46,7 +46,7 @@
       {
         "key": "youtube",
         "label": "YouTube in Google Search",
-        "sub": "Impressions + clicks on our channel \u00b7 GSC Social Signals",
+        "sub": "Impressions + clicks on our channel · GSC Social Signals",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -55,7 +55,7 @@
       {
         "key": "instagram",
         "label": "Instagram in Google Search",
-        "sub": "Impressions + clicks on our profile \u00b7 GSC Social Signals",
+        "sub": "Impressions + clicks on our profile · GSC Social Signals",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
@@ -65,14 +65,14 @@
   },
   "weekly_signal": {
     "current": {
-      "week_label": "Week of Aug 3",
-      "updated": "2026-08-10",
-      "narrative": "The week of Aug 3 brought a strong back-to-school inbound wave: 60 MQLs came in \u2014 up 82% from 33 last week \u2014 and High Intent Handraisers [HIH] tripled to 10, the highest since early July. IJ led lower-funnel momentum with 14 MQLs and 9 SQLs, while GF8 (TK/Pre-K) surfaced meaningfully for the first time this season with 22 MQLs \u2014 a signal worth tracking as early TK adopters gear up. SQL and Opp held at 30 each with healthy conversion, Single/Small inbound accounting for 60% of new high-intent leads. Open pipeline at 29 district and 23 school deals as several SY26-27 renewals closed won this week ($413K MTD)."
+      "week_label": "Week of Aug 10",
+      "updated": "2026-08-17",
+      "narrative": "MQL came in at 77 this week, up 28% over last week’s 60, continuing the back-to-school acceleration. Inkwell led mid-funnel with 36 MQLs (up from 3 last week) as late-summer webinar traffic converted into product-tagged contacts. IJ added 21 MQLs (+50% WoW) and WH crossed the ≥5 threshold for the first time this season. SQL and Opp held firm at 30 and 29, with Enterprise contacts accounting for 8 of 30 SQLs and lower-funnel conversion staying healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold — confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends."
     },
     "previous": {
-      "week_label": "Week of Jul 27",
-      "updated": "2026-08-03",
-      "narrative": "MQL came in at 33 this week (Jul 27\u2013Aug 2), down 17% from 40 the prior week, consistent with the seasonal transition into August. SQL and Opp followed at 23 and 22 \u2014 all three metrics in the typical summer-floor range with no structural signal behind the pullback. IJ continues to drive most lower-funnel movement (6 of 23 SQLs), while Single/Small inbound accounts for the majority of new MQLs. Open pipeline holds at 30 district and 24 school deals heading into back-to-school season."
+      "week_label": "Week of Aug 3",
+      "updated": "2026-08-10",
+      "narrative": "The week of Aug 3 brought a strong back-to-school inbound wave: 60 MQLs came in — up 82% from 33 last week — and High Intent Handraisers [HIH] tripled to 10, the highest since early July. IJ led lower-funnel momentum with 14 MQLs and 9 SQLs, while GF8 (TK/Pre-K) surfaced meaningfully for the first time this season with 22 MQLs — a signal worth tracking as early TK adopters gear up. SQL and Opp held at 30 each with healthy conversion, Single/Small inbound accounting for 60% of new high-intent leads. Open pipeline at 29 district and 23 school deals as several SY26-27 renewals closed won this week ($413K MTD)."
     }
   }
 }
