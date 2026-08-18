@@ -1,0 +1,9 @@
+{
+  "skill": "competitive-intel",
+  "title": "Competitive Intel",
+  "updated": "2026-08-16",
+  "full_run": "2026-07-14",
+  "next_full_run": "Sep 2026",
+  "stale_after_days": 10,
+  "notes": "Freshness stamps for competitive-intel.html. `updated` is the last weekly signal + keyword refresh (weekly-marketing-digest, PHASE 2 of DASH_ROUTINE.md). `full_run` is the last complete competitive-intel skill run (bi-monthly: website + ad-library analysis, threat levels, messaging themes, AI summaries, strategic opportunities). Both the page header and the dashboard tab banner read their dates from this file, and the page counts tracked competitors from its own DOM, so no date or count is hardcoded in the HTML. `stale_after_days` drives the freshness pill: once `updated` is older than that, the page shows its age in amber instead of a green 'current'."
+}

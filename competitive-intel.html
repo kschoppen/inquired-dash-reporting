@@ -168,6 +168,39 @@
     padding: 2rem 2rem 4rem;
   }
 
+  /* ── Freshness strip ── */
+  .freshness-strip {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: -0.75rem 0 1.25rem;
+    font-size: 0.72rem;
+    color: var(--ink-mid);
+    font-variant-numeric: tabular-nums;
+  }
+  .freshness-strip .fr-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--ink-light);
+  }
+  .freshness-strip .fr-sep {
+    width: 1px;
+    height: 12px;
+    background: var(--grey-300);
+  }
+  .fr-pill {
+    padding: 0.1rem 0.5rem;
+    border-radius: 24px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .fr-pill.current { background: var(--mg); color: var(--dg); }
+  .fr-pill.stale   { background: var(--yellow); color: #5A4A00; }
+
   /* ── Eyebrow / Section label ── */
   .section-eyebrow {
     font-size: 0.8rem;
@@ -1021,13 +1054,18 @@
   <div class="header-divider"></div>
   <div class="header-meta">
     <div class="header-meta-item">
-      <span class="header-label">Last Run</span>
-      <span class="header-value">July 14, 2026</span>
+      <span class="header-label">Full Run</span>
+      <span class="header-value" id="meta-full-run">—</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <span class="header-label">Signals Refreshed</span>
+      <span class="header-value" id="meta-updated">—</span>
     </div>
     <div class="header-divider"></div>
     <div class="header-meta-item">
       <span class="header-label">Competitors</span>
-      <span class="header-value">5 tracked</span>
+      <span class="header-value" id="meta-competitors">—</span>
     </div>
     <div class="header-divider"></div>
     <div class="header-meta-item">
@@ -1036,13 +1074,25 @@
     </div>
   </div>
   <div class="header-right">
-    <span class="cadence-pill">Next: Sep 2026</span>
+    <span class="cadence-pill" id="meta-next">Next: —</span>
   </div>
 </header>
 
 <main class="main">
 
   <div id="tab-landscape">
+
+  <!-- ── Freshness strip (filled from data/competitive-intel.json; the only place
+       these dates live, and the one part of the header that stays visible when
+       this page is embedded in the reporting dash iframe) ── -->
+  <div class="freshness-strip" id="freshness-strip" hidden>
+    <span class="fr-item"><span class="fr-label">Full run</span> <span id="fr-full-run">—</span></span>
+    <span class="fr-sep"></span>
+    <span class="fr-item"><span class="fr-label">Signals refreshed</span> <span id="fr-updated">—</span></span>
+    <span class="fr-pill" id="fr-pill" hidden></span>
+    <span class="fr-sep"></span>
+    <span class="fr-item"><span id="fr-competitors">—</span> <span class="fr-label">competitors tracked</span></span>
+  </div>
 
   <!-- ── AI Overview ── -->
   <div class="overview-section" role="region" aria-label="AI Overview">
@@ -1051,7 +1101,7 @@
       <span class="overview-freshness">Data: HubSpot 293 deals · Gainsight 38 churns · SEMrush</span>
     </div>
     <p class="overview-narrative">
-      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Dragonfly, Imagine Learning Emerge) are actively bidding for the same SoR-aligned K–2 window. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
+      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Imagine Learning Dragonfly, McGraw-Hill Emerge) are actively bidding for the same SoR-aligned K–2 window. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
     </p>
     <div class="alert-chips">
       <span class="alert-chip alert">⚠ High: Inkwell ELA crowding — 4 direct competitors with active ad spend</span>
@@ -1906,7 +1956,7 @@
 
   <!-- ── Footer ── -->
   <div class="dash-footer">
-    <span>Generated by the <strong>competitive-intel</strong> skill · inquirED Marketing · July 14, 2026</span>
+    <span>Generated by the <strong>competitive-intel</strong> skill · inquirED Marketing · <span id="meta-footer-date">—</span></span>
     <span>Sources: Meta Ad Library · Direct website analysis · Web search</span>
   </div>
 
@@ -1915,6 +1965,68 @@
 </main>
 
 <script>
+// ── Freshness stamps ───────────────────────────────────────────────────────
+// Every date on this page comes from data/competitive-intel.json, and the
+// competitor count is counted off the rendered cards. Nothing here is
+// hand-edited, so the page can't claim it's older (or newer) than it is.
+const FRESHNESS_FILE = 'data/competitive-intel.json';
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + 'T12:00:00Z' : iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+function daysSince(iso) {
+  const d = new Date(iso + 'T12:00:00Z');
+  if (isNaN(d)) return null;
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
+}
+
+function renderFreshness(meta) {
+  const competitors = document.querySelectorAll('.comp-card').length;
+  const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+
+  set('meta-full-run', fmtDate(meta.full_run));
+  set('meta-updated', fmtDate(meta.updated));
+  set('meta-competitors', competitors + ' tracked');
+  set('meta-next', 'Next: ' + (meta.next_full_run || '—'));
+  set('meta-footer-date', fmtDate(meta.full_run));
+
+  set('fr-full-run', fmtDate(meta.full_run));
+  set('fr-updated', fmtDate(meta.updated));
+  set('fr-competitors', competitors);
+
+  const age = daysSince(meta.updated);
+  const limit = meta.stale_after_days || 10;
+  const pill = document.getElementById('fr-pill');
+  if (pill && age !== null) {
+    if (age > limit) {
+      pill.className = 'fr-pill stale';
+      pill.textContent = age + ' days old';
+    } else {
+      pill.className = 'fr-pill current';
+      pill.textContent = 'Current';
+    }
+    pill.hidden = false;
+  }
+  const strip = document.getElementById('freshness-strip');
+  if (strip) strip.hidden = false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch(FRESHNESS_FILE, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(renderFreshness)
+    .catch(() => {
+      // Leave the em-dash placeholders in place rather than showing a date we
+      // can't stand behind.
+      const strip = document.getElementById('freshness-strip');
+      if (strip) strip.hidden = false;
+    });
+});
+
 // ── Competitor drawer data ──────────────────────────────────────────────────
 const DRAWER = {
   'Amplify CKLA': {

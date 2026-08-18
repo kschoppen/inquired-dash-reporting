@@ -136,7 +136,7 @@ Update `competitive-intel.html` in `inquired-dash-reporting` — DRAWER JS objec
 
 ### Part B — Keyword refresh (SEMrush)
 
-Pull fresh organic keyword data from SEMrush for each of these 11 domains. Get top 6–8 non-branded organic keywords they rank for, plus any paid keywords they bid on. Skip keywords that are just the company or product name.
+Pull fresh organic keyword data from SEMrush for each of these 10 domains. Get top 6–8 non-branded organic keywords they rank for, plus any paid keywords they bid on. Skip keywords that are just the company or product name.
 
 Domains:
 `amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`,
@@ -169,6 +169,22 @@ keywords: {
 Replace the entire keywords object with fresh data. `greatminds.org` covers both Great Minds entries — use the same data for both. If SEMrush returns no paid data for a domain, set `paid: []`.
 
 **String safety:** keyword strings are written into single-quoted JS literals. Before writing, replace any apostrophe (`'`) in a keyword with a double-quoted wrapper — i.e. use `"keyword with apostrophe's"` instead of `'keyword with apostrophe's'`. Unescaped apostrophes break the entire script block and silently disable the page's expand buttons.
+
+### Part C — Stamp the refresh date (REQUIRED whenever Part A or B changed anything)
+
+Set `updated` in `data/competitive-intel.json` to today's date (`YYYY-MM-DD`). Leave `full_run`
+alone — that one belongs to the bi-monthly `competitive-intel` skill run, and the page shows
+the two separately.
+
+This is not optional bookkeeping. That field feeds the freshness strip on the page, the "Last
+Run" stamp on the dash tab banner, and the green "Current" / amber "N days old" pill. Skip it
+and the tab reports itself as stale even though you just refreshed it, which is exactly how the
+page ended up looking abandoned in August 2026. If Part A and Part B both came back with
+nothing to change, leave `updated` as it was — the date means "when the page last changed," not
+"when we last looked."
+
+Never hardcode a date into `competitive-intel.html` itself. Every date the page shows is read
+from this JSON at load time.
 
 ---
 
@@ -289,7 +305,7 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 ```bash
 cd inquired-dash-reporting
-git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html
+git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json
 git commit -m "Weekly dash update — $(date +%Y-%m-%d)"
 git push origin main
 git fetch origin && git log --oneline -2 origin/main
@@ -390,6 +406,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Run log updated → data/run-logs/weekly-marketing-digest-run-log.json [run N]
 • [✓/✗] Competitor signals refreshed → competitive-intel.html [N searched, N new signals]
 • [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
+• [✓/✗] Competitive Intel refresh date stamped → data/competitive-intel.json [updated = YYYY-MM-DD, or unchanged if nothing moved]
 • [✓/—/✗] Brand lift (GSC) → data/overview.json + data/weekly-digest.json [N weeks upserted / deferred: creds not set / error]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]

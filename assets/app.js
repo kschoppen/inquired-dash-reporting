@@ -11,6 +11,7 @@ const TABS = [
   { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
+    metaFile: "data/competitive-intel.json",
     meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
   { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
     meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change" } },
@@ -1232,11 +1233,25 @@ function renderCompetitiveIntel() {
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
 }
 
+// Parse a run date. Every data file stamps `updated` as YYYY-MM-DD; anything
+// else returns null so callers can fall back instead of printing "Invalid Date".
+function parseRunDate(v) {
+  if (!v || v === "—") return null;
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(v) ? v + "T12:00:00Z" : v);
+  return isNaN(d) ? null : d;
+}
+function formatRunDate(v) {
+  const d = parseRunDate(v);
+  if (!d) return v || "—"; // show the raw string rather than "Invalid Date"
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+
 function nextRunLabel(cadence, lastRun) {
   if (!lastRun || lastRun === "—") return "—";
   if (cadence === "Weekly · Mondays") {
     // compute next Monday after lastRun
-    const d = new Date(lastRun + "T12:00:00Z");
+    const d = parseRunDate(lastRun);
+    if (!d) return null; // unparseable — fall back to meta.next
     const day = d.getUTCDay(); // 0=Sun, 1=Mon
     const daysUntilMonday = day === 1 ? 7 : (8 - day) % 7;
     d.setUTCDate(d.getUTCDate() + daysUntilMonday);
@@ -1251,9 +1266,7 @@ function renderTabMeta(tab, lastRun) {
   const { desc, cadence, next } = tab.meta;
   const computedNext = nextRunLabel(cadence, lastRun) || next;
   el.hidden = false;
-  const lastRunFormatted = lastRun && lastRun !== "—"
-    ? new Date(lastRun + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })
-    : lastRun || "—";
+  const lastRunFormatted = formatRunDate(lastRun);
   el.innerHTML = `
     <div class="tab-meta-name">${tab.label}</div>
     <div class="tab-meta-desc">${desc}</div>
@@ -1267,7 +1280,17 @@ async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").style.cssText = "";
   if (tab.static) {
-    renderTabMeta(tab, "July 14, 2026");
+    // Static tabs render their own HTML, but their freshness stamp still comes
+    // from a data file so this banner can never drift from the page it frames.
+    if (tab.metaFile) {
+      try {
+        const res = await fetch(tab.metaFile, { cache: "no-store" });
+        const meta = await res.json();
+        renderTabMeta(tab, meta.updated || "—");
+      } catch (e) { renderTabMeta(tab, "—"); }
+    } else {
+      renderTabMeta(tab, "—");
+    }
     tab.render();
     return;
   }
