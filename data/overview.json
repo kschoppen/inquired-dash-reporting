@@ -4,7 +4,7 @@
   "updated": "2026-08-17",
   "summary": {
     "headline": "July cooled to seasonal norms: $678K closed won, HIH fell to 26, and June's inflated MQL/SQL numbers washed out of the base.",
-    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) \u2014 down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
+    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) — down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
     "signals": [
       {
         "label": "Medium segment win rate 66.7% (up from 37.5%)",
@@ -30,49 +30,66 @@
     "closed_won_mtd": "$700K"
   },
   "brand_lift": {
-    "updated": "2026-07-30",
-    "status": "collecting",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026; collection starts at verification (no backfill). First WoW read: week of Aug 17. First clean MoM: early-October digest (September vs August). LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google.",
+    "updated": "2026-08-24",
+    "status": "live",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Aug 17 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (176 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
-        "value": null,
-        "delta": null,
-        "delta_dir": "flat",
-        "spark": []
+        "sub": "Organic clicks on branded queries · inquired.com property",
+        "value": 176,
+        "delta": "+15% WoW",
+        "delta_dir": "up",
+        "spark": [
+          239,
+          176
+        ],
+        "delta_basis": "first 5 days of each week",
+        "provisional": true,
+        "unavailable": false
       },
       {
         "key": "youtube",
         "label": "YouTube in Google Search",
-        "sub": "Impressions + clicks on our channel \u00b7 GSC Social Signals",
+        "sub": "Clicks on our YouTube channel in Google Search",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
-        "spark": []
+        "spark": [],
+        "delta_basis": "full week",
+        "provisional": false,
+        "unavailable": true
       },
       {
         "key": "instagram",
         "label": "Instagram in Google Search",
-        "sub": "Impressions + clicks on our profile \u00b7 GSC Social Signals",
+        "sub": "Clicks on our Instagram profile in Google Search",
         "value": null,
         "delta": null,
         "delta_dir": "flat",
-        "spark": []
+        "spark": [],
+        "delta_basis": "full week",
+        "provisional": false,
+        "unavailable": true
       }
+    ],
+    "lag_days": 3,
+    "unavailable": [
+      "youtube",
+      "instagram"
     ]
   },
   "weekly_signal": {
     "current": {
       "week_label": "Week of Aug 17",
       "updated": "2026-08-24",
-      "narrative": "Back-to-school surge normalized: MQL -30% and HIH -43% vs. last week\u2019s peak. SQL and Opp strengthened to 33 each (+10%/+14%), showing the W33 inbound class converting well mid-funnel. Inkwell led with 15 MQLs; IJ had 8. Pipeline holds at 29 district / 17 school open deals. DQ and Nurture returned to normal levels (64/18 vs. 246/182 last week)."
+      "narrative": "Back-to-school surge normalized: MQL -30% and HIH -43% vs. last week’s peak. SQL and Opp strengthened to 33 each (+10%/+14%), showing the W33 inbound class converting well mid-funnel. Inkwell led with 15 MQLs; IJ had 8. Pipeline holds at 29 district / 17 school open deals. DQ and Nurture returned to normal levels (64/18 vs. 246/182 last week)."
     },
     "previous": {
       "week_label": "Week of Aug 10",
       "updated": "2026-08-17",
-      "narrative": "MQL came in at 77 this week, up 28% over last week\u2019s 60, continuing the back-to-school acceleration. Inkwell led mid-funnel with 36 MQLs (up from 3 last week) as late-summer webinar traffic converted into product-tagged contacts. IJ added 21 MQLs (+50% WoW) and WH crossed the \u22655 threshold for the first time this season. SQL and Opp held firm at 30 and 29, with Enterprise contacts accounting for 8 of 30 SQLs and lower-funnel conversion staying healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold \u2014 confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends."
+      "narrative": "MQL came in at 77 this week, up 28% over last week’s 60, continuing the back-to-school acceleration. Inkwell led mid-funnel with 36 MQLs (up from 3 last week) as late-summer webinar traffic converted into product-tagged contacts. IJ added 21 MQLs (+50% WoW) and WH crossed the ≥5 threshold for the first time this season. SQL and Opp held firm at 30 and 29, with Enterprise contacts accounting for 8 of 30 SQLs and lower-funnel conversion staying healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold — confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends."
     }
   }
 }

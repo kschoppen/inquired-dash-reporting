@@ -70,23 +70,40 @@ SOCIAL_FIRST_WEEK_MONDAY = date(2026, 8, 3)
 
 SERIES_CAP = 13  # weeks kept in series[] and spark[]
 
+# GSC finalizes Search Analytics data 2-3 days late. The routine runs Monday
+# and reports the week that ended Sunday, so the newest week ALWAYS has its
+# last 1-2 days under-reported. Weeks whose end date is not yet this old are
+# marked provisional, and their WoW is computed on an aligned settled-day
+# window instead of the depressed full-week total (which manufactures a
+# spurious decline, e.g. -26% on the 2026-08-17 week when settled days were
+# +15%). Full-week values still self-heal on the next run.
+GSC_LAG_DAYS = 3
+
 LIVE_NOTE_WEEKLY = (
     "These are Google Search numbers, not social engagement — how often our "
     "brand and channels surface when people search. Branded search covers "
-    "branded queries on inquired.com; YouTube and Instagram are GSC Social "
-    "Signals properties (collection began Jul 30, 2026 — no backfill, so the "
-    "social series start the week of Aug 3). LinkedIn has no GSC connector: "
-    "it's owned by Microsoft and isn't integrated with Google. The latest "
-    "week may revise slightly as GSC finalizes data; it's re-pulled on the "
-    "next run."
+    "branded queries on the inquired.com property. YouTube and Instagram are "
+    "Search Console platform properties: they exist in the Search Console UI "
+    "but are not returned by the Search Analytics API, so those two channels "
+    "cannot be filled automatically and stay blank. LinkedIn has no GSC "
+    "connector at all: it's owned by Microsoft and isn't integrated with "
+    "Google."
 )
 LIVE_NOTE_OVERVIEW = (
     "These are Google Search numbers, not social engagement — how often our "
-    "brand and channels surface when people search. YouTube and Instagram "
-    "are GSC Social Signals properties (collection began Jul 30, 2026; no "
-    "backfill). LinkedIn has no GSC connector — it's owned by Microsoft and "
-    "isn't integrated with Google. Latest week may revise slightly as GSC "
-    "finalizes data."
+    "brand and channels surface when people search. YouTube and Instagram are "
+    "Search Console platform properties, visible in the Search Console UI but "
+    "not exposed by the Search Analytics API, so those tiles stay blank rather "
+    "than showing a fabricated zero. LinkedIn has no GSC connector — it's "
+    "owned by Microsoft and isn't integrated with Google."
+)
+# Appended to the note when the newest week is still inside the GSC lag.
+PROVISIONAL_NOTE = (
+    " ⏳ The week of %s is still provisional: Google has finalized only %d of "
+    "its 7 days, so its full-week total (%s) is understated and will revise "
+    "upward on the next run. The %s figure shown compares the same %d settled "
+    "days in each week, which is the like-for-like read; the full-week "
+    "comparison would be misleading until the week settles."
 )
 
 flags = []
@@ -238,6 +255,23 @@ def totals_week(token, site, start, end):
             "impressions": int(round(rows[0].get("impressions", 0)))}
 
 
+def channel_totals(token, prop, channel, start, end):
+    """Clicks/impressions for one channel over an arbitrary date range."""
+    if channel == "branded":
+        return branded_week(token, prop, start, end)
+    return totals_week(token, prop, start, end)
+
+
+def settled_days(start, end, today):
+    """How many of this week's 7 days GSC has finalized (0-7)."""
+    settled_through = today - timedelta(days=GSC_LAG_DAYS)
+    if settled_through < start:
+        return 0
+    if settled_through >= end:
+        return 7
+    return (settled_through - start).days + 1
+
+
 def completed_weeks(today):
     """The two most recently completed ISO weeks as (monday, sunday)."""
     this_monday = today - timedelta(days=today.weekday())
@@ -273,6 +307,10 @@ def merge_entry(existing, fresh):
         elif k not in existing:
             existing[k] = None
     existing["label"] = fresh["label"]
+    # a re-pulled week can go provisional -> settled; always take the fresher
+    for k in ("settled_days", "provisional"):
+        if k in fresh:
+            existing[k] = fresh[k]
     return existing
 
 
@@ -318,15 +356,22 @@ def main():
     for k in ("youtube", "instagram"):
         if not prop[k]:
             flags.append(
-                "%s Social Signals property not exposed via the Search "
-                "Analytics API (may be UI-only) — channel left null." % k)
+                "%s is a Search Console platform property — visible in the "
+                "Search Console UI but not returned by the Search Analytics "
+                "API's sites.list, so it cannot be queried. Channel left null "
+                "(never a fabricated zero). Not fixable with credentials or "
+                "extra API enablement; needs Google to expose platform "
+                "properties via the API." % k)
 
     weeks_written = []
     fresh_entries = []
-    for start, end in completed_weeks(today):
+    weeks = completed_weeks(today)
+    for start, end in weeks:
+        sd = settled_days(start, end, today)
         entry = {"period": start.isoformat(),
                  "label": "%s %d" % (start.strftime("%b"), start.day),
-                 "branded": None, "youtube": None, "instagram": None}
+                 "branded": None, "youtube": None, "instagram": None,
+                 "settled_days": sd, "provisional": sd < 7}
         try:
             entry["branded"] = branded_week(token, prop["branded"], start, end)
         except urllib.error.HTTPError as e:
@@ -351,6 +396,44 @@ def main():
         flags.append("no channel returned data for either week — nothing written")
         summary_exit(1, "error")
 
+    # --- like-for-like window when the newest week is still provisional ---
+    # Compare the SAME settled days in each week. Without this, the depressed
+    # partial total is diffed against a complete week and invents a decline.
+    latest_start, latest_end = weeks[-1]
+    prior_start, prior_end = weeks[-2]
+    sd_latest = settled_days(latest_start, latest_end, today)
+    comparable = None
+    if 0 < sd_latest < 7:
+        comparable = {"days": sd_latest,
+                      "window": "first %d day%s of each week"
+                                % (sd_latest, "" if sd_latest == 1 else "s"),
+                      "channels": {}}
+        for ch in ("branded", "youtube", "instagram"):
+            if not prop[ch]:
+                continue
+            if ch != "branded" and latest_start < SOCIAL_FIRST_WEEK_MONDAY:
+                continue
+            try:
+                cur = channel_totals(token, prop[ch], ch, latest_start,
+                                     latest_start + timedelta(days=sd_latest - 1))
+                pre = channel_totals(token, prop[ch], ch, prior_start,
+                                     prior_start + timedelta(days=sd_latest - 1))
+            except urllib.error.HTTPError as e:
+                flags.append("%s like-for-like window failed (HTTP %d): %s"
+                             % (ch, e.code, http_error_detail(e)))
+                continue
+            comparable["channels"][ch] = {
+                "current": cur["clicks"], "previous": pre["clicks"]}
+
+    def wow(ch, full_cur, full_prev):
+        """(delta text, dir, basis) — aligned window while provisional."""
+        if comparable and ch in comparable["channels"]:
+            c = comparable["channels"][ch]
+            txt, dirn = delta_fields(c["current"], c["previous"])
+            return txt, dirn, comparable["window"]
+        txt, dirn = delta_fields(full_cur, full_prev)
+        return txt, dirn, "full week"
+
     # --- data/weekly-digest.json → brand_lift.series[] -------------------
     weekly, w_indent = load_json(WEEKLY_PATH)
     bl_w = weekly.setdefault("brand_lift", {})
@@ -365,7 +448,28 @@ def main():
     bl_w["series"] = series
     bl_w["status"] = "live"
     bl_w["updated"] = today.isoformat()
-    bl_w["note"] = LIVE_NOTE_WEEKLY
+    bl_w["lag_days"] = GSC_LAG_DAYS
+    bl_w["unavailable"] = [k for k in ("youtube", "instagram") if not prop[k]]
+    if comparable:
+        bl_w["comparable"] = comparable
+    else:
+        bl_w.pop("comparable", None)
+
+    last = series[-1] if series else {}
+    prev = series[-2] if len(series) > 1 else {}
+    clk = lambda e, ch: (e.get(ch) or {}).get("clicks") if e.get(ch) else None
+
+    note_w = LIVE_NOTE_WEEKLY
+    note_o = LIVE_NOTE_OVERVIEW
+    if comparable:
+        full_txt = clk(last, "branded")
+        prov = PROVISIONAL_NOTE % (
+            last.get("label", latest_start.isoformat()), sd_latest,
+            "%s branded clicks" % full_txt if full_txt is not None else "partial",
+            "WoW", sd_latest)
+        note_w += prov
+        note_o += prov
+    bl_w["note"] = note_w
     save_json(WEEKLY_PATH, weekly, w_indent)
 
     # --- data/overview.json → brand_lift.metrics[] ------------------------
@@ -373,26 +477,34 @@ def main():
     bl_o = overview.setdefault("brand_lift", {})
     channel_of = {"branded_search": "branded", "youtube": "youtube",
                   "instagram": "instagram"}
-    last = series[-1] if series else {}
-    prev = series[-2] if len(series) > 1 else {}
-    clk = lambda e, ch: (e.get(ch) or {}).get("clicks") if e.get(ch) else None
     for m in bl_o.get("metrics", []):
         ch = channel_of.get(m.get("key"))
         if not ch:
             continue
         cur_v, prev_v = clk(last, ch), clk(prev, ch)
         m["value"] = cur_v
-        m["delta"], m["delta_dir"] = delta_fields(cur_v, prev_v)
+        m["delta"], m["delta_dir"], basis = wow(ch, cur_v, prev_v)
+        m["delta_basis"] = basis
+        m["provisional"] = bool(last.get("provisional")) and cur_v is not None
+        m["unavailable"] = not prop[ch]
         m["spark"] = [c for c in (clk(e, ch) for e in series) if c is not None][-SERIES_CAP:]
     bl_o["status"] = "live"
     bl_o["updated"] = today.isoformat()
-    bl_o["note"] = LIVE_NOTE_OVERVIEW
+    bl_o["lag_days"] = GSC_LAG_DAYS
+    bl_o["unavailable"] = [k for k in ("youtube", "instagram") if not prop[k]]
+    bl_o["note"] = note_o
     save_json(OVERVIEW_PATH, overview, o_indent)
 
     if len(series) < 2:
         flags.append("baseline building — WoW deltas start once a second "
                      "week is in the series")
+    if comparable:
+        flags.append(
+            "newest week (%s) is provisional — %d/7 days settled; WoW shown "
+            "on the aligned %d-day window, full-week totals revise next run."
+            % (last.get("label", ""), sd_latest, sd_latest))
     summary_exit(0, "updated", weeks_upserted=weeks_written,
+                 provisional_days_settled=sd_latest,
                  properties={k: bool(v) for k, v in prop.items()})
 
 

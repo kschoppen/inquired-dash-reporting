@@ -136,17 +136,34 @@ function brandLiftSection(bl, deltaLabel, chartId) {
   const collecting = bl.status === "collecting" || !series.length;
   const clk = (e, k) => (e && e[k]) ? e[k].clicks : null;
   const imp = (e, k) => (e && e[k]) ? e[k].impressions : null;
-  const cards = BL_CHANNELS.map((c) => card(
-    c.label,
-    collecting ? "—" : fmtN(clk(last, c.key)),
-    collecting ? '<span class="delta flat">Collecting</span>' : deltaHTML(clk(last, c.key), clk(prev, c.key), { label: deltaLabel }),
-    collecting ? c.cap : `${c.cap} · ${fmtN(imp(last, c.key))} impressions`
-  )).join("");
+  // While the newest week sits inside GSC's reporting lag its full-week total is
+  // understated, so diffing it against a complete week invents a decline. The
+  // script publishes an aligned same-days-of-week comparison; prefer it.
+  const cmpAll = bl.comparable || null;
+  const provisional = !collecting && !!last.provisional;
+  const cards = BL_CHANNELS.map((c) => {
+    const cmp = cmpAll && cmpAll.channels ? cmpAll.channels[c.key] : null;
+    const deltaCell = collecting
+      ? '<span class="delta flat">Collecting</span>'
+      : cmp
+        ? deltaHTML(cmp.current, cmp.previous, { label: `${deltaLabel} · ${cmpAll.window}` })
+        : deltaHTML(clk(last, c.key), clk(prev, c.key), { label: deltaLabel });
+    const na = (bl.unavailable || []).includes(c.key);
+    if (na) {
+      return card(c.label, "—", '<span class="delta flat">Not in API</span>',
+        `${c.cap} · Search Console platform property — visible in the Search Console UI but not served by the Search Analytics API, so it can't be filled automatically`);
+    }
+    let cap = collecting ? c.cap : `${c.cap} · ${fmtN(imp(last, c.key))} impressions`;
+    if (provisional && clk(last, c.key) != null) {
+      cap += ` · ⏳ provisional, ${last.settled_days}/7 days final`;
+    }
+    return card(c.label, collecting ? "—" : fmtN(clk(last, c.key)), deltaCell, cap);
+  }).join("");
   return `
-    <div class="section-label">📡 Brand lift — Google Search${!collecting && last.label ? ` · ${last.label}` : ""} <span class="muted">(GSC branded search + Social Signals)</span></div>
+    <div class="section-label">📡 Brand lift — Google Search${!collecting && last.label ? ` · ${last.label}` : ""} <span class="muted">(GSC branded search + platform properties)</span></div>
     ${bl.note ? `<div class="panel"><p class="insight" style="margin:0">${collecting ? "⏳" : "🛈"} ${bl.note}</p></div>` : ""}
     <div class="cards">${cards}</div>
-    ${series.length >= 2 ? `<div class="panel"><h3>Brand lift — clicks by ${deltaLabel === "WoW" ? "week" : "month"}</h3><div class="chartbox sm"><canvas id="${chartId}"></canvas></div>${note("Clicks in Google Search per channel. These are <strong>search visibility</strong> numbers — how often people find our brand and channels when they search — not social engagement.")}</div>` : ""}`;
+    ${series.length >= 2 ? `<div class="panel"><h3>Brand lift — clicks by ${deltaLabel === "WoW" ? "week" : "month"}</h3><div class="chartbox sm"><canvas id="${chartId}"></canvas></div>${note(`Clicks in Google Search per channel. These are <strong>search visibility</strong> numbers — how often people find our brand and channels when they search — not social engagement.${provisional ? ` The final point (${last.label}) is <strong>provisional</strong> — Google has finalized ${last.settled_days} of its 7 days, so it sits artificially low and revises upward on the next run.` : ""}`)}</div>` : ""}`;
 }
 function brandLiftChart(bl, chartId) {
   const series = (bl && bl.series) || [];
@@ -271,8 +288,8 @@ function renderOverview(d) {
       <div class="ov-kpi">
         <div class="ov-kpi-label">${m.label}</div>
         <div class="ov-kpi-value">${m.value != null ? m.value : "—"}</div>
-        <span class="ov-kpi-delta ${m.delta_dir || "flat"}">${m.delta != null ? m.delta : (blCollecting ? "Collecting" : "—")}</span>
-        <div class="ov-kpi-sub">${m.sub || ""}</div>
+        <span class="ov-kpi-delta ${m.delta_dir || "flat"}">${m.delta != null ? m.delta : (m.unavailable ? "Not in API" : blCollecting ? "Collecting" : "—")}</span>
+        <div class="ov-kpi-sub">${m.unavailable ? "Search Console platform property — in the Search Console UI but not served by the Search Analytics API, so it can't be filled automatically" : `${m.sub || ""}${m.provisional ? ` · ⏳ week still finalizing; change measured on ${m.delta_basis || "settled days"}` : ""}`}</div>
         <div class="ov-kpi-spk"><canvas id="ovBlSpk${i}"></canvas></div>
       </div>`).join("")}</div>` : "";
 
