@@ -194,6 +194,8 @@ Wired via **`scripts/gsc_brand_lift.py`** (stdlib-only, no pip installs). It pul
 
 **Credentials (env vars, never echo):** `GSC_CLIENT_ID` / `GSC_CLIENT_SECRET` (the GA4 OAuth client) + `GSC_REFRESH_TOKEN` (refresh token minted with the `https://www.googleapis.com/auth/webmasters.readonly` scope).
 
+**Project prerequisite (one-time):** the **Search Console API** (`searchconsole.googleapis.com`) must be enabled in the Google Cloud project that owns the OAuth client — project **68420228287**, the same project as GA4. Enabling GA4's API does *not* enable this one; each API is toggled separately. If it's off, every call 403s with `accessNotConfigured` and the script exits `1` with a flag naming the enable URL. Enable at <https://console.cloud.google.com/apis/library/searchconsole.googleapis.com?project=68420228287> and re-run; allow a few minutes to propagate. This is distinct from a credential problem — a valid refresh token with the right scope still 403s while the API is off.
+
 ```bash
 cd inquired-dash-reporting
 python3 scripts/gsc_brand_lift.py   # edits the two data files in place; prints a JSON summary

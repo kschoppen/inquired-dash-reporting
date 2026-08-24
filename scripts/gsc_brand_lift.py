@@ -45,6 +45,7 @@ Never prints token values. Stdlib only — no pip installs needed.
 
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -114,6 +115,43 @@ def http_json(url, payload=None, token=None, form=None):
         return json.loads(resp.read().decode())
 
 
+def http_error_detail(e):
+    """One readable line from a Google API HTTPError body.
+
+    Consumes the error body (readable only once). Recognizes the
+    API-not-enabled 403 — a one-time project setup gap rather than an auth
+    or code problem — and returns the fix instead of a truncated JSON dump.
+    """
+    raw = e.read().decode(errors="replace")
+    try:
+        err = (json.loads(raw) or {}).get("error", {})
+        msg = err.get("message") or ""
+        details = err.get("errors")
+        reasons = {d.get("reason", "") for d in details
+                   if isinstance(d, dict)} if isinstance(details, list) else set()
+    except (ValueError, AttributeError):
+        return " ".join(raw.split())[:300]
+    if not msg:
+        return " ".join(raw.split())[:300]
+    if e.code == 403 and ("accessNotConfigured" in reasons
+                          or "has not been used in project" in msg
+                          or "it is disabled" in msg):
+        m = re.search(r"project (\d+)", msg)
+        enable_url = ("https://console.cloud.google.com/apis/library/"
+                      "searchconsole.googleapis.com")
+        where = "the Google Cloud project behind GSC_CLIENT_ID"
+        if m:
+            where = "Google Cloud project " + m.group(1)
+            enable_url += "?project=" + m.group(1)
+        return (
+            "Search Console API (searchconsole.googleapis.com) is not enabled "
+            "in %s. One-time fix: enable it at %s, then re-run (allow a few "
+            "minutes to propagate). The refresh token and its "
+            "webmasters.readonly scope are fine — this is a project API "
+            "toggle, not a credential problem." % (where, enable_url))
+    return " ".join(msg.split())[:300]
+
+
 def get_access_token():
     missing = [v for v in ("GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN")
                if not os.environ.get(v)]
@@ -128,7 +166,7 @@ def get_access_token():
             "grant_type": "refresh_token",
         })
     except urllib.error.HTTPError as e:
-        body = e.read().decode(errors="replace")[:400]
+        body = http_error_detail(e)
         flags.append(
             "OAuth token exchange failed (HTTP %d): %s — if invalid_grant/"
             "invalid_scope, re-run the OAuth consent for the GA4 client WITH "
@@ -149,7 +187,7 @@ def list_sites(token):
         return http_json(SITES_URL, token=token).get("siteEntry", [])
     except urllib.error.HTTPError as e:
         flags.append("GSC sites.list failed (HTTP %d): %s"
-                     % (e.code, e.read().decode(errors="replace")[:400]))
+                     % (e.code, http_error_detail(e)))
         summary_exit(1, "error")
 
 
@@ -293,7 +331,7 @@ def main():
             entry["branded"] = branded_week(token, prop["branded"], start, end)
         except urllib.error.HTTPError as e:
             flags.append("branded query failed for %s (HTTP %d): %s"
-                         % (start, e.code, e.read().decode(errors="replace")[:300]))
+                         % (start, e.code, http_error_detail(e)))
         for k in ("youtube", "instagram"):
             if not prop[k]:
                 continue
@@ -304,7 +342,7 @@ def main():
                 entry[k] = totals_week(token, prop[k], start, end)
             except urllib.error.HTTPError as e:
                 flags.append("%s totals failed for %s (HTTP %d): %s"
-                             % (k, start, e.code, e.read().decode(errors="replace")[:300]))
+                             % (k, start, e.code, http_error_detail(e)))
         if any(entry[k] is not None for k in ("branded", "youtube", "instagram")):
             fresh_entries.append(entry)
             weeks_written.append(entry["period"])
