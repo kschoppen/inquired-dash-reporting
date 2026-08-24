@@ -166,8 +166,8 @@
     "list_event_detected": false,
     "acknowledged_events": [],
     "data_flags": [
-      "Product coverage below 30% for SQL (14.8%) and Opp (14.8%) — consistent with ongoing offline lifecycle migration",
-      "Run log not found — first run, prior window re-pulled from HubSpot"
+      "Product coverage below 30% for SQL (14.8%) and Opp (14.8%) \u2014 consistent with ongoing offline lifecycle migration",
+      "Run log not found \u2014 first run, prior window re-pulled from HubSpot"
     ]
   },
   {
@@ -337,8 +337,8 @@
     "list_event_detected": false,
     "acknowledged_events": [],
     "data_flags": [
-      "Product coverage below 30% for SQL (26.1%) and Opp (22.7%) — consistent with ongoing offline lifecycle migration",
-      "HIH segment pulls skipped — current+prior total (4+5=9) below 10-contact threshold"
+      "Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration",
+      "HIH segment pulls skipped \u2014 current+prior total (4+5=9) below 10-contact threshold"
     ]
   },
   {
@@ -525,9 +525,9 @@
     "list_event_detected": false,
     "acknowledged_events": [],
     "data_flags": [
-      "GF8 (TK/Pre-K) crossed ≥5 threshold for the first time this season — MQL=22, included in by_product",
+      "GF8 (TK/Pre-K) crossed \u22655 threshold for the first time this season \u2014 MQL=22, included in by_product",
       "HIH +150% WoW (10 vs. 4): consistent with early back-to-school inbound surge into August",
-      "GSC brand lift script exited 1 (HTTP 403 — GSC API not enabled in project); brand_lift blocks left unchanged"
+      "GSC brand lift script exited 1 (HTTP 403 \u2014 GSC API not enabled in project); brand_lift blocks left unchanged"
     ]
   },
   {
@@ -731,11 +731,202 @@
     "list_event_detected": true,
     "acknowledged_events": [],
     "data_flags": [
-      "WH (World History) crossed ≥5 MQL threshold for the first time this season (5 MQLs) — included in by_product",
-      "Disqualification spike: DQ=246 (vs. 53 prior week) triggered the list-event threshold (DQ>50 AND DQ+Nurture=428 > 2×funnel_total=300) and the rolling-median flag (246 > 2.5×median[100,82,53]=205) — review list health before next run",
-      "HIH rolling-median flag: 14 > 2.5×median[5,4,10]=12.5 — likely back-to-school surge; monitor next week",
-      "HIH drill query via hs_latest_qualified_lead_date returned 5 contacts; actual HIH=14 suggests a different filter applies — HIH drill is partial this run",
-      "GSC brand lift script exited 1 (HTTP 403 — GSC API not enabled in project); brand_lift blocks left unchanged"
+      "WH (World History) crossed \u22655 MQL threshold for the first time this season (5 MQLs) \u2014 included in by_product",
+      "Disqualification spike: DQ=246 (vs. 53 prior week) triggered the list-event threshold (DQ>50 AND DQ+Nurture=428 > 2\u00d7funnel_total=300) and the rolling-median flag (246 > 2.5\u00d7median[100,82,53]=205) \u2014 review list health before next run",
+      "HIH rolling-median flag: 14 > 2.5\u00d7median[5,4,10]=12.5 \u2014 likely back-to-school surge; monitor next week",
+      "HIH drill query via hs_latest_qualified_lead_date returned 5 contacts; actual HIH=14 suggests a different filter applies \u2014 HIH drill is partial this run",
+      "GSC brand lift script exited 1 (HTTP 403 \u2014 GSC API not enabled in project); brand_lift blocks left unchanged"
+    ]
+  },
+  {
+    "run_date": "2026-08-24",
+    "period_label": "2026-W34",
+    "window_current": [
+      "2026-08-17",
+      "2026-08-23"
+    ],
+    "window_prior": [
+      "2026-08-10",
+      "2026-08-16"
+    ],
+    "slack_message_ts": null,
+    "totals": {
+      "hih_current": 8,
+      "hih_prior": 14,
+      "hih_wow_pct": -43,
+      "mql_current": 54,
+      "mql_prior": 77,
+      "mql_wow_pct": -30,
+      "sql_current": 33,
+      "sql_prior": 30,
+      "sql_wow_pct": 10,
+      "opp_current": 33,
+      "opp_prior": 29,
+      "opp_wow_pct": 14
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          4,
+          5
+        ],
+        "mql": [
+          8,
+          21
+        ],
+        "sql": [
+          3,
+          9
+        ],
+        "opp": [
+          3,
+          9
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          2,
+          6
+        ],
+        "mql": [
+          15,
+          36
+        ],
+        "sql": [
+          1,
+          2
+        ],
+        "opp": [
+          1,
+          2
+        ]
+      },
+      "wh": {
+        "hih": [
+          0,
+          2
+        ],
+        "mql": [
+          1,
+          5
+        ],
+        "sql": [
+          1,
+          0
+        ],
+        "opp": [
+          1,
+          0
+        ]
+      },
+      "gf8": null
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          3,
+          5
+        ],
+        "mql": [
+          16,
+          21
+        ],
+        "sql": [
+          11,
+          13
+        ],
+        "opp": [
+          11,
+          13
+        ]
+      },
+      "medium": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          9,
+          4
+        ],
+        "sql": [
+          10,
+          1
+        ],
+        "opp": [
+          10,
+          1
+        ]
+      },
+      "large": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          4,
+          1
+        ],
+        "sql": [
+          3,
+          1
+        ],
+        "opp": [
+          3,
+          0
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          6,
+          11
+        ],
+        "sql": [
+          5,
+          8
+        ],
+        "opp": [
+          5,
+          8
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 75,
+        "mql": 44,
+        "sql": 15,
+        "opp": 15
+      },
+      "segment": {
+        "hih": 50,
+        "mql": 65,
+        "sql": 88,
+        "opp": 88
+      }
+    },
+    "disposition": {
+      "disqualified_current": 64,
+      "disqualified_prior": 246,
+      "entered_nurture_current": 18,
+      "entered_nurture_prior": 182
+    },
+    "pipeline": {
+      "district_open_deals": 29,
+      "school_open_deals": 17
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "WH (World History) included: prior MQL=5 met threshold; current max metric=1 \u2014 may drop next run",
+      "Product coverage for SQL and Opp is 15% each \u2014 low-coverage weeks; product-segmented SQL/Opp should be interpreted cautiously",
+      "Closed-won MTD not available \u2014 HubSpot deal stage filter uses custom numeric IDs; retaining prior estimate $700K",
+      "SQL/Opp drill arrays empty \u2014 context compaction in prior session prevented drill-contact recovery; segment totals verified from aggregate queries",
+      "GSC brand lift script exited 1 (HTTP 403 \u2014 GSC API not enabled in project); brand_lift blocks left unchanged"
     ]
   }
 ]

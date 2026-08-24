@@ -1,18 +1,18 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-08-17",
+  "updated": "2026-08-24",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
     "updated": null,
     "status": "collecting",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill — first WoW read lands the week of Aug 17). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the Monday weekly run once the GSC API is wired.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on inquired.com; YouTube and Instagram were verified as GSC Social Signals properties on Jul 30, 2026 (no backfill \u2014 first WoW read lands the week of Aug 17). LinkedIn has no GSC connector: it's owned by Microsoft and isn't integrated with Google. Updates with the Monday weekly run once the GSC API is wired.",
     "series": []
   },
   "pipeline": {
-    "district_open": 30,
-    "school_open": 23,
-    "as_of": "2026-08-17",
+    "district_open": 29,
+    "school_open": 17,
+    "as_of": "2026-08-24",
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
   },
   "segment_coverage": {
@@ -21,73 +21,13 @@
     "sql": 77,
     "opp": 76
   },
-  "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History > GF8; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total — the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). WH omitted (below the 5-contact relevance threshold). GF8 included from week of Aug 3 (crossed ≥5 threshold — 22 MQLs).",
+  "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History > GF8; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). WH omitted (below the 5-contact relevance threshold). GF8 included from week of Aug 3 (crossed \u22655 threshold \u2014 22 MQLs).",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
   "products_included": [
     "ij",
     "inkwell"
   ],
   "weeks": [
-    {
-      "period": "2026-05-11",
-      "label": "May 11",
-      "funnel": {
-        "hih": 20,
-        "mql": 35,
-        "sql": 14,
-        "opp": 12
-      },
-      "by_product": {
-        "ij": {
-          "hih": 13,
-          "mql": 16,
-          "sql": 7,
-          "opp": 7
-        },
-        "inkwell": {
-          "hih": 6,
-          "mql": 8,
-          "sql": 0,
-          "opp": 0
-        },
-        "wh": {
-          "hih": 1,
-          "mql": 1,
-          "sql": 0,
-          "opp": 0
-        }
-      },
-      "by_segment": {
-        "single_small": {
-          "hih": 7,
-          "mql": 16,
-          "sql": 10,
-          "opp": 10
-        },
-        "medium": {
-          "hih": 0,
-          "mql": 4,
-          "sql": 1,
-          "opp": 0
-        },
-        "large": {
-          "hih": 0,
-          "mql": 0,
-          "sql": 0,
-          "opp": 0
-        },
-        "enterprise": {
-          "hih": 2,
-          "mql": 4,
-          "sql": 2,
-          "opp": 2
-        }
-      },
-      "disposition": {
-        "dq": 141,
-        "nurture": 25
-      }
-    },
     {
       "period": "2026-05-18",
       "label": "May 18",
@@ -2553,7 +2493,7 @@
           "opp": 0
         }
       },
-      "note": "HIH low (5) — deep summer seasonal. MQL→SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+      "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
     },
     {
       "period": "2026-07-20",
@@ -3179,7 +3119,7 @@
         "dq": 82,
         "nurture": 63
       },
-      "note": "HIH at 4 — deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 — summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) — consistent with ongoing offline lifecycle migration.",
+      "note": "HIH at 4 \u2014 deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 \u2014 summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration.",
       "drill": {
         "hih": [
           [
@@ -3666,7 +3606,7 @@
         "dq": 53,
         "nurture": 29
       },
-      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 — highest since early July. GF8 (TK/Pre-K) crossed the ≥5 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
+      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 \u2014 highest since early July. GF8 (TK/Pre-K) crossed the \u22655 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
       "drill": {
         "hih": [
           [
@@ -4399,7 +4339,7 @@
         "dq": 246,
         "nurture": 182
       },
-      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs — up from 3 last week — driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the ≥5 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag — confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
+      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs \u2014 up from 3 last week \u2014 driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the \u22655 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag \u2014 confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
       "drill": {
         "hih": [
           [
@@ -5115,7 +5055,80 @@
           ]
         ]
       }
+    },
+    {
+      "period": "2026-08-17",
+      "label": "Aug 17",
+      "funnel": {
+        "hih": 8,
+        "mql": 54,
+        "sql": 33,
+        "opp": 33
+      },
+      "by_product": {
+        "ij": {
+          "hih": 4,
+          "mql": 8,
+          "sql": 3,
+          "opp": 3
+        },
+        "inkwell": {
+          "hih": 2,
+          "mql": 15,
+          "sql": 1,
+          "opp": 1
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 1,
+          "opp": 1
+        },
+        "gf8": null
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh"
+      ],
+      "by_segment": {
+        "single_small": {
+          "hih": 3,
+          "mql": 16,
+          "sql": 11,
+          "opp": 11
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 9,
+          "sql": 10,
+          "opp": 10
+        },
+        "large": {
+          "hih": 1,
+          "mql": 4,
+          "sql": 3,
+          "opp": 3
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 6,
+          "sql": 5,
+          "opp": 5
+        }
+      },
+      "disposition": {
+        "dq": 64,
+        "nurture": 18
+      },
+      "note": "HIH pulled back to 8 (-43% WoW) and MQL retreated to 54 (-30%) as the back-to-school surge from W33 normalized. SQL and Opp bucked the trend, rising to 33 each (+10%/+14%) \u2014 the high-MQL W33 cohort is converting through the funnel. Inkwell led mid-funnel with 15 MQLs; IJ had 8. WH held threshold inclusion at MQL=1 (prior=5 \u2014 may drop below threshold next run). Medium District drove 10 of 33 SQLs, highest segment this week. Pipeline contracted slightly to 29 district and 17 school open deals. DQ and Nurture normalized to 64 and 18 (vs. 246/182 last week), indicating the W33 spike was a one-time cleanup. Closed-won MTD retained at ~$700K (deal-stage filter could not be verified this run).",
+      "drill": {
+        "hih": [],
+        "mql": [],
+        "sql": [],
+        "opp": []
+      }
     }
   ],
-  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record."
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
 }
