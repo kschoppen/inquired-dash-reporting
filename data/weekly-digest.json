@@ -16,12 +16,12 @@
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
   },
   "segment_coverage": {
-    "hih": 43,
-    "mql": 48,
-    "sql": 77,
-    "opp": 76
+    "hih": 50,
+    "mql": 65,
+    "sql": 88,
+    "opp": 88
   },
-  "product_caveat": "Product = a single PRIMARY product per contact (priority Inkwell > Inquiry Journeys > World History > GF8; ~3% of contacts list more than one interest and are assigned to the highest-priority one). Buckets are mutually exclusive, so they sum to the tagged total \u2014 the gap up to the funnel total is untagged (product_interest is a newer property, not set on every contact). WH omitted (below the 5-contact relevance threshold). GF8 included from week of Aug 3 (crossed \u22655 threshold \u2014 22 MQLs).",
+  "product_caveat": "Low product coverage for SQL and Opp this week (15% each \u2014 most contacts have no product_interest tag). By-product SQL/Opp data should be interpreted with caution.",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
   "products_included": [
     "ij",
