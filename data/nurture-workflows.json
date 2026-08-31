@@ -2,41 +2,52 @@
   "updated": "2026-08-31",
   "confirmed_by": "Kelsey",
   "note": "The only workflows nurturing this cycle, per Kelsey's confirmation on 2026-08-31. HubSpot's Workflow/Automation objects aren't API-readable, so this list has to be maintained by hand whenever the active set changes. The nurture-dashboard-refresh skill (growth-marketing plugin) asks Kelsey to reconfirm this list on every run and updates it here first if it has changed.",
+  "enrollment_lists_source": "https://inquired-marketing-hub.netlify.app/campaigns/nurture-program-f26 (Enrollment Lists table) -- mirrored from html-pages campaigns/nurture-program-f26.html. Re-check that page if list IDs seem stale.",
   "workflows": [
     {
       "flow_id": "1854413985",
       "name": "Contact - GF8 Nurture Flow 2627",
       "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854413985/performance",
       "nurture_property_value": "Fall 2026_GF8 Nurture",
-      "product": "Great First 8"
+      "product": "Great First 8",
+      "enrollment_list_name": "[NURTURE] MKTG Nurture - Great First Eight Enrollment Trigger _SY2627",
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10601/filters"
     },
     {
       "flow_id": "1854346100",
       "name": "Contact - WH Nurture Flow 2627",
       "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854346100/performance",
       "nurture_property_value": "Fall 2026_World History Nurture",
-      "product": "World History"
+      "product": "World History",
+      "enrollment_list_name": "[NURTURE] MKTG Nurture - World History Enrollment Trigger _SY2627",
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10739/filters"
     },
     {
       "flow_id": "1852090643",
       "name": "Contact - IJ Nurture Flow 2627",
       "performance_url": "https://app.hubspot.com/workflows/4451852/details/1852090643/performance",
       "nurture_property_value": "Fall 2026_Inquiry Journeys Nurture",
-      "product": "Inquiry Journeys"
+      "product": "Inquiry Journeys",
+      "enrollment_list_name": "[NURTURE] MKTG Nurture - Inquiry Journeys Enrollment Trigger _SY2627",
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10599/filters"
     },
     {
       "flow_id": "1849158449",
       "name": "Contact - Inkwell Nurture Flow 2627",
       "performance_url": "https://app.hubspot.com/workflows/4451852/details/1849158449/performance",
       "nurture_property_value": "Fall 2026_Inkwell Nurture",
-      "product": "Inkwell"
+      "product": "Inkwell",
+      "enrollment_list_name": "[NURTURE] MKTG Nurture - Inkwell Enrollment Trigger _SY2627",
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10597/filters"
     },
     {
       "flow_id": "1854800935",
       "name": "Contact - Agnostic Nurture Flow 2627",
       "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854800935/performance",
       "nurture_property_value": "Fall Agnostic Nurture",
-      "product": "inquirED General"
+      "product": "inquirED General",
+      "enrollment_list_name": "[NURTURE] MKTG Nurture - Agnostic Enrollment Trigger _SY2627",
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10603/filters"
     }
   ]
 }
