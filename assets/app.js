@@ -95,7 +95,7 @@ function hihProdBreakdown(last) {
     { key: "ij",      label: "Inquiry Journeys", color: "#144745" },
     { key: "inkwell", label: "Inkwell (ELA)",     color: "#F99792" },
     { key: "wh",      label: "World History",     color: "#5B5A9E" },
-    { key: "gf8",     label: "Great First 8",     color: "#B1E0BB" },
+    { key: "gf8",     label: "Great First 8",     color: "#079DD9" },
   ];
   return prods.map((p) => {
     const n = (last.by_product && last.by_product[p.key] && last.by_product[p.key].hih != null) ? last.by_product[p.key].hih : null;
@@ -599,7 +599,7 @@ function hihByProductTable(last) {
     { key: "ij",      label: "Inquiry Journeys", color: "#144745" },
     { key: "inkwell", label: "Inkwell (ELA)",     color: "#F99792" },
     { key: "wh",      label: "World History",     color: "#5B5A9E" },
-    { key: "gf8",     label: "Great First 8",     color: "#B1E0BB" },
+    { key: "gf8",     label: "Great First 8",     color: "#079DD9" },
   ];
   const bp = last.by_product || {};
   const totHih = last.funnel ? last.funnel.hih : null;
@@ -704,7 +704,7 @@ function dealDrill(last) {
 }
 
 // ---- weekly tab ----
-const WK_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"]];
+const WK_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"], ["gf8", "Great First 8"]];
 const WK_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
 const WK_STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
 
@@ -729,11 +729,41 @@ function wkBreakdownTable(rows, dimKey, last, prev, opts = {}) {
     const cells = WK_STAGES.map(([s]) => {
       const tot = last.funnel ? last.funnel[s] : null;
       const tagged = rows.reduce((a, [k]) => a + (get(last, k, s) || 0), 0);
-      return `<td>${tot == null ? "—" : fmtN(tot - tagged)}</td>`;
+      return `<td>${tot == null ? "—" : fmtN(Math.max(0, tot - tagged))}</td>`;
     }).join("");
     extra = `<tr class="untagged"><td>Untagged</td>${cells}</tr>`;
   }
   return `<table class="bd"><thead><tr><th></th>${WK_STAGES.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${body}${extra}</tbody></table>`;
+}
+
+// Product rows shared by the pipeline + disposition breakdowns (same 4 products/colors as WK_PRODUCT_ROWS)
+const WK_PIPE_PRODUCT_ROWS = [["ij", "Inquiry Journeys", "#144745"], ["inkwell", "Inkwell", "#F99792"], ["wh", "World History", "#5B5A9E"], ["gf8", "Great First 8", "#079DD9"]];
+
+function pipelineProductTable(pipe) {
+  const bp = pipe.by_product || {};
+  const rows = WK_PIPE_PRODUCT_ROWS.map(([k, label, color]) => {
+    const r = bp[k] || {};
+    return `<tr><td><span class="dot" style="background:${color}"></span>${label}</td><td>${r.count != null ? fmtN(r.count) : "—"}</td><td>${r.amount != null ? fmt$(r.amount) : "—"}</td></tr>`;
+  }).join("");
+  const u = bp.untagged || {};
+  return `<table class="bd"><thead><tr><th>Product</th><th>Open deals</th><th>$ Amount</th></tr></thead><tbody>${rows}
+    <tr class="untagged"><td>Untagged</td><td>${u.count != null ? fmtN(u.count) : "—"}</td><td>${u.amount != null ? fmt$(u.amount) : "—"}</td></tr>
+    </tbody></table>`;
+}
+
+function pipelineStageTable(label, stages) {
+  if (!stages || !stages.length) return `<p class="cap">No open deals in the ${label} pipeline.</p>`;
+  const rows = stages.map((s) => `<tr><td>${s.stage}</td><td>${fmtN(s.count)}</td><td>${fmt$(s.amount)}</td></tr>`).join("");
+  return `<table><thead><tr><th>${label} stage</th><th>Deals</th><th>$ Amount</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function dispositionProductTable(last) {
+  const bp = (last.disposition && last.disposition.by_product) || {};
+  const rows = WK_PIPE_PRODUCT_ROWS.map(([k, label, color]) => {
+    const r = bp[k] || {};
+    return `<tr><td><span class="dot" style="background:${color}"></span>${label}</td><td>${r.dq != null ? fmtN(r.dq) : "—"}</td><td>${r.nurture != null ? fmtN(r.nurture) : "—"}</td></tr>`;
+  }).join("");
+  return `<table><thead><tr><th>Product</th><th>Disqualified</th><th>Sent to nurture</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 function renderWeekly(d) {
@@ -786,7 +816,7 @@ function renderWeekly(d) {
       <div class="panel"><h3>HIH · MQL · SQL by product</h3><div class="chartbox"><canvas id="wProdChart"></canvas></div></div>
       <div class="panel"><h3>Funnel by product — detail</h3>
         ${wkBreakdownTable(WK_PRODUCT_ROWS, "by_product", last, prev, {untagged:true})}
-        ${note("Each contact counted under its single <strong>primary</strong> product (priority Inkwell → IJ → World History). WoW arrow when last week's base was ≥ 5.")}
+        ${note("Each contact counted under its single <strong>primary</strong> product (priority Inkwell → IJ → World History → Great First 8). WoW arrow when last week's base was ≥ 5.")}
       </div>
     </div>
 
@@ -810,6 +840,11 @@ function renderWeekly(d) {
         ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
       </div>
       ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
+      ${pipe.by_product ? `
+      <div class="grid2">
+        <div><h4>By product</h4>${pipelineProductTable(pipe)}${note("Deals tagged with more than one product count toward each — totals won't sum to the open-deal count above.")}</div>
+        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
+      </div>` : ""}
     </div>
 
     ${(last.disposition && (last.disposition.dq != null || last.disposition.nurture != null)) ? `
@@ -819,6 +854,7 @@ function renderWeekly(d) {
         ${card("Sent to Nurture", fmtN(last.disposition.nurture), wowArrow(last.disposition.nurture, prev.disposition && prev.disposition.nurture), "Contacts moved to nurture track")}
       </div>
       ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
+      ${last.disposition.by_product ? `<h4>By product</h4>${dispositionProductTable(last)}${note("Product-tagged subset — coverage runs lower here than on the funnel metrics, so these won't sum to the totals above.")}` : ""}
     </div>` : ""}
 
     ${brandLiftSection(d.brand_lift, "WoW", "wBrandLift")}
