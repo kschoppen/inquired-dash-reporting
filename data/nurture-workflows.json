@@ -1,0 +1,42 @@
+{
+  "updated": "2026-08-31",
+  "confirmed_by": "Kelsey",
+  "note": "The only workflows nurturing this cycle, per Kelsey's confirmation on 2026-08-31. HubSpot's Workflow/Automation objects aren't API-readable, so this list has to be maintained by hand whenever the active set changes. The nurture-dashboard-refresh skill (growth-marketing plugin) asks Kelsey to reconfirm this list on every run and updates it here first if it has changed.",
+  "workflows": [
+    {
+      "flow_id": "1854413985",
+      "name": "Contact - GF8 Nurture Flow 2627",
+      "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854413985/performance",
+      "nurture_property_value": "Fall 2026_GF8 Nurture",
+      "product": "Great First 8"
+    },
+    {
+      "flow_id": "1854346100",
+      "name": "Contact - WH Nurture Flow 2627",
+      "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854346100/performance",
+      "nurture_property_value": "Fall 2026_World History Nurture",
+      "product": "World History"
+    },
+    {
+      "flow_id": "1852090643",
+      "name": "Contact - IJ Nurture Flow 2627",
+      "performance_url": "https://app.hubspot.com/workflows/4451852/details/1852090643/performance",
+      "nurture_property_value": "Fall 2026_Inquiry Journeys Nurture",
+      "product": "Inquiry Journeys"
+    },
+    {
+      "flow_id": "1849158449",
+      "name": "Contact - Inkwell Nurture Flow 2627",
+      "performance_url": "https://app.hubspot.com/workflows/4451852/details/1849158449/performance",
+      "nurture_property_value": "Fall 2026_Inkwell Nurture",
+      "product": "Inkwell"
+    },
+    {
+      "flow_id": "1854800935",
+      "name": "Contact - Agnostic Nurture Flow 2627",
+      "performance_url": "https://app.hubspot.com/workflows/4451852/details/1854800935/performance",
+      "nurture_property_value": "Fall Agnostic Nurture",
+      "product": "inquirED General"
+    }
+  ]
+}
