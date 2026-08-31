@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-08-24",
+  "updated": "2026-08-31",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-08-24",
+    "updated": "2026-08-31",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Aug 17 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (176 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 24 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (234 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -24,8 +24,20 @@
         "period": "2026-08-17",
         "label": "Aug 17",
         "branded": {
-          "clicks": 176,
-          "impressions": 3027
+          "clicks": 177,
+          "impressions": 3044
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-08-24",
+        "label": "Aug 24",
+        "branded": {
+          "clicks": 234,
+          "impressions": 4577
         },
         "youtube": null,
         "instagram": null,
@@ -43,91 +55,31 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 155,
-          "previous": 135
+          "current": 198,
+          "previous": 155
         }
       }
     }
   },
   "pipeline": {
-    "district_open": 29,
-    "school_open": 17,
-    "as_of": "2026-08-24",
+    "district_open": 31,
+    "school_open": 18,
+    "as_of": "2026-08-31",
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded."
   },
   "segment_coverage": {
-    "hih": 50,
-    "mql": 65,
-    "sql": 88,
-    "opp": 88
+    "hih": 56,
+    "mql": 68,
+    "sql": 100,
+    "opp": 100
   },
-  "product_caveat": "Low product coverage for SQL and Opp this week (15% each — most contacts have no product_interest tag). By-product SQL/Opp data should be interpreted with caution.",
+  "product_caveat": "Low product coverage for SQL and Opp this week (15% each \u2014 most contacts have no product_interest tag). By-product SQL/Opp data should be interpreted with caution.",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
   "products_included": [
     "ij",
     "inkwell"
   ],
   "weeks": [
-    {
-      "period": "2026-05-18",
-      "label": "May 18",
-      "funnel": {
-        "hih": 25,
-        "mql": 30,
-        "sql": 21,
-        "opp": 19
-      },
-      "by_product": {
-        "ij": {
-          "hih": 22,
-          "mql": 16,
-          "sql": 10,
-          "opp": 8
-        },
-        "inkwell": {
-          "hih": 1,
-          "mql": 1,
-          "sql": 0,
-          "opp": 1
-        },
-        "wh": {
-          "hih": 1,
-          "mql": 0,
-          "sql": 0,
-          "opp": 0
-        }
-      },
-      "by_segment": {
-        "single_small": {
-          "hih": 10,
-          "mql": 12,
-          "sql": 9,
-          "opp": 10
-        },
-        "medium": {
-          "hih": 3,
-          "mql": 5,
-          "sql": 6,
-          "opp": 4
-        },
-        "large": {
-          "hih": 0,
-          "mql": 1,
-          "sql": 1,
-          "opp": 1
-        },
-        "enterprise": {
-          "hih": 3,
-          "mql": 6,
-          "sql": 4,
-          "opp": 4
-        }
-      },
-      "disposition": {
-        "dq": 76,
-        "nurture": 12
-      }
-    },
     {
       "period": "2026-05-25",
       "label": "May 25",
@@ -2533,7 +2485,7 @@
           "opp": 0
         }
       },
-      "note": "HIH low (5) — deep summer seasonal. MQL→SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+      "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
     },
     {
       "period": "2026-07-20",
@@ -3159,7 +3111,7 @@
         "dq": 82,
         "nurture": 63
       },
-      "note": "HIH at 4 — deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 — summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) — consistent with ongoing offline lifecycle migration.",
+      "note": "HIH at 4 \u2014 deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 \u2014 summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration.",
       "drill": {
         "hih": [
           [
@@ -3646,7 +3598,7 @@
         "dq": 53,
         "nurture": 29
       },
-      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 — highest since early July. GF8 (TK/Pre-K) crossed the ≥5 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
+      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 \u2014 highest since early July. GF8 (TK/Pre-K) crossed the \u22655 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
       "drill": {
         "hih": [
           [
@@ -4379,7 +4331,7 @@
         "dq": 246,
         "nurture": 182
       },
-      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs — up from 3 last week — driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the ≥5 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag — confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
+      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs \u2014 up from 3 last week \u2014 driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the \u22655 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag \u2014 confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
       "drill": {
         "hih": [
           [
@@ -5161,14 +5113,575 @@
         "dq": 64,
         "nurture": 18
       },
-      "note": "HIH pulled back to 8 (-43% WoW) and MQL retreated to 54 (-30%) as the back-to-school surge from W33 normalized. SQL and Opp bucked the trend, rising to 33 each (+10%/+14%) — the high-MQL W33 cohort is converting through the funnel. Inkwell led mid-funnel with 15 MQLs; IJ had 8. WH held threshold inclusion at MQL=1 (prior=5 — may drop below threshold next run). Medium District drove 10 of 33 SQLs, highest segment this week. Pipeline contracted slightly to 29 district and 17 school open deals. DQ and Nurture normalized to 64 and 18 (vs. 246/182 last week), indicating the W33 spike was a one-time cleanup. Closed-won MTD retained at ~$700K (deal-stage filter could not be verified this run).",
+      "note": "HIH pulled back to 8 (-43% WoW) and MQL retreated to 54 (-30%) as the back-to-school surge from W33 normalized. SQL and Opp bucked the trend, rising to 33 each (+10%/+14%) \u2014 the high-MQL W33 cohort is converting through the funnel. Inkwell led mid-funnel with 15 MQLs; IJ had 8. WH held threshold inclusion at MQL=1 (prior=5 \u2014 may drop below threshold next run). Medium District drove 10 of 33 SQLs, highest segment this week. Pipeline contracted slightly to 29 district and 17 school open deals. DQ and Nurture normalized to 64 and 18 (vs. 246/182 last week), indicating the W33 spike was a one-time cleanup. Closed-won MTD retained at ~$700K (deal-stage filter could not be verified this run).",
       "drill": {
         "hih": [],
         "mql": [],
         "sql": [],
         "opp": []
       }
+    },
+    {
+      "period": "2026-08-24",
+      "label": "Aug 24",
+      "funnel": {
+        "hih": 16,
+        "mql": 56,
+        "sql": 13,
+        "opp": 12
+      },
+      "by_product": {
+        "ij": {
+          "hih": 4,
+          "mql": 29,
+          "sql": 3,
+          "opp": 3
+        },
+        "inkwell": {
+          "hih": 8,
+          "mql": 8,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 3,
+          "mql": 6,
+          "sql": 0,
+          "opp": 0
+        },
+        "gf8": {
+          "hih": 5,
+          "mql": 5,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 5,
+          "mql": 18,
+          "sql": 4,
+          "opp": 4
+        },
+        "medium": {
+          "hih": 3,
+          "mql": 10,
+          "sql": 5,
+          "opp": 4
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 1,
+          "mql": 10,
+          "sql": 4,
+          "opp": 4
+        }
+      },
+      "disposition": {
+        "dq": 75,
+        "nurture": 23
+      },
+      "drill": {
+        "hih": [
+          [
+            245381174175,
+            "",
+            ""
+          ],
+          [
+            245068746035,
+            "",
+            "Direct"
+          ],
+          [
+            244892630874,
+            "",
+            "Direct"
+          ],
+          [
+            244769020691,
+            "Medium",
+            "Organic"
+          ],
+          [
+            244716515921,
+            "Medium",
+            "Direct"
+          ],
+          [
+            244683709307,
+            "",
+            "Referral"
+          ],
+          [
+            244635677786,
+            "Other",
+            "Email"
+          ],
+          [
+            244503608116,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            244325395363,
+            "Single",
+            "Direct"
+          ],
+          [
+            244307074346,
+            "Other",
+            "Direct"
+          ],
+          [
+            244246564727,
+            "Small",
+            "Direct"
+          ],
+          [
+            244103020297,
+            "Small",
+            "Organic"
+          ],
+          [
+            244098162475,
+            "",
+            ""
+          ],
+          [
+            244006957955,
+            "Small",
+            "Referral"
+          ],
+          [
+            244001297704,
+            "Single",
+            "Direct"
+          ],
+          [
+            243857577527,
+            "Medium",
+            "Email"
+          ]
+        ],
+        "mql": [
+          [
+            245413885010,
+            "",
+            "Direct"
+          ],
+          [
+            245387793080,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            245117491385,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            245078353039,
+            "",
+            "Direct"
+          ],
+          [
+            245060736073,
+            "Medium",
+            "Direct"
+          ],
+          [
+            245012928611,
+            "Single",
+            "Email"
+          ],
+          [
+            244892630874,
+            "",
+            "Direct"
+          ],
+          [
+            244769020691,
+            "Medium",
+            "Organic"
+          ],
+          [
+            244716515921,
+            "Medium",
+            "Direct"
+          ],
+          [
+            244715406653,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            244698033485,
+            "Other",
+            "Direct"
+          ],
+          [
+            244694458443,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            244695366824,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            244683709307,
+            "",
+            "Referral"
+          ],
+          [
+            244561847705,
+            "",
+            "Direct"
+          ],
+          [
+            244408252780,
+            "Single",
+            "Direct"
+          ],
+          [
+            244325395363,
+            "Single",
+            "Direct"
+          ],
+          [
+            244324162906,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            244298180665,
+            "Single",
+            "Direct"
+          ],
+          [
+            244307074346,
+            "Other",
+            "Direct"
+          ],
+          [
+            244246564727,
+            "Small",
+            "Direct"
+          ],
+          [
+            244267102535,
+            "Medium",
+            "Offline"
+          ],
+          [
+            244254745956,
+            "Other",
+            "Paid"
+          ],
+          [
+            244056580610,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056580446,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056704684,
+            "Single",
+            "Offline"
+          ],
+          [
+            244156870293,
+            "",
+            "Direct"
+          ],
+          [
+            244103020297,
+            "Small",
+            "Organic"
+          ],
+          [
+            244011883436,
+            "Single",
+            "Direct"
+          ],
+          [
+            244006957955,
+            "Small",
+            "Referral"
+          ],
+          [
+            244001297704,
+            "Single",
+            "Direct"
+          ],
+          [
+            243861238440,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            243857577527,
+            "Medium",
+            "Email"
+          ],
+          [
+            243859883330,
+            "",
+            "Direct"
+          ],
+          [
+            243477613166,
+            "Medium",
+            "Offline"
+          ],
+          [
+            242794772596,
+            "Medium",
+            "Offline"
+          ],
+          [
+            238330571675,
+            "Medium",
+            "Offline"
+          ],
+          [
+            193533036557,
+            "Single",
+            "Direct"
+          ],
+          [
+            192742834225,
+            "Medium",
+            "Offline"
+          ],
+          [
+            183801159982,
+            "",
+            "Direct"
+          ],
+          [
+            159782370392,
+            "Other",
+            "Direct"
+          ],
+          [
+            149275951240,
+            "Single",
+            "Direct"
+          ],
+          [
+            121155589785,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            105409108352,
+            "Other",
+            "Direct"
+          ],
+          [
+            100337106222,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            69197686170,
+            "Other",
+            "Direct"
+          ],
+          [
+            68956146607,
+            "Other",
+            "Direct"
+          ],
+          [
+            66414085713,
+            "Enterprise",
+            "Offline"
+          ],
+          [
+            54941367650,
+            "Small",
+            "Direct"
+          ],
+          [
+            24208112,
+            "Other",
+            "Email"
+          ],
+          [
+            23569501,
+            "Single",
+            "Direct"
+          ],
+          [
+            21027751,
+            "Other",
+            "Direct"
+          ],
+          [
+            19992551,
+            "Medium",
+            "Direct"
+          ],
+          [
+            17358501,
+            "Single",
+            "Direct"
+          ],
+          [
+            16118051,
+            "Single",
+            "Direct"
+          ],
+          [
+            23281701,
+            "Other",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            245387793080,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            245117491385,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            244325395363,
+            "Single",
+            "Direct"
+          ],
+          [
+            244267102535,
+            "Medium",
+            "Offline"
+          ],
+          [
+            244056580610,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056580446,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056704684,
+            "Single",
+            "Offline"
+          ],
+          [
+            243861238440,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            243477613166,
+            "Medium",
+            "Offline"
+          ],
+          [
+            242794772596,
+            "Medium",
+            "Offline"
+          ],
+          [
+            238330571675,
+            "Medium",
+            "Offline"
+          ],
+          [
+            192742834225,
+            "Medium",
+            "Offline"
+          ],
+          [
+            66414085713,
+            "Enterprise",
+            "Offline"
+          ]
+        ],
+        "opp": [
+          [
+            245387793080,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            245117491385,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            244325395363,
+            "Single",
+            "Direct"
+          ],
+          [
+            244267102535,
+            "Medium",
+            "Offline"
+          ],
+          [
+            244056580610,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056580446,
+            "Single",
+            "Offline"
+          ],
+          [
+            244056704684,
+            "Single",
+            "Offline"
+          ],
+          [
+            243861238440,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            243477613166,
+            "Medium",
+            "Offline"
+          ],
+          [
+            242794772596,
+            "Medium",
+            "Offline"
+          ],
+          [
+            192742834225,
+            "Medium",
+            "Offline"
+          ],
+          [
+            66414085713,
+            "Enterprise",
+            "Offline"
+          ]
+        ]
+      }
     }
   ],
-  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record."
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
 }

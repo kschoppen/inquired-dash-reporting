@@ -928,5 +928,212 @@
       "SQL/Opp drill arrays empty \u2014 context compaction in prior session prevented drill-contact recovery; segment totals verified from aggregate queries",
       "GSC brand lift script exited 1 (HTTP 403 \u2014 GSC API not enabled in project); brand_lift blocks left unchanged"
     ]
+  },
+  {
+    "run_date": "2026-08-31",
+    "period_label": "2026-W35",
+    "window_current": [
+      "2026-08-24",
+      "2026-08-30"
+    ],
+    "window_prior": [
+      "2026-08-17",
+      "2026-08-23"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 16,
+      "hih_prior": 8,
+      "hih_wow_pct": 100,
+      "mql_current": 56,
+      "mql_prior": 54,
+      "mql_wow_pct": 4,
+      "sql_current": 13,
+      "sql_prior": 33,
+      "sql_wow_pct": -61,
+      "opp_current": 12,
+      "opp_prior": 33,
+      "opp_wow_pct": -64
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          4,
+          4
+        ],
+        "mql": [
+          29,
+          8
+        ],
+        "sql": [
+          3,
+          3
+        ],
+        "opp": [
+          3,
+          3
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          8,
+          2
+        ],
+        "mql": [
+          8,
+          15
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      },
+      "wh": {
+        "hih": [
+          3,
+          0
+        ],
+        "mql": [
+          6,
+          1
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      },
+      "gf8": {
+        "hih": [
+          5,
+          null
+        ],
+        "mql": [
+          5,
+          null
+        ],
+        "sql": [
+          0,
+          null
+        ],
+        "opp": [
+          0,
+          null
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          5,
+          3
+        ],
+        "mql": [
+          18,
+          16
+        ],
+        "sql": [
+          4,
+          11
+        ],
+        "opp": [
+          4,
+          11
+        ]
+      },
+      "medium": {
+        "hih": [
+          3,
+          0
+        ],
+        "mql": [
+          10,
+          9
+        ],
+        "sql": [
+          5,
+          10
+        ],
+        "opp": [
+          4,
+          10
+        ]
+      },
+      "large": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          0,
+          4
+        ],
+        "sql": [
+          0,
+          3
+        ],
+        "opp": [
+          0,
+          3
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          10,
+          6
+        ],
+        "sql": [
+          4,
+          5
+        ],
+        "opp": [
+          4,
+          5
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100,
+        "mql": 86,
+        "sql": 23,
+        "opp": 25
+      },
+      "segment": {
+        "hih": 56,
+        "mql": 68,
+        "sql": 100,
+        "opp": 100
+      }
+    },
+    "disposition": {
+      "disqualified_current": 75,
+      "disqualified_prior": 64,
+      "entered_nurture_current": 23,
+      "entered_nurture_prior": 18
+    },
+    "pipeline": {
+      "district_open_deals": 31,
+      "school_open_deals": 18
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "SQL and Opp product coverage below 30% (SQL: 23%, Opp: 25%) \u2014 consistent with ongoing offline lifecycle migration",
+      "HIH product sub-query totals sum to 20 vs HIH total of 16 \u2014 possible multi-value product_interest field overlap; inclusive counts used",
+      "Closed-won MTD partial: $393,908 visible from 50 of 249 deals returned \u2014 full August MTD requires pagination",
+      "Brand lift (GSC): Aug 24 week provisional (5/7 days settled); +28% WoW branded search on aligned 5-day window"
+    ]
   }
 ]
