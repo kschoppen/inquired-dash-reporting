@@ -13,6 +13,9 @@ const TABS = [
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
     meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
+  { id: "nurture",     label: "Nurture Programs",   static: true,                        render: renderNurturePrograms,
+    metaFile: "data/nurture-programs.json",
+    meta: { desc: "HubSpot email nurture programs: linked workflows for status checks, plus send/open/click performance by track.", cadence: "On demand", next: "On demand" } },
   { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
     meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change" } },
 ];
@@ -1248,6 +1251,13 @@ function renderCompetitiveIntel() {
   const view = document.getElementById("view");
   view.style.cssText = "padding:0;max-width:none;margin:0;";
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
+}
+
+function renderNurturePrograms() {
+  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
+  const view = document.getElementById("view");
+  view.style.cssText = "padding:0;max-width:none;margin:0;";
+  view.innerHTML = `<iframe src="nurture-programs.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Nurture Programs"></iframe>`;
 }
 
 // Parse a run date. Every data file stamps `updated` as YYYY-MM-DD; anything

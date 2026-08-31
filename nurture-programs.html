@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nurture Programs · inquirED</title>
+<style>
+  /* ── inquirED Brand Tokens (mirrors competitive-intel.html) ── */
+  :root {
+    --dg: #144745; --mg: #B1E0BB; --lg: #E4FBCE; --lp: #DAD0FF; --mp: #5B5A9E;
+    --dp: #1C2660; --yellow: #F7EC89; --pink: #F99792; --lb: #EAEEF5; --beige: #F6EFE7;
+    --grey-300: #CECECE; --grey-600: #757575; --grey-700: #515151; --black: #000000;
+    --paper: #FFFFFF; --paper-mid: var(--beige); --paper-deep: var(--lg);
+    --ink: var(--dg); --ink-mid: var(--grey-700); --ink-light: var(--grey-600);
+    --border: var(--grey-300); --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
+  }
+  :root[data-theme="light"], :root[data-theme="dark"], :root {
+    --paper: #FFFFFF; --paper-mid: #F6EFE7; --paper-deep: #E4FBCE;
+    --ink: #144745; --ink-mid: #515151; --ink-light: #757575;
+    --border: #CECECE; --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    background: var(--paper); color: var(--black);
+    font-family: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 1rem; line-height: 1.5; min-height: 100vh;
+  }
+  a { color: var(--mp); text-decoration: none; font-weight: 700; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--dg); outline-offset: 2px; }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--dg); color: #fff;
+    padding: 1.1rem 2rem; display: flex; align-items: center; gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .wordmark { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.01em; }
+  .wordmark span { font-weight: 400; opacity: 0.85; }
+  .header-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.25); }
+  .header-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .header-meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
+  .header-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
+  .header-value { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .header-right { margin-left: auto; }
+  .cadence-pill {
+    font-size: 0.65rem; background: rgba(177,224,187,0.15); border: 1px solid rgba(177,224,187,0.3);
+    color: rgba(177,224,187,0.85); padding: 0.2rem 0.65rem; border-radius: 24px;
+    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700;
+  }
+
+  .main { max-width: 1300px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+  .freshness-strip {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+    margin: -0.75rem 0 1.25rem; font-size: 0.72rem; color: var(--ink-mid);
+    font-variant-numeric: tabular-nums;
+  }
+  .freshness-strip .fr-label { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-light); }
+  .freshness-strip .fr-sep { width: 1px; height: 12px; background: var(--grey-300); }
+  .fr-pill { padding: 0.1rem 0.5rem; border-radius: 24px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .fr-pill.current { background: var(--mg); color: var(--dg); }
+  .fr-pill.stale { background: var(--yellow); color: #5A4A00; }
+
+  .section-eyebrow {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #144745; background: rgba(20,71,69,0.08); padding: 0.25rem 0.75rem;
+    border-radius: 10px; display: inline-block; margin-bottom: 1.25rem;
+  }
+  .section-note { font-size: 0.85rem; color: var(--ink-mid); margin: -0.75rem 0 1.25rem; max-width: 80ch; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+  .stat-tile {
+    background: var(--paper-mid); padding: 1.25rem 1.4rem; border-radius: 10px;
+    display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--border);
+  }
+  .stat-number { font-size: 2.2rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
+  .stat-number.accent { color: #5B5A9E; }
+  .stat-number.flag { color: #C0392B; }
+  .stat-label { font-size: 0.78rem; color: var(--ink-mid); line-height: 1.35; }
+  .stat-cap { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.1rem; }
+
+  .badge {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem; border-radius: 10px; font-weight: 700; display: inline-block;
+  }
+  .badge-good  { background: #B1E0BB; color: #144745; }
+  .badge-watch { background: #F7EC89; color: #5A4A00; }
+  .badge-flag  { background: #F99792; color: #6B0000; }
+  .badge-pending { background: var(--lb); color: var(--ink-mid); }
+
+  /* ── Workflow link cards ── */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .flow-card {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.15rem; box-shadow: 0 2px 6px var(--shadow); display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .flow-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .flow-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
+  .flow-id { font-size: 0.72rem; color: var(--ink-light); font-variant-numeric: tabular-nums; }
+  .flow-open { font-size: 0.8rem; }
+
+  /* ── Program cards ── */
+  .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .program-card {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 2px 6px var(--shadow); overflow: hidden;
+  }
+  .program-card-top {
+    padding: 1rem 1.25rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  }
+  .program-name { font-weight: 700; color: #144745; font-size: 0.95rem; }
+  .program-body { padding: 1rem 1.25rem; }
+  .program-stats { display: flex; gap: 1.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .pstat { display: flex; flex-direction: column; }
+  .pstat-val { font-weight: 900; font-size: 1.15rem; color: #144745; font-variant-numeric: tabular-nums; }
+  .pstat-lbl { font-size: 0.68rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.04em; }
+  .program-note { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
+
+  /* ── Open items ── */
+  .open-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .open-items li {
+    background: var(--paper-mid); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--ink-mid); line-height: 1.5;
+    display: flex; gap: 0.65rem; align-items: flex-start;
+  }
+  .open-items .oi-dot { color: #C0392B; font-weight: 900; margin-top: 0.05rem; }
+
+  .foot-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wordmark">inquirED <span>/ Nurture Programs</span></div>
+  <div class="header-divider"></div>
+  <div class="header-meta">
+    <div class="header-meta-item">
+      <span class="header-label">Last Checked</span>
+      <span class="header-value" id="meta-updated">—</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <span class="header-label">Workflows Linked</span>
+      <span class="header-value" id="meta-flows">—</span>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item">
+      <span class="header-label">Cadence</span>
+      <span class="header-value">On demand</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="cadence-pill" id="meta-next">Next: On demand</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="freshness-strip" id="freshness-strip" hidden>
+    <span class="fr-item"><span class="fr-label">Last checked</span> <span id="fr-updated">—</span></span>
+    <span class="fr-pill" id="fr-pill" hidden></span>
+    <span class="fr-sep"></span>
+    <span class="fr-item">HubSpot portal 4451852 · Marketing Email Analytics API</span>
+  </div>
+
+  <!-- ── Linked workflows ── -->
+  <span class="section-eyebrow">Linked Workflows — status needs manual confirmation</span>
+  <p class="section-note">
+    HubSpot's Automation/Workflow objects aren't exposed through the connected API (only
+    marketing-email send analytics are), so the name, enabled/paused state, and branch logic for
+    each flow below has to be confirmed by opening it in HubSpot. Click through, then update the
+    status badge here.
+  </p>
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="flow-card-top">
+        <div>
+          <div class="flow-name">Workflow 1</div>
+          <div class="flow-id">Flow ID 1854413985</div>
+        </div>
+        <span class="badge badge-pending">Needs confirmation</span>
+      </div>
+      <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/platform/flow/1854413985/edit" target="_blank" rel="noopener">Open in HubSpot ↗</a>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-top">
+        <div>
+          <div class="flow-name">Workflow 2</div>
+          <div class="flow-id">Flow ID 1854346100</div>
+        </div>
+        <span class="badge badge-pending">Needs confirmation</span>
+      </div>
+      <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/platform/flow/1854346100/edit" target="_blank" rel="noopener">Open in HubSpot ↗</a>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-top">
+        <div>
+          <div class="flow-name">Workflow 3</div>
+          <div class="flow-id">Flow ID 1852090643</div>
+        </div>
+        <span class="badge badge-pending">Needs confirmation</span>
+      </div>
+      <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/platform/flow/1852090643/edit" target="_blank" rel="noopener">Open in HubSpot ↗</a>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-top">
+        <div>
+          <div class="flow-name">Workflow 4</div>
+          <div class="flow-id">Flow ID 1849158449</div>
+        </div>
+        <span class="badge badge-pending">Needs confirmation</span>
+      </div>
+      <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/platform/flow/1849158449/edit" target="_blank" rel="noopener">Open in HubSpot ↗</a>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-top">
+        <div>
+          <div class="flow-name">Workflow 5</div>
+          <div class="flow-id">Flow ID 1854800935</div>
+        </div>
+        <span class="badge badge-pending">Needs confirmation</span>
+      </div>
+      <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/platform/flow/1854800935/edit" target="_blank" rel="noopener">Open in HubSpot ↗</a>
+    </div>
+  </div>
+
+  <!-- ── Portfolio KPIs ── -->
+  <span class="section-eyebrow">Nurture email portfolio — Jan–Aug 2026</span>
+  <div class="stat-row">
+    <div class="stat-tile">
+      <div class="stat-number">170</div>
+      <div class="stat-label">Marketing emails matching "nurture" in HubSpot</div>
+      <div class="stat-cap">Spans 2019–2026; ~58 are the currently-sending S26 / Inkwell tracks</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number accent">332→213</div>
+      <div class="stat-label">Inkwell Nurture Launch Series, E1→E3 delivered</div>
+      <div class="stat-cap">Opens 57%→41%, clicks 24%→7% — clean funnel decay, best performer</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number flag">34×</div>
+      <div class="stat-label">Drop in Cold Awareness_Outbound Leads_S26, E3→E4</div>
+      <div class="stat-cap">~4,894 reached E3, only ~142 ever reached E4 — see open items</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number flag">39</div>
+      <div class="stat-label">Portal email health score, Jul 30–Aug 28 (was 74 in May)</div>
+      <div class="stat-cap">Hard bounce + click-to-open both flagged BAD on a 71K-send week</div>
+    </div>
+  </div>
+
+  <!-- ── Program-level status ── -->
+  <span class="section-eyebrow">Program-level status</span>
+  <div class="program-grid">
+
+    <div class="program-card">
+      <div class="program-card-top">
+        <span class="program-name">Inkwell Nurture Launch Series</span>
+        <span class="badge badge-good">Working as expected</span>
+      </div>
+      <div class="program-body">
+        <div class="program-stats">
+          <div class="pstat"><span class="pstat-val">332 / 287 / 213</span><span class="pstat-lbl">Delivered E1 / E2 / E3</span></div>
+          <div class="pstat"><span class="pstat-val">57% / 50% / 41%</span><span class="pstat-lbl">Open rate</span></div>
+          <div class="pstat"><span class="pstat-val">24% / 9% / 7%</span><span class="pstat-lbl">Click rate</span></div>
+        </div>
+        <p class="program-note">Newest automated drip (built Dec 2025). Clean, expected funnel decay with strong engagement at every step. No deliverability issues.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-card-top">
+        <span class="program-name">Cold Awareness_Outbound Leads_S26</span>
+        <span class="badge badge-flag">Needs a look</span>
+      </div>
+      <div class="program-body">
+        <div class="program-stats">
+          <div class="pstat"><span class="pstat-val">~4,900</span><span class="pstat-lbl">Reached E2/E3</span></div>
+          <div class="pstat"><span class="pstat-val">~140</span><span class="pstat-lbl">Reached E4–E8</span></div>
+          <div class="pstat"><span class="pstat-val">0.0%</span><span class="pstat-lbl">Bounce rate</span></div>
+        </div>
+        <p class="program-note">Delivery and bounce look healthy at every step, but volume falls off a cliff between E3 and E4 (34×). Could be intentional re-scoring into the persona tracks below, or an unintended workflow exit — confirm the branch logic once workflow access is sorted out.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-card-top">
+        <span class="program-name">District / School Leader intent tracks (S26)</span>
+        <span class="badge badge-watch">Small volume</span>
+      </div>
+      <div class="program-body">
+        <div class="program-stats">
+          <div class="pstat"><span class="pstat-val">5–34</span><span class="pstat-lbl">Recipients per email step</span></div>
+          <div class="pstat"><span class="pstat-val">100%</span><span class="pstat-lbl">Delivery rate</span></div>
+          <div class="pstat"><span class="pstat-val">25–70%</span><span class="pstat-lbl">Open rate range</span></div>
+        </div>
+        <p class="program-note">High/Med/Low Intent × District Leaders / School Leaders / Other-Teachers. No deliverability problems, but volumes are tiny across 8 months — plausibly the downstream destination for Cold Awareness's E3→E4 branch, which would explain both rows above.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-card-top">
+        <span class="program-name">Inkwell Drip: Nurture Track</span>
+        <span class="badge badge-watch">Confirm architecture</span>
+      </div>
+      <div class="program-body">
+        <div class="program-stats">
+          <div class="pstat"><span class="pstat-val">129–194</span><span class="pstat-lbl">Delivered per step (E2–E5)</span></div>
+          <div class="pstat"><span class="pstat-val">26–39%</span><span class="pstat-lbl">Open rate</span></div>
+          <div class="pstat"><span class="pstat-val">batch</span><span class="pstat-lbl">HubSpot email type</span></div>
+        </div>
+        <p class="program-note">Engagement is fine, but it's built as individually-scheduled "batch" emails rather than a true "automated" workflow drip — worth confirming that's intentional and not relying on someone remembering to schedule each install.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Open items ── -->
+  <span class="section-eyebrow">Open items</span>
+  <ul class="open-items">
+    <li><span class="oi-dot">●</span> Confirm name + enabled/paused state for the 5 linked workflows above (API can't read this — needs a manual check in HubSpot).</li>
+    <li><span class="oi-dot">●</span> Check the Cold Awareness_Outbound Leads_S26 workflow's branch/goal logic between E3 and E4 — is the ~34× drop an intentional re-route into the intent-scored tracks, or an unwanted exit condition?</li>
+    <li><span class="oi-dot">●</span> Trace the ~71,010-send spike Jul 30–Aug 28 that coincided with a BAD hard-bounce rate (1.33%) and a crash in click-to-open (4.3%) — confirm it isn't sharing sending reputation with the active nurture tracks.</li>
+    <li><span class="oi-dot">●</span> Confirm whether "Inkwell Drip: Nurture Track" is meant to be a true automated drip (it's currently built as scheduled batch sends).</li>
+  </ul>
+
+  <p class="foot-note">Source: HubSpot portal 4451852 · Marketing Email Analytics API (send/open/click/bounce data) · Workflow status is not available via API — confirm manually in HubSpot.</p>
+
+</main>
+
+<script>
+// Hide our own header when embedded inside the reporting dash iframe
+if (window.self !== window.top) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const h = document.querySelector('.site-header');
+    if (h) h.style.display = 'none';
+  });
+}
+
+const FRESHNESS_FILE = 'data/nurture-programs.json';
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + 'T12:00:00Z' : iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+function daysSince(iso) {
+  const d = new Date(iso + 'T12:00:00Z');
+  if (isNaN(d)) return null;
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
+}
+
+function renderFreshness(meta) {
+  const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+  set('meta-updated', fmtDate(meta.updated));
+  set('meta-flows', (meta.flows_linked || 5) + ' linked');
+  set('fr-updated', fmtDate(meta.updated));
+
+  const age = daysSince(meta.updated);
+  const limit = meta.stale_after_days || 30;
+  const pill = document.getElementById('fr-pill');
+  if (pill && age !== null) {
+    if (age > limit) { pill.className = 'fr-pill stale'; pill.textContent = age + ' days old'; }
+    else { pill.className = 'fr-pill current'; pill.textContent = 'Current'; }
+    pill.hidden = false;
+  }
+  const strip = document.getElementById('freshness-strip');
+  if (strip) strip.hidden = false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch(FRESHNESS_FILE, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(renderFreshness)
+    .catch(() => {
+      const strip = document.getElementById('freshness-strip');
+      if (strip) strip.hidden = false;
+    });
+});
+</script>
+</body>
+</html>
