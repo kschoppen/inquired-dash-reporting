@@ -54,7 +54,7 @@ Spell out "High Intent Handraisers [HIH]" on first mention in any Slack post; us
 | WH (World History) | `Middle School Social Studies Curriculum` |
 | GF8 | `TK/Pre-K Curriculum` |
 
-Always pull IJ + Inkwell (16 queries). For WH and GF8: do a single current-window spot-check first per product — only include if any of {HIH, MQL, SQL, Opp} ≥ 5 for current OR prior week. If below threshold, set to null in outputs.
+All four products are mandatory every run (32 queries: 4 metrics × 2 windows × 4 products) — no volume threshold, no omission. A product with zero activity reports 0, not null. (The prior ≥5-threshold gate on WH/GF8 was retired 2026-08-31.)
 
 ### Account segment breakouts (add `segment__company_ EQ "<value>"` to each metric × window query)
 
@@ -69,7 +69,7 @@ Values: `Single Site`, `Small District`, `Medium District`, `Large District`, `E
 | Disqualified | `hs_latest_disqualified_lead_date IN window` |
 | Entered Nurture | `nurture_reason_last_updated IN window` |
 
-Run each for current + prior windows.
+Run each for current + prior windows. Also run each, current window only, with `product_interest EQ "<value>"` added for all four products (8 more queries) — simple `EQ` membership, not mutually exclusive. This is the per-product disposition breakdown.
 
 ### Pipeline snapshots (objectType: deals)
 
@@ -78,7 +78,13 @@ Run each for current + prior windows.
 | District open deals | `pipeline EQ "40953415" AND hs_is_closed EQ "false"` |
 | School open deals | `pipeline EQ "41400400" AND hs_is_closed EQ "false"` |
 
-Pull `dealname` for test-deal exclusion. Exclude deals matching (case-insensitive): `Ashley Test`, `Tim Test`, `Testacct`, `^District Ashley`, `^School Ashley`.
+Pull the full list (not just a count) with `dealname`, `dealstage`, `product_s_`, `amount_in_home_currency`. Exclude deals whose `dealname` matches (case-insensitive): `Ashley Test`, `Tim Test`, `Testacct`, `^District Ashley`, `^School Ashley`.
+
+**Deal product field is `product_s_`, not `product_interest`** — the latter is contact-only and does not exist on deals. `product_s_` ("Product(s)") is a multi-select enum with exactly `Inquiry Journeys` / `Inkwell` / `World History` / `Great First 8`, semicolon-joined when multi-tagged; coverage on open deals ran ~66% as of 2026-08-31 (`entry_product` looked like the intended single-value field but had ~0% coverage when checked — don't use it). `dealstage` IDs are shared across pipelines — always resolve labels in the context of their own `pipeline` (e.g. `query_crm_data` with `GROUP BY pipeline, dealstage`).
+
+After test-deal exclusion, aggregate the combined district+school list:
+- **By product:** count + sum `amount_in_home_currency` per product (membership via `;`-split on `product_s_`; a multi-tagged deal counts toward each). Untagged deals roll into an `untagged` count/amount.
+- **By stage:** count + amount grouped by `(pipeline, dealstage)`, kept as separate district/school lists.
 
 Also pull: open pipeline total VALUE + deal count (active stages), closed-won MTD (value + count), and latest 3 closed-lost deals (pull `reason` field — scan for competitive mentions to include in Kelsey DM context).
 
@@ -89,7 +95,7 @@ Contacts with `marketing_intent_tier EQ "High"` — total count (90-day rolling 
 ### Compute: coverage, thresholds, flags, narrative
 
 **Coverage per stage:**
-- Product coverage = sum(IJ + Inkwell + WH/GF8 if included) / total
+- Product coverage = sum(IJ + Inkwell + WH + GF8) / total
 - Segment coverage = sum(5 segments) / total
 - Flag in data_flags if either < 30% on any stage.
 
@@ -225,15 +231,18 @@ Upsert the just-completed ISO week into `weeks[]`, keyed by `period` (that week'
 ```json
 { "period": "YYYY-MM-DD", "label": "Mon D",
   "funnel": { "hih": N, "mql": N, "sql": N, "opp": N },
-  "by_product": { "ij": {"hih":N,"mql":N,"sql":N,"opp":N}, "inkwell": {…}, "wh": null_or_obj, "gf8": null_or_obj },
+  "by_product": { "ij": {"hih":N,"mql":N,"sql":N,"opp":N}, "inkwell": {…}, "wh": {…}, "gf8": {…} },
   "by_segment": { "single_small": {"hih":N,"mql":N,"sql":N,"opp":N}, "medium": {…}, "large": {…}, "enterprise": {…} },
-  "disposition": { "dq": N, "nurture": N },
+  "disposition": { "dq": N, "nurture": N, "by_product": { "ij": {"dq":N,"nurture":N}, "inkwell": {…}, "wh": {…}, "gf8": {…} } },
   "drill": { "hih": [[id, "SegShort", "SrcShort"], …], "mql": [[…]], "sql": [[…]], "opp": [[…]] } }
 ```
 
 `by_product` notes:
-- For the dashboard emit only, assign each contact a **single PRIMARY product** (mutual exclusivity for stacking). Priority: **Inkwell > IJ > WH > GF8** via exclusion filters: `inkwell` = `product_interest = 'Elementary ELA'`; `ij` = `...Elementary Social Studies Curriculum AND != Elementary ELA`; `wh` = `...Middle School Social Studies Curriculum AND != Elementary ELA AND != Elementary Social Studies Curriculum`.
-- Include wh/gf8 only when they cleared the ≥5 relevance threshold. Set to null otherwise.
+- For the dashboard emit only, assign each contact a **single PRIMARY product** (mutual exclusivity for stacking). Priority: **Inkwell > IJ > WH > GF8** via exclusion filters: `inkwell` = `product_interest = 'Elementary ELA'`; `ij` = `...Elementary Social Studies Curriculum AND != Elementary ELA`; `wh` = `...Middle School Social Studies Curriculum AND != Elementary ELA AND != Elementary Social Studies Curriculum`; `gf8` = `...TK/Pre-K Curriculum AND != Elementary ELA AND != Elementary Social Studies Curriculum AND != Middle School Social Studies Curriculum`.
+- **All four products included every run** — no threshold gate. A product with zero primary-tagged contacts reports zeroes, not null. Set top-level `products_included` to `["ij","inkwell","wh","gf8"]` every run.
+
+`disposition.by_product` notes:
+- Simple `EQ`-membership counts per product (not mutually exclusive — unlike the funnel `by_product` above), current window only, from the Phase 1 per-product disposition pulls.
 
 `drill` notes (powers the click-into-HubSpot drawer):
 - For each stage, pull up to 60 contacts over the current-week window: properties `hs_object_id`, `segment__company_`, `hs_latest_source`.
@@ -243,7 +252,13 @@ Upsert the just-completed ISO week into `weeks[]`, keyed by `period` (that week'
 
 Also refresh these top-level fields:
 - `updated` — run date
-- `pipeline` — `{ "district_open": N, "school_open": N, "as_of": "YYYY-MM-DD" }` (point-in-time snapshot)
+- `pipeline` — point-in-time snapshot:
+  ```json
+  { "district_open": N, "school_open": N, "as_of": "YYYY-MM-DD", "note": "…",
+    "by_product": { "ij": {"count":N,"amount":N}, "inkwell": {…}, "wh": {…}, "gf8": {…}, "untagged": {"count":N,"amount":N} },
+    "by_stage": { "district": [ {"stage":"Interest","count":N,"amount":N}, … ], "school": [ … ] } }
+  ```
+  `by_product`/`by_stage` from the Phase 1 deal-level aggregation. `by_stage` only lists stages that actually have open deals — don't pad with zeros.
 - `segment_coverage` — `{ "hih": %, "mql": %, "sql": %, "opp": % }`
 - `product_caveat` / `segment_caveat` — keep existing strings; update only if data reality changed
 
@@ -261,11 +276,18 @@ Append this run's entry to the fetched run log array and write back to `data/run
   "window_prior": ["YYYY-MM-DD", "YYYY-MM-DD"],
   "slack_message_ts": "",
   "totals": { "hih_current": 0, "hih_prior": 0, "hih_wow_pct": 0, "mql_current": 0, "mql_prior": 0, "mql_wow_pct": 0, "sql_current": 0, "sql_prior": 0, "sql_wow_pct": 0, "opp_current": 0, "opp_prior": 0, "opp_wow_pct": 0 },
-  "by_product": { "ij": {"hih":[cur,pri],"mql":[cur,pri],"sql":[cur,pri],"opp":[cur,pri]}, "inkwell": {…}, "wh": null, "gf8": null },
+  "by_product": { "ij": {"hih":[cur,pri],"mql":[cur,pri],"sql":[cur,pri],"opp":[cur,pri]}, "inkwell": {…}, "wh": {…}, "gf8": {…} },
   "by_segment": { "single_small": {"hih":[cur,pri],…}, "medium": {…}, "large": {…}, "enterprise": {…} },
   "coverage_pct": { "product": {"hih":0,"mql":0,"sql":0,"opp":0}, "segment": {"hih":0,"mql":0,"sql":0,"opp":0} },
-  "disposition": { "disqualified_current": 0, "disqualified_prior": 0, "entered_nurture_current": 0, "entered_nurture_prior": 0 },
-  "pipeline": { "district_open_deals": 0, "school_open_deals": 0 },
+  "disposition": {
+    "disqualified_current": 0, "disqualified_prior": 0, "entered_nurture_current": 0, "entered_nurture_prior": 0,
+    "by_product_current": { "ij": {"disqualified":0,"entered_nurture":0}, "inkwell": {…}, "wh": {…}, "gf8": {…} }
+  },
+  "pipeline": {
+    "district_open_deals": 0, "school_open_deals": 0,
+    "by_product": { "ij": {"count":0,"amount":0}, "inkwell": {…}, "wh": {…}, "gf8": {…}, "untagged": {"count":0,"amount":0} },
+    "by_stage": { "district": [ {"stage":"Interest","count":0,"amount":0} ], "school": [ … ] }
+  },
   "list_event_detected": false,
   "acknowledged_events": [],
   "data_flags": []
