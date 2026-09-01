@@ -246,61 +246,54 @@
   </div>
 
   <!-- ── Portfolio KPIs ── -->
-  <span class="section-eyebrow">Fall 2026 nurture portfolio — new build, just ramping up</span>
+  <span class="section-eyebrow">Fall 2026 nurture portfolio — post-fix check, Sep 1, 2026</span>
+  <p class="section-note">
+    Kelsey found and fixed a backwards "Workflow status" polarity condition on the Inkwell
+    enrollment list on Aug 31 (was requiring contacts to already be active in another product's
+    workflow instead of excluding them) and was checking GF8/WH/IJ/Agnostic for the same issue.
+    This pull compares enrollment-list size and send volume against the Aug 31 baseline to see
+    if the fix is actually moving people through. Short version: not yet, anywhere — see the
+    program cards and open items below.
+  </p>
   <div class="stat-row">
     <div class="stat-tile">
-      <div class="stat-number">49</div>
-      <div class="stat-label">Emails across the 5 Fall 2026 nurture programs</div>
-      <div class="stat-cap">All created Jul 30–31, 2026, tagged via HubSpot's "Nurture" property</div>
+      <div class="stat-number flag">0 / 0</div>
+      <div class="stat-label">Contacts on the GF8 / WH enrollment lists today</div>
+      <div class="stat-cap">Aug 31 backfill found 32 (GF8) and 119 (WH) already-qualified contacts stuck outside enrollment. Both live lists are empty as of Sep 1 — the fix hasn't backfilled either one.</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-number flag">5 of 237</div>
+      <div class="stat-label">Inkwell enrollment list vs. the Aug 31 backfill pool</div>
+      <div class="stat-cap">This is the list Kelsey's polarity fix actually landed on Aug 31. It's still just 5 people, barely above the "5 contacts" that started this whole check — see open items for why.</div>
     </div>
     <div class="stat-tile">
       <div class="stat-number accent">34 of 49</div>
-      <div class="stat-label">Emails that haven't sent to anyone yet</div>
-      <div class="stat-cap">Only 1 month in — too early to read open/click rates as signal</div>
+      <div class="stat-label">Emails that still haven't sent to anyone</div>
+      <div class="stat-cap">Identical to the Aug 31 count — no new sequences started firing since then</div>
     </div>
     <div class="stat-tile">
-      <div class="stat-number flag">0</div>
-      <div class="stat-label">Sends so far on World History Nurture Flow 2627</div>
-      <div class="stat-cap">All 4 WH emails show zero scheduled/delivered as of Aug 31 — see open items</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-number flag">55 / 57</div>
-      <div class="stat-label">Contacts suppressed vs. delivered, IJ / Agnostic</div>
-      <div class="stat-cap">Both tracks are suppressing more contacts than they're actually reaching</div>
+      <div class="stat-number flag">72 / 124</div>
+      <div class="stat-label">Total delivered vs. suppressed, all 5 programs combined</div>
+      <div class="stat-cap">Suppressed still outpaces delivered portfolio-wide. Agnostic's suppression climbed from 57 to 67 since Aug 31 while its delivered count held flat at 42.</div>
     </div>
   </div>
 
   <!-- ── Program-level status ── -->
-  <span class="section-eyebrow">Program-level status, Jul 30–Aug 31, 2026</span>
+  <span class="section-eyebrow">Program-level status, Jul 30–Sep 1, 2026</span>
   <div class="program-grid">
 
     <div class="program-card">
       <div class="program-card-top">
-        <span class="program-name">Contact - IJ Nurture Flow 2627</span>
-        <span class="badge badge-flag">Check suppression</span>
+        <span class="program-name">Contact - GF8 Nurture Flow 2627</span>
+        <span class="badge badge-flag">Enrollment list empty</span>
       </div>
       <div class="program-body">
         <div class="program-stats">
-          <div class="pstat"><span class="pstat-val">20</span><span class="pstat-lbl">Delivered (6 of 17 emails sent)</span></div>
-          <div class="pstat"><span class="pstat-val">55</span><span class="pstat-lbl">Suppressed</span></div>
-          <div class="pstat"><span class="pstat-val">40%</span><span class="pstat-lbl">Open rate</span></div>
+          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Contacts on the enrollment list today</span></div>
+          <div class="pstat"><span class="pstat-val">5</span><span class="pstat-lbl">Delivered (3 of 6 emails sent) — unchanged since Aug 31</span></div>
+          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Suppressed</span></div>
         </div>
-        <p class="program-note">More than twice as many contacts are being suppressed as are actually getting delivered. Open rate looks healthy on the small volume that does go out. Worth checking what's driving the suppression, an overly broad list, contacts already unsubscribed, or a frequency cap.</p>
-      </div>
-    </div>
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - Agnostic Nurture Flow 2627</span>
-        <span class="badge badge-flag">Check suppression</span>
-      </div>
-      <div class="program-body">
-        <div class="program-stats">
-          <div class="pstat"><span class="pstat-val">42</span><span class="pstat-lbl">Delivered (3 of 6 emails sent)</span></div>
-          <div class="pstat"><span class="pstat-val">57</span><span class="pstat-lbl">Suppressed</span></div>
-          <div class="pstat"><span class="pstat-val">17%</span><span class="pstat-lbl">Open rate</span></div>
-        </div>
-        <p class="program-note">Same pattern as IJ: suppressed contacts outnumber delivered ones. This is the highest-volume track so far, worth a look first.</p>
+        <p class="program-note">The GF8 enrollment trigger list (10601) has zero contacts on it right now, even though the Aug 31 backfill pull found 32 people who should already qualify. Send volume hasn't moved since Aug 31 either. Unclear whether Kelsey's polarity fix has been applied to this list yet, worth confirming.</p>
       </div>
     </div>
 
@@ -311,41 +304,56 @@
       </div>
       <div class="program-body">
         <div class="program-stats">
-          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Delivered (0 of 4 emails sent)</span></div>
-          <div class="pstat"><span class="pstat-val">—</span><span class="pstat-lbl">Open rate</span></div>
+          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Contacts on the enrollment list today</span></div>
+          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Delivered (0 of 4 emails sent) — still zero</span></div>
           <div class="pstat"><span class="pstat-val">—</span><span class="pstat-lbl">Suppressed</span></div>
         </div>
-        <p class="program-note">Zero volume on every World History nurture email as of Aug 31. Could just mean no qualifying contacts have enrolled yet, but worth confirming the workflow is actually turned on and enrolling.</p>
+        <p class="program-note">Same as Aug 31: zero volume on every World History nurture email, and the enrollment list (10739) is empty against a backfill pool of 119. Still needs a direct check in HubSpot that the workflow itself is turned on.</p>
       </div>
     </div>
 
     <div class="program-card">
       <div class="program-card-top">
-        <span class="program-name">Contact - GF8 Nurture Flow 2627</span>
-        <span class="badge badge-watch">Too early to assess</span>
+        <span class="program-name">Contact - IJ Nurture Flow 2627</span>
+        <span class="badge badge-flag">Check suppression</span>
       </div>
       <div class="program-body">
         <div class="program-stats">
-          <div class="pstat"><span class="pstat-val">5</span><span class="pstat-lbl">Delivered (3 of 6 emails sent)</span></div>
-          <div class="pstat"><span class="pstat-val">0</span><span class="pstat-lbl">Suppressed</span></div>
-          <div class="pstat"><span class="pstat-val">0%</span><span class="pstat-lbl">Open rate</span></div>
+          <div class="pstat"><span class="pstat-val">6</span><span class="pstat-lbl">Contacts on the enrollment list today (vs. 713 backfill pool)</span></div>
+          <div class="pstat"><span class="pstat-val">20</span><span class="pstat-lbl">Delivered (6 of 17 emails sent) — unchanged since Aug 31</span></div>
+          <div class="pstat"><span class="pstat-val">55</span><span class="pstat-lbl">Suppressed</span></div>
         </div>
-        <p class="program-note">Only 5 sends total so far, no suppression issue visible. Volume is too small to read anything into the 0% open rate yet.</p>
+        <p class="program-note">Suppression and delivery numbers are identical to the Aug 31 pull. The live list sits at just 6 contacts against a 713-person backfill pool identified that day, most of which still hasn't been manually enrolled.</p>
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-card-top">
+        <span class="program-name">Contact - Agnostic Nurture Flow 2627</span>
+        <span class="badge badge-flag">Check suppression</span>
+      </div>
+      <div class="program-body">
+        <div class="program-stats">
+          <div class="pstat"><span class="pstat-val">6</span><span class="pstat-lbl">Contacts on the enrollment list today</span></div>
+          <div class="pstat"><span class="pstat-val">42</span><span class="pstat-lbl">Delivered (3 of 6 emails sent) — unchanged since Aug 31</span></div>
+          <div class="pstat"><span class="pstat-val">67</span><span class="pstat-lbl">Suppressed — up from 57 on Aug 31</span></div>
+        </div>
+        <p class="program-note">Delivered volume is flat, but suppression grew by 10 since Aug 31. Worth a look at what's newly landing in suppression. The raw Agnostic backfill pull (1,462 contacts) still needs refining to exclude hard-disqualified Nurture Reasons before it's usable.</p>
       </div>
     </div>
 
     <div class="program-card">
       <div class="program-card-top">
         <span class="program-name">Contact - Inkwell Nurture Flow 2627</span>
-        <span class="badge badge-watch">Too early to assess</span>
+        <span class="badge badge-watch">Fix live, backfill still pending</span>
       </div>
       <div class="program-body">
         <div class="program-stats">
-          <div class="pstat"><span class="pstat-val">4</span><span class="pstat-lbl">Delivered (3 of 16 emails sent)</span></div>
+          <div class="pstat"><span class="pstat-val">5</span><span class="pstat-lbl">Contacts on the enrollment list today (vs. 237 backfill pool)</span></div>
+          <div class="pstat"><span class="pstat-val">5</span><span class="pstat-lbl">Delivered (3 of 16 emails sent) — up 1 since Aug 31</span></div>
           <div class="pstat"><span class="pstat-val">2</span><span class="pstat-lbl">Suppressed</span></div>
-          <div class="pstat"><span class="pstat-val">50%</span><span class="pstat-lbl">Open rate</span></div>
         </div>
-        <p class="program-note">Longest sequence of the five (16 emails), but only 3 have sent at all so far. Nothing concerning yet, just early.</p>
+        <p class="program-note">This is the list Kelsey's polarity fix actually landed on, confirmed Aug 31. The list is still only 5 people, essentially where it started. The fix stops new people from being wrongly blocked, but "Group 1" gates on a narrow rolling window (Nurture Reason set 6–8 days ago, etc.), so most of the 237-person backfill pool has already aged past that window. It needs the manual backfill to actually move in, not just the fix.</p>
       </div>
     </div>
 
@@ -354,14 +362,16 @@
   <!-- ── Open items ── -->
   <span class="section-eyebrow">Open items</span>
   <ul class="open-items">
-    <li><span class="oi-dot">●</span> Confirm the WH Nurture Flow 2627 workflow is actually enabled and enrolling. Zero sends across all 4 emails after a month is either an empty enrollment list or a workflow that isn't live yet.</li>
-    <li><span class="oi-dot">●</span> Check why IJ and Agnostic are suppressing more contacts than they deliver to (55 vs. 20 delivered on IJ, 57 vs. 42 on Agnostic). If that pattern holds as volume grows, most of the intended list may never actually get these emails.</li>
+    <li><span class="oi-dot">●</span> <strong>The Aug 31 polarity fix hasn't moved enrollment anywhere yet, including on Inkwell where it's confirmed live.</strong> GF8 and WH sit at 0 contacts, IJ and Agnostic at 6, and Inkwell (the one list Kelsey already fixed) is still at 5, barely above the "5 contacts" that started this whole check. The fix only stops new people from being wrongly blocked going forward; it doesn't retroactively enroll anyone. The backfill lists already pulled (GF8 32, WH 119, IJ 713, Inkwell 237) still need to actually be run in HubSpot for these numbers to move.</li>
+    <li><span class="oi-dot">●</span> Worth checking whether that backfill will still catch most of those people: "Group 1" on every enrollment list gates on Nurture Reason being set within a narrow rolling window (e.g. 6–8 days for "Did Not Engage"). Anyone whose Nurture Reason has sat unchanged since before Aug 31 may have already aged out of that window, in which case the CSVs pulled that day are the only path back in, not the list re-evaluating on its own.</li>
+    <li><span class="oi-dot">●</span> Confirm whether the same polarity fix has been applied to the GF8, WH, IJ, and Agnostic lists yet. Send volume and suppression on all four are identical to the Aug 31 pull (Agnostic's suppression is actually up), which reads more like "not yet checked" than "checked and still broken."</li>
+    <li><span class="oi-dot">●</span> WH still shows zero sends across all 4 emails, more than a month after these sequences were built. Confirm directly in HubSpot that the workflow itself is turned on.</li>
+    <li><span class="oi-dot">●</span> Agnostic's suppressed count climbed from 57 to 67 since Aug 31 while delivered held flat at 42. Worth a look at what's newly landing in suppression there.</li>
     <li><span class="oi-dot">●</span> Confirm enabled/paused state and branch logic for all 5 flows directly in HubSpot. Still not readable via API.</li>
-    <li><span class="oi-dot">●</span> "[NE-IJ-LT-7] The district case_Fall2026" exists as two separate email records in the IJ sequence, worth a quick check that it's not an accidental duplicate step.</li>
-    <li><span class="oi-dot">●</span> Everything above is 1 month of data on brand-new sequences (built Jul 30–31, 2026), with per-email volumes of 1–21 people. Revisit once enrollment builds before drawing conclusions on open/click performance.</li>
+    <li><span class="oi-dot">●</span> "[NE-IJ-LT-7] The district case_Fall2026" still exists as two separate email records in the IJ sequence, worth a quick check that it's not an accidental duplicate step.</li>
   </ul>
 
-  <p class="foot-note">Source: HubSpot portal 4451852 · Marketing Email Analytics API, scoped to the 5 confirmed Fall 2026 nurture programs via the "Nurture" property · Workflow enabled/paused state is not available via API.</p>
+  <p class="foot-note">Source: HubSpot portal 4451852 · Marketing Email Analytics API + enrollment-list membership counts, scoped to the 5 confirmed Fall 2026 nurture programs via the "Nurture" property · Workflow enabled/paused state is not available via API.</p>
 
 </main>
 
