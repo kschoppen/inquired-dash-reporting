@@ -1,34 +1,82 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-08-17",
+  "updated": "2026-09-02",
   "summary": {
-    "headline": "July cooled to seasonal norms: $678K closed won, HIH fell to 26, and June's inflated MQL/SQL numbers washed out of the base.",
-    "body": "July closed $677,915 across 30 deals (56% win rate by count, 80% by dollar) \u2014 down from June's import-and-buying-peak-inflated $970K, but right on pace for the Jul-Aug seasonal lull. HIH fell to 26 (from 76) and the product-tagged funnel (IJ, Inkwell, WH) softened 25-33%, tracking the summer off-season rather than signaling a demand problem. MQL-to-SQL conversion normalized to a healthy 70.9% once June's one-time offline import washed out of the comparison. Watch items: UTM completeness is still just 7.7% of new contacts, and Enterprise segment win rate slipped to 50% on two mid-size losses.",
+    "headline": "August funnel numbers are inflated by a bulk import; win rate jumped to 85% even as revenue cooled for the season.",
+    "body": "HIH (52) and MQL (281) more than doubled MoM, but nearly 80% of new contacts arrived via an offline bulk import, not organic demand \u2014 SQL (126, +12.5%) and Opportunities (124, +9.7%) are the more reliable read. Revenue fell to $149.6K across 34 deals as the spring-summer district buying peak tapered into the August lull, but win rate improved sharply to 85% (from 56%), so deal quality held even as deal size shrank. MQA accounts stand at 12 in the buy window.",
     "signals": [
       {
-        "label": "Medium segment win rate 66.7% (up from 37.5%)",
+        "label": "Win rate 85% (up from 56%)",
         "dir": "up"
       },
       {
-        "label": "MQL-to-SQL normalized to 70.9% post-import",
+        "label": "LinkedIn Ads data now live",
         "dir": "up"
       },
       {
-        "label": "UTM completeness still 7.7% vs 30% floor",
+        "label": "UTM completeness 4.4% (down from 7.7%)",
         "dir": "watch"
       },
       {
-        "label": "Enterprise win rate 50% (2 of 4, small-N)",
+        "label": "August funnel inflated by offline import",
         "dir": "watch"
       }
     ]
   },
-  "kpis": {
-    "hih_pool": 2297,
-    "mql_to_sql_pct": 23,
-    "closed_won_mtd": ">$394K"
-  },
+  "kpis": [
+    {
+      "label": "HIH Velocity",
+      "value": "52",
+      "delta": "+100% MoM",
+      "delta_dir": "up",
+      "sub": "New high-intent contacts \u00b7 Aug 2026 (inflated by an offline import)",
+      "spark": [
+        89,
+        70,
+        72,
+        101,
+        76,
+        26,
+        52
+      ]
+    },
+    {
+      "label": "MQL \u2192 SQL Conv.",
+      "value": "44.8%",
+      "delta": "-26.1 pt MoM",
+      "delta_dir": "down",
+      "sub": "Mechanically pulled down by August's offline MQL import",
+      "spark": [
+        22.0,
+        15.6,
+        37.9,
+        36.8,
+        82.1,
+        70.9,
+        44.8
+      ]
+    },
+    {
+      "label": "Active Campaigns",
+      "value": "12",
+      "delta": "Aug 2026",
+      "delta_dir": "flat",
+      "sub": "Across all products",
+      "spark": [
+        12,
+        12
+      ]
+    },
+    {
+      "label": "MQA Accounts",
+      "value": "12",
+      "delta": "In buy window",
+      "delta_dir": "flat",
+      "sub": "Med / Large / Enterprise",
+      "spark": []
+    }
+  ],
   "brand_lift": {
     "updated": "2026-08-31",
     "status": "live",
