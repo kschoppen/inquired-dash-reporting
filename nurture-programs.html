@@ -132,24 +132,46 @@
   .open-items .oi-dot { color: #C0392B; font-weight: 900; margin-top: 0.05rem; }
 
   /* ── Top performing content ── */
-  .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
   .content-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 2px 6px var(--shadow); overflow: hidden; }
   .content-card-top {
     padding: 0.85rem 1.15rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
   }
   .content-card-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
-  .content-body { padding: 1rem 1.15rem; display: flex; flex-direction: column; gap: 0.9rem; }
-  .content-row { border-top: 1px dashed var(--border); padding-top: 0.8rem; }
-  .content-row:first-child { border-top: none; padding-top: 0; }
-  .content-row-label { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--ink-light); margin-bottom: 0.3rem; }
-  .content-subject { font-weight: 700; font-size: 0.86rem; }
-  .content-preview { font-size: 0.78rem; color: var(--ink-mid); font-style: italic; margin: 0.25rem 0; }
-  .content-cta { font-size: 0.78rem; margin: 0.2rem 0; color: var(--ink-mid); }
-  .content-cta a { color: #5B5A9E; }
-  .content-stats { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.72rem; color: var(--ink-light); margin-top: 0.35rem; }
-  .content-stats b { color: #144745; font-variant-numeric: tabular-nums; }
-  .content-empty { font-size: 0.8rem; color: var(--ink-light); font-style: italic; }
+  .content-body { padding: 0.9rem 0.9rem 1rem; }
+  .content-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .content-metric {
+    background: var(--paper-mid); border: 1px solid var(--border); border-top: 3px solid var(--border);
+    border-radius: 8px; padding: 0.65rem 0.7rem 0.75rem;
+  }
+  .content-metric.opened { border-top-color: #144745; }
+  .content-metric.clicked { border-top-color: #5B5A9E; }
+  .content-metric.exit { border-top-color: #C0392B; }
+  .content-metric.empty { opacity: 0.55; }
+  .content-metric-label {
+    font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;
+    color: var(--ink-light); margin-bottom: 0.3rem;
+  }
+  .content-metric-value { font-size: 1.45rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: #144745; }
+  .content-metric.clicked .content-metric-value { color: #5B5A9E; }
+  .content-metric.exit .content-metric-value { color: #C0392B; }
+  .content-metric-count { font-size: 0.66rem; color: var(--ink-light); margin-top: 0.15rem; }
+  .content-bar { height: 5px; border-radius: 4px; background: var(--border); overflow: hidden; margin: 0.5rem 0 0.55rem; }
+  .content-bar-fill { height: 100%; border-radius: 4px; background: #144745; }
+  .content-metric.clicked .content-bar-fill { background: #5B5A9E; }
+  .content-metric.exit .content-bar-fill { background: #C0392B; }
+  .content-metric-email { font-size: 0.68rem; font-weight: 700; line-height: 1.3; }
+  .content-metric-email a { color: inherit; }
+  .content-metric details { margin-top: 0.4rem; }
+  .content-metric summary { font-size: 0.62rem; color: var(--mp); cursor: pointer; font-weight: 700; }
+  .content-metric-preview { font-size: 0.68rem; color: var(--ink-mid); font-style: italic; margin: 0.35rem 0; }
+  .content-metric-cta { font-size: 0.68rem; color: var(--ink-mid); }
+  .content-metric-cta a { color: #5B5A9E; }
+  .content-metric-none { font-size: 0.85rem; color: var(--ink-light); font-weight: 700; }
+  .content-metric-none-sub { font-size: 0.64rem; color: var(--ink-light); margin-top: 0.25rem; line-height: 1.3; }
+  .content-empty-card { padding: 1.5rem 1.15rem; text-align: center; color: var(--ink-light); font-size: 0.85rem; font-style: italic; }
+  .content-scale-note { font-size: 0.68rem; color: var(--ink-light); margin: -0.9rem 0 1.25rem; }
 
   .foot-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 </style>
@@ -382,25 +404,40 @@
   <!-- ── Top performing content ── -->
   <span class="section-eyebrow">Top performing content, by audience — Sep 3, 2026</span>
   <p class="section-note">
-    Top opened, top clicked, and top exit (highest unsubscribe rate) email per program, drawn from
-    the same Marketing Email Analytics pull as the numbers above. "Sent" is delivered count, i.e.
-    the real sample size behind each rate — anything under ~150 sent is directional, not conclusive.
+    Best email per metric, per program. Bars are scaled per metric type (opened / clicked / exit
+    each on their own scale) so they compare fairly against each other, not against raw percent.
+    Click "Details" on any tile for the subject line, preview text, and CTA.
   </p>
+  <p class="content-scale-note">Bar scale: Opened capped at 35% · Clicked capped at 5% · Exit (unsubscribe) capped at 1.5% — a full bar means "at or above" that cap, not 100%.</p>
   <div class="content-grid">
 
     <div class="content-card">
       <div class="content-card-top"><span class="content-card-name">Great First Eight</span><span class="badge badge-watch">Thin sample</span></div>
       <div class="content-body">
-        <div class="content-row">
-          <div class="content-row-label">Top opened &amp; top exit</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218459623755/performance" target="_blank" rel="noopener">The difference between a real Pre-K curriculum and a box of activities</a></div>
-          <div class="content-preview">"In Great First Eight Pre-K/TK, joy and rigor are designed to work together."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com/early-childhood-curriculum/great-first-eight-demo" target="_blank" rel="noopener">Learn about Great First Eight &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>112</b></span><span>Opens: <b>25</b> unique (22.3%)</span><span>Unsubs: <b>1</b> (0.9%)</span></div>
-        </div>
-        <div class="content-row">
-          <div class="content-row-label">Top clicked</div>
-          <div class="content-empty">No clicks recorded yet on any GF8 email.</div>
+        <div class="content-metrics">
+          <div class="content-metric opened">
+            <div class="content-metric-label">Opened</div>
+            <div class="content-metric-value">22.3%</div>
+            <div class="content-metric-count">25 of 112 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:64%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218459623755/performance" target="_blank" rel="noopener">The difference between a real Pre-K curriculum and a box of activities</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"In Great First Eight Pre-K/TK, joy and rigor are designed to work together."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com/early-childhood-curriculum/great-first-eight-demo" target="_blank" rel="noopener">Learn about Great First Eight &gt;&gt;</a></div>
+            </details>
+          </div>
+          <div class="content-metric clicked empty">
+            <div class="content-metric-label">Clicked</div>
+            <div class="content-metric-none">No data</div>
+            <div class="content-metric-none-sub">Zero clicks recorded on any GF8 email yet.</div>
+          </div>
+          <div class="content-metric exit">
+            <div class="content-metric-label">Exit (unsub)</div>
+            <div class="content-metric-value">0.9%</div>
+            <div class="content-metric-count">1 of 112 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:60%"></div></div>
+            <div class="content-metric-email">Same email as Opened, above</div>
+          </div>
         </div>
       </div>
     </div>
@@ -408,28 +445,43 @@
     <div class="content-card">
       <div class="content-card-top"><span class="content-card-name">World History</span><span class="badge badge-flag">No data</span></div>
       <div class="content-body">
-        <div class="content-row">
-          <div class="content-empty">All 4 WH emails show 0 sent as of Sep 3 — nothing to rank until this program starts sending.</div>
-        </div>
+        <div class="content-empty-card">All 4 WH emails show 0 sent as of Sep 3 — nothing to rank until this program starts sending.</div>
       </div>
     </div>
 
     <div class="content-card">
       <div class="content-card-top"><span class="content-card-name">Inquiry Journeys</span><span class="badge badge-good">Largest sample</span></div>
       <div class="content-body">
-        <div class="content-row">
-          <div class="content-row-label">Top opened &amp; top clicked</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218450093850/performance" target="_blank" rel="noopener">When social studies keeps getting pushed to the end of the day</a></div>
-          <div class="content-preview">"Teachers who keep social studies consistent describe making the same kind of decision."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com/inquiry-based-social-studies/sample-lesson" target="_blank" rel="noopener">Explore a sample Inquiry Journeys lesson &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>1,225</b></span><span>Opens: <b>322</b> unique (26.3%)</span><span>Clicks: <b>25</b> unique (2.0%)</span></div>
-        </div>
-        <div class="content-row">
-          <div class="content-row-label">Top exit</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218375886118/performance" target="_blank" rel="noopener">K-5 social studies time: what nine districts found</a></div>
-          <div class="content-preview">"Across nine districts with different contexts, one pattern held: a structural decision came first."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com/learn/in-practice-social-studies-implementation-brief" target="_blank" rel="noopener">In Practice: What nine districts found &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>1,039</b></span><span>Unsubs: <b>5</b> (0.48%)</span><span>Hard bounces: <b>3</b></span></div>
+        <div class="content-metrics">
+          <div class="content-metric opened">
+            <div class="content-metric-label">Opened</div>
+            <div class="content-metric-value">26.3%</div>
+            <div class="content-metric-count">322 of 1,225 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:75%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218450093850/performance" target="_blank" rel="noopener">When social studies keeps getting pushed to the end of the day</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"Teachers who keep social studies consistent describe making the same kind of decision."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com/inquiry-based-social-studies/sample-lesson" target="_blank" rel="noopener">Explore a sample Inquiry Journeys lesson &gt;&gt;</a></div>
+            </details>
+          </div>
+          <div class="content-metric clicked">
+            <div class="content-metric-label">Clicked</div>
+            <div class="content-metric-value">2.0%</div>
+            <div class="content-metric-count">25 of 1,225 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:40%"></div></div>
+            <div class="content-metric-email">Same email as Opened, above</div>
+          </div>
+          <div class="content-metric exit">
+            <div class="content-metric-label">Exit (unsub)</div>
+            <div class="content-metric-value">0.48%</div>
+            <div class="content-metric-count">5 of 1,039 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:32%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218375886118/performance" target="_blank" rel="noopener">K-5 social studies time: what nine districts found</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"Across nine districts with different contexts, one pattern held: a structural decision came first."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com/learn/in-practice-social-studies-implementation-brief" target="_blank" rel="noopener">In Practice: What nine districts found &gt;&gt;</a></div>
+            </details>
+          </div>
         </div>
       </div>
     </div>
@@ -437,19 +489,36 @@
     <div class="content-card">
       <div class="content-card-top"><span class="content-card-name">Inkwell</span><span class="badge badge-good">Fix confirmed live</span></div>
       <div class="content-body">
-        <div class="content-row">
-          <div class="content-row-label">Top opened</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218357778197/performance" target="_blank" rel="noopener">What "integrated ELA and social studies" actually means in practice</a></div>
-          <div class="content-preview">"In Inkwell, students build literacy skills through inquiry, beginning in Kindergarten."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com/integrated-ela-curriculum/elementary-curriculum" target="_blank" rel="noopener">Learn more about Inkwell &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>251</b></span><span>Opens: <b>79</b> unique (31.5%)</span><span>Unsubs: <b>3</b> (1.2%)</span></div>
-        </div>
-        <div class="content-row">
-          <div class="content-row-label">Top clicked &amp; top exit (by rate)</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218366148164/performance" target="_blank" rel="noopener">When social studies keeps getting pushed out of the K-2 day</a></div>
-          <div class="content-preview">"Social studies tends to go first when the schedule fills up. Most K-2 teachers who've been there know why."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com/learn/inkwell-lesson-sample" target="_blank" rel="noopener">Explore a sample Inkwell lesson &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>148</b></span><span>Clicks: <b>6</b> unique (4.1%, best of any email pulled)</span><span>Unsubs: <b>2</b> (1.35%)</span></div>
+        <div class="content-metrics">
+          <div class="content-metric opened">
+            <div class="content-metric-label">Opened</div>
+            <div class="content-metric-value">31.5%</div>
+            <div class="content-metric-count">79 of 251 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:90%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218357778197/performance" target="_blank" rel="noopener">What "integrated ELA and social studies" actually means in practice</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"In Inkwell, students build literacy skills through inquiry, beginning in Kindergarten."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com/integrated-ela-curriculum/elementary-curriculum" target="_blank" rel="noopener">Learn more about Inkwell &gt;&gt;</a></div>
+            </details>
+          </div>
+          <div class="content-metric clicked">
+            <div class="content-metric-label">Clicked</div>
+            <div class="content-metric-value">4.1%</div>
+            <div class="content-metric-count">6 of 148 sent — best of any email pulled</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:82%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218366148164/performance" target="_blank" rel="noopener">When social studies keeps getting pushed out of the K-2 day</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"Social studies tends to go first when the schedule fills up. Most K-2 teachers who've been there know why."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com/learn/inkwell-lesson-sample" target="_blank" rel="noopener">Explore a sample Inkwell lesson &gt;&gt;</a></div>
+            </details>
+          </div>
+          <div class="content-metric exit">
+            <div class="content-metric-label">Exit (unsub)</div>
+            <div class="content-metric-value">1.35%</div>
+            <div class="content-metric-count">2 of 148 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:90%"></div></div>
+            <div class="content-metric-email">Same email as Clicked, above</div>
+          </div>
         </div>
       </div>
     </div>
@@ -457,16 +526,28 @@
     <div class="content-card">
       <div class="content-card-top"><span class="content-card-name">Agnostic</span><span class="badge badge-flag">Flat, thin sample</span></div>
       <div class="content-body">
-        <div class="content-row">
-          <div class="content-row-label">Top opened</div>
-          <div class="content-subject"><a href="https://app.hubspot.com/email/4451852/details/218370876217/performance" target="_blank" rel="noopener">Which inquirED curriculum fits your grade levels</a></div>
-          <div class="content-preview">"inquirED makes three curricula for early childhood and elementary. Here is how to find the right one."</div>
-          <div class="content-cta">CTA: <a href="https://inquired.com" target="_blank" rel="noopener">Explore inquirED curricula &gt;&gt;</a></div>
-          <div class="content-stats"><span>Sent: <b>21</b></span><span>Opens: <b>3</b> unique (14.3%)</span></div>
-        </div>
-        <div class="content-row">
-          <div class="content-row-label">Top clicked &amp; top exit</div>
-          <div class="content-empty">No clicks and no unsubscribes recorded on any Agnostic email yet, despite this program having the portfolio's highest suppression count. Suppression and unsubscribe are different exit paths, worth keeping separate when reading this one.</div>
+        <div class="content-metrics">
+          <div class="content-metric opened">
+            <div class="content-metric-label">Opened</div>
+            <div class="content-metric-value">14.3%</div>
+            <div class="content-metric-count">3 of 21 sent</div>
+            <div class="content-bar"><div class="content-bar-fill" style="width:41%"></div></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218370876217/performance" target="_blank" rel="noopener">Which inquirED curriculum fits your grade levels</a></div>
+            <details><summary>Details</summary>
+              <div class="content-metric-preview">"inquirED makes three curricula for early childhood and elementary. Here is how to find the right one."</div>
+              <div class="content-metric-cta">CTA: <a href="https://inquired.com" target="_blank" rel="noopener">Explore inquirED curricula &gt;&gt;</a></div>
+            </details>
+          </div>
+          <div class="content-metric clicked empty">
+            <div class="content-metric-label">Clicked</div>
+            <div class="content-metric-none">No data</div>
+            <div class="content-metric-none-sub">Zero clicks on any Agnostic email yet.</div>
+          </div>
+          <div class="content-metric exit empty">
+            <div class="content-metric-label">Exit (unsub)</div>
+            <div class="content-metric-none">No data</div>
+            <div class="content-metric-none-sub">Zero unsubscribes — despite the highest suppression count of the five. Suppression and unsubscribe are different exit paths.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -481,7 +562,6 @@
     <li><span class="oi-dot">●</span> <strong>World History is now the one program with zero movement of any kind</strong> across every check since Aug 31: 0 enrolled, 0 delivered, all 4 emails untouched. Whatever landed for the other three programs didn't touch this one. Needs a direct fix in HubSpot rather than another wait-and-see cycle.</li>
     <li><span class="oi-dot">●</span> Agnostic also didn't get whatever the other three got: delivered is flat at 42 across all three checks (Aug 31, Sep 1, Sep 3), while suppressed keeps climbing (57 → 67 → 73). The raw Agnostic backfill pull (1,462 contacts) still needs refining to exclude hard-disqualified Nurture Reasons before it's usable.</li>
     <li><span class="oi-dot">●</span> Confirm enabled/paused state and branch logic for all 5 flows directly in HubSpot. Still not readable via API.</li>
-    <li><span class="oi-dot">●</span> "[NE-IJ-LT-7] The district case_Fall2026" still exists as two separate email records in the IJ sequence, worth a quick check that it's not an accidental duplicate step.</li>
   </ul>
 
   <p class="foot-note">Source: HubSpot portal 4451852 · Marketing Email Analytics API + enrollment-list membership counts, scoped to the 5 confirmed Fall 2026 nurture programs via the "Nurture" property · Workflow enabled/paused state is not available via API.</p>
