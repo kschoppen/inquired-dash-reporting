@@ -1,7 +1,7 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Digest",
-  "updated": "2026-08-05",
+  "updated": "2026-09-02",
   "fiscal_year_start_month": 10,
   "brand_lift": {
     "updated": null,
@@ -1885,6 +1885,323 @@
           "type": "Pilot Expansion",
           "amount": 12800.0,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51688242860"
+        }
+      ]
+    },
+    {
+      "period": "2026-08",
+      "label": "Aug 2026",
+      "funnel": {
+        "hih": 52,
+        "mql": 281,
+        "sql": 126,
+        "opp": 124
+      },
+      "revenue": {
+        "district_won": 109140.11,
+        "school_won": 40427.75,
+        "total_won": 149567.86,
+        "nb_won": 129635.51,
+        "existing_won": 19932.35,
+        "wins": 34,
+        "win_rate_count_pct": 85.0,
+        "win_rate_dollar_pct": 86.7,
+        "by_segment": {
+          "single_small": {
+            "won": 19,
+            "lost": 3
+          },
+          "medium": {
+            "won": 8,
+            "lost": 2
+          },
+          "large": {
+            "won": 5,
+            "lost": 1
+          },
+          "enterprise": {
+            "won": 2,
+            "lost": 0
+          }
+        }
+      },
+      "web": {
+        "sessions": 36236,
+        "users": 25893,
+        "views": 44224,
+        "yoy": {
+          "sessions": 24864,
+          "users": 17438,
+          "views": 30909
+        },
+        "engaged_pct": 45.4,
+        "channels": [
+          [
+            "Organic Search",
+            6971
+          ],
+          [
+            "Direct",
+            13649
+          ],
+          [
+            "Paid Search",
+            4194
+          ],
+          [
+            "Email",
+            1360
+          ],
+          [
+            "Referral",
+            702
+          ],
+          [
+            "Organic Social",
+            1550
+          ],
+          [
+            "Other",
+            7827
+          ]
+        ],
+        "conversions": [
+          [
+            "Form thank-you",
+            568
+          ],
+          [
+            "Resource downloads",
+            660
+          ],
+          [
+            "Webinar signups",
+            1
+          ],
+          [
+            "Contact sales",
+            73
+          ],
+          [
+            "Curriculum guide",
+            0
+          ]
+        ]
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null,
+        "ranked": null
+      },
+      "by_product": {
+        "ij": {
+          "hih": 24,
+          "mql": 82,
+          "sql": 27
+        },
+        "inkwell": {
+          "hih": 18,
+          "mql": 67,
+          "sql": 3
+        },
+        "wh": {
+          "hih": 7,
+          "mql": 13,
+          "sql": 1
+        },
+        "gf8": {
+          "hih": 17,
+          "mql": 37,
+          "sql": 2
+        }
+      },
+      "rev_by_product": {
+        "ij": 142292.86,
+        "inkwell": 0,
+        "wh": 35056.75,
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional; won't sum to totals"
+      },
+      "quality": {
+        "mql_to_sql_pct": 44.8,
+        "utm_completeness_pct": 4.4,
+        "utm_gap_flag": "UTM completeness fell to 4.4% (52/1,178) from 7.7% in July \u2014 still well below the 30% healthy-gap threshold.",
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            88
+          ],
+          [
+            "DIRECT_TRAFFIC",
+            28
+          ],
+          [
+            "EMAIL_MARKETING",
+            3
+          ],
+          [
+            "PAID_SEARCH",
+            3
+          ],
+          [
+            "ORGANIC_SEARCH",
+            2
+          ]
+        ],
+        "top_utm_campaigns": [
+          [
+            "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+            2
+          ],
+          [
+            "Sonar | Brand | Search",
+            2
+          ],
+          [
+            "7741335-Content: Inquiry Journeys Scope & Sequence",
+            1
+          ]
+        ]
+      },
+      "hih_by_source": [
+        [
+          "Direct Traffic",
+          31
+        ],
+        [
+          "Email Marketing",
+          7
+        ],
+        [
+          "Organic Search",
+          5
+        ],
+        [
+          "Referrals",
+          3
+        ],
+        [
+          "Paid Search",
+          2
+        ],
+        [
+          "Organic Social",
+          2
+        ],
+        [
+          "AI Referrals",
+          1
+        ],
+        [
+          "Other Campaigns",
+          1
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Idea Public Schools - TX - IJ - Henry Academy",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 2094.29,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63717538934"
+        },
+        {
+          "name": "Idea Public Schools - IDEA Lopez Academy - IJ - SY 26-27",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 2457,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63433912225"
+        },
+        {
+          "name": "Clear Creek Amana Community School District, IA, 26-27 - 3rd-5th",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 16071.93,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/62750598227"
+        },
+        {
+          "name": "Evanston Community Consolidated School District 65, IL - SS Pilot Expansion",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 18679.29,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/62455754051"
+        },
+        {
+          "name": "Norwalk Public Schools, CT - IJ",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 31820.25,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59613331201"
+        },
+        {
+          "name": "National Heritage Academies - Adding NHOA and adding grades to Warrendale",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Upsell",
+          "amount": 5600,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63222349973"
+        },
+        {
+          "name": "National Heritage Academies - Adding Grades to Knapp and Paramount",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Upsell",
+          "amount": 5200,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63222837839"
+        },
+        {
+          "name": "Wauwatosa School District, SS - WH",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 7275,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61024841126"
+        },
+        {
+          "name": "Seymour Dual Language School, NY - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Upsell",
+          "amount": 9132.35,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55639793764"
+        },
+        {
+          "name": "Nelson County Schools, KY - SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot Expansion",
+          "amount": 5880,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51663173403"
+        },
+        {
+          "name": "Park Elementary School, Pilot '26-'27",
+          "segment": "Medium",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 7276.5,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61176427424"
+        },
+        {
+          "name": "South Todd Elementary School, KY - SS Pilot Expansion",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot Expansion",
+          "amount": 3024,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56021469954"
+        },
+        {
+          "name": "Kpis International School, IT - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 5743,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55198118236"
         }
       ]
     }

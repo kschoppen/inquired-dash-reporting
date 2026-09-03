@@ -1307,5 +1307,491 @@
       "Mailchimp: no qualifying Partner Teacher campaigns (emails_sent>=100) sent to the master audience in the July window \u2014 API reachable, ok, just no sends this month.",
       "xlsx upload to Slack thread failed \u2014 files.slack.com blocked by sandbox egress policy (403 on CONNECT). Local copy saved at Reporting/monthly-marketing-digest-2026-07.xlsx in growth-marketing repo; posted a one-line follow-up in the Slack thread."
     ]
+  },
+  {
+    "run_date": "2026-09-02",
+    "period_label": "2026-08",
+    "window_current": [
+      "2026-08-01",
+      "2026-08-31"
+    ],
+    "window_prior": [
+      "2026-07-01",
+      "2026-07-31"
+    ],
+    "slack_message_ts": "1788352045.545389",
+    "totals": {
+      "hih_current": 52,
+      "hih_prior": 26,
+      "hih_mom_pct": 100.0,
+      "mql_current": 281,
+      "mql_prior": 158,
+      "mql_mom_pct": 77.8,
+      "sql_current": 126,
+      "sql_prior": 112,
+      "sql_mom_pct": 12.5,
+      "opp_current": 124,
+      "opp_prior": 113,
+      "opp_mom_pct": 9.7,
+      "mql_to_sql_rate_pct": 44.8
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          24,
+          23
+        ],
+        "mql": [
+          82,
+          52
+        ],
+        "sql": [
+          27,
+          23
+        ],
+        "opp": [
+          28,
+          22
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          18,
+          3
+        ],
+        "mql": [
+          67,
+          21
+        ],
+        "sql": [
+          3,
+          2
+        ],
+        "opp": [
+          3,
+          2
+        ]
+      },
+      "wh": {
+        "hih": [
+          7,
+          5
+        ],
+        "mql": [
+          13,
+          5
+        ],
+        "sql": [
+          1,
+          4
+        ],
+        "opp": [
+          1,
+          5
+        ]
+      },
+      "gf8": {
+        "hih": [
+          17,
+          2
+        ],
+        "mql": [
+          37,
+          2
+        ],
+        "sql": [
+          2,
+          1
+        ],
+        "opp": [
+          1,
+          1
+        ]
+      }
+    },
+    "coverage_pct": {
+      "hih": 100.0,
+      "mql": 70.8,
+      "sql": 26.2,
+      "opp": 26.6
+    },
+    "revenue": {
+      "district_won_count": 18,
+      "district_won_revenue": 109140.11,
+      "school_won_count": 16,
+      "school_won_revenue": 40427.75,
+      "total_won_count": 34,
+      "total_won_revenue": 149567.86,
+      "nb_won_count": 26,
+      "nb_won_revenue": 129635.51,
+      "existing_won_count": 8,
+      "existing_won_revenue": 19932.35,
+      "pilot_count_zero_amount": 7,
+      "paid_deal_count": 27,
+      "avg_paid_deal_size": 5539.55,
+      "closed_lost_count": 6,
+      "closed_lost_revenue": 22863.0,
+      "win_rate_monthly_count_pct": 85.0,
+      "win_rate_monthly_dollar_pct": 86.7,
+      "win_rate_nb_count_pct": 86.7,
+      "by_segment": {
+        "single_small": {
+          "won_count": 19,
+          "lost_count": 3,
+          "won_revenue": 47213.6,
+          "lost_revenue": 18363.0,
+          "win_rate_count_pct": 86.4,
+          "win_rate_dollar_pct": 72.0
+        },
+        "medium": {
+          "won_count": 8,
+          "lost_count": 2,
+          "won_revenue": 55182.72,
+          "lost_revenue": 4500.0,
+          "win_rate_count_pct": 80.0,
+          "win_rate_dollar_pct": 92.5
+        },
+        "large": {
+          "won_count": 5,
+          "lost_count": 1,
+          "won_revenue": 42620.25,
+          "lost_revenue": 0.0,
+          "win_rate_count_pct": 83.3,
+          "win_rate_dollar_pct": 100.0
+        },
+        "enterprise": {
+          "won_count": 2,
+          "lost_count": 0,
+          "won_revenue": 4551.29,
+          "lost_revenue": 0.0,
+          "win_rate_count_pct": 100.0,
+          "win_rate_dollar_pct": 100.0
+        }
+      },
+      "cumulative_fytd": {
+        "fiscal_year_start": "2025-10-01",
+        "won_count": null,
+        "lost_count": null,
+        "win_rate_count_pct": null,
+        "win_rate_dollar_pct": null,
+        "win_rate_nb_count_pct": null,
+        "by_segment": {},
+        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+      },
+      "segment_coverage_pct": 100.0,
+      "dealtype_unclassified_count": 0,
+      "rfp_excluded_count": 0,
+      "rfp_excluded_revenue": 0,
+      "possible_unflagged_rfp": [],
+      "backlog_flush_flag": true,
+      "backlog_flush_detail": "5 of 6 closed-lost deals (83%) were created >90 days before window start \u2014 same recurring pattern flagged in June/July.",
+      "test_deals_excluded": 0
+    },
+    "pipeline": {
+      "district_open_deals": 31,
+      "school_open_deals": 15,
+      "district_open_by_segment": {
+        "unassigned": {
+          "count": 3,
+          "amount": 153000
+        },
+        "single_small": {
+          "count": 15,
+          "amount": 13420
+        },
+        "medium": {
+          "count": 9,
+          "amount": 59798.99
+        },
+        "large": {
+          "count": 2,
+          "amount": 800
+        },
+        "enterprise": {
+          "count": 2,
+          "amount": 50000
+        }
+      }
+    },
+    "breakouts": {
+      "sql_by_source_top5": [
+        [
+          "OFFLINE",
+          88
+        ],
+        [
+          "DIRECT_TRAFFIC",
+          28
+        ],
+        [
+          "EMAIL_MARKETING",
+          3
+        ],
+        [
+          "PAID_SEARCH",
+          3
+        ],
+        [
+          "ORGANIC_SEARCH",
+          2
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+          2
+        ],
+        [
+          "Sonar | Brand | Search",
+          2
+        ],
+        [
+          "7741335-Content: Inquiry Journeys Scope & Sequence",
+          1
+        ],
+        [
+          "Conferences",
+          1
+        ],
+        [
+          "MQL Campaign_F24",
+          1
+        ]
+      ],
+      "utm_completeness_pct": 4.4,
+      "utm_completeness_pct_prior": 7.7,
+      "new_contacts_current": 1178,
+      "new_contacts_prior": 337
+    },
+    "hubspot_marketing_email": {
+      "sends": null,
+      "delivered": null,
+      "open_rate_pct": null,
+      "ctr_pct": null,
+      "top_performer": {
+        "id": "",
+        "name": "",
+        "sent": 0,
+        "open_rate_pct": 0,
+        "ctr_pct": 0
+      },
+      "low_ctr_flags": [],
+      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure."
+    },
+    "mailchimp": {
+      "sends": 227342,
+      "delivered": 227342,
+      "open_rate_pct": 18.44,
+      "ctr_pct": 3.87,
+      "top_performer": {
+        "id": "ac1ad5796c",
+        "title": "[E-2] Build the Culture (Teacher)",
+        "sent": 72096,
+        "open_rate_pct": 17.1,
+        "ctr_pct": 6.14,
+        "top_links": [
+          "https://hub.inquired.com/student/activity/2139588-back-to-school-night-slides (7,152 clicks)"
+        ]
+      },
+      "low_ctr_flags": [
+        "August 2026 PE Newsletter \u2014 0% click rate on 83,692 sends"
+      ],
+      "api_status": "ok"
+    },
+    "ga4": {
+      "sessions": 36236,
+      "active_users": 25893,
+      "page_views": 44224,
+      "top_pages_top5": [
+        [
+          "/",
+          9710
+        ],
+        [
+          "/integrated-ela-curriculum/ppc-k2-curriculum-maps",
+          5378
+        ],
+        [
+          "/inquiry-based-social-studies/elementary-curriculum",
+          3035
+        ],
+        [
+          "/integrated-ela-curriculum/elementary-curriculum",
+          2514
+        ],
+        [
+          "/careers",
+          2478
+        ]
+      ],
+      "top_sources_top5": [
+        [
+          "google",
+          17906
+        ],
+        [
+          "(direct)",
+          13649
+        ],
+        [
+          "hs_email",
+          1307
+        ],
+        [
+          "advocate",
+          875
+        ],
+        [
+          "bing",
+          481
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "(direct)",
+          13649
+        ],
+        [
+          "(organic)",
+          6969
+        ],
+        [
+          "Sonar | ELA PMax | PMax",
+          6827
+        ],
+        [
+          "Sonar | Brand | Search",
+          3619
+        ],
+        [
+          "43367560-Inkwell-K2-Launch_F26",
+          1631
+        ]
+      ],
+      "sessions_by_content_group": {
+        "(not set)": 31061,
+        "Other": 5545,
+        "Inkwell": 912,
+        "Inquiry Journeys": 909
+      },
+      "content_group_populated": true,
+      "engaged_pct": 45.4,
+      "channels": [
+        [
+          "Organic Search",
+          6971
+        ],
+        [
+          "Direct",
+          13649
+        ],
+        [
+          "Paid Search",
+          4194
+        ],
+        [
+          "Email",
+          1360
+        ],
+        [
+          "Referral",
+          702
+        ],
+        [
+          "Organic Social",
+          1550
+        ],
+        [
+          "Other",
+          7827
+        ]
+      ],
+      "conversions": [
+        [
+          "Form thank-you",
+          568
+        ],
+        [
+          "Resource downloads",
+          660
+        ],
+        [
+          "Webinar signups",
+          1
+        ],
+        [
+          "Contact sales",
+          73
+        ],
+        [
+          "Curriculum guide",
+          0
+        ]
+      ],
+      "yoy": {
+        "sessions": 24864,
+        "users": 17438,
+        "views": 30909
+      }
+    },
+    "semrush": {
+      "project_id": "30090954",
+      "tracked_keywords_total": null,
+      "keywords_in_top_10": null,
+      "keywords_in_top_10_prior": null,
+      "avg_position": null,
+      "avg_position_prior": null,
+      "top_movers_up": [],
+      "top_movers_down": [],
+      "top_performers": [],
+      "api_status": "error \u2014 project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the Position Tracking campaign's target domain is still not configured (campaigns report returns targets: null). 4th consecutive run with this issue \u2014 needs Semrush account-side setup (add inquired.com as the tracked domain in the Position Tracking campaign for project 30090954), not an API/credential fix.",
+      "gsc": {
+        "property": "inquired.com",
+        "clicks_total": null,
+        "clicks_total_prior": null,
+        "impressions_total": null,
+        "impressions_total_prior": null,
+        "avg_ctr_pct": null,
+        "avg_position_actual": null,
+        "top_queries_by_clicks_top5": [],
+        "optimization_targets_top5": [],
+        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+      }
+    },
+    "paid_ads": {
+      "google_ads": {
+        "spend": null,
+        "impressions": null,
+        "clicks": null,
+        "ctr_pct": null,
+        "top_campaign": "",
+        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not configured in this environment"
+      },
+      "linkedin": {
+        "spend": 1908.91,
+        "impressions": 33030,
+        "clicks": 122,
+        "ctr_pct": 0.37,
+        "top_campaign": "PS2 | Inside Inkwell | Aug10-Oct31",
+        "api_status": "ok \u2014 FIRST LIVE PULL. api.linkedin.com is now reachable (previously blocked by sandbox egress in 3 prior runs). Required the RESTli struct dateRange syntax (dateRange=(start:(day:D,month:M,year:Y),end:(...))) sent unencoded rather than the dot-notation (dateRange.start.year=...) \u2014 the dot-notation was accepted for param validation but the struct form is what the v202509 adAnalytics finder actually requires. Also requires accounts=List(urn:li:sponsoredAccount:<id>) and campaign names now live under /rest/adAccounts/{id}/adCampaigns/{campaignId}, not the old /rest/adCampaigns/{id}."
+      }
+    },
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "LIST EVENT DETECTED: 942 of 1,178 new contacts in August (80%) are OFFLINE-sourced, vs 187 of 337 (55%) in July \u2014 a clear bulk import, not organic growth. This mechanically inflated HIH (+100%), MQL (+78%), and drove the apparent MQL-to-SQL conversion drop (71%\u219245%); SQL (+12.5%) and Opportunities (+9.7%) are the more reliable read on real demand. GF8 MQL jumped 2\u219237 and Inkwell MQL 21\u219267 in the same pattern \u2014 consistent with the import landing disproportionately on those two products. Needs Kelsey's confirmation/acknowledgment (source of the import) before next month's MoM math can exclude it, per the acknowledged_events mechanism.",
+      "UTM completeness fell further to 4.4% (52/1,178 new contacts) from July's 7.7% \u2014 still far below both the 30% gap threshold and 50% healthy target. Persistent, worsening data-hygiene gap.",
+      "SQL coverage 26.2% and Opp coverage 26.6% (both below the 30% threshold) flagged per Step 6; MQL coverage improved to 70.8% and GF8 now clears the \u226510 inclusion threshold for the first time (HIH 17, MQL 37 in August vs 2/2 in July) so it's included in by-product breakouts this run.",
+      "SQL source concentration: 88 of 126 SQL contacts (70%) are OFFLINE-sourced \u2014 attribution visibility into true SQL source remains limited, consistent with prior months.",
+      "Backlog flush: 5 of 6 closed-lost deals (83%) were created >90 days before window start \u2014 same recurring stale-deal-cleanup pattern flagged in June (65%) and July (67%). Systemic, not August-specific.",
+      "GA4 engagement rate fell to 45.4% from July's 72.4% (a >35% relative decline) while sessions rose 41% MoM \u2014 most likely explained by the new Sonar ELA PMax campaign (6,827 sessions, typically lower-intent paid traffic) diluting the average; needs a look but not yet confirmed as a genuine interest decline.",
+      "GA4 'Webinar signups' (webinar_signup_success) stayed collapsed at 1 for a second straight month (vs 333 in June), while webinar_click (398) and webinar_signup_view (184) \u2014 events outside the SKILL.md event-name mapping \u2014 carried real volume. This looks like a persistent GTM/event-taxonomy change from the webinar flow, not declining webinar interest; the 'Webinar signups' KPI should not be trusted until the taxonomy is reconciled with the web team.",
+      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure.",
+      "LinkedIn Ads API is reachable for the first time this run (see paid_ads.linkedin.api_status for the working request shape) \u2014 a long-pending gap is resolved. First live spend: $1,908.91 / 33,030 impressions / 122 clicks / 0.37% CTR across 2 active campaigns.",
+      "Google Ads data unavailable \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not set in this environment. Soft-skipped per SKILL.md.",
+      "Semrush Position Tracking unavailable for a 4th consecutive run \u2014 project 30090954 has no configured target domain in its Position Tracking campaign. This needs someone with Semrush account access to add inquired.com as the tracked domain; it will not resolve itself via API calls.",
+      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps confirmation of deal-inclusion rules.",
+      "xlsx upload to the Slack thread was not attempted \u2014 SKILL.md's current Output 1 spec calls for a single chat.postMessage with no threaded reply/upload; the xlsx is saved locally at Reporting/monthly-marketing-digest-2026-08.xlsx in the growth-marketing repo per Output 2."
+    ]
   }
 ]
