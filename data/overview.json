@@ -78,21 +78,22 @@
     }
   ],
   "brand_lift": {
-    "updated": "2026-08-31",
+    "updated": "2026-09-07",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 24 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (234 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 31 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (303 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
         "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
-        "value": 234,
-        "delta": "+28% WoW",
+        "value": 303,
+        "delta": "+43% WoW",
         "delta_dir": "up",
         "spark": [
           239,
           177,
-          234
+          240,
+          303
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -131,14 +132,14 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Aug 31",
+      "updated": "2026-09-07",
+      "narrative": "Lower-funnel conversion surge: SQL hit 31 (+138% WoW \ud83d\udd25) and Opp 29 (+142% WoW \ud83d\udd25) \u2014 the strongest lower-funnel week since late July, validating last week's forecast of a SQL rebound as the W35 HIH class began converting. HIH held at 17 (+6%) and MQL grew to 69 (+23%). Branded search provisional at 303 clicks for Aug 31 (+43% WoW on a matched 5-day window; week settles next run). Pipeline expanded to 32 district open deals (from 31) and held at 13 school deals. Enterprise led SQL and Opp with 15 entries each \u2014 consistent with an offline migration cohort moving down-funnel."
+    },
+    "previous": {
       "week_label": "Week of Aug 24",
       "updated": "2026-08-31",
       "narrative": "This week's signal is a tale of two funnel halves: top-of-funnel strengthened meaningfully, with 16 High Intent Handraisers [HIH] entering \u2014 double last week's pace \u2014 and MQL volume held at 56, essentially flat. The lower funnel tells a different story: SQL entries dropped to 13 (from 33) and Opportunities to 12 (from 33), both at their lowest point in the trailing five weeks. The pattern is consistent with W34 pull-forward \u2014 end-of-month acceleration moved lifecycle entries that would otherwise have distributed into W35, so the dip is expected rather than alarming. Watch for SQL to recover toward 25\u201330 next week as the pipeline refills from this week's HIH surge."
-    },
-    "previous": {
-      "week_label": "Week of Aug 17",
-      "updated": "2026-08-24",
-      "narrative": "Back-to-school surge normalized: MQL -30% and HIH -43% vs. last week\u2019s peak. SQL and Opp strengthened to 33 each (+10%/+14%), showing the W33 inbound class converting well mid-funnel. Inkwell led with 15 MQLs; IJ had 8. Pipeline holds at 29 district / 17 school open deals. DQ and Nurture returned to normal levels (64/18 vs. 246/182 last week)."
     }
   }
 }

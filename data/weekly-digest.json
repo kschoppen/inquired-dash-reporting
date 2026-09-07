@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-08-31",
+  "updated": "2026-09-07",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-08-31",
+    "updated": "2026-09-07",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 24 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (234 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 31 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (303 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -36,8 +36,20 @@
         "period": "2026-08-24",
         "label": "Aug 24",
         "branded": {
-          "clicks": 234,
-          "impressions": 4577
+          "clicks": 240,
+          "impressions": 4870
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-08-31",
+        "label": "Aug 31",
+        "branded": {
+          "clicks": 303,
+          "impressions": 6673
         },
         "youtube": null,
         "instagram": null,
@@ -55,8 +67,8 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 198,
-          "previous": 155
+          "current": 284,
+          "previous": 198
         }
       }
     }
@@ -5756,6 +5768,325 @@
             66414085713,
             "Enterprise",
             "Offline"
+          ]
+        ]
+      }
+    },
+    {
+      "period": "2026-08-31",
+      "label": "Aug 31",
+      "funnel": {
+        "hih": 17,
+        "mql": 69,
+        "sql": 31,
+        "opp": 29
+      },
+      "by_product": {
+        "ij": {
+          "hih": 5,
+          "mql": 23,
+          "sql": 5,
+          "opp": 5
+        },
+        "inkwell": {
+          "hih": 5,
+          "mql": 14,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 2,
+          "sql": 0,
+          "opp": 0
+        },
+        "gf8": {
+          "hih": 9,
+          "mql": 9,
+          "sql": 1,
+          "opp": 1
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 6,
+          "mql": 23,
+          "sql": 12,
+          "opp": 11
+        },
+        "medium": {
+          "hih": 2,
+          "mql": 4,
+          "sql": 3,
+          "opp": 2
+        },
+        "large": {
+          "hih": 0,
+          "mql": 3,
+          "sql": 1,
+          "opp": 1
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 17,
+          "sql": 15,
+          "opp": 15
+        }
+      },
+      "disposition": {
+        "dq": 140,
+        "nurture": 92,
+        "by_product": {
+          "wh": {
+            "nurture": 4
+          },
+          "gf8": {
+            "nurture": 6
+          }
+        }
+      },
+      "drill": {
+        "hih": [
+          [
+            246701154058,
+            "",
+            "Direct"
+          ],
+          [
+            246466117165,
+            "",
+            "Organic"
+          ],
+          [
+            246350911628,
+            "Small",
+            "Direct"
+          ],
+          [
+            246329177628,
+            "Single",
+            "Direct"
+          ],
+          [
+            246261004614,
+            "",
+            "Direct"
+          ],
+          [
+            246244704675,
+            "Medium",
+            "Direct"
+          ],
+          [
+            246231104842,
+            "Single",
+            "Direct"
+          ],
+          [
+            246099327789,
+            "",
+            "Referral"
+          ],
+          [
+            246089957402,
+            "",
+            "Direct"
+          ],
+          [
+            156402699632,
+            "Single",
+            "Direct"
+          ],
+          [
+            245878983513,
+            "Single",
+            "Direct"
+          ],
+          [
+            245868619360,
+            "",
+            "Email"
+          ],
+          [
+            245844964130,
+            "",
+            "Direct"
+          ],
+          [
+            245688715270,
+            "",
+            "Direct"
+          ],
+          [
+            245612025195,
+            "Single",
+            "Direct"
+          ],
+          [
+            245590583297,
+            "Medium",
+            "Direct"
+          ],
+          [
+            245561383327,
+            "",
+            "Direct"
+          ]
+        ],
+        "mql": [
+          [
+            246774338110,
+            "",
+            "Paid"
+          ],
+          [
+            246697929525,
+            "Small",
+            "Social"
+          ],
+          [
+            246630384037,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246575003681,
+            "",
+            "Social"
+          ],
+          [
+            246525713335,
+            "Single",
+            "Direct"
+          ],
+          [
+            246317720464,
+            "Single",
+            "Offline"
+          ],
+          [
+            246466117165,
+            "",
+            "Organic"
+          ],
+          [
+            246344326492,
+            "",
+            "Direct"
+          ],
+          [
+            246343158303,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246350911628,
+            "Small",
+            "Direct"
+          ]
+        ],
+        "sql": [
+          [
+            246630384037,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246525713335,
+            "Single",
+            "Direct"
+          ],
+          [
+            246317720464,
+            "Single",
+            "Offline"
+          ],
+          [
+            246343158303,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246137485697,
+            "Single",
+            "Direct"
+          ],
+          [
+            246111686523,
+            "Large",
+            "Email"
+          ],
+          [
+            245865290117,
+            "Single",
+            "Offline"
+          ],
+          [
+            245812961576,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            245803415634,
+            "Medium",
+            "Email"
+          ],
+          [
+            245709198407,
+            "Enterprise",
+            "Email"
+          ]
+        ],
+        "opp": [
+          [
+            246630384037,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246525713335,
+            "Single",
+            "Direct"
+          ],
+          [
+            246317720464,
+            "Single",
+            "Offline"
+          ],
+          [
+            246343158303,
+            "Enterprise",
+            "Direct"
+          ],
+          [
+            246137485697,
+            "Single",
+            "Direct"
+          ],
+          [
+            246111686523,
+            "Large",
+            "Email"
+          ],
+          [
+            245865290117,
+            "Single",
+            "Offline"
+          ],
+          [
+            245812961576,
+            "Enterprise",
+            "Email"
+          ],
+          [
+            245803415634,
+            "Medium",
+            "Email"
+          ],
+          [
+            245709198407,
+            "Enterprise",
+            "Email"
           ]
         ]
       }
