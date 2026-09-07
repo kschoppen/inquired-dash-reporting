@@ -1,9 +1,15 @@
 {
   "skill": "competitive-intel",
   "title": "Competitive Intel",
-  "updated": "2026-08-31",
+  "updated": "2026-09-07",
   "full_run": "2026-07-14",
   "next_full_run": "Sep 2026",
   "stale_after_days": 10,
-  "notes": "Freshness stamps for competitive-intel.html. `updated` is the last weekly signal + keyword refresh (weekly-marketing-digest, PHASE 2 of DASH_ROUTINE.md). `full_run` is the last complete competitive-intel skill run (bi-monthly: website + ad-library analysis, threat levels, messaging themes, AI summaries, strategic opportunities). Both the page header and the dashboard tab banner read their dates from this file, and the page counts tracked competitors from its own DOM, so no date or count is hardcoded in the HTML. `stale_after_days` drives the freshness pill: once `updated` is older than that, the page shows its age in amber instead of a green 'current'."
+  "notes": "Freshness stamps for competitive-intel.html. `updated` is the last weekly signal + keyword refresh (weekly-marketing-digest, PHASE 2 of DASH_ROUTINE.md). `full_run` is the last complete competitive-intel skill run (bi-monthly: website + ad-library analysis, threat levels, messaging themes, AI summaries, strategic opportunities). Both the page header and the dashboard tab banner read their dates from this file, and the page counts tracked competitors from its own DOM, so no date or count is hardcoded in the HTML. `stale_after_days` drives the freshness pill: once `updated` is older than that, the page shows its age in amber instead of a green 'current'.",
+  "signals_summary": {
+    "amplify_ckla": "CKLA 3rd Edition launching for 2026-27: enhanced writing instruction, expanded diverse learner support, streamlined pacing. Virginia DOE approved.",
+    "great_minds_arts_letters": "EdReports + Reading League all-greens (July 2026). Reading Foundations K-5 launched (July 2026, Magpie Literacy partnership). High school expansion via Odell acquisition (Feb 2026). EdWeek MarketBrief: 'Sets Its Sights on Foundational Literacy' (Aug 2026).",
+    "tci": "Won 2026 EdTech Cool Tool Award. New K-12 Social Studies as a unified system \u2014 single platform, shared training resources.",
+    "benchmark_education": "Alameda USD adopted Benchmark ELA for 2026-27 after multi-year pilot. No new product announcements Sep 2026."
+  }
 }

@@ -1135,5 +1135,278 @@
       "Closed-won MTD partial: $393,908 visible from 50 of 249 deals returned \u2014 full August MTD requires pagination",
       "Brand lift (GSC): Aug 24 week provisional (5/7 days settled); +28% WoW branded search on aligned 5-day window"
     ]
+  },
+  {
+    "run_date": "2026-09-07",
+    "period_label": "2026-W36",
+    "window_current": [
+      "2026-08-31",
+      "2026-09-06"
+    ],
+    "window_prior": [
+      "2026-08-24",
+      "2026-08-30"
+    ],
+    "totals": {
+      "hih_current": 17,
+      "hih_prior": 16,
+      "hih_wow_pct": 6,
+      "mql_current": 69,
+      "mql_prior": 56,
+      "mql_wow_pct": 23,
+      "sql_current": 31,
+      "sql_prior": 13,
+      "sql_wow_pct": 138,
+      "opp_current": 29,
+      "opp_prior": 12,
+      "opp_wow_pct": 142
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          5,
+          4
+        ],
+        "mql": [
+          23,
+          29
+        ],
+        "sql": [
+          5,
+          3
+        ],
+        "opp": [
+          5,
+          3
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          5,
+          8
+        ],
+        "mql": [
+          14,
+          8
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "wh": {
+        "hih": [
+          1,
+          3
+        ],
+        "mql": [
+          2,
+          6
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "gf8": {
+        "hih": [
+          9,
+          5
+        ],
+        "mql": [
+          9,
+          5
+        ],
+        "sql": [
+          1,
+          0
+        ],
+        "opp": [
+          1,
+          0
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          6,
+          5
+        ],
+        "mql": [
+          23,
+          18
+        ],
+        "sql": [
+          12,
+          4
+        ],
+        "opp": [
+          11,
+          4
+        ]
+      },
+      "medium": {
+        "hih": [
+          2,
+          3
+        ],
+        "mql": [
+          4,
+          10
+        ],
+        "sql": [
+          3,
+          5
+        ],
+        "opp": [
+          2,
+          4
+        ]
+      },
+      "large": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          3,
+          0
+        ],
+        "sql": [
+          1,
+          0
+        ],
+        "opp": [
+          1,
+          0
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          17,
+          10
+        ],
+        "sql": [
+          15,
+          4
+        ],
+        "opp": [
+          15,
+          4
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100,
+        "mql": 70,
+        "sql": 19,
+        "opp": 21
+      },
+      "segment": {
+        "hih": 47,
+        "mql": 68,
+        "sql": 100,
+        "opp": 100
+      }
+    },
+    "disposition": {
+      "disqualified_current": 140,
+      "disqualified_prior": 75,
+      "entered_nurture_current": 92,
+      "entered_nurture_prior": 23,
+      "nurture_by_product": {
+        "wh": 4,
+        "gf8": 6
+      }
+    },
+    "pipeline": {
+      "district_open_deals": 32,
+      "school_open_deals": 13
+    },
+    "closed_won_mtd": {
+      "month": "2026-09",
+      "deals": 2,
+      "revenue": 1050
+    },
+    "brand_lift": {
+      "branded_clicks": 303,
+      "branded_impressions": 6673,
+      "settled_days": 5,
+      "provisional": true,
+      "wow_pct_5day": 43
+    },
+    "semrush_snapshot": {
+      "amplify.com": {
+        "rank": 2853,
+        "organic_kw": 46320,
+        "traffic": 872121
+      },
+      "greatminds.org": {
+        "rank": 22500,
+        "organic_kw": 13820,
+        "traffic": 97499
+      },
+      "imaginelearning.com": {
+        "rank": 11240,
+        "organic_kw": 32015,
+        "traffic": 202119
+      },
+      "mheducation.com": {
+        "rank": 1915,
+        "organic_kw": 141469,
+        "traffic": 1321061
+      },
+      "hmhco.com": {
+        "rank": 4840,
+        "organic_kw": 66427,
+        "traffic": 489215
+      },
+      "teachtci.com": {
+        "rank": 14580,
+        "organic_kw": 7915,
+        "traffic": 153961
+      },
+      "teachingstrategies.com": {
+        "rank": 11146,
+        "organic_kw": 18024,
+        "traffic": 203768
+      },
+      "savvas.com": {
+        "rank": 12921,
+        "organic_kw": 22216,
+        "traffic": 174281
+      },
+      "benchmarkeducation.com": {
+        "rank": 206931,
+        "organic_kw": 3490,
+        "traffic": 8674
+      },
+      "highscope.org": {
+        "rank": 253591,
+        "organic_kw": 2797,
+        "traffic": 6854
+      }
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "SQL and Opp product coverage below 30% (SQL: 19%, Opp: 21%) \u2014 consistent with ongoing offline lifecycle migration",
+      "HIH product sub-query totals sum to 20 vs HIH total of 17 \u2014 multi-value product_interest field overlap; inclusive counts used",
+      "Brand lift (GSC): Aug 31 week provisional (5/7 days settled); full-week total (303 clicks) understated; WoW comparison uses matched 5-day windows"
+    ]
   }
 ]
