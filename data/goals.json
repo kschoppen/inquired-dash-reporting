@@ -1,19 +1,24 @@
 {
   "school_year": "SY27-28",
-  "window_start": "2027-08-01",
-  "window_end": "2028-07-31",
+  "field": "deal_start_year",
+  "field_value": "27-28",
+  "pipelines": {
+    "40953415": "District Sales Pipeline",
+    "41400400": "School Sales Pipeline",
+    "912820790": "New Business Pipeline"
+  },
   "pipeline_goal": 10000000,
   "closed_won_goal": 2000000,
   "set_date": "2026-09-08",
   "set_by": "Kelsey / Jeanette",
+  "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
   "reference_year": {
     "school_year": "SY25-26",
-    "window_start": "2025-08-01",
-    "window_end": "2026-07-31",
-    "generated": 7650063.50,
-    "closed_won": 1892390.94,
-    "closed_lost": 5730788.57,
-    "win_rate_pct": 24.8
+    "field_value": "25-26",
+    "generated": 11655470.61,
+    "closed_won": 2143798.43,
+    "closed_lost": 9504395.18,
+    "win_rate_pct": 18.4
   },
-  "notes": "Fiscal year runs Aug 1-Jul 31, on deal close date (not the Oct-Sep close year used elsewhere for monthly win-rate). 'Generated' = SUM(amount) across ALL deals (open + won + lost, both pipelines, single-site included) whose closedate falls in the window -- lost deals count toward the goal number, since $10M pipeline / $2M closed-won implies a ~20% target win rate. reference_year is informational only (last completed year, for comparison) and is not re-fetched automatically. Edit pipeline_goal / closed_won_goal / window_start / window_end here directly when the target changes -- no code change needed. Read (not written) by weekly-marketing-digest and monthly-marketing-digest."
+  "notes": "CORRECTED 2026-09-08 -- an earlier version of this file used deal closedate and only the District+School Sales pipelines, which was wrong on both counts: (1) the field the team actually uses to mean '27-28' etc. is the dedicated deal property deal_start_year (confirmed against Kelsey's real HubSpot list, view 69121201), not a closedate-window derivation -- a similarly-named decoy property deal_close_year__sy_ exists too and returns nothing for this cohort, don't use it; (2) deals with deal_start_year='27-28' span 5 pipelines, but only 3 belong in a NEW-business pipeline goal: District Sales, School Sales, and New Business Pipeline (each has deals that actually reach Closed Won). Awareness Pipeline is excluded -- checked its full stage history and zero deals have ever reached Closed Won there, so it isn't real revenue pipeline. Renewal Pipeline is excluded -- it's existing-customer retention (510 of 875 lifetime deals already Closed Won), not new growth. Account Growth Pipeline and Partnerships are excluded for being immaterial ($1,500 and $40,000 lifetime respectively) and have zero deal_start_year='27-28' deals anyway. 'Generated' = SUM(amount) across open+lost+won combined (lost deals count on purpose -- the $10M/$2M goal implies a ~20% target win rate). reference_year is SY25-26 under this same corrected methodology -- note it does NOT match the ~$7.1M figure Jeanette mentioned in the original goal-setting meeting; that discrepancy is unresolved and worth a sanity check with her, but isn't blocking since the corrected pipeline/field scope is now confirmed correct. Edit pipeline_goal / closed_won_goal here directly when the target changes -- no code change needed. Read (not written) by weekly-marketing-digest and monthly-marketing-digest."
 }

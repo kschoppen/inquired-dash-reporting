@@ -2484,139 +2484,151 @@
       "closed_won": 2000000
     },
     "actual": {
-      "open": 10000,
-      "lost": 0,
-      "won": 0
+      "open": 3374997.83,
+      "lost": 1331871.0,
+      "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 376050.0,
+        "lost": 2000.0,
+        "won": 2583.0
       },
       "medium": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 694393.5,
+        "lost": 326261.0,
+        "won": 0.0
       },
       "large": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 814248.0,
+        "lost": 224615.0,
+        "won": 69938.91
       },
       "enterprise": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 1131354.0,
+        "lost": 778995.0,
+        "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 10000,
-        "lost": 0,
-        "won": 0
+        "open": 2172497.83,
+        "lost": 1306371.0,
+        "won": 72521.91
       },
       "inkwell": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 551000.0,
+        "lost": 0.0,
+        "won": 0.0
       },
       "wh": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 13250.0,
+        "lost": 0.0,
+        "won": 0.0
       },
       "gf8": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 701500.0,
+        "lost": 25500.0,
+        "won": 0.0
       },
       "untagged": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 0.0,
+        "lost": 0.0,
+        "won": 0.0
       }
     },
     "by_pipeline": {
       "district": {
-        "open": 10000,
-        "lost": 0,
-        "won": 0
+        "open": 231250.0,
+        "lost": 1321371.0,
+        "won": 2583.0
       },
       "school": {
-        "open": 0,
-        "lost": 0,
-        "won": 0
+        "open": 0.0,
+        "lost": 2000.0,
+        "won": 0.0
+      },
+      "new_business": {
+        "open": 3143747.83,
+        "lost": 8500.0,
+        "won": 69938.91
       }
     },
     "reference_year": {
       "school_year": "SY25-26",
-      "generated": 7650063.5,
-      "closed_won": 1892390.94,
-      "closed_lost": 5730788.57,
-      "win_rate_pct": 24.8,
+      "generated": 11655470.61,
+      "closed_won": 2143798.43,
+      "closed_lost": 9504395.18,
+      "win_rate_pct": 18.4,
       "by_segment": {
         "single_small": {
-          "open": 25835.0,
-          "lost": 476417.0,
-          "won": 280115.27
+          "open": 6477.0,
+          "lost": 842107.7,
+          "won": 250884.75
         },
         "medium": {
-          "open": 248.99,
-          "lost": 1533240.67,
-          "won": 185437.35
+          "open": 0.0,
+          "lost": 2148393.48,
+          "won": 342105.76
         },
         "large": {
           "open": 800.0,
-          "lost": 915894.9,
-          "won": 309896.56
+          "lost": 2727220.0,
+          "won": 409189.32
         },
         "enterprise": {
           "open": 0.0,
-          "lost": 2805236.0,
-          "won": 1103252.76
+          "lost": 2513279.0,
+          "won": 1126519.6
         }
       },
       "by_product": {
         "ij": {
-          "open": 26883.99,
-          "lost": 5540282.57,
-          "won": 1804555.94
+          "open": 7277.0,
+          "lost": 6284861.13,
+          "won": 1049306.75
         },
         "inkwell": {
           "open": 0.0,
-          "lost": 92000.0,
-          "won": 78009.0
+          "lost": 6000.0,
+          "won": 0.0
         },
         "wh": {
-          "open": 11977.0,
-          "lost": 155034.0,
-          "won": 281896.04
+          "open": 6477.0,
+          "lost": 211061.0,
+          "won": 252271.0
         },
         "gf8": {
           "open": 0.0,
-          "lost": 17000.0,
+          "lost": 0.0,
           "won": 0.0
         },
         "untagged": {
           "open": 0.0,
-          "lost": 77406.0,
-          "won": 1377.0
+          "lost": 3039231.05,
+          "won": 1018240.68
         }
       },
       "by_pipeline": {
         "district": {
-          "open": 11968.99,
-          "lost": 5557304.57,
-          "won": 1781774.84
+          "open": 800.0,
+          "lost": 9298718.18,
+          "won": 1986315.56
         },
         "school": {
-          "open": 14915.0,
-          "lost": 173484.0,
-          "won": 110616.1
+          "open": 6477.0,
+          "lost": 205677.0,
+          "won": 157482.87
+        },
+        "new_business": {
+          "open": 0.0,
+          "lost": 0.0,
+          "won": 0.0
         }
       }
     },
-    "note": "Deal close date filter (Aug 1, 2027-Jul 31, 2028), both pipelines, single-site included -- 'generated' is open+lost+won combined (lost deals count toward the goal number; $10M/$2M implies a ~20% target win rate). Segment/product/district-school breakdowns are descriptive context, not separate sub-goals. Goal targets set in data/goals.json."
+    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved.",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
+    "field_value": "27-28"
   }
 }

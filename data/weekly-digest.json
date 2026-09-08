@@ -6151,16 +6151,18 @@
       "closed_won": 2000000
     },
     "actual": {
-      "open": 10000,
-      "lost": 0,
-      "won": 0
+      "open": 3374997.83,
+      "lost": 1331871.0,
+      "won": 72521.91
     },
     "reference_year": {
       "school_year": "SY25-26",
-      "generated": 7650063.5,
-      "closed_won": 1892390.94,
-      "win_rate_pct": 24.8
+      "generated": 11655470.61,
+      "closed_won": 2143798.43,
+      "win_rate_pct": 18.4
     },
-    "note": "Running total on deal close date (Aug 1, 2027-Jul 31, 2028) -- not a weekly-window count. Full segment/product/district-school breakdown lives on the Monthly Digest tab. Goal targets set in data/goals.json."
+    "note": "Filtered on deal_start_year='27-28' across District Sales, School Sales, and New Business pipelines only (Awareness/Renewal/Account Growth/Partnerships excluded -- see data/goals.json for why). Running total, not a weekly-window count. Full segment/product/pipeline breakdown lives on the Monthly Digest tab.",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
+    "field_value": "27-28"
   }
 }

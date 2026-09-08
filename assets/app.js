@@ -802,7 +802,7 @@ function dispositionProductTable(last) {
 // ---- pipeline vs. goal (weekly compact + monthly full) — shared by both tabs ----
 const PG_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
 const PG_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"], ["gf8", "Great First 8"], ["untagged", "Untagged"]];
-const PG_PIPELINE_ROWS = [["district", "District"], ["school", "School"]];
+const PG_PIPELINE_ROWS = [["district", "District"], ["school", "School"], ["new_business", "New Business"]];
 
 function pgTotal(b) { return ((b && b.open) || 0) + ((b && b.lost) || 0) + ((b && b.won) || 0); }
 function pgBarSegs(b) {
@@ -830,7 +830,7 @@ function pipelineGoalSection(pg, opts = {}) {
 
   return `
   <div class="panel"><h3>Pipeline vs. ${pg.school_year || ""} Goal</h3>
-    <p class="cap" style="margin-top:0">Deal close date in window · as of ${pg.as_of || "—"}${opts.full ? "" : " · updates weekly"}</p>
+    <p class="cap" style="margin-top:0">Deal Start Year = ${(pg.field_value || (pg.school_year || "").replace("SY", ""))} · District + School + New Business pipelines · as of ${pg.as_of || "—"}${opts.full ? "" : " · updates weekly"}${pg.hubspot_list_url ? ` · <a class="hih-hs-link" style="margin:0;padding:2px 9px;font-size:11.5px" href="${pg.hubspot_list_url}" target="_blank" rel="noopener">View deals in HubSpot ↗</a>` : ""}</p>
     <div class="goal-row">
       <div class="goal-block">
         <div class="goal-top"><span class="goal-label">Pipeline generated</span><span class="goal-pct">${pipelinePct.toFixed(1)}%</span></div>
@@ -855,9 +855,9 @@ function pipelineGoalSection(pg, opts = {}) {
         ${note("Multi-tagged deals count toward each product — won't sum to the total above.")}
       </div>
       <div>
-        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By district / school <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By pipeline <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
         ${pgBreakdownTable(PG_PIPELINE_ROWS, bd.pipeline)}
-        ${note("Reuses the existing District/School Sales Pipeline split.")}
+        ${note("District, School, and New Business Sales pipelines only — Awareness (never reaches Closed Won), Renewal (retention, not new growth), Account Growth, and Partnerships are excluded from this goal.")}
       </div>
     </div>` : `<p class="cap">Full segment / product / district-school breakdown lives on the Monthly Digest tab.</p>`}
   </div>`;
