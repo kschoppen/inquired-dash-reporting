@@ -6089,6 +6089,56 @@
             "Email"
           ]
         ]
+      },
+      "content_engagement": {
+        "as_of": "2026-09-08",
+        "intent_tier": {
+          "high": 2305,
+          "medium": 1498,
+          "low": 29792
+        },
+        "top_content_tags": [
+          {
+            "tag": "Other Form",
+            "count": 3633,
+            "delta": null
+          },
+          {
+            "tag": "SS-WEB: Thought Leadership Series",
+            "count": 1709,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence",
+            "count": 1621,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Curriculum Review Guide",
+            "count": 1178,
+            "delta": null
+          },
+          {
+            "tag": "Contact Us",
+            "count": 608,
+            "delta": null
+          },
+          {
+            "tag": "ELA-WEB: Thought Leadership Series",
+            "count": 533,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Pacing Guide",
+            "count": 413,
+            "delta": null
+          },
+          {
+            "tag": "Book a Demo",
+            "count": 341,
+            "delta": null
+          }
+        ]
       }
     }
   ],

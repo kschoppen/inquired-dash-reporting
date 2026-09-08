@@ -1407,6 +1407,165 @@
       "SQL and Opp product coverage below 30% (SQL: 19%, Opp: 21%) \u2014 consistent with ongoing offline lifecycle migration",
       "HIH product sub-query totals sum to 20 vs HIH total of 17 \u2014 multi-value product_interest field overlap; inclusive counts used",
       "Brand lift (GSC): Aug 31 week provisional (5/7 days settled); full-week total (303 clicks) understated; WoW comparison uses matched 5-day windows"
-    ]
+    ],
+    "content_engagement": {
+      "as_of": "2026-09-08",
+      "intent_tier": {
+        "high": 2305,
+        "medium": 1498,
+        "low": 29792,
+        "unassigned": 43117
+      },
+      "content_tags": [
+        {
+          "tag": "Other Form",
+          "count": 3633
+        },
+        {
+          "tag": "SS-WEB: Thought Leadership Series",
+          "count": 1709
+        },
+        {
+          "tag": "IJ-DL: Scope & Sequence",
+          "count": 1621
+        },
+        {
+          "tag": "IJ-DL: Curriculum Review Guide",
+          "count": 1178
+        },
+        {
+          "tag": "Contact Us",
+          "count": 608
+        },
+        {
+          "tag": "ELA-WEB: Thought Leadership Series",
+          "count": 533
+        },
+        {
+          "tag": "IJ-DL: Pacing Guide",
+          "count": 413
+        },
+        {
+          "tag": "Book a Demo",
+          "count": 341
+        },
+        {
+          "tag": "IJ-DL: PD Deck-Literacy & SS Outcomes",
+          "count": 294
+        },
+        {
+          "tag": "IJ-DL: Scope & Sequence (PPC) (Scope & Sequence (PPC))",
+          "count": 270
+        },
+        {
+          "tag": "Newsletter Sign Up",
+          "count": 258
+        },
+        {
+          "tag": "IJ-DL: Inquiry in Social Studies Guide",
+          "count": 229
+        },
+        {
+          "tag": "SS-WEB: Source Material Webinar Registra",
+          "count": 206
+        },
+        {
+          "tag": "IJ-Demo: Product Demo",
+          "count": 172
+        },
+        {
+          "tag": "IJ-DL: Literary Rubric",
+          "count": 158
+        },
+        {
+          "tag": "IJ-CONV: IJ-Pilot Request",
+          "count": 123
+        },
+        {
+          "tag": "IJ-DL: Sample Lesson",
+          "count": 106
+        },
+        {
+          "tag": "IW-DL: Inkwell K2 Curriculum Map Sample",
+          "count": 105
+        },
+        {
+          "tag": "ELA-WEB: Better Together Recap",
+          "count": 80
+        },
+        {
+          "tag": "IW-DL: Inkwell Lesson Sample_K2",
+          "count": 75
+        },
+        {
+          "tag": "IJ-DL: Literary Practices Guide",
+          "count": 72
+        },
+        {
+          "tag": "IJ-DL: Print Sample",
+          "count": 70
+        },
+        {
+          "tag": "IW-CONV: Inkwell Early Adopter",
+          "count": 58
+        },
+        {
+          "tag": "GF8-CONV: Great First Eight Interest",
+          "count": 44
+        },
+        {
+          "tag": "IW-DL: Fundamentals of Integrating 2-pager",
+          "count": 39
+        },
+        {
+          "tag": "IW-Demo: Product Demo",
+          "count": 38
+        },
+        {
+          "tag": "IW-CONV:  Inkwell Review Site Gated Page",
+          "count": 38
+        },
+        {
+          "tag": "ELA-WEB: Lit Talk Webinar Registration",
+          "count": 35
+        },
+        {
+          "tag": "IJ-Demo: Experience a Lesson",
+          "count": 29
+        },
+        {
+          "tag": "IW-DL: Inkwell K2 Curriculum Map",
+          "count": 28
+        },
+        {
+          "tag": "IW-DL: Inkwell PPC Lander",
+          "count": 22
+        },
+        {
+          "tag": "IW-DL: Case for Integrated Curr.",
+          "count": 22
+        },
+        {
+          "tag": "IW-DL: Integration SmartFocus",
+          "count": 16
+        },
+        {
+          "tag": "IJ-DL: SS In Practice - Implementation Brief",
+          "count": 8
+        },
+        {
+          "tag": "IW-CONV: Inkwell Interest Form",
+          "count": 8
+        },
+        {
+          "tag": "IJ-CONV: Interactive Demo",
+          "count": 7
+        },
+        {
+          "tag": "ECE-WEB: Giving-Writing-It's-Due_S26",
+          "count": 5
+        }
+      ]
+    }
   }
 ]

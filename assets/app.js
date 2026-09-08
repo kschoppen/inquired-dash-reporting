@@ -757,6 +757,36 @@ function pipelineStageTable(label, stages) {
   return `<table><thead><tr><th>${label} stage</th><th>Deals</th><th>$ Amount</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+// ---- content engagement (intent tier + content tags — running totals, not a weekly-window count) ----
+const CE_TIER_COLORS = { high: "#144745", medium: "#1C2660", low: "#94A3AE" };
+
+function ceTagDeltaHTML(d) {
+  if (d == null) return "";
+  if (d === 0) return '<span class="delta flat">=</span>';
+  return d > 0 ? `<span class="delta up">▲${fmtN(d)}</span>` : `<span class="delta down">▼${fmtN(Math.abs(d))}</span>`;
+}
+
+function contentEngagementSection(ce) {
+  if (!ce) return "";
+  const tier = ce.intent_tier || {};
+  const tierCards = ["high", "medium", "low"].map((k) => {
+    const label = k.charAt(0).toUpperCase() + k.slice(1) + " intent";
+    return `<div class="card"><div class="label" style="color:${CE_TIER_COLORS[k]}">${label}</div><div class="value">${fmtN(tier[k])}</div><div class="cap">Contacts currently tagged</div></div>`;
+  }).join("");
+
+  const tags = ce.top_content_tags || [];
+  const tagRows = tags.map((t) => `<tr><td>${t.tag}</td><td>${fmtN(t.count)}</td><td>${ceTagDeltaHTML(t.delta)}</td></tr>`).join("");
+
+  return `
+    <div class="panel"><h3>Content engagement <span class="muted">(as of ${ce.as_of || "—"})</span></h3>
+      ${note("Running totals — how many contacts currently carry each value, not new this week. WoW compares against last week's stored snapshot.")}
+      <div class="cards">${tierCards}</div>
+      <h4>Top content tags</h4>
+      ${tagRows ? `<table class="bd"><thead><tr><th>Tag</th><th>Contacts</th><th>WoW</th></tr></thead><tbody>${tagRows}</tbody></table>` : `<p class="cap">No tagged contacts yet.</p>`}
+      ${note("Content tags are multi-select — a contact with more than one tag counts toward each, so this won't sum to total contacts.")}
+    </div>`;
+}
+
 function dispositionProductTable(last) {
   const bp = (last.disposition && last.disposition.by_product) || {};
   const rows = WK_PIPE_PRODUCT_ROWS.map(([k, label, color]) => {
@@ -856,6 +886,8 @@ function renderWeekly(d) {
       ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
       ${last.disposition.by_product ? `<h4>By product</h4>${dispositionProductTable(last)}${note("Product-tagged subset — coverage runs lower here than on the funnel metrics, so these won't sum to the totals above.")}` : ""}
     </div>` : ""}
+
+    ${contentEngagementSection(last.content_engagement)}
 
     ${brandLiftSection(d.brand_lift, "WoW", "wBrandLift")}
 
