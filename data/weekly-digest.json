@@ -77,26 +77,26 @@
     "district_open": 32,
     "school_open": 15,
     "as_of": "2026-08-31",
-    "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded.",
+    "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400 / New Business 912820790). Test deals excluded.",
     "by_product": {
       "ij": {
-        "count": 28,
-        "amount": 173734.99
+        "count": 115,
+        "amount": 2695119.82
       },
       "inkwell": {
-        "count": 1,
-        "amount": 0
+        "count": 8,
+        "amount": 586000
       },
       "wh": {
-        "count": 5,
-        "amount": 17477
+        "count": 9,
+        "amount": 30727
       },
       "gf8": {
-        "count": 2,
-        "amount": 153000
+        "count": 22,
+        "amount": 662800
       },
       "untagged": {
-        "count": 16,
+        "count": 17,
         "amount": 0
       }
     },
@@ -134,8 +134,31 @@
           "count": 1,
           "amount": 1638
         }
+      ],
+      "new_business": [
+        {
+          "stage": "Interest",
+          "count": 88,
+          "amount": 3177288.83
+        },
+        {
+          "stage": "Sales Qualified",
+          "count": 20,
+          "amount": 156300
+        },
+        {
+          "stage": "Consideration",
+          "count": 3,
+          "amount": 123437
+        },
+        {
+          "stage": "Conviction",
+          "count": 2,
+          "amount": 110159
+        }
       ]
-    }
+    },
+    "new_business_open": 113
   },
   "segment_coverage": {
     "hih": 56,
