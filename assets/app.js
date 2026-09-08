@@ -937,12 +937,13 @@ function renderWeekly(d) {
       <div class="cards">
         ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
         ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
+        ${card("New Business — open deals", fmtN(pipe.new_business_open), "", "New Business Pipeline")}
       </div>
       ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
       ${pipe.by_product ? `
       <div class="grid2">
         <div><h4>By product</h4>${pipelineProductTable(pipe)}${note("Deals tagged with more than one product count toward each — totals won't sum to the open-deal count above.")}</div>
-        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
+        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}${pipelineStageTable("New Business", pipe.by_stage && pipe.by_stage.new_business)}</div>
       </div>` : ""}
     </div>
 

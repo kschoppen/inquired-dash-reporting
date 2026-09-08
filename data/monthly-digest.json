@@ -1898,30 +1898,30 @@
         "opp": 124
       },
       "revenue": {
-        "district_won": 109140.11,
+        "district_won": 179079.02,
         "school_won": 40427.75,
-        "total_won": 149567.86,
-        "nb_won": 129635.51,
+        "total_won": 219506.77,
+        "nb_won": 199574.42,
         "existing_won": 19932.35,
-        "wins": 34,
-        "win_rate_count_pct": 85.0,
-        "win_rate_dollar_pct": 86.7,
+        "wins": 36,
+        "win_rate_count_pct": 80.0,
+        "win_rate_dollar_pct": 84.1,
         "by_segment": {
           "single_small": {
             "won": 19,
             "lost": 3
           },
           "medium": {
-            "won": 8,
-            "lost": 2
+            "won": 9,
+            "lost": 4
           },
           "large": {
-            "won": 5,
+            "won": 6,
             "lost": 1
           },
           "enterprise": {
             "won": 2,
-            "lost": 0
+            "lost": 1
           }
         }
       },
@@ -2202,6 +2202,22 @@
           "type": "newbusiness",
           "amount": 5743,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55198118236"
+        },
+        {
+          "name": "Bloomington Public School District, MN - SS",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 69938.91,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/21587214398"
+        },
+        {
+          "name": "Woodburn School District, OR - SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55827961761"
         }
       ]
     }
