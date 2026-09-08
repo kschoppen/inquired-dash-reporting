@@ -1,0 +1,19 @@
+{
+  "school_year": "SY27-28",
+  "window_start": "2027-08-01",
+  "window_end": "2028-07-31",
+  "pipeline_goal": 10000000,
+  "closed_won_goal": 2000000,
+  "set_date": "2026-09-08",
+  "set_by": "Kelsey / Jeanette",
+  "reference_year": {
+    "school_year": "SY25-26",
+    "window_start": "2025-08-01",
+    "window_end": "2026-07-31",
+    "generated": 7650063.50,
+    "closed_won": 1892390.94,
+    "closed_lost": 5730788.57,
+    "win_rate_pct": 24.8
+  },
+  "notes": "Fiscal year runs Aug 1-Jul 31, on deal close date (not the Oct-Sep close year used elsewhere for monthly win-rate). 'Generated' = SUM(amount) across ALL deals (open + won + lost, both pipelines, single-site included) whose closedate falls in the window -- lost deals count toward the goal number, since $10M pipeline / $2M closed-won implies a ~20% target win rate. reference_year is informational only (last completed year, for comparison) and is not re-fetched automatically. Edit pipeline_goal / closed_won_goal / window_start / window_end here directly when the target changes -- no code change needed. Read (not written) by weekly-marketing-digest and monthly-marketing-digest."
+}

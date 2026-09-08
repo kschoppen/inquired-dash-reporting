@@ -2475,5 +2475,148 @@
     "prior_total": 206498,
     "yoy_pct": 38.2
   },
-  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
+  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups.",
+  "pipeline_goal": {
+    "school_year": "SY27-28",
+    "as_of": "2026-09-08",
+    "goal": {
+      "generated": 10000000,
+      "closed_won": 2000000
+    },
+    "actual": {
+      "open": 10000,
+      "lost": 0,
+      "won": 0
+    },
+    "by_segment": {
+      "single_small": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "medium": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "large": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "enterprise": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      }
+    },
+    "by_product": {
+      "ij": {
+        "open": 10000,
+        "lost": 0,
+        "won": 0
+      },
+      "inkwell": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "wh": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "gf8": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      },
+      "untagged": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      }
+    },
+    "by_pipeline": {
+      "district": {
+        "open": 10000,
+        "lost": 0,
+        "won": 0
+      },
+      "school": {
+        "open": 0,
+        "lost": 0,
+        "won": 0
+      }
+    },
+    "reference_year": {
+      "school_year": "SY25-26",
+      "generated": 7650063.5,
+      "closed_won": 1892390.94,
+      "closed_lost": 5730788.57,
+      "win_rate_pct": 24.8,
+      "by_segment": {
+        "single_small": {
+          "open": 25835.0,
+          "lost": 476417.0,
+          "won": 280115.27
+        },
+        "medium": {
+          "open": 248.99,
+          "lost": 1533240.67,
+          "won": 185437.35
+        },
+        "large": {
+          "open": 800.0,
+          "lost": 915894.9,
+          "won": 309896.56
+        },
+        "enterprise": {
+          "open": 0.0,
+          "lost": 2805236.0,
+          "won": 1103252.76
+        }
+      },
+      "by_product": {
+        "ij": {
+          "open": 26883.99,
+          "lost": 5540282.57,
+          "won": 1804555.94
+        },
+        "inkwell": {
+          "open": 0.0,
+          "lost": 92000.0,
+          "won": 78009.0
+        },
+        "wh": {
+          "open": 11977.0,
+          "lost": 155034.0,
+          "won": 281896.04
+        },
+        "gf8": {
+          "open": 0.0,
+          "lost": 17000.0,
+          "won": 0.0
+        },
+        "untagged": {
+          "open": 0.0,
+          "lost": 77406.0,
+          "won": 1377.0
+        }
+      },
+      "by_pipeline": {
+        "district": {
+          "open": 11968.99,
+          "lost": 5557304.57,
+          "won": 1781774.84
+        },
+        "school": {
+          "open": 14915.0,
+          "lost": 173484.0,
+          "won": 110616.1
+        }
+      }
+    },
+    "note": "Deal close date filter (Aug 1, 2027-Jul 31, 2028), both pipelines, single-site included -- 'generated' is open+lost+won combined (lost deals count toward the goal number; $10M/$2M implies a ~20% target win rate). Segment/product/district-school breakdowns are descriptive context, not separate sub-goals. Goal targets set in data/goals.json."
+  }
 }

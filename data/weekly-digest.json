@@ -6142,5 +6142,25 @@
       }
     }
   ],
-  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record.",
+  "pipeline_goal": {
+    "school_year": "SY27-28",
+    "as_of": "2026-09-08",
+    "goal": {
+      "generated": 10000000,
+      "closed_won": 2000000
+    },
+    "actual": {
+      "open": 10000,
+      "lost": 0,
+      "won": 0
+    },
+    "reference_year": {
+      "school_year": "SY25-26",
+      "generated": 7650063.5,
+      "closed_won": 1892390.94,
+      "win_rate_pct": 24.8
+    },
+    "note": "Running total on deal close date (Aug 1, 2027-Jul 31, 2028) -- not a weekly-window count. Full segment/product/district-school breakdown lives on the Monthly Digest tab. Goal targets set in data/goals.json."
+  }
 }

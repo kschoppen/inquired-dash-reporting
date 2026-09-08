@@ -17,6 +17,7 @@
   --ink:         #1A1A1A;
   --up:          #1a7f5a;
   --down:        #b3261e;
+  --lost:        #C9BEA8;  /* closed-lost deals — muted, not alarming; resolved fact not a live problem */
   --font: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; }
@@ -549,3 +550,24 @@ details.kwd table { margin-top: 8px; }
 tr.has-note td:first-child { background: rgba(180,83,9,0.06); }
 .week-note-flag { cursor: help; font-size: 13px; }
 
+
+/* ── Pipeline vs. Goal (weekly compact + monthly full) ── */
+.goal-bar-wrap { position: relative; height: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.goal-bar-fill { height: 100%; border-radius: 999px 0 0 999px; }
+.goal-bar-fill.pipeline { background: var(--iq-purple); }
+.goal-bar-fill.won { background: var(--iq-green); }
+.goal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.goal-block .goal-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.goal-block .goal-label { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.goal-block .goal-pct { font-size: 13px; font-weight: 900; color: var(--ink); }
+.goal-block .goal-nums { font-size: 20px; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+.goal-block .goal-nums .of { font-size: 13px; font-weight: 700; color: var(--muted); }
+@media (max-width: 640px) { .goal-row { grid-template-columns: 1fr; } }
+
+.stack-bar { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; height: 14px; overflow: hidden; display: flex; }
+.stack-seg.won { background: var(--iq-green); }
+.stack-seg.lost { background: var(--lost); }
+.stack-seg.open { background: var(--iq-purple-lt); }
+.stack-row { display: grid; grid-template-columns: 130px 1fr 70px; align-items: center; gap: 10px; font-size: 12px; margin-bottom: 7px; }
+.stack-row .lbl { color: var(--ink); font-weight: 700; }
+.stack-row .val { text-align: right; color: var(--muted); font-size: 11.5px; }

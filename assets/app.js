@@ -532,6 +532,9 @@ function renderMonthly(d) {
     <!-- LAGGING -->
     <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
     <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
+
+    ${pipelineGoalSection(d.pipeline_goal, { full: true })}
+
     <div class="cards">
       <div class="card"><div class="label">Closed-won ($)</div><div class="value">${fmt$(last.revenue.total_won)}</div>${dualDelta(last.revenue.total_won, prev.revenue && prev.revenue.total_won, null)}<div class="cap">${last.label} · total dollars won (non-test / non-RFP)</div></div>
       <div class="card"><div class="label">New business ($)</div><div class="value">${fmt$(last.revenue.nb_won)}</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">new + pilot + pilot-expansion deals</div></div>
@@ -796,6 +799,70 @@ function dispositionProductTable(last) {
   return `<table><thead><tr><th>Product</th><th>Disqualified</th><th>Sent to nurture</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+// ---- pipeline vs. goal (weekly compact + monthly full) — shared by both tabs ----
+const PG_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
+const PG_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"], ["gf8", "Great First 8"], ["untagged", "Untagged"]];
+const PG_PIPELINE_ROWS = [["district", "District"], ["school", "School"]];
+
+function pgTotal(b) { return ((b && b.open) || 0) + ((b && b.lost) || 0) + ((b && b.won) || 0); }
+function pgBarSegs(b) {
+  const t = pgTotal(b) || 1;
+  const wonPct = ((b && b.won) || 0) / t * 100, lostPct = ((b && b.lost) || 0) / t * 100, openPct = ((b && b.open) || 0) / t * 100;
+  return `<div class="stack-bar"><div class="stack-seg won" style="width:${wonPct}%"></div><div class="stack-seg lost" style="width:${lostPct}%"></div><div class="stack-seg open" style="width:${openPct}%"></div></div>`;
+}
+function pgBreakdownRows(rowDefs, data) {
+  return rowDefs.map(([k, label]) => `<div class="stack-row"><span class="lbl">${label}</span>${pgBarSegs(data && data[k])}<span class="val">${fmt$(pgTotal(data && data[k]))}</span></div>`).join("");
+}
+function pgBreakdownTable(rowDefs, data) {
+  const body = rowDefs.map(([k, label]) => { const b = (data && data[k]) || {}; return `<tr><td>${label}</td><td>${fmt$(b.open)}</td><td>${fmt$(b.lost)}</td><td>${fmt$(b.won)}</td></tr>`; }).join("");
+  return `<table class="bd"><thead><tr><th></th><th>Open</th><th>Lost</th><th>Won</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function pipelineGoalSection(pg, opts = {}) {
+  if (!pg) return "";
+  const goal = pg.goal || {}, actual = pg.actual || {}, ref = pg.reference_year || {};
+  const total = pgTotal(actual);
+  const pipelinePct = goal.generated ? Math.min(100, total / goal.generated * 100) : 0;
+  const wonPct = goal.closed_won ? Math.min(100, (actual.won || 0) / goal.closed_won * 100) : 0;
+  const showTarget = total > 100;
+  const bd = showTarget ? { segment: pg.by_segment, product: pg.by_product, pipeline: pg.by_pipeline, label: pg.school_year }
+                        : { segment: ref.by_segment, product: ref.by_product, pipeline: ref.by_pipeline, label: `${ref.school_year || "last year"} for reference` };
+
+  return `
+  <div class="panel"><h3>Pipeline vs. ${pg.school_year || ""} Goal</h3>
+    <p class="cap" style="margin-top:0">Deal close date in window · as of ${pg.as_of || "—"}${opts.full ? "" : " · updates weekly"}</p>
+    <div class="goal-row">
+      <div class="goal-block">
+        <div class="goal-top"><span class="goal-label">Pipeline generated</span><span class="goal-pct">${pipelinePct.toFixed(1)}%</span></div>
+        <div class="goal-nums">${fmt$(total)} <span class="of">/ ${fmt$(goal.generated)} goal</span></div>
+        <div class="goal-bar-wrap"><div class="goal-bar-fill pipeline" style="width:${pipelinePct}%"></div></div>
+      </div>
+      <div class="goal-block">
+        <div class="goal-top"><span class="goal-label">Closed-won</span><span class="goal-pct">${wonPct.toFixed(1)}%</span></div>
+        <div class="goal-nums">${fmt$(actual.won)} <span class="of">/ ${fmt$(goal.closed_won)} goal</span></div>
+        <div class="goal-bar-wrap"><div class="goal-bar-fill won" style="width:${wonPct}%"></div></div>
+      </div>
+    </div>
+    ${ref.generated ? `<p class="cap">Last full year (${ref.school_year}): ${fmt$(ref.generated)} generated · ${fmt$(ref.closed_won)} closed-won · ${ref.win_rate_pct}% win rate — the basis for this year's targets.</p>` : ""}
+    ${opts.full ? `
+    <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px">By segment <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+    ${pgBreakdownRows(PG_SEGMENT_ROWS, bd.segment)}
+    ${note(`<span class="dot" style="background:var(--iq-green)"></span>Won &nbsp; <span class="dot" style="background:var(--lost)"></span>Lost &nbsp; <span class="dot" style="background:var(--iq-purple-lt)"></span>Open — bar width is share of that segment's own total. Descriptive context, not a separate goal per segment.`)}
+    <div class="grid2">
+      <div>
+        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By product <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+        ${pgBreakdownTable(PG_PRODUCT_ROWS, bd.product)}
+        ${note("Multi-tagged deals count toward each product — won't sum to the total above.")}
+      </div>
+      <div>
+        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By district / school <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+        ${pgBreakdownTable(PG_PIPELINE_ROWS, bd.pipeline)}
+        ${note("Reuses the existing District/School Sales Pipeline split.")}
+      </div>
+    </div>` : `<p class="cap">Full segment / product / district-school breakdown lives on the Monthly Digest tab.</p>`}
+  </div>`;
+}
+
 function renderWeekly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
@@ -876,6 +943,8 @@ function renderWeekly(d) {
         <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
       </div>` : ""}
     </div>
+
+    ${pipelineGoalSection(d.pipeline_goal, { full: false })}
 
     ${(last.disposition && (last.disposition.dq != null || last.disposition.nurture != null)) ? `
     <div class="panel"><h3>Lead disposition — ${last.label || ""}</h3>
