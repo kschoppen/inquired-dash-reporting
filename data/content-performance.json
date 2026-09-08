@@ -1,0 +1,275 @@
+{
+  "skill": "content-performance",
+  "title": "Content Performance",
+  "updated": "2026-09-08",
+  "min_views_threshold": 2000,
+  "excluded_note": "Form-embed URLs (share.hsforms.com), thank-you/confirmation pages, and non-marketing corporate pages (careers, about, team) are excluded from this table so the gap/watch/healthy flags stay meaningful.",
+  "weeks": [
+    {
+      "period": "2026-09-08",
+      "label": "Sep 8, 2026",
+      "totals": {
+        "pages_tracked": 23,
+        "gap_count": 12,
+        "watch_count": 2,
+        "healthy_count": 9
+      },
+      "verdict": "12 high-traffic pages are converting under 0.5% with no clear next step. Biggest: the inquirED.org homepage (199,954 views, 0.02% conversion) and the Inquiry-Based Social Studies page (48,810 views, 0.06%). 9 dedicated landers are converting 10%+ and are the template to point traffic toward.",
+      "pages": [
+        {
+          "contentId": "www.inquired.org/post/inquiry-unit-design",
+          "title": "Inquiry Unit Design",
+          "url": "https://www.inquired.org/post/inquiry-unit-design",
+          "content_type": "blog_post",
+          "raw_views": 5744,
+          "contacts": 0,
+          "conversion_rate_pct": 0.0,
+          "bounce_rate_pct": 90.6,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/post/see-think-wonder",
+          "title": "See Think Wonder",
+          "url": "https://www.inquired.org/post/see-think-wonder",
+          "content_type": "blog_post",
+          "raw_views": 5147,
+          "contacts": 0,
+          "conversion_rate_pct": 0.0,
+          "bounce_rate_pct": 96.4,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/post/what-is-inquiry-based-social-studies",
+          "title": "What Is Inquiry Based Social Studies",
+          "url": "https://www.inquired.org/post/what-is-inquiry-based-social-studies",
+          "content_type": "blog_post",
+          "raw_views": 4957,
+          "contacts": 0,
+          "conversion_rate_pct": 0.0,
+          "bounce_rate_pct": 92.2,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/post/anchor-charts-the-unseen-heroes-of-inquiry-based-learning",
+          "title": "Anchor Charts The Unseen Heroes Of Inquiry Based Learning",
+          "url": "https://www.inquired.org/post/anchor-charts-the-unseen-heroes-of-inquiry-based-learning",
+          "content_type": "blog_post",
+          "raw_views": 3932,
+          "contacts": 0,
+          "conversion_rate_pct": 0.0,
+          "bounce_rate_pct": 95.9,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/what-is-inquiry",
+          "title": "What Is Inquiry",
+          "url": "https://www.inquired.org/what-is-inquiry",
+          "content_type": "site_page",
+          "raw_views": 3637,
+          "contacts": 0,
+          "conversion_rate_pct": 0.0,
+          "bounce_rate_pct": 87.8,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/",
+          "title": "inquirED.org Homepage",
+          "url": "https://www.inquired.org/",
+          "content_type": "site_page",
+          "raw_views": 199954,
+          "contacts": 43,
+          "conversion_rate_pct": 0.022,
+          "bounce_rate_pct": 92.0,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/webinarinfo",
+          "title": "Webinar Info Page",
+          "url": "https://www.inquired.org/webinarinfo",
+          "content_type": "site_page",
+          "raw_views": 6850,
+          "contacts": 2,
+          "conversion_rate_pct": 0.029,
+          "bounce_rate_pct": 47.6,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/post/culturally-responsive-teaching-in-social-studies",
+          "title": "Culturally Responsive Teaching In Social Studies",
+          "url": "https://www.inquired.org/post/culturally-responsive-teaching-in-social-studies",
+          "content_type": "blog_post",
+          "raw_views": 5738,
+          "contacts": 2,
+          "conversion_rate_pct": 0.035,
+          "bounce_rate_pct": 94.4,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/distancelearning",
+          "title": "Distance Learning Resources",
+          "url": "https://www.inquired.org/distancelearning",
+          "content_type": "site_page",
+          "raw_views": 13090,
+          "contacts": 5,
+          "conversion_rate_pct": 0.038,
+          "bounce_rate_pct": 61.4,
+          "flag": "gap"
+        },
+        {
+          "contentId": "www.inquired.org/inquiry-based-social-studies",
+          "title": "Inquiry Based Social Studies",
+          "url": "https://www.inquired.org/inquiry-based-social-studies",
+          "content_type": "site_page",
+          "raw_views": 48810,
+          "contacts": 28,
+          "conversion_rate_pct": 0.057,
+          "bounce_rate_pct": 85.3,
+          "flag": "gap"
+        },
+        {
+          "contentId": "inquired.com/",
+          "title": "inquired.com Homepage",
+          "url": "https://inquired.com/",
+          "content_type": "site_page",
+          "raw_views": 86839,
+          "contacts": 129,
+          "conversion_rate_pct": 0.149,
+          "bounce_rate_pct": 54.9,
+          "flag": "gap"
+        },
+        {
+          "contentId": "inquired.com/inquiry-based-social-studies",
+          "title": "Inquiry-Based Social Studies (inquired.com)",
+          "url": "https://inquired.com/inquiry-based-social-studies",
+          "content_type": "site_page",
+          "raw_views": 3640,
+          "contacts": 7,
+          "conversion_rate_pct": 0.192,
+          "bounce_rate_pct": 79.9,
+          "flag": "gap"
+        },
+        {
+          "contentId": "inquired.com/inquiry-based-social-studies/elementary-curriculum",
+          "title": "Elementary Curriculum (inquired.com)",
+          "url": "https://inquired.com/inquiry-based-social-studies/elementary-curriculum",
+          "content_type": "site_page",
+          "raw_views": 10951,
+          "contacts": 74,
+          "conversion_rate_pct": 0.676,
+          "bounce_rate_pct": 69.9,
+          "flag": "watch"
+        },
+        {
+          "contentId": "156891852200",
+          "title": "PPC Lander",
+          "url": "https://learn.inquired.com/inquiry-journeys",
+          "content_type": "landing_page",
+          "raw_views": 7034,
+          "contacts": 129,
+          "conversion_rate_pct": 1.834,
+          "bounce_rate_pct": 89.9,
+          "flag": "watch"
+        },
+        {
+          "contentId": "42217051032",
+          "title": "Curriculum Review Guide_F25",
+          "url": "https://learn.inquired.com/review",
+          "content_type": "landing_page",
+          "raw_views": 14351,
+          "contacts": 1469,
+          "conversion_rate_pct": 10.236,
+          "bounce_rate_pct": 68.1,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "84690945583",
+          "title": "Inquiry Journeys Learn More Lander",
+          "url": "https://learn.inquired.com/start-your-journey",
+          "content_type": "landing_page",
+          "raw_views": 4414,
+          "contacts": 498,
+          "conversion_rate_pct": 11.282,
+          "bounce_rate_pct": 69.9,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "50035190549",
+          "title": "Future of Social Studies_Digest",
+          "url": "https://learn.inquired.com/future-of-social-studies",
+          "content_type": "landing_page",
+          "raw_views": 4275,
+          "contacts": 493,
+          "conversion_rate_pct": 11.532,
+          "bounce_rate_pct": 66.2,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "149340931926",
+          "title": "Science of Building Knowledge_Digest",
+          "url": "https://learn.inquired.com/knowledge",
+          "content_type": "landing_page",
+          "raw_views": 3128,
+          "contacts": 400,
+          "conversion_rate_pct": 12.788,
+          "bounce_rate_pct": 60.1,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "98684615690",
+          "title": "Building Background Knowledge_Digest",
+          "url": "https://learn.inquired.com/background",
+          "content_type": "landing_page",
+          "raw_views": 4688,
+          "contacts": 698,
+          "conversion_rate_pct": 14.889,
+          "bounce_rate_pct": 57.4,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "175067323240",
+          "title": "Strong Communities_Digest",
+          "url": "https://learn.inquired.com/strong-communities",
+          "content_type": "landing_page",
+          "raw_views": 3610,
+          "contacts": 546,
+          "conversion_rate_pct": 15.125,
+          "bounce_rate_pct": 58.0,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "183687706130",
+          "title": "Webinar Digest_Deeper Learning in Social Studies_S25",
+          "url": "https://learn.inquired.com/deeper-learning",
+          "content_type": "landing_page",
+          "raw_views": 3714,
+          "contacts": 580,
+          "conversion_rate_pct": 15.617,
+          "bounce_rate_pct": 52.9,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "91763877511",
+          "title": "Scope and Sequence Download Lander",
+          "url": "https://learn.inquired.com/scope-and-sequence-download",
+          "content_type": "landing_page",
+          "raw_views": 4124,
+          "contacts": 651,
+          "conversion_rate_pct": 15.786,
+          "bounce_rate_pct": 61.8,
+          "flag": "healthy"
+        },
+        {
+          "contentId": "33939280282",
+          "title": "Scope and Sequence Download",
+          "url": "https://learn.inquired.com/scope-and-sequence-download",
+          "content_type": "landing_page",
+          "raw_views": 11776,
+          "contacts": 2148,
+          "conversion_rate_pct": 18.24,
+          "bounce_rate_pct": 61.5,
+          "flag": "healthy"
+        }
+      ]
+    }
+  ]
+}

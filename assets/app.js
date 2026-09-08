@@ -10,6 +10,8 @@ const TABS = [
     meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026" } },
   { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
+    meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026" } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
     meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
@@ -1150,6 +1152,58 @@ function renderCampaign(d) {
         { label: "Low", data: intentCamps.map((c) => c.intent.low), backgroundColor: GREY, stack: "i" } ] },
       options: { ...botLeg, indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true }, y: { stacked: true } } } });
   }
+}
+
+// ---- content performance tab ----
+function renderContentPerformance(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  const weeks = d.weeks || [];
+  if (!weeks.length) {
+    document.getElementById("view").innerHTML = `
+      <div class="panel"><h3>Content Performance: awaiting first run</h3>
+        <p class="insight">This tab populates on the next weekly Dash refresh.</p>
+      </div>`;
+    return;
+  }
+  const last = weeks[weeks.length - 1];
+  const pages = last.pages || [];
+  const t = last.totals || {};
+  const FLAG_LABEL = { gap: "Conversion gap", watch: "Watch", healthy: "Healthy" };
+  const FLAG_CLASS = { gap: "cc-thr-red", watch: "cc-thr-amber", healthy: "cc-thr-green" };
+  const TYPE_LABEL = { landing_page: "Landing page", blog_post: "Blog post", site_page: "Site page" };
+
+  document.getElementById("view").innerHTML = `
+    ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
+    <div class="cards">
+      ${card("Pages tracked", fmtN(t.pages_tracked))}
+      ${card("Conversion gaps", fmtN(t.gap_count), "", "views ≥ " + fmtN(d.min_views_threshold) + ", under 0.5% conversion")}
+      ${card("Watch", fmtN(t.watch_count), "", "0.5 to 2% conversion")}
+      ${card("Healthy", fmtN(t.healthy_count), "", "2%+ conversion")}
+    </div>
+    <div class="section-label">Ranked by conversion rate. ${last.label}</div>
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bd">
+        <thead><tr><th>Page</th><th>Type</th><th>Views</th><th>Contacts</th><th>Conversion</th><th>Bounce</th><th>Status</th></tr></thead>
+        <tbody>${pages.map((p) => `
+          <tr>
+            <td><a href="${p.url}" target="_blank" rel="noopener">${p.title}</a></td>
+            <td>${TYPE_LABEL[p.content_type] || p.content_type}</td>
+            <td>${fmtN(p.raw_views)}</td>
+            <td>${fmtN(p.contacts)}</td>
+            <td><span class="${FLAG_CLASS[p.flag]}">${p.conversion_rate_pct.toFixed(2)}%</span></td>
+            <td>${p.bounce_rate_pct.toFixed(0)}%</td>
+            <td><span class="${FLAG_CLASS[p.flag]}">${FLAG_LABEL[p.flag] || p.flag}</span></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="cc-threshold">
+      <strong>Thresholds (contacts / views):</strong>
+      <span class="cc-thr-red">Gap under 0.5%</span> ·
+      <span class="cc-thr-amber">Watch 0.5-2%</span> ·
+      <span class="cc-thr-green">Healthy 2%+</span>.
+      Pages under ${fmtN(d.min_views_threshold)} views excluded as noise. ${d.excluded_note || ""}
+    </div>`;
 }
 
 // ---- definitions tab ----
