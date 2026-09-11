@@ -473,7 +473,7 @@ function renderMonthly(d) {
     ${brandLiftSection(d.brand_lift, "MoM", "mBrandLift")}
 
     <!-- LAGGING -->
-    <div id="sec-lagging" class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
+    <div id="sec-lagging" class="section-label">💰 Pipeline · ${last.label} <span class="muted">(lagging sales outcome — $ + win rate context; RevOps owns the official view)</span></div>
     <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
 
     ${pipelineGoalSection(d.pipeline_goal, { full: true })}
@@ -507,7 +507,7 @@ function renderMonthly(d) {
     { id: "sec-web", label: "Web" },
     { id: "sec-seo", label: "SEO" },
     { id: "sec-aeo", label: "AEO" },
-    { id: "sec-lagging", label: "Lagging" },
+    { id: "sec-lagging", label: "Pipeline" },
     { id: "sec-detail", label: "Detail" },
   ]);
 
