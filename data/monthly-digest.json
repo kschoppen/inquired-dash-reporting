@@ -12,7 +12,7 @@
   "seasonality": {
     "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
   },
-  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run). Lead = contacts entering the HubSpot 'Lead' lifecycle stage that month (hs_v2_date_entered_lead), same count-by-month pattern as HIH/MQL/SQL/Opp. Added retroactively 2026-09-11 as a one-off backfill (not a full digest run) because monthly-marketing-digest's SKILL.md never actually defined this metric even though the dashboard was built expecting funnel.lead \u2014 flagged for the skill spec to be updated so future runs keep it current automatically.",
+  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run). CORRECTED 2026-09-11: the SKILL.md dev repo (kschoppen/growth-marketing) already defines Lead as recent_conversion_date IN window (any contact with a form submission that month) \u2014 the installed/cloud-running copy of the skill was behind this dev repo, which is why Lead was never actually populated despite being spec'd. Corrected Lead to the official recent_conversion_date definition, replacing an earlier same-day approximation (hs_v2_date_entered_lead) that used a different property and didn't match the documented query.",
   "months": [
     {
       "period": "2025-06",
@@ -22,7 +22,7 @@
         "mql": 127,
         "sql": 38,
         "opp": 44,
-        "lead": 294
+        "lead": 182
       },
       "revenue": {
         "district_won": 320014.36,
@@ -77,7 +77,7 @@
         "mql": 137,
         "sql": 52,
         "opp": 53,
-        "lead": 236
+        "lead": 142
       },
       "revenue": {
         "district_won": 467121.79,
@@ -132,7 +132,7 @@
         "mql": 195,
         "sql": 101,
         "opp": 98,
-        "lead": 350
+        "lead": 262
       },
       "revenue": {
         "district_won": 35735.84,
@@ -187,7 +187,7 @@
         "mql": 305,
         "sql": 120,
         "opp": 120,
-        "lead": 652
+        "lead": 424
       },
       "revenue": {
         "district_won": 20287.41,
@@ -242,7 +242,7 @@
         "mql": 682,
         "sql": 497,
         "opp": 499,
-        "lead": 1106
+        "lead": 546
       },
       "revenue": {
         "district_won": 4731,
@@ -297,7 +297,7 @@
         "mql": 144,
         "sql": 43,
         "opp": 42,
-        "lead": 333
+        "lead": 327
       },
       "revenue": {
         "district_won": 5184.3,
@@ -352,7 +352,7 @@
         "mql": 136,
         "sql": 70,
         "opp": 71,
-        "lead": 695
+        "lead": 319
       },
       "revenue": {
         "district_won": 11250,
@@ -407,7 +407,7 @@
         "mql": 145,
         "sql": 37,
         "opp": 30,
-        "lead": 282
+        "lead": 344
       },
       "revenue": {
         "district_won": 15241.6,
@@ -462,7 +462,7 @@
         "mql": 313,
         "sql": 69,
         "opp": 69,
-        "lead": 475
+        "lead": 627
       },
       "revenue": {
         "district_won": 7805,
@@ -517,7 +517,7 @@
         "mql": 437,
         "sql": 68,
         "opp": 65,
-        "lead": 729
+        "lead": 503
       },
       "revenue": {
         "district_won": 4000,
@@ -569,7 +569,7 @@
       "label": "Apr 2026",
       "funnel": {
         "hih": 72,
-        "lead": 344,
+        "lead": 378,
         "mql": 195,
         "sql": 74,
         "opp": 77,
@@ -630,7 +630,7 @@
       "label": "May 2026",
       "funnel": {
         "hih": 101,
-        "lead": 296,
+        "lead": 284,
         "mql": 269,
         "sql": 99,
         "opp": 96,
@@ -1195,7 +1195,7 @@
         "mql": 336,
         "sql": 276,
         "opp": 281,
-        "lead": 938
+        "lead": 245
       },
       "revenue": {
         "district_won": 924843.86,
@@ -1630,7 +1630,7 @@
         "mql": 158,
         "sql": 112,
         "opp": 113,
-        "lead": 363
+        "lead": 197
       },
       "revenue": {
         "district_won": 658504.61,
@@ -1908,7 +1908,7 @@
         "mql": 281,
         "sql": 126,
         "opp": 124,
-        "lead": 682
+        "lead": 511
       },
       "revenue": {
         "district_won": 179079.02,
