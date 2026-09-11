@@ -2233,7 +2233,66 @@
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55827961761"
         }
       ],
-      "funnel_note": "August's MQL/HIH growth was mechanically inflated by an offline bulk contact import (confirmed 2026-09-11) -- SQL (+12.5%) and Opportunities (+9.7%) are the reliable read on real demand this month."
+      "funnel_note": "August's MQL/HIH growth was mechanically inflated by an offline bulk contact import (confirmed 2026-09-11) -- SQL (+12.5%) and Opportunities (+9.7%) are the reliable read on real demand this month.",
+      "ai_visibility": {
+        "score": 15,
+        "label": "Low",
+        "mentions": 18,
+        "mentions_delta_pct": -37.9,
+        "citations": 95,
+        "citations_delta_pct": 1.1,
+        "cited_pages": 40,
+        "cited_pages_delta_pct": 25.0,
+        "by_llm": [
+          {
+            "llm": "ChatGPT",
+            "pct": 38.9,
+            "count": 7
+          },
+          {
+            "llm": "AI Overview",
+            "pct": 27.8,
+            "count": 5
+          },
+          {
+            "llm": "Gemini",
+            "pct": 22.2,
+            "count": 4
+          },
+          {
+            "llm": "AI Mode",
+            "pct": 11.1,
+            "count": 2
+          }
+        ]
+      },
+      "keyword_gap": {
+        "total_missing": 100,
+        "relevant_missing": 14,
+        "filter_note": "Math keywords excluded -- competitors' products include math curricula not relevant to IJ/Inkwell/WH. 14 of 100 missing keywords are ELA/literacy/social studies.",
+        "top_gaps": [
+          {
+            "kw": "ela curriculum",
+            "vol": 880
+          },
+          {
+            "kw": "literacy curriculum",
+            "vol": 320
+          },
+          {
+            "kw": "middle school ela curriculum",
+            "vol": 140
+          },
+          {
+            "kw": "ela curriculum elementary",
+            "vol": 110
+          },
+          {
+            "kw": "ela programs",
+            "vol": 110
+          }
+        ]
+      }
     }
   ],
   "seo_topics": [
