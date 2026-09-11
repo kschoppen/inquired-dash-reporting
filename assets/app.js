@@ -221,52 +221,6 @@ function renderOverview(d) {
       <div class="ov-kpi-spk"><canvas id="ovSpk${i}"></canvas></div>
     </div>`).join("");
 
-  const CARDS = [
-    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Digest",
-      desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
-      statLabel: "Latest month", statValue: "—", dataFile: "data/monthly-digest.json",
-      statFn: (j) => { const m = j.months; return m && m.length ? m[m.length - 1].label : "—"; } },
-    { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Digest",
-      desc: "This week's new contacts, MQL conversions, and a drillable account list. Refreshes every Monday. Use for weekly standups and pipeline reviews.",
-      statLabel: "Week of", statValue: "—", dataFile: "data/weekly-digest.json",
-      statFn: (j) => { const w = j.weeks; return w && w.length ? w[w.length - 1].label : "—"; } },
-    { id: "campaign", accent: "#C04040", accentBg: "rgba(192,64,64,0.09)",  icon: "📣", title: "Campaign Health",
-      desc: "HIH/MQL performance by campaign, sorted by health status. Flags underperformers against portfolio benchmark.",
-      statLabel: "Active campaigns", statValue: "—", dataFile: "data/campaign-analytics.json",
-      statFn: (j) => { const m = j.months; if (!m || !m.length) return "—"; const last = m[m.length - 1]; return (last.total && last.total.active_campaigns != null) ? last.total.active_campaigns + " campaigns" : (last.campaigns ? last.campaigns.length + " campaigns" : "—"); } },
-    { id: "pulse",    accent: "#1C6854", accentBg: "rgba(28,104,84,0.10)",  icon: "👥", title: "Account Pulse (MQA)",
-      desc: "Accounts that have crossed the marketing-qualified threshold. Broken out by engagement stage and district so CS knows who to prioritize.",
-      statLabel: "In MQA window", statValue: "—", dataFile: "data/account-pulse.json",
-      statFn: (j) => { const s1 = j.section1; return s1 ? s1.length + " accounts" : "—"; } },
-  ];
-
-  // Fetch live stat values for each card in parallel (soft-fail — cards render with "—" on error)
-  Promise.all(CARDS.map((c) =>
-    fetch(c.dataFile, { cache: "no-store" }).then((r) => r.json()).then((j) => { c.statValue = c.statFn(j); }).catch(() => {})
-  )).then(() => {
-    document.querySelectorAll(".ov-dash-stat-value").forEach((el) => {
-      const id = el.closest(".ov-dash-card") && el.closest(".ov-dash-card").dataset.tabid;
-      const c = CARDS.find((x) => x.id === id);
-      if (c) el.textContent = c.statValue;
-    });
-  });
-
-  const cardsHTML = CARDS.map((c) => `
-    <button class="ov-dash-card" data-tabid="${c.id}" style="--ov-accent:${c.accent};--ov-accent-bg:${c.accentBg}" onclick="switchToTab('${c.id}')">
-      <div class="ov-dash-card-title">
-        <div class="ov-dash-icon">${c.icon}</div>
-        ${c.title}
-      </div>
-      <div class="ov-dash-desc">${c.desc}</div>
-      <div class="ov-dash-foot">
-        <div>
-          <div class="ov-dash-stat-label">${c.statLabel}</div>
-          <div class="ov-dash-stat-value" style="color:${c.accent}">${c.statValue}</div>
-        </div>
-        <span class="ov-dash-link">Open →</span>
-      </div>
-    </button>`).join("");
-
   const ws = d.weekly_signal;
   function wsCard(entry, label) {
     if (!entry) return "";
@@ -296,8 +250,6 @@ function renderOverview(d) {
     ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
-    <div class="ov-section-label">Drill into a dashboard</div>
-    <div class="ov-dash-grid">${cardsHTML}</div>
     <div class="ov-defs-link"><a href="#" onclick="switchToTab('defs');return false;">View metric definitions →</a></div>`;
 
   // sparklines
@@ -321,6 +273,30 @@ function renderOverview(d) {
       }
     }));
   });
+}
+
+// ---- jump rail (section quick-nav, built by the caller after #view is rendered) ----
+function buildJumpRail(sections) {
+  const rail = document.getElementById("jump-rail");
+  if (!rail || !sections || !sections.length) return;
+  rail.innerHTML = sections.map((s) => `<button data-jump="${s.id}">${s.label}</button>`).join("");
+  rail.hidden = false;
+  rail.querySelectorAll("button").forEach((b) => {
+    b.onclick = () => {
+      const el = document.getElementById(b.dataset.jump);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  });
+  const targets = sections.map((s) => document.getElementById(s.id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        rail.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.jump === entry.target.id));
+      });
+    }, { rootMargin: "-15% 0px -70% 0px" });
+    targets.forEach((t) => obs.observe(t));
+  }
 }
 
 function renderMonthly(d) {
@@ -348,7 +324,7 @@ function renderMonthly(d) {
 
   document.getElementById("view").innerHTML = `
     <!-- HIH HERO -->
-    <div class="hih-hero">
+    <div id="sec-hih" class="hih-hero">
       <div class="hih-hero-top">
         <div class="hih-hero-main">
           <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
@@ -372,7 +348,7 @@ function renderMonthly(d) {
     </div>
 
     <!-- FUNNEL ARROW -->
-    <div class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
+    <div id="sec-funnel" class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
     <div class="funnel-panel">
       <h3>Prospect → Opp · full funnel with conversion rates</h3>
       <p class="f-sub">Monthly new contacts entering each stage. MoM delta shown; YoY populates once prior-year data is in history. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
@@ -391,7 +367,7 @@ function renderMonthly(d) {
     </div>
 
     <!-- PRODUCT SECTION -->
-    <div class="product-section">
+    <div id="sec-leading" class="product-section">
       <div class="product-section-head">
         <div>
           <div class="product-section-title">▲ Leading Indicators · ${last.label}</div>
@@ -437,7 +413,7 @@ function renderMonthly(d) {
 
     <!-- WEB ACQUISITION -->
     ${wv.channels ? `
-    <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
+    <div id="sec-web" class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
     <div class="cards">
       <div class="card"><div class="label">Sessions</div><div class="value">${fmtN(wv.sessions)}</div>${dualDelta(wv.sessions, sessionsPrev, yoy.sessions)}<div class="cap">${yoy.sessions ? `vs ${fmtN(yoy.sessions)} same mo. prior year` : "YoY populates with 2 years of data"}</div></div>
       <div class="card"><div class="label">Users</div><div class="value">${fmtN(wv.users)}</div>${dualDelta(wv.users, (prev.web||{}).users, yoy.users)}<div class="cap">${yoy.users ? `vs ${fmtN(yoy.users)} prior year` : ""}</div></div>
@@ -457,62 +433,47 @@ function renderMonthly(d) {
     </div>` : ""}
 
     <!-- SEO -->
-    <div class="section-label">🔍 Organic search · ${last.label} <span class="muted">(Semrush rankings · SemRush traffic)</span></div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
-        ${seoSection(d)}
-        <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
-        ${note(seoNarrative(d))}
+    <div id="sec-seo" class="seo-section">
+      <div class="section-label" style="margin-top:0">🔍 SEO — organic search · ${last.label} <span class="muted">(Semrush rankings · Semrush traffic)</span></div>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
+          ${seoSection(d)}
+          <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
+          ${note(seoNarrative(d))}
+        </div>
+        <div class="panel">
+          <h3>Top organic entry pages <span class="source-badge semrush">Semrush API</span></h3>
+          <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
+          ${last.seo_top_pages
+            ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
+            : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
+        </div>
       </div>
-      <div class="panel">
-        <h3>Top organic entry pages <span class="source-badge semrush">SemRush API</span></h3>
-        <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
-        ${last.seo_top_pages
-          ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-          : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
+    </div>
+
+    <div id="sec-aeo" class="aeo-section">
+      <div class="section-label" style="margin-top:0">🎯 AEO — AI &amp; answer engine visibility · ${last.label}</div>
+      <div class="grid2">
+        <div class="panel">
+          <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
+          ${aiVisSection(last)}
+        </div>
+        <div class="panel">
+          <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
+          ${kwGapSection(last)}
+        </div>
+      </div>
+      <div class="aeo-under-construction">
+        🚧 <strong>HubSpot AEO — under construction.</strong> Tracked-prompt visibility across AI assistants (ChatGPT, Claude, Gemini) plus competitor share of voice for specific buyer questions like "Great First Eight vs Frog Street" — a different lens than the Semrush score above, which tracks aggregate brand mentions rather than named prompts. The pull is built and waiting on HubSpot AEO permission; real numbers land here once that's sorted.
       </div>
     </div>
 
     <!-- BRAND LIFT -->
     ${brandLiftSection(d.brand_lift, "MoM", "mBrandLift")}
 
-    <!-- AI VISIBILITY + KEYWORD GAP -->
-    <div class="section-label">🤖 AI &amp; competitive search visibility · ${last.label} <span class="muted">(Semrush)</span></div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
-        ${aiVisSection(last)}
-      </div>
-      <div class="panel">
-        <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
-        ${kwGapSection(last)}
-      </div>
-    </div>
-
-    <!-- AEO (HubSpot) -->
-    <div class="section-label">🎯 AEO — answer engine optimization · ${last.label} <span class="muted">(HubSpot)</span></div>
-    <p class="f-sub">Tracked-prompt visibility across AI assistants — a different lens than the Semrush AI Visibility score above: this tracks specific buyer questions ("Great First Eight vs Frog Street") rather than aggregate brand mentions.</p>
-    <div class="grid2">
-      <div class="panel">
-        <h3>AEO visibility <span class="source-badge hs">HubSpot</span></h3>
-        ${aeoVisSection(last)}
-      </div>
-      <div class="panel">
-        <h3>Competitor share of voice <span class="source-badge hs">HubSpot</span></h3>
-        ${aeoCompetitorSection(last)}
-      </div>
-    </div>
-    ${aeoAssistantSection(last)}
-
-    ${last.top_pages && last.top_pages.length ? `
-    <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label} · GA4)</span></h3>
-      <p class="flag" style="margin:0 0 10px">Pages ranked by key event completions (form submits, downloads, demo requests). MoM and YoY deltas populate once the digest skill pulls prior-period data.</p>
-      ${topPagesSection(last.top_pages, null, "monthly")}
-    </div>` : ""}
-
     <!-- LAGGING -->
-    <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
+    <div id="sec-lagging" class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
     <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
 
     ${pipelineGoalSection(d.pipeline_goal, { full: true })}
@@ -529,7 +490,7 @@ function renderMonthly(d) {
       ${last.deals ? dealDrill(last) : ""}
     </div>
 
-    <div class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
+    <div id="sec-detail" class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
       <table><thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead><tbody>
       ${m.map((x) => `<tr><td>${x.label}</td><td>${fmtN(fu(x,"hih"))}</td><td>${fmtN(fu(x,"mql"))}</td><td>${fmtN(fu(x,"sql"))}</td><td>${rate(fu(x,"sql"),fu(x,"mql")) != null ? rate(fu(x,"sql"),fu(x,"mql"))+"%" : "—"}</td><td>${fmtN(x.revenue.wins)}</td><td>${fmt$(x.revenue.total_won)}</td></tr>`).join("")}
       </tbody></table>
@@ -538,6 +499,17 @@ function renderMonthly(d) {
 
   // wire product chips
   document.querySelectorAll(".chip[data-p]").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
+
+  buildJumpRail([
+    { id: "sec-hih", label: "HIH" },
+    { id: "sec-funnel", label: "Funnel" },
+    { id: "sec-leading", label: "Leading ind." },
+    { id: "sec-web", label: "Web" },
+    { id: "sec-seo", label: "SEO" },
+    { id: "sec-aeo", label: "AEO" },
+    { id: "sec-lagging", label: "Lagging" },
+    { id: "sec-detail", label: "Detail" },
+  ]);
 
   const botLeg = { plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: false };
   const noLeg  = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
@@ -703,7 +675,10 @@ function kwGapSection(m) {
     ${kg.filter_note ? note(kg.filter_note) : ""}`;
 }
 
-// ---- AEO (HubSpot) sections ----
+// ---- AEO (HubSpot) sections — not currently called; the AEO panel shows a single
+// "under construction" banner until HubSpot AEO permission clears. Re-wire these in
+// (see the removed grid2 block in git history, commit "Split Organic Search into
+// tinted SEO/AEO sections...") once month.aeo has real data. ----
 function aeoVisSection(m) {
   const ae = m.aeo;
   if (!ae || ae.run_status !== "ok") {
@@ -1540,6 +1515,8 @@ function renderTabMeta(tab, lastRun) {
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").style.cssText = "";
+  const rail = document.getElementById("jump-rail");
+  if (rail) { rail.hidden = true; rail.innerHTML = ""; }
   if (tab.static) {
     // Static tabs render their own HTML, but their freshness stamp still comes
     // from a data file so this banner can never drift from the page it frames.

@@ -2292,7 +2292,59 @@
             "vol": 110
           }
         ]
-      }
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "visits": 3106,
+          "type": "Homepage"
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "visits": 257,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/52-words-the-meaning-and-message-of-the-preamble",
+          "visits": 187,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "visits": 186,
+          "type": "Product"
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "visits": 177,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "visits": 162,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "visits": 126,
+          "type": "Product"
+        },
+        {
+          "path": "/careers",
+          "visits": 97,
+          "type": "Page"
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "visits": 95,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/high-quality-instructional-materials-in-social-studies",
+          "visits": 51,
+          "type": "Blog"
+        }
+      ]
     }
   ],
   "seo_topics": [
