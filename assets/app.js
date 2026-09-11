@@ -490,6 +490,21 @@ function renderMonthly(d) {
       </div>
     </div>
 
+    <!-- AEO (HubSpot) -->
+    <div class="section-label">🎯 AEO — answer engine optimization · ${last.label} <span class="muted">(HubSpot)</span></div>
+    <p class="f-sub">Tracked-prompt visibility across AI assistants — a different lens than the Semrush AI Visibility score above: this tracks specific buyer questions ("Great First Eight vs Frog Street") rather than aggregate brand mentions.</p>
+    <div class="grid2">
+      <div class="panel">
+        <h3>AEO visibility <span class="source-badge hs">HubSpot</span></h3>
+        ${aeoVisSection(last)}
+      </div>
+      <div class="panel">
+        <h3>Competitor share of voice <span class="source-badge hs">HubSpot</span></h3>
+        ${aeoCompetitorSection(last)}
+      </div>
+    </div>
+    ${aeoAssistantSection(last)}
+
     ${last.top_pages && last.top_pages.length ? `
     <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label} · GA4)</span></h3>
       <p class="flag" style="margin:0 0 10px">Pages ranked by key event completions (form submits, downloads, demo requests). MoM and YoY deltas populate once the digest skill pulls prior-period data.</p>
@@ -686,6 +701,46 @@ function kwGapSection(m) {
       ${gaps.map((g) => `<tr><td>${g.kw}</td><td>${fmtN(g.vol)}</td></tr>`).join("")}
     </tbody></table>` : ""}
     ${kg.filter_note ? note(kg.filter_note) : ""}`;
+}
+
+// ---- AEO (HubSpot) sections ----
+function aeoVisSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok") {
+    const reason = ae && ae.run_status === "no_permission"
+      ? "HubSpot AEO permission not yet granted on this connection — reconnect the HubSpot integration once access is approved."
+      : "Data pending — populated by the monthly digest run (HubSpot AEO, same connector as CRM data — no separate credential).";
+    return `<p class="data-empty">— ${reason}</p>`;
+  }
+  return `<div class="ai-vis-score">
+      <span class="ai-vis-num">${ae.visibility_score != null ? ae.visibility_score : "—"}</span><span class="ai-vis-denom">/100</span>
+    </div>
+    <div class="ai-vis-stats">
+      ${[["Mentions", ae.mentions], ["Citations", ae.citations], ["Prompts tracked", ae.prompts_tracked]].map(([lbl, val]) =>
+      `<div class="ai-vis-stat"><span class="ai-vis-stat-label">${lbl}</span><span class="ai-vis-stat-val">${val != null ? fmtN(val) : "—"}</span></div>`
+    ).join("")}
+    </div>`;
+}
+
+function aeoCompetitorSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok" || !ae.competitors || !ae.competitors.length) {
+    return '<p class="data-empty">— Data pending — populated by the monthly digest run</p>';
+  }
+  return `<table><thead><tr><th>Brand</th><th>Mentions</th><th>Share of voice</th></tr></thead><tbody>
+    ${ae.competitors.map((c) => `<tr><td>${c.name}</td><td>${fmtN(c.mentions)}</td><td>${c.share_pct}%</td></tr>`).join("")}
+  </tbody></table>`;
+}
+
+function aeoAssistantSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok" || !ae.by_assistant || !ae.by_assistant.length) return "";
+  return `<div class="panel" style="margin-bottom:0">
+    <h3>Mentions by AI assistant <span class="muted">(${m.label} · HubSpot)</span></h3>
+    <div class="ai-vis-llm">
+      ${ae.by_assistant.map((a) => `<div class="ai-vis-llm-row"><span class="ai-vis-llm-name">${a.assistant}</span><div class="ai-vis-bar-wrap"><div class="ai-vis-bar" style="width:${a.pct}%"></div></div><span class="ai-vis-llm-pct">${a.pct}% · ${a.mentions}</span></div>`).join("")}
+    </div>
+  </div>`;
 }
 
 // ---- deal drill-down ----
