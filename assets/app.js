@@ -374,7 +374,7 @@ function renderMonthly(d) {
 
   const hihVel = fu(last, "hih"), hihVelPrev = fu(prev, "hih");
   const hihPool = (last.funnel && last.funnel.hih_pool_active != null) ? last.funnel.hih_pool_active : null;
-  const hihToMql = rate(fu(last, "mql"), hihVel), heroConv = rate(fu(last, "sql"), fu(last, "mql"));
+  const heroConv = rate(fu(last, "sql"), fu(last, "mql"));
 
   const sessions = wv.sessions, sessionsPrev = (prev.web || {}).sessions;
   const lead = fu(last, "lead"), leadPrev = fu(prev, "lead");
@@ -390,12 +390,12 @@ function renderMonthly(d) {
           <div class="hero-val">${hihPool != null ? fmtN(hihPool) : (hihVel != null ? fmtN(hihVel) : "—")}</div>
           <div class="hero-sub">Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This pool refreshes continuously in HubSpot.</div>
           <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
-          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. HIH contacts convert to MQL at <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong>, making them our highest-value top-of-funnel signal.</div>
+          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. Because HIH isn't a sequential gate MQL passes through, there's no valid "HIH→MQL conversion rate" — it's a parallel signal, read alongside the funnel below rather than as a step in it.</div>
         </div>
         <div class="hih-hero-velocity">
           <div class="hero-label">★ HIH VELOCITY — new contacts this month (${last.label})</div>
           <div class="hero-val-sm">${fmtN(hihVel)} &nbsp;${deltaHTML(hihVel, hihVelPrev, {label:"MoM"})}</div>
-          <div class="hero-sub">New contacts reaching High-intent · HIH→MQL <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong> · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
+          <div class="hero-sub">New contacts reaching High-intent · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
           <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
           <div class="hih-prod-breakdown">${hihProdBreakdown(last)}<p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p></div>
         </div>
@@ -455,7 +455,7 @@ function renderMonthly(d) {
       <div class="panel" style="margin-bottom:14px">
         <h3>MQL → SQL conversion — 12-month trend</h3>
         <div class="chartbox"><canvas id="cConvTrend"></canvas></div>
-        ${note(funnelNarrative(d, last, sqlRate))}
+        ${note(funnelNarrative(d, last, sqlRate, sqlRatePrev))}
       </div>
 
       <div class="grid2" style="margin-bottom:0">
@@ -625,11 +625,35 @@ function hihByProductTable(last) {
 }
 
 // ---- narratives ----
-function funnelNarrative(d, last, conv) {
-  return `MQL→SQL ${conv != null ? conv + "%" : "—"} — well above the B2B benchmark (13–22%; top performers 30–45%). Volume dips in May–Jun are the seasonal buying crunch, not a lead-gen failure — watch off-cycle drops instead.`;
+function funnelNarrative(d, last, conv, prevConv) {
+  if (conv == null) return "MQL→SQL conversion — not enough data this month.";
+  const benchLabel = conv >= 30 ? "well above the B2B benchmark (13–22%; top performers 30–45%)"
+    : conv >= 13 ? "within the B2B benchmark range (13–22%)"
+    : "below the B2B benchmark range (13–22%)";
+  const momClause = prevConv != null
+    ? (conv >= prevConv ? ` — up from ${prevConv}% last month` : ` — down from ${prevConv}% last month`)
+    : "";
+  const [, moStr] = (last.period || "").split("-");
+  const mo = parseInt(moStr, 10);
+  const seasonNote = (mo === 5 || mo === 6)
+    ? " May–June volume dips are the seasonal district-buying crunch, not a lead-gen failure."
+    : "";
+  const flagNote = last.funnel_note ? ` ${last.funnel_note}` : "";
+  return `MQL→SQL ${conv}%${momClause} — ${benchLabel}.${seasonNote}${flagNote}`;
 }
 function laggingNarrative(last) {
-  return `Revenue lags ~2 quarters in K-12 (a deal closing now was sourced last fall). One deal (Puyallup $60K) is most of the month — don't over-read a single month. $ pipeline + official win rate live in RevOps.`;
+  const deals = (last.deals || []).filter((x) => x.amount > 0);
+  const total = last.revenue ? last.revenue.total_won : null;
+  const base = "Revenue lags ~2 quarters in K-12 (a deal closing now was sourced last fall).";
+  if (!deals.length || !total) {
+    return `${base} $ pipeline + official win rate live in RevOps.`;
+  }
+  const top = deals.slice().sort((a, b) => b.amount - a.amount)[0];
+  const share = Math.round((top.amount / total) * 100);
+  const concentrationNote = share >= 40
+    ? ` Don't over-read a single month.`
+    : ` A broad month across ${deals.length} paid deals, not one outlier.`;
+  return `${base} ${top.name} (${fmt$(top.amount)}) is ${share}% of this month's ${fmt$(total)} won.${concentrationNote} $ pipeline + official win rate live in RevOps.`;
 }
 function seoNarrative(d) {
   const t = (n) => (d.seo_topics || []).find((x) => x.topic === n) || {};
@@ -871,7 +895,6 @@ function renderWeekly(d) {
   const labels = w.map((x) => x.label);
   const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
-  const hihToMql = w.map((x) => rate(f(x, "mql"), f(x, "hih")));
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
   const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
   const drill = last.drill || {};
@@ -887,7 +910,7 @@ function renderWeekly(d) {
         <div class="hih-hero-main">
           <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
           <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
-          <div class="hero-sub">HIH→MQL ${rate(f(last,"mql"), f(last,"hih")) ?? "—"}% · MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
+          <div class="hero-sub">MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
         </div>
         <div class="hih-hero-velocity">
           <div class="hero-label">★ FUNNEL VELOCITY · ${last.label || ""}</div>
@@ -921,7 +944,7 @@ function renderWeekly(d) {
 
     <div class="grid2">
       <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines.")}</div>
-      <div class="panel"><h3>Conversion rates by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("HIH→MQL % and MQL→SQL % — within-week stage entries, not a cohort view. Treat as directional velocity. HIH→MQL spikes often reflect large-batch list imports that week.")}</div>
+      <div class="panel"><h3>MQL→SQL conversion by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("Within-week stage entries, not a cohort view — treat as directional velocity, not a true conversion rate.")}</div>
     </div>
 
     <div class="section-label">🏢 By account segment — ${last.label || ""} <span class="muted">(segment tagging coverage: ${covLine})</span></div>
@@ -992,7 +1015,6 @@ function renderWeekly(d) {
     options: { ...botLeg } });
 
   mkChart("wConvRates", { type: "line", data: { labels, datasets: [
-      { label: "HIH→MQL %", data: hihToMql, borderColor: ROSE, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 },
       { label: "MQL→SQL %", data: conv, borderColor: IJ, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 }
     ]}, options: { ...botLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
 

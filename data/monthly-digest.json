@@ -2232,7 +2232,8 @@
           "amount": 0,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55827961761"
         }
-      ]
+      ],
+      "funnel_note": "August's MQL/HIH growth was mechanically inflated by an offline bulk contact import (confirmed 2026-09-11) -- SQL (+12.5%) and Opportunities (+9.7%) are the reliable read on real demand this month."
     }
   ],
   "seo_topics": [
