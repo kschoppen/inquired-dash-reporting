@@ -6,6 +6,10 @@
   publish = "."
   command = ""
 
+[functions]
+  # Bundle the JSON data files into the chat Lambda so it can read them for context.
+  included_files = ["data/*.json"]
+
 # Friendly URLs: visiting /foo serves /foo.html (real files like /data/*.json serve directly).
 [[redirects]]
   from = "/*"
