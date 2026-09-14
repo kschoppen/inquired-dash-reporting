@@ -28,12 +28,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ In Practice": {
         "list_id": "10206",
@@ -42,12 +49,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ Product Webinars": {
         "list_id": "10208",
@@ -56,12 +70,23 @@
         "total": 8,
         "hih_count": 6,
         "hih_share_pct": 75.0,
-        "intent_dist": {"high": 6, "medium": 0, "low": 2, "unknown": 0},
+        "intent_dist": {
+          "high": 6,
+          "medium": 0,
+          "low": 2,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
-        "top_conversion_events": ["IJ Product Registration_SY2627 (3)", "SS_IJ-Demo: Product Demo_SY2627 (2)", "IJ-Pacing Guide_F24 (2)"],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "top_conversion_events": [
+          "IJ Product Registration_SY2627 (3)",
+          "SS_IJ-Demo: Product Demo_SY2627 (2)",
+          "IJ-Pacing Guide_F24 (2)"
+        ],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Inquiry Work Contest": {
         "list_id": "10214",
@@ -70,12 +95,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Back to School": {
         "list_id": "10212",
@@ -84,12 +116,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Partner Newsletters": {
         "list_id": "10218",
@@ -98,12 +137,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Marketing Nurture": {
         "list_id": "10220",
@@ -112,12 +158,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Evergreen": {
         "list_id": "10222",
@@ -126,12 +179,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Symposium": {
         "list_id": "10097",
@@ -140,12 +200,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
       },
       "Lit Talk with Nell Duke": {
         "list_id": "10695",
@@ -154,12 +221,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Account Driven": {
         "list_id": "10216",
@@ -168,12 +242,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
       },
       "GF8 Campaign": {
         "list_id": "10210",
@@ -182,20 +263,57 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       }
     },
     "groups": {
-      "Evergreen + Thought Leadership": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "ABM": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Inkwell": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Inquiry Journeys": {"total": 8, "hih_count": 6, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Great First Eight": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null}
+      "Evergreen + Thought Leadership": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inkwell": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 8,
+        "hih_count": 6,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
     }
   },
   {
@@ -227,12 +345,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ In Practice": {
         "list_id": "10206",
@@ -241,12 +366,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ Product Webinars": {
         "list_id": "10208",
@@ -255,12 +387,23 @@
         "total": 8,
         "hih_count": 6,
         "hih_share_pct": 75.0,
-        "intent_dist": {"high": 6, "medium": 0, "low": 2, "unknown": 0},
+        "intent_dist": {
+          "high": 6,
+          "medium": 0,
+          "low": 2,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
-        "top_conversion_events": ["IJ Product Registration_SY2627 (3)", "SS_IJ-Demo: Product Demo_SY2627 (2)", "IJ-Pacing Guide_F24 (2)"],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "top_conversion_events": [
+          "IJ Product Registration_SY2627 (3)",
+          "SS_IJ-Demo: Product Demo_SY2627 (2)",
+          "IJ-Pacing Guide_F24 (2)"
+        ],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Inquiry Work Contest": {
         "list_id": "10214",
@@ -269,12 +412,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Back to School": {
         "list_id": "10212",
@@ -283,12 +433,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Partner Newsletters": {
         "list_id": "10218",
@@ -297,12 +454,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Marketing Nurture": {
         "list_id": "10220",
@@ -311,12 +475,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Evergreen": {
         "list_id": "10222",
@@ -325,12 +496,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Symposium": {
         "list_id": "10097",
@@ -339,12 +517,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
       },
       "Lit Talk with Nell Duke": {
         "list_id": "10695",
@@ -353,12 +538,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Account Driven": {
         "list_id": "10216",
@@ -367,12 +559,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
       },
       "GF8 Campaign": {
         "list_id": "10210",
@@ -381,20 +580,57 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       }
     },
     "groups": {
-      "Inkwell": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Inquiry Journeys": {"total": 8, "hih_count": 6, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Evergreen + Thought Leadership": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "ABM": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Great First Eight": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null}
+      "Inkwell": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 8,
+        "hih_count": 6,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
     }
   },
   {
@@ -426,12 +662,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ In Practice": {
         "list_id": "10206",
@@ -440,12 +683,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "IJ Product Webinars": {
         "list_id": "10208",
@@ -454,12 +704,23 @@
         "total": 8,
         "hih_count": 6,
         "hih_share_pct": 75.0,
-        "intent_dist": {"high": 6, "medium": 0, "low": 2, "unknown": 0},
+        "intent_dist": {
+          "high": 6,
+          "medium": 0,
+          "low": 2,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
-        "top_conversion_events": ["IJ Product Registration_SY2627 (3)", "SS_IJ-Demo: Product Demo_SY2627 (2)", "IJ-Pacing Guide_F24 (2)"],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "top_conversion_events": [
+          "IJ Product Registration_SY2627 (3)",
+          "SS_IJ-Demo: Product Demo_SY2627 (2)",
+          "IJ-Pacing Guide_F24 (2)"
+        ],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Inquiry Work Contest": {
         "list_id": "10214",
@@ -468,12 +729,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Back to School": {
         "list_id": "10212",
@@ -482,12 +750,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Partner Newsletters": {
         "list_id": "10218",
@@ -496,12 +771,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Marketing Nurture": {
         "list_id": "10220",
@@ -510,12 +792,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Evergreen": {
         "list_id": "10222",
@@ -524,12 +813,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Symposium": {
         "list_id": "10097",
@@ -538,12 +834,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
       },
       "Lit Talk with Nell Duke": {
         "list_id": "10695",
@@ -552,12 +855,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Account Driven": {
         "list_id": "10216",
@@ -566,12 +876,19 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
       },
       "GF8 Campaign": {
         "list_id": "10210",
@@ -580,20 +897,57 @@
         "total": 0,
         "hih_count": 0,
         "hih_share_pct": 0,
-        "intent_dist": {"high": 0, "medium": 0, "low": 0, "unknown": 0},
+        "intent_dist": {
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "unknown": 0
+        },
         "mqls_current": 0,
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       }
     },
     "groups": {
-      "Inkwell": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Inquiry Journeys": {"total": 8, "hih_count": 6, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Evergreen + Thought Leadership": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "ABM": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Great First Eight": {"total": 0, "hih_count": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null}
+      "Inkwell": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 8,
+        "hih_count": 6,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
     }
   },
   {
@@ -629,7 +983,11 @@
         "mqls_current": 9,
         "mqls_prior": 0,
         "mom_pct": null,
-        "top_conversion_events": ["ELA-DL: Inkwell K2 Curriculum Map_SY2627 (4)", "ELA-DL: Inkwell The Case for Integrated Core Curricula_F26 (3)", "Download: Inkwell 1:1 Unit Overview_S26 (1)"],
+        "top_conversion_events": [
+          "ELA-DL: Inkwell K2 Curriculum Map_SY2627 (4)",
+          "ELA-DL: Inkwell The Case for Integrated Core Curricula_F26 (3)",
+          "Download: Inkwell 1:1 Unit Overview_S26 (1)"
+        ],
         "data_flags": []
       },
       "IJ In Practice": {
@@ -658,7 +1016,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Inquiry Work Contest": {
         "list_id": "10214",
@@ -672,7 +1032,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Back to School": {
         "list_id": "10212",
@@ -686,7 +1048,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Partner Newsletters": {
         "list_id": "10218",
@@ -700,7 +1064,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Marketing Nurture": {
         "list_id": "10220",
@@ -728,7 +1094,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Symposium": {
         "list_id": "10097",
@@ -742,7 +1110,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
       },
       "Lit Talk with Nell Duke": {
         "list_id": "10695",
@@ -756,7 +1126,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Account Driven": {
         "list_id": "10216",
@@ -770,7 +1142,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
       },
       "GF8 Campaign": {
         "list_id": "10210",
@@ -784,15 +1158,52 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       }
     },
     "groups": {
-      "Inkwell": {"total": 21, "hih_count": 4, "hih_pct": 19.0, "mqls_current": 9, "mqls_prior": 0, "mom_pct": null},
-      "Inquiry Journeys": {"total": 38, "hih_count": 11, "hih_pct": 28.9, "mqls_current": 4, "mqls_prior": 0, "mom_pct": null},
-      "Evergreen + Thought Leadership": {"total": 54, "hih_count": 2, "hih_pct": 3.7, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "ABM": {"total": 0, "hih_count": 0, "hih_pct": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Great First Eight": {"total": 0, "hih_count": 0, "hih_pct": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null}
+      "Inkwell": {
+        "total": 21,
+        "hih_count": 4,
+        "hih_pct": 19.0,
+        "mqls_current": 9,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 38,
+        "hih_count": 11,
+        "hih_pct": 28.9,
+        "mqls_current": 4,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 54,
+        "hih_count": 2,
+        "hih_pct": 3.7,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
     }
   },
   {
@@ -864,7 +1275,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Inquiry Work Contest": {
         "list_id": "10214",
@@ -878,7 +1291,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Back to School": {
         "list_id": "10212",
@@ -892,7 +1307,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Partner Newsletters": {
         "list_id": "10218",
@@ -906,7 +1323,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Marketing Nurture": {
         "list_id": "10220",
@@ -934,7 +1353,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Symposium": {
         "list_id": "10097",
@@ -948,7 +1369,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
       },
       "Lit Talk with Nell Duke": {
         "list_id": "10695",
@@ -962,7 +1385,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       },
       "Account Driven": {
         "list_id": "10216",
@@ -976,7 +1401,9 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
       },
       "GF8 Campaign": {
         "list_id": "10210",
@@ -990,15 +1417,310 @@
         "mqls_prior": 0,
         "mom_pct": null,
         "top_conversion_events": [],
-        "data_flags": ["total < 10 — asset-attachment audit"]
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
       }
     },
     "groups": {
-      "Inkwell": {"total": 58, "hih_count": 21, "hih_pct": 36.2, "mqls_current": 17, "mqls_prior": 0, "mom_pct": null},
-      "Inquiry Journeys": {"total": 40, "hih_count": 12, "hih_pct": 30.0, "mqls_current": 6, "mqls_prior": 0, "mom_pct": null},
-      "Evergreen + Thought Leadership": {"total": 105, "hih_count": 2, "hih_pct": 1.9, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "ABM": {"total": 0, "hih_count": 0, "hih_pct": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null},
-      "Great First Eight": {"total": 0, "hih_count": 0, "hih_pct": 0, "mqls_current": 0, "mqls_prior": 0, "mom_pct": null}
+      "Inkwell": {
+        "total": 58,
+        "hih_count": 21,
+        "hih_pct": 36.2,
+        "mqls_current": 17,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Inquiry Journeys": {
+        "total": 40,
+        "hih_count": 12,
+        "hih_pct": 30.0,
+        "mqls_current": 6,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 105,
+        "hih_count": 2,
+        "hih_pct": 1.9,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
+    }
+  },
+  {
+    "run_date": "2026-09-14",
+    "period_label": "2026-09 (MTD)",
+    "window_current": [
+      "2026-09-01",
+      "2026-09-14"
+    ],
+    "window_prior": [
+      "2026-08-01",
+      "2026-08-14"
+    ],
+    "slack_message_ts": "1789409316.196959",
+    "totals": {
+      "active_campaigns": 12,
+      "total_contacts": 4056,
+      "hih_count": 864,
+      "hih_share_pct": 21.3,
+      "mqls_current": 63,
+      "mqls_prior": 34,
+      "mom_pct": 85.3
+    },
+    "campaigns": {
+      "Inkwell K2 Launch": {
+        "list_id": "10204",
+        "campaign_id": "43367560",
+        "group": "Inkwell",
+        "total": 79,
+        "hih_count": 22,
+        "hih_share_pct": 27.8,
+        "intent_dist": null,
+        "mqls_current": 14,
+        "mqls_prior": 8,
+        "mom_pct": 75.0,
+        "top_conversion_events": [
+          "ELA-DL: Inkwell K2 Curriculum Map_SY2627 (7)",
+          "ELA-DL: Inkwell The Case for Integrated Core Curricula_F26 (6)",
+          "ELA-DL: Inkwell K2 Sample Lesson_SY2627 (1)"
+        ],
+        "data_flags": []
+      },
+      "IJ In Practice": {
+        "list_id": "10206",
+        "campaign_id": "43370070",
+        "group": "Inquiry Journeys",
+        "total": 33,
+        "hih_count": 6,
+        "hih_share_pct": 18.2,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 3,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": []
+      },
+      "IJ Product Webinars": {
+        "list_id": "10208",
+        "campaign_id": "43367696",
+        "group": "Inquiry Journeys",
+        "total": 8,
+        "hih_count": 6,
+        "hih_share_pct": 75.0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Inquiry Work Contest": {
+        "list_id": "10214",
+        "campaign_id": "43367546",
+        "group": "Inquiry Journeys",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Back to School": {
+        "list_id": "10212",
+        "campaign_id": "43370062",
+        "group": "Inquiry Journeys",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Partner Newsletters": {
+        "list_id": "10218",
+        "campaign_id": "43370150",
+        "group": "Inquiry Journeys",
+        "total": 10,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": []
+      },
+      "Marketing Nurture": {
+        "list_id": "10220",
+        "campaign_id": "43370025",
+        "group": "Evergreen + Thought Leadership",
+        "total": 3880,
+        "hih_count": 828,
+        "hih_share_pct": 21.3,
+        "intent_dist": null,
+        "mqls_current": 48,
+        "mqls_prior": 22,
+        "mom_pct": 118.2,
+        "top_conversion_events": [
+          "ELA-DL: Inkwell K2 Sample Lesson_SY2627 (9)",
+          "ELA-DL: Inkwell The Case for Integrated Core Curricula_F26 (7)",
+          "ELA-DL: Inkwell K2 Curriculum Map_SY2627 (6)"
+        ],
+        "data_flags": [
+          "\u26a0\ufe0f list surged from 100 to 3,880 contacts since Aug 28 \u2014 investigate bulk import vs. list definition change"
+        ]
+      },
+      "Evergreen": {
+        "list_id": "10222",
+        "campaign_id": "43367699",
+        "group": "Evergreen + Thought Leadership",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      },
+      "Symposium": {
+        "list_id": "10097",
+        "campaign_id": "28285242",
+        "group": "Evergreen + Thought Leadership",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "target-list-driven; engagement-only count until list-membership OR added"
+        ]
+      },
+      "Lit Talk with Nell Duke": {
+        "list_id": "10695",
+        "campaign_id": "48569514",
+        "group": "Evergreen + Thought Leadership",
+        "total": 46,
+        "hih_count": 2,
+        "hih_share_pct": 4.3,
+        "intent_dist": null,
+        "mqls_current": 1,
+        "mqls_prior": 1,
+        "mom_pct": 0,
+        "top_conversion_events": [],
+        "data_flags": []
+      },
+      "Account Driven": {
+        "list_id": "10216",
+        "campaign_id": "43370146",
+        "group": "ABM",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+        ]
+      },
+      "GF8 Campaign": {
+        "list_id": "10210",
+        "campaign_id": "43370120",
+        "group": "Great First Eight",
+        "total": 0,
+        "hih_count": 0,
+        "hih_share_pct": 0,
+        "intent_dist": null,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null,
+        "top_conversion_events": [],
+        "data_flags": [
+          "total < 10 \u2014 asset-attachment audit"
+        ]
+      }
+    },
+    "groups": {
+      "Inkwell": {
+        "total": 79,
+        "hih_count": 22,
+        "hih_pct": 27.8,
+        "mqls_current": 14,
+        "mqls_prior": 8,
+        "mom_pct": 75.0
+      },
+      "Inquiry Journeys": {
+        "total": 51,
+        "hih_count": 12,
+        "hih_pct": 23.5,
+        "mqls_current": 0,
+        "mqls_prior": 3,
+        "mom_pct": null
+      },
+      "Evergreen + Thought Leadership": {
+        "total": 3926,
+        "hih_count": 830,
+        "hih_pct": 21.1,
+        "mqls_current": 49,
+        "mqls_prior": 23,
+        "mom_pct": 113.0
+      },
+      "ABM": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      },
+      "Great First Eight": {
+        "total": 0,
+        "hih_count": 0,
+        "hih_pct": 0,
+        "mqls_current": 0,
+        "mqls_prior": 0,
+        "mom_pct": null
+      }
     }
   }
 ]
