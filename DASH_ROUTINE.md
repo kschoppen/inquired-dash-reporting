@@ -88,6 +88,20 @@ After test-deal exclusion, aggregate the combined district+school list:
 
 Also pull: open pipeline total VALUE + deal count (active stages), closed-won MTD (value + count), and latest 3 closed-lost deals (pull `reason` field — scan for competitive mentions to include in Kelsey DM context).
 
+### Pipeline vs. school-year goal (objectType: deals — `data/goals.json` config)
+
+Fetch `data/goals.json` from GitHub first — it holds this year's target config: `field` (the deal property to filter on, currently `deal_start_year`), `field_value` (currently `"27-28"`), `pipelines` (the 3 pipeline IDs keyed by name), `pipeline_goal` ($ target for "generated"), `closed_won_goal` ($ target for closed-won), `hubspot_list_url`, and a `reference_year` block (last full closed school year's actuals — **static/historical, already closed out; carry it forward byte-for-byte, never recompute it**). Edit `goals.json` directly (not this routine) when the target changes.
+
+Pull the full deal list: `search_crm_objects`, objectType `DEAL`, filter `<field> EQ "<field_value>"` AND `pipeline IN` the 3 IDs from `goals.json`. Properties: `pipeline`, `dealstage`, `segment`, `product_s_`, `amount_in_home_currency`, `hs_is_closed_won`, `hs_is_closed_lost`, `dealname`. Apply the same test-deal `dealname` exclusion as the Pipeline snapshots section above.
+
+Classify each remaining deal by `hs_is_closed_won` / `hs_is_closed_lost` (not by `dealstage` label — the same label maps to different stage IDs per pipeline, see note above) into `won` / `lost` / else `open`, then aggregate `amount_in_home_currency`:
+- **`actual`**: `{open, lost, won}` summed across all matched deals. ("Generated" = open+lost+won combined — lost deals count on purpose, since the goal implies a target win rate.)
+- **`by_segment`**: bucket `segment` → `single_small` (Single Site + Small District) / `medium` (Medium District) / `large` (Large District) / `enterprise` (Enterprise District); sum `{open,lost,won}` per bucket. Deals with `segment` = `Other`/blank are excluded from this breakdown only (still counted in `actual` and `by_pipeline`).
+- **`by_product`**: multi-tag membership via `;`-split on `product_s_` → `ij` (Inquiry Journeys) / `inkwell` / `wh` (World History) / `gf8` (Great First 8); a multi-tagged deal counts toward each. Untagged deals roll into `untagged`.
+- **`by_pipeline`**: bucket by which of the 3 `goals.json` pipeline IDs → `district` / `school` / `new_business`; sum `{open,lost,won}`.
+
+`goal.generated` = `goals.json.pipeline_goal`; `goal.closed_won` = `goals.json.closed_won_goal`. `as_of` = this run's date.
+
 ### HIH pool (overview KPI only — separate from funnel HIH above)
 
 Contacts with `marketing_intent_tier EQ "High"` — total count (90-day rolling pool, no window filter). Used only for the `overview.json` KPIs block — do not mix with the windowed HIH funnel metric.
@@ -310,8 +324,31 @@ Also refresh these top-level fields:
   `by_product`/`by_stage` from the Phase 1 deal-level aggregation. `by_stage` only lists stages that actually have open deals — don't pad with zeros.
 - `segment_coverage` — `{ "hih": %, "mql": %, "sql": %, "opp": % }`
 - `product_caveat` / `segment_caveat` — keep existing strings; update only if data reality changed
+- `pipeline_goal` — see **pipeline_goal (shared)** below; write the identical object here and into `data/overview.json`
 
 Preserve all other fields — do not delete or restructure.
+
+### pipeline_goal (shared — weekly-digest.json + overview.json)
+
+Write this **top-level** key (sibling of `weeks`/`summary`, not inside a per-week entry) into **both** `data/weekly-digest.json` and `data/overview.json`, identical object in each:
+
+```json
+{
+  "school_year": "SY27-28", "as_of": "YYYY-MM-DD",
+  "goal": { "generated": N, "closed_won": N },
+  "actual": { "open": N, "lost": N, "won": N },
+  "by_segment": { "single_small": {"open":N,"lost":N,"won":N}, "medium": {…}, "large": {…}, "enterprise": {…} },
+  "by_product": { "ij": {"open":N,"lost":N,"won":N}, "inkwell": {…}, "wh": {…}, "gf8": {…}, "untagged": {…} },
+  "by_pipeline": { "district": {"open":N,"lost":N,"won":N}, "school": {…}, "new_business": {…} },
+  "reference_year": { "school_year": "SY25-26", "generated": N, "closed_won": N, "closed_lost": N, "win_rate_pct": N,
+    "by_segment": {…}, "by_product": {…}, "by_pipeline": {…} },
+  "note": "…", "hubspot_list_url": "…", "field_value": "27-28"
+}
+```
+
+From the Phase 1 "Pipeline vs. school-year goal" pull. `reference_year` is static (SY25-26 is closed) — copy it forward unchanged from the previous run's file rather than recomputing. `goal`/`field_value`/`hubspot_list_url` come from `data/goals.json`; if `goals.json`'s target numbers changed since the last run, use the new ones. **`data/monthly-digest.json` also carries this same key but belongs to the monthly-marketing-digest skill — don't touch it here.**
+
+`assets/app.js`'s `pipelineGoalSection()` renders this on the Weekly, Monthly, and Overview tabs (compact on Weekly/Overview, full breakdown on Monthly) — a missing or malformed `pipeline_goal` silently hides the card rather than breaking the tab, so a bad pull here won't surface as an error. Confirm the shape matches before pushing.
 
 ### Run log JSON
 
@@ -362,7 +399,8 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
   "hih_pool": N,
   "mql_to_sql_pct": N,
   "closed_won_mtd": "$N"
-}
+},
+"pipeline_goal": "[see pipeline_goal (shared) above — same object written into weekly-digest.json]"
 ```
 
 **Shape rules — the Overview tab renders straight off these keys:**
