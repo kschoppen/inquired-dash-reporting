@@ -115,51 +115,51 @@
     "by_stage": {
       "district": [
         {
-          "stage": "86998181",
+          "stage": "Interest",
           "count": 23,
-          "amount": 0
+          "amount": 254798.99
         },
         {
-          "stage": "1130557497",
+          "stage": "Sales Qualified",
           "count": 6,
           "amount": 0
         },
         {
-          "stage": "86998184",
-          "count": 1,
-          "amount": 0
-        },
-        {
-          "stage": "1284458929",
-          "count": 1,
-          "amount": 0
-        },
-        {
-          "stage": "86998182",
+          "stage": "Consideration",
           "count": 2,
+          "amount": 10920
+        },
+        {
+          "stage": "Desire",
+          "count": 1,
+          "amount": 0
+        },
+        {
+          "stage": "Validation/Approval",
+          "count": 1,
           "amount": 0
         }
       ],
       "school": [
         {
-          "stage": "90421578",
+          "stage": "Consideration",
           "count": 5,
-          "amount": 0
+          "amount": 13078
         },
         {
-          "stage": "87077266",
+          "stage": "Interest",
           "count": 5,
-          "amount": 0
+          "amount": 5000
         },
         {
-          "stage": "1284458931",
+          "stage": "Validation/Approval",
           "count": 1,
-          "amount": 0
+          "amount": 1640
         },
         {
-          "stage": "90421579",
+          "stage": "Conviction",
           "count": 1,
-          "amount": 0
+          "amount": 1638
         }
       ]
     }
