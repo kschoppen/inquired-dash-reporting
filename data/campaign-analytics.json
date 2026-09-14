@@ -1,7 +1,7 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-08-28",
+  "updated": "2026-09-14",
   "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts — a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
   "strategic_groups": [
     "Evergreen + Thought Leadership",
@@ -81,7 +81,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "IJ In Practice",
@@ -94,7 +96,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "IJ Product Webinars",
@@ -106,8 +110,15 @@
           "mql": 0,
           "mql_prior": null,
           "readable": false,
-          "intent": {"high": 6, "medium": 0, "low": 2, "unknown": 0},
-          "flags": ["total < 10 — asset-attachment audit"]
+          "intent": {
+            "high": 6,
+            "medium": 0,
+            "low": 2,
+            "unknown": 0
+          },
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Inquiry Work Contest",
@@ -120,7 +131,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Back to School",
@@ -133,7 +146,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Partner Newsletters",
@@ -146,7 +161,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Marketing Nurture",
@@ -159,7 +176,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Evergreen",
@@ -172,7 +191,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Symposium",
@@ -185,7 +206,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+          "flags": [
+            "target-list-driven; engagement-only count until list-membership OR added"
+          ]
         },
         {
           "name": "Lit Talk with Nell Duke",
@@ -198,7 +221,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Account Driven",
@@ -211,7 +236,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+          "flags": [
+            "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+          ]
         },
         {
           "name": "GF8 Campaign",
@@ -224,7 +251,9 @@
           "mql_prior": null,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         }
       ],
       "flags": [
@@ -330,7 +359,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Inquiry Work Contest",
@@ -343,7 +374,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Back to School",
@@ -356,7 +389,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Partner Newsletters",
@@ -369,7 +404,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Marketing Nurture",
@@ -395,7 +432,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Symposium",
@@ -408,7 +447,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["target-list-driven; engagement-only count until list-membership OR added"]
+          "flags": [
+            "target-list-driven; engagement-only count until list-membership OR added"
+          ]
         },
         {
           "name": "Lit Talk with Nell Duke",
@@ -421,7 +462,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         },
         {
           "name": "Account Driven",
@@ -434,7 +477,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"]
+          "flags": [
+            "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+          ]
         },
         {
           "name": "GF8 Campaign",
@@ -447,7 +492,9 @@
           "mql_prior": 0,
           "readable": false,
           "intent": null,
-          "flags": ["total < 10 — asset-attachment audit"]
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
         }
       ],
       "flags": [
@@ -455,6 +502,249 @@
         "Lit Talk with Nell Duke: total < 10 — asset-attachment audit",
         "Symposium: target-list-driven; engagement-only count until list-membership OR group added",
         "Account Driven: target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+      ]
+    },
+    {
+      "period": "2026-09",
+      "label": "Sep 2026",
+      "updated": "2026-09-14T00:00:00Z",
+      "baseline_period": true,
+      "campaigns_readable": 4,
+      "campaigns_total": 12,
+      "verdict": "September opened with Inkwell K2 as the lead conversion engine — 14 MQLs in the first 14 days, up 75% vs. Aug 1–14, driven by the K2 Curriculum Map and The Case for Integrated Core Curricula. Marketing Nurture list surged from 100 to 3,880 contacts since the Aug close-out; verify this is an intentional SY26-27 list rebuild before treating volume as organic pipeline.",
+      "total": {
+        "active_campaigns": 12,
+        "contacts": 4056,
+        "hih": 864,
+        "hih_pct": 21.3,
+        "mql": 63,
+        "mql_prior": 34
+      },
+      "groups": [
+        {
+          "group": "Inkwell",
+          "contacts": 79,
+          "hih": 22,
+          "hih_pct": 27.8,
+          "mql": 14,
+          "mql_prior": 8
+        },
+        {
+          "group": "Inquiry Journeys",
+          "contacts": 51,
+          "hih": 12,
+          "hih_pct": 23.5,
+          "mql": 0,
+          "mql_prior": 3
+        },
+        {
+          "group": "Evergreen + Thought Leadership",
+          "contacts": 3926,
+          "hih": 830,
+          "hih_pct": 21.1,
+          "mql": 49,
+          "mql_prior": 23
+        },
+        {
+          "group": "ABM",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0
+        },
+        {
+          "group": "Great First Eight",
+          "contacts": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0
+        }
+      ],
+      "campaigns": [
+        {
+          "name": "Inkwell K2 Launch",
+          "group": "Inkwell",
+          "channel_type": "content",
+          "total": 79,
+          "hih": 22,
+          "hih_pct": 27.8,
+          "mql": 14,
+          "mql_prior": 8,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "IJ In Practice",
+          "group": "Inquiry Journeys",
+          "channel_type": "content",
+          "total": 33,
+          "hih": 6,
+          "hih_pct": 18.2,
+          "mql": 0,
+          "mql_prior": 3,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "IJ Product Webinars",
+          "group": "Inquiry Journeys",
+          "channel_type": "event",
+          "total": 8,
+          "hih": 6,
+          "hih_pct": 75.0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Inquiry Work Contest",
+          "group": "Inquiry Journeys",
+          "channel_type": "social",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Back to School",
+          "group": "Inquiry Journeys",
+          "channel_type": "email",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Partner Newsletters",
+          "group": "Inquiry Journeys",
+          "channel_type": "email",
+          "total": 10,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "Marketing Nurture",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "nurture",
+          "total": 3880,
+          "hih": 828,
+          "hih_pct": 21.3,
+          "mql": 48,
+          "mql_prior": 22,
+          "readable": true,
+          "intent": null,
+          "flags": [
+            "⚠️ list surged from 100 to 3,880 contacts since Aug 28 — investigate bulk import vs. list definition change"
+          ]
+        },
+        {
+          "name": "Evergreen",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "content",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
+        },
+        {
+          "name": "Symposium",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "event",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "target-list-driven; engagement-only count until list-membership OR added"
+          ]
+        },
+        {
+          "name": "Lit Talk with Nell Duke",
+          "group": "Evergreen + Thought Leadership",
+          "channel_type": "event",
+          "total": 46,
+          "hih": 2,
+          "hih_pct": 4.3,
+          "mql": 1,
+          "mql_prior": 1,
+          "readable": true,
+          "intent": null,
+          "flags": []
+        },
+        {
+          "name": "Account Driven",
+          "group": "ABM",
+          "channel_type": "abm",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR"
+          ]
+        },
+        {
+          "name": "GF8 Campaign",
+          "group": "Great First Eight",
+          "channel_type": "content",
+          "total": 0,
+          "hih": 0,
+          "hih_pct": 0,
+          "mql": 0,
+          "mql_prior": 0,
+          "readable": false,
+          "intent": null,
+          "flags": [
+            "total < 10 — asset-attachment audit"
+          ]
+        }
+      ],
+      "flags": [
+        "IJ Product Webinars: total < 10 — asset-attachment audit",
+        "Inquiry Work Contest: total < 10 — asset-attachment audit",
+        "Back to School: total < 10 — asset-attachment audit",
+        "Evergreen: total < 10 — asset-attachment audit",
+        "GF8 Campaign: total < 10 — asset-attachment audit",
+        "Symposium: target-list-driven; engagement-only count until list-membership OR added",
+        "Account Driven: target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR",
+        "Marketing Nurture: list surged from 100 to 3,880 contacts since Aug 28 — investigate bulk import vs. list definition change"
       ]
     }
   ]
