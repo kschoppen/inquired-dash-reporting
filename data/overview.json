@@ -1,7 +1,7 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-09-02",
+  "updated": "2026-09-14",
   "summary": {
     "headline": "August funnel numbers are inflated by a bulk import; win rate jumped to 85% even as revenue cooled for the season.",
     "body": "HIH (52) and MQL (281) more than doubled MoM, but nearly 80% of new contacts arrived via an offline bulk import, not organic demand \u2014 SQL (126, +12.5%) and Opportunities (124, +9.7%) are the more reliable read. Revenue fell to $149.6K across 34 deals as the spring-summer district buying peak tapered into the August lull, but win rate improved sharply to 85% (from 56%), so deal quality held even as deal size shrank. MQA accounts stand at 12 in the buy window.",
@@ -24,76 +24,29 @@
       }
     ]
   },
-  "kpis": [
-    {
-      "label": "HIH Velocity",
-      "value": "52",
-      "delta": "+100% MoM",
-      "delta_dir": "up",
-      "sub": "New high-intent contacts \u00b7 Aug 2026 (inflated by an offline import)",
-      "spark": [
-        89,
-        70,
-        72,
-        101,
-        76,
-        26,
-        52
-      ]
-    },
-    {
-      "label": "MQL \u2192 SQL Conv.",
-      "value": "44.8%",
-      "delta": "-26.1 pt MoM",
-      "delta_dir": "down",
-      "sub": "Mechanically pulled down by August's offline MQL import",
-      "spark": [
-        22.0,
-        15.6,
-        37.9,
-        36.8,
-        82.1,
-        70.9,
-        44.8
-      ]
-    },
-    {
-      "label": "Active Campaigns",
-      "value": "12",
-      "delta": "Aug 2026",
-      "delta_dir": "flat",
-      "sub": "Across all products",
-      "spark": [
-        12,
-        12
-      ]
-    },
-    {
-      "label": "MQA Accounts",
-      "value": "12",
-      "delta": "In buy window",
-      "delta_dir": "flat",
-      "sub": "Med / Large / Enterprise",
-      "spark": []
-    }
-  ],
+  "kpis": {
+    "hih_pool": 2297,
+    "mql_to_sql_pct": 27.1,
+    "closed_won_mtd": "$5,225"
+  },
   "brand_lift": {
-    "updated": "2026-09-07",
+    "updated": "2026-09-14",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 31 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (303 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Sep 7 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (459 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
         "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
-        "value": 303,
-        "delta": "+43% WoW",
+        "value": 459,
+        "delta": "+39% WoW",
         "delta_dir": "up",
         "spark": [
           239,
           177,
           240,
-          303
+          307,
+          459
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -132,14 +85,14 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Sep 7",
+      "updated": "2026-09-14",
+      "narrative": "Labor Day week delivered an expected seasonal pullback: 48 MQLs entered (\u221230% WoW), with Inkwell driving the top of funnel at 23 of 48 new MQLs \u2014 its strongest weekly share yet. Lower-funnel stages slowed sharply as the holiday interrupted conversion activity: SQL fell to 13 (\u221258% WoW) and Opportunities to 12 (\u221259% WoW), though the Enterprise segment held with 9 SQLs and 8 Opps. September closed-won revenue climbed to $5,225 across 7 deals MTD, and two closed-lost deals carry competitive flags \u2014 Norman Public Schools (OK, $110K) lost to regulatory timeline disruption, and Griffin-Spalding (GA) was already in a shortlist. The HIH pool stands at 2,297 with 13 new High Intent Handraisers, setting up recovery potential for next week's lower-funnel numbers."
+    },
+    "previous": {
       "week_label": "Week of Aug 31",
       "updated": "2026-09-07",
       "narrative": "Lower-funnel conversion surge: SQL hit 31 (+138% WoW \ud83d\udd25) and Opp 29 (+142% WoW \ud83d\udd25) \u2014 the strongest lower-funnel week since late July, validating last week's forecast of a SQL rebound as the W35 HIH class began converting. HIH held at 17 (+6%) and MQL grew to 69 (+23%). Branded search provisional at 303 clicks for Aug 31 (+43% WoW on a matched 5-day window; week settles next run). Pipeline expanded to 32 district open deals (from 31) and held at 13 school deals. Enterprise led SQL and Opp with 15 entries each \u2014 consistent with an offline migration cohort moving down-funnel."
-    },
-    "previous": {
-      "week_label": "Week of Aug 24",
-      "updated": "2026-08-31",
-      "narrative": "This week's signal is a tale of two funnel halves: top-of-funnel strengthened meaningfully, with 16 High Intent Handraisers [HIH] entering \u2014 double last week's pace \u2014 and MQL volume held at 56, essentially flat. The lower funnel tells a different story: SQL entries dropped to 13 (from 33) and Opportunities to 12 (from 33), both at their lowest point in the trailing five weeks. The pattern is consistent with W34 pull-forward \u2014 end-of-month acceleration moved lifecycle entries that would otherwise have distributed into W35, so the dip is expected rather than alarming. Watch for SQL to recover toward 25\u201330 next week as the pipeline refills from this week's HIH surge."
     }
   }
 }

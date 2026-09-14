@@ -1567,5 +1567,303 @@
         }
       ]
     }
+  },
+  {
+    "run_date": "2026-09-14",
+    "period_label": "2026-W37",
+    "window_current": [
+      "2026-09-07",
+      "2026-09-13"
+    ],
+    "window_prior": [
+      "2026-08-31",
+      "2026-09-06"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 13,
+      "hih_prior": 17,
+      "hih_wow_pct": -23.5,
+      "mql_current": 48,
+      "mql_prior": 69,
+      "mql_wow_pct": -30.4,
+      "sql_current": 13,
+      "sql_prior": 31,
+      "sql_wow_pct": -58.1,
+      "opp_current": 12,
+      "opp_prior": 29,
+      "opp_wow_pct": -58.6
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          6,
+          5
+        ],
+        "mql": [
+          16,
+          23
+        ],
+        "sql": [
+          8,
+          5
+        ],
+        "opp": [
+          7,
+          5
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          3,
+          5
+        ],
+        "mql": [
+          23,
+          14
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "wh": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          1,
+          2
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "gf8": {
+        "hih": [
+          4,
+          9
+        ],
+        "mql": [
+          3,
+          9
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          6,
+          6
+        ],
+        "mql": [
+          17,
+          23
+        ],
+        "sql": [
+          5,
+          12
+        ],
+        "opp": [
+          5,
+          11
+        ]
+      },
+      "medium": {
+        "hih": [
+          1,
+          2
+        ],
+        "mql": [
+          6,
+          4
+        ],
+        "sql": [
+          0,
+          3
+        ],
+        "opp": [
+          0,
+          2
+        ]
+      },
+      "large": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          0,
+          3
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          1,
+          17
+        ],
+        "sql": [
+          9,
+          15
+        ],
+        "opp": [
+          8,
+          15
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100,
+        "mql": 90,
+        "sql": 62,
+        "opp": 58
+      },
+      "segment": {
+        "hih": 62,
+        "mql": 50,
+        "sql": 108,
+        "opp": 108
+      }
+    },
+    "disposition": {
+      "disqualified_current": 91,
+      "disqualified_prior": 140,
+      "entered_nurture_current": 34,
+      "entered_nurture_prior": 92,
+      "by_product_current": {
+        "ij": {
+          "disqualified": 20,
+          "entered_nurture": 4
+        },
+        "inkwell": {
+          "disqualified": 11,
+          "entered_nurture": 3
+        },
+        "wh": {
+          "disqualified": 0,
+          "entered_nurture": 0
+        },
+        "gf8": {
+          "disqualified": 2,
+          "entered_nurture": 2
+        }
+      }
+    },
+    "pipeline": {
+      "district_open_deals": 33,
+      "school_open_deals": 12,
+      "by_product": {
+        "ij": {
+          "count": 27,
+          "amount": 95375
+        },
+        "inkwell": {
+          "count": 1,
+          "amount": 0
+        },
+        "wh": {
+          "count": 3,
+          "amount": 11977
+        },
+        "gf8": {
+          "count": 3,
+          "amount": 191700
+        },
+        "untagged": {
+          "count": 14,
+          "amount": 0
+        }
+      },
+      "by_stage": {
+        "district": [
+          {
+            "stage": "86998181",
+            "count": 23
+          },
+          {
+            "stage": "1130557497",
+            "count": 6
+          },
+          {
+            "stage": "86998184",
+            "count": 1
+          },
+          {
+            "stage": "1284458929",
+            "count": 1
+          },
+          {
+            "stage": "86998182",
+            "count": 2
+          }
+        ],
+        "school": [
+          {
+            "stage": "90421578",
+            "count": 5
+          },
+          {
+            "stage": "87077266",
+            "count": 5
+          },
+          {
+            "stage": "1284458931",
+            "count": 1
+          },
+          {
+            "stage": "90421579",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "hih_pool": 2297,
+    "closed_won_mtd": {
+      "deals": 7,
+      "amount": 5225,
+      "month": "2026-09"
+    },
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "SQL and Opp segment sub-query sums slightly exceed totals (SQL: 14 vs 13, Opp: 13 vs 12) \u2014 possible segment overlap; inclusive counts used",
+      "MQL \u221230%, SQL \u221258%, Opp \u221258% WoW \u2014 Labor Day week (Sep 7, 2026) suppressed conversion activity; expect recovery next week",
+      "HIH \u221224% WoW \u2014 consistent with Labor Day seasonal slowdown",
+      "Closed-lost Norman Public Schools OK ($110K) \u2014 state regulatory delay, not competitive displacement",
+      "Closed-lost Griffin-Spalding GA \u2014 already shortlisted with two other vendors; competitive signal",
+      "Pipeline by_stage uses deal stage IDs \u2014 name mapping not resolved this run (HubSpot stage properties API not called)",
+      "Drill contacts not pulled this run \u2014 drill arrays empty for W37"
+    ]
   }
 ]
