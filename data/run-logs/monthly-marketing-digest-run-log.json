@@ -1777,7 +1777,22 @@
       }
     },
     "list_event_detected": true,
-    "acknowledged_events": [],
+    "acknowledged_events": [
+      {
+        "month": "2026-08",
+        "event": "Offline bulk contact-list upload/import (~942 of 1,178 new August contacts, ~80%, OFFLINE-sourced vs. 55% in July) -- confirmed by Kelsey on 2026-09-11 as a real offline upload, not organic growth",
+        "confirmed_by": "kelsey",
+        "confirmed_at": "2026-09-11",
+        "affected_metrics": [
+          "hih",
+          "mql",
+          "mql_by_product.gf8",
+          "mql_by_product.inkwell",
+          "mql_to_sql_rate_pct"
+        ],
+        "expected_baseline_change": "September's MoM math should not read August's HIH (+100%) or MQL (+78%) as organic growth -- treat August as an inflated baseline. SQL (+12.5%) and Opportunities (+9.7%) were NOT materially affected and remain the reliable read on real August demand. MQL-to-SQL conversion (44.8% in August, down from 70.9% in July) should be expected to normalize back toward the 65-71% range once the import cohort clears the funnel; a September rebound in this rate is expected, not a genuine improvement."
+      }
+    ],
     "data_flags": [
       "LIST EVENT DETECTED: 942 of 1,178 new contacts in August (80%) are OFFLINE-sourced, vs 187 of 337 (55%) in July \u2014 a clear bulk import, not organic growth. This mechanically inflated HIH (+100%), MQL (+78%), and drove the apparent MQL-to-SQL conversion drop (71%\u219245%); SQL (+12.5%) and Opportunities (+9.7%) are the more reliable read on real demand. GF8 MQL jumped 2\u219237 and Inkwell MQL 21\u219267 in the same pattern \u2014 consistent with the import landing disproportionately on those two products. Needs Kelsey's confirmation/acknowledgment (source of the import) before next month's MoM math can exclude it, per the acknowledged_events mechanism.",
       "UTM completeness fell further to 4.4% (52/1,178 new contacts) from July's 7.7% \u2014 still far below both the 30% gap threshold and 50% healthy target. Persistent, worsening data-hygiene gap.",

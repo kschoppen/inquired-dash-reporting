@@ -222,6 +222,55 @@ No extra git step: the two files are already in PHASE 3's `git add`.
 
 ---
 
+## PHASE 2.6: Content performance (HubSpot content analytics)
+
+Powers the **Content Performance** tab — ranks pages, blog posts, and landing pages by
+view to contact conversion, so the tab surfaces high-traffic content with no working CTA.
+
+**Pull:** HubSpot MCP `get_content_analytics_report`, `mode: "TOTALS"`, `sortMetric:
+"rawViews"`, `sortDirection: "DESC"`, `includeMetadata: true`, `limit: 40`. All-time
+totals (this report has no native weekly window) — the tab still refreshes weekly so the
+ranking stays current as pages accrue traffic.
+
+**Exclude before ranking (do not include these rows at all):**
+- Any `contentId`/`url` under `share.hsforms.com` (form embeds, not content)
+- Thank-you / confirmation pages (title contains "Thank You" or "TY_", or url contains
+  "thank-you")
+- Non-marketing corporate pages: `/careers`, `/our-team`, `/about-us`
+
+**Never fabricate a title or url.** If HubSpot returns a row with no `title` and no
+`url` (an unresolved contentId), drop that row rather than invent one — this bit Claude
+on the first build (a placeholder url was almost shipped for one row). If a row's
+`title` is missing but it has a `url`, derive a readable title from the url's last path
+segment (title-case, dashes to spaces) rather than leaving the raw slug or contentId.
+
+**Threshold:** drop rows with `rawViews` under 2,000 (noise). For everything else,
+compute `conversion_rate_pct = contacts / rawViews * 100` and flag:
+- `gap` — under 0.5%
+- `watch` — 0.5% to 2%
+- `healthy` — 2%+
+
+Sort ascending by `conversion_rate_pct` (worst gap first).
+
+**Write `data/content-performance.json`:** upsert this run into `weeks[]`, keyed by
+`period` (this run's date, `YYYY-MM-DD`), replace if present else append, cap at 8
+entries (oldest dropped first). Full entry shape:
+
+```json
+{ "period": "YYYY-MM-DD", "label": "Mon D, YYYY",
+  "totals": { "pages_tracked": N, "gap_count": N, "watch_count": N, "healthy_count": N },
+  "verdict": "1-2 sentence headline naming the worst gap by raw_views and the best-converting lander, no emoji, no em dash",
+  "pages": [ { "contentId": "...", "title": "...", "url": "...",
+    "content_type": "landing_page|blog_post|site_page", "raw_views": N, "contacts": N,
+    "conversion_rate_pct": N, "bounce_rate_pct": N, "flag": "gap|watch|healthy" }, … ] }
+```
+
+Also refresh top-level `updated` (run date) and `min_views_threshold` (leave at 2000
+unless traffic volume has changed enough to warrant revisiting). Preserve
+`excluded_note`. This tab's JSON is included in PHASE 3's `git add` below.
+
+---
+
 ## PHASE 3: Write data files + push inquired-dash-reporting → Netlify
 
 ### weekly-digest.json
@@ -333,7 +382,7 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 ```bash
 cd inquired-dash-reporting
-git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json
+git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json data/content-performance.json
 git commit -m "Weekly dash update — $(date +%Y-%m-%d)"
 git push origin main
 git fetch origin && git log --oneline -2 origin/main
@@ -436,6 +485,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
 • [✓/✗] Competitive Intel refresh date stamped → data/competitive-intel.json [updated = YYYY-MM-DD, or unchanged if nothing moved]
 • [✓/—/✗] Brand lift (GSC) → data/overview.json + data/weekly-digest.json [N weeks upserted / deferred: creds not set / error]
+• [✓/✗] Content performance → data/content-performance.json [N pages tracked, N gaps flagged]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]

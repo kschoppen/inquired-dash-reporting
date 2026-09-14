@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-09-07",
+  "updated": "2026-09-14",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-09-07",
+    "updated": "2026-09-14",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Aug 31 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (303 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Sep 7 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (459 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -48,8 +48,20 @@
         "period": "2026-08-31",
         "label": "Aug 31",
         "branded": {
-          "clicks": 303,
-          "impressions": 6673
+          "clicks": 307,
+          "impressions": 6800
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-09-07",
+        "label": "Sep 7",
+        "branded": {
+          "clicks": 459,
+          "impressions": 6826
         },
         "youtube": null,
         "instagram": null,
@@ -67,84 +79,99 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 284,
-          "previous": 198
+          "current": 395,
+          "previous": 284
         }
       }
     }
   },
   "pipeline": {
-    "district_open": 32,
-    "school_open": 15,
-    "as_of": "2026-08-31",
+    "district_open": 33,
+    "school_open": 12,
+    "as_of": "2026-09-14",
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded.",
     "by_product": {
       "ij": {
-        "count": 28,
-        "amount": 173734.99
+        "count": 27,
+        "amount": 95375
       },
       "inkwell": {
         "count": 1,
         "amount": 0
       },
       "wh": {
-        "count": 5,
-        "amount": 17477
+        "count": 3,
+        "amount": 11977
       },
       "gf8": {
-        "count": 2,
-        "amount": 153000
+        "count": 3,
+        "amount": 191700
       },
       "untagged": {
-        "count": 16,
+        "count": 14,
         "amount": 0
       }
     },
     "by_stage": {
       "district": [
         {
-          "stage": "Interest",
-          "count": 26,
-          "amount": 286098.99
-        },
-        {
-          "stage": "Sales Qualified",
-          "count": 4,
+          "stage": "86998181",
+          "count": 23,
           "amount": 0
         },
         {
-          "stage": "Consideration",
+          "stage": "1130557497",
+          "count": 6,
+          "amount": 0
+        },
+        {
+          "stage": "86998184",
+          "count": 1,
+          "amount": 0
+        },
+        {
+          "stage": "1284458929",
+          "count": 1,
+          "amount": 0
+        },
+        {
+          "stage": "86998182",
           "count": 2,
-          "amount": 10920
+          "amount": 0
         }
       ],
       "school": [
         {
-          "stage": "Interest",
-          "count": 8,
-          "amount": 12500
+          "stage": "90421578",
+          "count": 5,
+          "amount": 0
         },
         {
-          "stage": "Consideration",
-          "count": 6,
-          "amount": 15578
+          "stage": "87077266",
+          "count": 5,
+          "amount": 0
         },
         {
-          "stage": "Conviction",
+          "stage": "1284458931",
           "count": 1,
-          "amount": 1638
+          "amount": 0
+        },
+        {
+          "stage": "90421579",
+          "count": 1,
+          "amount": 0
         }
       ]
     }
   },
   "segment_coverage": {
-    "hih": 56,
-    "mql": 68,
-    "sql": 100,
-    "opp": 100
+    "hih": 62,
+    "mql": 50,
+    "sql": 108,
+    "opp": 108
   },
-  "product_caveat": "Low product coverage for SQL and Opp this week (15% each \u2014 most contacts have no product_interest tag). By-product SQL/Opp data should be interpreted with caution.",
-  "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. Unassigned/Other excluded from segment buckets but still in the funnel total.",
+  "product_caveat": "Product coverage: HIH 100%, MQL 90%, SQL 62%, Opp 58% \u2014 all above 30% flag threshold.",
+  "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. SQL/Opp segment sub-sums slightly exceed totals (SQL: 14 vs 13, Opp: 13 vs 12) due to possible segment overlap.",
   "products_included": [
     "ij",
     "inkwell",
@@ -152,126 +179,6 @@
     "gf8"
   ],
   "weeks": [
-    {
-      "period": "2026-05-25",
-      "label": "May 25",
-      "funnel": {
-        "hih": 17,
-        "mql": 34,
-        "sql": 15,
-        "opp": 17
-      },
-      "by_product": {
-        "ij": {
-          "hih": 11,
-          "mql": 10,
-          "sql": 5,
-          "opp": 7
-        },
-        "inkwell": {
-          "hih": 4,
-          "mql": 6,
-          "sql": 0,
-          "opp": 0
-        },
-        "wh": {
-          "hih": 1,
-          "mql": 4,
-          "sql": 0,
-          "opp": 0
-        }
-      },
-      "by_segment": {
-        "single_small": {
-          "hih": 4,
-          "mql": 11,
-          "sql": 8,
-          "opp": 8
-        },
-        "medium": {
-          "hih": 2,
-          "mql": 4,
-          "sql": 2,
-          "opp": 5
-        },
-        "large": {
-          "hih": 0,
-          "mql": 0,
-          "sql": 1,
-          "opp": 1
-        },
-        "enterprise": {
-          "hih": 3,
-          "mql": 5,
-          "sql": 2,
-          "opp": 1
-        }
-      },
-      "disposition": {
-        "dq": 188,
-        "nurture": 13
-      }
-    },
-    {
-      "period": "2026-06-01",
-      "label": "Jun 1",
-      "funnel": {
-        "hih": 25,
-        "mql": 45,
-        "sql": 30,
-        "opp": 31
-      },
-      "by_product": {
-        "ij": {
-          "hih": 19,
-          "mql": 23,
-          "sql": 9,
-          "opp": 9
-        },
-        "inkwell": {
-          "hih": 1,
-          "mql": 2,
-          "sql": 1,
-          "opp": 1
-        },
-        "wh": {
-          "hih": 6,
-          "mql": 3,
-          "sql": 1,
-          "opp": 1
-        }
-      },
-      "by_segment": {
-        "single_small": {
-          "hih": 10,
-          "mql": 24,
-          "sql": 21,
-          "opp": 21
-        },
-        "medium": {
-          "hih": 2,
-          "mql": 6,
-          "sql": 3,
-          "opp": 3
-        },
-        "large": {
-          "hih": 1,
-          "mql": 1,
-          "sql": 0,
-          "opp": 0
-        },
-        "enterprise": {
-          "hih": 3,
-          "mql": 7,
-          "sql": 5,
-          "opp": 5
-        }
-      },
-      "disposition": {
-        "dq": 132,
-        "nurture": 47
-      }
-    },
     {
       "period": "2026-06-08",
       "label": "Jun 8",
@@ -6089,8 +5996,177 @@
             "Email"
           ]
         ]
+      },
+      "content_engagement": {
+        "as_of": "2026-09-08",
+        "intent_tier": {
+          "high": 2305,
+          "medium": 1498,
+          "low": 29792
+        },
+        "top_content_tags": [
+          {
+            "tag": "Other Form",
+            "count": 3633,
+            "delta": null
+          },
+          {
+            "tag": "SS-WEB: Thought Leadership Series",
+            "count": 1709,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence",
+            "count": 1621,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Curriculum Review Guide",
+            "count": 1178,
+            "delta": null
+          },
+          {
+            "tag": "Contact Us",
+            "count": 608,
+            "delta": null
+          },
+          {
+            "tag": "ELA-WEB: Thought Leadership Series",
+            "count": 533,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Pacing Guide",
+            "count": 413,
+            "delta": null
+          },
+          {
+            "tag": "Book a Demo",
+            "count": 341,
+            "delta": null
+          }
+        ]
       }
+    },
+    {
+      "period": "2026-09-07",
+      "label": "Sep 7",
+      "funnel": {
+        "hih": 13,
+        "mql": 48,
+        "sql": 13,
+        "opp": 12
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh",
+        "gf8"
+      ],
+      "by_product": {
+        "ij": {
+          "hih": 6,
+          "mql": 16,
+          "sql": 8,
+          "opp": 7
+        },
+        "inkwell": {
+          "hih": 3,
+          "mql": 23,
+          "sql": 0,
+          "opp": 0
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 1,
+          "sql": 0,
+          "opp": 0
+        },
+        "gf8": {
+          "hih": 4,
+          "mql": 3,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 6,
+          "mql": 17,
+          "sql": 5,
+          "opp": 5
+        },
+        "medium": {
+          "hih": 1,
+          "mql": 6,
+          "sql": 0,
+          "opp": 0
+        },
+        "large": {
+          "hih": 0,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "enterprise": {
+          "hih": 1,
+          "mql": 1,
+          "sql": 9,
+          "opp": 8
+        }
+      },
+      "disposition": {
+        "dq": 91,
+        "nurture": 34,
+        "by_product": {
+          "ij": {
+            "dq": 20,
+            "nurture": 4
+          },
+          "inkwell": {
+            "dq": 11,
+            "nurture": 3
+          },
+          "wh": {
+            "dq": 0,
+            "nurture": 0
+          },
+          "gf8": {
+            "dq": 2,
+            "nurture": 2
+          }
+        }
+      },
+      "drill": {
+        "hih": [],
+        "mql": [],
+        "sql": [],
+        "opp": []
+      },
+      "note": "Labor Day (Sep 7) fell within this window, suppressing conversion activity. MQL -30%, SQL -58%, Opp -59% WoW \u2014 seasonal, expect recovery. Inkwell drove top-of-funnel (23/48 MQLs). Stage IDs used in pipeline by_stage \u2014 name mapping not available this run."
     }
   ],
-  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record."
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record.",
+  "pipeline_goal": {
+    "school_year": "SY27-28",
+    "as_of": "2026-09-08",
+    "goal": {
+      "generated": 10000000,
+      "closed_won": 2000000
+    },
+    "actual": {
+      "open": 3374997.83,
+      "lost": 1331871.0,
+      "won": 72521.91
+    },
+    "reference_year": {
+      "school_year": "SY25-26",
+      "generated": 11655470.61,
+      "closed_won": 2143798.43,
+      "win_rate_pct": 18.4
+    },
+    "note": "Filtered on deal_start_year='27-28' across District Sales, School Sales, and New Business pipelines only (Awareness/Renewal/Account Growth/Partnerships excluded -- see data/goals.json for why). Running total, not a weekly-window count. Full segment/product/pipeline breakdown lives on the Monthly Digest tab.",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
+    "field_value": "27-28"
+  }
 }

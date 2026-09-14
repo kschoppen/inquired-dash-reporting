@@ -12,7 +12,7 @@
   "seasonality": {
     "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
   },
-  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run).",
+  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run). CORRECTED 2026-09-11: the SKILL.md dev repo (kschoppen/growth-marketing) already defines Lead as recent_conversion_date IN window (any contact with a form submission that month) \u2014 the installed/cloud-running copy of the skill was behind this dev repo, which is why Lead was never actually populated despite being spec'd. Corrected Lead to the official recent_conversion_date definition, replacing an earlier same-day approximation (hs_v2_date_entered_lead) that used a different property and didn't match the documented query.",
   "months": [
     {
       "period": "2025-06",
@@ -21,7 +21,8 @@
         "hih": 82,
         "mql": 127,
         "sql": 38,
-        "opp": 44
+        "opp": 44,
+        "lead": 182
       },
       "revenue": {
         "district_won": 320014.36,
@@ -75,7 +76,8 @@
         "hih": 49,
         "mql": 137,
         "sql": 52,
-        "opp": 53
+        "opp": 53,
+        "lead": 142
       },
       "revenue": {
         "district_won": 467121.79,
@@ -129,7 +131,8 @@
         "hih": 13,
         "mql": 195,
         "sql": 101,
-        "opp": 98
+        "opp": 98,
+        "lead": 262
       },
       "revenue": {
         "district_won": 35735.84,
@@ -183,7 +186,8 @@
         "hih": 27,
         "mql": 305,
         "sql": 120,
-        "opp": 120
+        "opp": 120,
+        "lead": 424
       },
       "revenue": {
         "district_won": 20287.41,
@@ -237,7 +241,8 @@
         "hih": 33,
         "mql": 682,
         "sql": 497,
-        "opp": 499
+        "opp": 499,
+        "lead": 546
       },
       "revenue": {
         "district_won": 4731,
@@ -291,7 +296,8 @@
         "hih": 86,
         "mql": 144,
         "sql": 43,
-        "opp": 42
+        "opp": 42,
+        "lead": 327
       },
       "revenue": {
         "district_won": 5184.3,
@@ -345,7 +351,8 @@
         "hih": 36,
         "mql": 136,
         "sql": 70,
-        "opp": 71
+        "opp": 71,
+        "lead": 319
       },
       "revenue": {
         "district_won": 11250,
@@ -399,7 +406,8 @@
         "hih": 75,
         "mql": 145,
         "sql": 37,
-        "opp": 30
+        "opp": 30,
+        "lead": 344
       },
       "revenue": {
         "district_won": 15241.6,
@@ -453,7 +461,8 @@
         "hih": 89,
         "mql": 313,
         "sql": 69,
-        "opp": 69
+        "opp": 69,
+        "lead": 627
       },
       "revenue": {
         "district_won": 7805,
@@ -507,7 +516,8 @@
         "hih": 70,
         "mql": 437,
         "sql": 68,
-        "opp": 65
+        "opp": 65,
+        "lead": 503
       },
       "revenue": {
         "district_won": 4000,
@@ -559,7 +569,7 @@
       "label": "Apr 2026",
       "funnel": {
         "hih": 72,
-        "lead": 337,
+        "lead": 378,
         "mql": 195,
         "sql": 74,
         "opp": 77,
@@ -620,7 +630,7 @@
       "label": "May 2026",
       "funnel": {
         "hih": 101,
-        "lead": 382,
+        "lead": 284,
         "mql": 269,
         "sql": 99,
         "opp": 96,
@@ -1184,7 +1194,8 @@
         "hih": 76,
         "mql": 336,
         "sql": 276,
-        "opp": 281
+        "opp": 281,
+        "lead": 245
       },
       "revenue": {
         "district_won": 924843.86,
@@ -1618,7 +1629,8 @@
         "hih": 26,
         "mql": 158,
         "sql": 112,
-        "opp": 113
+        "opp": 113,
+        "lead": 197
       },
       "revenue": {
         "district_won": 658504.61,
@@ -1895,33 +1907,34 @@
         "hih": 52,
         "mql": 281,
         "sql": 126,
-        "opp": 124
+        "opp": 124,
+        "lead": 511
       },
       "revenue": {
-        "district_won": 109140.11,
+        "district_won": 179079.02,
         "school_won": 40427.75,
-        "total_won": 149567.86,
-        "nb_won": 129635.51,
+        "total_won": 219506.77,
+        "nb_won": 199574.42,
         "existing_won": 19932.35,
-        "wins": 34,
-        "win_rate_count_pct": 85.0,
-        "win_rate_dollar_pct": 86.7,
+        "wins": 36,
+        "win_rate_count_pct": 80.0,
+        "win_rate_dollar_pct": 84.1,
         "by_segment": {
           "single_small": {
             "won": 19,
             "lost": 3
           },
           "medium": {
-            "won": 8,
-            "lost": 2
+            "won": 9,
+            "lost": 4
           },
           "large": {
-            "won": 5,
+            "won": 6,
             "lost": 1
           },
           "enterprise": {
             "won": 2,
-            "lost": 0
+            "lost": 1
           }
         }
       },
@@ -2202,6 +2215,134 @@
           "type": "newbusiness",
           "amount": 5743,
           "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55198118236"
+        },
+        {
+          "name": "Bloomington Public School District, MN - SS",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 69938.91,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/21587214398"
+        },
+        {
+          "name": "Woodburn School District, OR - SS",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/55827961761"
+        }
+      ],
+      "funnel_note": "August's MQL/HIH growth was mechanically inflated by an offline bulk contact import (confirmed 2026-09-11) -- SQL (+12.5%) and Opportunities (+9.7%) are the reliable read on real demand this month.",
+      "ai_visibility": {
+        "score": 15,
+        "label": "Low",
+        "mentions": 18,
+        "mentions_delta_pct": -37.9,
+        "citations": 95,
+        "citations_delta_pct": 1.1,
+        "cited_pages": 40,
+        "cited_pages_delta_pct": 25.0,
+        "by_llm": [
+          {
+            "llm": "ChatGPT",
+            "pct": 38.9,
+            "count": 7
+          },
+          {
+            "llm": "AI Overview",
+            "pct": 27.8,
+            "count": 5
+          },
+          {
+            "llm": "Gemini",
+            "pct": 22.2,
+            "count": 4
+          },
+          {
+            "llm": "AI Mode",
+            "pct": 11.1,
+            "count": 2
+          }
+        ]
+      },
+      "keyword_gap": {
+        "total_missing": 100,
+        "relevant_missing": 14,
+        "filter_note": "Math keywords excluded -- competitors' products include math curricula not relevant to IJ/Inkwell/WH. 14 of 100 missing keywords are ELA/literacy/social studies.",
+        "top_gaps": [
+          {
+            "kw": "ela curriculum",
+            "vol": 880
+          },
+          {
+            "kw": "literacy curriculum",
+            "vol": 320
+          },
+          {
+            "kw": "middle school ela curriculum",
+            "vol": 140
+          },
+          {
+            "kw": "ela curriculum elementary",
+            "vol": 110
+          },
+          {
+            "kw": "ela programs",
+            "vol": 110
+          }
+        ]
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "visits": 3106,
+          "type": "Homepage"
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "visits": 257,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/52-words-the-meaning-and-message-of-the-preamble",
+          "visits": 187,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "visits": 186,
+          "type": "Product"
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "visits": 177,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "visits": 162,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "visits": 126,
+          "type": "Product"
+        },
+        {
+          "path": "/careers",
+          "visits": 97,
+          "type": "Page"
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "visits": 95,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/high-quality-instructional-materials-in-social-studies",
+          "visits": 51,
+          "type": "Blog"
         }
       ]
     }
@@ -2475,5 +2616,160 @@
     "prior_total": 206498,
     "yoy_pct": 38.2
   },
-  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups."
+  "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) \u2014 independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups.",
+  "pipeline_goal": {
+    "school_year": "SY27-28",
+    "as_of": "2026-09-08",
+    "goal": {
+      "generated": 10000000,
+      "closed_won": 2000000
+    },
+    "actual": {
+      "open": 3374997.83,
+      "lost": 1331871.0,
+      "won": 72521.91
+    },
+    "by_segment": {
+      "single_small": {
+        "open": 376050.0,
+        "lost": 2000.0,
+        "won": 2583.0
+      },
+      "medium": {
+        "open": 694393.5,
+        "lost": 326261.0,
+        "won": 0.0
+      },
+      "large": {
+        "open": 814248.0,
+        "lost": 224615.0,
+        "won": 69938.91
+      },
+      "enterprise": {
+        "open": 1131354.0,
+        "lost": 778995.0,
+        "won": 0.0
+      }
+    },
+    "by_product": {
+      "ij": {
+        "open": 2172497.83,
+        "lost": 1306371.0,
+        "won": 72521.91
+      },
+      "inkwell": {
+        "open": 551000.0,
+        "lost": 0.0,
+        "won": 0.0
+      },
+      "wh": {
+        "open": 13250.0,
+        "lost": 0.0,
+        "won": 0.0
+      },
+      "gf8": {
+        "open": 701500.0,
+        "lost": 25500.0,
+        "won": 0.0
+      },
+      "untagged": {
+        "open": 0.0,
+        "lost": 0.0,
+        "won": 0.0
+      }
+    },
+    "by_pipeline": {
+      "district": {
+        "open": 231250.0,
+        "lost": 1321371.0,
+        "won": 2583.0
+      },
+      "school": {
+        "open": 0.0,
+        "lost": 2000.0,
+        "won": 0.0
+      },
+      "new_business": {
+        "open": 3143747.83,
+        "lost": 8500.0,
+        "won": 69938.91
+      }
+    },
+    "reference_year": {
+      "school_year": "SY25-26",
+      "generated": 11655470.61,
+      "closed_won": 2143798.43,
+      "closed_lost": 9504395.18,
+      "win_rate_pct": 18.4,
+      "by_segment": {
+        "single_small": {
+          "open": 6477.0,
+          "lost": 842107.7,
+          "won": 250884.75
+        },
+        "medium": {
+          "open": 0.0,
+          "lost": 2148393.48,
+          "won": 342105.76
+        },
+        "large": {
+          "open": 800.0,
+          "lost": 2727220.0,
+          "won": 409189.32
+        },
+        "enterprise": {
+          "open": 0.0,
+          "lost": 2513279.0,
+          "won": 1126519.6
+        }
+      },
+      "by_product": {
+        "ij": {
+          "open": 7277.0,
+          "lost": 6284861.13,
+          "won": 1049306.75
+        },
+        "inkwell": {
+          "open": 0.0,
+          "lost": 6000.0,
+          "won": 0.0
+        },
+        "wh": {
+          "open": 6477.0,
+          "lost": 211061.0,
+          "won": 252271.0
+        },
+        "gf8": {
+          "open": 0.0,
+          "lost": 0.0,
+          "won": 0.0
+        },
+        "untagged": {
+          "open": 0.0,
+          "lost": 3039231.05,
+          "won": 1018240.68
+        }
+      },
+      "by_pipeline": {
+        "district": {
+          "open": 800.0,
+          "lost": 9298718.18,
+          "won": 1986315.56
+        },
+        "school": {
+          "open": 6477.0,
+          "lost": 205677.0,
+          "won": 157482.87
+        },
+        "new_business": {
+          "open": 0.0,
+          "lost": 0.0,
+          "won": 0.0
+        }
+      }
+    },
+    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved.",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
+    "field_value": "27-28"
+  }
 }

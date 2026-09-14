@@ -10,6 +10,8 @@ const TABS = [
     meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026" } },
   { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+  { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
+    meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026" } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
     meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
@@ -219,52 +221,6 @@ function renderOverview(d) {
       <div class="ov-kpi-spk"><canvas id="ovSpk${i}"></canvas></div>
     </div>`).join("");
 
-  const CARDS = [
-    { id: "monthly",  accent: "#144745", accentBg: "rgba(20,71,69,0.10)",   icon: "📈", title: "Monthly Digest",
-      desc: "Full funnel from HIH through SQL with MoM and YoY deltas, revenue trends, product mix, and top content performance. Source of record for monthly reporting.",
-      statLabel: "Latest month", statValue: "—", dataFile: "data/monthly-digest.json",
-      statFn: (j) => { const m = j.months; return m && m.length ? m[m.length - 1].label : "—"; } },
-    { id: "weekly",   accent: "#5B5A9E", accentBg: "rgba(91,90,158,0.10)",  icon: "📅", title: "Weekly Digest",
-      desc: "This week's new contacts, MQL conversions, and a drillable account list. Refreshes every Monday. Use for weekly standups and pipeline reviews.",
-      statLabel: "Week of", statValue: "—", dataFile: "data/weekly-digest.json",
-      statFn: (j) => { const w = j.weeks; return w && w.length ? w[w.length - 1].label : "—"; } },
-    { id: "campaign", accent: "#C04040", accentBg: "rgba(192,64,64,0.09)",  icon: "📣", title: "Campaign Health",
-      desc: "HIH/MQL performance by campaign, sorted by health status. Flags underperformers against portfolio benchmark.",
-      statLabel: "Active campaigns", statValue: "—", dataFile: "data/campaign-analytics.json",
-      statFn: (j) => { const m = j.months; if (!m || !m.length) return "—"; const last = m[m.length - 1]; return (last.total && last.total.active_campaigns != null) ? last.total.active_campaigns + " campaigns" : (last.campaigns ? last.campaigns.length + " campaigns" : "—"); } },
-    { id: "pulse",    accent: "#1C6854", accentBg: "rgba(28,104,84,0.10)",  icon: "👥", title: "Account Pulse (MQA)",
-      desc: "Accounts that have crossed the marketing-qualified threshold. Broken out by engagement stage and district so CS knows who to prioritize.",
-      statLabel: "In MQA window", statValue: "—", dataFile: "data/account-pulse.json",
-      statFn: (j) => { const s1 = j.section1; return s1 ? s1.length + " accounts" : "—"; } },
-  ];
-
-  // Fetch live stat values for each card in parallel (soft-fail — cards render with "—" on error)
-  Promise.all(CARDS.map((c) =>
-    fetch(c.dataFile, { cache: "no-store" }).then((r) => r.json()).then((j) => { c.statValue = c.statFn(j); }).catch(() => {})
-  )).then(() => {
-    document.querySelectorAll(".ov-dash-stat-value").forEach((el) => {
-      const id = el.closest(".ov-dash-card") && el.closest(".ov-dash-card").dataset.tabid;
-      const c = CARDS.find((x) => x.id === id);
-      if (c) el.textContent = c.statValue;
-    });
-  });
-
-  const cardsHTML = CARDS.map((c) => `
-    <button class="ov-dash-card" data-tabid="${c.id}" style="--ov-accent:${c.accent};--ov-accent-bg:${c.accentBg}" onclick="switchToTab('${c.id}')">
-      <div class="ov-dash-card-title">
-        <div class="ov-dash-icon">${c.icon}</div>
-        ${c.title}
-      </div>
-      <div class="ov-dash-desc">${c.desc}</div>
-      <div class="ov-dash-foot">
-        <div>
-          <div class="ov-dash-stat-label">${c.statLabel}</div>
-          <div class="ov-dash-stat-value" style="color:${c.accent}">${c.statValue}</div>
-        </div>
-        <span class="ov-dash-link">Open →</span>
-      </div>
-    </button>`).join("");
-
   const ws = d.weekly_signal;
   function wsCard(entry, label) {
     if (!entry) return "";
@@ -281,21 +237,6 @@ function renderOverview(d) {
   const wsPrevious = ws && ws.previous ? ws.previous : null;
   const weeklySignalHTML = ws ? wsCard(wsCurrent) + wsCard(wsPrevious, "previous") : "";
 
-  // Brand lift (GSC branded search + Social Signals) — renders only when data/overview.json has a brand_lift block
-  const bl = d.brand_lift;
-  const blCollecting = bl && bl.status === "collecting";
-  const blHTML = bl ? `
-    <div class="ov-section-label">Brand lift · Google Search</div>
-    ${bl.note ? `<div class="ov-bl-note">${blCollecting ? "⏳ " : ""}${bl.note}</div>` : ""}
-    <div class="ov-kpi-strip ov-bl-strip">${(bl.metrics || []).map((m, i) => `
-      <div class="ov-kpi">
-        <div class="ov-kpi-label">${m.label}</div>
-        <div class="ov-kpi-value">${m.value != null ? m.value : "—"}</div>
-        <span class="ov-kpi-delta ${m.delta_dir || "flat"}">${m.delta != null ? m.delta : (m.unavailable ? "Not in API" : blCollecting ? "Collecting" : "—")}</span>
-        <div class="ov-kpi-sub">${m.unavailable ? "Search Console platform property — in the Search Console UI but not served by the Search Analytics API, so it can't be filled automatically" : `${m.sub || ""}${m.provisional ? ` · ⏳ week still finalizing; change measured on ${m.delta_basis || "settled days"}` : ""}`}</div>
-        <div class="ov-kpi-spk"><canvas id="ovBlSpk${i}"></canvas></div>
-      </div>`).join("")}</div>` : "";
-
   document.getElementById("view").innerHTML = `
     <div class="ov-narrative">
       <div class="ov-narr-meta">
@@ -309,29 +250,7 @@ function renderOverview(d) {
     ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
-    ${blHTML}
-    <div class="ov-section-label">Drill into a dashboard</div>
-    <div class="ov-dash-grid">${cardsHTML}</div>
     <div class="ov-defs-link"><a href="#" onclick="switchToTab('defs');return false;">View metric definitions →</a></div>`;
-
-  // brand lift sparklines (skip while collecting — empty spark arrays)
-  if (bl) (bl.metrics || []).forEach((m, i) => {
-    const el = document.getElementById(`ovBlSpk${i}`);
-    if (!el || !m.spark || !m.spark.length) return;
-    charts.push(new Chart(el, {
-      type: "line",
-      data: {
-        labels: m.spark.map((_, j) => j),
-        datasets: [{ data: m.spark, borderColor: IJ, borderWidth: 2,
-          backgroundColor: IJ + "18", tension: 0.4, pointRadius: 0, fill: true }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false, animation: false,
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
-        scales: { x: { display: false }, y: { display: false, beginAtZero: false } }
-      }
-    }));
-  });
 
   // sparklines
   const spkColors = [IJ, PLUM, ROSE, "#1C6854"];
@@ -356,6 +275,30 @@ function renderOverview(d) {
   });
 }
 
+// ---- jump rail (section quick-nav, built by the caller after #view is rendered) ----
+function buildJumpRail(sections) {
+  const rail = document.getElementById("jump-rail");
+  if (!rail || !sections || !sections.length) return;
+  rail.innerHTML = sections.map((s) => `<button data-jump="${s.id}">${s.label}</button>`).join("");
+  rail.hidden = false;
+  rail.querySelectorAll("button").forEach((b) => {
+    b.onclick = () => {
+      const el = document.getElementById(b.dataset.jump);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  });
+  const targets = sections.map((s) => document.getElementById(s.id)).filter(Boolean);
+  if (targets.length && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        rail.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.jump === entry.target.id));
+      });
+    }, { rootMargin: "-15% 0px -70% 0px" });
+    targets.forEach((t) => obs.observe(t));
+  }
+}
+
 function renderMonthly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const m = d.months, last = m[m.length - 1], prev = m[m.length - 2] || {};
@@ -372,7 +315,7 @@ function renderMonthly(d) {
 
   const hihVel = fu(last, "hih"), hihVelPrev = fu(prev, "hih");
   const hihPool = (last.funnel && last.funnel.hih_pool_active != null) ? last.funnel.hih_pool_active : null;
-  const hihToMql = rate(fu(last, "mql"), hihVel), heroConv = rate(fu(last, "sql"), fu(last, "mql"));
+  const heroConv = rate(fu(last, "sql"), fu(last, "mql"));
 
   const sessions = wv.sessions, sessionsPrev = (prev.web || {}).sessions;
   const lead = fu(last, "lead"), leadPrev = fu(prev, "lead");
@@ -381,19 +324,19 @@ function renderMonthly(d) {
 
   document.getElementById("view").innerHTML = `
     <!-- HIH HERO -->
-    <div class="hih-hero">
+    <div id="sec-hih" class="hih-hero">
       <div class="hih-hero-top">
         <div class="hih-hero-main">
           <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
           <div class="hero-val">${hihPool != null ? fmtN(hihPool) : (hihVel != null ? fmtN(hihVel) : "—")}</div>
           <div class="hero-sub">Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This pool refreshes continuously in HubSpot.</div>
           <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
-          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. HIH contacts convert to MQL at <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong>, making them our highest-value top-of-funnel signal.</div>
+          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. Because HIH isn't a sequential gate MQL passes through, there's no valid "HIH→MQL conversion rate" — it's a parallel signal, read alongside the funnel below rather than as a step in it.</div>
         </div>
         <div class="hih-hero-velocity">
           <div class="hero-label">★ HIH VELOCITY — new contacts this month (${last.label})</div>
           <div class="hero-val-sm">${fmtN(hihVel)} &nbsp;${deltaHTML(hihVel, hihVelPrev, {label:"MoM"})}</div>
-          <div class="hero-sub">New contacts reaching High-intent · HIH→MQL <strong>${hihToMql != null ? hihToMql + "%" : "—"}</strong> · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
+          <div class="hero-sub">New contacts reaching High-intent · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
           <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
           <div class="hih-prod-breakdown">${hihProdBreakdown(last)}<p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p></div>
         </div>
@@ -405,7 +348,7 @@ function renderMonthly(d) {
     </div>
 
     <!-- FUNNEL ARROW -->
-    <div class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
+    <div id="sec-funnel" class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
     <div class="funnel-panel">
       <h3>Prospect → Opp · full funnel with conversion rates</h3>
       <p class="f-sub">Monthly new contacts entering each stage. MoM delta shown; YoY populates once prior-year data is in history. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
@@ -424,7 +367,7 @@ function renderMonthly(d) {
     </div>
 
     <!-- PRODUCT SECTION -->
-    <div class="product-section">
+    <div id="sec-leading" class="product-section">
       <div class="product-section-head">
         <div>
           <div class="product-section-title">▲ Leading Indicators · ${last.label}</div>
@@ -453,7 +396,7 @@ function renderMonthly(d) {
       <div class="panel" style="margin-bottom:14px">
         <h3>MQL → SQL conversion — 12-month trend</h3>
         <div class="chartbox"><canvas id="cConvTrend"></canvas></div>
-        ${note(funnelNarrative(d, last, sqlRate))}
+        ${note(funnelNarrative(d, last, sqlRate, sqlRatePrev))}
       </div>
 
       <div class="grid2" style="margin-bottom:0">
@@ -470,7 +413,7 @@ function renderMonthly(d) {
 
     <!-- WEB ACQUISITION -->
     ${wv.channels ? `
-    <div class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
+    <div id="sec-web" class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
     <div class="cards">
       <div class="card"><div class="label">Sessions</div><div class="value">${fmtN(wv.sessions)}</div>${dualDelta(wv.sessions, sessionsPrev, yoy.sessions)}<div class="cap">${yoy.sessions ? `vs ${fmtN(yoy.sessions)} same mo. prior year` : "YoY populates with 2 years of data"}</div></div>
       <div class="card"><div class="label">Users</div><div class="value">${fmtN(wv.users)}</div>${dualDelta(wv.users, (prev.web||{}).users, yoy.users)}<div class="cap">${yoy.users ? `vs ${fmtN(yoy.users)} prior year` : ""}</div></div>
@@ -490,48 +433,51 @@ function renderMonthly(d) {
     </div>` : ""}
 
     <!-- SEO -->
-    <div class="section-label">🔍 Organic search · ${last.label} <span class="muted">(Semrush rankings · SemRush traffic)</span></div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
-        ${seoSection(d)}
-        <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
-        ${note(seoNarrative(d))}
+    <div id="sec-seo" class="seo-section">
+      <div class="section-label" style="margin-top:0">🔍 SEO — organic search · ${last.label} <span class="muted">(Semrush rankings · Semrush traffic)</span></div>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
+          ${seoSection(d)}
+          <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
+          ${note(seoNarrative(d))}
+        </div>
+        <div class="panel">
+          <h3>Top organic entry pages <span class="source-badge semrush">Semrush API</span></h3>
+          <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
+          ${last.seo_top_pages
+            ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
+            : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
+        </div>
       </div>
-      <div class="panel">
-        <h3>Top organic entry pages <span class="source-badge semrush">SemRush API</span></h3>
-        <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
-        ${last.seo_top_pages
-          ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-          : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
+    </div>
+
+    <div id="sec-aeo" class="aeo-section">
+      <div class="section-label" style="margin-top:0">🎯 AEO — AI &amp; answer engine visibility · ${last.label}</div>
+      <div class="grid2">
+        <div class="panel">
+          <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
+          ${aiVisSection(last)}
+        </div>
+        <div class="panel">
+          <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
+          ${kwGapSection(last)}
+        </div>
+      </div>
+      <div class="aeo-under-construction">
+        🚧 <strong>HubSpot AEO — under construction.</strong> Tracked-prompt visibility across AI assistants (ChatGPT, Claude, Gemini) plus competitor share of voice for specific buyer questions like "Great First Eight vs Frog Street" — a different lens than the Semrush score above, which tracks aggregate brand mentions rather than named prompts. The pull is built and waiting on HubSpot AEO permission; real numbers land here once that's sorted.
       </div>
     </div>
 
     <!-- BRAND LIFT -->
     ${brandLiftSection(d.brand_lift, "MoM", "mBrandLift")}
 
-    <!-- AI VISIBILITY + KEYWORD GAP -->
-    <div class="section-label">🤖 AI &amp; competitive search visibility · ${last.label} <span class="muted">(Semrush)</span></div>
-    <div class="grid2">
-      <div class="panel">
-        <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
-        ${aiVisSection(last)}
-      </div>
-      <div class="panel">
-        <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
-        ${kwGapSection(last)}
-      </div>
-    </div>
-
-    ${last.top_pages && last.top_pages.length ? `
-    <div class="panel"><h3>Top conversion pages <span class="muted">(${last.label} · GA4)</span></h3>
-      <p class="flag" style="margin:0 0 10px">Pages ranked by key event completions (form submits, downloads, demo requests). MoM and YoY deltas populate once the digest skill pulls prior-period data.</p>
-      ${topPagesSection(last.top_pages, null, "monthly")}
-    </div>` : ""}
-
     <!-- LAGGING -->
-    <div class="section-label">▽ Lagging · ${last.label} — sales outcome <span class="muted">(context; $ pipeline + win rate → RevOps)</span></div>
+    <div id="sec-lagging" class="section-label">💰 Pipeline · ${last.label} <span class="muted">(lagging sales outcome — $ + win rate context; RevOps owns the official view)</span></div>
     <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
+
+    ${pipelineGoalSection(d.pipeline_goal, { full: true })}
+
     <div class="cards">
       <div class="card"><div class="label">Closed-won ($)</div><div class="value">${fmt$(last.revenue.total_won)}</div>${dualDelta(last.revenue.total_won, prev.revenue && prev.revenue.total_won, null)}<div class="cap">${last.label} · total dollars won (non-test / non-RFP)</div></div>
       <div class="card"><div class="label">New business ($)</div><div class="value">${fmt$(last.revenue.nb_won)}</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">new + pilot + pilot-expansion deals</div></div>
@@ -544,7 +490,7 @@ function renderMonthly(d) {
       ${last.deals ? dealDrill(last) : ""}
     </div>
 
-    <div class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
+    <div id="sec-detail" class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
       <table><thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead><tbody>
       ${m.map((x) => `<tr><td>${x.label}</td><td>${fmtN(fu(x,"hih"))}</td><td>${fmtN(fu(x,"mql"))}</td><td>${fmtN(fu(x,"sql"))}</td><td>${rate(fu(x,"sql"),fu(x,"mql")) != null ? rate(fu(x,"sql"),fu(x,"mql"))+"%" : "—"}</td><td>${fmtN(x.revenue.wins)}</td><td>${fmt$(x.revenue.total_won)}</td></tr>`).join("")}
       </tbody></table>
@@ -553,6 +499,17 @@ function renderMonthly(d) {
 
   // wire product chips
   document.querySelectorAll(".chip[data-p]").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
+
+  buildJumpRail([
+    { id: "sec-hih", label: "HIH" },
+    { id: "sec-funnel", label: "Funnel" },
+    { id: "sec-leading", label: "Leading ind." },
+    { id: "sec-web", label: "Web" },
+    { id: "sec-seo", label: "SEO" },
+    { id: "sec-aeo", label: "AEO" },
+    { id: "sec-lagging", label: "Pipeline" },
+    { id: "sec-detail", label: "Detail" },
+  ]);
 
   const botLeg = { plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: false };
   const noLeg  = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
@@ -620,11 +577,35 @@ function hihByProductTable(last) {
 }
 
 // ---- narratives ----
-function funnelNarrative(d, last, conv) {
-  return `MQL→SQL ${conv != null ? conv + "%" : "—"} — well above the B2B benchmark (13–22%; top performers 30–45%). Volume dips in May–Jun are the seasonal buying crunch, not a lead-gen failure — watch off-cycle drops instead.`;
+function funnelNarrative(d, last, conv, prevConv) {
+  if (conv == null) return "MQL→SQL conversion — not enough data this month.";
+  const benchLabel = conv >= 30 ? "well above the B2B benchmark (13–22%; top performers 30–45%)"
+    : conv >= 13 ? "within the B2B benchmark range (13–22%)"
+    : "below the B2B benchmark range (13–22%)";
+  const momClause = prevConv != null
+    ? (conv >= prevConv ? ` — up from ${prevConv}% last month` : ` — down from ${prevConv}% last month`)
+    : "";
+  const [, moStr] = (last.period || "").split("-");
+  const mo = parseInt(moStr, 10);
+  const seasonNote = (mo === 5 || mo === 6)
+    ? " May–June volume dips are the seasonal district-buying crunch, not a lead-gen failure."
+    : "";
+  const flagNote = last.funnel_note ? ` ${last.funnel_note}` : "";
+  return `MQL→SQL ${conv}%${momClause} — ${benchLabel}.${seasonNote}${flagNote}`;
 }
 function laggingNarrative(last) {
-  return `Revenue lags ~2 quarters in K-12 (a deal closing now was sourced last fall). One deal (Puyallup $60K) is most of the month — don't over-read a single month. $ pipeline + official win rate live in RevOps.`;
+  const deals = (last.deals || []).filter((x) => x.amount > 0);
+  const total = last.revenue ? last.revenue.total_won : null;
+  const base = "Revenue lags ~2 quarters in K-12 (a deal closing now was sourced last fall).";
+  if (!deals.length || !total) {
+    return `${base} $ pipeline + official win rate live in RevOps.`;
+  }
+  const top = deals.slice().sort((a, b) => b.amount - a.amount)[0];
+  const share = Math.round((top.amount / total) * 100);
+  const concentrationNote = share >= 40
+    ? ` Don't over-read a single month.`
+    : ` A broad month across ${deals.length} paid deals, not one outlier.`;
+  return `${base} ${top.name} (${fmt$(top.amount)}) is ${share}% of this month's ${fmt$(total)} won.${concentrationNote} $ pipeline + official win rate live in RevOps.`;
 }
 function seoNarrative(d) {
   const t = (n) => (d.seo_topics || []).find((x) => x.topic === n) || {};
@@ -694,6 +675,49 @@ function kwGapSection(m) {
     ${kg.filter_note ? note(kg.filter_note) : ""}`;
 }
 
+// ---- AEO (HubSpot) sections — not currently called; the AEO panel shows a single
+// "under construction" banner until HubSpot AEO permission clears. Re-wire these in
+// (see the removed grid2 block in git history, commit "Split Organic Search into
+// tinted SEO/AEO sections...") once month.aeo has real data. ----
+function aeoVisSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok") {
+    const reason = ae && ae.run_status === "no_permission"
+      ? "HubSpot AEO permission not yet granted on this connection — reconnect the HubSpot integration once access is approved."
+      : "Data pending — populated by the monthly digest run (HubSpot AEO, same connector as CRM data — no separate credential).";
+    return `<p class="data-empty">— ${reason}</p>`;
+  }
+  return `<div class="ai-vis-score">
+      <span class="ai-vis-num">${ae.visibility_score != null ? ae.visibility_score : "—"}</span><span class="ai-vis-denom">/100</span>
+    </div>
+    <div class="ai-vis-stats">
+      ${[["Mentions", ae.mentions], ["Citations", ae.citations], ["Prompts tracked", ae.prompts_tracked]].map(([lbl, val]) =>
+      `<div class="ai-vis-stat"><span class="ai-vis-stat-label">${lbl}</span><span class="ai-vis-stat-val">${val != null ? fmtN(val) : "—"}</span></div>`
+    ).join("")}
+    </div>`;
+}
+
+function aeoCompetitorSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok" || !ae.competitors || !ae.competitors.length) {
+    return '<p class="data-empty">— Data pending — populated by the monthly digest run</p>';
+  }
+  return `<table><thead><tr><th>Brand</th><th>Mentions</th><th>Share of voice</th></tr></thead><tbody>
+    ${ae.competitors.map((c) => `<tr><td>${c.name}</td><td>${fmtN(c.mentions)}</td><td>${c.share_pct}%</td></tr>`).join("")}
+  </tbody></table>`;
+}
+
+function aeoAssistantSection(m) {
+  const ae = m.aeo;
+  if (!ae || ae.run_status !== "ok" || !ae.by_assistant || !ae.by_assistant.length) return "";
+  return `<div class="panel" style="margin-bottom:0">
+    <h3>Mentions by AI assistant <span class="muted">(${m.label} · HubSpot)</span></h3>
+    <div class="ai-vis-llm">
+      ${ae.by_assistant.map((a) => `<div class="ai-vis-llm-row"><span class="ai-vis-llm-name">${a.assistant}</span><div class="ai-vis-bar-wrap"><div class="ai-vis-bar" style="width:${a.pct}%"></div></div><span class="ai-vis-llm-pct">${a.pct}% · ${a.mentions}</span></div>`).join("")}
+    </div>
+  </div>`;
+}
+
 // ---- deal drill-down ----
 function dealDrill(last) {
   const ds = last.deals || [];
@@ -757,6 +781,36 @@ function pipelineStageTable(label, stages) {
   return `<table><thead><tr><th>${label} stage</th><th>Deals</th><th>$ Amount</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+// ---- content engagement (intent tier + content tags — running totals, not a weekly-window count) ----
+const CE_TIER_COLORS = { high: "#144745", medium: "#1C2660", low: "#94A3AE" };
+
+function ceTagDeltaHTML(d) {
+  if (d == null) return "";
+  if (d === 0) return '<span class="delta flat">=</span>';
+  return d > 0 ? `<span class="delta up">▲${fmtN(d)}</span>` : `<span class="delta down">▼${fmtN(Math.abs(d))}</span>`;
+}
+
+function contentEngagementSection(ce) {
+  if (!ce) return "";
+  const tier = ce.intent_tier || {};
+  const tierCards = ["high", "medium", "low"].map((k) => {
+    const label = k.charAt(0).toUpperCase() + k.slice(1) + " intent";
+    return `<div class="card"><div class="label" style="color:${CE_TIER_COLORS[k]}">${label}</div><div class="value">${fmtN(tier[k])}</div><div class="cap">Contacts currently tagged</div></div>`;
+  }).join("");
+
+  const tags = ce.top_content_tags || [];
+  const tagRows = tags.map((t) => `<tr><td>${t.tag}</td><td>${fmtN(t.count)}</td><td>${ceTagDeltaHTML(t.delta)}</td></tr>`).join("");
+
+  return `
+    <div class="panel"><h3>Content engagement <span class="muted">(as of ${ce.as_of || "—"})</span></h3>
+      ${note("Running totals — how many contacts currently carry each value, not new this week. WoW compares against last week's stored snapshot.")}
+      <div class="cards">${tierCards}</div>
+      <h4>Top content tags</h4>
+      ${tagRows ? `<table class="bd"><thead><tr><th>Tag</th><th>Contacts</th><th>WoW</th></tr></thead><tbody>${tagRows}</tbody></table>` : `<p class="cap">No tagged contacts yet.</p>`}
+      ${note("Content tags are multi-select — a contact with more than one tag counts toward each, so this won't sum to total contacts.")}
+    </div>`;
+}
+
 function dispositionProductTable(last) {
   const bp = (last.disposition && last.disposition.by_product) || {};
   const rows = WK_PIPE_PRODUCT_ROWS.map(([k, label, color]) => {
@@ -766,13 +820,76 @@ function dispositionProductTable(last) {
   return `<table><thead><tr><th>Product</th><th>Disqualified</th><th>Sent to nurture</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+// ---- pipeline vs. goal (weekly compact + monthly full) — shared by both tabs ----
+const PG_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
+const PG_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"], ["gf8", "Great First 8"], ["untagged", "Untagged"]];
+const PG_PIPELINE_ROWS = [["district", "District"], ["school", "School"], ["new_business", "New Business"]];
+
+function pgTotal(b) { return ((b && b.open) || 0) + ((b && b.lost) || 0) + ((b && b.won) || 0); }
+function pgBarSegs(b) {
+  const t = pgTotal(b) || 1;
+  const wonPct = ((b && b.won) || 0) / t * 100, lostPct = ((b && b.lost) || 0) / t * 100, openPct = ((b && b.open) || 0) / t * 100;
+  return `<div class="stack-bar"><div class="stack-seg won" style="width:${wonPct}%"></div><div class="stack-seg lost" style="width:${lostPct}%"></div><div class="stack-seg open" style="width:${openPct}%"></div></div>`;
+}
+function pgBreakdownRows(rowDefs, data) {
+  return rowDefs.map(([k, label]) => `<div class="stack-row"><span class="lbl">${label}</span>${pgBarSegs(data && data[k])}<span class="val">${fmt$(pgTotal(data && data[k]))}</span></div>`).join("");
+}
+function pgBreakdownTable(rowDefs, data) {
+  const body = rowDefs.map(([k, label]) => { const b = (data && data[k]) || {}; return `<tr><td>${label}</td><td>${fmt$(b.open)}</td><td>${fmt$(b.lost)}</td><td>${fmt$(b.won)}</td></tr>`; }).join("");
+  return `<table class="bd"><thead><tr><th></th><th>Open</th><th>Lost</th><th>Won</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function pipelineGoalSection(pg, opts = {}) {
+  if (!pg) return "";
+  const goal = pg.goal || {}, actual = pg.actual || {}, ref = pg.reference_year || {};
+  const total = pgTotal(actual);
+  const pipelinePct = goal.generated ? Math.min(100, total / goal.generated * 100) : 0;
+  const wonPct = goal.closed_won ? Math.min(100, (actual.won || 0) / goal.closed_won * 100) : 0;
+  const showTarget = total > 100;
+  const bd = showTarget ? { segment: pg.by_segment, product: pg.by_product, pipeline: pg.by_pipeline, label: pg.school_year }
+                        : { segment: ref.by_segment, product: ref.by_product, pipeline: ref.by_pipeline, label: `${ref.school_year || "last year"} for reference` };
+
+  return `
+  <div class="panel"><h3>Pipeline vs. ${pg.school_year || ""} Goal</h3>
+    <p class="cap" style="margin-top:0">Deal Start Year = ${(pg.field_value || (pg.school_year || "").replace("SY", ""))} · District + School + New Business pipelines · as of ${pg.as_of || "—"}${opts.full ? "" : " · updates weekly"}${pg.hubspot_list_url ? ` · <a class="hih-hs-link" style="margin:0;padding:2px 9px;font-size:11.5px" href="${pg.hubspot_list_url}" target="_blank" rel="noopener">View deals in HubSpot ↗</a>` : ""}</p>
+    <div class="goal-row">
+      <div class="goal-block">
+        <div class="goal-top"><span class="goal-label">Pipeline generated</span><span class="goal-pct">${pipelinePct.toFixed(1)}%</span></div>
+        <div class="goal-nums">${fmt$(total)} <span class="of">/ ${fmt$(goal.generated)} goal</span></div>
+        <div class="goal-bar-wrap"><div class="goal-bar-fill pipeline" style="width:${pipelinePct}%"></div></div>
+      </div>
+      <div class="goal-block">
+        <div class="goal-top"><span class="goal-label">Closed-won</span><span class="goal-pct">${wonPct.toFixed(1)}%</span></div>
+        <div class="goal-nums">${fmt$(actual.won)} <span class="of">/ ${fmt$(goal.closed_won)} goal</span></div>
+        <div class="goal-bar-wrap"><div class="goal-bar-fill won" style="width:${wonPct}%"></div></div>
+      </div>
+    </div>
+    ${ref.generated ? `<p class="cap">Last full year (${ref.school_year}): ${fmt$(ref.generated)} generated · ${fmt$(ref.closed_won)} closed-won · ${ref.win_rate_pct}% win rate — the basis for this year's targets.</p>` : ""}
+    ${opts.full ? `
+    <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px">By segment <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+    ${pgBreakdownRows(PG_SEGMENT_ROWS, bd.segment)}
+    ${note(`<span class="dot" style="background:var(--iq-green)"></span>Won &nbsp; <span class="dot" style="background:var(--lost)"></span>Lost &nbsp; <span class="dot" style="background:var(--iq-purple-lt)"></span>Open — bar width is share of that segment's own total. Descriptive context, not a separate goal per segment.`)}
+    <div class="grid2">
+      <div>
+        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By product <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+        ${pgBreakdownTable(PG_PRODUCT_ROWS, bd.product)}
+        ${note("Multi-tagged deals count toward each product — won't sum to the total above.")}
+      </div>
+      <div>
+        <h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">By pipeline <span style="text-transform:none;font-weight:400;letter-spacing:0">— ${bd.label}</span></h4>
+        ${pgBreakdownTable(PG_PIPELINE_ROWS, bd.pipeline)}
+        ${note("District, School, and New Business Sales pipelines only — Awareness (never reaches Closed Won), Renewal (retention, not new growth), Account Growth, and Partnerships are excluded from this goal.")}
+      </div>
+    </div>` : `<p class="cap">Full segment / product / district-school breakdown lives on the Monthly Digest tab.</p>`}
+  </div>`;
+}
+
 function renderWeekly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const w = d.weeks || [], last = w[w.length - 1] || {}, prev = w[w.length - 2] || {};
   const labels = w.map((x) => x.label);
   const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
-  const hihToMql = w.map((x) => rate(f(x, "mql"), f(x, "hih")));
   const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
   const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
   const drill = last.drill || {};
@@ -788,7 +905,7 @@ function renderWeekly(d) {
         <div class="hih-hero-main">
           <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
           <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
-          <div class="hero-sub">HIH→MQL ${rate(f(last,"mql"), f(last,"hih")) ?? "—"}% · MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
+          <div class="hero-sub">MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
         </div>
         <div class="hih-hero-velocity">
           <div class="hero-label">★ FUNNEL VELOCITY · ${last.label || ""}</div>
@@ -822,7 +939,7 @@ function renderWeekly(d) {
 
     <div class="grid2">
       <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines.")}</div>
-      <div class="panel"><h3>Conversion rates by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("HIH→MQL % and MQL→SQL % — within-week stage entries, not a cohort view. Treat as directional velocity. HIH→MQL spikes often reflect large-batch list imports that week.")}</div>
+      <div class="panel"><h3>MQL→SQL conversion by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("Within-week stage entries, not a cohort view — treat as directional velocity, not a true conversion rate.")}</div>
     </div>
 
     <div class="section-label">🏢 By account segment — ${last.label || ""} <span class="muted">(segment tagging coverage: ${covLine})</span></div>
@@ -838,14 +955,17 @@ function renderWeekly(d) {
       <div class="cards">
         ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
         ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
+        ${card("New Business — open deals", fmtN(pipe.new_business_open), "", "New Business Pipeline")}
       </div>
       ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
       ${pipe.by_product ? `
       <div class="grid2">
         <div><h4>By product</h4>${pipelineProductTable(pipe)}${note("Deals tagged with more than one product count toward each — totals won't sum to the open-deal count above.")}</div>
-        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
+        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}${pipelineStageTable("New Business", pipe.by_stage && pipe.by_stage.new_business)}</div>
       </div>` : ""}
     </div>
+
+    ${pipelineGoalSection(d.pipeline_goal, { full: false })}
 
     ${(last.disposition && (last.disposition.dq != null || last.disposition.nurture != null)) ? `
     <div class="panel"><h3>Lead disposition — ${last.label || ""}</h3>
@@ -856,6 +976,8 @@ function renderWeekly(d) {
       ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
       ${last.disposition.by_product ? `<h4>By product</h4>${dispositionProductTable(last)}${note("Product-tagged subset — coverage runs lower here than on the funnel metrics, so these won't sum to the totals above.")}` : ""}
     </div>` : ""}
+
+    ${contentEngagementSection(last.content_engagement)}
 
     ${brandLiftSection(d.brand_lift, "WoW", "wBrandLift")}
 
@@ -888,7 +1010,6 @@ function renderWeekly(d) {
     options: { ...botLeg } });
 
   mkChart("wConvRates", { type: "line", data: { labels, datasets: [
-      { label: "HIH→MQL %", data: hihToMql, borderColor: ROSE, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 },
       { label: "MQL→SQL %", data: conv, borderColor: IJ, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 }
     ]}, options: { ...botLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
 
@@ -1049,6 +1170,58 @@ function renderCampaign(d) {
         { label: "Low", data: intentCamps.map((c) => c.intent.low), backgroundColor: GREY, stack: "i" } ] },
       options: { ...botLeg, indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true }, y: { stacked: true } } } });
   }
+}
+
+// ---- content performance tab ----
+function renderContentPerformance(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  const weeks = d.weeks || [];
+  if (!weeks.length) {
+    document.getElementById("view").innerHTML = `
+      <div class="panel"><h3>Content Performance: awaiting first run</h3>
+        <p class="insight">This tab populates on the next weekly Dash refresh.</p>
+      </div>`;
+    return;
+  }
+  const last = weeks[weeks.length - 1];
+  const pages = last.pages || [];
+  const t = last.totals || {};
+  const FLAG_LABEL = { gap: "Conversion gap", watch: "Watch", healthy: "Healthy" };
+  const FLAG_CLASS = { gap: "cc-thr-red", watch: "cc-thr-amber", healthy: "cc-thr-green" };
+  const TYPE_LABEL = { landing_page: "Landing page", blog_post: "Blog post", site_page: "Site page" };
+
+  document.getElementById("view").innerHTML = `
+    ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
+    <div class="cards">
+      ${card("Pages tracked", fmtN(t.pages_tracked))}
+      ${card("Conversion gaps", fmtN(t.gap_count), "", "views ≥ " + fmtN(d.min_views_threshold) + ", under 0.5% conversion")}
+      ${card("Watch", fmtN(t.watch_count), "", "0.5 to 2% conversion")}
+      ${card("Healthy", fmtN(t.healthy_count), "", "2%+ conversion")}
+    </div>
+    <div class="section-label">Ranked by conversion rate. ${last.label}</div>
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bd">
+        <thead><tr><th>Page</th><th>Type</th><th>Views</th><th>Contacts</th><th>Conversion</th><th>Bounce</th><th>Status</th></tr></thead>
+        <tbody>${pages.map((p) => `
+          <tr>
+            <td><a href="${p.url}" target="_blank" rel="noopener">${p.title}</a></td>
+            <td>${TYPE_LABEL[p.content_type] || p.content_type}</td>
+            <td>${fmtN(p.raw_views)}</td>
+            <td>${fmtN(p.contacts)}</td>
+            <td><span class="${FLAG_CLASS[p.flag]}">${p.conversion_rate_pct.toFixed(2)}%</span></td>
+            <td>${p.bounce_rate_pct.toFixed(0)}%</td>
+            <td><span class="${FLAG_CLASS[p.flag]}">${FLAG_LABEL[p.flag] || p.flag}</span></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="cc-threshold">
+      <strong>Thresholds (contacts / views):</strong>
+      <span class="cc-thr-red">Gap under 0.5%</span> ·
+      <span class="cc-thr-amber">Watch 0.5-2%</span> ·
+      <span class="cc-thr-green">Healthy 2%+</span>.
+      Pages under ${fmtN(d.min_views_threshold)} views excluded as noise. ${d.excluded_note || ""}
+    </div>`;
 }
 
 // ---- definitions tab ----
@@ -1342,6 +1515,8 @@ function renderTabMeta(tab, lastRun) {
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").style.cssText = "";
+  const rail = document.getElementById("jump-rail");
+  if (rail) { rail.hidden = true; rail.innerHTML = ""; }
   if (tab.static) {
     // Static tabs render their own HTML, but their freshness stamp still comes
     // from a data file so this banner can never drift from the page it frames.
