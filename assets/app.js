@@ -250,6 +250,7 @@ function renderOverview(d) {
     ${weeklySignalHTML}
     <div class="ov-section-label">Key metrics</div>
     <div class="ov-kpi-strip">${kpiHTML}</div>
+    ${pipelineGoalSection(d.pipeline_goal, { full: false })}
     <div class="ov-defs-link"><a href="#" onclick="switchToTab('defs');return false;">View metric definitions →</a></div>`;
 
   // sparklines

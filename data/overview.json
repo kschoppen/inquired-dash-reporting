@@ -94,5 +94,64 @@
       "updated": "2026-09-07",
       "narrative": "Lower-funnel conversion surge: SQL hit 31 (+138% WoW \ud83d\udd25) and Opp 29 (+142% WoW \ud83d\udd25) \u2014 the strongest lower-funnel week since late July, validating last week's forecast of a SQL rebound as the W35 HIH class began converting. HIH held at 17 (+6%) and MQL grew to 69 (+23%). Branded search provisional at 303 clicks for Aug 31 (+43% WoW on a matched 5-day window; week settles next run). Pipeline expanded to 32 district open deals (from 31) and held at 13 school deals. Enterprise led SQL and Opp with 15 entries each \u2014 consistent with an offline migration cohort moving down-funnel."
     }
+  },
+  "pipeline_goal": {
+    "school_year": "SY27-28",
+    "as_of": "2026-09-08",
+    "goal": {
+      "generated": 10000000,
+      "closed_won": 2000000
+    },
+    "actual": {
+      "open": 3374997.83,
+      "lost": 1331871.0,
+      "won": 72521.91
+    },
+    "by_segment": {
+      "single_small": { "open": 376050.0, "lost": 2000.0, "won": 2583.0 },
+      "medium": { "open": 694393.5, "lost": 326261.0, "won": 0.0 },
+      "large": { "open": 814248.0, "lost": 224615.0, "won": 69938.91 },
+      "enterprise": { "open": 1131354.0, "lost": 778995.0, "won": 0.0 }
+    },
+    "by_product": {
+      "ij": { "open": 2172497.83, "lost": 1306371.0, "won": 72521.91 },
+      "inkwell": { "open": 551000.0, "lost": 0.0, "won": 0.0 },
+      "wh": { "open": 13250.0, "lost": 0.0, "won": 0.0 },
+      "gf8": { "open": 701500.0, "lost": 25500.0, "won": 0.0 },
+      "untagged": { "open": 0.0, "lost": 0.0, "won": 0.0 }
+    },
+    "by_pipeline": {
+      "district": { "open": 231250.0, "lost": 1321371.0, "won": 2583.0 },
+      "school": { "open": 0.0, "lost": 2000.0, "won": 0.0 },
+      "new_business": { "open": 3143747.83, "lost": 8500.0, "won": 69938.91 }
+    },
+    "reference_year": {
+      "school_year": "SY25-26",
+      "generated": 11655470.61,
+      "closed_won": 2143798.43,
+      "closed_lost": 9504395.18,
+      "win_rate_pct": 18.4,
+      "by_segment": {
+        "single_small": { "open": 6477.0, "lost": 842107.7, "won": 250884.75 },
+        "medium": { "open": 0.0, "lost": 2148393.48, "won": 342105.76 },
+        "large": { "open": 800.0, "lost": 2727220.0, "won": 409189.32 },
+        "enterprise": { "open": 0.0, "lost": 2513279.0, "won": 1126519.6 }
+      },
+      "by_product": {
+        "ij": { "open": 7277.0, "lost": 6284861.13, "won": 1049306.75 },
+        "inkwell": { "open": 0.0, "lost": 6000.0, "won": 0.0 },
+        "wh": { "open": 6477.0, "lost": 211061.0, "won": 252271.0 },
+        "gf8": { "open": 0.0, "lost": 0.0, "won": 0.0 },
+        "untagged": { "open": 0.0, "lost": 3039231.05, "won": 1018240.68 }
+      },
+      "by_pipeline": {
+        "district": { "open": 800.0, "lost": 9298718.18, "won": 1986315.56 },
+        "school": { "open": 6477.0, "lost": 205677.0, "won": 157482.87 },
+        "new_business": { "open": 0.0, "lost": 0.0, "won": 0.0 }
+      }
+    },
+    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved.",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
+    "field_value": "27-28"
   }
 }
