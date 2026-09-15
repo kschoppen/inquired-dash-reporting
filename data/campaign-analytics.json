@@ -1,7 +1,7 @@
 {
   "skill": "campaign-analytics-report",
   "title": "Campaign Health",
-  "updated": "2026-09-14",
+  "updated": "2026-09-15T00:00:00Z",
   "notes": "Per-campaign quality grouped by strategic priority. The full report is a private DM to Kelsey; this tab is its visual companion. Bi-monthly (15th + 28th, month-to-date). Per-month entry shape: { period, label, verdict, total, groups[], campaigns[], flags[] }. CAVEAT: contacts + HIH are GROSS list-membership counts — a contact in multiple campaign lists is counted in each, so group/total sums are not deduplicated. Reset for SY26-27 campaign rotation on 2026-07-13.",
   "strategic_groups": [
     "Evergreen + Thought Leadership",
@@ -507,25 +507,25 @@
     {
       "period": "2026-09",
       "label": "Sep 2026",
-      "updated": "2026-09-14T00:00:00Z",
+      "updated": "2026-09-15T00:00:00Z",
       "baseline_period": true,
       "campaigns_readable": 4,
       "campaigns_total": 12,
-      "verdict": "September opened with Inkwell K2 as the lead conversion engine — 14 MQLs in the first 14 days, up 75% vs. Aug 1–14, driven by the K2 Curriculum Map and The Case for Integrated Core Curricula. Marketing Nurture list surged from 100 to 3,880 contacts since the Aug close-out; verify this is an intentional SY26-27 list rebuild before treating volume as organic pipeline.",
+      "verdict": "September is peak back-to-school season with Inkwell K2 leading at 28% HIH on 78 contacts and MQLs up 75% MoM; Marketing Nurture list at 3,893 contacts (up from 100 in August) flags for investigation before treating the 830 HIH figure as a clean trend.",
       "total": {
         "active_campaigns": 12,
-        "contacts": 4056,
+        "contacts": 4072,
         "hih": 864,
-        "hih_pct": 21.3,
-        "mql": 63,
+        "hih_pct": 21.2,
+        "mql": 69,
         "mql_prior": 34
       },
       "groups": [
         {
           "group": "Inkwell",
-          "contacts": 79,
+          "contacts": 78,
           "hih": 22,
-          "hih_pct": 27.8,
+          "hih_pct": 28.2,
           "mql": 14,
           "mql_prior": 8
         },
@@ -534,15 +534,15 @@
           "contacts": 51,
           "hih": 12,
           "hih_pct": 23.5,
-          "mql": 0,
+          "mql": 3,
           "mql_prior": 3
         },
         {
           "group": "Evergreen + Thought Leadership",
-          "contacts": 3926,
+          "contacts": 3943,
           "hih": 830,
           "hih_pct": 21.1,
-          "mql": 49,
+          "mql": 52,
           "mql_prior": 23
         },
         {
@@ -567,9 +567,9 @@
           "name": "Inkwell K2 Launch",
           "group": "Inkwell",
           "channel_type": "content",
-          "total": 79,
+          "total": 78,
           "hih": 22,
-          "hih_pct": 27.8,
+          "hih_pct": 28.2,
           "mql": 14,
           "mql_prior": 8,
           "readable": true,
@@ -607,7 +607,7 @@
         {
           "name": "Inquiry Work Contest",
           "group": "Inquiry Journeys",
-          "channel_type": "social",
+          "channel_type": "content",
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -622,7 +622,7 @@
         {
           "name": "Back to School",
           "group": "Inquiry Journeys",
-          "channel_type": "email",
+          "channel_type": "content",
           "total": 0,
           "hih": 0,
           "hih_pct": 0,
@@ -640,8 +640,8 @@
           "channel_type": "email",
           "total": 10,
           "hih": 0,
-          "hih_pct": 0,
-          "mql": 0,
+          "hih_pct": 0.0,
+          "mql": 3,
           "mql_prior": 0,
           "readable": false,
           "intent": null,
@@ -651,15 +651,15 @@
           "name": "Marketing Nurture",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "nurture",
-          "total": 3880,
+          "total": 3893,
           "hih": 828,
           "hih_pct": 21.3,
-          "mql": 48,
+          "mql": 51,
           "mql_prior": 22,
           "readable": true,
           "intent": null,
           "flags": [
-            "⚠️ list surged from 100 to 3,880 contacts since Aug 28 — investigate bulk import vs. list definition change"
+            "⚠️ list at 3,893 contacts (from 100 in Aug) — bulk import or list definition change under investigation (since Sept 14 run)"
           ]
         },
         {
@@ -696,9 +696,9 @@
           "name": "Lit Talk with Nell Duke",
           "group": "Evergreen + Thought Leadership",
           "channel_type": "event",
-          "total": 46,
+          "total": 50,
           "hih": 2,
-          "hih_pct": 4.3,
+          "hih_pct": 4.0,
           "mql": 1,
           "mql_prior": 1,
           "readable": true,
@@ -740,11 +740,11 @@
         "IJ Product Webinars: total < 10 — asset-attachment audit",
         "Inquiry Work Contest: total < 10 — asset-attachment audit",
         "Back to School: total < 10 — asset-attachment audit",
+        "Marketing Nurture: ⚠️ list at 3,893 contacts (from 100 in Aug) — bulk import or list definition change under investigation (since Sept 14 run)",
         "Evergreen: total < 10 — asset-attachment audit",
-        "GF8 Campaign: total < 10 — asset-attachment audit",
         "Symposium: target-list-driven; engagement-only count until list-membership OR added",
         "Account Driven: target-list-driven; new SY26-27 list; verify engagement-only vs. list-membership OR",
-        "Marketing Nurture: list surged from 100 to 3,880 contacts since Aug 28 — investigate bulk import vs. list definition change"
+        "GF8 Campaign: total < 10 — asset-attachment audit"
       ]
     }
   ]
