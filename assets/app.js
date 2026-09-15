@@ -1,25 +1,34 @@
 // inquirED Reporting Dashboard — data-driven shell. Each skill drops a JSON in /data + a tab.
 const TABS = [
   { id: "overview",    label: "Overview",           data: "data/overview.json",          render: renderOverview,
-    meta: { desc: "Command center — funnel health, campaign signals, and weekly pulse across all products.", cadence: "Live", next: "Always current" } },
+    meta: { desc: "Command center — funnel health, campaign signals, and weekly pulse across all products.", cadence: "Live", next: "Always current",
+      sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)", "Account Pulse snapshot (MQA count)"] } },
   { id: "monthly",    label: "Monthly Digest",      data: "data/monthly-digest.json",    render: renderMonthly,
-    meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+    meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026",
+      sources: ["HubSpot CRM", "HubSpot Marketing Email", "HubSpot AEO", "GA4", "Semrush (Position Tracking · AI Visibility · Keyword Gap)", "Google Ads", "LinkedIn Ads", "Google Search Console (brand lift)"] } },
   { id: "weekly",     label: "Weekly Digest",       data: "data/weekly-digest.json",     render: renderWeekly,
-    meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+    meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
+      sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)"] } },
   { id: "campaign",   label: "Campaign Health",     data: "data/campaign-analytics.json", render: renderCampaign,
-    meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026" } },
+    meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026",
+      sources: ["HubSpot CRM (list membership)"] } },
   { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
-    meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026" } },
+    meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
+      sources: ["HubSpot CRM (company + contact records)"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
-    meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026" } },
+    meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
+      sources: ["HubSpot Content Analytics"] } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
-    meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026" } },
+    meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026",
+      sources: ["Competitor websites", "Meta Ad Library", "LinkedIn Ad Library", "Google Ads Transparency Center", "Semrush (keywords)", "Web search (weekly news signals)", "HubSpot (closed-lost deals)", "Gainsight (churn)"] } },
   { id: "nurture",     label: "Nurture Programs",   static: true,                        render: renderNurturePrograms,
     metaFile: "data/nurture-programs.json",
-    meta: { desc: "HubSpot email nurture programs: linked workflows for status checks, plus send/open/click performance by track.", cadence: "On demand", next: "On demand" } },
+    meta: { desc: "HubSpot email nurture programs: linked workflows for status checks, plus send/open/click performance by track.", cadence: "On demand", next: "On demand",
+      sources: ["HubSpot Marketing Email", "HubSpot CRM (lifecycle + nurture_track)", "Manually maintained workflow registry (data/nurture-workflows.json)"] } },
   { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
-    meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change" } },
+    meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change",
+      sources: ["Static reference — maintained manually, no live data pull"] } },
 ];
 // inquirED brand palette: green anchor, dark-purple data-viz accent (HIH), medium-purple secondary, pink accent
 const IJ = "#144745", IJ_FADE = "rgba(20,71,69,0.30)", ROSE = "#F99792", PLUM = "#5B5A9E", AMBER = "#1C2660", GREY = "rgba(120,130,128,0.5)";
@@ -1500,7 +1509,7 @@ function nextRunLabel(cadence, lastRun) {
 function renderTabMeta(tab, lastRun) {
   const el = document.getElementById("tab-meta");
   if (!tab.meta) { el.hidden = true; return; }
-  const { desc, cadence, next } = tab.meta;
+  const { desc, cadence, next, sources } = tab.meta;
   const computedNext = nextRunLabel(cadence, lastRun) || next;
   el.hidden = false;
   const lastRunFormatted = formatRunDate(lastRun);
@@ -1509,7 +1518,8 @@ function renderTabMeta(tab, lastRun) {
     <div class="tab-meta-desc">${desc}</div>
     <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
     <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRunFormatted}</div></div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>`;
+    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>
+    ${sources && sources.length ? `<div class="tab-meta-item tab-meta-sources"><div class="tab-meta-label">Sources</div><div class="tab-meta-value">${sources.join(" · ")}</div></div>` : ""}`;
 }
 
 // ---- shell ----
