@@ -1,7 +1,8 @@
 {
   "skill": "hubspot-email-nurture-check",
   "title": "Nurture Programs",
-  "updated": "2026-09-03",
+  "updated": "2026-09-15",
   "flows_linked": 5,
-  "stale_after_days": 14
+  "stale_after_days": 14,
+  "note": "2026-09-15: added CRM-level lifecycle-stage-movement, classroom/admin split, click-to-open + track comparison, entry source, and cross-program movement sections, built independently ahead of Tim's HubSpot workflow-reporting exploration. Email-delivery sections (Linked Workflows through Top Performing Content) remain the 2026-09-03 pull."
 }

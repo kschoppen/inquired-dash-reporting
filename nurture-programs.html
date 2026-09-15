@@ -130,6 +130,7 @@
     display: flex; gap: 0.65rem; align-items: flex-start;
   }
   .open-items .oi-dot { color: #C0392B; font-weight: 900; margin-top: 0.05rem; }
+  .open-items .oi-text { flex: 1; min-width: 0; }
 
   /* ── Top performing content ── */
   .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
@@ -174,6 +175,90 @@
   .content-scale-note { font-size: 0.68rem; color: var(--ink-light); margin: -0.9rem 0 1.25rem; }
 
   .foot-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+  /* ── Intro / framing ── */
+  .intro-note {
+    font-size: 0.88rem; color: var(--ink-mid); line-height: 1.6; max-width: 90ch;
+    margin: -0.5rem 0 1.75rem; padding: 0.9rem 1.1rem; background: var(--paper-mid);
+    border-left: 3px solid #144745; border-radius: 6px;
+  }
+
+  /* ── Hero metric row (bigger tiles for the #1 metric) ── */
+  .hero-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
+  .hero-tile {
+    background: var(--paper); border: 1px solid var(--border); border-top: 4px solid #144745;
+    border-radius: 12px; padding: 1.4rem 1.5rem; box-shadow: 0 2px 8px var(--shadow);
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .hero-tile.accent { border-top-color: #5B5A9E; }
+  .hero-tile.flag { border-top-color: #C0392B; }
+  .hero-number { font-size: 2.6rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
+  .hero-tile.accent .hero-number { color: #5B5A9E; }
+  .hero-tile.flag .hero-number { color: #C0392B; }
+  .hero-label { font-size: 0.82rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .hero-sub { font-size: 0.74rem; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── Coverage / methodology banner ── */
+  .coverage-banner {
+    background: var(--paper); border: 1px solid var(--border); border-left: 4px solid #F7EC89;
+    border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; display: flex; gap: 0.9rem; align-items: flex-start;
+  }
+  .coverage-banner .cb-icon { font-size: 1.1rem; line-height: 1.2; }
+  .coverage-banner .cb-body { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; }
+  .coverage-banner .cb-title { font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3rem; font-size: 0.85rem; }
+  .coverage-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-top: 0.85rem; }
+  .cov-chip { border-radius: 8px; padding: 0.55rem 0.7rem; text-align: center; border: 1px solid var(--border); }
+  .cov-chip.good { background: rgba(177,224,187,0.35); border-color: #B1E0BB; }
+  .cov-chip.bad { background: rgba(249,151,146,0.2); border-color: #F99792; }
+  .cov-chip-name { font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .cov-chip-val { font-size: 0.68rem; color: var(--ink-mid); margin-top: 0.15rem; }
+
+  /* ── Split bars (role / source breakdowns) ── */
+  .split-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .split-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; box-shadow: 0 2px 6px var(--shadow); }
+  .split-card-title { font-weight: 700; color: #144745; font-size: 0.92rem; margin-bottom: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
+  .split-card-title .n { font-size: 0.72rem; color: var(--ink-light); font-weight: 400; }
+  .bar-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.55rem; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label { flex: 0 0 128px; font-size: 0.76rem; color: var(--ink-mid); }
+  .bar-track { flex: 1; height: 16px; background: var(--paper-mid); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: #144745; }
+  .bar-fill.teacher { background: #5B5A9E; }
+  .bar-fill.other { background: #CECECE; }
+  .bar-val { flex: 0 0 76px; text-align: right; font-size: 0.76rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ── CTOR rank table ── */
+  .rank-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 0.6rem; }
+  .rank-table th {
+    text-align: left; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--ink-light); font-weight: 700; padding: 0.5rem 0.7rem; border-bottom: 2px solid var(--border);
+  }
+  .rank-table td { padding: 0.65rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .rank-table tr:last-child td { border-bottom: none; }
+  .rank-table .rt-subject { font-weight: 700; color: #144745; }
+  .rank-table .rt-subject a { color: inherit; }
+  .rank-table .rt-meta { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.15rem; }
+  .track-chip { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 8px; display: inline-block; }
+  .track-chip.ct { background: #DAD0FF; color: #1C2660; }
+  .track-chip.lt { background: #E4FBCE; color: #144745; }
+  .rank-table .rt-ctor { font-weight: 900; font-size: 0.98rem; color: #144745; font-variant-numeric: tabular-nums; text-align: right; }
+  .rank-table .rt-ctor.low { color: #C0392B; }
+  .rank-callout {
+    font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; background: var(--paper-mid);
+    border-radius: 8px; padding: 0.85rem 1.05rem; margin-top: 0.8rem;
+  }
+  .rank-callout strong { color: #144745; }
+
+  .movement-strip {
+    display: flex; align-items: center; gap: 1rem; background: var(--paper); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; box-shadow: 0 2px 6px var(--shadow);
+  }
+  .movement-num { font-size: 1.8rem; font-weight: 900; color: #5B5A9E; font-variant-numeric: tabular-nums; }
+  .movement-text { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .hero-row, .split-section, .coverage-grid { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -209,6 +294,207 @@
     <span class="fr-pill" id="fr-pill" hidden></span>
     <span class="fr-sep"></span>
     <span class="fr-item">HubSpot portal 4451852 · Marketing Email Analytics API</span>
+  </div>
+
+  <p class="intro-note">
+    Built directly from HubSpot's CRM API and marketing-email analytics — contact-level lifecycle
+    stages, nurture-track properties, and per-email send data — as an independent read alongside
+    Tim's own workflow-reporting build (in progress, target Mon Sep 22). Pulled Sep 15, 2026, same
+    day as the nurture reporting alignment call. Two dating notes: the sections below the fold
+    (Linked Workflows through Top Performing Content) are the existing email-delivery view, last
+    refreshed Sep 3; everything above them is new, from today's CRM pull.
+  </p>
+
+  <!-- ── Lifecycle stage movement (the #1 metric) ── -->
+  <span class="section-eyebrow">Lifecycle Stage Movement — the top metric</span>
+  <p class="section-note">
+    "Scratch everything else — lifecycle stage movement is the top metric." Contacts currently or
+    recently tagged into a Fall 2026 nurture track whose <code>lifecyclestage</code> advanced
+    (entered MQL, SQL, Opportunity, or Customer) on or after Aug 3, the season's launch date. Only
+    Inquiry Journeys and Inkwell have usable contact-level tracking right now — see the coverage
+    note below.
+  </p>
+  <div class="hero-row">
+    <div class="hero-tile accent">
+      <div class="hero-number">46</div>
+      <div class="hero-label">Nurtured contacts reached a new lifecycle stage since the Aug 3 launch</div>
+      <div class="hero-sub">4 in Inquiry Journeys, 42 in Inkwell. The IJ figure (4) is roughly constant across MQL/SQL/Opportunity, so it's very likely the same small group cascading up together, not four separate cohorts.</div>
+    </div>
+    <div class="hero-tile">
+      <div class="hero-number">39%</div>
+      <div class="hero-label">Of active Inkwell nurture contacts have hit MQL since launch</div>
+      <div class="hero-sub">42 of 108 active contacts — the single strongest movement signal in the portfolio right now.</div>
+    </div>
+    <div class="hero-tile">
+      <div class="hero-number">4</div>
+      <div class="hero-label">Became Customers since launch</div>
+      <div class="hero-sub">2 in Inquiry Journeys, 2 in Inkwell. Small n, but a direct revenue-adjacent signal worth watching as volume builds.</div>
+    </div>
+    <div class="hero-tile flag">
+      <div class="hero-number">3 / 5</div>
+      <div class="hero-label">Programs with no usable movement data</div>
+      <div class="hero-sub">GF8, Agnostic, and World History — see Data Coverage below for why.</div>
+    </div>
+  </div>
+
+  <!-- ── Data coverage ── -->
+  <div class="coverage-banner">
+    <span class="cb-icon">⚠️</span>
+    <div class="cb-body">
+      <span class="cb-title">Data coverage — worth checking against Tim's read</span>
+      Every metric above comes from four per-product <code>nurture_track</code> contact properties.
+      Two of them are essentially empty: <strong>Great First Eight</strong> has zero contacts tagged
+      (out of ~77k) despite 116 emails already delivered per the email-analytics view below, and
+      <strong>Agnostic</strong> has exactly one, despite 42 delivered. That gap points to the
+      workflow sending mail without writing the nurture-track field back to the contact record —
+      or a different, unmapped property holding that data. <strong>World History</strong> has no
+      contact-level nurture-track property at all. None of this is guesswork on the email side
+      (that data is real and complete); it's specifically the contact-record tracking that's
+      missing for three of the five programs, which is exactly the kind of thing to compare against
+      whatever Tim's exploration turns up.
+      <div class="coverage-grid">
+        <div class="cov-chip good"><div class="cov-chip-name">Inquiry Journeys</div><div class="cov-chip-val">485 tagged</div></div>
+        <div class="cov-chip good"><div class="cov-chip-name">Inkwell</div><div class="cov-chip-val">108 tagged</div></div>
+        <div class="cov-chip bad"><div class="cov-chip-name">Great First Eight</div><div class="cov-chip-val">0 tagged</div></div>
+        <div class="cov-chip bad"><div class="cov-chip-name">Agnostic</div><div class="cov-chip-val">1 tagged</div></div>
+        <div class="cov-chip bad"><div class="cov-chip-name">World History</div><div class="cov-chip-val">No property</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Classroom vs Administrator ── -->
+  <span class="section-eyebrow">Classroom vs. Administrator — who's actually in the nurture funnel</span>
+  <p class="section-note">
+    Split by the contact's <code>Role</code> property, for the two programs with usable
+    contact-level data. "Admin/Leadership" groups School Leader, District Leader, and
+    Coach/Specialist; "Other/Unassigned" is everyone without a classified role.
+  </p>
+  <div class="split-section">
+    <div class="split-card">
+      <div class="split-card-title">Inquiry Journeys <span class="n">485 active contacts</span></div>
+      <div class="bar-row"><span class="bar-label">Teacher</span><div class="bar-track"><div class="bar-fill teacher" style="width:18.6%"></div></div><span class="bar-val">90 · 19%</span></div>
+      <div class="bar-row"><span class="bar-label">Admin / Leadership</span><div class="bar-track"><div class="bar-fill" style="width:55.3%"></div></div><span class="bar-val">268 · 55%</span></div>
+      <div class="bar-row"><span class="bar-label">Other / Unassigned</span><div class="bar-track"><div class="bar-fill other" style="width:26%"></div></div><span class="bar-val">127 · 26%</span></div>
+    </div>
+    <div class="split-card">
+      <div class="split-card-title">Inkwell <span class="n">108 active contacts</span></div>
+      <div class="bar-row"><span class="bar-label">Teacher</span><div class="bar-track"><div class="bar-fill teacher" style="width:20.4%"></div></div><span class="bar-val">22 · 20%</span></div>
+      <div class="bar-row"><span class="bar-label">Admin / Leadership</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="bar-val">54 · 50%</span></div>
+      <div class="bar-row"><span class="bar-label">Other / Unassigned</span><div class="bar-track"><div class="bar-fill other" style="width:28.7%"></div></div><span class="bar-val">31 · 29%</span></div>
+    </div>
+  </div>
+
+  <!-- ── Click-to-open + CT/LT track comparison ── -->
+  <span class="section-eyebrow">Click-to-Open Rate — top and bottom performers, by track</span>
+  <p class="section-note">
+    Click-to-open rate (clicks ÷ opens, excluding bots) directly from HubSpot's marketing-email
+    analytics — a purer read on content quality than open rate, since it isolates people who
+    opened and then found something worth clicking. Ranked among emails with real volume (100+
+    delivered as of today); everything thinner is too early to rank. CT = Classroom Track
+    (teacher-facing), LT = Leadership Track (admin-facing) — inquirED's own nurture email naming
+    already encodes the classroom/administrator split the call asked for.
+  </p>
+  <table class="rank-table">
+    <thead><tr><th>Email</th><th>Program / Track</th><th>Delivered</th><th>Opened</th><th style="text-align:right">Click-to-Open</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/574629478506/performance" target="_blank" rel="noopener">What integration actually means</a><div class="rt-meta">[NE-IW-CT-1]</div></td>
+        <td>Inkwell <span class="track-chip ct">CT</span></td>
+        <td>169</td>
+        <td>46 (27%)</td>
+        <td class="rt-ctor">19.6%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261028635/performance" target="_blank" rel="noopener">Knowledge → comprehension</a><div class="rt-meta">[NE-IW-CT-2]</div></td>
+        <td>Inkwell <span class="track-chip ct">CT</span></td>
+        <td>143</td>
+        <td>38 (27%)</td>
+        <td class="rt-ctor">13.2%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261181258/performance" target="_blank" rel="noopener">Knowledge → comprehension</a><div class="rt-meta">[NE-IJ-LT-2]</div></td>
+        <td>Inquiry Journeys <span class="track-chip lt">LT</span></td>
+        <td>1,091</td>
+        <td>233 (21%)</td>
+        <td class="rt-ctor">11.2%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575828298664/performance" target="_blank" rel="noopener">Knowledge → comprehension</a><div class="rt-meta">[NE-IJ-CT-2]</div></td>
+        <td>Inquiry Journeys <span class="track-chip ct">CT</span></td>
+        <td>1,206</td>
+        <td>248 (21%)</td>
+        <td class="rt-ctor">9.7%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575828855855/performance" target="_blank" rel="noopener">The time problem</a><div class="rt-meta">[NE-IJ-LT-8]</div></td>
+        <td>Inquiry Journeys <span class="track-chip lt">LT</span></td>
+        <td>1,242</td>
+        <td>336 (27%)</td>
+        <td class="rt-ctor">8.6%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575352992950/performance" target="_blank" rel="noopener">The time problem</a><div class="rt-meta">[NE-IJ-LT-1]</div></td>
+        <td>Inquiry Journeys <span class="track-chip lt">LT</span></td>
+        <td>1,054</td>
+        <td>297 (28%)</td>
+        <td class="rt-ctor">8.1%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575258277299/performance" target="_blank" rel="noopener">What integration actually means</a><div class="rt-meta">[NE-IW-LT-1]</div></td>
+        <td>Inkwell <span class="track-chip lt">LT</span></td>
+        <td>272</td>
+        <td>91 (33%)</td>
+        <td class="rt-ctor low">4.4%</td>
+      </tr>
+      <tr>
+        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261008716/performance" target="_blank" rel="noopener">Knowledge → comprehension</a><div class="rt-meta">[NE-IW-LT-2]</div></td>
+        <td>Inkwell <span class="track-chip lt">LT</span></td>
+        <td>252</td>
+        <td>69 (27%)</td>
+        <td class="rt-ctor low">4.4%</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="rank-callout">
+    <strong>Inkwell's Classroom Track emails convert opens to clicks roughly 4x better than its
+    Leadership Track emails</strong> (16.7% CTOR across both CT emails vs. 4.4% across both LT
+    emails) — even though the LT emails get slightly higher open rates. Teachers who open are
+    clicking; admins who open mostly aren't. Inquiry Journeys can't make the same comparison yet —
+    only one of its Classroom Track emails has meaningful volume so far, the rest of the sequence
+    is still thin.
+  </div>
+
+  <!-- ── Entry source ── -->
+  <span class="section-eyebrow">Where nurtured contacts came from</span>
+  <p class="section-note">Original source (first-touch attribution) for currently-active nurture contacts, IJ and Inkwell.</p>
+  <div class="split-section">
+    <div class="split-card">
+      <div class="split-card-title">Inquiry Journeys <span class="n">485 active</span></div>
+      <div class="bar-row"><span class="bar-label">Direct Traffic</span><div class="bar-track"><div class="bar-fill" style="width:32.2%"></div></div><span class="bar-val">156 · 32%</span></div>
+      <div class="bar-row"><span class="bar-label">Offline</span><div class="bar-track"><div class="bar-fill" style="width:23.9%"></div></div><span class="bar-val">116 · 24%</span></div>
+      <div class="bar-row"><span class="bar-label">Organic Search</span><div class="bar-track"><div class="bar-fill" style="width:14.8%"></div></div><span class="bar-val">72 · 15%</span></div>
+      <div class="bar-row"><span class="bar-label">Paid Search</span><div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div><span class="bar-val">52 · 11%</span></div>
+      <div class="bar-row"><span class="bar-label">Other Campaigns</span><div class="bar-track"><div class="bar-fill" style="width:8.2%"></div></div><span class="bar-val">40 · 8%</span></div>
+      <div class="bar-row"><span class="bar-label">Email Marketing</span><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div><span class="bar-val">27</span></div>
+      <div class="bar-row"><span class="bar-label">Organic Social</span><div class="bar-track"><div class="bar-fill" style="width:2.7%"></div></div><span class="bar-val">13</span></div>
+      <div class="bar-row"><span class="bar-label">Referrals</span><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div><span class="bar-val">8</span></div>
+    </div>
+    <div class="split-card">
+      <div class="split-card-title">Inkwell <span class="n">108 active</span></div>
+      <div class="bar-row"><span class="bar-label">Direct Traffic</span><div class="bar-track"><div class="bar-fill" style="width:44.4%"></div></div><span class="bar-val">48 · 44%</span></div>
+      <div class="bar-row"><span class="bar-label">Offline</span><div class="bar-track"><div class="bar-fill" style="width:18.5%"></div></div><span class="bar-val">20 · 19%</span></div>
+      <div class="bar-row"><span class="bar-label">Email Marketing</span><div class="bar-track"><div class="bar-fill" style="width:11.1%"></div></div><span class="bar-val">12 · 11%</span></div>
+      <div class="bar-row"><span class="bar-label">Organic Search</span><div class="bar-track"><div class="bar-fill" style="width:7.4%"></div></div><span class="bar-val">8 · 7%</span></div>
+      <div class="bar-row"><span class="bar-label">Other Campaigns</span><div class="bar-track"><div class="bar-fill" style="width:7.4%"></div></div><span class="bar-val">8 · 7%</span></div>
+      <div class="bar-row"><span class="bar-label">Organic Social</span><div class="bar-track"><div class="bar-fill" style="width:4.6%"></div></div><span class="bar-val">5</span></div>
+      <div class="bar-row"><span class="bar-label">Referrals + AI</span><div class="bar-track"><div class="bar-fill" style="width:3.7%"></div></div><span class="bar-val">4</span></div>
+    </div>
+  </div>
+
+  <!-- ── Movement between programs ── -->
+  <div class="movement-strip">
+    <div class="movement-num">2</div>
+    <div class="movement-text"><strong>Contacts tagged active/exited in both Inquiry Journeys and Inkwell nurture</strong> this season — the only cross-program movement the data shows. GF8 and Agnostic can't be checked for overlap given the tracking gap above; World History has no property to check against.</div>
   </div>
 
   <!-- ── Linked workflows ── -->
@@ -288,7 +574,7 @@
   </div>
 
   <!-- ── Portfolio KPIs ── -->
-  <span class="section-eyebrow">Fall 2026 nurture portfolio — post-fix check, Sep 3, 2026</span>
+  <span class="section-eyebrow">Fall 2026 nurture portfolio — email-delivery view, post-fix check, Sep 3, 2026</span>
   <p class="section-note">
     Kelsey found and fixed a backwards "Workflow status" polarity condition on the Inkwell
     enrollment list on Aug 31 (was requiring contacts to already be active in another product's
@@ -557,14 +843,17 @@
   <!-- ── Open items ── -->
   <span class="section-eyebrow">Open items</span>
   <ul class="open-items">
-    <li><span class="oi-dot">●</span> <strong>Something moved a lot of contacts through GF8, IJ, and Inkwell between Sep 1 and Sep 3.</strong> Delivered volume jumped roughly 20-100x on each (GF8 5→116, IJ 20→2,274, Inkwell 5→400), while World History stayed at exactly 0 and Agnostic didn't budge from 42. Worth confirming with Kelsey what actually ran, whether it was the backfill CSVs (GF8 32, IJ 713, Inkwell 237) getting manually enrolled, so the story going forward is accurate.</li>
-    <li><span class="oi-dot">●</span> The live enrollment lists for GF8 (2), IJ (8), and Inkwell (6) are tiny next to the volume that just went out, which points to a one-time push rather than the underlying list-trigger itself growing. If it was a one-time backfill, worth checking whether the ongoing list will keep passing new qualifiers through on its own, or whether this needs to be repeated periodically.</li>
-    <li><span class="oi-dot">●</span> <strong>World History is now the one program with zero movement of any kind</strong> across every check since Aug 31: 0 enrolled, 0 delivered, all 4 emails untouched. Whatever landed for the other three programs didn't touch this one. Needs a direct fix in HubSpot rather than another wait-and-see cycle.</li>
-    <li><span class="oi-dot">●</span> Agnostic also didn't get whatever the other three got: delivered is flat at 42 across all three checks (Aug 31, Sep 1, Sep 3), while suppressed keeps climbing (57 → 67 → 73). The raw Agnostic backfill pull (1,462 contacts) still needs refining to exclude hard-disqualified Nurture Reasons before it's usable.</li>
-    <li><span class="oi-dot">●</span> Confirm enabled/paused state and branch logic for all 5 flows directly in HubSpot. Still not readable via API.</li>
+    <li><span class="oi-dot">●</span><span class="oi-text"><strong>GF8 and Agnostic have essentially no contact-level nurture tracking</strong> (0 of ~77k and 1 contact respectively tagged in their <code>nurture_track</code> property), despite both actively sending email (116 and 42 delivered). World History has no such property at all. Nothing below the "Lifecycle Stage Movement" section down through "Movement between programs" can include these three programs as a result — worth comparing directly against what Tim's exploration finds.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text">Inkwell's Classroom Track (teacher-facing) emails are converting opens to clicks at roughly 4x the rate of its Leadership Track (admin-facing) emails — 16.7% vs. 4.4% click-to-open. Worth a look at whether the CTAs or content asks in the LT sequence are landing for admins the way the CT sequence is landing for teachers.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text">Only 46 nurtured contacts (of ~593 combined active IJ + Inkwell) have moved to a new lifecycle stage since the Aug 3 launch — real movement, but still early days for reading a trend. Re-check in 2-3 weeks once more of the season has run.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Something moved a lot of contacts through GF8, IJ, and Inkwell between Sep 1 and Sep 3.</strong> Delivered volume jumped roughly 20-100x on each (GF8 5→116, IJ 20→2,274, Inkwell 5→400), while World History stayed at exactly 0 and Agnostic didn't budge from 42. Worth confirming with Kelsey what actually ran, whether it was the backfill CSVs (GF8 32, IJ 713, Inkwell 237) getting manually enrolled, so the story going forward is accurate.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text">The live enrollment lists for GF8 (2), IJ (8), and Inkwell (6) are tiny next to the volume that just went out, which points to a one-time push rather than the underlying list-trigger itself growing. If it was a one-time backfill, worth checking whether the ongoing list will keep passing new qualifiers through on its own, or whether this needs to be repeated periodically.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text"><strong>World History is now the one program with zero movement of any kind</strong> across every check since Aug 31: 0 enrolled, 0 delivered, all 4 emails untouched. Whatever landed for the other three programs didn't touch this one. Needs a direct fix in HubSpot rather than another wait-and-see cycle.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text">Agnostic also didn't get whatever the other three got: delivered is flat at 42 across all three checks (Aug 31, Sep 1, Sep 3), while suppressed keeps climbing (57 → 67 → 73). The raw Agnostic backfill pull (1,462 contacts) still needs refining to exclude hard-disqualified Nurture Reasons before it's usable.</span></li>
+    <li><span class="oi-dot">●</span><span class="oi-text">Confirm enabled/paused state and branch logic for all 5 flows directly in HubSpot. Still not readable via API.</span></li>
   </ul>
 
-  <p class="foot-note">Source: HubSpot portal 4451852 · Marketing Email Analytics API + enrollment-list membership counts, scoped to the 5 confirmed Fall 2026 nurture programs via the "Nurture" property · Workflow enabled/paused state is not available via API.</p>
+  <p class="foot-note">Source: HubSpot portal 4451852 · CRM contact query API (lifecyclestage, nurture_track properties, hs_analytics_source, role) pulled Sep 15, 2026 · Marketing Email Analytics API + enrollment-list membership counts pulled Sep 3, 2026, scoped to the 5 confirmed Fall 2026 nurture programs via the "Nurture" property · Workflow enabled/paused state is not available via API.</p>
 
 </main>
 
