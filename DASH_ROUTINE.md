@@ -132,6 +132,94 @@ Flag current week if: `Disqualified > 50` AND `(Disqualified + Nurture) > 2 × (
 
 ---
 
+## PHASE 1.5: State Signal (MQA) — actionable accounts by state
+
+Powers the **State Signal (MQA)** tab — ranks states by count of MQA/Engaged
+accounts with no sales contact in 60+ days, so marketing + sales can see where
+to focus outreach this week.
+
+**Cutoff:** today minus 60 days (`YYYY-MM-DD`).
+
+### Step 1 — national totals by state (HubSpot MCP — `query_crm_data`, objectType COMPANY)
+
+Run three GROUP BY queries:
+
+```sql
+SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') GROUP BY state_st
+SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND notes_last_contacted < '<cutoff>' GROUP BY state_st
+SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND notes_last_contacted IS NULL GROUP BY state_st
+```
+
+For each state, `actionable = (query 2 count) + (query 3 count)`. Sum the first
+query's counts for `national_totals.qualified`; sum `actionable` across all
+states for `national_totals.actionable`. `Unassigned` (no `state_st` set) and
+`International` are real buckets — keep them in `history[].states` but exclude
+them from `top_states` ranking.
+
+### Step 2 — rank + pick top 10
+
+Sort all states by `actionable` descending, excluding `Unassigned` /
+`International`. Take the top 10 for `top_states` (fields: `rank`, `state`,
+`qualified`, `actionable`). **This list can reshuffle week to week** — a state
+that drops out of the top 10 loses its `accounts_by_state` entry; a state that
+enters gets a fresh pull (Step 3).
+
+### Step 3 — account drill-down for each top-10 state
+
+For each of the 10 states, one query:
+
+```sql
+SELECT hs_object_id, name, segment, mqa_lifecycle_stage, mqa_signal, notes_last_contacted, hubspot_owner_id, recent_mqa_date
+FROM COMPANY
+WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND state_st = '<state>'
+  AND (notes_last_contacted < '<cutoff>' OR notes_last_contacted IS NULL)
+ORDER BY recent_mqa_date DESC
+LIMIT 10
+```
+
+**Do not** sort by `recent_mqa_date` alone without the actionability filter in
+the WHERE clause — the most-recently-MQA'd accounts are often the ones sales
+just worked, which inflates the list with accounts that are NOT actually
+actionable. The filter must be in the query, not applied after.
+
+Resolve `hubspot_owner_id` → name via `search_owners` (batch all unique owner
+IDs across the 10 states in one call). Build each account row:
+
+```json
+{ "id": <hs_object_id, int>, "name": "...", "segment": "...", "stage": "MQA|Engaged",
+  "signal": "<mqa_signal or null if empty>", "owner": "<resolved name>",
+  "last_contacted": "YYYY-MM-DD or null", "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/<id>" }
+```
+
+District/school names are shown (not scrubbed to ID-only) — matches this
+dashboard's existing Account Pulse (MQA) tab convention (institutional names,
+not personal contact names, are fine in this public repo).
+
+### Step 4 — write `data/state-signal.json`
+
+- `updated` → run date.
+- `national_totals` → from Step 1.
+- `history[]` → append `{period: run date, states: [...]}` (all states incl.
+  Unassigned/International), cap at 13 entries oldest-dropped-first, matching
+  `weekly-digest.json`'s pattern.
+- `top_states` → from Step 2.
+- `accounts_by_state` → **replace entirely** with this run's 10 states from
+  Step 3 (don't merge with last run's — a state that fell out of the top 10
+  should lose its stale account list).
+- `data_flags` → recompute the "Unassigned" % flag with this run's numbers.
+  Leave the `product_interest` (CONTACT-only) and `policy_context` /
+  `outreach_templates` caveats as static text until one of those is built.
+- Leave `policy_context`, `outreach_templates`, `watch_states` alone — not
+  wired yet (see the tab's own "What this tab doesn't do yet" section). Do
+  not fabricate policy citations here.
+
+### Push
+
+Add `data/state-signal.json` to the `git add` list in PHASE 3's push step
+below, and add its checklist line to STEP 6.
+
+---
+
 ## PHASE 2: Competitive intel scan
 
 ### Part A — Signal check (WebSearch)
@@ -420,7 +508,7 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 ```bash
 cd inquired-dash-reporting
-git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json data/content-performance.json
+git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json data/content-performance.json data/state-signal.json
 git commit -m "Weekly dash update — $(date +%Y-%m-%d)"
 git push origin main
 git fetch origin && git log --oneline -2 origin/main
@@ -524,6 +612,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Competitive Intel refresh date stamped → data/competitive-intel.json [updated = YYYY-MM-DD, or unchanged if nothing moved]
 • [✓/—/✗] Brand lift (GSC) → data/overview.json + data/weekly-digest.json [N weeks upserted / deferred: creds not set / error]
 • [✓/✗] Content performance → data/content-performance.json [N pages tracked, N gaps flagged]
+• [✓/✗] State Signal (MQA) → data/state-signal.json [top state + actionable count, N states refreshed]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]

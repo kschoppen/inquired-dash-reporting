@@ -15,6 +15,9 @@ const TABS = [
   { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
       sources: ["HubSpot CRM (company + contact records)"] } },
+  { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
+    meta: { desc: "MQA/Engaged accounts ranked by state — which states have the most actionable warm accounts (no sales contact in 60+ days) right now.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
+      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
     meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
@@ -1545,6 +1548,78 @@ function renderAccountPulse(d) {
           && (pulseFilter.owner === 'all' || r.owner === pulseFilter.owner);
       });
       document.getElementById('s1Tbody').innerHTML = s1RowsHtml(filtered);
+    });
+  });
+}
+
+// ---- State Signal (MQA) tab ----
+function renderStateSignal(d) {
+  charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
+
+  var nt = d.national_totals || {};
+  var topStates = d.top_states || [];
+  var accountsByState = d.accounts_by_state || {};
+  var flags = d.data_flags || [];
+  var maxActionable = Math.max.apply(null, topStates.map(function(s) { return s.actionable; }).concat([1]));
+
+  var hsLink = function(url, name) { return '<a href="' + url + '" target="_blank" rel="noopener" class="hs-link">' + (name || '(unnamed record)') + '</a>'; };
+  var metaSmall = function(t) { return '<span class="meta-small">' + t + '</span>'; };
+  var sectionHdr = function(label, color) { return '<div class="section-label" style="border-left:3px solid ' + color + ';padding-left:8px">' + label + '</div>'; };
+
+  var stateRowsHtml = topStates.map(function(s) {
+    var pct = Math.round(s.actionable / maxActionable * 100);
+    return '<tr class="ss-state-row" data-state="' + s.state + '">'
+      + '<td>#' + s.rank + '</td>'
+      + '<td><strong>' + s.state + '</strong></td>'
+      + '<td><div class="days-bar-wrap"><div class="days-bar" style="width:' + pct + '%"></div></div></td>'
+      + '<td style="text-align:right"><strong>' + fmtN(s.actionable) + '</strong></td>'
+      + '<td style="text-align:right">' + fmtN(s.qualified) + '</td></tr>';
+  }).join('');
+
+  var accountsTableHtml = function(state) {
+    var rows = accountsByState[state] || [];
+    if (!rows.length) return '<p class="insight">No account-level detail pulled for this state yet — it\'s outside the current top-10 drill-down.</p>';
+    var body = rows.map(function(r) {
+      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall((r.segment || '—') + ' · ' + r.stage + ' · ' + r.owner) + '</td>'
+        + '<td>' + metaSmall(r.signal || '(no signal recorded)') + '</td>'
+        + '<td>' + metaSmall(r.last_contacted || 'never') + '</td></tr>';
+    }).join('');
+    return '<table class="pulse-table"><thead><tr><th style="width:46%">District</th><th style="width:34%">Signal</th><th>Last contacted</th></tr></thead><tbody>' + body + '</tbody></table>';
+  };
+
+  var flagsHtml = flags.map(function(f) { return note(f); }).join('');
+  var firstState = topStates[0] ? topStates[0].state : '';
+
+  document.getElementById('view').innerHTML =
+    sectionHdr('★ National MQA/Engaged pool', '#0a7c4a')
+    + '<div class="cards">'
+    + card('Qualified accounts', fmtN(nt.qualified), '', 'MQA + Engaged, all states')
+    + card('Actionable now', fmtN(nt.actionable), '', 'No sales contact in 60+ days')
+    + card('Top state', firstState || '—', '', topStates[0] ? fmtN(topStates[0].actionable) + ' actionable' : '')
+    + card('Missing state data', fmtN(nt.unassigned_qualified), '', fmtN(nt.unassigned_actionable) + ' actionable, unattributed')
+    + '</div>'
+
+    + sectionHdr('1. Top states to work <span class="muted">(ranked by actionable accounts)</span>', '#0a7c4a')
+    + '<div class="panel">'
+    + note('Actionable = at MQA or Engaged stage, with no logged sales contact (call/email/meeting) in 60+ days. Click a state to see its accounts below.')
+    + '<table class="pulse-table"><thead><tr><th>Rank</th><th>State</th><th></th><th style="text-align:right">Actionable</th><th style="text-align:right">Qualified</th></tr></thead>'
+    + '<tbody id="ssStateRows">' + stateRowsHtml + '</tbody></table>'
+    + '</div>'
+
+    + sectionHdr('2. Accounts — <span id="ssSelectedState">' + firstState + '</span>', '#c2540a')
+    + '<div class="panel" id="ssAccountsPanel">' + accountsTableHtml(firstState) + '</div>'
+
+    + sectionHdr('3. What this tab doesn\'t do yet', '#6a3e9a')
+    + '<div class="panel">' + flagsHtml + '</div>'
+
+    + '<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) · ' + (d.cadence || '') + '</p>';
+
+  document.querySelectorAll('.ss-state-row').forEach(function(row) {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', function() {
+      var st = row.getAttribute('data-state');
+      document.getElementById('ssSelectedState').textContent = st;
+      document.getElementById('ssAccountsPanel').innerHTML = accountsTableHtml(st);
     });
   });
 }

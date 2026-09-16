@@ -31,6 +31,7 @@ Use `null` for metrics not available in a given month — the dashboard renders 
 ## Tabs
 - **Monthly Funnel & Revenue** — `monthly-marketing-digest` (live)
 - **Content Performance** — pages/blog posts/landing pages ranked by view-to-contact conversion, sourced from HubSpot content analytics; refreshed weekly via `DASH_ROUTINE.md` PHASE 2.6 (live)
+- **State Signal (MQA)** — MQA/Engaged accounts ranked by state, surfacing which states have the most actionable warm accounts (no sales contact in 60+ days); refreshed weekly via `DASH_ROUTINE.md` PHASE 1.5 (live). Policy context + tailored outreach templates not yet built — see the tab's own caveats.
 - _planned:_ Weekly Funnel · Campaign Analytics · Competitor · SEO
 
 ## Local preview

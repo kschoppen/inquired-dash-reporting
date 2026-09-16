@@ -1,0 +1,1384 @@
+{
+  "skill": "state-signal",
+  "title": "State Signal (MQA)",
+  "updated": "2026-09-16",
+  "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) \u00b7 Source: HubSpot",
+  "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted. Threshold adjustable.",
+  "cadence": "Weekly \u00b7 Mondays (wired into the Monday Dash routine, PHASE 1.5)",
+  "data_flags": [
+    "266 of 1781 MQA/Engaged companies (15%) have no state_st value set \u2014 shown as \u2018Unassigned\u2019 in national totals and excluded from the state ranking below. Worth a CRM hygiene pass (state_st fill rate) if this view is going to drive state-level outreach prioritization.",
+    "Product breakdown by state is not yet built \u2014 product_interest lives on CONTACT, not COMPANY, and would need a contact-to-company rollup. Flag if you want that added.",
+    "Policy context (state adoption timelines, legislative signals) and tailored outreach templates from the original design doc are NOT yet built. Fabricating specific policy citations without a verified source would be worse than leaving this blank \u2014 needs a dedicated per-state research pass (WebSearch / LegiScan / BoardDocs) before shipping. See 'policy_context' below."
+  ],
+  "national_totals": {
+    "qualified": 1781,
+    "actionable": 1407,
+    "unassigned_qualified": 266,
+    "unassigned_actionable": 250
+  },
+  "history": [
+    {
+      "period": "2026-09-16",
+      "states": [
+        {
+          "state": "Unassigned",
+          "qualified": 266,
+          "actionable": 250
+        },
+        {
+          "state": "NJ",
+          "qualified": 122,
+          "actionable": 112
+        },
+        {
+          "state": "NY",
+          "qualified": 112,
+          "actionable": 96
+        },
+        {
+          "state": "CA",
+          "qualified": 112,
+          "actionable": 92
+        },
+        {
+          "state": "PA",
+          "qualified": 58,
+          "actionable": 54
+        },
+        {
+          "state": "IL",
+          "qualified": 119,
+          "actionable": 53
+        },
+        {
+          "state": "WI",
+          "qualified": 61,
+          "actionable": 53
+        },
+        {
+          "state": "MA",
+          "qualified": 56,
+          "actionable": 52
+        },
+        {
+          "state": "KY",
+          "qualified": 51,
+          "actionable": 48
+        },
+        {
+          "state": "MN",
+          "qualified": 62,
+          "actionable": 38
+        },
+        {
+          "state": "MI",
+          "qualified": 65,
+          "actionable": 37
+        },
+        {
+          "state": "WA",
+          "qualified": 45,
+          "actionable": 35
+        },
+        {
+          "state": "CT",
+          "qualified": 40,
+          "actionable": 34
+        },
+        {
+          "state": "IA",
+          "qualified": 50,
+          "actionable": 30
+        },
+        {
+          "state": "TX",
+          "qualified": 43,
+          "actionable": 30
+        },
+        {
+          "state": "OH",
+          "qualified": 30,
+          "actionable": 29
+        },
+        {
+          "state": "OR",
+          "qualified": 50,
+          "actionable": 27
+        },
+        {
+          "state": "AZ",
+          "qualified": 35,
+          "actionable": 26
+        },
+        {
+          "state": "NC",
+          "qualified": 24,
+          "actionable": 20
+        },
+        {
+          "state": "MO",
+          "qualified": 22,
+          "actionable": 20
+        },
+        {
+          "state": "KS",
+          "qualified": 30,
+          "actionable": 17
+        },
+        {
+          "state": "VA",
+          "qualified": 25,
+          "actionable": 17
+        },
+        {
+          "state": "FL",
+          "qualified": 21,
+          "actionable": 17
+        },
+        {
+          "state": "CO",
+          "qualified": 26,
+          "actionable": 16
+        },
+        {
+          "state": "GA",
+          "qualified": 22,
+          "actionable": 15
+        },
+        {
+          "state": "TN",
+          "qualified": 17,
+          "actionable": 15
+        },
+        {
+          "state": "ME",
+          "qualified": 18,
+          "actionable": 14
+        },
+        {
+          "state": "International",
+          "qualified": 16,
+          "actionable": 13
+        },
+        {
+          "state": "MD",
+          "qualified": 17,
+          "actionable": 12
+        },
+        {
+          "state": "SC",
+          "qualified": 14,
+          "actionable": 12
+        },
+        {
+          "state": "OK",
+          "qualified": 14,
+          "actionable": 10
+        },
+        {
+          "state": "AL",
+          "qualified": 10,
+          "actionable": 9
+        },
+        {
+          "state": "IN",
+          "qualified": 9,
+          "actionable": 9
+        },
+        {
+          "state": "LA",
+          "qualified": 8,
+          "actionable": 7
+        },
+        {
+          "state": "NE",
+          "qualified": 8,
+          "actionable": 7
+        },
+        {
+          "state": "HI",
+          "qualified": 7,
+          "actionable": 7
+        },
+        {
+          "state": "NH",
+          "qualified": 10,
+          "actionable": 6
+        },
+        {
+          "state": "ID",
+          "qualified": 8,
+          "actionable": 6
+        },
+        {
+          "state": "UT",
+          "qualified": 8,
+          "actionable": 6
+        },
+        {
+          "state": "AK",
+          "qualified": 7,
+          "actionable": 6
+        },
+        {
+          "state": "MT",
+          "qualified": 6,
+          "actionable": 6
+        },
+        {
+          "state": "NV",
+          "qualified": 10,
+          "actionable": 5
+        },
+        {
+          "state": "AR",
+          "qualified": 7,
+          "actionable": 5
+        },
+        {
+          "state": "VT",
+          "qualified": 7,
+          "actionable": 5
+        },
+        {
+          "state": "RI",
+          "qualified": 5,
+          "actionable": 5
+        },
+        {
+          "state": "DE",
+          "qualified": 4,
+          "actionable": 4
+        },
+        {
+          "state": "WV",
+          "qualified": 4,
+          "actionable": 4
+        },
+        {
+          "state": "DC",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "ND",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "SD",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "MS",
+          "qualified": 3,
+          "actionable": 3
+        },
+        {
+          "state": "NM",
+          "qualified": 2,
+          "actionable": 2
+        },
+        {
+          "state": "WY",
+          "qualified": 2,
+          "actionable": 1
+        },
+        {
+          "state": "AS",
+          "qualified": 1,
+          "actionable": 1
+        }
+      ]
+    }
+  ],
+  "top_states": [
+    {
+      "rank": 1,
+      "state": "NJ",
+      "qualified": 122,
+      "actionable": 112
+    },
+    {
+      "rank": 2,
+      "state": "NY",
+      "qualified": 112,
+      "actionable": 96
+    },
+    {
+      "rank": 3,
+      "state": "CA",
+      "qualified": 112,
+      "actionable": 92
+    },
+    {
+      "rank": 4,
+      "state": "PA",
+      "qualified": 58,
+      "actionable": 54
+    },
+    {
+      "rank": 5,
+      "state": "IL",
+      "qualified": 119,
+      "actionable": 53
+    },
+    {
+      "rank": 6,
+      "state": "WI",
+      "qualified": 61,
+      "actionable": 53
+    },
+    {
+      "rank": 7,
+      "state": "MA",
+      "qualified": 56,
+      "actionable": 52
+    },
+    {
+      "rank": 8,
+      "state": "KY",
+      "qualified": 51,
+      "actionable": 48
+    },
+    {
+      "rank": 9,
+      "state": "MN",
+      "qualified": 62,
+      "actionable": 38
+    },
+    {
+      "rank": 10,
+      "state": "MI",
+      "qualified": 65,
+      "actionable": 37
+    }
+  ],
+  "accounts_by_state": {
+    "NJ": [
+      {
+        "id": 7327184027,
+        "name": "Harrington Park School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/7327184027"
+      },
+      {
+        "id": 42249813600,
+        "name": "Kearny School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Clicked Email or 5+ Clicks;DL attended TL Webinar;High Intent DL",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-19",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42249813600"
+      },
+      {
+        "id": 46730942847,
+        "name": "Neptune Township School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/46730942847"
+      },
+      {
+        "id": 4998687829,
+        "name": "North Brunswick Township High School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-31",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4998687829"
+      },
+      {
+        "id": 8977322104,
+        "name": "William Allen Iii Middle School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "DL attended TL Webinar;High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2023-07-05",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977322104"
+      },
+      {
+        "id": 2548975319,
+        "name": "Livingston Public Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Clicked Email or 5+ Clicks;High Intent DL",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2548975319"
+      },
+      {
+        "id": 8975995146,
+        "name": "Teaneck School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975995146"
+      },
+      {
+        "id": 8976026229,
+        "name": "Hampton Borough School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976026229"
+      },
+      {
+        "id": 43141981096,
+        "name": "Middletown Township School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43141981096"
+      },
+      {
+        "id": 8976308801,
+        "name": "White Township School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2020-06-22",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976308801"
+      }
+    ],
+    "NY": [
+      {
+        "id": 55593374999,
+        "name": "Yeshiva Har Torah",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-01",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/55593374999"
+      },
+      {
+        "id": 4996659579,
+        "name": "Democracy Prep - Parent District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2023-09-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996659579"
+      },
+      {
+        "id": 5173275713,
+        "name": "Byram Hills High School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5173275713"
+      },
+      {
+        "id": 30357262519,
+        "name": "Uncommon Schools",
+        "segment": null,
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/30357262519"
+      },
+      {
+        "id": 1084079662,
+        "name": "New York University",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-11-19",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1084079662"
+      },
+      {
+        "id": 6703496371,
+        "name": "Prospect Schools",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-02-19",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6703496371"
+      },
+      {
+        "id": 4589322633,
+        "name": "Ethical Culture Fieldston School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4589322633"
+      },
+      {
+        "id": 16948034970,
+        "name": "Fire Island School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-02-23",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948034970"
+      },
+      {
+        "id": 9789301117,
+        "name": "Lioncharterschool",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/9789301117"
+      },
+      {
+        "id": 5667671859,
+        "name": "Half Hollow Hills Central School District",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2025-09-23",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5667671859"
+      }
+    ],
+    "CA": [
+      {
+        "id": 8409053332,
+        "name": "Chandler School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-07",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8409053332"
+      },
+      {
+        "id": 8408952637,
+        "name": "Phillips Brooks School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8408952637"
+      },
+      {
+        "id": 6719616953,
+        "name": "University Of San Diego",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6719616953"
+      },
+      {
+        "id": 28174735521,
+        "name": "Ucla",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/28174735521"
+      },
+      {
+        "id": 8976217908,
+        "name": "Citizens Of The World Charter School Hollywood District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976217908"
+      },
+      {
+        "id": 55218375690,
+        "name": null,
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\"",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-06-10",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/55218375690"
+      },
+      {
+        "id": 4804322156,
+        "name": "Los Altos School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-07-10",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4804322156"
+      },
+      {
+        "id": 8408952645,
+        "name": "St. Paul's Episcopal School Of Oakland",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8408952645"
+      },
+      {
+        "id": 8408952674,
+        "name": "Lycee Francais De San Francisco",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-31",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8408952674"
+      },
+      {
+        "id": 8976200299,
+        "name": "Manzanita Public Charter District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976200299"
+      }
+    ],
+    "IL": [
+      {
+        "id": 8976966785,
+        "name": "Hough Street Elementary School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Clicked Email or 5+ Clicks;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976966785"
+      },
+      {
+        "id": 8976296756,
+        "name": "Schiller Park School District 81",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Clicked Email or 5+ Clicks;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-06",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976296756"
+      },
+      {
+        "id": 5246857165,
+        "name": "Athens Senior High School",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246857165"
+      },
+      {
+        "id": 53259121982,
+        "name": "St. Germaine Catholic School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/53259121982"
+      },
+      {
+        "id": 8976301938,
+        "name": "Tonica Community Consolidated School District 79",
+        "segment": null,
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976301938"
+      },
+      {
+        "id": 19249508745,
+        "name": "Arie Crown Hebrew Day School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249508745"
+      },
+      {
+        "id": 2866973855,
+        "name": "Cahokia School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2026-02-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2866973855"
+      },
+      {
+        "id": 49184783934,
+        "name": "School of St. Mary",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/49184783934"
+      },
+      {
+        "id": 8976940934,
+        "name": "Wolf Ridge Educational Center",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976940934"
+      },
+      {
+        "id": 1088604027,
+        "name": "Riverside District 96",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "DL attended TL Webinar;High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1088604027"
+      }
+    ],
+    "WI": [
+      {
+        "id": 8976278100,
+        "name": "Beecher-dunbar-pembine School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976278100"
+      },
+      {
+        "id": 8976321387,
+        "name": "Randall Consolidated School (District)",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-08",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976321387"
+      },
+      {
+        "id": 4994703998,
+        "name": "Kaukauna Area School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4994703998"
+      },
+      {
+        "id": 3405035613,
+        "name": "Waunakee Community School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3405035613"
+      },
+      {
+        "id": 5246875001,
+        "name": "Oregon School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-26",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246875001"
+      },
+      {
+        "id": 8976108695,
+        "name": "Cashton School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976108695"
+      },
+      {
+        "id": 8976346645,
+        "name": "Bruce Guadalupe Community School (District)",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976346645"
+      },
+      {
+        "id": 29142851177,
+        "name": "The Lincoln Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-08",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/29142851177"
+      },
+      {
+        "id": 5246861646,
+        "name": "Muskego-norway School District",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246861646"
+      },
+      {
+        "id": 19249508743,
+        "name": "Good Shepherd Lutheran Church",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-26",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249508743"
+      }
+    ],
+    "MA": [
+      {
+        "id": 19155500077,
+        "name": "Lumen School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-01",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19155500077"
+      },
+      {
+        "id": 5135111155,
+        "name": "Longmeadow Public Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-06-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111155"
+      },
+      {
+        "id": 1000850779,
+        "name": "Lexington Public Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1000850779"
+      },
+      {
+        "id": 30918817542,
+        "name": "Pioneer Charter School Of Science",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/30918817542"
+      },
+      {
+        "id": 8976345738,
+        "name": "Lowell Community Charter Public School",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-06",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976345738"
+      },
+      {
+        "id": 19249583012,
+        "name": "Trinity Catholic Academy Brockton",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-11-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249583012"
+      },
+      {
+        "id": 19249591597,
+        "name": "Greater Boston Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249591597"
+      },
+      {
+        "id": 5135111176,
+        "name": "Dracut Public School",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-22",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111176"
+      },
+      {
+        "id": 5135945068,
+        "name": "Lawrence Public Schools",
+        "segment": "Large District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-04-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135945068"
+      },
+      {
+        "id": 5647021593,
+        "name": "Worcester State University",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2021-03-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5647021593"
+      }
+    ],
+    "KY": [
+      {
+        "id": 8976260676,
+        "name": "Woodford County Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976260676"
+      },
+      {
+        "id": 5135116277,
+        "name": "Grayson County Schools",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-30",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116277"
+      },
+      {
+        "id": 1825827658,
+        "name": "Northern Kentucky University",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1825827658"
+      },
+      {
+        "id": 16948542598,
+        "name": "Paducah Independent School District",
+        "segment": null,
+        "stage": "MQA",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-02-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948542598"
+      },
+      {
+        "id": 8976290481,
+        "name": "Russell Independent Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-01-12",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976290481"
+      },
+      {
+        "id": 8976285261,
+        "name": "Grant County Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-01-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976285261"
+      },
+      {
+        "id": 8976190089,
+        "name": "Boyle County Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-02-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976190089"
+      },
+      {
+        "id": 3199948336,
+        "name": "Depaul School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-09-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3199948336"
+      },
+      {
+        "id": 43743763897,
+        "name": "Laurel County Public Schools",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-12-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43743763897"
+      },
+      {
+        "id": 8976225102,
+        "name": "Pike County Schools",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-12-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976225102"
+      }
+    ],
+    "MN": [
+      {
+        "id": 54308489996,
+        "name": "Smith Jewish Academy",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/54308489996"
+      },
+      {
+        "id": 8976097637,
+        "name": "Hutchinson Public School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-07-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976097637"
+      },
+      {
+        "id": 53113498746,
+        "name": "St. Anne's School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/53113498746"
+      },
+      {
+        "id": 8975961624,
+        "name": "Big Lake Public School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-09-05",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975961624"
+      },
+      {
+        "id": 5149478540,
+        "name": "Komets.k12.mn.us",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-01-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5149478540"
+      },
+      {
+        "id": 8977052672,
+        "name": "Groveland Elementary School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-02-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977052672"
+      },
+      {
+        "id": 33131390873,
+        "name": "St. Michael-albertville School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-03-20",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/33131390873"
+      },
+      {
+        "id": 8976261523,
+        "name": "Albany Public School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-04-23",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976261523"
+      },
+      {
+        "id": 8976273162,
+        "name": "Blooming Prairie Public School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-09-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976273162"
+      },
+      {
+        "id": 4705674056,
+        "name": "Sourcewell",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4705674056"
+      }
+    ],
+    "PA": [
+      {
+        "id": 8976321057,
+        "name": "Franklin Area School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "High Intent DL;Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-12",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976321057"
+      },
+      {
+        "id": 19525859971,
+        "name": "William Penn Charter School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-12",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19525859971"
+      },
+      {
+        "id": 20847572888,
+        "name": "Northwood Academy Charter School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-05-31",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/20847572888"
+      },
+      {
+        "id": 4027963703,
+        "name": "Reading School District",
+        "segment": "Large District",
+        "stage": "MQA",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-06",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4027963703"
+      },
+      {
+        "id": 8976232024,
+        "name": "Bear Creek Community Charter School (District)",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-08-28",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976232024"
+      },
+      {
+        "id": 42249240066,
+        "name": "Eastern Lebanon County School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42249240066"
+      },
+      {
+        "id": 42248995908,
+        "name": "Bellefonte Area SD",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-12-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42248995908"
+      },
+      {
+        "id": 8976333466,
+        "name": "Huntingdon Area School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-11-19",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976333466"
+      },
+      {
+        "id": 43053767015,
+        "name": "Antonia Pantoja Charter School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-12-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43053767015"
+      },
+      {
+        "id": 8342121482,
+        "name": "Colonial School District",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-12-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8342121482"
+      }
+    ],
+    "MI": [
+      {
+        "id": 8976314801,
+        "name": "Stanton Township Public Schools",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314801"
+      },
+      {
+        "id": 8976079396,
+        "name": "Choice Schools Associates, Llc",
+        "segment": null,
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-08",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976079396"
+      },
+      {
+        "id": 5135931918,
+        "name": "Lakeview High School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-19",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135931918"
+      },
+      {
+        "id": 4689373657,
+        "name": "Saline Area Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-03-02",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4689373657"
+      },
+      {
+        "id": 51826723102,
+        "name": "Escuela Avancemos Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-26",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/51826723102"
+      },
+      {
+        "id": 5135116364,
+        "name": "St. Joseph Schools",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2022-01-25",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116364"
+      },
+      {
+        "id": 5135116336,
+        "name": "Detroit Academy Of Arts And Sciences",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-12-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116336"
+      },
+      {
+        "id": 3841203011,
+        "name": "University Of Michigan",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-12-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3841203011"
+      },
+      {
+        "id": 7795781040,
+        "name": "Flat Rock Community Schools",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/7795781040"
+      },
+      {
+        "id": 22452078694,
+        "name": "Detroit Country Day School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-02-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/22452078694"
+      }
+    ]
+  },
+  "policy_context": {},
+  "outreach_templates": {},
+  "watch_states": [],
+  "notes": "Ranked by actionable MQA/Engaged accounts (no sales contact in 60+ days). accounts_by_state lists up to 10 actionable accounts per top-10 state, sorted by most recent MQA/Engaged signal date. Institutional (district/school) names shown, matching this dashboard's existing Account Pulse (MQA) tab convention \u2014 no personal contact names or emails."
+}
