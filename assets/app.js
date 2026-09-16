@@ -16,8 +16,8 @@ const TABS = [
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
       sources: ["HubSpot CRM (company + contact records)"] } },
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
-    meta: { desc: "MQA/Engaged accounts ranked by state — which states have the most actionable warm accounts (no sales contact in 60+ days) right now.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
-      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)"] } },
+    meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals, plus real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
+      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)", "State DOE / legislature sites (policy citations, via WebSearch)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
     meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
@@ -1553,75 +1553,222 @@ function renderAccountPulse(d) {
 }
 
 // ---- State Signal (MQA) tab ----
+const SS_GRID = {AK:[0,0],ME:[11,0],VT:[9,1],NH:[10,1],MA:[11,1],WA:[1,2],MT:[2,2],ND:[3,2],SD:[4,2],MN:[5,2],WI:[6,2],MI:[7,2],NY:[9,2],CT:[10,2],RI:[11,2],OR:[1,3],ID:[2,3],WY:[3,3],NE:[4,3],IA:[5,3],IL:[6,3],IN:[7,3],OH:[8,3],PA:[9,3],NJ:[10,3],CA:[0,4],NV:[1,4],UT:[2,4],CO:[3,4],KS:[4,4],MO:[5,4],KY:[6,4],WV:[7,4],DC:[8,4],MD:[9,4],DE:[10,4],AZ:[2,5],NM:[3,5],OK:[4,5],AR:[5,5],TN:[6,5],VA:[7,5],NC:[8,5],TX:[3,6],LA:[4,6],MS:[5,6],AL:[6,6],GA:[7,6],SC:[8,6],HI:[0,7],FL:[7,7]};
+const SS_LABELS = {ij:"Inquiry Journeys", inkwell:"Inkwell", gf8:"Great First 8"};
+const SS_COLORS = {ij:"#144745", inkwell:"#5B5A9E", gf8:"#F99792"};
+
 function renderStateSignal(d) {
   charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
+  let ssProduct = "all";
 
-  var nt = d.national_totals || {};
-  var topStates = d.top_states || [];
-  var accountsByState = d.accounts_by_state || {};
-  var flags = d.data_flags || [];
-  var maxActionable = Math.max.apply(null, topStates.map(function(s) { return s.actionable; }).concat([1]));
+  const nt = d.national_totals || {};
+  const topStates = d.top_states || [];
+  const watchStates = d.watch_states || [];
+  const accountsByState = d.accounts_by_state || {};
+  const policyByState = d.policy_context || {};
+  const pastCampaigns = d.past_campaigns || [];
+  const flags = d.data_flags || [];
 
-  var hsLink = function(url, name) { return '<a href="' + url + '" target="_blank" rel="noopener" class="hs-link">' + (name || '(unnamed record)') + '</a>'; };
-  var metaSmall = function(t) { return '<span class="meta-small">' + t + '</span>'; };
-  var sectionHdr = function(label, color) { return '<div class="section-label" style="border-left:3px solid ' + color + ';padding-left:8px">' + label + '</div>'; };
+  const ssDot = (prod) => `<span class="ss-dot" style="background:${SS_COLORS[prod] || '#999'}"></span>${SS_LABELS[prod] || prod || '—'}`;
+  const hsLink = (url, name) => `<a href="${url}" target="_blank" rel="noopener" class="hs-link">${name || '(unnamed record)'}</a>`;
+  const metaSmall = (t) => `<span class="meta-small">${t}</span>`;
+  const sectionHdr = (label, color) => `<div class="section-label" style="border-left:3px solid ${color};padding-left:8px">${label}</div>`;
+  const srcLinks = (sources) => (sources || []).map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.title} ↗</a>`).join(' · ');
 
-  var stateRowsHtml = topStates.map(function(s) {
-    var pct = Math.round(s.actionable / maxActionable * 100);
-    return '<tr class="ss-state-row" data-state="' + s.state + '">'
-      + '<td>#' + s.rank + '</td>'
-      + '<td><strong>' + s.state + '</strong></td>'
-      + '<td><div class="days-bar-wrap"><div class="days-bar" style="width:' + pct + '%"></div></div></td>'
-      + '<td style="text-align:right"><strong>' + fmtN(s.actionable) + '</strong></td>'
-      + '<td style="text-align:right">' + fmtN(s.qualified) + '</td></tr>';
-  }).join('');
+  function draftEmail(acct, policy, product) {
+    const prodLabel = SS_LABELS[product] || product;
+    const why = acct.signal ? acct.signal.replace(/;/g, ', ') : 'recent engagement with ' + prodLabel;
+    const policyLine = policy ? ` ${policy.headline}` : '';
+    const subject = `Following up — ${prodLabel} at ${acct.name}`;
+    const body = `Hi [Name],\n\nI saw ${acct.name} has an active signal on ${prodLabel} (${why}).${policyLine ? '\n\n' + policyLine.trim() : ''}\n\nDo you have 20 minutes this week or next to talk through what your team needs?\n\nBest,\n[Sales rep name]\ninquirED`;
+    return {subject, body};
+  }
 
-  var accountsTableHtml = function(state) {
-    var rows = accountsByState[state] || [];
-    if (!rows.length) return '<p class="insight">No account-level detail pulled for this state yet — it\'s outside the current top-10 drill-down.</p>';
-    var body = rows.map(function(r) {
-      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall((r.segment || '—') + ' · ' + r.stage + ' · ' + r.owner) + '</td>'
-        + '<td>' + metaSmall(r.signal || '(no signal recorded)') + '</td>'
-        + '<td>' + metaSmall(r.last_contacted || 'never') + '</td></tr>';
-    }).join('');
-    return '<table class="pulse-table"><thead><tr><th style="width:46%">District</th><th style="width:34%">Signal</th><th>Last contacted</th></tr></thead><tbody>' + body + '</tbody></table>';
-  };
-
-  var flagsHtml = flags.map(function(f) { return note(f); }).join('');
-  var firstState = topStates[0] ? topStates[0].state : '';
-
-  document.getElementById('view').innerHTML =
-    sectionHdr('★ National MQA/Engaged pool', '#0a7c4a')
-    + '<div class="cards">'
-    + card('Qualified accounts', fmtN(nt.qualified), '', 'MQA + Engaged, all states')
-    + card('Actionable now', fmtN(nt.actionable), '', 'No sales contact in 60+ days')
-    + card('Top state', firstState || '—', '', topStates[0] ? fmtN(topStates[0].actionable) + ' actionable' : '')
-    + card('Missing state data', fmtN(nt.unassigned_qualified), '', fmtN(nt.unassigned_actionable) + ' actionable, unattributed')
-    + '</div>'
-
-    + sectionHdr('1. Top states to work <span class="muted">(ranked by actionable accounts)</span>', '#0a7c4a')
-    + '<div class="panel">'
-    + note('Actionable = at MQA or Engaged stage, with no logged sales contact (call/email/meeting) in 60+ days. Click a state to see its accounts below.')
-    + '<table class="pulse-table"><thead><tr><th>Rank</th><th>State</th><th></th><th style="text-align:right">Actionable</th><th style="text-align:right">Qualified</th></tr></thead>'
-    + '<tbody id="ssStateRows">' + stateRowsHtml + '</tbody></table>'
-    + '</div>'
-
-    + sectionHdr('2. Accounts — <span id="ssSelectedState">' + firstState + '</span>', '#c2540a')
-    + '<div class="panel" id="ssAccountsPanel">' + accountsTableHtml(firstState) + '</div>'
-
-    + sectionHdr('3. What this tab doesn\'t do yet', '#6a3e9a')
-    + '<div class="panel">' + flagsHtml + '</div>'
-
-    + '<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) · ' + (d.cadence || '') + '</p>';
-
-  document.querySelectorAll('.ss-state-row').forEach(function(row) {
-    row.style.cursor = 'pointer';
-    row.addEventListener('click', function() {
-      var st = row.getAttribute('data-state');
-      document.getElementById('ssSelectedState').textContent = st;
-      document.getElementById('ssAccountsPanel').innerHTML = accountsTableHtml(st);
+  function tileMapSvg(product) {
+    const tile = 40, gap = 3, cols = 12, rows = 8;
+    const topSet = {}; topStates.forEach((s) => { topSet[s.state] = s; });
+    const watchSet = {}; watchStates.forEach((s) => { watchSet[s.state] = s; });
+    let boxes = '';
+    Object.keys(SS_GRID).forEach((code) => {
+      const [gx, gy] = SS_GRID[code];
+      const x = gx * (tile + gap), y = gy * (tile + gap);
+      const top = topSet[code], watch = watchSet[code];
+      let fill = 'var(--line)', opacity = 1, title = code + ': no state policy signal identified yet';
+      if (top && (product === 'all' || top.product === product)) {
+        fill = SS_COLORS[top.product] || '#999'; opacity = 1;
+        title = `${code}: sales-ready signal (${SS_LABELS[top.product]}) — #${top.rank}, ${top.actionable} actionable accounts`;
+      } else if (watch && (product === 'all' || watch.product === product)) {
+        fill = SS_COLORS[watch.product] || '#999'; opacity = 0.4;
+        title = `${code}: state to watch (${SS_LABELS[watch.product]}) — signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`;
+      }
+      const labelDark = fill === 'var(--line)';
+      boxes += `<g><rect class="ss-tile" x="${x}" y="${y}" width="${tile}" height="${tile}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></rect>`
+        + `<text class="ss-tile-label${labelDark ? ' dark' : ''}" x="${x + tile / 2}" y="${y + tile / 2 + 4}" pointer-events="none">${code}</text></g>`;
     });
-  });
+    const w = cols * (tile + gap), h = rows * (tile + gap);
+    return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block;">${boxes}</svg>`;
+  }
+
+  function topStatesTable(product) {
+    const rows = topStates.filter((s) => product === 'all' || s.product === product);
+    if (!rows.length) return '<p class="insight">No state policy signal identified for this product yet.</p>';
+    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td></tr>`).join('');
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
+  }
+
+  function watchStatesTable(product) {
+    const rows = watchStates.filter((s) => product === 'all' || s.product === product);
+    if (!rows.length) return '<p class="insight">No watch-list state identified for this product yet.</p>';
+    const body = rows.map((s) => `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td>${s.since}</td></tr>`).join('');
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+  }
+
+  function stateDetailHtml(s) {
+    const policy = policyByState[s.state];
+    const accts = accountsByState[s.state] || [];
+    let html = '';
+    if (policy) {
+      html += `<div class="ss-state-ctx"><div class="ss-sc-label">State policy signal: ${s.state}</div>`
+        + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(${policy.since})</span></div>`
+        + `<div class="ss-sc-item" style="color:var(--muted)">${policy.detail || ''}</div>`
+        + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
+    }
+    if (!accts.length) {
+      html += '<p class="insight" style="margin:10px 16px">No account-level drill-down pulled for this state.</p>';
+    } else {
+      html += accts.map((a) => {
+        const em = draftEmail(a, policy, s.product);
+        return `<details class="ss-drill"><summary>${a.name} — ${a.stage}, ${a.last_contacted ? 'no contact since ' + a.last_contacted : 'never contacted'}</summary>`
+          + `<div class="ss-contact-row">${hsLink(a.hs_url, 'HubSpot record')}<span class="ss-cwhy">${(a.segment || '—')} · ${a.owner} · ${a.signal || '(no signal recorded)'}</span></div>`
+          + `<div class="ss-email-draft"><div class="ss-em-label">Drafted starting point — personalize before sending</div>`
+          + `<div class="ss-em-subject">Subject: ${em.subject}</div><div class="ss-em-body">${em.body}</div></div></details>`;
+      }).join('');
+    }
+    return html;
+  }
+
+  function watchDetailHtml(s) {
+    const policy = watchStates.find((w) => w.state === s.state) || s;
+    let html = `<div class="ss-state-ctx"><div class="ss-sc-label">State context: ${s.state}</div>`
+      + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(since ${policy.since})</span></div>`
+      + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
+    html += `<div class="ss-watch-action"><div class="ss-wa-label">Existing HubSpot footprint</div>`
+      + `<p style="margin:0;font-size:12.5px">${fmtN(s.qualified)} qualified / ${fmtN(s.actionable)} actionable accounts already in the CRM for ${s.state} — this reads as an expansion play (existing relationship to build on), not a cold start.</p></div>`;
+    html += `<div class="ss-watch-action"><div class="ss-wa-label">Marketing action needed, before Sales has anyone to call on ${SS_LABELS[s.product]}</div><ol>`
+      + (d.outreach_playbook || []).map((a) => `<li>${a}</li>`).join('') + '</ol></div>';
+    return html;
+  }
+
+  function campaignsTable() {
+    if (!pastCampaigns.length) return '<p class="insight">No measured account-driven campaigns on record yet.</p>';
+    const body = pastCampaigns.map((c) => `<tr>`
+      + `<td>${c.state_label}</td><td>${ssDot(c.product)}</td><td>${c.campaign_date}</td>`
+      + `<td>${c.open_rate}</td><td>${c.ctr}</td>`
+      + `<td><ul>${(c.deal_metrics || []).map((m) => `<li>${m}</li>`).join('')}</ul></td>`
+      + `<td><ul>${(c.takeaways || []).map((t) => `<li>${t}</li>`).join('')}</ul></td></tr>`).join('');
+    return `<table class="ss-dash" style="font-size:12.5px"><thead><tr><th style="text-align:left">State</th><th style="text-align:left">Product</th><th style="text-align:left">Campaign date</th><th style="text-align:left">Open rate</th><th style="text-align:left">CTR</th><th style="text-align:left">Deal metrics</th><th style="text-align:left">Key takeaways</th></tr></thead><tbody>${body}</tbody></table>`;
+  }
+
+  function renderBody(product) {
+    ssProduct = product;
+    const filteredTop = topStates.filter((s) => product === 'all' || s.product === product);
+    const filteredWatch = watchStates.filter((s) => product === 'all' || s.product === product);
+    const topActionable = filteredTop.reduce((sum, s) => sum + s.actionable, 0);
+    const topQualified = filteredTop.reduce((sum, s) => sum + s.qualified, 0);
+    const ai = d.ai_summary;
+    const aiVisible = ai && (product === 'all' || ai.product === product);
+
+    document.getElementById('view').innerHTML =
+      '<div class="chiprow" style="margin-bottom:14px">'
+      + '<span class="meta-small" style="margin-right:6px">Product:</span>'
+      + ['all', 'ij', 'inkwell', 'gf8'].map((p) => `<button class="chip${p === product ? ' on' : ''}" data-ssp="${p}">${p === 'all' ? 'All products' : SS_LABELS[p]}</button>`).join('')
+      + '</div>'
+
+      + (aiVisible ? `<div class="ss-ai-summary"><div class="ss-ai-label">✨ Most actionable state to watch</div>`
+        + `<p><strong>${ai.state}</strong> (${SS_LABELS[ai.product]}) — ${ai.headline} ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).qualified)} qualified / ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).actionable)} actionable accounts already in HubSpot.</p>`
+        + `<div class="ss-ai-note">${ai.note}</div></div>` : '')
+
+      + '<div class="cards">'
+      + card('States to watch', fmtN(filteredWatch.length), '', 'policy signal, real citations')
+      + card('States with signal', fmtN(product === 'all' ? filteredTop.length : filteredTop.length), '', product === 'all' ? fmtN(nt.states_with_signal) + ' states have ≥1 qualified account nationally' : 'of ' + filteredTop.length + ' ranked for this product')
+      + card('Qualified accounts', fmtN(product === 'all' ? nt.qualified : topQualified), '', product === 'all' ? 'MQA + Engaged, all states' : 'top-10 states shown for this product')
+      + card('Actionable now', fmtN(product === 'all' ? nt.actionable : topActionable), '', 'no sales contact in 60+ days')
+      + '</div>'
+
+      + '<div class="grid2">'
+      + '<div class="panel"><h3>Where the signal is <span class="muted">(tile map, actual size ≠ geography)</span></h3>'
+      + '<div class="ss-tilemap-wrap">' + tileMapSvg(product) + '</div>'
+      + '<div class="ss-map-legend">'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#144745"></span>Inquiry Journeys</span>'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#5B5A9E"></span>Inkwell</span>'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#F99792"></span>Great First 8</span>'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot ss-lg-watch" style="background:#5B5A9E"></span>States to watch (muted)</span>'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:var(--line)"></span>No signal yet</span>'
+      + '</div></div>'
+      + '<div class="panel">'
+      + '<h3>Top states to work (Sales) <span class="muted">(ranked by actionable)</span></h3>'
+      + topStatesTable(product)
+      + '<h3 style="margin-top:18px">Top states to work (Marketing) <span class="muted">(states to watch)</span></h3>'
+      + watchStatesTable(product)
+      + '</div></div>'
+
+      + sectionHdr('Full state × product detail', '#144745')
+      + '<div class="panel">'
+      + note('Actionable = at MQA or Engaged stage, no logged sales contact (call/email/meeting) in 60+ days. Product = the state\'s real, cited policy signal — not yet which product a specific account cares about (see flags below). Click a state for its policy context, real accounts, and a draft outreach starting point.')
+      + topStatesTable(product).replace('id="ssTopBody"', 'id="ssTopBody2"')
+      + '<div id="ssTopDetails"></div>'
+      + '</div>'
+
+      + sectionHdr('States to watch', '#1C2660')
+      + '<div class="panel">'
+      + note('Monthly-scan states: real, cited policy activity with no dedicated account list built yet — a marketing signal, not a sales one.')
+      + watchStatesTable(product).replace('id="ssWatchBody"', 'id="ssWatchBody2"')
+      + '<div id="ssWatchDetails"></div>'
+      + '</div>'
+
+      + sectionHdr('Past MQA campaigns', '#6a3e9a')
+      + '<div class="panel">'
+      + campaignsTable()
+      + (d.past_campaigns_note ? note(d.past_campaigns_note) : '')
+      + '</div>'
+
+      + sectionHdr('What this tab doesn\'t do yet', '#c2540a')
+      + '<div class="panel">' + flags.map((f) => note(f)).join('') + '</div>'
+
+      + `<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) + verified policy research (WebSearch, cited per state) · ${d.cadence || ''}</p>`;
+
+    document.querySelectorAll('[data-ssp]').forEach((btn) => btn.addEventListener('click', () => renderBody(btn.getAttribute('data-ssp'))));
+
+    // wire the "Full state x product detail" table's own rows (ssTopBody2)
+    const topBody2 = document.getElementById('ssTopBody2');
+    if (topBody2) {
+      topBody2.querySelectorAll('tr').forEach((row) => {
+        row.addEventListener('click', () => {
+          const st = row.getAttribute('data-state');
+          const open = row.classList.toggle('open');
+          const detailsBox = document.getElementById('ssTopDetails');
+          if (open) { detailsBox.innerHTML = stateDetailHtml(topStates.find((s) => s.state === st)); }
+          else { detailsBox.innerHTML = ''; }
+          topBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
+        });
+      });
+    }
+    const watchBody2 = document.getElementById('ssWatchBody2');
+    if (watchBody2) {
+      watchBody2.querySelectorAll('tr').forEach((row) => {
+        row.addEventListener('click', () => {
+          const st = row.getAttribute('data-wstate');
+          const open = row.classList.toggle('open');
+          const detailsBox = document.getElementById('ssWatchDetails');
+          if (open) { detailsBox.innerHTML = watchDetailHtml(watchStates.find((s) => s.state === st)); }
+          else { detailsBox.innerHTML = ''; }
+          watchBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
+        });
+      });
+    }
+  }
+
+  renderBody('all');
 }
 
 function renderCompetitiveIntel() {
