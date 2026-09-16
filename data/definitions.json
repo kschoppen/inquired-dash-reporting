@@ -3,25 +3,51 @@
   "title": "Definitions",
   "updated": "2026-09-16",
   "intro": "How every metric on this dashboard is defined, so the numbers mean the same thing to everyone. Marketing leads with leading indicators; revenue and win rate are the lagging scoreboard and are owned by RevOps.",
+  "pipeline_structure": {
+    "updated": "2026-09-16",
+    "overview": "Marketing's pipeline reporting follows RevOps' confirmed CRM structure — confirmed by Allie Wheeler (RevOps) on Kelsey's 2026-09-16 monthly check-in. Three pipelines are active today. Two legacy pipelines are being phased out. Two pipelines are excluded from marketing reporting entirely. And \"pipeline\" itself doesn't start where you'd think — a booked meeting (Sales Qualified) isn't pipeline yet; a deal only counts once it reaches Interest and gets a dollar amount and close date.",
+    "stages": [
+      { "name": "Sales Qualified", "note": "Booked meeting — not pipeline. No $ or close date belongs here.", "in_pipeline": false },
+      { "name": "Interest", "note": "Pipeline starts here — $ + close date", "in_pipeline": true, "start": true },
+      { "name": "Consideration", "in_pipeline": true },
+      { "name": "Conviction", "in_pipeline": true },
+      { "name": "Desire", "in_pipeline": true },
+      { "name": "Validation / Approval", "in_pipeline": true },
+      { "name": "Closed Won / Lost", "in_pipeline": true, "terminal": true }
+    ],
+    "pipelines": {
+      "active": [
+        { "name": "New Business", "id": "912820790", "note": "Primary new-business pipeline" },
+        { "name": "Account Growth", "id": "907963407", "note": "CQL-driven growth within existing accounts" },
+        { "name": "Renewal", "id": "42174628", "note": "Existing-customer retention · ~$8.6M lifetime closed-won" }
+      ],
+      "legacy": [
+        { "name": "District Sales", "id": "40953415", "note": "Being archived by RevOps · ~$227K still open (2026-09-16)" },
+        { "name": "School Sales", "id": "41400400", "note": "Being archived by RevOps · ~$21K still open (2026-09-16)" }
+      ],
+      "excluded": [
+        { "name": "Awareness", "id": "41312804", "note": "Never reached Closed Won — pre-qualification holding pen" },
+        { "name": "Partnerships", "id": "60104114", "note": "Non-buyer demo placeholder, not real sales pipeline" }
+      ]
+    },
+    "weighting_note": "The weighted totals at the bottom of the HubSpot deal board are inquirED's own forecast weighting, not HubSpot's native probability weighting.",
+    "forecast_plan": {
+      "today": "Pipeline targets & official pacing live in a forecast doc run by Nick and Jen.",
+      "next": "Being rebuilt by Allie, Rukia, and Jen — target early November 2026, ahead of the board meeting.",
+      "future_model": "Hybrid model once the rebuilt sheet ships: the sheet becomes the source of truth for pipeline dollars and targets; HubSpot stays the source for contact/lead-level detail underneath."
+    },
+    "source": "Allie Wheeler (RevOps) / Kelsey monthly check-in, 2026-09-16. Full detail in the growth-marketing plugin's monthly-marketing-digest and weekly-marketing-digest skills."
+  },
   "sections": [
     {
-      "heading": "Pipeline & CRM structure — Source of Truth (per RevOps, confirmed 2026-09-16)",
+      "heading": "North-star metric (not a funnel stage)",
       "terms": [
-        {"term": "Active pipelines", "def": "New Business, Account Growth (CQL-driven), and Renewal (existing-customer retention). These are the current, RevOps-confirmed pipelines that marketing pipeline/revenue reporting is built around going forward."},
-        {"term": "Legacy pipelines (being retired)", "def": "District Sales and School Sales are last year's pipeline structure. RevOps is archiving them (not yet done as of 2026-09-16) — as of that date they still held 41 open deals worth roughly $248K combined, not yet migrated. Kept in reporting for historical continuity and until the migration is confirmed complete, then dropped."},
-        {"term": "Excluded — Awareness Pipeline", "def": "A pre-qualification holding pen. No deal has ever reached Closed Won in its history, so it is not treated as real revenue pipeline anywhere on this dashboard."},
-        {"term": "Excluded — Partnerships", "def": "A placeholder pipeline for non-buyer demos, not real sales pipeline. Excluded from all marketing pipeline/revenue reporting (Kelsey, 2026-09-16)."},
-        {"term": "Sales Qualified stage", "def": "NOT pipeline. It's a catch-all stage for a booked meeting — no dollar amount or close date belongs on a deal at this stage. If one shows up there, it means a rep hasn't moved the deal forward yet."},
-        {"term": "Interest stage", "def": "Where pipeline officially starts — a deal gets a dollar amount and a close date at this stage, for the first time."},
-        {"term": "Weighted pipeline amounts", "def": "The weighted totals at the bottom of the HubSpot deal board are inquirED's own forecast weighting, not HubSpot's native probability weighting."},
-        {"term": "Forecast doc (pipeline targets — future source of truth)", "def": "Pipeline targets and official pacing currently live in a forecast doc run by Nick and Jen, being rebuilt by Allie, Rukia, and Jen — targeting early November 2026, ahead of the board meeting. Plan (not yet built): once live, that sheet becomes the source of truth for pipeline dollars and targets; this dashboard stays on HubSpot for contact/lead-level detail the sheet won't carry — a hybrid model, sheet for the official numbers, HubSpot for the granularity underneath them."},
-        {"term": "Source", "def": "Allie Wheeler (RevOps) / Kelsey monthly check-in, 2026-09-16. Full detail in the growth-marketing plugin's monthly-marketing-digest and weekly-marketing-digest skills."}
+        {"term": "HIH (High-Intent Lead)", "def": "A contact flagged marketing_intent_tier = High. This is a metric marketing tracks to spot high-intent buyers early, not a HubSpot lifecycle/funnel stage the way MQL, SQL, and Opp are — a contact can be flagged High Intent without ever formally entering a lifecycle stage. Counted by create date in the month."}
       ]
     },
     {
       "heading": "Funnel stages",
       "terms": [
-        {"term": "HIH (High-Intent Lead)", "def": "A contact flagged marketing_intent_tier = High. The earliest read on high-intent demand and our north-star metric. Counted by create date in the month."},
         {"term": "MQL (Marketing Qualified Lead)", "def": "A contact that entered the Marketing Qualified Lead lifecycle stage in the month."},
         {"term": "SQL (Sales Qualified Lead)", "def": "A contact that entered the Sales Qualified Lead stage in the month, sales has accepted it as worth pursuing."},
         {"term": "Opp (Opportunity)", "def": "A contact that entered the Opportunity stage in the month."}
@@ -37,7 +63,7 @@
     {
       "heading": "Revenue and deal types",
       "terms": [
-        {"term": "Closed-won", "def": "Sum of deal amount for non-test, non-RFP deals marked closed-won in the month, across all five pipelines (District, School, New Business, Account Growth, Renewal — see Pipeline & CRM structure above). District/School are legacy and kept for historical continuity; Renewal revenue (added 2026-09-16) shows up under Existing/Expansion below, not New Business. Includes $0 pilots (real business activity)."},
+        {"term": "Closed-won", "def": "Sum of deal amount for non-test, non-RFP deals marked closed-won in the month, across all five pipelines (District, School, New Business, Account Growth, Renewal — see Pipeline & CRM structure above). District/School are legacy and kept for historical continuity; Renewal revenue shows up under Existing/Expansion below, not New Business. Includes $0 pilots (real business activity)."},
         {"term": "New Business (NB)", "def": "dealtype of New Business, Pilot, or Pilot Expansion. A pilot converting or expanding counts as new business."},
         {"term": "Existing / Expansion", "def": "dealtype of Renewal, Upsell, Add On, or Cross Sell (growth within an existing customer)."},
         {"term": "Wins", "def": "Count of non-test, non-RFP closed-won deals in the month, regardless of dollar amount (so pilots are visible)."}

@@ -1240,10 +1240,92 @@ function renderContentPerformance(d) {
 function renderDefinitions(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   document.getElementById("view").innerHTML = `
+    ${renderPipelineStructure(d.pipeline_structure)}
     <div class="panel glossary">
       ${d.intro ? `<p class="insight">${d.intro}</p>` : ""}
       ${(d.sections || []).map((s) => `<h3>${s.heading}</h3><dl>${s.terms.map((t) => `<dt>${t.term}</dt><dd>${t.def}</dd>`).join("")}</dl>`).join("")}
     </div>`;
+}
+
+// ---- Pipeline & CRM Structure — visual Source of Truth (Definitions tab) ----
+function poStageSVG(stages) {
+  if (!stages || !stages.length) return "";
+  const w = 148, h = 64, gap = 10, pad = 16;
+  const totalW = stages.length * w + (stages.length - 1) * gap + pad * 2;
+  const boxes = stages.map((s, i) => {
+    const x = pad + i * (w + gap);
+    const active = s.in_pipeline !== false;
+    const fill = active ? "var(--iq-green)" : "var(--surface)";
+    const stroke = active ? "var(--iq-green)" : "var(--line)";
+    const textFill = active ? "#fff" : "var(--muted)";
+    const label = s.name.length > 14 ? s.name.replace(" / ", " /\n") : s.name;
+    const lines = label.split("\n");
+    const lineY = lines.length > 1 ? [h/2 - 6, h/2 + 10] : [h/2 + 5];
+    const textEls = lines.map((ln, li) => `<text x="${x + w/2}" y="${lineY[li]}" text-anchor="middle" font-size="12" font-weight="700" fill="${textFill}" font-family="var(--font)">${ln}</text>`).join("");
+    const arrow = i < stages.length - 1 ? `<text x="${x + w + gap/2}" y="${h/2 + 5}" text-anchor="middle" font-size="16" fill="var(--muted)">→</text>` : "";
+    const startFlag = s.start ? `<text x="${x + w/2}" y="${h + 16}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--iq-green)">▲ pipeline starts</text>` : "";
+    return `<g>
+      <rect x="${x}" y="0" width="${w}" height="${h}" rx="10" fill="${fill}" stroke="${stroke}" stroke-width="1.5" stroke-dasharray="${active ? "0" : "4,3"}" />
+      ${textEls}
+      ${arrow}
+      ${startFlag}
+    </g>`;
+  }).join("");
+  return `<div class="po-stage-scroll"><svg viewBox="0 0 ${totalW} 86" width="${totalW}" height="86" xmlns="http://www.w3.org/2000/svg">${boxes}</svg></div>`;
+}
+
+function poPipelineCard(p, kind) {
+  return `<div class="po-card po-card-${kind}">
+    <div class="po-card-name">${p.name}</div>
+    <div class="po-card-id">${p.id}</div>
+    <div class="po-card-note">${p.note || ""}</div>
+  </div>`;
+}
+
+function renderPipelineStructure(ps) {
+  if (!ps) return "";
+  const pl = ps.pipelines || {};
+  const fp = ps.forecast_plan || {};
+  return `
+  <div class="panel po-panel">
+    <h3>📍 Pipeline &amp; CRM structure — Source of Truth <span class="muted" style="font-weight:400;font-size:12px;">(per RevOps · confirmed ${ps.updated || ""})</span></h3>
+    <div class="po-overview">${ps.overview || ""}</div>
+
+    <div class="po-subhead">Deal stages — where "pipeline" actually starts</div>
+    ${poStageSVG(ps.stages)}
+
+    <div class="po-subhead">Pipelines</div>
+    <div class="po-legend">
+      <span class="po-dot po-dot-active"></span> Active — counted in every marketing pipeline/revenue query
+      <span class="po-dot po-dot-legacy"></span> Legacy — being retired, kept for historical continuity
+      <span class="po-dot po-dot-excluded"></span> Excluded — never part of marketing pipeline reporting
+    </div>
+    <div class="po-pipelines">
+      <div class="po-col">
+        <div class="po-col-label po-col-label-active">Active</div>
+        ${(pl.active || []).map((p) => poPipelineCard(p, "active")).join("")}
+      </div>
+      <div class="po-col">
+        <div class="po-col-label po-col-label-legacy">Legacy — being retired</div>
+        ${(pl.legacy || []).map((p) => poPipelineCard(p, "legacy")).join("")}
+      </div>
+      <div class="po-col">
+        <div class="po-col-label po-col-label-excluded">Excluded</div>
+        ${(pl.excluded || []).map((p) => poPipelineCard(p, "excluded")).join("")}
+      </div>
+    </div>
+
+    <div class="po-subhead">Pipeline targets — where they'll come from</div>
+    <div class="po-timeline">
+      <div class="po-tl-step"><div class="po-tl-dot"></div><div class="po-tl-label">Today</div><div class="po-tl-text">${fp.today || ""}</div></div>
+      <div class="po-tl-arrow">→</div>
+      <div class="po-tl-step"><div class="po-tl-dot po-tl-dot-future"></div><div class="po-tl-label">~Nov 2026</div><div class="po-tl-text">${fp.next || ""}</div></div>
+    </div>
+    ${fp.future_model ? `${note(fp.future_model)}` : ""}
+
+    ${ps.weighting_note ? note(ps.weighting_note) : ""}
+    <p class="cap" style="margin-top:10px;">Source: ${ps.source || ""}</p>
+  </div>`;
 }
 
 // ---- Account Pulse (MQA) tab ----

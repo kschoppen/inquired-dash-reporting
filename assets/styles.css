@@ -363,6 +363,54 @@ details.kwd table { margin-top: 8px; }
 .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 22px; }
 .foot a { color: var(--muted); }
 
+/* ── Pipeline & CRM Structure (Definitions tab) ── */
+.po-panel h3 { margin-top: 0; }
+.po-overview {
+  background: var(--iq-beige); border-radius: 10px; padding: 14px 16px;
+  font-size: 13.5px; line-height: 1.55; color: var(--ink); margin: 4px 0 18px;
+}
+.po-subhead {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--iq-green); margin: 20px 0 10px; padding-top: 14px; border-top: 1px solid var(--line);
+}
+.po-panel > .po-subhead:first-of-type { border-top: none; padding-top: 0; }
+.po-stage-scroll { overflow-x: auto; padding-bottom: 6px; }
+.po-legend { font-size: 11.5px; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.po-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-left: 12px; }
+.po-legend .po-dot:first-child { margin-left: 0; }
+.po-dot-active { background: var(--iq-green); }
+.po-dot-legacy { background: #C99A3B; }
+.po-dot-excluded { background: var(--muted); }
+.po-pipelines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.po-col-label {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--line);
+}
+.po-col-label-active { color: var(--iq-green); border-bottom-color: var(--iq-green); }
+.po-col-label-legacy { color: #97671E; border-bottom-color: #C99A3B; }
+.po-col-label-excluded { color: var(--muted); border-bottom-color: var(--line); }
+.po-card {
+  background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--line);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 10px;
+}
+.po-card-active { border-left-color: var(--iq-green); }
+.po-card-legacy { border-left-color: #C99A3B; }
+.po-card-excluded { border-left-color: var(--muted); opacity: 0.85; }
+.po-card-name { font-weight: 800; font-size: 13px; color: var(--ink); }
+.po-card-id { font-size: 10.5px; color: var(--muted); font-family: ui-monospace, monospace; }
+.po-card-note { font-size: 11.5px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.po-timeline { display: flex; align-items: stretch; gap: 12px; }
+.po-tl-step { flex: 1; background: var(--surface); border-radius: 10px; padding: 12px 14px; }
+.po-tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); margin-bottom: 6px; }
+.po-tl-dot-future { background: var(--iq-green); }
+.po-tl-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 3px; }
+.po-tl-text { font-size: 12.5px; color: var(--ink); line-height: 1.45; }
+.po-tl-arrow { display: flex; align-items: center; font-size: 18px; color: var(--muted); }
+@media (max-width: 720px) {
+  .po-pipelines { grid-template-columns: 1fr; }
+  .po-timeline { flex-direction: column; }
+}
+
 /* ── Per-tab data-sources footer ── */
 .tab-sources-footer {
   max-width: 1120px; margin: 0 auto; padding: 12px 28px 0;

@@ -12,7 +12,7 @@
   "seasonality": {
     "note": "Close/fiscal year Oct 1\u2013Sep 30. District purchasing peaks spring\u2013summer (Apr\u2013Aug) for the next school year."
   },
-  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run). CORRECTED 2026-09-11: the SKILL.md dev repo (kschoppen/growth-marketing) already defines Lead as recent_conversion_date IN window (any contact with a form submission that month) \u2014 the installed/cloud-running copy of the skill was behind this dev repo, which is why Lead was never actually populated despite being spec'd. Corrected Lead to the official recent_conversion_date definition, replacing an earlier same-day approximation (hs_v2_date_entered_lead) that used a different property and didn't match the documented query.",
+  "notes": "Funnel/revenue/web backfilled from HubSpot + GA4 (Jun 2025\u2013May 2026); not test-excluded except May. Product splits use product_interest (funnel) + product_s_ (revenue, multi-select) \u2014 directional, partial coverage, won't sum to totals. SEO baseline starts May 2026 (MoM deltas begin next run). CORRECTED 2026-09-11: the SKILL.md dev repo (kschoppen/growth-marketing) already defines Lead as recent_conversion_date IN window (any contact with a form submission that month) \u2014 the installed/cloud-running copy of the skill was behind this dev repo, which is why Lead was never actually populated despite being spec'd. Corrected Lead to the official recent_conversion_date definition, replacing an earlier same-day approximation (hs_v2_date_entered_lead) that used a different property and didn't match the documented query. BACKFILLED 2026-09-16: Renewal Pipeline (42174628) revenue added retroactively to district_won/school_won/total_won/existing_won (and nb_won for the one Aug-2026 New-Business-dealtype deal), win_rate recomputed, by_segment won/lost counts and rev_by_product updated, for all months Jun 2025-Aug 2026 -- this pipeline was never queried before 2026-09-16 (~$8.6M lifetime revenue previously excluded), so this backfill prevents Existing/Expansion revenue from showing a false one-month cliff. Individual Renewal deals were NOT added to each month's `deals[]` drilldown list (aggregate-only backfill) -- that list undercounts closed-won deals for these months by the Renewal deal count now folded into the totals. Account Growth Pipeline (907963407) has zero historical closed deals (won or lost) in this window, so no backfill was needed from it.",
   "months": [
     {
       "period": "2025-06",
@@ -25,10 +25,32 @@
         "lead": 182
       },
       "revenue": {
-        "district_won": 320014.36,
-        "school_won": 20806.51,
-        "total_won": 340820.87,
-        "wins": 26
+        "district_won": 854478.06,
+        "school_won": 62367.51,
+        "total_won": 916845.57,
+        "wins": 59,
+        "nb_won": 0,
+        "existing_won": 576024.7,
+        "win_rate_count_pct": 93.7,
+        "win_rate_dollar_pct": 99.3,
+        "by_segment": {
+          "single_small": {
+            "won": 28,
+            "lost": 4
+          },
+          "medium": {
+            "won": 1,
+            "lost": 0
+          },
+          "large": {
+            "won": 2,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 2,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 9508,
@@ -58,9 +80,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 125843.08,
+        "ij": 127961.08,
         "inkwell": 0,
-        "wh": 68055,
+        "wh": 295839.5,
         "gf8": 0
       },
       "seo": {
@@ -80,10 +102,32 @@
         "lead": 142
       },
       "revenue": {
-        "district_won": 467121.79,
-        "school_won": 53244,
-        "total_won": 520365.79,
-        "wins": 34
+        "district_won": 1236347.33,
+        "school_won": 135186.8,
+        "total_won": 1371534.13,
+        "wins": 77,
+        "nb_won": 0,
+        "existing_won": 851168.34,
+        "win_rate_count_pct": 93.9,
+        "win_rate_dollar_pct": 99.5,
+        "by_segment": {
+          "single_small": {
+            "won": 30,
+            "lost": 4
+          },
+          "medium": {
+            "won": 10,
+            "lost": 1
+          },
+          "large": {
+            "won": 1,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 2,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 7962,
@@ -113,9 +157,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 302400.16,
+        "ij": 330576.16,
         "inkwell": 0,
-        "wh": 16797,
+        "wh": 222311.4,
         "gf8": 0
       },
       "seo": {
@@ -135,10 +179,32 @@
         "lead": 262
       },
       "revenue": {
-        "district_won": 35735.84,
-        "school_won": 20954,
-        "total_won": 56689.84,
-        "wins": 23
+        "district_won": 680439.05,
+        "school_won": 49468,
+        "total_won": 729907.05,
+        "wins": 44,
+        "nb_won": 0,
+        "existing_won": 673217.21,
+        "win_rate_count_pct": 97.8,
+        "win_rate_dollar_pct": 96.6,
+        "by_segment": {
+          "single_small": {
+            "won": 14,
+            "lost": 0
+          },
+          "medium": {
+            "won": 5,
+            "lost": 0
+          },
+          "large": {
+            "won": 1,
+            "lost": 1
+          },
+          "enterprise": {
+            "won": 1,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 11372,
@@ -168,9 +234,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 51302.84,
+        "ij": 135890.74,
         "inkwell": 0,
-        "wh": 4850,
+        "wh": 64522.37,
         "gf8": 0
       },
       "seo": {
@@ -191,9 +257,31 @@
       },
       "revenue": {
         "district_won": 20287.41,
-        "school_won": 2498.36,
-        "total_won": 22785.77,
-        "wins": 12
+        "school_won": 7120.36,
+        "total_won": 27407.77,
+        "wins": 16,
+        "nb_won": 0,
+        "existing_won": 4622,
+        "win_rate_count_pct": 72.7,
+        "win_rate_dollar_pct": 71.2,
+        "by_segment": {
+          "single_small": {
+            "won": 4,
+            "lost": 6
+          },
+          "medium": {
+            "won": 0,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 26003,
@@ -223,7 +311,7 @@
         }
       },
       "rev_by_product": {
-        "ij": 22785.77,
+        "ij": 26672.77,
         "inkwell": 0,
         "wh": 10770,
         "gf8": 0
@@ -248,7 +336,29 @@
         "district_won": 4731,
         "school_won": 0,
         "total_won": 4731,
-        "wins": 8
+        "wins": 8,
+        "nb_won": 0,
+        "existing_won": 0,
+        "win_rate_count_pct": 100.0,
+        "win_rate_dollar_pct": 100.0,
+        "by_segment": {
+          "single_small": {
+            "won": 0,
+            "lost": 0
+          },
+          "medium": {
+            "won": 0,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 35976,
@@ -303,7 +413,29 @@
         "district_won": 5184.3,
         "school_won": 0,
         "total_won": 5184.3,
-        "wins": 5
+        "wins": 5,
+        "nb_won": 0,
+        "existing_won": 0,
+        "win_rate_count_pct": 83.3,
+        "win_rate_dollar_pct": 18.2,
+        "by_segment": {
+          "single_small": {
+            "won": 0,
+            "lost": 0
+          },
+          "medium": {
+            "won": 0,
+            "lost": 1
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 21037,
@@ -356,9 +488,31 @@
       },
       "revenue": {
         "district_won": 11250,
-        "school_won": 0,
-        "total_won": 11250,
-        "wins": 5
+        "school_won": 1680,
+        "total_won": 12930,
+        "wins": 6,
+        "nb_won": 0,
+        "existing_won": 1680,
+        "win_rate_count_pct": 100.0,
+        "win_rate_dollar_pct": 100.0,
+        "by_segment": {
+          "single_small": {
+            "won": 1,
+            "lost": 0
+          },
+          "medium": {
+            "won": 0,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 14977,
@@ -388,7 +542,7 @@
         }
       },
       "rev_by_product": {
-        "ij": 11250,
+        "ij": 12930,
         "inkwell": 0,
         "wh": 11250,
         "gf8": 0
@@ -413,7 +567,29 @@
         "district_won": 15241.6,
         "school_won": 0,
         "total_won": 15241.6,
-        "wins": 9
+        "wins": 9,
+        "nb_won": 0,
+        "existing_won": 0,
+        "win_rate_count_pct": 90.0,
+        "win_rate_dollar_pct": 91.6,
+        "by_segment": {
+          "single_small": {
+            "won": 0,
+            "lost": 1
+          },
+          "medium": {
+            "won": 0,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 19498,
@@ -465,10 +641,32 @@
         "lead": 627
       },
       "revenue": {
-        "district_won": 7805,
+        "district_won": 77476.9,
         "school_won": 250,
-        "total_won": 8055,
-        "wins": 8
+        "total_won": 77726.9,
+        "wins": 10,
+        "nb_won": 0,
+        "existing_won": 69671.9,
+        "win_rate_count_pct": 100.0,
+        "win_rate_dollar_pct": 100.0,
+        "by_segment": {
+          "single_small": {
+            "won": 0,
+            "lost": 0
+          },
+          "medium": {
+            "won": 2,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 21773,
@@ -498,7 +696,7 @@
         }
       },
       "rev_by_product": {
-        "ij": 8055,
+        "ij": 77726.9,
         "inkwell": 0,
         "wh": 8055,
         "gf8": 0
@@ -520,10 +718,32 @@
         "lead": 503
       },
       "revenue": {
-        "district_won": 4000,
+        "district_won": 20904,
         "school_won": 0,
-        "total_won": 4000,
-        "wins": 4
+        "total_won": 20904,
+        "wins": 5,
+        "nb_won": 0,
+        "existing_won": 16904,
+        "win_rate_count_pct": 100.0,
+        "win_rate_dollar_pct": 100.0,
+        "by_segment": {
+          "single_small": {
+            "won": 1,
+            "lost": 0
+          },
+          "medium": {
+            "won": 0,
+            "lost": 0
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 23590,
@@ -553,7 +773,7 @@
         }
       },
       "rev_by_product": {
-        "ij": 4000,
+        "ij": 20904,
         "inkwell": 0,
         "wh": 0,
         "gf8": 0
@@ -576,19 +796,37 @@
         "hih_pool_active": null
       },
       "revenue": {
-        "district_won": 270099.92,
-        "school_won": 25368,
-        "total_won": 295467.92,
-        "wins": 9,
+        "district_won": 545444.92,
+        "school_won": 76601,
+        "total_won": 622045.92,
+        "wins": 33,
         "nb_won": 84917.92,
-        "existing_won": 210550,
-        "win_rate_count_pct": 15.0,
-        "win_rate_dollar_pct": 18.1,
+        "existing_won": 537128,
+        "win_rate_count_pct": 35.9,
+        "win_rate_dollar_pct": 31.0,
         "rfp_excluded": 1,
         "data_flags": [
           "Win rate depressed by backlog flush: 27 of 51 losses are aged deals (created >90d ago)",
           "1 RFP deal excluded: HENRICO COUNTY PUBLIC SCHOOLS $200K (rfp=true)"
-        ]
+        ],
+        "by_segment": {
+          "single_small": {
+            "won": 18,
+            "lost": 5
+          },
+          "medium": {
+            "won": 6,
+            "lost": 3
+          },
+          "large": {
+            "won": 0,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 17696,
@@ -614,9 +852,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 5260,
+        "ij": 331838,
         "inkwell": 5389,
-        "wh": 2500,
+        "wh": 53648,
         "gf8": 0
       },
       "seo": {
@@ -637,14 +875,14 @@
         "hih_pool_active": 374
       },
       "revenue": {
-        "district_won": 277427.56,
-        "school_won": 21557,
-        "total_won": 298984.56,
-        "wins": 24,
+        "district_won": 432721.1,
+        "school_won": 77659.65,
+        "total_won": 510380.75,
+        "wins": 47,
         "nb_won": 220334.56,
-        "existing_won": 78650,
-        "win_rate_count_pct": 39.3,
-        "win_rate_dollar_pct": 24.6,
+        "existing_won": 290046.19,
+        "win_rate_count_pct": 54.0,
+        "win_rate_dollar_pct": 35.6,
         "nb_win_rate_pct": 35.3,
         "rfp_excluded": 0,
         "avg_paid_deal": 14949,
@@ -652,7 +890,25 @@
         "data_flags": [
           "Win rate depressed by backlog flush: 21 of 37 losses are aged deals (created >90d ago). Dollar win rate (24.6%) is further depressed by several large-dollar losses ($100K+ deals).",
           "May is on-cycle for district buying season \u2014 24 wins and $299K in closes are seasonally expected."
-        ]
+        ],
+        "by_segment": {
+          "single_small": {
+            "won": 21,
+            "lost": 2
+          },
+          "medium": {
+            "won": 1,
+            "lost": 1
+          },
+          "large": {
+            "won": 1,
+            "lost": 0
+          },
+          "enterprise": {
+            "won": 0,
+            "lost": 0
+          }
+        }
       },
       "web": {
         "sessions": 39181,
@@ -796,9 +1052,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 96827.38,
+        "ij": 308223.57,
         "inkwell": 8389,
-        "wh": 15813,
+        "wh": 25429,
         "gf8": 0,
         "note": "product_s_ multi-select, directional. 177955 unclassified (product_s_ not set)"
       },
@@ -1198,29 +1454,29 @@
         "lead": 245
       },
       "revenue": {
-        "district_won": 924843.86,
-        "school_won": 45285.08,
-        "total_won": 970128.94,
+        "district_won": 1866879.5,
+        "school_won": 136849.08,
+        "total_won": 2003728.58,
         "nb_won": 970128.94,
-        "existing_won": 0.0,
-        "wins": 34,
-        "win_rate_count_pct": 63.0,
-        "win_rate_dollar_pct": 82.7,
+        "existing_won": 1033599.64,
+        "wins": 86,
+        "win_rate_count_pct": 78.9,
+        "win_rate_dollar_pct": 90.4,
         "by_segment": {
           "single_small": {
-            "won": 23,
-            "lost": 14
+            "won": 66,
+            "lost": 17
           },
           "medium": {
-            "won": 3,
+            "won": 8,
             "lost": 5
           },
           "large": {
-            "won": 3,
+            "won": 4,
             "lost": 1
           },
           "enterprise": {
-            "won": 4,
+            "won": 7,
             "lost": 0
           }
         }
@@ -1369,9 +1625,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 964368.94,
+        "ij": 1989928.58,
         "inkwell": 4640,
-        "wh": 181043.93,
+        "wh": 243917.48,
         "gf8": 0,
         "note": "product_s_ multi-select, directional; won't sum to totals"
       },
@@ -1633,25 +1889,25 @@
         "lead": 197
       },
       "revenue": {
-        "district_won": 658504.61,
-        "school_won": 19410.0,
-        "total_won": 677914.61,
+        "district_won": 1121646.59,
+        "school_won": 90716.07,
+        "total_won": 1212362.66,
         "nb_won": 675914.61,
-        "existing_won": 2000.0,
-        "wins": 30,
-        "win_rate_count_pct": 55.6,
-        "win_rate_dollar_pct": 79.9,
+        "existing_won": 536448.05,
+        "wins": 87,
+        "win_rate_count_pct": 75.7,
+        "win_rate_dollar_pct": 87.3,
         "by_segment": {
           "single_small": {
-            "won": 15,
-            "lost": 19
+            "won": 61,
+            "lost": 23
           },
           "medium": {
-            "won": 6,
+            "won": 15,
             "lost": 3
           },
           "large": {
-            "won": 5,
+            "won": 7,
             "lost": 0
           },
           "enterprise": {
@@ -1752,9 +2008,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 617504.61,
+        "ij": 1151952.66,
         "inkwell": 59591.0,
-        "wh": 37599.45,
+        "wh": 157328.0,
         "gf8": 0,
         "note": "product_s_ multi-select, directional; won't sum to totals"
       },
@@ -1911,29 +2167,29 @@
         "lead": 511
       },
       "revenue": {
-        "district_won": 179079.02,
-        "school_won": 40427.75,
-        "total_won": 219506.77,
-        "nb_won": 199574.42,
-        "existing_won": 19932.35,
-        "wins": 36,
-        "win_rate_count_pct": 80.0,
-        "win_rate_dollar_pct": 84.1,
+        "district_won": 899175.87,
+        "school_won": 110685.75,
+        "total_won": 1009861.62,
+        "nb_won": 247682.42,
+        "existing_won": 762179.2,
+        "wins": 74,
+        "win_rate_count_pct": 87.1,
+        "win_rate_dollar_pct": 95.8,
         "by_segment": {
           "single_small": {
-            "won": 19,
-            "lost": 3
+            "won": 47,
+            "lost": 5
           },
           "medium": {
-            "won": 9,
+            "won": 16,
             "lost": 4
           },
           "large": {
-            "won": 6,
+            "won": 7,
             "lost": 1
           },
           "enterprise": {
-            "won": 2,
+            "won": 4,
             "lost": 1
           }
         }
@@ -2030,9 +2286,9 @@
         }
       },
       "rev_by_product": {
-        "ij": 142292.86,
+        "ij": 932647.71,
         "inkwell": 0,
-        "wh": 35056.75,
+        "wh": 308693.75,
         "gf8": 0,
         "note": "product_s_ multi-select, directional; won't sum to totals"
       },
