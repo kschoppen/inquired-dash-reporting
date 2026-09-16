@@ -66,7 +66,8 @@
         {"term": "Closed-won", "def": "Sum of deal amount for non-test, non-RFP deals marked closed-won in the month, across all five pipelines (District, School, New Business, Account Growth, Renewal — see Pipeline & CRM structure above). District/School are legacy and kept for historical continuity; Renewal revenue shows up under Existing/Expansion below, not New Business. Includes $0 pilots (real business activity)."},
         {"term": "New Business (NB)", "def": "dealtype of New Business, Pilot, or Pilot Expansion. A pilot converting or expanding counts as new business."},
         {"term": "Existing / Expansion", "def": "dealtype of Renewal, Upsell, Add On, or Cross Sell (growth within an existing customer)."},
-        {"term": "Wins", "def": "Count of non-test, non-RFP closed-won deals in the month, regardless of dollar amount (so pilots are visible)."}
+        {"term": "Wins", "def": "Count of non-test, non-RFP closed-won deals in the month, regardless of dollar amount (so pilots are visible)."},
+        {"term": "Renewal goal (pending)", "def": "A dollar target + retention-rate % goal for the Renewal Pipeline is planned alongside the existing new-business pipeline goal (data/goals.json's renewal_goal block), but the actual target numbers are TBD pending the rebuilt forecast doc or Jeanette. Trailing 12-month (Sep 2025-Aug 2026) Renewal Pipeline closed-won: $2,989,255, for reference."}
       ]
     },
     {
