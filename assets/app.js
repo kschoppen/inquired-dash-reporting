@@ -963,15 +963,17 @@ function renderWeekly(d) {
 
     <div class="panel"><h3>Open pipeline <span class="muted">(snapshot ${pipe.as_of || d.updated})</span></h3>
       <div class="cards">
-        ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline")}
-        ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline")}
         ${card("New Business — open deals", fmtN(pipe.new_business_open), "", "New Business Pipeline")}
+        ${card("Account Growth — open deals", fmtN(pipe.account_growth_open), "", "Account Growth Pipeline")}
+        ${card("Renewal — open deals", fmtN(pipe.renewal_open), "", "Renewal Pipeline")}
+        ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline (legacy — being retired)")}
+        ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline (legacy — being retired)")}
       </div>
-      ${note("Point-in-time count of open deals, not a weekly trend. " + (pipe.note || ""))}
+      ${note("Point-in-time count of open deals, not a weekly trend. New Business, Account Growth, and Renewal are the current active pipelines (confirmed by RevOps 2026-09-16); District and School are last year's structure and are being retired — kept here only until RevOps confirms the migration/archive is complete. " + (pipe.note || ""))}
       ${pipe.by_product ? `
       <div class="grid2">
         <div><h4>By product</h4>${pipelineProductTable(pipe)}${note("Deals tagged with more than one product count toward each — totals won't sum to the open-deal count above.")}</div>
-        <div><h4>By stage</h4>${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}${pipelineStageTable("New Business", pipe.by_stage && pipe.by_stage.new_business)}</div>
+        <div><h4>By stage</h4>${pipelineStageTable("New Business", pipe.by_stage && pipe.by_stage.new_business)}${pipelineStageTable("Account Growth", pipe.by_stage && pipe.by_stage.account_growth)}${pipelineStageTable("Renewal", pipe.by_stage && pipe.by_stage.renewal)}${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
       </div>` : ""}
     </div>
 
@@ -1508,18 +1510,27 @@ function nextRunLabel(cadence, lastRun) {
 
 function renderTabMeta(tab, lastRun) {
   const el = document.getElementById("tab-meta");
-  if (!tab.meta) { el.hidden = true; return; }
-  const { desc, cadence, next, sources } = tab.meta;
-  const computedNext = nextRunLabel(cadence, lastRun) || next;
+  if (!tab.meta) { el.hidden = true; } else {
+    const { desc, cadence, next } = tab.meta;
+    const computedNext = nextRunLabel(cadence, lastRun) || next;
+    el.hidden = false;
+    const lastRunFormatted = formatRunDate(lastRun);
+    el.innerHTML = `
+      <div class="tab-meta-name">${tab.label}</div>
+      <div class="tab-meta-desc">${desc}</div>
+      <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
+      <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRunFormatted}</div></div>
+      <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>`;
+  }
+  renderTabSourcesFooter(tab);
+}
+
+function renderTabSourcesFooter(tab) {
+  const el = document.getElementById("tab-sources-footer");
+  const sources = tab.meta && tab.meta.sources;
+  if (!sources || !sources.length) { el.hidden = true; return; }
   el.hidden = false;
-  const lastRunFormatted = formatRunDate(lastRun);
-  el.innerHTML = `
-    <div class="tab-meta-name">${tab.label}</div>
-    <div class="tab-meta-desc">${desc}</div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRunFormatted}</div></div>
-    <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>
-    ${sources && sources.length ? `<div class="tab-meta-item tab-meta-sources"><div class="tab-meta-label">Sources</div><div class="tab-meta-value">${sources.join(" · ")}</div></div>` : ""}`;
+  el.innerHTML = `<b>Data sources — ${tab.label}:</b> ${sources.join(" · ")}`;
 }
 
 // ---- shell ----
