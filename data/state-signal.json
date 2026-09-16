@@ -3,13 +3,14 @@
   "title": "State Signal (MQA)",
   "updated": "2026-09-16",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) \u00b7 Source: HubSpot",
-  "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted. Threshold adjustable.",
-  "cadence": "Weekly \u00b7 Mondays (wired into the Monday Dash routine, PHASE 1.5)",
+  "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
+  "cadence": "Weekly \u00b7 Mondays (HubSpot numbers via DASH_ROUTINE.md PHASE 1.5); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
-    "266 of 1781 MQA/Engaged companies (15%) have no state_st value set \u2014 shown as 'Unassigned' in national totals and excluded from the state ranking below.",
-    "Product tag on each state is a STATE POLICY signal (which inquirED product that state's real, cited legislation/adoption cycle relates to) \u2014 it is NOT yet which product a specific warm account is interested in. product_interest lives on CONTACT, not COMPANY, so per-account product tagging needs a CRM rollup. Asked Tim (RevOps) for a `primary_product_signal` company-level field on 2026-09-16 \u2014 pending.",
-    "Policy citations for the 10 actionable states and the 6 watch states are real and sourced (see each state's Sources). Outreach angles are drafted from that research, not fabricated.",
-    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context \u2014 they are starting points for a rep to personalize, not finished, sent copy."
+    "266 of 1781 MQA/Engaged companies (15%) have no state_st value set \u2014 shown as 'Unassigned', excluded from ranking.",
+    "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) \u2014 NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 \u2014 pending.",
+    "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL \u2014 none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
+    "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs \u2014 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
+    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context \u2014 starting points for a rep to personalize, not finished copy."
   ],
   "national_totals": {
     "qualified": 1781,
@@ -17,14 +18,15 @@
     "unassigned_qualified": 266,
     "unassigned_actionable": 250,
     "states_with_signal": 52,
-    "watch_states": 6
+    "watch_states": 41
   },
   "ai_summary": {
     "state": "MS",
     "product": "ij",
     "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
     "since": "2025-08",
-    "note": "Auto-picked: the watch-list state with the most recently dated real policy signal. Not a fixed list \u2014 recomputed each run."
+    "starbridge_open_rfps": 4,
+    "note": "Auto-picked: prioritizes a watch-list state with both a live open Starbridge RFP and the most recently dated real policy signal (falls back to most-recent policy signal alone if no RFP-backed state qualifies). Not a fixed list \u2014 recomputed each run."
   },
   "history": [
     {
@@ -309,88 +311,107 @@
       "state": "NJ",
       "qualified": 122,
       "actionable": 112,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 2,
       "state": "NY",
       "qualified": 112,
       "actionable": 96,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 3,
       "state": "CA",
       "qualified": 112,
       "actionable": 92,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 4,
       "state": "PA",
       "qualified": 58,
       "actionable": 54,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 5,
       "state": "IL",
       "qualified": 119,
       "actionable": 53,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 6,
       "state": "WI",
       "qualified": 61,
       "actionable": 53,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 7,
       "state": "MA",
       "qualified": 56,
       "actionable": 52,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 8,
       "state": "KY",
       "qualified": 51,
       "actionable": 48,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 9,
       "state": "MN",
       "qualified": 62,
       "actionable": 38,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     },
     {
       "rank": 10,
       "state": "MI",
       "qualified": 65,
       "actionable": 37,
-      "product": "inkwell",
-      "product_note": "state policy signal, not yet tied to individual account product interest (pending CRM rollup)"
+      "product": "inkwell"
     }
   ],
   "watch_states": [
     {
+      "state": "WA",
+      "product": "inkwell",
+      "since": "2026-03",
+      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
+      "sources": [
+        {
+          "title": "HB 1295 Bill Summary - Washington State Legislature",
+          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
+        }
+      ],
+      "qualified": 45,
+      "actionable": 35,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "CT",
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Connecticut's 2023 Right to Read Act required full transition to a state-approved, science-of-reading K-3 curriculum by July 2025; first-ever K-12 Social Studies standards finalized October 4, 2024.",
+      "sources": [
+        {
+          "title": "Connecticut Approved K-3 Reading Curriculum Models or Programs - CSDE",
+          "url": "https://portal.ct.gov/SDE/Academic-Office/Center-for-Literacy-Research-and-Reading-Success/Connecticut-Approved-K-3-Reading-Curricula-Programs"
+        }
+      ],
+      "qualified": 40,
+      "actionable": 34,
+      "starbridge_open_rfps": 2
+    },
+    {
       "state": "TX",
       "product": "ij",
       "since": "2025-01",
-      "sort_key": "2025-01",
       "headline": "Texas's State Board of Education is actively revising the K-12 social studies TEKS (Texas Essential Knowledge and Skills), the standards that drive the state's next social studies instructional-materials adoption.",
       "sources": [
         {
@@ -399,13 +420,43 @@
         }
       ],
       "qualified": 43,
-      "actionable": 30
+      "actionable": 30,
+      "starbridge_open_rfps": 12
+    },
+    {
+      "state": "IA",
+      "product": "ij",
+      "since": "2026-01",
+      "headline": "Iowa's State Board approved updated K-12 Social Studies standards January 15, 2026 - the state's first revision since 2017 - directed by 2024 law HF 2545 toward U.S. history/government/civics.",
+      "sources": [
+        {
+          "title": "State Board of Education signs off on updated Iowa social studies standards - KCRG",
+          "url": "https://www.kcrg.com/2026/01/17/state-board-education-signs-off-updated-iowa-social-studies-standards/"
+        }
+      ],
+      "qualified": 50,
+      "actionable": 30,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "OH",
+      "product": "inkwell",
+      "since": "2023",
+      "headline": "Ohio's 2023 House Bill 33 required every district adopt a state-approved, science-of-reading-aligned core ELA curriculum for PreK-5 by SY2024-25, backed by $168M, and banned three-cueing.",
+      "sources": [
+        {
+          "title": "Updated list of approved core curriculum - Ohio Dept of Education and Workforce",
+          "url": "https://education.ohio.gov/Media/Ed-Connection/March-4-2024/Updated-list-of-approved-core-curriculum-and-instr?feed=NewsletterRSS"
+        }
+      ],
+      "qualified": 30,
+      "actionable": 29,
+      "starbridge_open_rfps": 1
     },
     {
       "state": "OR",
       "product": "ij",
       "since": "2024-06",
-      "sort_key": "2024-06",
       "headline": "Oregon adopted new K-12 Social Science Standards in June 2024, with its instructional-materials review completed in 2025 and 2026 set as the required implementation year.",
       "sources": [
         {
@@ -418,13 +469,190 @@
         }
       ],
       "qualified": 50,
-      "actionable": 27
+      "actionable": 27,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "AZ",
+      "product": "inkwell",
+      "since": "2025-08",
+      "headline": "Arizona requires all K-5 teachers to earn a science-of-reading-based Literacy K-5 Endorsement starting August 1, 2025, alongside the May 2025 'Say Dyslexia' law.",
+      "sources": [
+        {
+          "title": "Literacy, K-5 Endorsement - Arizona Department of Education",
+          "url": "https://www.azed.gov/educator-certification/literacy-k-5-endorsement"
+        }
+      ],
+      "qualified": 35,
+      "actionable": 26,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "MO",
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Missouri Gov. Kehoe signed omnibus bill SB 68 on July 9, 2025 (effective Aug 28, 2025), making phonics the mandatory primary word-reading strategy statewide and barring three-cueing.",
+      "sources": [
+        {
+          "title": "Governor Signs Wide-Ranging Education Legislation - Missouri DESE",
+          "url": "https://dese.mo.gov/communications/governor-signs-wide-ranging-education-legislation-giving-additional-tools-missouri-schools"
+        },
+        {
+          "title": "Evidence-Based Reading Instructional Materials (EBRIP) Guidance 2025 - Missouri DESE",
+          "url": "https://dese.mo.gov/media/pdf/evidence-based-reading-instructional-materials-ebrip-guidance-2025"
+        }
+      ],
+      "qualified": 22,
+      "actionable": 20,
+      "starbridge_open_rfps": 2
+    },
+    {
+      "state": "NC",
+      "product": "inkwell",
+      "since": "2021-04",
+      "headline": "North Carolina's 2021 Excellent Public Schools Act mandated science-of-reading K-5 instruction and funded LETRS training for ~44,000 teachers; a new ELA Standard Course of Study is approved for SY2027-28.",
+      "sources": [
+        {
+          "title": "North Carolina science of reading instruction bill, explained - EdNC",
+          "url": "https://www.ednc.org/2021-04-06-science-reading-bill-nc-north-carolina-instruction-explain-educators-teacherss/"
+        }
+      ],
+      "qualified": 24,
+      "actionable": 20,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "FL",
+      "product": "ij",
+      "since": "2023-07",
+      "headline": "Florida's State Board approved updated B.E.S.T. Standards for Social Studies in 2023, expanding civics content, full implementation from SY2023-24; next state materials adoption cycle is 2027-2028.",
+      "sources": [
+        {
+          "title": "Florida's State Academic Standards - Social Studies, 2023",
+          "url": "https://www.fldoe.org/core/fileparse.php/20578/urlt/5-3.pdf"
+        }
+      ],
+      "qualified": 21,
+      "actionable": 17,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "VA",
+      "product": "inkwell",
+      "since": "2022-01",
+      "headline": "The Virginia Literacy Act (2022, expanded 2023) requires K-8 literacy instruction aligned with science-based reading research; divisions had to implement approved evidence-based core K-3/4-5 programs by SY2024-25.",
+      "sources": [
+        {
+          "title": "Virginia Literacy Act - VDOE",
+          "url": "https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/english-reading-literacy/literacy/virginia-literacy-act"
+        }
+      ],
+      "qualified": 25,
+      "actionable": 17,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "KS",
+      "product": "inkwell",
+      "since": "2024-04",
+      "headline": "Kansas SB 438 (the Kansas Blueprint for Literacy), signed April 25, 2024, bans three-cueing and visual-memory-based reading materials in K-12 classrooms effective July 1, 2025.",
+      "sources": [
+        {
+          "title": "Governor Kelly Signs Bipartisan Bill Establishing the Kansas Blueprint for Literacy",
+          "url": "https://governor.kansas.gov/governor-kelly-signs-bipartisan-bill-establishing-the-kansas-blueprint-for-literacy/"
+        },
+        {
+          "title": "2024 Session Laws of Kansas, Chapter 82: Senate Bill 438",
+          "url": "https://www.sos.ks.gov/publications/sessionlaws/2024/Chapter-82-SB-438.html"
+        }
+      ],
+      "qualified": 30,
+      "actionable": 17,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "CO",
+      "product": "inkwell",
+      "since": "2024-07",
+      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
+      "sources": [
+        {
+          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
+          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
+        }
+      ],
+      "qualified": 26,
+      "actionable": 16,
+      "starbridge_open_rfps": 1
+    },
+    {
+      "state": "GA",
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
+      "sources": [
+        {
+          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
+          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
+        }
+      ],
+      "qualified": 22,
+      "actionable": 15,
+      "starbridge_open_rfps": 3
+    },
+    {
+      "state": "TN",
+      "product": "inkwell",
+      "since": "2021-01",
+      "headline": "Tennessee's Literacy Success Act (enacted January 2021) requires phonics-based K-3 foundational literacy instruction with reading interventions through grade 5, and mandates districts adopt approved ELA instructional materials.",
+      "sources": [
+        {
+          "title": "Tennessee Literacy Success Act - Comptroller",
+          "url": "https://comptroller.tn.gov/office-functions/research-and-education-accountability/prek-12-collection/literacy-success-act--lsa-.html"
+        }
+      ],
+      "qualified": 17,
+      "actionable": 15,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "ME",
+      "product": "ij",
+      "since": "unknown",
+      "headline": "Maine's K-8 social studies standards revision stalled in 2024 (legislature declined to authorize the draft); 2025 lawmakers created a two-year Maine Learning Results Taskforce (LD 1701) to re-envision PK-12 standards, pausing the regular review cycle.",
+      "sources": [
+        {
+          "title": "Maine DOE - Maine Learning Results Taskforce",
+          "url": "https://www.maine.gov/doe/learning/mlrtaskforce"
+        }
+      ],
+      "qualified": 18,
+      "actionable": 14,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "MD",
+      "product": "inkwell",
+      "since": "2024-01",
+      "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
+      "sources": [
+        {
+          "title": "State Board Calls for the Adoption of Science of Reading Statewide - MSDE",
+          "url": "https://news.maryland.gov/msde/board-science-of-reading/"
+        },
+        {
+          "title": "Maryland College and Career Ready Standards in ELA (revised, approved July 2025)",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0729/Maryland-College-and-Career-Ready-Standards-in-English-Language-Arts-A.pdf"
+        }
+      ],
+      "qualified": 17,
+      "actionable": 12,
+      "starbridge_open_rfps": 4
     },
     {
       "state": "SC",
       "product": "inkwell",
       "since": "2024-12",
-      "sort_key": "2024-12",
       "headline": "South Carolina's Act 114 (amending the Read to Succeed Act) requires K-5 reading instruction aligned to the science of reading, bans the three-cueing method, and adds reading screening three times a year; the 2024-25 State Reading Plan implementing it was published December 2024.",
       "sources": [
         {
@@ -433,13 +661,28 @@
         }
       ],
       "qualified": 14,
-      "actionable": 12
+      "actionable": 12,
+      "starbridge_open_rfps": 1
+    },
+    {
+      "state": "OK",
+      "product": "ij",
+      "since": "2025-12",
+      "headline": "Oklahoma Supreme Court struck down the state's 2025 social studies standards Dec 16, 2025 (Open Meetings Act violation); replacement 2026 standards approved March 26, 2026 still need legislative approval.",
+      "sources": [
+        {
+          "title": "Oklahoma Supreme Court strikes down controversial social studies standards - K-12 Dive",
+          "url": "https://www.k12dive.com/news/oklahoma-supreme-court-strikes-down-controversial-social-studies-standards/808438/"
+        }
+      ],
+      "qualified": 14,
+      "actionable": 10,
+      "starbridge_open_rfps": 0
     },
     {
       "state": "AL",
       "product": "ij",
       "since": "2024-12",
-      "sort_key": "2024-12",
       "headline": "Alabama approved its 2024 Course of Study: Social Studies on December 12, 2024, its first full K-12 social studies standards revision since 2010.",
       "sources": [
         {
@@ -448,13 +691,73 @@
         }
       ],
       "qualified": 10,
-      "actionable": 9
+      "actionable": 9,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "IN",
+      "product": "ij",
+      "since": "2023-06",
+      "headline": "Indiana approved streamlined K-8 Social Studies standards June 7, 2023 (C3-Framework-aligned); HEA 1558 created a mandatory PreK-5 literacy endorsement (new licenses after June 30, 2025) and SB1 (2024) tied 3rd-grade promotion to IREAD-3.",
+      "sources": [
+        {
+          "title": "Indiana officials approve new streamlined K-12 education standards",
+          "url": "https://indianacapitalchronicle.com/2023/06/08/indiana-officials-approve-new-streamlined-k-12-education-standards/"
+        }
+      ],
+      "qualified": 9,
+      "actionable": 9,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "NE",
+      "product": "inkwell",
+      "since": "2025-02",
+      "headline": "Nebraska's State Board approved a statewide Literacy Project Plan February 7, 2025, establishing a science-of-reading framework for PreK-3 reading instruction statewide.",
+      "sources": [
+        {
+          "title": "Nebraska Literacy Project - Nebraska Department of Education",
+          "url": "https://www.education.ne.gov/nebraskareads/nebraska-literacy-project/"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 7,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "HI",
+      "product": "gf8",
+      "since": "2023-01",
+      "headline": "Hawaii's Ready Keiki initiative (unveiled Jan 2023) grew public Pre-K from 37 classrooms (2022-23) to 92 classrooms across 74 DOE campuses (2024-25), en route to 50% of unserved 3-4 year-olds by 2027.",
+      "sources": [
+        {
+          "title": "VNR - Ready Keiki Expands Public Pre-K Access",
+          "url": "https://governor.hawaii.gov/newsroom/vnr-ready-keiki-expands-public-pre-k-access-in-west-o%CA%BBahu-new-early-childhood-state-plan-released/"
+        }
+      ],
+      "qualified": 7,
+      "actionable": 7,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "LA",
+      "product": "inkwell",
+      "since": "2026-04",
+      "headline": "Louisiana's BESE approved revised K-12 English Language Arts standards on April 13, 2026, with stronger phonics/science-of-reading emphasis, effective the 2027-2028 school year.",
+      "sources": [
+        {
+          "title": "Louisiana Strengthens Classroom Focus on the Science of Reading (LDOE)",
+          "url": "https://doe.louisiana.gov/about/news-releases/release/2026/04/13/louisiana-strengthens-classroom-focus-on-the-science-of-reading--grammar--and-cursive-writing"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 7,
+      "starbridge_open_rfps": 0
     },
     {
       "state": "UT",
       "product": "ij",
       "since": "2024-08",
-      "sort_key": "2024-08",
       "headline": "Utah adopted new K-6 Social Studies standards effective the 2024-25 school year.",
       "sources": [
         {
@@ -463,13 +766,167 @@
         }
       ],
       "qualified": 8,
-      "actionable": 6
+      "actionable": 6,
+      "starbridge_open_rfps": 2
+    },
+    {
+      "state": "NH",
+      "product": "inkwell",
+      "since": "2024-07",
+      "headline": "New Hampshire RSA 189:53 (amended 2024) requires every district provide evidence-based, science-of-reading K-5 literacy instruction, effective July 1, 2027.",
+      "sources": [
+        {
+          "title": "Section 189:53 Literacy Skill Development in Elementary Grades - NH General Court",
+          "url": "https://gc.nh.gov/rsa/html/XV/189/189-53.htm"
+        }
+      ],
+      "qualified": 10,
+      "actionable": 6,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "ID",
+      "product": "inkwell",
+      "since": "unknown",
+      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "sources": [
+        {
+          "title": "Idaho Code Title 33, Chapter 18",
+          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 6,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "MT",
+      "product": "inkwell",
+      "since": "2025-11",
+      "headline": "Montana's Board of Public Education adopted new ELA and Literacy Content Standards in November 2025, mandatory implementation by July 2027.",
+      "sources": [
+        {
+          "title": "Montana OPI - English Language Arts and Literacy Standards",
+          "url": "https://opi.mt.gov/Educators/Teaching-Learning/K-12-Content-Standards/English-Language-Arts-Literacy-Standards"
+        }
+      ],
+      "qualified": 6,
+      "actionable": 6,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "AK",
+      "product": "inkwell",
+      "since": "2022-06",
+      "headline": "Gov. Dunleavy signed the Alaska Reads Act in June 2022, requiring districts use a core ELA curriculum aligned to Alaska's standards and the science of reading, screen K-3 students, and submit K-3 MTSS improvement plans.",
+      "sources": [
+        {
+          "title": "The Alaska Reads Act - Alaska Dept. of Education & Early Development",
+          "url": "https://education.alaska.gov/akreads"
+        }
+      ],
+      "qualified": 7,
+      "actionable": 6,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "RI",
+      "product": "inkwell",
+      "since": "2019-07",
+      "headline": "Rhode Island's Right to Read Act (2019) hit implementation deadlines 2023-2024 requiring educator-prep programs prove Science of Reading/Structured Literacy training; revised K-12 social studies standards endorsed Feb 2023.",
+      "sources": [
+        {
+          "title": "The Rhode Island Right to Read Act - RIDE",
+          "url": "https://ride.ri.gov/instruction-assessment/literacy/rhode-island-right-read-act"
+        }
+      ],
+      "qualified": 5,
+      "actionable": 5,
+      "starbridge_open_rfps": 3
+    },
+    {
+      "state": "NV",
+      "product": "inkwell",
+      "since": "2025-06",
+      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
+      "sources": [
+        {
+          "title": "SB460 Overview - Nevada Legislature",
+          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
+        }
+      ],
+      "qualified": 10,
+      "actionable": 5,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "VT",
+      "product": "inkwell",
+      "since": "2024-05",
+      "headline": "Vermont's Act 139 (May 2024) created the state's first dyslexia-screening requirement + universal K-3 reading screening; Act 72 (June 2025) extended supplemental reading instruction requirements to grades K-12.",
+      "sources": [
+        {
+          "title": "Act 139 of 2024 Annual Report",
+          "url": "https://legislature.vermont.gov/assets/Legislative-Reports/edu-act-139-improving-literacy-annual-report-2026.pdf"
+        }
+      ],
+      "qualified": 7,
+      "actionable": 5,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "AR",
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Arkansas's LEARNS Act (Act 237 of 2023, signed March 8, 2023) mandates science-of-reading instruction, K-3 dyslexia/literacy screening, and bars promotion of 3rd graders missing reading benchmarks starting SY2025-26.",
+      "sources": [
+        {
+          "title": "DESE - LEARNS Act 237 of 2023",
+          "url": "https://dese.ade.arkansas.gov/Offices/special-projects/learns-act-237-of-2023-"
+        }
+      ],
+      "qualified": 7,
+      "actionable": 5,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "WV",
+      "product": "inkwell",
+      "since": "2023",
+      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
+      "sources": [
+        {
+          "title": "Third Grade Success Act - West Virginia Department of Education",
+          "url": "https://wvde.us/third-grade-success-act/"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 4,
+      "starbridge_open_rfps": 1
+    },
+    {
+      "state": "DE",
+      "product": "gf8",
+      "since": "2026-06",
+      "headline": "Gov. Meyer signed Delaware's FY2027 budget June 30, 2026, raising early-childhood (Purchase of Care) investment to $107.3M (from $76.3M FY26), plus $8M one-time for pre-K expansion, part of a stated 40%-by-2028 public pre-K enrollment goal.",
+      "sources": [
+        {
+          "title": "Gov. Meyer Signs FY2027 Budget - State of Delaware News",
+          "url": "https://news.delaware.gov/2026/06/30/gov-meyer-signs-fy2027-budget-investing-in-education-affordability-and-opportunity/"
+        },
+        {
+          "title": "Delaware announces Early Literacy Plan - State of Delaware News",
+          "url": "https://news.delaware.gov/2025/10/10/delaware-announces-early-literacy-plan-to-strengthen-classroom-instruction/"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 4,
+      "starbridge_open_rfps": 0
     },
     {
       "state": "MS",
       "product": "ij",
       "since": "2025-08",
-      "sort_key": "2025-08",
       "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
       "sources": [
         {
@@ -478,7 +935,83 @@
         }
       ],
       "qualified": 3,
-      "actionable": 3
+      "actionable": 3,
+      "starbridge_open_rfps": 4
+    },
+    {
+      "state": "DC",
+      "product": "ij",
+      "since": "2023-06",
+      "headline": "The DC State Board of Education unanimously adopted revised K-12 social studies standards June 21, 2023, the District's first update in 17 years.",
+      "sources": [
+        {
+          "title": "OSSE Adopts New Social Studies Standards for District of Columbia Students",
+          "url": "https://osse.dc.gov/release/osse-adopts-new-social-studies-standards-district-columbia-students"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 3,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "ND",
+      "product": "ij",
+      "since": "2026-03",
+      "headline": "North Dakota is rewriting its K-12 Social Studies standards, Draft 1 published for public comment March 16-April 17, 2026; ELA standards were updated 2023 for science-of-reading alignment.",
+      "sources": [
+        {
+          "title": "North Dakota Social Studies Content Standards - Draft 1",
+          "url": "https://www.nd.gov/dpi/sites/default/files/documents/Academic%20Support/ND%20Social%20Studies%20Standards%20Standards-Draft%201%204.24.26.pdf"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 3,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "SD",
+      "product": "inkwell",
+      "since": "2025-04",
+      "headline": "South Dakota's State Board adopted new phonics-based ELA standards April 14, 2025, explicitly aligned to the science of reading, full implementation SY2025-26.",
+      "sources": [
+        {
+          "title": "South Dakota English Language Arts Standards Adopted April 14, 2025",
+          "url": "https://doe.sd.gov/contentstandards/documents/ELAStandards-25.pdf"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 3,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "NM",
+      "product": "inkwell",
+      "since": "2024-02",
+      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
+      "sources": [
+        {
+          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
+          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
+        }
+      ],
+      "qualified": 2,
+      "actionable": 2,
+      "starbridge_open_rfps": 0
+    },
+    {
+      "state": "WY",
+      "product": "inkwell",
+      "since": "2026-03",
+      "headline": "Wyoming Gov. Gordon signed SF 59, the Wyoming Language and Literacy Act, March 6, 2026, creating a statewide K-12 evidence-based literacy mandate with mandatory annual dyslexia screening below 3rd grade.",
+      "sources": [
+        {
+          "title": "Governor signs literacy bill - Oil City News",
+          "url": "https://oilcity.news/government/state/2026/03/09/governor-signs-literacy-bill-that-advocates-declare-a-win-for-wyoming-children/"
+        }
+      ],
+      "qualified": 2,
+      "actionable": 1,
+      "starbridge_open_rfps": 0
     }
   ],
   "accounts_by_state": {
@@ -1504,211 +2037,1040 @@
     ]
   },
   "policy_context": {
-    "NJ": {
-      "state": "NJ",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
+    "OR": {
+      "product": "ij",
+      "since": "2024-06",
+      "headline": "Oregon adopted new K-12 Social Science Standards in June 2024, with its instructional-materials review completed in 2025 and 2026 set as the required implementation year.",
+      "sources": [
+        {
+          "title": "Oregon Dept. of Education - Social Sciences Standards",
+          "url": "https://www.oregon.gov/ode/educator-resources/standards/socialsciences/pages/default.aspx"
+        },
+        {
+          "title": "Oregon Dept. of Education - Adopted Instructional Materials",
+          "url": "https://www.oregon.gov/ode/educator-resources/teachingcontent/instructional-materials/pages/adopted-instructional-materials.aspx"
+        }
+      ]
+    },
+    "TX": {
+      "product": "ij",
+      "since": "2025-01",
+      "headline": "Texas's State Board of Education is actively revising the K-12 social studies TEKS (Texas Essential Knowledge and Skills), the standards that drive the state's next social studies instructional-materials adoption.",
+      "sources": [
+        {
+          "title": "Texas Education Agency - Social Studies",
+          "url": "https://tea.texas.gov/educators/subject-areas/social-studies/social-studies"
+        }
+      ]
+    },
+    "MS": {
+      "product": "ij",
+      "since": "2025-08",
+      "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
+      "sources": [
+        {
+          "title": "MS Instructional Materials Matter - Social Studies Adopted Materials",
+          "url": "https://msinstructionalmaterials.org/adopted-materials/social-studies-adopted-materials/"
+        }
+      ]
+    },
+    "SC": {
       "product": "inkwell",
-      "headline": "Gov. Murphy signed a four-bill literacy package (including S2644/A4303) in August 2024 creating the New Jersey Literacy Framework, which took effect for the 2025-26 school year.",
-      "detail": "The framework requires K-3 districts to run two annual literacy screenings (beginning and middle of year, covering phonemic awareness, phonics/decoding, fluency, and comprehension), notify parents of results within 30 days, build individualized reading intervention plans, and provide pre-K-6 teacher PD in evidence-based reading instruction. NJDOE released an 81-page implementation guide in May 2025 and said a second guide focused specifically on instructional materials was forthcoming.",
-      "outreach_angle": "NJ districts are mid-implementation of their first-ever statewide literacy screening mandate and are awaiting NJDOE's instructional-materials guidance. Ask how their screening data is currently connecting to intervention materials, and position Inkwell's built-in science-of-reading alignment and screening-to-intervention workflow.",
+      "since": "2024-12",
+      "headline": "South Carolina's Act 114 (amending the Read to Succeed Act) requires K-5 reading instruction aligned to the science of reading, bans the three-cueing method, and adds reading screening three times a year; the 2024-25 State Reading Plan implementing it was published December 2024.",
+      "sources": [
+        {
+          "title": "SC Dept. of Education - 2024-25 State Reading Plan (Act 114)",
+          "url": "https://ed.sc.gov/instruction/early-learning-and-literacy/read-to-succeed/reading-plans-state-district-and-school/2024-2025-sc-state-reading-plan/"
+        }
+      ]
+    },
+    "UT": {
+      "product": "ij",
       "since": "2024-08",
+      "headline": "Utah adopted new K-6 Social Studies standards effective the 2024-25 school year.",
       "sources": [
         {
-          "title": "Governor Murphy Signs Legislation Bolstering Literacy Education for New Jersey Students",
-          "url": "https://www.njsba.org/school-board-notes/governor-murphy-signs-legislation-bolstering-literacy-education-for-new-jersey-students/"
-        },
-        {
-          "title": "Will New Jersey's Literacy Framework help boost reading skills among young learners?",
-          "url": "https://www.chalkbeat.org/newark/2025/05/16/new-jersey-literacy-framework-aims-to-strengthen-early-reading-skills/"
+          "title": "Utah State Board of Education - Social Studies Core",
+          "url": "https://www.uen.org/core/socialstudies/"
         }
       ]
     },
-    "NY": {
-      "state": "NY",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
-      "product": "inkwell",
-      "headline": "New York's April 2024 state budget mandated science-of-reading-aligned instruction, and in December 2024 the Board of Regents approved regulations requiring districts to attest by September 1, 2025 that their pre-K-5 curriculum aligns with new literacy best practices.",
-      "detail": "The 2024 budget required the Commissioner to issue evidence-based reading 'best practices' by January 1, 2025, backed by $10 million for teacher retraining. Regents-approved regulations required every district to attest to alignment by September 1, 2025, a deadline that has now passed, meaning districts that attested with legacy materials are actively exposed if their curriculum doesn't hold up.",
-      "outreach_angle": "Ask whether the district's post-attestation review turned up gaps between their current elementary ELA materials and the state's phonics-forward literacy best practices, then position Inkwell's structured-literacy design directly against that checklist.",
-      "since": "2024-04",
+    "AL": {
+      "product": "ij",
+      "since": "2024-12",
+      "headline": "Alabama approved its 2024 Course of Study: Social Studies on December 12, 2024, its first full K-12 social studies standards revision since 2010.",
       "sources": [
         {
-          "title": "New York Board of Regents approves 'science of reading' regulations",
-          "url": "https://www.wxxinews.org/local-news/2024-12-17/new-york-board-of-regents-approves-science-of-reading-regulations"
-        },
-        {
-          "title": "New York Joins the 'Science of Reading' Movement, Offering Guidance-Not Mandates",
-          "url": "https://www.edweek.org/teaching-learning/new-york-joins-the-science-of-reading-movement-offering-guidance-not-mandates/2024/01"
+          "title": "Alabama State Dept. of Education - 2024 Course of Study: Social Studies",
+          "url": "https://www.alabamaachieves.org/wp-content/uploads/2025/01/AS_20250110_2024-Alabama-Course-of-Study-Social-Studies_V1.0.pdf"
         }
       ]
     },
-    "CA": {
-      "state": "CA",
-      "has_signal": true,
-      "signal_type": "adoption_cycle",
+    "WA": {
       "product": "inkwell",
-      "headline": "Gov. Newsom signed AB 1454 on October 9, 2025, directing the State Board of Education to run a new K-8 ELA/ELD instructional-materials 'follow-up adoption' aligned to structured literacy, with final SBE adoption expected November 2026.",
-      "detail": "AB 1454 requires the new state-approved materials list to reflect explicit, systematic instruction in phonological awareness, phonics/word recognition, and fluency. Per EdWeek Market Brief, more than 440 California districts (of 937 statewide) are still using core ELA materials from 2018 or earlier, and the follow-up adoption report was released in late March 2026 ahead of the November 2026 SBE vote.",
-      "outreach_angle": "With 440+ California districts sitting on pre-2018 ELA materials and the state's new follow-up adoption list due for a November 2026 vote, this is the moment to reach districts about to formally evaluate replacement K-2 ELA/structured-literacy curriculum. Lead with Inkwell's alignment to AB 1454's structured-literacy definition.",
-      "since": "2025-10",
+      "since": "2026-03",
+      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
+      "detail": "Passed House 96-1, Senate 47-1. WA was one of the last major states without a science-of-reading mandate; programs relying on balanced literacy now need to re-evaluate ELA materials.",
+      "outreach_angle": "Position Inkwell's K-2 integrated ELA + Social Studies curriculum, built on science-of-reading principles, as a ready-made fit for districts that now need to demonstrate compliance.",
       "sources": [
         {
-          "title": "New law changes how California kids learn to read (AB 1454 signed)",
-          "url": "https://edsource.org/2025/governor-newsom-signs-literacy-bill/742396"
-        },
-        {
-          "title": "California's 2026 Follow-Up ELA Adoption May Unseat Prevalent Providers",
-          "url": "https://marketbrief.edweek.org/education-market/californias-2026-follow-up-ela-adoption-may-unseat-prevalent-providers/2026/04"
-        },
-        {
-          "title": "AB-1454 Pupil literacy",
-          "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1454"
+          "title": "HB 1295 Bill Summary - Washington State Legislature",
+          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
         }
       ]
     },
-    "PA": {
-      "state": "PA",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
+    "WV": {
       "product": "inkwell",
-      "headline": "Gov. Shapiro signed Act 47 of 2025 in November 2025, requiring Pennsylvania school districts to adopt evidence-based/structured-literacy reading curriculum for grades K-3 by the 2027-28 school year, and PDE published its evidence-based curriculum materials list in August 2026.",
-      "detail": "Act 47 requires K-3 universal reading screening three times a year starting 2027-28, individualized intervention plans, mandatory teacher PD, and district reporting of adopted curriculum to PDE by July 31, 2027. PDE's published materials list ranks programs by number of positive third-party evaluations (The Reading League, EdReports), but districts are not restricted to it.",
-      "outreach_angle": "PA districts have roughly two school years left to select and report new K-3 reading curriculum before the 2027-28 Act 47 deadline. Open with PDE's newly published evidence-based materials list (August 2026) and walk through how Inkwell maps to its structured-literacy criteria.",
-      "since": "2025-11",
+      "since": "2023",
+      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
+      "detail": "Statewide K-3 literacy/numeracy screening, individualized reading plans, dyslexia/dyscalculia assessment. Both deadlines live this school year, direct pressure on districts for compliant ELA materials.",
+      "outreach_angle": "Lead with retention consequences now in effect and the 2026-27 approved-materials deadline; position Inkwell as ready-to-implement.",
       "sources": [
         {
-          "title": "Act 47 Structured Literacy FAQs - PA Department of Education",
-          "url": "https://www.pa.gov/agencies/education/programs-and-services/schools/school-services/act-47-structured-literacy-faqs"
-        },
-        {
-          "title": "Here's how much money Pennsylvania will spend to boost student literacy",
-          "url": "https://www.chalkbeat.org/philadelphia/2025/11/13/pennsylvania-will-require-schools-to-use-evidence-based-reading-curriculums/"
+          "title": "Third Grade Success Act - West Virginia Department of Education",
+          "url": "https://wvde.us/third-grade-success-act/"
         }
       ]
     },
-    "IL": {
-      "state": "IL",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
+    "WY": {
       "product": "inkwell",
-      "headline": "Illinois adopted its Comprehensive Literacy Plan on January 24, 2024 (guidance, not a curriculum mandate), and Public Act 104-0389 requires ISBE to issue statewide early-literacy screening guidance beginning with the 2026-27 school year.",
-      "detail": "ISBE published a roughly 200-page Illinois Comprehensive Literacy Plan covering seven components of evidence-based literacy instruction, plus a district curriculum-evaluation rubric (available July 2024). The plan does not mandate a specific curriculum. Public Act 104-0389 goes further, directing ISBE to provide guidance for early literacy screening starting in 2026-27 and requiring K-3 districts to report which screeners they use.",
-      "outreach_angle": "With ISBE's statewide early-literacy screening guidance landing for 2026-27, open by asking how the district's current curriculum evaluation stacks up against ISBE's seven-component literacy rubric, and position Inkwell against that same rubric ahead of the screening rollout.",
-      "since": "2024-01",
+      "since": "2026-03",
+      "headline": "Wyoming Gov. Gordon signed SF 59, the Wyoming Language and Literacy Act, March 6, 2026, creating a statewide K-12 evidence-based literacy mandate with mandatory annual dyslexia screening below 3rd grade.",
+      "detail": "WY NAEP reading scores declining (36% of 4th graders proficient in 2024). WDE developing implementation rules as of July 2026.",
+      "outreach_angle": "Lead with the new literacy mandate + mandatory K-3 dyslexia screening; position Inkwell as aligned, ready-to-adopt K-2 science-of-reading ELA.",
       "sources": [
         {
-          "title": "Illinois approves plan to revamp how reading is taught in schools",
-          "url": "https://www.stlpr.org/education/2024-01-25/illinois-approves-plan-to-revamp-how-reading-is-taught-in-schools"
-        },
-        {
-          "title": "Illinois General Assembly - Public Act 104-0389",
-          "url": "https://ilga.gov/legislation/PublicActs/View/104-0389"
+          "title": "Governor signs literacy bill - Oil City News",
+          "url": "https://oilcity.news/government/state/2026/03/09/governor-signs-literacy-bill-that-advocates-declare-a-win-for-wyoming-children/"
         }
       ]
     },
-    "WI": {
-      "state": "WI",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
+    "NE": {
       "product": "inkwell",
-      "headline": "2023 Wisconsin Act 20, signed July 19, 2023, requires K-3 evidence-based/phonics-based reading instruction statewide, bans 'three-cueing' curricula, and created a state Early Literacy Curriculum Council (ELCC) approved-materials list updated annually.",
-      "detail": "Act 20 requires universal K-3 reading screening, personal reading plans for struggling readers, and prohibits three-cueing instruction/curricula in grades K-3 as of 2024-25. The Legislature approved updated ELCC-recommended curriculum lists for 2024-25 and 2025-26. DPI also opened public comment on Wisconsin's K-12 Social Studies standards on September 2, 2025 as part of its 7-year standards review cycle.",
-      "outreach_angle": "Open with Act 20's three-cueing ban and the refreshed 2025-26 ELCC curriculum list: ask whether the district has audited its current K-3 ELA materials for Act 20 compliance and whether they've evaluated Inkwell against the state's structured-literacy criteria.",
+      "since": "2025-02",
+      "headline": "Nebraska's State Board approved a statewide Literacy Project Plan February 7, 2025, establishing a science-of-reading framework for PreK-3 reading instruction statewide.",
+      "detail": "Goal: 75% 3rd-grade reading proficiency by 2030 (from 59% in 2024). Regional literacy coaches network. Related social studies standards revision deadlocked 4-4 Sept 2026 - 2019 standards remain, no near-term trigger.",
+      "outreach_angle": "Open with the push toward 75% 3rd-grade proficiency by 2030 and the call for PreK-3 curriculum grounded in evidence-based reading instruction; position Inkwell as ready-made alignment.",
+      "sources": [
+        {
+          "title": "Nebraska Literacy Project - Nebraska Department of Education",
+          "url": "https://www.education.ne.gov/nebraskareads/nebraska-literacy-project/"
+        }
+      ]
+    },
+    "NV": {
+      "product": "inkwell",
+      "since": "2025-06",
+      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
+      "detail": "Districts/charters report literacy progress annually starting 2026. Also expanded free pre-K funding (Nevada Ready!) by $76M+ for the biennium. 3rd-grade reading proficiency 45% in 2024-25, up ~4pts YoY.",
+      "outreach_angle": "Lead with the K-3 science-of-reading teacher training mandate and looming 2028-29 retention deadline; position Inkwell ahead of the compliance runway.",
+      "sources": [
+        {
+          "title": "SB460 Overview - Nevada Legislature",
+          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
+        }
+      ]
+    },
+    "NH": {
+      "product": "inkwell",
+      "since": "2024-07",
+      "headline": "New Hampshire RSA 189:53 (amended 2024) requires every district provide evidence-based, science-of-reading K-5 literacy instruction, effective July 1, 2027.",
+      "detail": "Builds on 2023 law (HB377) requiring K-3 dyslexia screening twice yearly. Districts have a defined runway before the 2027 compliance deadline.",
+      "outreach_angle": "Open with the July 1, 2027 statutory deadline; districts need curriculum decisions made well before then - position Inkwell as a proactive, standards-ready choice.",
+      "sources": [
+        {
+          "title": "Section 189:53 Literacy Skill Development in Elementary Grades - NH General Court",
+          "url": "https://gc.nh.gov/rsa/html/XV/189/189-53.htm"
+        }
+      ]
+    },
+    "AZ": {
+      "product": "inkwell",
+      "since": "2025-08",
+      "headline": "Arizona requires all K-5 teachers to earn a science-of-reading-based Literacy K-5 Endorsement starting August 1, 2025, alongside the May 2025 'Say Dyslexia' law.",
+      "detail": "K-3 ELA curricula must come from a state MOWR-vetted list under the Move On When Reading law. HB 2170 (May 2025) requires IEPs to flag dyslexia diagnoses.",
+      "outreach_angle": "Ask whether current K-5 reading program is on the MOWR-vetted list; position Inkwell as an aligned, vetted option.",
+      "sources": [
+        {
+          "title": "Literacy, K-5 Endorsement - Arizona Department of Education",
+          "url": "https://www.azed.gov/educator-certification/literacy-k-5-endorsement"
+        }
+      ]
+    },
+    "CO": {
+      "product": "inkwell",
+      "since": "2024-07",
+      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
+      "detail": "Districts choosing curricula outside the advisory list face added reporting requirements. Mandatory administrator science-of-reading training began SY2024-25 budget year.",
+      "outreach_angle": "Ask where a district is in its curriculum review cycle and whether current core program is on the current READ Act advisory list.",
+      "sources": [
+        {
+          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
+          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
+        }
+      ]
+    },
+    "CT": {
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Connecticut's 2023 Right to Read Act required full transition to a state-approved, science-of-reading K-3 curriculum by July 2025; first-ever K-12 Social Studies standards finalized October 4, 2024.",
+      "detail": "State approved only 4 K-3 programs (Open Up-EL Education, Savvas myView, ReadyGEN+Wilson Fundations, Wit & Wisdom+Magnetic Reading Foundations). $25M transition grants; as of May 2024, 175 of 180 districts on track.",
+      "outreach_angle": "With the approved list narrow, ask whether the district's core reading program is one of the four state-approved options.",
+      "sources": [
+        {
+          "title": "Connecticut Approved K-3 Reading Curriculum Models or Programs - CSDE",
+          "url": "https://portal.ct.gov/SDE/Academic-Office/Center-for-Literacy-Research-and-Reading-Success/Connecticut-Approved-K-3-Reading-Curricula-Programs"
+        }
+      ]
+    },
+    "FL": {
+      "product": "ij",
       "since": "2023-07",
+      "headline": "Florida's State Board approved updated B.E.S.T. Standards for Social Studies in 2023, expanding civics content, full implementation from SY2023-24; next state materials adoption cycle is 2027-2028.",
+      "detail": "HB 7039 (2023) prohibits three-cueing and requires science-of-reading training for reading coaches/teachers/admins.",
+      "outreach_angle": "Ask how K-5 social studies materials currently cover the expanded civics content, positioning Inquiry Journeys ahead of the 2027-28 adoption cycle.",
       "sources": [
         {
-          "title": "WI Act 20 FAQ | Department of Public Instruction",
-          "url": "https://dpi.wi.gov/wi-reads/act-20-faq"
+          "title": "Florida's State Academic Standards - Social Studies, 2023",
+          "url": "https://www.fldoe.org/core/fileparse.php/20578/urlt/5-3.pdf"
+        }
+      ]
+    },
+    "GA": {
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
+      "detail": "Companion SB 211 created the Georgia Council on Literacy. HB 307 (2025) expanded provisions combining with dyslexia legislation. Also has real live RFPs (DeKalb County, Newton County - K-12 Social Studies, per Starbridge).",
+      "outreach_angle": "Ask where a district is in evaluating materials against the state HQIM-approved list ahead of the July 2027 deadline.",
+      "sources": [
+        {
+          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
+          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
+        }
+      ]
+    },
+    "IN": {
+      "product": "ij",
+      "since": "2023-06",
+      "headline": "Indiana approved streamlined K-8 Social Studies standards June 7, 2023 (C3-Framework-aligned); HEA 1558 created a mandatory PreK-5 literacy endorsement (new licenses after June 30, 2025) and SB1 (2024) tied 3rd-grade promotion to IREAD-3.",
+      "detail": "First IREAD-3 retention enforcement (SY2025-26) retained ~3,040 students, 7x the prior year.",
+      "outreach_angle": "Pair both signals - revised C3-aligned social studies standards and newly-enforced IREAD-3 retention stakes - urgency for both Inquiry Journeys and Inkwell.",
+      "sources": [
+        {
+          "title": "Indiana officials approve new streamlined K-12 education standards",
+          "url": "https://indianacapitalchronicle.com/2023/06/08/indiana-officials-approve-new-streamlined-k-12-education-standards/"
+        }
+      ]
+    },
+    "IA": {
+      "product": "ij",
+      "since": "2026-01",
+      "headline": "Iowa's State Board approved updated K-12 Social Studies standards January 15, 2026 - the state's first revision since 2017 - directed by 2024 law HF 2545 toward U.S. history/government/civics.",
+      "detail": "HF 2618 (2024) set K-3 early-literacy requirements incl. universal dyslexia screening; LETRS training began January 2025 with 4,300+ educators across 200 districts.",
+      "outreach_angle": "Ask how a district's current materials cover U.S. history/civics/founding principles relative to the new standards; position Inquiry Journeys as already aligned.",
+      "sources": [
+        {
+          "title": "State Board of Education signs off on updated Iowa social studies standards - KCRG",
+          "url": "https://www.kcrg.com/2026/01/17/state-board-education-signs-off-updated-iowa-social-studies-standards/"
+        }
+      ]
+    },
+    "TN": {
+      "product": "inkwell",
+      "since": "2021-01",
+      "headline": "Tennessee's Literacy Success Act (enacted January 2021) requires phonics-based K-3 foundational literacy instruction with reading interventions through grade 5, and mandates districts adopt approved ELA instructional materials.",
+      "detail": "Requires annual universal K-3 reading screeners, individualized learning plans for dyslexia characteristics, state-funded structured literacy training for K-5 staff, and district Foundational Literacy Skills Plans approved by the state. Districts must adopt state-approved phonics-based ELA materials unless granted a waiver.",
+      "outreach_angle": "Ask whether current core ELA materials and teacher training are fully aligned and waiver-free under the Literacy Success Act; Inkwell's structured, science-of-reading-aligned design speaks directly to that requirement.",
+      "sources": [
+        {
+          "title": "Tennessee Literacy Success Act - Comptroller",
+          "url": "https://comptroller.tn.gov/office-functions/research-and-education-accountability/prek-12-collection/literacy-success-act--lsa-.html"
+        }
+      ]
+    },
+    "VA": {
+      "product": "inkwell",
+      "since": "2022-01",
+      "headline": "The Virginia Literacy Act (2022, expanded 2023) requires K-8 literacy instruction aligned with science-based reading research; divisions had to implement approved evidence-based core K-3/4-5 programs by SY2024-25.",
+      "detail": "VDOE published an official Approved Core Instructional Programs list for grades K-5. Divisions submitted VLA literacy plans by a July 1 deadline and select from the approved list.",
+      "outreach_angle": "Ask whether their current core ELA program is on Virginia's Approved Core Instructional Programs list; Inkwell built around evidence-based literacy instruction to meet that bar.",
+      "sources": [
+        {
+          "title": "Virginia Literacy Act - VDOE",
+          "url": "https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/english-reading-literacy/literacy/virginia-literacy-act"
+        }
+      ]
+    },
+    "VT": {
+      "product": "inkwell",
+      "since": "2024-05",
+      "headline": "Vermont's Act 139 (May 2024) created the state's first dyslexia-screening requirement + universal K-3 reading screening; Act 72 (June 2025) extended supplemental reading instruction requirements to grades K-12.",
+      "detail": "Act 139 requires K-3 universal screening, evidence-based structured literacy instruction, mandatory K-3 educator PL. Act 72 requires supplemental reading instruction for any K-12 student reading significantly below grade level.",
+      "outreach_angle": "Ask how their current K-2 ELA program supports the screening-to-intervention pipeline these laws require; Inkwell fits directly.",
+      "sources": [
+        {
+          "title": "Act 139 of 2024 Annual Report",
+          "url": "https://legislature.vermont.gov/assets/Legislative-Reports/edu-act-139-improving-literacy-annual-report-2026.pdf"
+        }
+      ]
+    },
+    "AR": {
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Arkansas's LEARNS Act (Act 237 of 2023, signed March 8, 2023) mandates science-of-reading instruction, K-3 dyslexia/literacy screening, and bars promotion of 3rd graders missing reading benchmarks starting SY2025-26.",
+      "detail": "Built on the 2017 Right to Read Act. 4th-grade retention provision now live. K-12 Social Studies Standards also revised (approved Dec 2022, full implementation SY2024-25).",
+      "outreach_angle": "With retention provisions now live for 2025-26, Arkansas districts have real urgency to show measurable early-literacy gains; Inkwell built for exactly this science-of-reading mandate.",
+      "sources": [
+        {
+          "title": "DESE - LEARNS Act 237 of 2023",
+          "url": "https://dese.ade.arkansas.gov/Offices/special-projects/learns-act-237-of-2023-"
+        }
+      ]
+    },
+    "ID": {
+      "product": "inkwell",
+      "since": null,
+      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "detail": "K-5 dyslexia screening annually since 2022-23; all K-5 instructional staff completed dyslexia-specific PD by 2023-24, broader K-8 PD phased in by 2025-26.",
+      "outreach_angle": "Ask where the district is in its curriculum-adoption cycle and how Inkwell's structured, evidence-based ELA design maps to the statute's requirements.",
+      "sources": [
+        {
+          "title": "Idaho Code Title 33, Chapter 18",
+          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+        }
+      ]
+    },
+    "MT": {
+      "product": "inkwell",
+      "since": "2025-11",
+      "headline": "Montana's Board of Public Education adopted new ELA and Literacy Content Standards in November 2025, mandatory implementation by July 2027.",
+      "detail": "Revision ran Oct 2023-Oct 2024, then rulemaking through Nov 2025 adoption. July 2027 effective date staggered from the state's new math standards rollout.",
+      "outreach_angle": "Get in front of curriculum committees before they finalize materials selections ahead of the locked-in July 2027 deadline; position Inkwell as ready-aligned.",
+      "sources": [
+        {
+          "title": "Montana OPI - English Language Arts and Literacy Standards",
+          "url": "https://opi.mt.gov/Educators/Teaching-Learning/K-12-Content-Standards/English-Language-Arts-Literacy-Standards"
+        }
+      ]
+    },
+    "AK": {
+      "product": "inkwell",
+      "since": "2022-06",
+      "headline": "Gov. Dunleavy signed the Alaska Reads Act in June 2022, requiring districts use a core ELA curriculum aligned to Alaska's standards and the science of reading, screen K-3 students, and submit K-3 MTSS improvement plans.",
+      "detail": "Every district submits a K-3 MTSS plan naming its core ELA curriculum, intervention structure, screening. State literacy screener (mCLASS by Amplify) selected Oct 2022. Rising early-literacy scores reported since implementation (2025 eval, Sept 2026 ADN coverage).",
+      "outreach_angle": "Ask whether current core ELA curriculum is under review as part of the state-required MTSS plan, and where Inkwell's science-of-reading design could fit.",
+      "sources": [
+        {
+          "title": "The Alaska Reads Act - Alaska Dept. of Education & Early Development",
+          "url": "https://education.alaska.gov/akreads"
+        }
+      ]
+    },
+    "HI": {
+      "product": "gf8",
+      "since": "2023-01",
+      "headline": "Hawaii's Ready Keiki initiative (unveiled Jan 2023) grew public Pre-K from 37 classrooms (2022-23) to 92 classrooms across 74 DOE campuses (2024-25), en route to 50% of unserved 3-4 year-olds by 2027.",
+      "detail": "Advances Act 46 (2020) commitment to universal Pre-K by 2032. 1,637 children enrolled in state-funded preschool 2024-25, up 611 from prior year. Plan for 465 total new classrooms by 2032.",
+      "outreach_angle": "Hawaii DOE is standing up dozens of new public Pre-K classrooms every year; ask what curriculum is being selected for newly funded classrooms - a fresh Pre-K decision point for GF8.",
+      "sources": [
+        {
+          "title": "VNR - Ready Keiki Expands Public Pre-K Access",
+          "url": "https://governor.hawaii.gov/newsroom/vnr-ready-keiki-expands-public-pre-k-access-in-west-o%CA%BBahu-new-early-childhood-state-plan-released/"
+        }
+      ]
+    },
+    "ME": {
+      "product": "ij",
+      "since": null,
+      "headline": "Maine's K-8 social studies standards revision stalled in 2024 (legislature declined to authorize the draft); 2025 lawmakers created a two-year Maine Learning Results Taskforce (LD 1701) to re-envision PK-12 standards, pausing the regular review cycle.",
+      "detail": "DOE Steering Committee had drafted revised Civics, Economics, Geography, History standards since 2023. Taskforce must report to the legislature's Education Committee by January 15, 2026, before any new standards finalized.",
+      "outreach_angle": "Maine's social studies standards are openly in flux; a good moment to introduce Inquiry Journeys as curriculum districts can pilot now, ahead of the Taskforce's recommendations.",
+      "sources": [
+        {
+          "title": "Maine DOE - Maine Learning Results Taskforce",
+          "url": "https://www.maine.gov/doe/learning/mlrtaskforce"
+        }
+      ]
+    },
+    "DC": {
+      "product": "ij",
+      "since": "2023-06",
+      "headline": "The DC State Board of Education unanimously adopted revised K-12 social studies standards June 21, 2023, the District's first update in 17 years.",
+      "detail": "Review ran Feb 2021-Feb 2023. Separately, DC's Early Literacy Education Task Force Recommendations Amendment Act of 2024 requires LEAs adopt a science-based reading curriculum for SY2024-25 and kindergarten teachers complete literacy training by start of SY2026.",
+      "outreach_angle": "DC's social studies standards were untouched for 17 years before the 2023 rewrite; ask how the curriculum review against new standards is going and where Inquiry Journeys fits.",
+      "sources": [
+        {
+          "title": "OSSE Adopts New Social Studies Standards for District of Columbia Students",
+          "url": "https://osse.dc.gov/release/osse-adopts-new-social-studies-standards-district-columbia-students"
+        }
+      ]
+    },
+    "KS": {
+      "product": "inkwell",
+      "since": "2024-04",
+      "headline": "Kansas SB 438 (the Kansas Blueprint for Literacy), signed April 25, 2024, bans three-cueing and visual-memory-based reading materials in K-12 classrooms effective July 1, 2025.",
+      "detail": "SB 438 designates the science of reading as the state's official Tier 1 literacy methodology and, as of July 1, 2025, prohibits any textbook relying on three-cueing/visual memory for word recognition. Funds $10M for statewide teacher upskilling by 2030.",
+      "outreach_angle": "Kansas districts are now out of compliance with SB 438 if their K-2 ELA materials rely on three-cueing (banned since July 1, 2025) - Inkwell's structured-literacy design fills that compliance gap.",
+      "sources": [
+        {
+          "title": "Governor Kelly Signs Bipartisan Bill Establishing the Kansas Blueprint for Literacy",
+          "url": "https://governor.kansas.gov/governor-kelly-signs-bipartisan-bill-establishing-the-kansas-blueprint-for-literacy/"
         },
         {
-          "title": "Early Literacy Curriculum | Department of Public Instruction",
-          "url": "https://dpi.wi.gov/wi-reads/curriculum"
+          "title": "2024 Session Laws of Kansas, Chapter 82: Senate Bill 438",
+          "url": "https://www.sos.ks.gov/publications/sessionlaws/2024/Chapter-82-SB-438.html"
+        }
+      ]
+    },
+    "LA": {
+      "product": "inkwell",
+      "since": "2026-04",
+      "headline": "Louisiana's BESE approved revised K-12 English Language Arts standards on April 13, 2026, with stronger phonics/science-of-reading emphasis, effective the 2027-2028 school year.",
+      "detail": "Recommended by State Superintendent Cade Brumley from a standards review begun 2024 (ELA standards last updated 2015-16). LDOE will support districts with training and instructional material reviews ahead of the 2027-28 rollout.",
+      "outreach_angle": "Louisiana's April 2026 K-12 ELA standards take effect 2027-28 and sharply raise the bar on phonics - districts will review K-2 ELA curriculum well ahead of that date; Inkwell maps directly onto the new standards.",
+      "sources": [
+        {
+          "title": "Louisiana Strengthens Classroom Focus on the Science of Reading (LDOE)",
+          "url": "https://doe.louisiana.gov/about/news-releases/release/2026/04/13/louisiana-strengthens-classroom-focus-on-the-science-of-reading--grammar--and-cursive-writing"
+        }
+      ]
+    },
+    "MD": {
+      "product": "inkwell",
+      "since": "2024-01",
+      "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
+      "detail": "Requires phonics/fluency/vocabulary/comprehension-based instruction, K-3 universal screeners (new approved-screener list effective SY2025-26), science-of-reading proficiency for educator licensure from July 2025. Districts are actively re-evaluating K-5 ELA curriculum against the new HQIM framework.",
+      "outreach_angle": "Ask whether the district's current K-2 ELA materials have been benchmarked against Maryland's new HQIM rubric; Inkwell is purpose-built for science-of-reading compliance.",
+      "sources": [
+        {
+          "title": "State Board Calls for the Adoption of Science of Reading Statewide - MSDE",
+          "url": "https://news.maryland.gov/msde/board-science-of-reading/"
         },
         {
-          "title": "Wisconsin Legislature: 2023 Wisconsin Act 20",
-          "url": "https://docs.legis.wisconsin.gov/2023/related/acts/20"
+          "title": "Maryland College and Career Ready Standards in ELA (revised, approved July 2025)",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0729/Maryland-College-and-Career-Ready-Standards-in-English-Language-Arts-A.pdf"
+        }
+      ]
+    },
+    "MO": {
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Missouri Gov. Kehoe signed omnibus bill SB 68 on July 9, 2025 (effective Aug 28, 2025), making phonics the mandatory primary word-reading strategy statewide and barring three-cueing.",
+      "detail": "Amends Section 170.014 RSMo; builds on 2022 'Read, Lead, Exceed' reforms (SB 681) and K-3 twice-yearly screening. DESE published Evidence-Based Reading Instructional Materials (EBRIP) guidance in 2025 identifying vetted K-5 reading curriculum.",
+      "outreach_angle": "Ask whether the district's current K-2 reading curriculum still relies on three-cueing methods now prohibited by SB 68; position Inkwell as evidence-based and phonics-forward.",
+      "sources": [
+        {
+          "title": "Governor Signs Wide-Ranging Education Legislation - Missouri DESE",
+          "url": "https://dese.mo.gov/communications/governor-signs-wide-ranging-education-legislation-giving-additional-tools-missouri-schools"
+        },
+        {
+          "title": "Evidence-Based Reading Instructional Materials (EBRIP) Guidance 2025 - Missouri DESE",
+          "url": "https://dese.mo.gov/media/pdf/evidence-based-reading-instructional-materials-ebrip-guidance-2025"
+        }
+      ]
+    },
+    "DE": {
+      "product": "gf8",
+      "since": "2026-06",
+      "headline": "Gov. Meyer signed Delaware's FY2027 budget June 30, 2026, raising early-childhood (Purchase of Care) investment to $107.3M (from $76.3M FY26), plus $8M one-time for pre-K expansion, part of a stated 40%-by-2028 public pre-K enrollment goal.",
+      "detail": "Includes a 10% provider reimbursement increase and expanded income eligibility (200%->225% FPL). Follows an October 2025 declared 'literacy emergency' (2024 NAEP data) and a new Early Literacy Plan with $10M+ toward Science-of-Reading adoption and 'Bridge to Practice' grants.",
+      "outreach_angle": "Cite Delaware's FY27 early-childhood funding increase and 40%-by-2028 pre-K goal to open a conversation about curriculum for expanding/new PreK-TK classrooms - Great First Eight fits districts standing up new state-supported seats. Separately, ask whether the district has applied for Bridge to Practice literacy grant funding for Inkwell.",
+      "sources": [
+        {
+          "title": "Gov. Meyer Signs FY2027 Budget - State of Delaware News",
+          "url": "https://news.delaware.gov/2026/06/30/gov-meyer-signs-fy2027-budget-investing-in-education-affordability-and-opportunity/"
+        },
+        {
+          "title": "Delaware announces Early Literacy Plan - State of Delaware News",
+          "url": "https://news.delaware.gov/2025/10/10/delaware-announces-early-literacy-plan-to-strengthen-classroom-instruction/"
+        }
+      ]
+    },
+    "NM": {
+      "product": "inkwell",
+      "since": "2024-02",
+      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
+      "detail": "Districts already universally screen 1st graders for dyslexia and implement structured-literacy PD plans. SB242 (2024) would have required colleges of education to teach structured literacy; blocked in House Education Committee.",
+      "outreach_angle": "Position Inkwell's explicit, systematic K-2 ELA instruction as the curriculum districts will already be equipped to defend if a stronger structured-literacy mandate returns.",
+      "sources": [
+        {
+          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
+          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
+        }
+      ]
+    },
+    "NC": {
+      "product": "inkwell",
+      "since": "2021-04",
+      "headline": "North Carolina's 2021 Excellent Public Schools Act mandated science-of-reading K-5 instruction and funded LETRS training for ~44,000 teachers; a new ELA Standard Course of Study is approved for SY2027-28.",
+      "detail": "$114M funded LETRS PD; declining below-benchmark reading rates 2022-2024. Current 2017 ELA standards remain through 2026-27; new 2026 standards take effect 2027-28.",
+      "outreach_angle": "Flag that the new ELA Standard Course of Study (effective 2027-28) is the cue to start evaluating core K-2 ELA materials now; Inkwell built for the structured-literacy instruction teachers are already trained in.",
+      "sources": [
+        {
+          "title": "North Carolina science of reading instruction bill, explained - EdNC",
+          "url": "https://www.ednc.org/2021-04-06-science-reading-bill-nc-north-carolina-instruction-explain-educators-teacherss/"
+        }
+      ]
+    },
+    "ND": {
+      "product": "ij",
+      "since": "2026-03",
+      "headline": "North Dakota is rewriting its K-12 Social Studies standards, Draft 1 published for public comment March 16-April 17, 2026; ELA standards were updated 2023 for science-of-reading alignment.",
+      "detail": "Full draft rewrite (standards last set August 2019) for public comment spring 2026. K-3 teachers/principals required (NDCC 15.1-21) to train in explicit, systematic science-based reading instruction.",
+      "outreach_angle": "Get in front of district curriculum committees now, before materials lock to the old 2019 standards; Inquiry Journeys ready to map to whatever's finalized.",
+      "sources": [
+        {
+          "title": "North Dakota Social Studies Content Standards - Draft 1",
+          "url": "https://www.nd.gov/dpi/sites/default/files/documents/Academic%20Support/ND%20Social%20Studies%20Standards%20Standards-Draft%201%204.24.26.pdf"
+        }
+      ]
+    },
+    "OH": {
+      "product": "inkwell",
+      "since": "2023",
+      "headline": "Ohio's 2023 House Bill 33 required every district adopt a state-approved, science-of-reading-aligned core ELA curriculum for PreK-5 by SY2024-25, backed by $168M, and banned three-cueing.",
+      "detail": "ODEW published an approved K-5 core list (Feb-Mar 2024) incl. CKLA, EL Education, Wit & Wisdom, Being a Reader. Most teachers/admins had to complete science-of-reading training by June 30, 2025.",
+      "outreach_angle": "Ask directly whether the district's current core curriculum is actually on Ohio's approved list - a district off that list is technically out of compliance.",
+      "sources": [
+        {
+          "title": "Updated list of approved core curriculum - Ohio Dept of Education and Workforce",
+          "url": "https://education.ohio.gov/Media/Ed-Connection/March-4-2024/Updated-list-of-approved-core-curriculum-and-instr?feed=NewsletterRSS"
+        }
+      ]
+    },
+    "OK": {
+      "product": "ij",
+      "since": "2025-12",
+      "headline": "Oklahoma Supreme Court struck down the state's 2025 social studies standards Dec 16, 2025 (Open Meetings Act violation); replacement 2026 standards approved March 26, 2026 still need legislative approval.",
+      "detail": "5-4 ruling found the board voted on content not publicly posted beforehand. Reverts to 2019 standards meanwhile. Separately, Strong Readers Act (SB362, June 2024) mandates dyslexia screening, evidence-based K-3 reading, bans three-cueing from SY2025-26.",
+      "outreach_angle": "Districts are stuck buying curriculum against a moving standards target; position Inquiry Journeys as standards-agnostic, inquiry-based content built to adapt rather than be re-bought every time standards shift.",
+      "sources": [
+        {
+          "title": "Oklahoma Supreme Court strikes down controversial social studies standards - K-12 Dive",
+          "url": "https://www.k12dive.com/news/oklahoma-supreme-court-strikes-down-controversial-social-studies-standards/808438/"
+        }
+      ]
+    },
+    "RI": {
+      "product": "inkwell",
+      "since": "2019-07",
+      "headline": "Rhode Island's Right to Read Act (2019) hit implementation deadlines 2023-2024 requiring educator-prep programs prove Science of Reading/Structured Literacy training; revised K-12 social studies standards endorsed Feb 2023.",
+      "detail": "RIDE-approved prep programs had to publicly post their SoR training approach by June 30, 2024. Also has real live RFPs: MPA 636 (K-12 social studies curriculum + PL, C3 Framework, LEAs align by SY26-27) and MPA 581 (PreK-12 curriculum-based PL) - both open per Starbridge.",
+      "outreach_angle": "Ask whether current core ELA curriculum reflects the Science of Reading/Structured Literacy training baked into every new RI teacher's prep program.",
+      "sources": [
+        {
+          "title": "The Rhode Island Right to Read Act - RIDE",
+          "url": "https://ride.ri.gov/instruction-assessment/literacy/rhode-island-right-read-act"
+        }
+      ]
+    },
+    "SD": {
+      "product": "inkwell",
+      "since": "2025-04",
+      "headline": "South Dakota's State Board adopted new phonics-based ELA standards April 14, 2025, explicitly aligned to the science of reading, full implementation SY2025-26.",
+      "detail": "South Dakota has NO state-level instructional materials adoption process - all curriculum review is district-level, so with brand-new standards districts are actively re-evaluating core reading materials.",
+      "outreach_angle": "Since SD leaves curriculum vetting entirely to districts with no state adoption list, ask directly whether current core reading program has been checked against the new standards.",
+      "sources": [
+        {
+          "title": "South Dakota English Language Arts Standards Adopted April 14, 2025",
+          "url": "https://doe.sd.gov/contentstandards/documents/ELAStandards-25.pdf"
+        }
+      ]
+    }
+  },
+  "starbridge_by_state": {
+    "CA": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 2
+      },
+      "top": [
+        {
+          "buyer": "Morongo Unified School District",
+          "product": "inkwell",
+          "due": "2026-09-23",
+          "score": 3,
+          "url": "https://www.morongousd.com/page/contractors",
+          "summary": "Turnkey Expanded Learning Spring Academy TK-6, curriculum+materials, Spring 2027."
+        },
+        {
+          "buyer": "Snowline Joint Unified School District",
+          "product": "gf8",
+          "due": "2026-09-20",
+          "score": 3,
+          "url": "",
+          "summary": "Provide safe, engaging, inclusive, and high-interest programming that supports student development, student engagement, social-emotional learning, physical wellness, creativity, and positive school co"
+        },
+        {
+          "buyer": "Fremont Unified School District",
+          "product": "gf8",
+          "due": "2026-03-27",
+          "score": 1,
+          "url": "",
+          "summary": "Expanded school day service providers are needed on 29 elementary school sites to serve tk to 5th grade children attending FUSD elementary schools, and glankler early learning center. "
+        }
+      ]
+    },
+    "CO": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Colorado Department of Early Childhood",
+          "product": "inkwell",
+          "due": "2026-07-24",
+          "score": 3,
+          "url": "https://www.bidnetdirect.com/colorado/solicitations/open-bids/BD2701-Early-Childhood-Education-HQIM-Curriculum/0000429155",
+          "summary": "HQIM curriculum for 3-4yo early childhood ed."
+        }
+      ]
+    },
+    "WV": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Cabell County School District",
+          "product": "inkwell",
+          "due": "2026-09-18",
+          "score": 3,
+          "url": "",
+          "summary": "English language learning software, reading components + language proficiency."
+        }
+      ]
+    },
+    "RI": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 2,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Rhode Island Department of Education",
+          "product": "inkwell",
+          "due": "2028-12-29",
+          "score": 5,
+          "url": "https://ridop.ri.gov/vendors/bidding-opportunities",
+          "summary": "MPA 636: K-12 core/supplemental social studies curriculum + PL, C3 Framework."
+        },
+        {
+          "buyer": "Rhode Island Department of Education",
+          "product": "ij",
+          "due": "2028-12-29",
+          "score": 5,
+          "url": "",
+          "summary": "MPA 636: K-12 social studies curriculum + PL, C3 Framework, LEAs must align by SY26-27."
+        },
+        {
+          "buyer": "Rhode Island Department of Education",
+          "product": "inkwell",
+          "due": "2028-11-30",
+          "score": 3,
+          "url": "https://webprocure.proactiscloud.com/wp-web-public/en/#/bidboard/bid/143004",
+          "summary": "MPA 581: curriculum-based PL for PreK-12 educators."
+        }
+      ]
+    },
+    "NJ": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 2,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Pennsauken Public Schools",
+          "product": "inkwell",
+          "due": "2026-08-19",
+          "score": 4,
+          "url": "",
+          "summary": "Structured Literacy Program RFP."
+        },
+        {
+          "buyer": "Pennsauken Public Schools",
+          "product": "gf8",
+          "due": "2026-08-19",
+          "score": 4,
+          "url": "",
+          "summary": "Structured literacy program. "
+        },
+        {
+          "buyer": "Franklin Township Public Schools",
+          "product": "inkwell",
+          "due": "2026-09-16",
+          "score": 3,
+          "url": "https://securebids.com/o/ftboe/RFP2027-17",
+          "summary": "Online ELA foundational-skills tutorials, grades 1-5."
+        }
+      ]
+    },
+    "TX": {
+      "open_rfps_total": 12,
+      "by_product": {
+        "ij": 3,
+        "inkwell": 5,
+        "gf8": 4
+      },
+      "top": [
+        {
+          "buyer": "Region 10 Education Service Center",
+          "product": "inkwell",
+          "due": "2026-09-25",
+          "score": 5,
+          "url": "https://region10.bonfirehub.com/opportunities/251910",
+          "summary": "Instructional materials & software via EdTech Exchange co-op."
+        },
+        {
+          "buyer": "Katy Independent School District",
+          "product": "inkwell",
+          "due": "2026-10-16",
+          "score": 5,
+          "url": "https://procurement.opengov.com/portal/katyisd/projects/296193",
+          "summary": "Districtwide staff development, literacy + social studies among subjects, ~95k students."
+        },
+        {
+          "buyer": "Wylie Independent School District",
+          "product": "ij",
+          "due": "2027-06-03",
+          "score": 4,
+          "url": "https://wylieisd.ionwave.net/PublicDetail.aspx?bidID=328",
+          "summary": "Pre-qualified vendor pool, instructional supplies/software, 5yr term."
+        }
+      ]
+    },
+    "UT": {
+      "open_rfps_total": 2,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Sevier School District",
+          "product": "inkwell",
+          "due": "2026-10-01",
+          "score": 5,
+          "url": "https://utah.bonfirehub.com/portal/?tab=openOpportunities",
+          "summary": "K-5 ELA core curriculum, science-of-reading aligned, 2027-28 implementation, 5yr contract."
+        },
+        {
+          "buyer": "Sevier School District",
+          "product": "gf8",
+          "due": "2026-10-01",
+          "score": 4,
+          "url": "https://utah.bonfirehub.com/portal/?tab=openOpportunities",
+          "summary": "Sevier School District is soliciting a comprehensive, research-based kindergarten-through-grade 5 English Language Arts core curriculum aligned with Utah standards and evidence-based literacy practice"
+        }
+      ]
+    },
+    "OH": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Ohio Department of Education & Workforce",
+          "product": "inkwell",
+          "due": "2026-09-01",
+          "score": 3,
+          "url": "http://education.ohio.gov/.../Reading-Intervention-Vendor-Guidance-and-RFA-2026-2027.pdf",
+          "summary": "Approved list: PreK-12 evidence-based reading intervention programs, science of reading, 3-cueing banned."
+        }
+      ]
+    },
+    "GA": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 2,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "DeKalb County School District",
+          "product": "ij",
+          "due": "2026-03-12",
+          "score": 5,
+          "url": "https://dekalbschoolsga.ionwave.net/PublicDetail.aspx?bidID=1145",
+          "summary": "K-12 social studies instructional resources, C3-aligned, ~93k students."
+        },
+        {
+          "buyer": "Newton County School District",
+          "product": "ij",
+          "due": "2026-09-04",
+          "score": 5,
+          "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-70710-NONST-2027-000000038",
+          "summary": "K-12 Social Studies textbook adoption RFI."
+        },
+        {
+          "buyer": "Newton County School District",
+          "product": "inkwell",
+          "due": "2026-09-04",
+          "score": 4,
+          "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-70710-NONST-2027-000000038",
+          "summary": "K-12 Social Studies textbook adoption RFI, GA Standards of Excellence."
+        }
+      ]
+    },
+    "CT": {
+      "open_rfps_total": 2,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Stamford Public Schools",
+          "product": "inkwell",
+          "due": "2026-04-29",
+          "score": 5,
+          "url": "",
+          "summary": "Comprehensive K-5 curriculum for EL development & multilingual learners."
+        },
+        {
+          "buyer": "Connecticut Department of Education",
+          "product": "gf8",
+          "due": "2026-06-17",
+          "score": 4,
+          "url": "https://portal.ct.gov/DAS/CTSource/BidBoard",
+          "summary": "The Connecticut State Department of Education is seeking information from interested parties to provide instructional resources and supplemental materials for the K-12 State Model Curriculum. The requ"
+        }
+      ]
+    },
+    "MD": {
+      "open_rfps_total": 4,
+      "by_product": {
+        "ij": 2,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Baltimore County Public Schools",
+          "product": "ij",
+          "due": "2026-03-20",
+          "score": 5,
+          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/88780",
+          "summary": "Source-based Social Studies instructional materials RFI, grades 3-12."
+        },
+        {
+          "buyer": "Maryland Department of Education",
+          "product": "inkwell",
+          "due": "2026-09-15",
+          "score": 4,
+          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/94344",
+          "summary": "Early Childhood Curriculum Review RFI, 95% ELA/Math alignment required."
+        },
+        {
+          "buyer": "Maryland Department of Education",
+          "product": "ij",
+          "due": "2026-09-15",
+          "score": 3,
+          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/94344",
+          "summary": "Early Childhood Curriculum Review RFI."
+        }
+      ]
+    },
+    "MS": {
+      "open_rfps_total": 4,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 3
+      },
+      "top": [
+        {
+          "buyer": "Harrison County School District",
+          "product": "gf8",
+          "due": "2026-08-05",
+          "score": 4,
+          "url": "https://www.centralauctionhouse.com/rfp70769019-page.html",
+          "summary": "Harrison County School District is soliciting bids for an online literature curriculum and associated assessment tools for K\u201312 students under solicitation 26.27-10. The scope includes digital curricu"
+        },
+        {
+          "buyer": "Harrison County School District",
+          "product": "ij",
+          "due": "2026-08-05",
+          "score": 3,
+          "url": "https://www.centralauctionhouse.com/rfp70769019-page.html",
+          "summary": "Online literature curriculum + assessment, K-12."
+        },
+        {
+          "buyer": "Newton Municipal School District",
+          "product": "gf8",
+          "due": "2026-05-28",
+          "score": 3,
+          "url": "https://www.centralauctionhouse.com/rfp89502801-request-for-quotations-for-web-based-services-for-newton-municipal-school-district-for-the-2026-27-school-year-.html",
+          "summary": "Newton Municipal School District is soliciting quotes for cloud-based/web instructional licenses for the 2026\u201327 school year that cover core academics, special education, English learners, and mental-"
         }
       ]
     },
     "MA": {
-      "state": "MA",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
-      "product": "inkwell",
-      "headline": "Gov. Healey signed H.5511 (Chapter 113 of the Acts of 2026) on June 26, 2026, overhauling K-3 reading instruction statewide, building on her 2024 'Literacy Launch' initiative and DESE's PRISM curriculum grants.",
-      "detail": "H.5511 sets evidence-based literacy standards, requires universal K-3 screening (including dyslexia characteristics), and limits three-cueing. It follows two years of state-funded curriculum-adoption support: DESE awarded $9.3M in PRISM II grants to 29 districts in August 2025, and PRISM III grants ($3.3M+, with an additional $4.3M continuation round in April 2026) to help districts evaluate and select high-quality ELA materials.",
-      "outreach_angle": "Reference the June 2026 literacy law and DESE's PRISM grant cycles directly. Ask whether the district received or applied for a PRISM II/III grant and is actively in a curriculum-evaluation window for K-3 ELA, which is exactly where Inkwell fits.",
-      "since": "2026-06",
-      "sources": [
+      "open_rfps_total": 5,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 4
+      },
+      "top": [
         {
-          "title": "Healey signs law to overhaul early reading in Massachusetts schools",
-          "url": "https://www.bostonglobe.com/2026/06/26/metro/massachusetts-governor-signs-early-reading-instruction-bill/"
+          "buyer": "Massachusetts Department of Elementary and Secondary Education",
+          "product": "gf8",
+          "due": "2027-08-31",
+          "score": 4,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-23-1026-DOE02-DOE01-77790&external=true&parentUrl=close",
+          "summary": "To determine the extent to which various sets of curricular materials meet Massachusetts expectations for teaching and learning, DESE will be convening panels of educators to review available evidence"
         },
         {
-          "title": "Literacy Launch: Reading Success from Age 3 through Grade 3 | Mass.gov",
-          "url": "https://www.mass.gov/info-details/literacy-launch-reading-success-from-age-3-through-grade-3"
+          "buyer": "Massachusetts Dept of Elementary & Secondary Education",
+          "product": "ij",
+          "due": "2026-05-22",
+          "score": 3,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-26-1026-DOE02-DOE01-129076",
+          "summary": "Free digital integrated K-3 curriculum incl. social studies, field testing 2027-28."
+        },
+        {
+          "buyer": "Massachusetts Board of Library Commissioners",
+          "product": "gf8",
+          "due": "2026-12-18",
+          "score": 3,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-27-1007-1007C-1007L-133436&external=true&parentUrl=close",
+          "summary": "The Board of Library Commissioners is soliciting proposals from publishers, value-added resellers, and authorized third-party vendors for online encyclopedias, early learning resources, and educationa"
         }
       ]
     },
-    "KY": {
-      "state": "KY",
-      "has_signal": true,
-      "signal_type": "standards_revision",
-      "product": "inkwell",
-      "headline": "The Kentucky Board of Education approved revised Kentucky Academic Standards (KAS) for Reading and Writing on October 2, 2025, the first update since 2019, explicitly aligning them to the Science of Reading and structured literacy.",
-      "detail": "This builds on Kentucky's 2022 Read to Succeed Act (SB 9, signed March 29, 2022), which already required districts to adopt evidence-based, phonics-based reading programs and provides a state-maintained High-Quality Instructional Resources (HQIR) approved list for Reading and Writing (updated August 2025), though districts are not required to select from it.",
-      "outreach_angle": "Lead with the October 2025 KAS Reading and Writing revision. Ask whether the district's ELA curriculum committee has begun mapping current materials to the new standards, and position Inkwell's structured-literacy alignment as a fit for that review.",
-      "since": "2025-10",
-      "sources": [
+    "MO": {
+      "open_rfps_total": 2,
+      "by_product": {
+        "ij": 2,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
         {
-          "title": "Kentucky Academic Standards Reading and Writing October 2025 (KDE)",
-          "url": "https://www.education.ky.gov/districts/legal/Documents/KAS-Reading-Writing%20-%20October%202025_ADA.pdf"
+          "buyer": "Ferguson-Florissant School District R-2",
+          "product": "ij",
+          "due": "2026-04-24",
+          "score": 4,
+          "url": "",
+          "summary": "K-5 social studies curriculum pilot, MO learning standards."
         },
         {
-          "title": "Kentucky Department of Education: KY HQIR List Reading and Writing (August 2025)",
-          "url": "https://www.education.ky.gov/curriculum/standards/kyacadstand/Documents/KY_HQIR_List_Reading_and_Writing.pdf"
+          "buyer": "Missouri Office of Administration",
+          "product": "ij",
+          "due": "2026-07-07",
+          "score": 3,
+          "url": "https://purch.oa.mo.gov/contractcompass/MC260297001",
+          "summary": "Statewide Qualified Vendor List, books/publications/materials."
+        }
+      ]
+    },
+    "PA": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "New Kensington Arnold School District",
+          "product": "ij",
+          "due": "2026-05-22",
+          "score": 4,
+          "url": "https://4.files.edl.io/6a4a/04/14/26/123253-4cc9ba35-9eb2-40db-953f-0cbf4c62adab.pdf",
+          "summary": "K-12 Social Studies, inquiry-based, print+digital, PA Academic Standards."
+        }
+      ]
+    },
+    "NY": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Delaware Academy Central School District",
+          "product": "gf8",
+          "due": "2026-09-25",
+          "score": 4,
+          "url": "",
+          "summary": "Provision of universal pre kindergarten."
         }
       ]
     },
     "MN": {
-      "state": "MN",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
-      "product": "inkwell",
-      "headline": "Minnesota's READ Act, signed by Gov. Walz in May 2023, requires all districts to use evidence-based, phonics-centered K-3 literacy curriculum and file an annual Local Literacy Plan with the state by June 15.",
-      "detail": "The READ Act appropriated more than $70 million and requires that any new literacy curriculum purchased since July 1, 2023 be evidence-based, aligned to the five pillars of literacy. MDE maintains a public 'Tier 1 (Core) Curricula Aligned to Evidence-based Structured Literacy Practices' list. As of the 2025 legislative session, roughly half of Minnesota districts/charters report using a highly-aligned core reading program, meaning many are still actively transitioning curriculum.",
-      "outreach_angle": "Ask whether the district's Local Literacy Plan (due to MDE every June 15) reflects an evidence-based core program yet, since MDE's own data shows only about half of districts have made that transition. A direct opening to position Inkwell as READ Act-aligned.",
-      "since": "2023-05",
-      "sources": [
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
         {
-          "title": "Literacy - Minnesota Department of Education",
-          "url": "https://education.mn.gov/MDE/fam/lit/"
-        },
-        {
-          "title": "Tier 1 (Core) Curricula Aligned to Evidence-based Structured Literacy Practices - MDE",
-          "url": "https://education.mn.gov/MDE/dse/READ/resources/CurriculumApprovedforReimbursement/index.htm"
+          "buyer": "Minnesota Department of Education",
+          "product": "gf8",
+          "due": "2026-09-28",
+          "score": 4,
+          "url": "",
+          "summary": "Seeking proposals from qualified responders to develop coherent guidance and aligned COMPASS (Collaborative Minnesota Partnerships to Advance Student Success) professional learning to support effectiv"
         }
       ]
     },
-    "MI": {
-      "state": "MI",
-      "has_signal": true,
-      "signal_type": "literacy_legislation",
-      "product": "inkwell",
-      "headline": "Gov. Whitmer signed Michigan's K-12 Literacy and Dyslexia Laws (Public Acts 146 and 147 of 2024) on October 10, 2024, requiring that by the 2027-28 school year all reading instruction and curriculum materials be evidence-based and aligned to the science of reading, plus K-3 dyslexia screening.",
-      "detail": "A follow-on law, PA 26 of 2026 (signed July 21, 2026), further mandates science-of-reading (LETRS) training for K-5 teachers by 2031-32. Michigan's K-12 Social Studies standards remain the 2019 revision with no newer update found.",
-      "outreach_angle": "Reference the 2027-28 evidence-based curriculum deadline in PA 146/147. Ask whether the district's K-3 ELA adoption committee has started evaluating materials against the new law, positioning Inkwell as a structured-literacy-aligned option ahead of that compliance date.",
-      "since": "2024-10",
-      "sources": [
+    "SC": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
         {
-          "title": "Children Win with Gov. Whitmer's Signature of Historic Literacy/Dyslexia Law",
-          "url": "https://www.michigan.gov/mde/news-and-information/press-releases/2024/10/10/children-win-with-gov-whitmers-signature-of-historic-literacy-dyslexia-laws"
-        },
+          "buyer": "Florence School District 1",
+          "product": "gf8",
+          "due": "2026-07-30",
+          "score": 4,
+          "url": "https://fsd1.bonfirehub.com/opportunities/245556",
+          "summary": "Online educational resource for approx. 10,000 elementary, middle, and/or high school students that may have the ability to create animation-based curricular content that engages students, supports ed"
+        }
+      ]
+    },
+    "WI": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
         {
-          "title": "K-12 Literacy and Dyslexia Laws (Public Act 146 and 147 of 2024) memo",
-          "url": "https://www.michigan.gov/mde/-/media/Project/Websites/mde/Memos/2024/10/K-12-Literacy-and-Dyslexia-Legislation.pdf"
+          "buyer": "Racine Unified School District",
+          "product": "gf8",
+          "due": "2026-02-09",
+          "score": 3,
+          "url": "https://www.demandstar.com/app/limited/bids/518140/details",
+          "summary": "Racine Unified School District is soliciting proposals for an Early Learning Curriculum that aligns with state and national standards, includes comprehensive materials and teacher training, and provid"
         }
       ]
     }
@@ -1749,12 +3111,13 @@
       ]
     }
   ],
-  "past_campaigns_note": "Real figures from inquirED's Fall 2025-2026 Account-Driven Campaign brief and its Iowa/South Carolina post-mortems. Personal names (district contacts, SDR, state superintendent) excluded \u2014 only district-level and state-level names appear, matching this dashboard's existing privacy convention. Kentucky ran a full campaign in September 2025 but was never given a post-mortem; a 2024 South Carolina outreach effort and an early Oregon sequence were never run as measured campaigns \u2014 none of the three are shown here rather than displayed as empty rows.",
+  "past_campaigns_note": "Real figures from inquirED's Fall 2025-2026 Account-Driven Campaign brief and its Iowa/South Carolina post-mortems. Personal names excluded. Kentucky ran a full campaign (Sept 2025) but was never given a post-mortem; a 2024 SC outreach effort and an early Oregon sequence were never run as measured campaigns \u2014 none of the three shown here rather than displayed as empty rows.",
   "outreach_playbook": [
     "Name specific in-state districts by the second or third email \u2014 the single strongest predictor of opens and clicks across every past account-driven state campaign run to date.",
     "Write a multi-email sequence, not a single send.",
     "Tag every send with UTMs and set an explicit SDR handoff trigger from the start.",
-    "For a watch-state with an existing product relationship (e.g. SC has IJ accounts but no Inkwell), frame the new product as an expansion tied to the existing renewal/adoption-cycle window \u2014 confirm that window with Sales/Customer Success before drafting, don't guess at a date.",
+    "A state with both real policy signal AND an open Starbridge RFP is the strongest kind of watch-state \u2014 the RFP names a live, dated buying process; treat it as a hard deadline, not just a talking point.",
+    "For a watch-state with an existing product relationship, frame the new product as an expansion tied to the existing renewal/adoption-cycle window \u2014 confirm that window with Sales/Customer Success before drafting.",
     "For a cold-start watch-state with no existing footprint, plan for a longer ramp \u2014 there's no warm relationship to open the door."
   ]
 }

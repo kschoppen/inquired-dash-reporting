@@ -16,8 +16,8 @@ const TABS = [
     meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
       sources: ["HubSpot CRM (company + contact records)"] } },
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
-    meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals, plus real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
-      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)", "State DOE / legislature sites (policy citations, via WebSearch)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
+    meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
+      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
     meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
@@ -1619,8 +1619,11 @@ function renderStateSignal(d) {
   function watchStatesTable(product) {
     const rows = watchStates.filter((s) => product === 'all' || s.product === product);
     if (!rows.length) return '<p class="insight">No watch-list state identified for this product yet.</p>';
-    const body = rows.map((s) => `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td>${s.since}</td></tr>`).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+    const body = rows.map((s) => {
+      const rfpBadge = s.starbridge_open_rfps > 0 ? `<span class="ss-rfp-badge">${s.starbridge_open_rfps} open RFP${s.starbridge_open_rfps > 1 ? 's' : ''}</span>` : '<span class="meta-small">—</span>';
+      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td></tr>`;
+    }).join('');
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
   }
 
   function stateDetailHtml(s) {
@@ -1649,9 +1652,15 @@ function renderStateSignal(d) {
 
   function watchDetailHtml(s) {
     const policy = watchStates.find((w) => w.state === s.state) || s;
+    const sb = (d.starbridge_by_state || {})[s.state];
     let html = `<div class="ss-state-ctx"><div class="ss-sc-label">State context: ${s.state}</div>`
       + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(since ${policy.since})</span></div>`
       + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
+    if (sb && sb.open_rfps_total > 0) {
+      html += `<div class="ss-watch-action"><div class="ss-wa-label">Starbridge — ${sb.open_rfps_total} open RFP${sb.open_rfps_total > 1 ? 's' : ''} right now</div>`
+        + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
+        + '</div>';
+    }
     html += `<div class="ss-watch-action"><div class="ss-wa-label">Existing HubSpot footprint</div>`
       + `<p style="margin:0;font-size:12.5px">${fmtN(s.qualified)} qualified / ${fmtN(s.actionable)} actionable accounts already in the CRM for ${s.state} — this reads as an expansion play (existing relationship to build on), not a cold start.</p></div>`;
     html += `<div class="ss-watch-action"><div class="ss-wa-label">Marketing action needed, before Sales has anyone to call on ${SS_LABELS[s.product]}</div><ol>`
@@ -1685,7 +1694,8 @@ function renderStateSignal(d) {
       + '</div>'
 
       + (aiVisible ? `<div class="ss-ai-summary"><div class="ss-ai-label">✨ Most actionable state to watch</div>`
-        + `<p><strong>${ai.state}</strong> (${SS_LABELS[ai.product]}) — ${ai.headline} ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).qualified)} qualified / ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).actionable)} actionable accounts already in HubSpot.</p>`
+        + `<p><strong>${ai.state}</strong> (${SS_LABELS[ai.product]}) — ${ai.headline} ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).qualified)} qualified / ${fmtN((watchStates.find(w=>w.state===ai.state)||{}).actionable)} actionable accounts already in HubSpot`
+        + (ai.starbridge_open_rfps > 0 ? `, plus <strong>${ai.starbridge_open_rfps} open Starbridge RFP${ai.starbridge_open_rfps > 1 ? 's' : ''}</strong> right now.` : '.') + `</p>`
         + `<div class="ss-ai-note">${ai.note}</div></div>` : '')
 
       + '<div class="cards">'
@@ -1721,7 +1731,7 @@ function renderStateSignal(d) {
 
       + sectionHdr('States to watch', '#1C2660')
       + '<div class="panel">'
-      + note('Monthly-scan states: real, cited policy activity with no dedicated account list built yet — a marketing signal, not a sales one.')
+      + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
       + watchStatesTable(product).replace('id="ssWatchBody"', 'id="ssWatchBody2"')
       + '<div id="ssWatchDetails"></div>'
       + '</div>'
