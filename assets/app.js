@@ -1271,7 +1271,7 @@ function poStageSVG(stages) {
       ${startFlag}
     </g>`;
   }).join("");
-  return `<div class="po-stage-scroll"><svg viewBox="0 0 ${totalW} 86" width="${totalW}" height="86" xmlns="http://www.w3.org/2000/svg">${boxes}</svg></div>`;
+  return `<div class="po-stage-scroll"><svg viewBox="0 0 ${totalW} 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;min-width:340px;">${boxes}</svg></div>`;
 }
 
 function poPipelineCard(p, kind) {
