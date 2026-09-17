@@ -1553,9 +1553,21 @@ function renderAccountPulse(d) {
 }
 
 // ---- State Signal (MQA) tab ----
-const SS_GRID = {AK:[0,0],ME:[11,0],VT:[9,1],NH:[10,1],MA:[11,1],WA:[1,2],MT:[2,2],ND:[3,2],SD:[4,2],MN:[5,2],WI:[6,2],MI:[7,2],NY:[9,2],CT:[10,2],RI:[11,2],OR:[1,3],ID:[2,3],WY:[3,3],NE:[4,3],IA:[5,3],IL:[6,3],IN:[7,3],OH:[8,3],PA:[9,3],NJ:[10,3],CA:[0,4],NV:[1,4],UT:[2,4],CO:[3,4],KS:[4,4],MO:[5,4],KY:[6,4],WV:[7,4],DC:[8,4],MD:[9,4],DE:[10,4],AZ:[2,5],NM:[3,5],OK:[4,5],AR:[5,5],TN:[6,5],VA:[7,5],NC:[8,5],TX:[3,6],LA:[4,6],MS:[5,6],AL:[6,6],GA:[7,6],SC:[8,6],HI:[0,7],FL:[7,7]};
+const SS_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY"};
 const SS_LABELS = {ij:"Inquiry Journeys", inkwell:"Inkwell", gf8:"Great First 8"};
 const SS_COLORS = {ij:"#144745", inkwell:"#5B5A9E", gf8:"#F99792"};
+let SS_TOPO_CACHE = null;
+function ssLoadUsTopo() {
+  if (SS_TOPO_CACHE) return Promise.resolve(SS_TOPO_CACHE);
+  return fetch("data/us-states-albers-10m.json", { cache: "no-store" }).then((r) => r.json()).then((topo) => {
+    const fc = topojson.feature(topo, topo.objects.states);
+    const ringPath = (ring) => "M" + ring.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join("L") + "Z";
+    const geomPath = (g) => g.type === "Polygon" ? g.coordinates.map(ringPath).join(" ")
+      : g.type === "MultiPolygon" ? g.coordinates.map((poly) => poly.map(ringPath).join(" ")).join(" ") : "";
+    SS_TOPO_CACHE = fc.features.map((f) => ({ abbr: SS_FIPS[f.id], name: f.properties.name, d: geomPath(f.geometry) })).filter((f) => f.abbr);
+    return SS_TOPO_CACHE;
+  });
+}
 
 function renderStateSignal(d) {
   charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
@@ -1584,29 +1596,23 @@ function renderStateSignal(d) {
     return {subject, body};
   }
 
-  function tileMapSvg(product) {
-    const tile = 40, gap = 3, cols = 12, rows = 8;
+  function usMapSvg(product, features) {
     const topSet = {}; topStates.forEach((s) => { topSet[s.state] = s; });
     const watchSet = {}; watchStates.forEach((s) => { watchSet[s.state] = s; });
-    let boxes = '';
-    Object.keys(SS_GRID).forEach((code) => {
-      const [gx, gy] = SS_GRID[code];
-      const x = gx * (tile + gap), y = gy * (tile + gap);
-      const top = topSet[code], watch = watchSet[code];
-      let fill = 'var(--line)', opacity = 1, title = code + ': no state policy signal identified yet';
-      if (top && (product === 'all' || top.product === product)) {
-        fill = SS_COLORS[top.product] || '#999'; opacity = 1;
-        title = `${code}: sales-ready signal (${SS_LABELS[top.product]}) — #${top.rank}, ${top.actionable} actionable accounts`;
-      } else if (watch && (product === 'all' || watch.product === product)) {
-        fill = SS_COLORS[watch.product] || '#999'; opacity = 0.4;
-        title = `${code}: state to watch (${SS_LABELS[watch.product]}) — signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`;
+    const paths = features.map((f) => {
+      const top = topSet[f.abbr], watch = watchSet[f.abbr];
+      let fill = "var(--line)", opacity = 1, title = f.name + ": no state policy signal identified yet";
+      if (top && (product === "all" || top.product === product)) {
+        fill = SS_COLORS[top.product] || "#999"; opacity = 1;
+        title = `${f.name}: sales-ready signal (${SS_LABELS[top.product]}) - #${top.rank}, ${top.actionable} actionable accounts`;
+      } else if (watch && (product === "all" || watch.product === product)) {
+        fill = SS_COLORS[watch.product] || "#999"; opacity = 0.45;
+        title = `${f.name}: state to watch (${SS_LABELS[watch.product]}) - signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`
+          + (watch.starbridge_open_rfps > 0 ? `, ${watch.starbridge_open_rfps} open Starbridge RFP${watch.starbridge_open_rfps > 1 ? "s" : ""}` : "");
       }
-      const labelDark = fill === 'var(--line)';
-      boxes += `<g><rect class="ss-tile" x="${x}" y="${y}" width="${tile}" height="${tile}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></rect>`
-        + `<text class="ss-tile-label${labelDark ? ' dark' : ''}" x="${x + tile / 2}" y="${y + tile / 2 + 4}" pointer-events="none">${code}</text></g>`;
-    });
-    const w = cols * (tile + gap), h = rows * (tile + gap);
-    return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block;">${boxes}</svg>`;
+      return `<path class="ss-us-state" d="${f.d}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></path>`;
+    }).join("");
+    return `<svg viewBox="0 0 960 600" style="width:100%;height:auto;display:block;">${paths}</svg>`;
   }
 
   function topStatesTable(product) {
@@ -1706,8 +1712,8 @@ function renderStateSignal(d) {
       + '</div>'
 
       + '<div class="grid2">'
-      + '<div class="panel"><h3>Where the signal is <span class="muted">(tile map, actual size ≠ geography)</span></h3>'
-      + '<div class="ss-tilemap-wrap">' + tileMapSvg(product) + '</div>'
+      + '<div class="panel"><h3>Where the signal is</h3>'
+      + '<div class="ss-tilemap-wrap" id="ssMapWrap"><div class="loading">Loading map…</div></div>'
       + '<div class="ss-map-legend">'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#144745"></span>Inquiry Journeys</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#5B5A9E"></span>Inkwell</span>'
@@ -1776,6 +1782,14 @@ function renderStateSignal(d) {
         });
       });
     }
+
+    ssLoadUsTopo().then((features) => {
+      const wrap = document.getElementById('ssMapWrap');
+      if (wrap) wrap.innerHTML = usMapSvg(product, features);
+    }).catch(() => {
+      const wrap = document.getElementById('ssMapWrap');
+      if (wrap) wrap.innerHTML = '<p class="insight">Could not load the US map.</p>';
+    });
   }
 
   renderBody('all');
