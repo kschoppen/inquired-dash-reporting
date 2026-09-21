@@ -213,6 +213,21 @@ not personal contact names, are fine in this public repo).
   wired yet (see the tab's own "What this tab doesn't do yet" section). Do
   not fabricate policy citations here.
 
+### Step 5 — recompute watch-state priority tiers
+
+`watch_states` entries carry a `priority_score` (0-100) and `priority_tier`
+(`act_now` / `watch` / `low_priority`) that tier the list for Marketing/Sales
+instead of a flat 41-state dump. Whenever a watch state's `actionable`,
+`since`, or `starbridge_open_rfps` changes, rerun:
+
+```
+python3 scripts/score_watch_states.py
+```
+
+This recomputes both fields and re-sorts `watch_states` by score descending.
+See the script's docstring for the scoring formula (RFP presence weighted
+heaviest, then policy recency, then existing HubSpot footprint).
+
 ### Push
 
 Add `data/state-signal.json` to the `git add` list in PHASE 3's push step

@@ -1556,6 +1556,8 @@ function renderAccountPulse(d) {
 const SS_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY"};
 const SS_LABELS = {ij:"Inquiry Journeys", inkwell:"Inkwell", gf8:"Great First 8"};
 const SS_COLORS = {ij:"#144745", inkwell:"#5B5A9E", gf8:"#F99792"};
+const SS_TIER_LABELS = {act_now:"Act now", watch:"Watch", low_priority:"Low priority"};
+const SS_TIER_MAP_OPACITY = {act_now:0.9, watch:0.45, low_priority:0.18};
 let SS_TOPO_CACHE = null;
 function ssLoadUsTopo() {
   if (SS_TOPO_CACHE) return Promise.resolve(SS_TOPO_CACHE);
@@ -1606,8 +1608,9 @@ function renderStateSignal(d) {
         fill = SS_COLORS[top.product] || "#999"; opacity = 1;
         title = `${f.name}: sales-ready signal (${SS_LABELS[top.product]}) - #${top.rank}, ${top.actionable} actionable accounts`;
       } else if (watch && (product === "all" || watch.product === product)) {
-        fill = SS_COLORS[watch.product] || "#999"; opacity = 0.45;
-        title = `${f.name}: state to watch (${SS_LABELS[watch.product]}) - signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`
+        fill = SS_COLORS[watch.product] || "#999";
+        opacity = SS_TIER_MAP_OPACITY[watch.priority_tier] ?? 0.45;
+        title = `${f.name}: ${SS_TIER_LABELS[watch.priority_tier] || "state to watch"} (${SS_LABELS[watch.product]}) - signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`
           + (watch.starbridge_open_rfps > 0 ? `, ${watch.starbridge_open_rfps} open Starbridge RFP${watch.starbridge_open_rfps > 1 ? "s" : ""}` : "");
       }
       return `<path class="ss-us-state" d="${f.d}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></path>`;
@@ -1627,9 +1630,10 @@ function renderStateSignal(d) {
     if (!rows.length) return '<p class="insight">No watch-list state identified for this product yet.</p>';
     const body = rows.map((s) => {
       const rfpBadge = s.starbridge_open_rfps > 0 ? `<span class="ss-rfp-badge">${s.starbridge_open_rfps} open RFP${s.starbridge_open_rfps > 1 ? 's' : ''}</span>` : '<span class="meta-small">—</span>';
-      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td></tr>`;
+      const tierBadge = s.priority_tier ? `<span class="ss-tier-badge ss-tier-${s.priority_tier}">${SS_TIER_LABELS[s.priority_tier] || s.priority_tier}</span>` : '<span class="meta-small">—</span>';
+      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td></tr>`;
     }).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
   }
 
   function stateDetailHtml(s) {
@@ -1718,7 +1722,7 @@ function renderStateSignal(d) {
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#144745"></span>Inquiry Journeys</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#5B5A9E"></span>Inkwell</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#F99792"></span>Great First 8</span>'
-      + '<span class="ss-lg-item"><span class="ss-lg-dot ss-lg-watch" style="background:#5B5A9E"></span>States to watch (muted)</span>'
+      + '<span class="ss-lg-item"><span class="ss-lg-dot ss-lg-watch" style="background:#5B5A9E"></span>States to watch (darker = higher priority tier)</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:var(--line)"></span>No signal yet</span>'
       + '</div></div>'
       + '<div class="panel">'
@@ -1738,6 +1742,7 @@ function renderStateSignal(d) {
       + sectionHdr('States to watch', '#1C2660')
       + '<div class="panel">'
       + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
+      + note('Sorted by a priority score (0-100): open Starbridge RFP weighted heaviest (0/1/2-3/4+ RFPs → 0/30/40/50 pts), then how recent the policy signal is (≤6mo → 30 pts, scaling down to 2 pts past 5 years), then existing actionable HubSpot footprint (20+ accounts → 20 pts, scaling down to 2). Act now ≥56 pts, Watch 32-55, Low priority <32. Recompute with scripts/score_watch_states.py after any refresh that changes a watch state\'s `actionable`, `since`, or `starbridge_open_rfps`.')
       + watchStatesTable(product).replace('id="ssWatchBody"', 'id="ssWatchBody2"')
       + '<div id="ssWatchDetails"></div>'
       + '</div>'
