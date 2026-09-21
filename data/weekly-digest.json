@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-09-14",
+  "updated": "2026-09-21",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-09-14",
+    "updated": "2026-09-21",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Sep 7 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (459 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 14 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (434 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -60,8 +60,20 @@
         "period": "2026-09-07",
         "label": "Sep 7",
         "branded": {
-          "clicks": 459,
-          "impressions": 6826
+          "clicks": 510,
+          "impressions": 7305
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-09-14",
+        "label": "Sep 14",
+        "branded": {
+          "clicks": 434,
+          "impressions": 7958
         },
         "youtube": null,
         "instagram": null,
@@ -79,8 +91,8 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 395,
-          "previous": 284
+          "current": 355,
+          "previous": 395
         }
       }
     }
@@ -162,7 +174,10 @@
           "amount": 1638
         }
       ]
-    }
+    },
+    "district_open_deals": 31,
+    "school_open_deals": 11,
+    "hih_pool": 2362
   },
   "segment_coverage": {
     "hih": 62,
@@ -170,7 +185,7 @@
     "sql": 108,
     "opp": 108
   },
-  "product_caveat": "Product coverage: HIH 100%, MQL 90%, SQL 62%, Opp 58% \u2014 all above 30% flag threshold.",
+  "product_caveat": "Product coverage W38: HIH 102% (multi-value overlap), MQL 9%, SQL 12%, Opp 12% -- SQL and Opp below 30% flag threshold.",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. SQL/Opp segment sub-sums slightly exceed totals (SQL: 14 vs 13, Opp: 13 vs 12) due to possible segment overlap.",
   "products_included": [
     "ij",
@@ -2464,7 +2479,7 @@
           "opp": 0
         }
       },
-      "note": "HIH low (5) \u2014 deep summer seasonal. MQL\u2192SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
+      "note": "HIH low (5) — deep summer seasonal. MQL→SQL/Opp elevated at 85% (23/27); offline lifecycle migration suspected per prior-week pattern. No segment coverage on HIH this week."
     },
     {
       "period": "2026-07-20",
@@ -3090,7 +3105,7 @@
         "dq": 82,
         "nurture": 63
       },
-      "note": "HIH at 4 \u2014 deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 \u2014 summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) \u2014 consistent with ongoing offline lifecycle migration.",
+      "note": "HIH at 4 — deep-summer seasonal low; segment pulls skipped (4+5 total = 9 below 10-contact threshold). MQL down 17% WoW (33 vs 40) and SQL/Opp at 23/22 — summer floor, seasonal not structural. Product coverage below 30% for SQL (26.1%) and Opp (22.7%) — consistent with ongoing offline lifecycle migration.",
       "drill": {
         "hih": [
           [
@@ -3577,7 +3592,7 @@
         "dq": 53,
         "nurture": 29
       },
-      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 \u2014 highest since early July. GF8 (TK/Pre-K) crossed the \u22655 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
+      "note": "Strong back-to-school inbound opening: MQL +82% WoW (60 vs. 33) and HIH tripled to 10 — highest since early July. GF8 (TK/Pre-K) crossed the ≥5 threshold for the first time this season with 22 MQLs, consistent with early TK adopter activity. SQL and Opp held at 30 each. Single/Small accounts for 60%+ of new MQL and HIH. Open pipeline at 29 district and 23 school deals; closed-won MTD ~$413K.",
       "drill": {
         "hih": [
           [
@@ -4310,7 +4325,7 @@
         "dq": 246,
         "nurture": 182
       },
-      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs \u2014 up from 3 last week \u2014 driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the \u22655 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag \u2014 confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
+      "note": "MQL came in at 77 this week (+28% WoW over last week's 60), continuing the back-to-school wave. Inkwell led mid-funnel with 36 MQLs — up from 3 last week — driven by late-summer webinar traffic landing in product-tagged contacts. WH crossed the ≥5 MQL threshold for the first time this season. SQL held at 30 and Opp at 29; Enterprise contacts drove 8 of 30 SQLs and lower-funnel conversion stayed healthy. A disqualification spike to 246 (vs. 53 prior week) triggered the list-event threshold and rolling-median flag — confirm whether a list cleanup or re-engagement campaign ran before interpreting WoW disposition trends. Open pipeline: 30 district and 23 school deals as of Aug 17. Closed-won MTD ~$700K.",
       "drill": {
         "hih": [
           [
@@ -5092,7 +5107,7 @@
         "dq": 64,
         "nurture": 18
       },
-      "note": "HIH pulled back to 8 (-43% WoW) and MQL retreated to 54 (-30%) as the back-to-school surge from W33 normalized. SQL and Opp bucked the trend, rising to 33 each (+10%/+14%) \u2014 the high-MQL W33 cohort is converting through the funnel. Inkwell led mid-funnel with 15 MQLs; IJ had 8. WH held threshold inclusion at MQL=1 (prior=5 \u2014 may drop below threshold next run). Medium District drove 10 of 33 SQLs, highest segment this week. Pipeline contracted slightly to 29 district and 17 school open deals. DQ and Nurture normalized to 64 and 18 (vs. 246/182 last week), indicating the W33 spike was a one-time cleanup. Closed-won MTD retained at ~$700K (deal-stage filter could not be verified this run).",
+      "note": "HIH pulled back to 8 (-43% WoW) and MQL retreated to 54 (-30%) as the back-to-school surge from W33 normalized. SQL and Opp bucked the trend, rising to 33 each (+10%/+14%) — the high-MQL W33 cohort is converting through the funnel. Inkwell led mid-funnel with 15 MQLs; IJ had 8. WH held threshold inclusion at MQL=1 (prior=5 — may drop below threshold next run). Medium District drove 10 of 33 SQLs, highest segment this week. Pipeline contracted slightly to 29 district and 17 school open deals. DQ and Nurture normalized to 64 and 18 (vs. 246/182 last week), indicating the W33 spike was a one-time cleanup. Closed-won MTD retained at ~$700K (deal-stage filter could not be verified this run).",
       "drill": {
         "hih": [],
         "mql": [],
@@ -6143,10 +6158,101 @@
         "sql": [],
         "opp": []
       },
-      "note": "Labor Day (Sep 7) fell within this window, suppressing conversion activity. MQL -30%, SQL -58%, Opp -59% WoW \u2014 seasonal, expect recovery. Inkwell drove top-of-funnel (23/48 MQLs). Stage IDs used in pipeline by_stage \u2014 name mapping not available this run."
+      "note": "Labor Day (Sep 7) fell within this window, suppressing conversion activity. MQL -30%, SQL -58%, Opp -59% WoW — seasonal, expect recovery. Inkwell drove top-of-funnel (23/48 MQLs). Stage IDs used in pipeline by_stage — name mapping not available this run."
+    },
+    {
+      "period": "2026-09-14",
+      "label": "Sep 14",
+      "funnel": {
+        "hih": 55,
+        "mql": 128,
+        "sql": 24,
+        "opp": 24
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh",
+        "gf8"
+      ],
+      "by_product": {
+        "ij": {
+          "hih": 8,
+          "mql": 8,
+          "sql": 2,
+          "opp": 2
+        },
+        "inkwell": {
+          "hih": 39,
+          "mql": 2,
+          "sql": 1,
+          "opp": 1
+        },
+        "wh": {
+          "hih": 2,
+          "mql": 0,
+          "sql": 0,
+          "opp": 0
+        },
+        "gf8": {
+          "hih": 7,
+          "mql": 1,
+          "sql": 0,
+          "opp": 0
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 0,
+          "mql": 28,
+          "sql": 7,
+          "opp": 7
+        },
+        "medium": {
+          "hih": 0,
+          "mql": 24,
+          "sql": 10,
+          "opp": 10
+        },
+        "large": {
+          "hih": 0,
+          "mql": 5,
+          "sql": 1,
+          "opp": 1
+        },
+        "enterprise": {
+          "hih": 0,
+          "mql": 17,
+          "sql": 5,
+          "opp": 5
+        }
+      },
+      "disposition": {
+        "dq": 275,
+        "nurture": 114,
+        "by_product": {
+          "ij": {
+            "dq": 0,
+            "nurture": 0
+          },
+          "inkwell": {
+            "dq": 0,
+            "nurture": 0
+          },
+          "wh": {
+            "dq": 0,
+            "nurture": 0
+          },
+          "gf8": {
+            "dq": 0,
+            "nurture": 0
+          }
+        }
+      },
+      "note": "Post-Labor Day surge: HIH at 55 exceeds 2.5x 8-week rolling median (28.75) -- consistent with back-to-school acceleration. MQL +167%, SQL +85%, Opp +100% WoW. Inkwell dominant top-of-funnel (39/55 HIH, 71%). Medium District led SQL (10/24). SQL and Opp product coverage below 30% threshold (3/24 tagged). HIH segment breakdown unavailable this run. DQ/Nurture surge (+202%/+235%) proportional to inbound volume -- no list event triggered. Disposition by_product not computed this run."
     }
   ],
-  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) \u2014 repo is public. Each row links to the access-gated HubSpot record.",
+  "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
   "pipeline_goal": {
     "school_year": "SY27-28",
     "as_of": "2026-09-08",

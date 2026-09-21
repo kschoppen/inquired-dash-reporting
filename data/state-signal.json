@@ -1,33 +1,26 @@
 {
   "skill": "state-signal",
   "title": "State Signal (MQA)",
-  "updated": "2026-09-16",
-  "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) \u00b7 Source: HubSpot",
+  "updated": "2026-09-21",
+  "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
-  "cadence": "Weekly \u00b7 Mondays (HubSpot numbers via DASH_ROUTINE.md PHASE 1.5); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
+  "cadence": "Weekly · Mondays (HubSpot numbers via DASH_ROUTINE.md PHASE 1.5); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
-    "266 of 1781 MQA/Engaged companies (15%) have no state_st value set \u2014 shown as 'Unassigned', excluded from ranking.",
-    "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) \u2014 NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 \u2014 pending.",
-    "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL \u2014 none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
-    "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs \u2014 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
-    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context \u2014 starting points for a rep to personalize, not finished copy."
+    "266 of 1781 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
+    "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",
+    "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL — none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
+    "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs — 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
+    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context — starting points for a rep to personalize, not finished copy."
   ],
   "national_totals": {
-    "qualified": 1781,
-    "actionable": 1407,
+    "qualified": 1836,
+    "actionable": 1440,
     "unassigned_qualified": 266,
     "unassigned_actionable": 250,
     "states_with_signal": 52,
     "watch_states": 41
   },
-  "ai_summary": {
-    "state": "MS",
-    "product": "ij",
-    "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
-    "since": "2025-08",
-    "starbridge_open_rfps": 4,
-    "note": "Auto-picked: prioritizes a watch-list state with both a live open Starbridge RFP and the most recently dated real policy signal (falls back to most-recent policy signal alone if no RFP-backed state qualifies). Not a fixed list \u2014 recomputed each run."
-  },
+  "ai_summary": "Post-Labor Day W38 surge (+55 new HIH nationally) reinforces NJ and CA as top Inkwell opportunity states. NJ leads actionable volume (112) with 3 upcoming adoption windows still open. IL and WI show elevated opportunity density for IJ. Enterprise accounts in NY and PA hold the largest untouched pipeline value -- 97 and 55 actionable contacts respectively with no recent outreach in 60+ days.",
   "history": [
     {
       "period": "2026-09-16",
@@ -316,64 +309,64 @@
     {
       "rank": 2,
       "state": "NY",
-      "qualified": 112,
-      "actionable": 96,
-      "product": "inkwell"
+      "qualified": 107,
+      "actionable": 97,
+      "product": "ij"
     },
     {
       "rank": 3,
       "state": "CA",
-      "qualified": 112,
-      "actionable": 92,
+      "qualified": 104,
+      "actionable": 94,
       "product": "inkwell"
     },
     {
       "rank": 4,
       "state": "PA",
-      "qualified": 58,
-      "actionable": 54,
-      "product": "inkwell"
+      "qualified": 65,
+      "actionable": 55,
+      "product": "ij"
     },
     {
       "rank": 5,
       "state": "IL",
-      "qualified": 119,
-      "actionable": 53,
-      "product": "inkwell"
+      "qualified": 64,
+      "actionable": 54,
+      "product": "ij"
     },
     {
       "rank": 6,
       "state": "WI",
-      "qualified": 61,
+      "qualified": 63,
       "actionable": 53,
       "product": "inkwell"
     },
     {
       "rank": 7,
       "state": "MA",
-      "qualified": 56,
-      "actionable": 52,
+      "qualified": 60,
+      "actionable": 50,
       "product": "inkwell"
     },
     {
       "rank": 8,
       "state": "KY",
-      "qualified": 51,
+      "qualified": 58,
       "actionable": 48,
-      "product": "inkwell"
+      "product": "ij"
     },
     {
       "rank": 9,
       "state": "MN",
-      "qualified": 62,
+      "qualified": 48,
       "actionable": 38,
-      "product": "inkwell"
+      "product": "ij"
     },
     {
       "rank": 10,
-      "state": "MI",
-      "qualified": 65,
-      "actionable": 37,
+      "state": "WA",
+      "qualified": 45,
+      "actionable": 35,
       "product": "inkwell"
     }
   ],
@@ -2904,7 +2897,7 @@
           "due": "2026-08-05",
           "score": 4,
           "url": "https://www.centralauctionhouse.com/rfp70769019-page.html",
-          "summary": "Harrison County School District is soliciting bids for an online literature curriculum and associated assessment tools for K\u201312 students under solicitation 26.27-10. The scope includes digital curricu"
+          "summary": "Harrison County School District is soliciting bids for an online literature curriculum and associated assessment tools for K–12 students under solicitation 26.27-10. The scope includes digital curricu"
         },
         {
           "buyer": "Harrison County School District",
@@ -2920,7 +2913,7 @@
           "due": "2026-05-28",
           "score": 3,
           "url": "https://www.centralauctionhouse.com/rfp89502801-request-for-quotations-for-web-based-services-for-newton-municipal-school-district-for-the-2026-27-school-year-.html",
-          "summary": "Newton Municipal School District is soliciting quotes for cloud-based/web instructional licenses for the 2026\u201327 school year that cover core academics, special education, English learners, and mental-"
+          "summary": "Newton Municipal School District is soliciting quotes for cloud-based/web instructional licenses for the 2026–27 school year that cover core academics, special education, English learners, and mental-"
         }
       ]
     },
@@ -3111,13 +3104,13 @@
       ]
     }
   ],
-  "past_campaigns_note": "Real figures from inquirED's Fall 2025-2026 Account-Driven Campaign brief and its Iowa/South Carolina post-mortems. Personal names excluded. Kentucky ran a full campaign (Sept 2025) but was never given a post-mortem; a 2024 SC outreach effort and an early Oregon sequence were never run as measured campaigns \u2014 none of the three shown here rather than displayed as empty rows.",
+  "past_campaigns_note": "Real figures from inquirED's Fall 2025-2026 Account-Driven Campaign brief and its Iowa/South Carolina post-mortems. Personal names excluded. Kentucky ran a full campaign (Sept 2025) but was never given a post-mortem; a 2024 SC outreach effort and an early Oregon sequence were never run as measured campaigns — none of the three shown here rather than displayed as empty rows.",
   "outreach_playbook": [
-    "Name specific in-state districts by the second or third email \u2014 the single strongest predictor of opens and clicks across every past account-driven state campaign run to date.",
+    "Name specific in-state districts by the second or third email — the single strongest predictor of opens and clicks across every past account-driven state campaign run to date.",
     "Write a multi-email sequence, not a single send.",
     "Tag every send with UTMs and set an explicit SDR handoff trigger from the start.",
-    "A state with both real policy signal AND an open Starbridge RFP is the strongest kind of watch-state \u2014 the RFP names a live, dated buying process; treat it as a hard deadline, not just a talking point.",
-    "For a watch-state with an existing product relationship, frame the new product as an expansion tied to the existing renewal/adoption-cycle window \u2014 confirm that window with Sales/Customer Success before drafting.",
-    "For a cold-start watch-state with no existing footprint, plan for a longer ramp \u2014 there's no warm relationship to open the door."
+    "A state with both real policy signal AND an open Starbridge RFP is the strongest kind of watch-state — the RFP names a live, dated buying process; treat it as a hard deadline, not just a talking point.",
+    "For a watch-state with an existing product relationship, frame the new product as an expansion tied to the existing renewal/adoption-cycle window — confirm that window with Sales/Customer Success before drafting.",
+    "For a cold-start watch-state with no existing footprint, plan for a longer ramp — there's no warm relationship to open the door."
   ]
 }
