@@ -112,6 +112,43 @@ def tier_for(score: int) -> str:
     return "low_priority"
 
 
+PRODUCT_LABELS = {"ij": "Inquiry Journeys", "inkwell": "Inkwell", "gf8": "Great First 8"}
+
+
+def build_ai_summary(top: dict, warm_n: int) -> dict:
+    """`ai_summary` must render as a live-computed object (see app.js's
+    renderStateSignal, which reads ai.state/ai.product/ai.headline/
+    ai.starbridge_open_rfps/ai.note) -- a bare string here silently renders
+    as "undefined" everywhere, which is the exact bug this function exists
+    to stop from recurring. Always the current #1 by priority_score, never
+    a hand-picked or hardcoded state."""
+    rfps = top.get("starbridge_open_rfps", 0)
+    prod_label = PRODUCT_LABELS.get(top["product"], top["product"])
+    signal_bits = []
+    if rfps > 0:
+        signal_bits.append(f"{rfps} open Starbridge RFP{'s' if rfps != 1 else ''}")
+    if warm_n > 0:
+        signal_bits.append(f"{warm_n} live Warm Signal{'s' if warm_n != 1 else ''}")
+    signal_clause = " and ".join(signal_bits) if signal_bits else "the strongest policy/footprint combination"
+    headline = (
+        f"{top['state']} has {signal_clause} for {prod_label}, giving it the strongest "
+        f"combined priority score ({top['priority_score']}/100) of any watch-list state right now."
+    )
+    note = (
+        f"Picked automatically: highest priority_score ({top['priority_score']}/100, "
+        f"{top['priority_tier']} tier) among all watch states as of this refresh. See "
+        f"Methodology below for the full formula. Recomputed by scripts/score_watch_states.py "
+        f"-- this pick moves on its own as scores change, never a fixed choice."
+    )
+    return {
+        "state": top["state"],
+        "product": top["product"],
+        "headline": headline,
+        "starbridge_open_rfps": rfps,
+        "note": note,
+    }
+
+
 def main():
     today = date.today()
     d = json.loads(DATA_PATH.read_text())
@@ -135,6 +172,11 @@ def main():
         }
 
     d["watch_states"].sort(key=lambda w: -w["priority_score"])
+
+    if d["watch_states"]:
+        top = d["watch_states"][0]
+        top_warm_n = warm_by_state.get(top["state"], {}).get("by_product", {}).get(top["product"], 0)
+        d["ai_summary"] = build_ai_summary(top, top_warm_n)
 
     DATA_PATH.write_text(json.dumps(d, indent=2, ensure_ascii=False) + "\n")
 

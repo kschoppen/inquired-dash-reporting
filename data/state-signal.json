@@ -21,7 +21,13 @@
     "states_with_signal": 52,
     "watch_states": 41
   },
-  "ai_summary": "Post-Labor Day W38 surge (+55 new HIH nationally) reinforces NJ and CA as top Inkwell opportunity states. NJ leads actionable volume (112) with 3 upcoming adoption windows still open. IL and WI show elevated opportunity density for IJ. Enterprise accounts in NY and PA hold the largest untouched pipeline value -- 97 and 55 actionable contacts respectively with no recent outreach in 60+ days.",
+  "ai_summary": {
+    "state": "TX",
+    "product": "ij",
+    "headline": "TX has 12 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (62/100) of any watch-list state right now.",
+    "starbridge_open_rfps": 12,
+    "note": "Picked automatically: highest priority_score (62/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
+  },
   "history": [
     {
       "period": "2026-09-16",
