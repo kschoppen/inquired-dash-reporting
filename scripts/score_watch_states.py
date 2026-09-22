@@ -2,16 +2,30 @@
 Score and tier data/state-signal.json's `watch_states` list into a workable
 shortlist for Marketing/Sales, instead of a flat 41-state list.
 
-Combines three signals already present on each watch_states entry:
-  - starbridge_open_rfps (heaviest weight): a district actively shopping right now
+Combines four signals already present on each watch_states entry (or
+computed from warm_signals_by_state):
+  - starbridge_open_rfps: a district actively shopping right now (RFP live)
+  - warm_signals_by_state[state].by_product[product]: a live Starbridge
+    Warm Signals board-meeting hit for this state+product (Meeting_Score>=10,
+    Status New/Saved) -- a district planning an upcoming adoption, distinct
+    from an already-open RFP
   - since: how recent the state policy/legislative signal is
   - actionable: existing HubSpot footprint (MQA/Engaged accounts ready for outreach)
 
 Adds `priority_score` (0-100) and `priority_tier` (act_now / watch / low_priority)
 to each watch_states entry, then sorts the list by score descending.
 
+Rebalanced 2026-09-22 (Kelsey-confirmed) to make room for the new Warm
+Signals ingredient: Open RFP right now max dropped 50 to 30, Policy news
+recency max dropped 30 to 20, both proportionally rescaled from their prior
+tiers (not re-derived from scratch) so the relative shape is unchanged --
+just compressed to fit the new 30-point ceiling. Existing HubSpot footprint
+is untouched at max 20. Total ceiling stays 100, so the act_now/watch tier
+cutoffs below did not need to move.
+
 Rerun this after any refresh that changes watch_states' `actionable`,
-`since`, or `starbridge_open_rfps` values (see DASH_ROUTINE.md Phase 1.5).
+`since`, `starbridge_open_rfps`, or `warm_signals_by_state` values (see
+DASH_ROUTINE.md Phase 1.5).
 """
 from __future__ import annotations
 
@@ -36,29 +50,46 @@ def months_ago(since: str, today: date) -> int | None:
 
 
 def rfp_score(n: int) -> int:
+    """Max 30 (was 50) -- proportionally rescaled by 0.6 from the prior
+    0/30/40/50 tiers to free 20 points for the new warm-signal ingredient."""
     if n >= 4:
-        return 50
-    if n >= 2:
-        return 40
-    if n == 1:
         return 30
+    if n >= 2:
+        return 24
+    if n == 1:
+        return 18
+    return 0
+
+
+def warm_signal_score(n: int) -> int:
+    """Max 30 (new). Same shape as rfp_score on purpose -- both are
+    'how many live Starbridge signals exist for this state+product' counts,
+    just from different bridges (RFP vs. Warm Signals/board-meeting)."""
+    if n >= 4:
+        return 30
+    if n >= 2:
+        return 24
+    if n == 1:
+        return 18
     return 0
 
 
 def recency_score(months: int | None) -> int:
+    """Max 20 (was 30) -- proportionally rescaled by 2/3 from the prior
+    30/24/18/12/6/2 tiers."""
     if months is None:
         return 0
     if months <= 6:
-        return 30
+        return 20
     if months <= 12:
-        return 24
+        return 16
     if months <= 24:
-        return 18
-    if months <= 36:
         return 12
+    if months <= 36:
+        return 8
     if months <= 60:
-        return 6
-    return 2
+        return 4
+    return 1
 
 
 def footprint_score(actionable: int) -> int:
@@ -84,16 +115,24 @@ def tier_for(score: int) -> str:
 def main():
     today = date.today()
     d = json.loads(DATA_PATH.read_text())
+    warm_by_state = d.get("warm_signals_by_state", {})
 
     for w in d["watch_states"]:
         ma = months_ago(w["since"], today)
-        score = (
-            rfp_score(w.get("starbridge_open_rfps", 0))
-            + recency_score(ma)
-            + footprint_score(w["actionable"])
-        )
+        warm_n = warm_by_state.get(w["state"], {}).get("by_product", {}).get(w["product"], 0)
+        rfp_pts = rfp_score(w.get("starbridge_open_rfps", 0))
+        warm_pts = warm_signal_score(warm_n)
+        recency_pts = recency_score(ma)
+        footprint_pts = footprint_score(w["actionable"])
+        score = rfp_pts + warm_pts + recency_pts + footprint_pts
         w["priority_score"] = score
         w["priority_tier"] = tier_for(score)
+        w["priority_breakdown"] = {
+            "open_rfp": rfp_pts,
+            "warm_signal": warm_pts,
+            "policy_recency": recency_pts,
+            "hubspot_footprint": footprint_pts,
+        }
 
     d["watch_states"].sort(key=lambda w: -w["priority_score"])
 
