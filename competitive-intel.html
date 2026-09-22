@@ -1094,21 +1094,25 @@
     <span class="fr-item"><span id="fr-competitors">—</span> <span class="fr-label">competitors tracked</span></span>
   </div>
 
-  <!-- ── AI Overview ── -->
+  <!-- ── AI Overview ──
+       Dates and the sources line come from data/competitive-intel.json
+       (overview_updated / overview_sources). When you rewrite this block, stamp
+       overview_updated — the pill goes amber after overview_stale_after_days. -->
   <div class="overview-section" role="region" aria-label="AI Overview">
     <div class="overview-header">
-      <span class="overview-eyebrow">AI Overview · July 2026</span>
-      <span class="overview-freshness">Data: HubSpot 293 deals · Gainsight 38 churns · SEMrush</span>
+      <span class="overview-eyebrow">AI Overview · <span id="ov-date">—</span></span>
+      <span class="fr-pill" id="ov-pill" hidden></span>
+      <span class="overview-freshness" id="ov-sources"></span>
     </div>
     <p class="overview-narrative">
-      The external landscape is heating up unevenly. <strong>Inkwell faces the highest structural pressure</strong> — four ELA competitors (Amplify CKLA, Great Minds A&amp;L, Imagine Learning Dragonfly, McGraw-Hill Emerge) are actively bidding for the same SoR-aligned K–2 window. <strong>Inquiry Journeys sits in a relatively open lane</strong> — TCI holds state approval lists but is absent from organic search for inquiry-framed terms where we rank #1. <strong>GF8 is losing deals on price, not fit</strong> — the only named competitor in HubSpot closed-lost this period is Teaching Strategies, cited specifically in a budget-constrained district. Internal signals tell a cleaner story than competitive ones: the bulk of our 293 closed-lost deals are ghosting, wrong contacts, and adoption fatigue — not competitor wins. That's a pipeline quality and timing problem, not a product one.
+      The external picture tightened for Inkwell this cycle. <strong>Amplify and Great Minds now each sell a full K–5 literacy stack</strong> — CKLA 3rd Edition (Virginia DOE–approved) plus a Language Studio add-on for multilingual learners, and Arts &amp; Letters' new Reading Foundations program on top of its all-green EdReports. Districts can buy foundations, language arts, and knowledge-building from one vendor before Inkwell ever gets evaluated; Griffin-Spalding (GA) had already narrowed to two finalists when we arrived. <strong>Inquiry Journeys took its first named competitive loss of the period</strong> — Aptakisic-Tripp (IL, $33K) is piloting updated TCI and Studies Weekly, citing Studies Weekly's ease of use and multilingual features and the team's comfort with TCI as the incumbent. IJ still ranks #1 organically for seven inquiry-based social studies terms. <strong>Internally, competitors still aren't the main story:</strong> of 35 real closed-lost deals since Jul 15 (~$299K), about 60% of the dollars went to state-standards timelines and adoption-scope changes — Norman (OK, $110K), Shawnee Mission (KS, $50K, K–5 dropped), and a district waiting on its state's own SS curriculum ($20K). Another 48 closed-lost records were an Aug 26 cleanup of stale SQL deals, not new losses.
     </p>
     <div class="alert-chips">
-      <span class="alert-chip alert">⚠ High: Inkwell ELA crowding — 4 direct competitors with active ad spend</span>
-      <span class="alert-chip warn">↗ Teaching Strategies winning GF8 on price in budget-constrained districts</span>
-      <span class="alert-chip warn">↗ Adoption fatigue cited — $50K Large District loss (Washington Township, IN)</span>
-      <span class="alert-chip info">◎ IJ has near-zero paid competition — organic opportunity unclaimed by rivals</span>
-      <span class="alert-chip good">✓ 70% of closed-lost = ghosting/wrong contact — not competitor displacement</span>
+      <span class="alert-chip alert">⚠ High: Inkwell evaluation window shrinking — Amplify + Great Minds sell full K–5 literacy stacks</span>
+      <span class="alert-chip warn">↗ TCI + Studies Weekly beat IJ in an IL pilot ($33K) — ease of use + multilingual cited</span>
+      <span class="alert-chip warn">↗ State-standards + scope shifts = ~60% of lost $ ($180K across 3 deals)</span>
+      <span class="alert-chip info">◎ 6–12 scope: 2 losses wanted middle/secondary SS, not K–5 (Warren Co VA, Shawnee Mission KS)</span>
+      <span class="alert-chip good">✓ IJ still #1 organic on 7 inquiry-based SS terms</span>
     </div>
     <div class="overview-grid">
       <div class="pressure-panel">
@@ -1128,9 +1132,9 @@
         <div style="margin-top:0.9rem; padding-top:0.75rem; border-top:1px solid var(--border);">
           <div class="pressure-panel-title" style="margin-bottom:0.5rem;">Where to focus this cycle</div>
           <div style="font-size:0.82rem; line-height:1.55; color:var(--black);">
-            1. IJ SEO — competitors aren't bidding on inquiry SS terms we already rank for<br>
-            2. Inkwell messaging — differentiate from SoR-only plays (structured inquiry + knowledge-building)<br>
-            3. GF8 — track Teaching Strategies pricing + create a budget-district response
+            1. Inkwell: get into 2027–28 ELA adoption cycles before shortlists form, with a clear answer to single-vendor K–5 stacks<br>
+            2. IJ: lead with ease of use + multilingual support proof points against Studies Weekly, and track state SS standards timelines<br>
+            3. GF8: keep watching budget-driven PreK losses (Teaching Strategies at Newberg; Woodhaven's unnamed pick)
           </div>
         </div>
       </div>
@@ -1138,27 +1142,27 @@
         <div class="signal-panel-title">Top Signals to Watch</div>
         <div class="signal-item">
           <div class="signal-dot red"></div>
-          <div class="signal-text"><strong>Amplify CKLA</strong> — #1 for "ckla curriculum" (2,400/mo vol). Dominant SoR ELA brand; direct Inkwell threat.</div>
+          <div class="signal-text"><strong>Amplify CKLA</strong> — 3rd Edition + Language Studio (ML/EL) for 2026–27, Virginia DOE approved. Raises the SoR evaluation bar, especially in high-EL districts.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot red"></div>
-          <div class="signal-text"><strong>Teaching Strategies</strong> — Won Newberg SD OR GF8 deal on price. Watch budget-constrained K–2 districts, especially Pacific NW.</div>
+          <div class="signal-text"><strong>Great Minds · Arts &amp; Letters</strong> — Reading Foundations K–5 launched on top of all-green EdReports. A district that adopts for foundations tends to take the whole chain.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot yellow"></div>
-          <div class="signal-text"><strong>TCI</strong> — OR, NY, HI state adoption approvals. State list presence = institutional sales advantage; no organic competition on inquiry terms.</div>
+          <div class="signal-text"><strong>Studies Weekly + TCI</strong> — Beat IJ in the Aptakisic-Tripp (IL) pilot. Ease of use and multilingual features for Studies Weekly; incumbency for TCI.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot yellow"></div>
-          <div class="signal-text"><strong>OR standards alignment</strong> — Cited in 2 separate closed-lost reasons. Product gap or sales narrative gap?</div>
+          <div class="signal-text"><strong>State SS standards churn</strong> — Norman (OK, $110K) was pushed back by state standards changes; another district paused to wait for a state-built SS curriculum.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot blue"></div>
-          <div class="signal-text"><strong>KIPP Texas churn</strong> — $280K ARR. Largest single churn event. Contract ended 2024; no competitor named. Re-engage opportunity.</div>
+          <div class="signal-text"><strong>Benchmark Education</strong> — Alameda USD and Fairfax County adoptions. Still the default incumbent in K–2 ELA evaluations.</div>
         </div>
         <div class="signal-item">
           <div class="signal-dot green"></div>
-          <div class="signal-text"><strong>IJ organic search</strong> — inquirED ranks #1 for "inquiry journeys," "inquiry based social studies curriculum," "inquiry learning in social studies." No competitor is close.</div>
+          <div class="signal-text"><strong>IJ organic search</strong> — #1 for "inquiry based social studies curriculum," "inquiry based social studies," "inquiry in social studies," and four more. No competitor is close.</div>
         </div>
       </div>
     </div>
@@ -1167,17 +1171,17 @@
   <!-- ── Stats ── -->
   <div class="stat-row" role="region" aria-label="Summary stats">
     <div class="stat-tile">
-      <div class="stat-number">14</div>
+      <div class="stat-number" id="stat-competitors">—</div>
       <div class="stat-label">Competitors tracked across Inkwell, Inquiry Journeys + GF8 (K–5)</div>
     </div>
     <div class="stat-tile">
       <div class="stat-number blue">3</div>
-      <div class="stat-label">Major new ELA products launching 2026–27 (Emerge, Dragonfly, EL+Kiddom CA)</div>
+      <div class="stat-label">Major ELA launches for 2026–27 (CKLA 3rd Ed, Amplify Language Studio, A&amp;L Reading Foundations)</div>
     </div>
     <div class="stat-tile">
-      <div class="stat-number">5</div>
-      <div class="stat-label">State adoption wins or approvals surfaced this period</div>
-      <div class="stat-delta">Savvas: PA · TCI: OR, NY, HI · Teaching Strategies: top-5 districts</div>
+      <div class="stat-number">4</div>
+      <div class="stat-label">State or district adoption wins surfaced this period</div>
+      <div class="stat-delta">Amplify: VA DOE · Benchmark: Alameda USD, Fairfax · Great Minds: NYC Reads</div>
     </div>
   </div>
 
@@ -1997,6 +2001,18 @@ function renderFreshness(meta) {
   set('fr-full-run', fmtDate(meta.full_run));
   set('fr-updated', fmtDate(meta.updated));
   set('fr-competitors', competitors);
+  set('stat-competitors', competitors);
+
+  set('ov-date', fmtDate(meta.overview_updated || meta.full_run));
+  set('ov-sources', meta.overview_sources || '');
+  const ovAge = daysSince(meta.overview_updated || meta.full_run);
+  const ovLimit = meta.overview_stale_after_days || 45;
+  const ovPill = document.getElementById('ov-pill');
+  if (ovPill && ovAge !== null && ovAge > ovLimit) {
+    ovPill.className = 'fr-pill stale';
+    ovPill.textContent = ovAge + ' days old';
+    ovPill.hidden = false;
+  }
 
   const age = daysSince(meta.updated);
   const limit = meta.stale_after_days || 10;

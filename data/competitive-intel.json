@@ -1,11 +1,14 @@
 {
   "skill": "competitive-intel",
   "title": "Competitive Intel",
-  "updated": "2026-09-21",
+  "updated": "2026-09-22",
   "full_run": "2026-07-14",
   "next_full_run": "Sep 2026",
   "stale_after_days": 10,
-  "notes": "Freshness stamps for competitive-intel.html. `updated` is the last weekly signal + keyword refresh (weekly-marketing-digest, PHASE 2 of DASH_ROUTINE.md). `full_run` is the last complete competitive-intel skill run (bi-monthly: website + ad-library analysis, threat levels, messaging themes, AI summaries, strategic opportunities). Both the page header and the dashboard tab banner read their dates from this file, and the page counts tracked competitors from its own DOM, so no date or count is hardcoded in the HTML. `stale_after_days` drives the freshness pill: once `updated` is older than that, the page shows its age in amber instead of a green 'current'.",
+  "overview_updated": "2026-09-22",
+  "overview_stale_after_days": 45,
+  "overview_sources": "Data: HubSpot 35 closed-lost deals (Jul 15–Sep 22) · weekly signal scan · SEMrush",
+  "notes": "Freshness stamps for competitive-intel.html. `updated` is the last weekly signal + keyword refresh (weekly-marketing-digest, PHASE 2 of DASH_ROUTINE.md). `full_run` is the last complete competitive-intel skill run (bi-monthly: website + ad-library analysis, threat levels, messaging themes, AI summaries, strategic opportunities). Both the page header and the dashboard tab banner read their dates from this file, and the page counts tracked competitors from its own DOM, so no date or count is hardcoded in the HTML. `stale_after_days` drives the freshness pill: once `updated` is older than that, the page shows its age in amber instead of a green 'current'. `overview_updated` is the last rewrite of the AI Overview block (narrative, chips, pressure panel, top signals, stat tiles); the overview pill turns amber after `overview_stale_after_days`. The weekly routine does not rewrite the overview.",
   "signals_summary": {
     "amplify_ckla": "CKLA 3rd Edition for 2026-27 (Virginia DOE approved). Language Studio add-on for ML/ELs at back-to-school 2026. Product update page live for 2026-27 school year -- no new press release this week.",
     "great_minds_ww": "NYC Reads early ELA proficiency gains with W&W (May 2026) — major urban district reference account. Digital platform unified for 2025-26.",
