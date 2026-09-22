@@ -1872,7 +1872,7 @@ function renderStateSignal(d) {
       + sectionHdr('States to watch', '#1C2660')
       + '<div class="panel">'
       + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
-      + note('Sorted by a priority score (0-100): open Starbridge RFP weighted heaviest (0/1/2-3/4+ RFPs → 0/30/40/50 pts), then how recent the policy signal is (≤6mo → 30 pts, scaling down to 2 pts past 5 years), then existing actionable HubSpot footprint (20+ accounts → 20 pts, scaling down to 2). Act now ≥56 pts, Watch 32-55, Low priority <32. Recompute with scripts/score_watch_states.py after any refresh that changes a watch state\'s `actionable`, `since`, or `starbridge_open_rfps`.')
+      + note('Sorted by a priority score (0-100) — see Methodology at the bottom of this tab for the full point breakdown and sources. Act now ≥56 pts, Watch 32-55, Low priority <32.')
       + watchStatesTable(product).replace('id="ssWatchBody"', 'id="ssWatchBody2"')
       + '<div id="ssWatchDetails"></div>'
       + '</div>'
@@ -1886,7 +1886,20 @@ function renderStateSignal(d) {
       + sectionHdr('What this tab doesn\'t do yet', '#c2540a')
       + '<div class="panel">' + flags.map((f) => note(f)).join('') + '</div>'
 
-      + `<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) + verified policy research (WebSearch, cited per state) · ${d.cadence || ''}</p>`;
+      + sectionHdr('Methodology', '#5B5A9E')
+      + '<div class="panel">'
+      + '<p style="font-size:13px;color:var(--ink);line-height:1.55;margin:0 0 14px">The <b>priority score</b> (0-100) ranks the 41 "States to watch" into Act now / Watch / Low priority tiers above. It only applies to that table — the 10 "Top states to work" are ranked simply by actionable-account count, no scoring needed there since HubSpot already tells you who to call. Recomputed by <code>scripts/score_watch_states.py</code> on every refresh; rebalanced 2026-09-22 to add the Starbridge Warm Signals ingredient.</p>'
+      + '<table class="ss-dash"><thead><tr><th>Ingredient</th><th>Max</th><th>Tiers</th><th>Source &amp; how it\'s pulled</th></tr></thead><tbody>'
+      + '<tr><td>Open RFP right now</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge RFP bridges (ELA/IJ/GF8), live via <code>listBridgeRows</code>, Status New or Saved only</td></tr>'
+      + '<tr><td>Starbridge signal for upcoming adoption</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via <code>listBridgeRows</code>. Counted only if Meeting Score ≥10 and Status is New or Saved — anything scored lower or marked Not Interested is dropped before it reaches this table</td></tr>'
+      + '<tr><td>Policy news recency</td><td style="text-align:right">20</td><td>≤6mo → 20 · ≤12mo → 16 · ≤24mo → 12 · ≤36mo → 8 · ≤60mo → 4 · older → 1</td><td>WebSearch, re-run roughly monthly (not every refresh) — every claim needs a real, dated source URL or it doesn\'t get a since-date at all</td></tr>'
+      + '<tr><td>Existing HubSpot footprint</td><td style="text-align:right">20</td><td>20+ accounts → 20 · 12+ → 15 · 6+ → 10 · 3+ → 5 · fewer → 2</td><td>HubSpot portal 4451852 — MQA/Engaged company count, no sales contact in 60+ days</td></tr>'
+      + '</tbody></table>'
+      + note('Tiers: Act now ≥56 pts · Watch 32-55 pts · Low priority <32 pts. A state only shows up in "States to watch" at all if it has a real, cited policy signal outside the top-10 sales states — no policy citation, no row, regardless of score.')
+      + note('Account-level matching (which specific district a Warm Signal belongs to, inside the state drill-downs above) uses an exact join: HubSpot\'s <code>starbridge_id</code> company property against the Starbridge bridge row\'s <code>buyerId</code> — not name/state fuzzy-matching.')
+      + '</div>'
+
+      + `<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) + verified policy research (WebSearch, cited per state) + Starbridge (RFP and Warm Signals bridges, live) · ${d.cadence || ''}</p>`;
 
     document.querySelectorAll('[data-ssp]').forEach((btn) => btn.addEventListener('click', () => renderBody(btn.getAttribute('data-ssp'))));
 
