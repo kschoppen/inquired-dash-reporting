@@ -40,6 +40,7 @@ let DATA = null, PRODUCT = "all";
 const charts = [];
 
 const fmtN = (n) => n == null ? "—" : Number(n).toLocaleString("en-US");
+const escapeHtml = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmt$ = (n) => n == null ? "—" : "$" + Math.round(n).toLocaleString("en-US");
 const rate = (a, b) => (b && a != null) ? +(a / b * 100).toFixed(1) : null;
 function deltaHTML(cur, prev, o = {}) {
@@ -1575,6 +1576,98 @@ function renderStateSignal(d) {
   charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
   let ssProduct = "all";
 
+  // Actioned / Not Interested triage decisions, keyed "STATE-product" (e.g. "CA-inkwell").
+  // Fetched once per tab load from the Decisions Airtable (via a Netlify function proxy)
+  // and merged client-side onto the top_states/watch_states rows — never written on load,
+  // only read. Shared across everyone who opens the dashboard (not localStorage).
+  let decisionsMap = {};
+  const ssDecisionKey = (state, product) => `${state}-${product}`;
+
+  function decisionBadge(state, product) {
+    const rec = decisionsMap[ssDecisionKey(state, product)];
+    const dec = rec && rec.decision;
+    if (dec === 'Actioned') return `<span class="ss-dec-badge ss-dec-badge-actioned"${rec.notes ? ` title="${escapeHtml(rec.notes)}"` : ''}>✓ Actioned</span>`;
+    if (dec === 'Not Interested') return `<span class="ss-dec-badge ss-dec-badge-not"${rec.notes ? ` title="${escapeHtml(rec.notes)}"` : ''}>✕ Not interested</span>`;
+    return '<span class="meta-small">—</span>';
+  }
+
+  function refreshAllDecisionBadges() {
+    document.querySelectorAll('#view .ss-dec-cell[data-dec-key]').forEach((cell) => {
+      const key = cell.getAttribute('data-dec-key');
+      const sep = key.indexOf('-');
+      cell.innerHTML = decisionBadge(key.slice(0, sep), key.slice(sep + 1));
+    });
+  }
+
+  function decisionControlHtml(state, product) {
+    const rec = decisionsMap[ssDecisionKey(state, product)] || {};
+    const dec = rec.decision || '';
+    const notes = rec.notes || '';
+    const savedLine = rec.decidedAt ? `<span class="ss-dec-meta">Last set ${rec.decidedAt}${rec.decidedBy ? ' · ' + escapeHtml(rec.decidedBy) : ''}</span>` : '';
+    return `<div class="ss-dec-panel" data-dec-state="${state}" data-dec-product="${product}">`
+      + `<div class="ss-dec-label">Triage — ${state} × ${SS_LABELS[product] || product}</div>`
+      + `<div class="ss-dec-btns">`
+      + `<button type="button" class="ss-dec-btn ss-dec-btn-actioned${dec === 'Actioned' ? ' on' : ''}" data-dec-action="Actioned">✓ Actioned</button>`
+      + `<button type="button" class="ss-dec-btn ss-dec-btn-not${dec === 'Not Interested' ? ' on' : ''}" data-dec-action="Not Interested">✕ Not interested</button>`
+      + `<button type="button" class="ss-dec-btn ss-dec-btn-clear" data-dec-action="">Clear</button>`
+      + `<span class="ss-dec-status" data-dec-status></span>`
+      + `</div>`
+      + `<textarea class="ss-dec-notes" data-dec-notes placeholder="Notes (optional) — why actioned / not interested, who followed up, etc.">${escapeHtml(notes)}</textarea>`
+      + savedLine
+      + `</div>`;
+  }
+
+  function wireDecisionPanel(container, state, product) {
+    const panel = container.querySelector('.ss-dec-panel');
+    if (!panel) return;
+    const statusEl = panel.querySelector('[data-dec-status]');
+    const notesEl = panel.querySelector('[data-dec-notes]');
+
+    function setStatus(text, isErr) {
+      statusEl.textContent = text;
+      statusEl.style.color = isErr ? 'var(--down)' : 'var(--muted)';
+    }
+
+    async function saveDecision(decision) {
+      setStatus('Saving…');
+      try {
+        const res = await fetch('/.netlify/functions/set-decision', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state, product, decision, notes: notesEl.value })
+        });
+        if (!res.ok) throw new Error('save failed: ' + res.status);
+        const row = await res.json();
+        decisionsMap[ssDecisionKey(state, product)] = row;
+        panel.querySelectorAll('.ss-dec-btn').forEach((b) => b.classList.remove('on'));
+        const activeBtn = panel.querySelector(`[data-dec-action="${decision}"]`);
+        if (activeBtn) activeBtn.classList.add('on');
+        refreshAllDecisionBadges();
+        setStatus('Saved ✓');
+      } catch (e) {
+        setStatus('Could not save — try again', true);
+      }
+    }
+
+    panel.querySelectorAll('[data-dec-action]').forEach((btn) => {
+      btn.addEventListener('click', () => saveDecision(btn.getAttribute('data-dec-action')));
+    });
+    notesEl.addEventListener('blur', () => {
+      const currentDec = (decisionsMap[ssDecisionKey(state, product)] || {}).decision || '';
+      saveDecision(currentDec);
+    });
+  }
+
+  function loadDecisions() {
+    fetch('/.netlify/functions/get-decisions', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((payload) => {
+        (payload.decisions || []).forEach((row) => { decisionsMap[ssDecisionKey(row.state, row.product)] = row; });
+        refreshAllDecisionBadges();
+      })
+      .catch(() => { /* triage badges just stay blank — everything else on the tab still works */ });
+  }
+
   const nt = d.national_totals || {};
   const topStates = d.top_states || [];
   const watchStates = d.watch_states || [];
@@ -1650,8 +1743,8 @@ function renderStateSignal(d) {
   function topStatesTable(product) {
     const rows = topStates.filter((s) => product === 'all' || s.product === product);
     if (!rows.length) return '<p class="insight">No state policy signal identified for this product yet.</p>';
-    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td></tr>`).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
+    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr>`).join('');
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th><th>Decision</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
   }
 
   function watchStatesTable(product) {
@@ -1660,15 +1753,15 @@ function renderStateSignal(d) {
     const body = rows.map((s) => {
       const rfpBadge = s.starbridge_open_rfps > 0 ? `<span class="ss-rfp-badge">${s.starbridge_open_rfps} open RFP${s.starbridge_open_rfps > 1 ? 's' : ''}</span>` : '<span class="meta-small">—</span>';
       const tierBadge = s.priority_tier ? `<span class="ss-tier-badge ss-tier-${s.priority_tier}">${SS_TIER_LABELS[s.priority_tier] || s.priority_tier}</span>` : '<span class="meta-small">—</span>';
-      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td></tr>`;
+      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr>`;
     }).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th><th>Decision</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
   }
 
   function stateDetailHtml(s) {
     const policy = policyByState[s.state];
     const accts = accountsByState[s.state] || [];
-    let html = '';
+    let html = decisionControlHtml(s.state, s.product);
     if (policy) {
       html += `<div class="ss-state-ctx"><div class="ss-sc-label">State policy signal: ${s.state}</div>`
         + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(${policy.since})</span></div>`
@@ -1697,7 +1790,8 @@ function renderStateSignal(d) {
   function watchDetailHtml(s) {
     const policy = watchStates.find((w) => w.state === s.state) || s;
     const sb = (d.starbridge_by_state || {})[s.state];
-    let html = `<div class="ss-state-ctx"><div class="ss-sc-label">State context: ${s.state}</div>`
+    let html = decisionControlHtml(s.state, s.product);
+    html += `<div class="ss-state-ctx"><div class="ss-sc-label">State context: ${s.state}</div>`
       + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(since ${policy.since})</span></div>`
       + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
     if (sb && sb.open_rfps_total > 0) {
@@ -1802,10 +1896,14 @@ function renderStateSignal(d) {
       topBody2.querySelectorAll('tr').forEach((row) => {
         row.addEventListener('click', () => {
           const st = row.getAttribute('data-state');
+          const pr = row.getAttribute('data-product');
           const open = row.classList.toggle('open');
           const detailsBox = document.getElementById('ssTopDetails');
-          if (open) { detailsBox.innerHTML = stateDetailHtml(topStates.find((s) => s.state === st)); }
-          else { detailsBox.innerHTML = ''; }
+          if (open) {
+            const rec = topStates.find((s) => s.state === st && s.product === pr);
+            detailsBox.innerHTML = stateDetailHtml(rec);
+            wireDecisionPanel(detailsBox, rec.state, rec.product);
+          } else { detailsBox.innerHTML = ''; }
           topBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
         });
       });
@@ -1815,10 +1913,14 @@ function renderStateSignal(d) {
       watchBody2.querySelectorAll('tr').forEach((row) => {
         row.addEventListener('click', () => {
           const st = row.getAttribute('data-wstate');
+          const pr = row.getAttribute('data-product');
           const open = row.classList.toggle('open');
           const detailsBox = document.getElementById('ssWatchDetails');
-          if (open) { detailsBox.innerHTML = watchDetailHtml(watchStates.find((s) => s.state === st)); }
-          else { detailsBox.innerHTML = ''; }
+          if (open) {
+            const rec = watchStates.find((s) => s.state === st && s.product === pr);
+            detailsBox.innerHTML = watchDetailHtml(rec);
+            wireDecisionPanel(detailsBox, rec.state, rec.product);
+          } else { detailsBox.innerHTML = ''; }
           watchBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
         });
       });
@@ -1834,6 +1936,7 @@ function renderStateSignal(d) {
   }
 
   renderBody('all');
+  loadDecisions();
 }
 
 function renderCompetitiveIntel() {
