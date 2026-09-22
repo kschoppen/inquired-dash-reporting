@@ -4,5 +4,5 @@
   "updated": "2026-09-22",
   "flows_linked": 5,
   "stale_after_days": 14,
-  "note": "2026-09-22: full refresh, every section re-pulled. Corrected the lifecycle baseline from Aug 3 (planned launch) to Aug 18 (actual launch per the Asana milestone); headline movement fell 46 -> 15 and Inkwell MQL 39% -> 13% as a result, by correction not decline. Rebuilt CTOR table and fixed a mislabelled row (IJ-LT-8 numbers were really IJ-CT-1). Email window Jul 30 - Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program."
+  "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program."
 }

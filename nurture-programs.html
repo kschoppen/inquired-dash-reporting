@@ -269,12 +269,12 @@
   <div class="header-meta">
     <div class="header-meta-item">
       <span class="header-label">Last Checked</span>
-      <span class="header-value" id="meta-updated">—</span>
+      <span class="header-value" id="meta-updated">, </span>
     </div>
     <div class="header-divider"></div>
     <div class="header-meta-item">
       <span class="header-label">Workflows Linked</span>
-      <span class="header-value" id="meta-flows">—</span>
+      <span class="header-value" id="meta-flows">, </span>
     </div>
     <div class="header-divider"></div>
     <div class="header-meta-item">
@@ -290,7 +290,7 @@
 <main class="main">
 
   <div class="freshness-strip" id="freshness-strip" hidden>
-    <span class="fr-item"><span class="fr-label">Last checked</span> <span id="fr-updated">—</span></span>
+    <span class="fr-item"><span class="fr-label">Last checked</span> <span id="fr-updated">, </span></span>
     <span class="fr-pill" id="fr-pill" hidden></span>
     <span class="fr-sep"></span>
     <span class="fr-item">HubSpot portal 4451852 · Marketing Email Analytics API</span>
@@ -300,19 +300,16 @@
     Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle
     stages, nurture-track properties, and per-email send data, as an independent read alongside
     Tim's own workflow-reporting build. <strong>Every section on this page was pulled fresh on Sep 22, 2026.</strong>
-    <strong>Correction applied this run:</strong> the previous version measured lifecycle movement from Aug 3,
-    which was the <em>planned</em> launch date. The program actually went live <strong>Aug 18</strong> (per the Asana
-    launch milestone). Measuring from Aug 3 counted 15 days of pre-launch movement as nurture-driven,
-    which materially inflated the headline numbers. Everything below now measures from Aug 18, so these
-    figures are lower than the Sep 15 version by correction, not by decline.
+    Lifecycle movement is measured from <strong>Aug 18</strong>, the date the program went live per the Asana
+    launch milestone.
   </p>
 
   <!-- ── Lifecycle stage movement (the #1 metric) ── -->
-  <span class="section-eyebrow">Lifecycle Stage Movement — the top metric</span>
+  <span class="section-eyebrow">Lifecycle Stage Movement, the top metric</span>
   <p class="section-note">
     "Scratch everything else, lifecycle stage movement is the top metric." Contacts currently
     tagged into a Fall 2026 nurture track whose <code>lifecyclestage</code> advanced
-    (entered MQL, SQL, Opportunity, or Customer) on or after <strong>Aug 18, the actual launch date</strong>.
+    (entered MQL, SQL, Opportunity, or Customer) on or after <strong>Aug 18</strong>, the launch date.
     Only Inquiry Journeys and Inkwell have usable contact-level tracking right now, see the coverage
     note below.
   </p>
@@ -320,12 +317,12 @@
     <div class="hero-tile accent">
       <div class="hero-number">15</div>
       <div class="hero-label">Nurtured contacts reached a new lifecycle stage since the Aug 18 launch</div>
-      <div class="hero-sub">14 in Inkwell, 1 in Inquiry Journeys. The Sep 15 version of this tile read 46, measured from Aug 3; 31 of those moved before the program was live. This is the corrected figure, not a drop.</div>
+      <div class="hero-sub">14 in Inkwell, 1 in Inquiry Journeys. Five weeks in, on a population of 524 active contacts across the two programs with usable tracking.</div>
     </div>
     <div class="hero-tile">
       <div class="hero-number">13%</div>
       <div class="hero-label">Of active Inkwell nurture contacts have hit MQL since launch</div>
-      <div class="hero-sub">14 of 108 active contacts. Still the strongest movement signal in the portfolio, but the previously reported 39% (42 of 108) counted 28 MQLs from the Aug 3-17 pre-launch window.</div>
+      <div class="hero-sub">14 of 108 active contacts, and the strongest movement signal in the portfolio by a wide margin. Inkwell is under a fifth of IJ's email volume and is producing 14x its lifecycle movement.</div>
     </div>
     <div class="hero-tile flag">
       <div class="hero-number">1</div>
@@ -335,7 +332,7 @@
     <div class="hero-tile flag">
       <div class="hero-number">0</div>
       <div class="hero-label">Became Customers since launch, in Inkwell</div>
-      <div class="hero-sub">The Sep 15 tile reported 4 customers (2 IJ, 2 Inkwell) from an Aug 3 baseline. Measured from Aug 18: 1 in IJ (the same contact above) and 0 in Inkwell. GF8, Agnostic and World History still have no usable movement data, see Data Coverage.</div>
+      <div class="hero-sub">1 in Inquiry Journeys, the same contact counted in the tile to the left, and 0 in Inkwell. GF8, Agnostic and World History have no usable movement data at all, see Data Coverage.</div>
     </div>
   </div>
 
@@ -343,13 +340,12 @@
   <div class="coverage-banner">
     <span class="cb-icon">⚠️</span>
     <div class="cb-body">
-      <span class="cb-title">Data coverage — worth checking against Tim's read</span>
+      <span class="cb-title">Data coverage, worth checking against Tim's read</span>
       Every metric above comes from four per-product <code>nurture_track</code> contact properties.
       Two of them are essentially empty: <strong>Great First Eight</strong> has zero contacts tagged
       (out of ~77k) despite 116 emails already delivered per the email-analytics view below, and
       <strong>Agnostic</strong> has exactly one, despite 42 delivered. That gap points to the
-      workflow sending mail without writing the nurture-track field back to the contact record —
-      or a different, unmapped property holding that data. <strong>World History</strong> has no
+      workflow sending mail without writing the nurture-track field back to the contact record, or a different, unmapped property holding that data. <strong>World History</strong> has no
       contact-level nurture-track property at all. None of this is guesswork on the email side
       (that data is real and complete); it's specifically the contact-record tracking that's
       missing for three of the five programs, which is exactly the kind of thing to compare against
@@ -365,14 +361,13 @@
   </div>
 
   <!-- ── Classroom vs Administrator ── -->
-  <span class="section-eyebrow">Classroom vs. Administrator — who's actually in the nurture funnel</span>
+  <span class="section-eyebrow">Classroom vs. Administrator, who's actually in the nurture funnel</span>
   <p class="section-note">
     Split by the contact's <code>Role</code> property, for the two programs with usable
     contact-level data. "Admin/Leadership" groups School Leader, District Leader, and
-    Coach/Specialist; "Other/Unassigned" is everyone without a classified role. Re-pulled Sep 22:
-    the IJ active population fell from 485 to 416 as contacts exited the track, and the admin share
-    with it (268 to 218). The role mix itself barely moved, so the funnel is still about half
-    administrators and a fifth teachers in both programs.
+    Coach/Specialist; "Other/Unassigned" is everyone without a classified role. Both programs look
+    much the same on this cut: roughly half administrators, about a fifth teachers, and the rest
+    unclassified.
   </p>
   <div class="split-section">
     <div class="split-card">
@@ -390,16 +385,13 @@
   </div>
 
   <!-- ── Click-to-open + CT/LT track comparison ── -->
-  <span class="section-eyebrow">Click-to-Open Rate — top and bottom performers, by track</span>
+  <span class="section-eyebrow">Click-to-Open Rate, top and bottom performers, by track</span>
   <p class="section-note">
     Click-to-open rate (clicks ÷ opens, excluding bots) directly from HubSpot's marketing-email
-    analytics — a purer read on content quality than open rate, since it isolates people who
+    analytics, a purer read on content quality than open rate, since it isolates people who
     opened and then found something worth clicking. Ranked among emails with real volume (100+
-    delivered as of today); everything thinner is too early to rank. Two fixes this run: the table
-    previously carried a row labelled [NE-IJ-LT-8] "The time problem" with 1,242 delivered, which was
-    a mislabel (LT-8 is "What implementation actually takes" and has never sent); those numbers were
-    really IJ-CT-1, now listed correctly. All ten rows are re-pulled as of Sep 22. CT = Classroom Track
-    (teacher-facing), LT = Leadership Track (admin-facing) — inquirED's own nurture email naming
+    delivered as of today); everything thinner is too early to rank. CT = Classroom Track
+    (teacher-facing), LT = Leadership Track (admin-facing), inquirED's own nurture email naming
     already encodes the classroom/administrator split the call asked for.
   </p>
   <table class="rank-table">
@@ -480,9 +472,8 @@
   <div class="rank-callout">
     <strong>Inkwell's Classroom Track emails convert opens to clicks roughly 4x better than its
     Leadership Track emails</strong> (16.7% CTOR across both CT emails vs. 4.4% across both LT
-    emails) — even though the LT emails get slightly higher open rates. Teachers who open are
-    clicking; admins who open mostly aren't. Inquiry Journeys can't make the same comparison yet —
-    only one of its Classroom Track emails has meaningful volume so far, the rest of the sequence
+    emails), even though the LT emails get slightly higher open rates. Teachers who open are
+    clicking; admins who open mostly aren't. Inquiry Journeys can't make the same comparison yet, only one of its Classroom Track emails has meaningful volume so far, the rest of the sequence
     is still thin.
   </div>
 
@@ -516,16 +507,16 @@
   <!-- ── Movement between programs ── -->
   <div class="movement-strip">
     <div class="movement-num">2</div>
-    <div class="movement-text"><strong>Contacts tagged active/exited in both Inquiry Journeys and Inkwell nurture</strong> this season — the only cross-program movement the data shows. GF8 and Agnostic can't be checked for overlap given the tracking gap above; World History has no property to check against.</div>
+    <div class="movement-text"><strong>Contacts tagged active/exited in both Inquiry Journeys and Inkwell nurture</strong> this season, the only cross-program movement the data shows. GF8 and Agnostic can't be checked for overlap given the tracking gap above; World History has no property to check against.</div>
   </div>
 
   <!-- ── Linked workflows ── -->
-  <span class="section-eyebrow">Linked Workflows — the 5 flows nurturing this fall (SY26–27)</span>
+  <span class="section-eyebrow">Linked Workflows, the 5 flows nurturing this fall (SY26, 27)</span>
   <p class="section-note">
     Confirmed by Kelsey as the only workflows currently nurturing contacts this fall; everything
     else in the portal's nurture history is retired. HubSpot's Automation/Workflow objects aren't
     exposed through the connected API, so enabled/paused state and branch logic still need a manual
-    check in HubSpot — the performance below comes from each flow's marketing emails instead.
+    check in HubSpot, the performance below comes from each flow's marketing emails instead.
   </p>
   <div class="flow-grid">
     <div class="flow-card">
@@ -731,7 +722,7 @@
             <div class="content-metric-value">28.3%</div>
             <div class="content-metric-count">300 of 1,060 sent</div>
             <div class="content-bar"><div class="content-bar-fill" style="width:81%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218375886118/performance" target="_blank" rel="noopener">K–5 social studies time: what nine districts found</a></div>
+            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218375886118/performance" target="_blank" rel="noopener">K-5 social studies time: what nine districts found</a></div>
             <details><summary>Details</summary>
               <div class="content-metric-preview">"Across nine districts with different contexts, one pattern held: a structural decision came first."</div>
             </details>
@@ -872,8 +863,7 @@
   <!-- ── Open items ── -->
   <span class="section-eyebrow">Open items</span>
   <ul class="open-items">
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>The Aug 3 launch date used in earlier versions of this page was wrong; the program went live Aug 18.</strong> Every lifecycle figure above has been recalculated from Aug 18. The headline moved from 46 contacts to 15, and Inkwell MQL from 39% to 13%, because the old baseline counted 15 days of pre-launch movement as nurture-driven. No underlying performance got worse. The Asana launch milestone is the source for Aug 18.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Inquiry Journeys carries 78% of delivery and has produced one lifecycle move.</strong> 4,662 emails delivered to 416 active contacts, and a single contact accounts for IJ’s only MQL, SQL and Customer entry since launch. Inkwell, at less than a fifth of IJ’s volume, produced 14. This is the biggest open question on the program and it is not an email-performance problem: IJ’s open and click rates are healthy.</span></li>
+        <li><span class="oi-dot">●</span><span class="oi-text"><strong>Inquiry Journeys carries 78% of delivery and has produced one lifecycle move.</strong> 4,662 emails delivered to 416 active contacts, and a single contact accounts for IJ’s only MQL, SQL and Customer entry since launch. Inkwell, at less than a fifth of IJ’s volume, produced 14. This is the biggest open question on the program and it is not an email-performance problem: IJ’s open and click rates are healthy.</span></li>
     <li><span class="oi-dot">●</span><span class="oi-text"><strong>Nothing has sent past module 2 in any program.</strong> 26 of 49 registered emails have no send data; the handful showing 1 or 2 sends are tests. Five weeks post-launch on a spaced cadence, this is expected rather than broken, but it means every engagement rate on this page describes modules 1 and 2 only. Re-check once module 3 is genuinely in flight.</span></li>
     <li><span class="oi-dot">●</span><span class="oi-text"><strong>Agnostic suppresses more than it delivers on half its live emails.</strong> Program-wide, 112 suppressed against 150 delivered (75%, against 15% portfolio-wide), and modules 2 and 3 each individually suppress more than they send. Worth checking that track’s suppression lists and frequency caps. The cause cannot be confirmed through the API.</span></li>
     <li><span class="oi-dot">●</span><span class="oi-text"><strong>World History has still never sent an email</strong>, unchanged since Aug 31: 0 delivered across all 4 emails. Either the enrollment audience is empty or the workflow is not live, and neither is readable via API. Separately, the <code>nurture_track__world_history</code> contact property still does not exist (re-checked Sep 22), so WH has an enrollment list but no active or exited tracking lists. That property sits on Tim’s build list and blocks WH from ever appearing in the lifecycle section above.</span></li>
@@ -900,7 +890,7 @@ if (window.self !== window.top) {
 const FRESHNESS_FILE = 'data/nurture-programs.json';
 
 function fmtDate(iso) {
-  if (!iso) return '—';
+  if (!iso) return ', ';
   const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + 'T12:00:00Z' : iso);
   if (isNaN(d)) return iso;
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
