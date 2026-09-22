@@ -1557,7 +1557,7 @@ function renderAccountPulse(d) {
 const SS_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY"};
 const SS_LABELS = {ij:"Inquiry Journeys", inkwell:"Inkwell", gf8:"Great First 8"};
 const SS_COLORS = {ij:"#144745", inkwell:"#5B5A9E", gf8:"#F99792"};
-const SS_TIER_LABELS = {act_now:"Act now", watch:"Watch", low_priority:"Low priority"};
+const SS_TIER_LABELS = {act_now:"High", watch:"Medium", low_priority:"Low"};
 const SS_TIER_MAP_OPACITY = {act_now:0.9, watch:0.45, low_priority:0.18};
 let SS_TOPO_CACHE = null;
 function ssLoadUsTopo() {
@@ -1940,9 +1940,9 @@ function renderStateSignal(d) {
       // One Marketing table, above Sales (swapped per Kelsey's call) — filtered to Act now +
       // Watch only (41 -> 14), sortable, drawer opens inline right below the clicked row.
       + '<div class="panel">'
-      + `<h3>Top states to work (Marketing) <span class="muted">(${fmtN(mktRows.length)} states, Act now + Watch only)</span></h3>`
+      + `<h3>Top states to work (Marketing) <span class="muted">(${fmtN(mktRows.length)} states, High + Medium priority only)</span></h3>`
       + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
-      + note('Sorted by a priority score (0-100) by default — see Methodology at the bottom of this tab for the full point breakdown and sources. Act now ≥56 pts, Watch 32-55, Low priority <32 (dropped from this table).')
+      + note('Sorted by a priority score (0-100) by default — see Methodology at the bottom of this tab for the full point breakdown and sources. High ≥56 pts, Medium 32-55, Low <32 (dropped from this table).')
       + '<div class="chiprow" style="margin:12px 0 10px">'
       + '<span class="meta-small" style="margin-right:6px">Sort:</span>'
       + `<button class="chip${ssSortMkt === 'score' ? ' on' : ''}" data-sort-mkt="score">Priority score</button>`
@@ -1974,14 +1974,14 @@ function renderStateSignal(d) {
 
       + sectionHdr('Methodology', '#5B5A9E')
       + '<div class="panel">'
-      + '<p style="font-size:13px;color:var(--ink);line-height:1.55;margin:0 0 14px">The <b>priority score</b> (0-100) ranks the 41 "States to watch" into Act now / Watch / Low priority tiers above. It only applies to that table — the 10 "Top states to work" are ranked simply by actionable-account count, no scoring needed there since HubSpot already tells you who to call. Recomputed by <code>scripts/score_watch_states.py</code> on every refresh; rebalanced 2026-09-22 to add the Starbridge Warm Signals ingredient.</p>'
+      + '<p style="font-size:13px;color:var(--ink);line-height:1.55;margin:0 0 14px">The <b>priority score</b> (0-100) ranks the 41 "States to watch" into High / Medium / Low priority tiers above. It only applies to that table — the 10 "Top states to work" are ranked simply by actionable-account count, no scoring needed there since HubSpot already tells you who to call. Recomputed by <code>scripts/score_watch_states.py</code> on every refresh; rebalanced 2026-09-22 to add the Starbridge Warm Signals ingredient.</p>'
       + '<table class="ss-dash"><thead><tr><th>Ingredient</th><th>Max</th><th>Tiers</th><th>Source &amp; how it\'s pulled</th></tr></thead><tbody>'
       + '<tr><td>Open RFP right now</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge RFP bridges (ELA/IJ/GF8), live via <code>listBridgeRows</code>, Status New or Saved only</td></tr>'
       + '<tr><td>Starbridge signal for upcoming adoption</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via <code>listBridgeRows</code>. Counted only if Meeting Score ≥10 and Status is New or Saved — anything scored lower or marked Not Interested is dropped before it reaches this table</td></tr>'
       + '<tr><td>Policy news recency</td><td style="text-align:right">20</td><td>≤6mo → 20 · ≤12mo → 16 · ≤24mo → 12 · ≤36mo → 8 · ≤60mo → 4 · older → 1</td><td>WebSearch, re-run roughly monthly (not every refresh) — every claim needs a real, dated source URL or it doesn\'t get a since-date at all</td></tr>'
       + '<tr><td>Existing HubSpot footprint</td><td style="text-align:right">20</td><td>20+ accounts → 20 · 12+ → 15 · 6+ → 10 · 3+ → 5 · fewer → 2</td><td>HubSpot portal 4451852 — MQA/Engaged company count, no sales contact in 60+ days</td></tr>'
       + '</tbody></table>'
-      + note('Tiers: Act now ≥56 pts · Watch 32-55 pts · Low priority <32 pts. A state only shows up in "States to watch" at all if it has a real, cited policy signal outside the top-10 sales states — no policy citation, no row, regardless of score.')
+      + note('Tiers: High priority ≥56 pts · Medium 32-55 pts · Low <32 pts. A state only shows up in "States to watch" at all if it has a real, cited policy signal outside the top-10 sales states — no policy citation, no row, regardless of score.')
       + note('Account-level matching (which specific district a Warm Signal belongs to, inside the state drill-downs above) uses an exact join: HubSpot\'s <code>starbridge_id</code> company property against the Starbridge bridge row\'s <code>buyerId</code> — not name/state fuzzy-matching.')
       + '</div>'
 
