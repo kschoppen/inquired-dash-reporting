@@ -228,6 +228,47 @@ This recomputes both fields and re-sorts `watch_states` by score descending.
 See the script's docstring for the scoring formula (RFP presence weighted
 heaviest, then policy recency, then existing HubSpot footprint).
 
+### Step 6 — Warm Signals refresh (board-meeting bridges, every run)
+
+Mirrors the `state-signal-refresh` skill's Step 3 — keep the two in sync if either changes.
+Separate from any Starbridge RFP pull: Warm Signals are board-meeting-derived buying signals
+(a district's own board minutes/LCAP/agenda), not posted RFPs.
+
+**Bridges** (`listBridges` to reconfirm current IDs): `[MASTER] Warm Signals (GFE) > 1.5k` →
+`gf8`, `[MASTER] Warm Signals (IJ) > 1.5k` → `ij`, `[MASTER] Warm Signals (Inkwell) > 1.5k` →
+`inkwell`.
+
+**Threshold:** `Status` in (`New`, `Saved`) AND the `Meeting Score and Relevance` column's
+`Meeting_Score` sub-field `>= 10`, displayed as-is (uncapped — don't normalize). Do not confuse
+`Meeting_Score` with the separate `Match Score`/`Match reasoning` column pair (bridge-scope
+confidence, not lead quality) — only `Meeting_Score` filters/displays here.
+
+**Filtering:** `Meeting_Score` lives in an object-typed column and can't be filtered
+server-side (confirmed — filters on it silently return 0 rows). Filter server-side on what you
+can (`Status` via `getBridgeColumnMetadata`'s real `columnId`, `Buyer State Code`, `Added to
+Bridge` for a recency cutoff) and apply the `Meeting_Score` cut client-side after fetching. Scope
+to the same 10 `top_states` + `watch_states` already in `top_states`/`watch_states` — never page
+through a full bridge (each holds ~4,000-10,500 rows).
+
+**No personal contact data** — `Contact Name - Document`/`Contact Name - Web` never get rendered
+on the dashboard, same no-PII convention as the rest of this tab.
+
+**Per-account matching:** HubSpot COMPANY `starbridge_id` = a bridge row's top-level `buyerId`
+(exact UUID match, not time-boxed to any window). Batch-fetch `starbridge_id` for the accounts
+already pulled in Step 3 above (`search_crm_objects`, `hs_object_id IN [...]`), then check which
+UUIDs appear as a qualifying row's `buyerId` (`listBridgeRows` filtered `buyerId Any [...]` per
+bridge, batched — never one call per account). Write the highest-scoring match onto that account
+as `warm_signal`.
+
+**Write:** `warm_signals_by_state[state]` (top 3-5 by score, sparse — only states with a real
+qualifying row, same convention as `starbridge_by_state`), `accounts_by_state[state][].warm_signal`
+for matched accounts, and `warm_signals_90d_total` (Status + `Added to Bridge` in the last 90
+days, `Meeting_Score >= 10`, counted across all three bridges — page through that bounded 90-day
+window since the score can't be filtered server-side, this is the one exception to "never page a
+full bridge" because the window itself is server-filtered and bounded). Append a `data_flags`
+line noting the pull date and that the KPI's 90-day window is a display scope decision, not a
+limit on what counts as a real signal (the per-account match above isn't time-boxed).
+
 ### Push
 
 Add `data/state-signal.json` to the `git add` list in PHASE 3's push step

@@ -1,7 +1,7 @@
 {
   "skill": "state-signal",
   "title": "State Signal (MQA)",
-  "updated": "2026-09-21",
+  "updated": "2026-09-22",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
   "cadence": "Weekly · Mondays (HubSpot numbers via DASH_ROUTINE.md PHASE 1.5); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
@@ -10,7 +10,8 @@
     "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",
     "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL — none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
     "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs — 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
-    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context — starting points for a rep to personalize, not finished copy."
+    "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context — starting points for a rep to personalize, not finished copy.",
+    "Warm Signals (Starbridge board-meeting bridges, added 2026-09-22): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped to rows Added to Bridge in the trailing 90 days (>= 2026-06-24) with Status New/Saved -- 3,104 rows in that window, of which only 11 clear the Meeting_Score >= 10 quality bar (score shown as-is, uncapped -- Starbridge's own scoring prompt is documented 1-10 but the raw AI output isn't bounded there in practice). Meeting Score (opportunity quality) is a different column from Match Score (bridge-scope confidence, 1-5ish) -- only Meeting Score is used for filtering/display here. Per-account matching used HubSpot COMPANY.starbridge_id = Starbridge buyerId (72 of the ~100 tracked MQA/Engaged accounts across the 10 top_states have a starbridge_id; only 1, Byram Hills High School/NY, currently clears the score>=10 bar) -- that lookup was NOT time-boxed, so it covers the full bridge history, not just 90 days. The remaining 10 qualifying rows are real board-meeting signal for districts outside the tracked MQA account list -- worth a look even though they haven't been cross-checked against full HubSpot company records. No personal contact data pulled into this dashboard from Warm Signals, per existing no-PII convention."
   ],
   "national_totals": {
     "qualified": 1836,
@@ -1221,7 +1222,23 @@
         "signal": null,
         "owner": "LJ Grab",
         "last_contacted": "2026-03-13",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5173275713"
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5173275713",
+        "warm_signal": {
+          "buyer": "Byram Hills Central School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Byram Hills School District Board Goals 2026-2027",
+          "relevance": [
+            "The Byram Hills Board of Education adopted 2026-27 goals that include preparing for a prekindergarten launch in 2028.",
+            "District planning for the launch includes studying research-informed prekindergarten curriculum and instruction.",
+            "The district plans to develop a prekindergarten curricular vision and create a scope-and-sequence.",
+            "The Board will determine the budgetary impact of the pre-K mandate while planning for providers, space, and future budgets."
+          ],
+          "talking_points": "**PreK Launch in 2028 – Early Curriculum Evaluation Phase**  \nByram Hills is actively planning its PreK program for a 2028 rollout. The board is currently studying research-informed curricula, developing a vision, and creating a scope-and-sequence. No curriculum has been selected yet, leaving the door open for early engagement.\n\n**Emphasis on Integrated, Knowledge-Building Learning**  \nThe district’s goals stress content-rich, cross-disciplinary learning—integrating literacy, science, and social-emotional development. This aligns directly with Great First Eight’s approach of building vocabulary and background knowledge through cohesive, connected instruction.\n\n**No Competing PreK Curriculum Adopted for 2026/27**  \nAs of now, there is no PreK curriculum adopted for the upcoming school year. The district is still in the research phase, so no competitor currently holds the PreK space. (K-5 literacy adoptions like Arts & Letters and UFLI exist, but not for PreK.)",
+          "status": "New",
+          "posted_date": "2026-09-15",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
       },
       {
         "id": 30357262519,
@@ -3194,5 +3211,198 @@
     "A state with both real policy signal AND an open Starbridge RFP is the strongest kind of watch-state — the RFP names a live, dated buying process; treat it as a hard deadline, not just a talking point.",
     "For a watch-state with an existing product relationship, frame the new product as an expansion tied to the existing renewal/adoption-cycle window — confirm that window with Sales/Customer Success before drafting.",
     "For a cold-start watch-state with no existing footprint, plan for a longer ramp — there's no warm relationship to open the door."
-  ]
+  ],
+  "warm_signals_by_state": {
+    "CA": {
+      "count": 7,
+      "by_product": {
+        "ij": 4,
+        "inkwell": 0,
+        "gf8": 3
+      },
+      "top": [
+        {
+          "buyer": "Cupertino Union School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Cupertino Union Elementary School District Local Control and Accountability Plan 2026-2027",
+          "relevance": [
+            "Cupertino Union School District reports that Transitional Kindergarten expansion is affecting its budget alongside the expiration of one-time COVID funds and loss of its local parcel tax.",
+            "The district’s “Welcome to TK Events” sign-ups increased from 404 in 2024-2025 to 687 in 2025-2026.",
+            "CUSD plans to adopt new mathematics instructional materials through teacher evaluation, piloting, and recommendations.",
+            "The mathematics adoption process includes initial professional development in 2026-2027, completion by the end of 2027-2028, and a $29,000 budget allocation."
+          ],
+          "talking_points": "**TK Expansion and Financial Strain**: Cupertino Union School District is expanding Transitional Kindergarten, but this coincides with the loss of a local parcel tax, expiration of one-time COVID funds, and approved staff reductions for 2026-27. This financial pressure makes cost-effective, comprehensive curriculum solutions essential.\n\n**Curriculum Adoption in Progress**: The district is currently undergoing a math curriculum adoption for 2026-27. However, no PreK/TK curriculum selection is referenced in the LCAP, leaving a gap for a knowledge-building, integrated curriculum like Great First Eight that addresses early learning holistically.\n\n**Alignment with District Priorities**: The LCAP emphasizes future-ready learning, Portrait of a Learner competencies, and whole-child development. A curriculum that builds vocabulary, background knowledge, and foundational skills across subjects directly supports these goals, aligning well with the district's strategic focus.",
+          "status": "New",
+          "posted_date": "2026-06-23",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        },
+        {
+          "buyer": "Glendale Unified School District",
+          "product": "ij",
+          "score": 10,
+          "meeting": "Glendale Unified School District Local Control and Accountability Plan 2026-2027",
+          "relevance": [
+            "Glendale Unified recently adopted K-8 social science instructional materials, with educators attending vendor presentations and participating in teacher-team selection.",
+            "Parent and guardian curriculum review committees continued meeting during 2025-2026 to provide input on elementary and secondary instructional-material adoptions.",
+            "The district identified culturally relevant curriculum emphasizing inclusion as a priority for its instructional program.",
+            "Glendale Unified also planned increased professional development to support implementation of academic standards.",
+            "The LCAP does not identify a timeline or commitment for the district’s next elementary social studies adoption."
+          ],
+          "talking_points": "**Curriculum Adoption Already In Place** – Glendale Unified has already adopted K-8 social science instructional materials for the 2026-2027 school year, indicating a competing curriculum has been selected.\n\n**Equity and Academic Gaps** – The LCAP prioritizes closing achievement gaps for English learners, low-income, and foster youth. Social science curricula must be culturally responsive and support accelerated learning for these student groups.\n\n**Complex Adoption & Review Process** – GUSD uses a rigorous vetting process with parent/guardian committees and library review to evaluate materials. Any new curriculum must align with strict local standards and community expectations, making entry challenging.",
+          "status": "New",
+          "posted_date": "2026-06-23",
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
+        },
+        {
+          "buyer": "Azusa Unified School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Azusa Unified School District Local Control and Accountability Plan 2026-2027",
+          "relevance": [
+            "Early childhood education programs include Transitional Kindergarten alignment to grades K–3 with a planned $1,533,716 allocation.",
+            "TK enrollment growth required balancing space and staffing while integrating new preschool and TK teachers into professional development.",
+            "District local TK assessment targets show 2026 math performance increasing to 86% for all students."
+          ],
+          "talking_points": "**Significant Investment in TK Expansion and K-3 Alignment**  \nAzusa USD allocates $1.53M in 2026-2027 for early childhood education, adding TK classrooms and aligning preschool/TK curriculum with grades K-3 to ensure smooth transitions. This creates a need for a comprehensive, knowledge-building curriculum that integrates literacy, math, science, and social studies.\n\n**Focus on Early Literacy and Math with Data-Driven Outcomes**  \nThe district tracks TK math proficiency (rising from 80% to 86%), underscoring a strong emphasis on measurable foundational skills. They invest in professional learning (SEAL) and instructional aides to reduce student-to-adult ratios, highlighting a need for content-rich, integrated curricula that maximize instructional time.\n\n**No Specific Competing Curriculum Identified**  \nThe LCAP does not name a commercial PreK/TK curriculum; instead, they rely on internal alignment and SEAL professional development. There is no evidence of an adopted competing product, leaving an open opportunity for Great First Eight to be presented as a cohesive, all-subject solution.",
+          "status": "New",
+          "posted_date": "2026-06-23",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        },
+        {
+          "buyer": "Carlsbad Unified School District",
+          "product": "ij",
+          "score": 10,
+          "meeting": "Carlsbad Unified School District Local Control and Accountability Plan 2026-2027",
+          "relevance": [
+            "Instructional materials action includes “new instructional materials in Science and Social Studies” for 2026–2027.",
+            "“Instructional materials” are funded with $1,693,703 under Goal 2 Action 2.3.",
+            "Goal 2 emphasizes standards-aligned materials, instruction, and technology in a safe environment."
+          ],
+          "talking_points": "**$1.7M Investment in New Science & Social Studies Materials**  \nCarlsbad Unified School District has allocated $1.7 million for new instructional materials in science and social studies for the 2026–2027 school year. This signals a competitive procurement process, and a competing curriculum may already be under consideration.\n\n**Focus on Equity and Unduplicated Student Support**  \nThe LCAP prioritizes improving outcomes for Long-Term English Learners and socioeconomically disadvantaged students, who show low performance in ELA, Math, and Science. The district seeks culturally responsive materials and professional development to close gaps.\n\n**Emphasis on Digital Resources and Teacher Training**  \nPlanned spending includes over $1.9M on digital hardware/software and $1.1M on instructional materials. With 96% of staff rating PD as relevant, the district values integrated digital solutions paired with robust teacher support.",
+          "status": "New",
+          "posted_date": "2026-06-01",
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
+        },
+        {
+          "buyer": "Cypress School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Cypress School District Local Control and Accountability Plan 2026-2027",
+          "relevance": [
+            "Full-day Transitional Kindergarten expansion planned for English learners, foster youth, and low-income students.",
+            "$1,117,167 budgeted for “Full Day Transitional Kindergarten and Kindergarten.”",
+            "TK program targets early literacy, numeracy, and integrated language development.",
+            "DRDP Benchmark Assessment data cited for TK/K program monitoring."
+          ],
+          "talking_points": "- **Full-Day TK Expansion with $1.1M Budget**: Cypress SD is investing heavily in full-day TK and Kindergarten (Action 1.8) to close early achievement gaps, particularly for English learners and low-income students. They seek a cohesive, content-rich curriculum that maximizes instructional time—an ideal entry point for Great First Eight.\n\n- **Persistent Achievement Gaps Drive Curriculum Need**: Despite progress, gaps persist in ELA and math for unduplicated pupils. The district’s focus on early literacy, numeracy, and language development signals a need for integrated, knowledge-building PreK/TK materials.\n\n- **No Single Competing Curriculum Identified for 2026/27**: The LCAP references multiple supplemental tools (Renaissance, Lexia, Heggerty) but no comprehensive, adopted PreK/TK core curriculum. This presents an opportunity for Great First Eight to fill the gap.",
+          "status": "New",
+          "posted_date": "2026-08-07",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
+      ]
+    },
+    "NY": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Byram Hills Central School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Byram Hills School District Board Goals 2026-2027",
+          "relevance": [
+            "The Byram Hills Board of Education adopted 2026-27 goals that include preparing for a prekindergarten launch in 2028.",
+            "District planning for the launch includes studying research-informed prekindergarten curriculum and instruction.",
+            "The district plans to develop a prekindergarten curricular vision and create a scope-and-sequence.",
+            "The Board will determine the budgetary impact of the pre-K mandate while planning for providers, space, and future budgets."
+          ],
+          "talking_points": "**PreK Launch in 2028 – Early Curriculum Evaluation Phase**  \nByram Hills is actively planning its PreK program for a 2028 rollout. The board is currently studying research-informed curricula, developing a vision, and creating a scope-and-sequence. No curriculum has been selected yet, leaving the door open for early engagement.\n\n**Emphasis on Integrated, Knowledge-Building Learning**  \nThe district’s goals stress content-rich, cross-disciplinary learning—integrating literacy, science, and social-emotional development. This aligns directly with Great First Eight’s approach of building vocabulary and background knowledge through cohesive, connected instruction.\n\n**No Competing PreK Curriculum Adopted for 2026/27**  \nAs of now, there is no PreK curriculum adopted for the upcoming school year. The district is still in the research phase, so no competitor currently holds the PreK space. (K-5 literacy adoptions like Arts & Letters and UFLI exist, but not for PreK.)",
+          "status": "New",
+          "posted_date": "2026-09-15",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
+      ]
+    },
+    "IL": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Oak Park Elementary School District 97",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Oak Park Board Of Education District 97 Regular Meeting",
+          "relevance": [
+            "Early childhood curricular pilots include \"Every Child Ready\" and \"Great First Eight\" for evaluation and recommendation.",
+            "Professional learning and evaluation of early childhood pilots are planned to lead to a recommendation.",
+            "Core Instruction and Curriculum reports include Responsive Classroom (K–5) and Bridges Math (K–5) updates."
+          ],
+          "talking_points": "**Active PreK/TK Curriculum Pilots**  \nOak Park SD 97 is currently piloting both *Every Child Ready* and *Great First Eight* for early childhood programs. Professional learning and formal evaluation of these pilots will drive a recommendation, signaling an active decision window where inquirED can showcase Great First Eight's integrated, knowledge-building approach.\n\n**Budget Pressures & Cost Sensitivity**  \nThe board reviewed an FY27 budget with intentional deficit spending, a 5% expense increase (health insurance, out-of-district tuition, capital improvements), and a focus on maintaining a balanced budget (138 reserve days). Cost-effectiveness and alignment with fiscal constraints will be key factors in curriculum adoption.\n\n**No Competing Adoption Yet**  \nNo competing PreK/TK curriculum has been formally selected for 2026/27. While *Every Child Ready* is a direct competitor in the pilot, the final choice remains pending. This open evaluation period presents a clear opportunity to differentiate Great First Eight's coherent, content-rich model.",
+          "status": "New",
+          "posted_date": "2026-08-11",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
+      ]
+    },
+    "OR": {
+      "count": 1,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Ashland School District 5",
+          "product": "ij",
+          "score": 10,
+          "meeting": "Ashland School Board Regular Session",
+          "relevance": [
+            "Ashland School Board initiated “core instructional materials” adoption for Social Science, targeting K-5 standards alignment.",
+            "Adoption initiation was justified for compliance with the Division 22 Corrective Action Plan.",
+            "Board materials cite improved equity, accessibility, and instructional consistency as adoption drivers."
+          ],
+          "talking_points": "**Curriculum Adoption Initiated**: Ashland SD 5 is initiating a core instructional materials adoption for Social Science at this meeting, driven by a Division 22 Corrective Action Plan and new Oregon standards. This opens a formal review process for new curriculum.\n\n**Structured Evaluation Process**: The district will form a curriculum committee to review data, develop criteria, and present materials for board and public feedback, with adoption expected by May 2027. This indicates a defined timeline for vendor engagement.\n\n**No Existing Competitor Selected**: No competing curriculum has been chosen for 2026/27. The district is starting fresh, providing an opportunity for new vendors. They emphasize equity, accessibility (UDL), and alignment with standards, and have funding available.",
+          "status": "New",
+          "posted_date": "2026-09-10",
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
+        }
+      ]
+    },
+    "AZ": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Tanque Verde Unified School District 13",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Tanque Verde Unified School District Governing Board Governing Board Meeting Minutes",
+          "relevance": [
+            "Tanque Verde Unified School District is planning a K-6 ELA curriculum adoption, with the formal process opening in January and final selections anticipated in spring.",
+            "The adoption timeline was reviewed during the district’s September 16, 2026 governing board meeting.",
+            "The State Board is expected to select an assessment provider for 2027-2028 and has issued a new RFP covering ELA, Math, and Science assessments."
+          ],
+          "talking_points": "**K-6 ELA Curriculum Adoption in Progress**  \nTVUSD is actively evaluating a new K-6 ELA curriculum; the formal adoption window opens in January with selections expected in spring. This is a current, time-sensitive procurement cycle.\n\n**State Accountability Shifts Impact Curriculum Choices**  \nStarting Fall 2027, bonus points will no longer factor into letter grades, and the state is launching a new RFP for ELA, Math, and Science assessments for 2027–28. These changes will likely drive curriculum alignment priorities, creating a need for standards-based, integrated solutions like Inkwell.\n\n**No Competing Curriculum Selected for 2026/27**  \nThe minutes contain no reference to any ELA curriculum already adopted or selected for the upcoming school year. The district is in the early evaluation stage, indicating an open opportunity for a K-2 core ELA program.",
+          "status": "New",
+          "posted_date": "2026-09-16",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        }
+      ]
+    }
+  },
+  "warm_signals_90d_total": 11
 }

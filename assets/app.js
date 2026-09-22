@@ -17,7 +17,7 @@ const TABS = [
       sources: ["HubSpot CRM (company + contact records)"] } },
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
     meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
-      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
+      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
     meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
@@ -1583,11 +1583,40 @@ function renderStateSignal(d) {
   const pastCampaigns = d.past_campaigns || [];
   const flags = d.data_flags || [];
 
+  const warmByState = d.warm_signals_by_state || {};
+
   const ssDot = (prod) => `<span class="ss-dot" style="background:${SS_COLORS[prod] || '#999'}"></span>${SS_LABELS[prod] || prod || '—'}`;
   const hsLink = (url, name) => `<a href="${url}" target="_blank" rel="noopener" class="hs-link">${name || '(unnamed record)'}</a>`;
   const metaSmall = (t) => `<span class="meta-small">${t}</span>`;
   const sectionHdr = (label, color) => `<div class="section-label" style="border-left:3px solid ${color};padding-left:8px">${label}</div>`;
   const srcLinks = (sources) => (sources || []).map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.title} ↗</a>`).join(' · ');
+
+  // Warm Signals (Starbridge board-meeting bridges) — shared rendering for a single entry
+  function warmEntryHtml(w) {
+    const statusClass = (w.status || '').toLowerCase();
+    const relevance = (w.relevance || []).map((r) => `<li>${r}</li>`).join('');
+    return `<div class="ss-warm-block">`
+      + `<div class="ss-warm-head"><span class="ss-warm-label">📋 Board meeting signal — ${SS_LABELS[w.product] || w.product}</span>`
+      + `<span class="ss-warm-score">Score ${w.score}</span></div>`
+      + `<div class="ss-warm-meeting">${w.meeting || ''}</div>`
+      + `<div class="ss-warm-date">${w.posted_date ? 'meeting posted ' + w.posted_date : ''} <span class="ss-warm-status ${statusClass}">${w.status}</span></div>`
+      + (relevance ? `<div class="ss-warm-sub">Summarized relevance</div><ul>${relevance}</ul>` : '')
+      + (w.talking_points ? `<div class="ss-warm-sub">Sales talking points</div><div class="ss-warm-talk">${w.talking_points}</div>` : '')
+      + `<div class="ss-warm-cite">Source: Starbridge bridge <code>${w.source_bridge}</code>, pulled live via listBridgeRows on 2026-09-22 (Status New/Saved, Meeting Score ≥ 10 — displayed as-is).</div>`
+      + `</div>`;
+  }
+
+  // The state-level "beyond accounts" Warm Signals block — only shows rows not already
+  // surfaced by an account-level match, so a state's drawer never repeats the same signal twice.
+  function warmStateBlockHtml(state, alreadyShownBuyers) {
+    const w = warmByState[state];
+    if (!w || !w.top || !w.top.length) return '';
+    const extra = w.top.filter((row) => !alreadyShownBuyers.has(row.buyer));
+    if (!extra.length) return '';
+    return `<div class="ss-warm-state-block"><div class="ss-wa-label">Board activity flagged via Warm Signals — ${extra.length} district${extra.length > 1 ? 's' : ''} not yet on the account list above</div>`
+      + extra.map(warmEntryHtml).join('')
+      + `</div>`;
+  }
 
   function draftEmail(acct, policy, product) {
     const prodLabel = SS_LABELS[product] || product;
@@ -1646,17 +1675,22 @@ function renderStateSignal(d) {
         + `<div class="ss-sc-item" style="color:var(--muted)">${policy.detail || ''}</div>`
         + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
     }
+    const shownBuyers = new Set();
     if (!accts.length) {
       html += '<p class="insight" style="margin:10px 16px">No account-level drill-down pulled for this state.</p>';
     } else {
       html += accts.map((a) => {
         const em = draftEmail(a, policy, s.product);
-        return `<details class="ss-drill"><summary>${a.name} — ${a.stage}, ${a.last_contacted ? 'no contact since ' + a.last_contacted : 'never contacted'}</summary>`
+        const warmBadge = a.warm_signal ? '<span class="ss-warm-badge">🔥 warm signal</span>' : '';
+        if (a.warm_signal) shownBuyers.add(a.warm_signal.buyer);
+        return `<details class="ss-drill"><summary>${a.name} — ${a.stage}, ${a.last_contacted ? 'no contact since ' + a.last_contacted : 'never contacted'}${warmBadge}</summary>`
           + `<div class="ss-contact-row">${hsLink(a.hs_url, 'HubSpot record')}<span class="ss-cwhy">${(a.segment || '—')} · ${a.owner} · ${a.signal || '(no signal recorded)'}</span></div>`
+          + (a.warm_signal ? warmEntryHtml(a.warm_signal) : '')
           + `<div class="ss-email-draft"><div class="ss-em-label">Drafted starting point — personalize before sending</div>`
           + `<div class="ss-em-subject">Subject: ${em.subject}</div><div class="ss-em-body">${em.body}</div></div></details>`;
       }).join('');
     }
+    html += warmStateBlockHtml(s.state, shownBuyers);
     return html;
   }
 
@@ -1671,6 +1705,7 @@ function renderStateSignal(d) {
         + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
         + '</div>';
     }
+    html += warmStateBlockHtml(s.state, new Set());
     html += `<div class="ss-watch-action"><div class="ss-wa-label">Existing HubSpot footprint</div>`
       + `<p style="margin:0;font-size:12.5px">${fmtN(s.qualified)} qualified / ${fmtN(s.actionable)} actionable accounts already in the CRM for ${s.state} — this reads as an expansion play (existing relationship to build on), not a cold start.</p></div>`;
     html += `<div class="ss-watch-action"><div class="ss-wa-label">Marketing action needed, before Sales has anyone to call on ${SS_LABELS[s.product]}</div><ol>`
@@ -1713,6 +1748,7 @@ function renderStateSignal(d) {
       + card('States with signal', fmtN(product === 'all' ? filteredTop.length : filteredTop.length), '', product === 'all' ? fmtN(nt.states_with_signal) + ' states have ≥1 qualified account nationally' : 'of ' + filteredTop.length + ' ranked for this product')
       + card('Qualified accounts', fmtN(product === 'all' ? nt.qualified : topQualified), '', product === 'all' ? 'MQA + Engaged, all states' : 'top-10 states shown for this product')
       + card('Actionable now', fmtN(product === 'all' ? nt.actionable : topActionable), '', 'no sales contact in 60+ days')
+      + card('Warm signals (90d)', fmtN(d.warm_signals_90d_total || 0), '', 'board-meeting rows, Status New/Saved, Meeting Score ≥10, added last 90 days — Starbridge, live pull 2026-09-22')
       + '</div>'
 
       + '<div class="grid2">'

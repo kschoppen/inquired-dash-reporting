@@ -695,3 +695,22 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .ss-tier-act_now { color: var(--down); background: rgba(179,38,30,0.12); border: 1px solid rgba(179,38,30,0.3); }
 .ss-tier-watch { color: #8a6d00; background: rgba(247,236,137,0.55); border: 1px solid rgba(197,168,0,0.4); }
 .ss-tier-low_priority { color: var(--muted); background: rgba(117,117,117,0.1); border: 1px solid rgba(117,117,117,0.25); }
+
+/* Warm Signals */
+.ss-warm-block { margin: 6px 10px 12px 20px; background: #FFF3F1; border: 1px solid #F5C3BE; border-radius: 10px; padding: 12px 14px; }
+.ss-warm-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.ss-warm-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: #C0392B; }
+.ss-warm-score { font-size: 11px; font-weight: 900; color: #fff; background: #C0392B; padding: 2px 9px; border-radius: 10px; white-space: nowrap; }
+.ss-warm-status { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 10px; border: 1px solid; white-space: nowrap; }
+.ss-warm-status.new { color: #0a7c4a; background: rgba(10,124,74,.08); border-color: rgba(10,124,74,.3); }
+.ss-warm-status.saved { color: var(--iq-dk-purple); background: rgba(28,38,96,.07); border-color: rgba(28,38,96,.25); }
+.ss-warm-meeting { font-weight: 700; font-size: 12.5px; color: var(--ink); margin-bottom: 2px; line-height: 1.4; }
+.ss-warm-date { font-size: 11px; color: var(--muted); margin-bottom: 9px; }
+.ss-warm-sub { font-size: 9.5px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: #8a4a3f; margin: 9px 0 4px; }
+.ss-warm-block ul { margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.55; color: #3a2420; }
+.ss-warm-block li { margin: 2px 0; }
+.ss-warm-talk { font-size: 12px; line-height: 1.55; color: #3a2420; white-space: pre-wrap; }
+.ss-warm-cite { margin-top: 8px; font-size: 10.5px; color: #8a5a52; }
+.ss-warm-state-block { margin: 6px 10px 10px 20px; background: #FFF3F1; border: 1px solid #F5C3BE; border-radius: 8px; padding: 10px 12px; }
+.ss-warm-state-block .ss-wa-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #C0392B; margin-bottom: 6px; }
+.ss-warm-badge { display: inline-block; background: rgba(192,57,43,0.12); color: #C0392B; border: 1px solid rgba(192,57,43,0.3); font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: .02em; vertical-align: middle; margin-left: 6px; white-space: nowrap; }
