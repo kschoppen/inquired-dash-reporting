@@ -648,7 +648,7 @@ tr.has-note td:first-child { background: rgba(180,83,9,0.06); }
 .ss-ai-summary .ss-ai-note { margin-top: 6px; font-size: 11px; color: var(--muted); }
 
 .ss-tilemap-wrap { width: 100%; }
-.ss-us-state { stroke: #fff; stroke-width: 1px; cursor: default; transition: fill-opacity .1s; }
+.ss-us-state { stroke: #fff; stroke-width: 1px; cursor: pointer; transition: fill-opacity .1s; }
 .ss-us-state:hover { stroke: var(--iq-dk-purple); stroke-width: 1.5px; }
 .ss-map-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; font-size: 11.5px; color: var(--muted); }
 .ss-map-legend .ss-lg-item { display: flex; align-items: center; gap: 5px; }
@@ -665,6 +665,9 @@ table.ss-dash tr.ss-rank:hover td { background: var(--iq-lt-green); }
 table.ss-dash tr.ss-rank td:first-child:before { content: "▸ "; color: var(--iq-green-dk); font-size: 11px; }
 table.ss-dash tr.ss-rank.open td:first-child:before { content: "▾ "; }
 table.ss-dash tr.ss-watch-row td:first-child:before { color: var(--iq-dk-purple); }
+table.ss-dash tr.ss-drawer-row { display: none; }
+table.ss-dash tr.ss-drawer-row.on { display: table-row; }
+table.ss-dash tr.ss-drawer-row td { padding: 0; border-bottom: 1px solid var(--line); text-align: left; }
 .ss-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 
 .ss-state-ctx { padding: 11px 20px 13px; background: var(--iq-lt-green); border-top: 1px solid var(--line); font-size: 12px; }

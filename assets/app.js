@@ -1575,6 +1575,8 @@ function ssLoadUsTopo() {
 function renderStateSignal(d) {
   charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
   let ssProduct = "all";
+  let ssSortMkt = "score"; // 'score' (priority score, desc) | 'alpha'
+  let ssSortSales = "actionable"; // 'actionable' (desc) | 'alpha'
 
   // Actioned / Not Interested triage decisions, keyed "STATE-product" (e.g. "CA-inkwell").
   // Fetched once per tab load from the Decisions Airtable (via a Netlify function proxy)
@@ -1722,7 +1724,10 @@ function renderStateSignal(d) {
 
   function usMapSvg(product, features) {
     const topSet = {}; topStates.forEach((s) => { topSet[s.state] = s; });
-    const watchSet = {}; watchStates.forEach((s) => { watchSet[s.state] = s; });
+    // Only states that actually render a row in the Marketing table right now (Act now / Watch
+    // tier) get highlighted — a Low priority watch state has no row below it, so it renders as
+    // "no signal yet" gray, same as any other state with nothing to show.
+    const watchSet = {}; watchStates.filter((s) => marketingTierOk(s.priority_tier)).forEach((s) => { watchSet[s.state] = s; });
     const paths = features.map((f) => {
       const top = topSet[f.abbr], watch = watchSet[f.abbr];
       let fill = "var(--line)", opacity = 1, title = f.name + ": no state policy signal identified yet";
@@ -1735,25 +1740,34 @@ function renderStateSignal(d) {
         title = `${f.name}: ${SS_TIER_LABELS[watch.priority_tier] || "state to watch"} (${SS_LABELS[watch.product]}) - signal since ${watch.since}, ${watch.actionable} actionable accounts already in HubSpot`
           + (watch.starbridge_open_rfps > 0 ? `, ${watch.starbridge_open_rfps} open Starbridge RFP${watch.starbridge_open_rfps > 1 ? "s" : ""}` : "");
       }
-      return `<path class="ss-us-state" d="${f.d}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></path>`;
+      return `<path class="ss-us-state" data-state="${f.abbr}" d="${f.d}" fill="${fill}" fill-opacity="${opacity}"><title>${title}</title></path>`;
     }).join("");
     return `<svg viewBox="0 0 960 600" style="width:100%;height:auto;display:block;">${paths}</svg>`;
   }
 
-  function topStatesTable(product) {
-    const rows = topStates.filter((s) => product === 'all' || s.product === product);
+  // A state only counts toward the Marketing table (and the map highlight) if it's Act now or
+  // Watch tier — Low priority is dropped from both, per the redesign (41 -> 14 rows).
+  function marketingTierOk(tier) { return tier === 'act_now' || tier === 'watch'; }
+  function marketingRows(product) {
+    return watchStates.filter((s) => (product === 'all' || s.product === product) && marketingTierOk(s.priority_tier));
+  }
+
+  function topStatesTable(product, sortMode) {
+    let rows = topStates.filter((s) => product === 'all' || s.product === product);
     if (!rows.length) return '<p class="insight">No state policy signal identified for this product yet.</p>';
-    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr>`).join('');
+    rows = rows.slice().sort((a, b) => sortMode === 'alpha' ? a.state.localeCompare(b.state) : b.actionable - a.actionable);
+    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="5"></td></tr>`).join('');
     return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th><th>Decision</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
   }
 
-  function watchStatesTable(product) {
-    const rows = watchStates.filter((s) => product === 'all' || s.product === product);
+  function watchStatesTable(product, sortMode) {
+    let rows = marketingRows(product);
     if (!rows.length) return '<p class="insight">No watch-list state identified for this product yet.</p>';
+    rows = rows.slice().sort((a, b) => sortMode === 'alpha' ? a.state.localeCompare(b.state) : b.priority_score - a.priority_score);
     const body = rows.map((s) => {
       const rfpBadge = s.starbridge_open_rfps > 0 ? `<span class="ss-rfp-badge">${s.starbridge_open_rfps} open RFP${s.starbridge_open_rfps > 1 ? 's' : ''}</span>` : '<span class="meta-small">—</span>';
       const tierBadge = s.priority_tier ? `<span class="ss-tier-badge ss-tier-${s.priority_tier}">${SS_TIER_LABELS[s.priority_tier] || s.priority_tier}</span>` : '<span class="meta-small">—</span>';
-      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr>`;
+      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="8"></td></tr>`;
     }).join('');
     return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th><th>Decision</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
   }
@@ -1817,10 +1831,74 @@ function renderStateSignal(d) {
     return `<table class="ss-dash" style="font-size:12.5px"><thead><tr><th style="text-align:left">State</th><th style="text-align:left">Product</th><th style="text-align:left">Campaign date</th><th style="text-align:left">Open rate</th><th style="text-align:left">CTR</th><th style="text-align:left">Deal metrics</th><th style="text-align:left">Key takeaways</th></tr></thead><tbody>${body}</tbody></table>`;
   }
 
+  // Opens/closes the inline drawer row directly beneath `row` (its very next sibling <tr>),
+  // reusing whichever detail-html builder + Decision panel belongs to that table. Shared by
+  // both a direct row click and a map click on the same state, so there is exactly one drawer
+  // per row no matter how you trigger it. Returns true if the drawer is now open.
+  function toggleRowDrawer(row, findRec, buildHtml, stateAttr) {
+    const tbody = row.closest('tbody');
+    const wasOpen = row.classList.contains('open');
+    tbody.querySelectorAll('tr.ss-rank').forEach((r) => r.classList.remove('open'));
+    tbody.querySelectorAll('tr.ss-drawer-row').forEach((r) => { r.classList.remove('on'); const c = r.querySelector('td'); if (c) c.innerHTML = ''; });
+    if (wasOpen) return false;
+    row.classList.add('open');
+    const st = row.getAttribute(stateAttr);
+    const pr = row.getAttribute('data-product');
+    const rec = findRec(st, pr);
+    const dr = row.nextElementSibling;
+    const td = dr.querySelector('td');
+    td.innerHTML = buildHtml(rec);
+    dr.classList.add('on');
+    wireDecisionPanel(td, rec.state, rec.product);
+    return true;
+  }
+
+  function wireTableDrawers(tbodyId, findRec, buildHtml, stateAttr) {
+    const tbody = document.getElementById(tbodyId);
+    if (!tbody) return;
+    tbody.querySelectorAll('tr.ss-rank').forEach((row) => {
+      row.addEventListener('click', () => toggleRowDrawer(row, findRec, buildHtml, stateAttr));
+    });
+  }
+
+  // Map click -> same shared drawer as clicking the row directly. If the clicked state has no
+  // row in either table right now (Low priority, or genuinely no signal), show an inline note
+  // instead of doing nothing.
+  function ssHandleMapClick(abbr) {
+    const infoBox = document.getElementById('ssMapInfo');
+    if (infoBox) infoBox.innerHTML = '';
+    const product = ssProduct;
+
+    const topRec = topStates.find((s) => s.state === abbr && (product === 'all' || s.product === product));
+    if (topRec) {
+      const row = document.querySelector(`#ssTopBody tr.ss-rank[data-state="${abbr}"][data-product="${topRec.product}"]`);
+      if (row) {
+        if (!row.classList.contains('open')) toggleRowDrawer(row, (st, pr) => topStates.find((s) => s.state === st && s.product === pr), stateDetailHtml, 'data-state');
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+
+    const watchRec = marketingRows(product).find((s) => s.state === abbr);
+    if (watchRec) {
+      const row = document.querySelector(`#ssWatchBody tr.ss-rank[data-wstate="${abbr}"][data-product="${watchRec.product}"]`);
+      if (row) {
+        if (!row.classList.contains('open')) toggleRowDrawer(row, (st, pr) => watchStates.find((s) => s.state === st && s.product === pr), watchDetailHtml, 'data-wstate');
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
+
+    const feat = (SS_TOPO_CACHE || []).find((f) => f.abbr === abbr);
+    const label = feat ? feat.name : abbr;
+    if (infoBox) infoBox.innerHTML = note(`No active signal for ${label} right now — see Methodology below for how a state qualifies.`);
+  }
+
   function renderBody(product) {
     ssProduct = product;
     const filteredTop = topStates.filter((s) => product === 'all' || s.product === product);
     const filteredWatch = watchStates.filter((s) => product === 'all' || s.product === product);
+    const mktRows = marketingRows(product);
     const topActionable = filteredTop.reduce((sum, s) => sum + s.actionable, 0);
     const topQualified = filteredTop.reduce((sum, s) => sum + s.qualified, 0);
     const ai = d.ai_summary;
@@ -1845,9 +1923,12 @@ function renderStateSignal(d) {
       + card('Warm signals (90d)', fmtN(d.warm_signals_90d_total || 0), '', 'board-meeting rows, Status New/Saved, Meeting Score ≥10, added last 90 days — Starbridge, live pull 2026-09-22')
       + '</div>'
 
-      + '<div class="grid2">'
-      + '<div class="panel"><h3>Where the signal is</h3>'
+      // Map, made prominent — full-width panel above the tables (Option 1: map as primary
+      // navigation tool), not squeezed into a grid2 half-column beside a table panel.
+      + '<div class="panel">'
+      + '<h3>Where the signal is <span class="muted">— click a state</span></h3>'
       + '<div class="ss-tilemap-wrap" id="ssMapWrap"><div class="loading">Loading map…</div></div>'
+      + '<div id="ssMapInfo"></div>'
       + '<div class="ss-map-legend">'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#144745"></span>Inquiry Journeys</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:#5B5A9E"></span>Inkwell</span>'
@@ -1855,26 +1936,31 @@ function renderStateSignal(d) {
       + '<span class="ss-lg-item"><span class="ss-lg-dot ss-lg-watch" style="background:#5B5A9E"></span>States to watch (darker = higher priority tier)</span>'
       + '<span class="ss-lg-item"><span class="ss-lg-dot" style="background:var(--line)"></span>No signal yet</span>'
       + '</div></div>'
-      + '<div class="panel">'
-      + '<h3>Top states to work (Sales) <span class="muted">(ranked by actionable)</span></h3>'
-      + topStatesTable(product)
-      + '<h3 style="margin-top:18px">Top states to work (Marketing) <span class="muted">(states to watch)</span></h3>'
-      + watchStatesTable(product)
-      + '</div></div>'
 
-      + sectionHdr('Full state × product detail', '#144745')
+      // One Marketing table, above Sales (swapped per Kelsey's call) — filtered to Act now +
+      // Watch only (41 -> 14), sortable, drawer opens inline right below the clicked row.
       + '<div class="panel">'
-      + note('Actionable = at MQA or Engaged stage, no logged sales contact (call/email/meeting) in 60+ days. Product = the state\'s real, cited policy signal — not yet which product a specific account cares about (see flags below). Click a state for its policy context, real accounts, and a draft outreach starting point.')
-      + topStatesTable(product).replace('id="ssTopBody"', 'id="ssTopBody2"')
-      + '<div id="ssTopDetails"></div>'
+      + `<h3>Top states to work (Marketing) <span class="muted">(${fmtN(mktRows.length)} states, Act now + Watch only)</span></h3>`
+      + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
+      + note('Sorted by a priority score (0-100) by default — see Methodology at the bottom of this tab for the full point breakdown and sources. Act now ≥56 pts, Watch 32-55, Low priority <32 (dropped from this table).')
+      + '<div class="chiprow" style="margin:12px 0 10px">'
+      + '<span class="meta-small" style="margin-right:6px">Sort:</span>'
+      + `<button class="chip${ssSortMkt === 'score' ? ' on' : ''}" data-sort-mkt="score">Priority score</button>`
+      + `<button class="chip${ssSortMkt === 'alpha' ? ' on' : ''}" data-sort-mkt="alpha">Alphabetical</button>`
+      + '</div>'
+      + watchStatesTable(product, ssSortMkt)
       + '</div>'
 
-      + sectionHdr('States to watch', '#1C2660')
+      // One Sales table, below Marketing — same treatment, real account-level drawer + Decision panel.
       + '<div class="panel">'
-      + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
-      + note('Sorted by a priority score (0-100) — see Methodology at the bottom of this tab for the full point breakdown and sources. Act now ≥56 pts, Watch 32-55, Low priority <32.')
-      + watchStatesTable(product).replace('id="ssWatchBody"', 'id="ssWatchBody2"')
-      + '<div id="ssWatchDetails"></div>'
+      + '<h3>Top states to work (Sales) <span class="muted">(ranked by actionable)</span></h3>'
+      + note('Actionable = at MQA or Engaged stage, no logged sales contact (call/email/meeting) in 60+ days. Product = the state\'s real, cited policy signal — not yet which product a specific account cares about (see flags below). Click a state for its policy context, real accounts, and a draft outreach starting point.')
+      + '<div class="chiprow" style="margin:12px 0 10px">'
+      + '<span class="meta-small" style="margin-right:6px">Sort:</span>'
+      + `<button class="chip${ssSortSales === 'actionable' ? ' on' : ''}" data-sort-sales="actionable">Actionable count</button>`
+      + `<button class="chip${ssSortSales === 'alpha' ? ' on' : ''}" data-sort-sales="alpha">Alphabetical</button>`
+      + '</div>'
+      + topStatesTable(product, ssSortSales)
       + '</div>'
 
       + sectionHdr('Past MQA campaigns', '#6a3e9a')
@@ -1902,46 +1988,22 @@ function renderStateSignal(d) {
       + `<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) + verified policy research (WebSearch, cited per state) + Starbridge (RFP and Warm Signals bridges, live) · ${d.cadence || ''}</p>`;
 
     document.querySelectorAll('[data-ssp]').forEach((btn) => btn.addEventListener('click', () => renderBody(btn.getAttribute('data-ssp'))));
+    document.querySelectorAll('[data-sort-mkt]').forEach((btn) => btn.addEventListener('click', () => { ssSortMkt = btn.getAttribute('data-sort-mkt'); renderBody(ssProduct); }));
+    document.querySelectorAll('[data-sort-sales]').forEach((btn) => btn.addEventListener('click', () => { ssSortSales = btn.getAttribute('data-sort-sales'); renderBody(ssProduct); }));
 
-    // wire the "Full state x product detail" table's own rows (ssTopBody2)
-    const topBody2 = document.getElementById('ssTopBody2');
-    if (topBody2) {
-      topBody2.querySelectorAll('tr').forEach((row) => {
-        row.addEventListener('click', () => {
-          const st = row.getAttribute('data-state');
-          const pr = row.getAttribute('data-product');
-          const open = row.classList.toggle('open');
-          const detailsBox = document.getElementById('ssTopDetails');
-          if (open) {
-            const rec = topStates.find((s) => s.state === st && s.product === pr);
-            detailsBox.innerHTML = stateDetailHtml(rec);
-            wireDecisionPanel(detailsBox, rec.state, rec.product);
-          } else { detailsBox.innerHTML = ''; }
-          topBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
-        });
-      });
-    }
-    const watchBody2 = document.getElementById('ssWatchBody2');
-    if (watchBody2) {
-      watchBody2.querySelectorAll('tr').forEach((row) => {
-        row.addEventListener('click', () => {
-          const st = row.getAttribute('data-wstate');
-          const pr = row.getAttribute('data-product');
-          const open = row.classList.toggle('open');
-          const detailsBox = document.getElementById('ssWatchDetails');
-          if (open) {
-            const rec = watchStates.find((s) => s.state === st && s.product === pr);
-            detailsBox.innerHTML = watchDetailHtml(rec);
-            wireDecisionPanel(detailsBox, rec.state, rec.product);
-          } else { detailsBox.innerHTML = ''; }
-          watchBody2.querySelectorAll('tr').forEach((r) => { if (r !== row) r.classList.remove('open'); });
-        });
-      });
-    }
+    // One table, one drawer, opening inline right below the clicked row — reuses the exact
+    // same detail-html + Decision panel the map click path uses.
+    wireTableDrawers('ssTopBody', (st, pr) => topStates.find((s) => s.state === st && s.product === pr), stateDetailHtml, 'data-state');
+    wireTableDrawers('ssWatchBody', (st, pr) => watchStates.find((s) => s.state === st && s.product === pr), watchDetailHtml, 'data-wstate');
 
     ssLoadUsTopo().then((features) => {
       const wrap = document.getElementById('ssMapWrap');
-      if (wrap) wrap.innerHTML = usMapSvg(product, features);
+      if (wrap) {
+        wrap.innerHTML = usMapSvg(product, features);
+        wrap.querySelectorAll('.ss-us-state[data-state]').forEach((path) => {
+          path.addEventListener('click', () => ssHandleMapClick(path.getAttribute('data-state')));
+        });
+      }
     }).catch(() => {
       const wrap = document.getElementById('ssMapWrap');
       if (wrap) wrap.innerHTML = '<p class="insight">Could not load the US map.</p>';
