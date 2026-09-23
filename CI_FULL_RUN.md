@@ -1,6 +1,7 @@
 # Competitive Intel Full Run — Routine Instructions
 
-Runs UNATTENDED on the 10th of every odd month (Jan, Mar, May, Jul, Sep, Nov), 10am ET.
+Runs UNATTENDED on the 10th of every odd month (Jan, Mar, May, Jul, Sep, Nov) at 14:00 UTC
+(10am EDT / 9am EST). Cloud routine `trig_01RJHYmJgqxWDud9KueHManw`.
 Complete ALL steps in order. NEVER ask questions. NEVER fabricate data — an unknown stays
 unknown. America/Detroit for all dates.
 
