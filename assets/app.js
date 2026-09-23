@@ -2055,11 +2055,11 @@ function nextRunLabel(cadence, lastRun) {
   return null; // use hardcoded meta.next for non-weekly tabs
 }
 
-function renderTabMeta(tab, lastRun) {
+function renderTabMeta(tab, lastRun, nextOverride) {
   const el = document.getElementById("tab-meta");
   if (!tab.meta) { el.hidden = true; } else {
     const { desc, cadence, next } = tab.meta;
-    const computedNext = nextRunLabel(cadence, lastRun) || next;
+    const computedNext = nextOverride || nextRunLabel(cadence, lastRun) || next;
     el.hidden = false;
     const lastRunFormatted = formatRunDate(lastRun);
     el.innerHTML = `
@@ -2093,7 +2093,7 @@ async function loadTab(tab) {
       try {
         const res = await fetch(tab.metaFile, { cache: "no-store" });
         const meta = await res.json();
-        renderTabMeta(tab, meta.updated || "—");
+        renderTabMeta(tab, meta.updated || "—", meta.next_full_run);
       } catch (e) { renderTabMeta(tab, "—"); }
     } else {
       renderTabMeta(tab, "—");

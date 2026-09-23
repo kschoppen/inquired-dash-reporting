@@ -337,8 +337,9 @@ Replace the entire keywords object with fresh data. `greatminds.org` covers both
 ### Part C — Stamp the refresh date (REQUIRED whenever Part A or B changed anything)
 
 Set `updated` in `data/competitive-intel.json` to today's date (`YYYY-MM-DD`). Leave `full_run`
-alone — that one belongs to the bi-monthly `competitive-intel` skill run, and the page shows
-the two separately.
+alone — that one belongs to the bi-monthly full run (its own routine, instructions in
+`CI_FULL_RUN.md`), and the page shows the two separately. The AI Overview block, stat tiles,
+and Strategic Opportunities also belong to the full run; don't rewrite them here.
 
 This is not optional bookkeeping. That field feeds the freshness strip on the page, the "Last
 Run" stamp on the dash tab banner, and the green "Current" / amber "N days old" pill. Skip it
