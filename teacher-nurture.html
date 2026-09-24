@@ -402,7 +402,7 @@ function renderFlows(reg, byCode, live) {
     const badge = !live ? `<span class="badge badge-pending">No live data</span>` : sending ? `<span class="badge badge-good">Sending</span>` : `<span class="badge badge-pending">Not sending yet</span>`;
     return `<div class="flow-card">
       <div class="flow-card-top"><div><div class="flow-name">${esc(f.name)}</div><div class="flow-id">Flow ${f.id} · ${f.emails.length} emails</div></div>${badge}</div>
-      <div class="flow-trigger">Starts when ${esc(f.trigger.charAt(0).toLowerCase() + f.trigger.slice(1))}</div>
+      <div class="flow-trigger">Starts when ${esc(f.trigger)}</div>
       <div class="flow-stats"><div>Sent<b>${n(t.sent)}</b></div><div>Open rate<b>${pct(t.openRate)}</b></div><div>Click rate<b>${pct(t.clickRate)}</b></div></div>
       <div class="flow-links" style="margin-top:.75rem"><a class="flow-open" href="https://us14.admin.mailchimp.com/customer-journey/builder?id=${f.id}" target="_blank" rel="noopener">Open in Mailchimp ›</a></div>
     </div>`;
