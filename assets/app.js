@@ -29,6 +29,10 @@ const TABS = [
     metaFile: "data/nurture-programs.json",
     meta: { desc: "HubSpot email nurture programs: linked workflows for status checks, plus send/open/click performance by track.", cadence: "On demand", next: "On demand",
       sources: ["HubSpot Marketing Email", "HubSpot CRM (lifecycle + nurture_track)", "Manually maintained workflow registry (data/nurture-workflows.json)"] } },
+  { id: "teacher-nurture", label: "Teacher Nurture", static: true,                      render: renderTeacherNurture,
+    metaFile: "data/teacher-nurture.json",
+    meta: { desc: "IJ Teacher Marketing Program in Mailchimp: teachers by phase, plus send/open/click performance for all six automation flows.", cadence: "Live on page load", next: "Always current",
+      sources: ["Mailchimp Marketing API (saved phase segments + flow email reports)", "Gainsight fields synced into Mailchimp (Phase Status, Activation Substate, Active User Flag)", "Flow registry (data/teacher-nurture.json)"] } },
   { id: "defs",       label: "Definitions",         data: "data/definitions.json",       render: renderDefinitions,
     meta: { desc: "Reference — how every metric, stage, segment, and product is defined in this dashboard.", cadence: "Updated as needed", next: "On metric change",
       sources: ["Static reference — maintained manually, no live data pull"] } },
@@ -2019,6 +2023,13 @@ function renderCompetitiveIntel() {
   const view = document.getElementById("view");
   view.style.cssText = "padding:0;max-width:none;margin:0;";
   view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
+}
+
+function renderTeacherNurture() {
+  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
+  const view = document.getElementById("view");
+  view.style.cssText = "padding:0;max-width:none;margin:0;";
+  view.innerHTML = `<iframe src="teacher-nurture.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Teacher Nurture"></iframe>`;
 }
 
 function renderNurturePrograms() {

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Nurture · inquirED</title>
+<style>
+  /* ── inquirED Brand Tokens (mirrors competitive-intel.html) ── */
+  :root {
+    --dg: #144745; --mg: #B1E0BB; --lg: #E4FBCE; --lp: #DAD0FF; --mp: #5B5A9E;
+    --dp: #1C2660; --yellow: #F7EC89; --pink: #F99792; --lb: #EAEEF5; --beige: #F6EFE7;
+    --grey-300: #CECECE; --grey-600: #757575; --grey-700: #515151; --black: #000000;
+    --paper: #FFFFFF; --paper-mid: var(--beige); --paper-deep: var(--lg);
+    --ink: var(--dg); --ink-mid: var(--grey-700); --ink-light: var(--grey-600);
+    --border: var(--grey-300); --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
+  }
+  :root[data-theme="light"], :root[data-theme="dark"], :root {
+    --paper: #FFFFFF; --paper-mid: #F6EFE7; --paper-deep: #E4FBCE;
+    --ink: #144745; --ink-mid: #515151; --ink-light: #757575;
+    --border: #CECECE; --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    background: var(--paper); color: var(--black);
+    font-family: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 1rem; line-height: 1.5; min-height: 100vh;
+  }
+  a { color: var(--mp); text-decoration: none; font-weight: 700; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--dg); outline-offset: 2px; }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--dg); color: #fff;
+    padding: 1.1rem 2rem; display: flex; align-items: center; gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .wordmark { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.01em; }
+  .wordmark span { font-weight: 400; opacity: 0.85; }
+  .header-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.25); }
+  .header-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .header-meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
+  .header-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
+  .header-value { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .header-right { margin-left: auto; }
+  .cadence-pill {
+    font-size: 0.65rem; background: rgba(177,224,187,0.15); border: 1px solid rgba(177,224,187,0.3);
+    color: rgba(177,224,187,0.85); padding: 0.2rem 0.65rem; border-radius: 24px;
+    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700;
+  }
+
+  .main { max-width: 1300px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+  .freshness-strip {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+    margin: -0.75rem 0 1.25rem; font-size: 0.72rem; color: var(--ink-mid);
+    font-variant-numeric: tabular-nums;
+  }
+  .freshness-strip .fr-label { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-light); }
+  .freshness-strip .fr-sep { width: 1px; height: 12px; background: var(--grey-300); }
+  .fr-pill { padding: 0.1rem 0.5rem; border-radius: 24px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+  .fr-pill.current { background: var(--mg); color: var(--dg); }
+  .fr-pill.stale { background: var(--yellow); color: #5A4A00; }
+
+  .section-eyebrow {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #144745; background: rgba(20,71,69,0.08); padding: 0.25rem 0.75rem;
+    border-radius: 10px; display: inline-block; margin-bottom: 1.25rem;
+  }
+  .section-note { font-size: 0.85rem; color: var(--ink-mid); margin: -0.75rem 0 1.25rem; max-width: 80ch; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+  .stat-tile {
+    background: var(--paper-mid); padding: 1.25rem 1.4rem; border-radius: 10px;
+    display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--border);
+  }
+  .stat-number { font-size: 2.2rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
+  .stat-number.accent { color: #5B5A9E; }
+  .stat-number.flag { color: #C0392B; }
+  .stat-label { font-size: 0.78rem; color: var(--ink-mid); line-height: 1.35; }
+  .stat-cap { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.1rem; }
+
+  .badge {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem; border-radius: 10px; font-weight: 700; display: inline-block;
+  }
+  .badge-good  { background: #B1E0BB; color: #144745; }
+  .badge-watch { background: #F7EC89; color: #5A4A00; }
+  .badge-flag  { background: #F99792; color: #6B0000; }
+  .badge-pending { background: var(--lb); color: var(--ink-mid); }
+
+  /* ── Workflow link cards ── */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .flow-card {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.15rem; box-shadow: 0 2px 6px var(--shadow); display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .flow-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .flow-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
+  .flow-id { font-size: 0.72rem; color: var(--ink-light); font-variant-numeric: tabular-nums; }
+  .flow-open { font-size: 0.8rem; }
+  .flow-links { display: flex; flex-direction: column; gap: 0.35rem; }
+  .flow-list-link { font-size: 0.78rem; color: var(--ink-mid); font-weight: 400; }
+  .flow-list-link a { font-weight: 700; }
+
+  /* ── Program cards ── */
+  .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .program-card {
+    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 2px 6px var(--shadow); overflow: hidden;
+  }
+  .program-card-top {
+    padding: 1rem 1.25rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  }
+  .program-name { font-weight: 700; color: #144745; font-size: 0.95rem; }
+  .program-body { padding: 1rem 1.25rem; }
+  .program-stats { display: flex; gap: 1.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .pstat { display: flex; flex-direction: column; }
+  .pstat-val { font-weight: 900; font-size: 1.15rem; color: #144745; font-variant-numeric: tabular-nums; }
+  .pstat-lbl { font-size: 0.68rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.04em; }
+  .program-note { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
+
+  /* ── Open items ── */
+  .open-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .open-items li {
+    background: var(--paper-mid); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--ink-mid); line-height: 1.5;
+    display: flex; gap: 0.65rem; align-items: flex-start;
+  }
+  .open-items .oi-dot { color: #C0392B; font-weight: 900; margin-top: 0.05rem; }
+  .open-items .oi-text { flex: 1; min-width: 0; }
+
+  /* ── Top performing content ── */
+  .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .content-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 2px 6px var(--shadow); overflow: hidden; }
+  .content-card-top {
+    padding: 0.85rem 1.15rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  }
+  .content-card-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
+  .content-body { padding: 0.9rem 0.9rem 1rem; }
+  .content-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .content-metric {
+    background: var(--paper-mid); border: 1px solid var(--border); border-top: 3px solid var(--border);
+    border-radius: 8px; padding: 0.65rem 0.7rem 0.75rem;
+  }
+  .content-metric.opened { border-top-color: #144745; }
+  .content-metric.clicked { border-top-color: #5B5A9E; }
+  .content-metric.exit { border-top-color: #C0392B; }
+  .content-metric.empty { opacity: 0.55; }
+  .content-metric-label {
+    font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;
+    color: var(--ink-light); margin-bottom: 0.3rem;
+  }
+  .content-metric-value { font-size: 1.45rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: #144745; }
+  .content-metric.clicked .content-metric-value { color: #5B5A9E; }
+  .content-metric.exit .content-metric-value { color: #C0392B; }
+  .content-metric-count { font-size: 0.66rem; color: var(--ink-light); margin-top: 0.15rem; }
+  .content-bar { height: 5px; border-radius: 4px; background: var(--border); overflow: hidden; margin: 0.5rem 0 0.55rem; }
+  .content-bar-fill { height: 100%; border-radius: 4px; background: #144745; }
+  .content-metric.clicked .content-bar-fill { background: #5B5A9E; }
+  .content-metric.exit .content-bar-fill { background: #C0392B; }
+  .content-metric-email { font-size: 0.68rem; font-weight: 700; line-height: 1.3; }
+  .content-metric-email a { color: inherit; }
+  .content-metric details { margin-top: 0.4rem; }
+  .content-metric summary { font-size: 0.62rem; color: var(--mp); cursor: pointer; font-weight: 700; }
+  .content-metric-preview { font-size: 0.68rem; color: var(--ink-mid); font-style: italic; margin: 0.35rem 0; }
+  .content-metric-cta { font-size: 0.68rem; color: var(--ink-mid); }
+  .content-metric-cta a { color: #5B5A9E; }
+  .content-metric-none { font-size: 0.85rem; color: var(--ink-light); font-weight: 700; }
+  .content-metric-none-sub { font-size: 0.64rem; color: var(--ink-light); margin-top: 0.25rem; line-height: 1.3; }
+  .content-empty-card { padding: 1.5rem 1.15rem; text-align: center; color: var(--ink-light); font-size: 0.85rem; font-style: italic; }
+  .content-scale-note { font-size: 0.68rem; color: var(--ink-light); margin: -0.9rem 0 1.25rem; }
+
+  .foot-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+
+  /* ── Intro / framing ── */
+  .intro-note {
+    font-size: 0.88rem; color: var(--ink-mid); line-height: 1.6; max-width: 90ch;
+    margin: -0.5rem 0 1.75rem; padding: 0.9rem 1.1rem; background: var(--paper-mid);
+    border-left: 3px solid #144745; border-radius: 6px;
+  }
+
+  /* ── Hero metric row (bigger tiles for the #1 metric) ── */
+  .hero-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
+  .hero-tile {
+    background: var(--paper); border: 1px solid var(--border); border-top: 4px solid #144745;
+    border-radius: 12px; padding: 1.4rem 1.5rem; box-shadow: 0 2px 8px var(--shadow);
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .hero-tile.accent { border-top-color: #5B5A9E; }
+  .hero-tile.flag { border-top-color: #C0392B; }
+  .hero-number { font-size: 2.6rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
+  .hero-tile.accent .hero-number { color: #5B5A9E; }
+  .hero-tile.flag .hero-number { color: #C0392B; }
+  .hero-label { font-size: 0.82rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .hero-sub { font-size: 0.74rem; color: var(--ink-light); line-height: 1.4; }
+
+  /* ── Coverage / methodology banner ── */
+  .coverage-banner {
+    background: var(--paper); border: 1px solid var(--border); border-left: 4px solid #F7EC89;
+    border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; display: flex; gap: 0.9rem; align-items: flex-start;
+  }
+  .coverage-banner .cb-icon { font-size: 1.1rem; line-height: 1.2; }
+  .coverage-banner .cb-body { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; }
+  .coverage-banner .cb-title { font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3rem; font-size: 0.85rem; }
+  .coverage-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-top: 0.85rem; }
+  .cov-chip { border-radius: 8px; padding: 0.55rem 0.7rem; text-align: center; border: 1px solid var(--border); }
+  .cov-chip.good { background: rgba(177,224,187,0.35); border-color: #B1E0BB; }
+  .cov-chip.bad { background: rgba(249,151,146,0.2); border-color: #F99792; }
+  .cov-chip-name { font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .cov-chip-val { font-size: 0.68rem; color: var(--ink-mid); margin-top: 0.15rem; }
+
+  /* ── Split bars (role / source breakdowns) ── */
+  .split-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .split-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; box-shadow: 0 2px 6px var(--shadow); }
+  .split-card-title { font-weight: 700; color: #144745; font-size: 0.92rem; margin-bottom: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
+  .split-card-title .n { font-size: 0.72rem; color: var(--ink-light); font-weight: 400; }
+  .bar-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.55rem; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label { flex: 0 0 128px; font-size: 0.76rem; color: var(--ink-mid); }
+  .bar-track { flex: 1; height: 16px; background: var(--paper-mid); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: #144745; }
+  .bar-fill.teacher { background: #5B5A9E; }
+  .bar-fill.other { background: #CECECE; }
+  .bar-val { flex: 0 0 76px; text-align: right; font-size: 0.76rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ── CTOR rank table ── */
+  .rank-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 0.6rem; }
+  .rank-table th {
+    text-align: left; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--ink-light); font-weight: 700; padding: 0.5rem 0.7rem; border-bottom: 2px solid var(--border);
+  }
+  .rank-table td { padding: 0.65rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .rank-table tr:last-child td { border-bottom: none; }
+  .rank-table .rt-subject { font-weight: 700; color: #144745; }
+  .rank-table .rt-subject a { color: inherit; }
+  .rank-table .rt-meta { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.15rem; }
+  .track-chip { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 8px; display: inline-block; }
+  .track-chip.ct { background: #DAD0FF; color: #1C2660; }
+  .track-chip.lt { background: #E4FBCE; color: #144745; }
+  .rank-table .rt-ctor { font-weight: 900; font-size: 0.98rem; color: #144745; font-variant-numeric: tabular-nums; text-align: right; }
+  .rank-table .rt-ctor.low { color: #C0392B; }
+  .rank-callout {
+    font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; background: var(--paper-mid);
+    border-radius: 8px; padding: 0.85rem 1.05rem; margin-top: 0.8rem;
+  }
+  .rank-callout strong { color: #144745; }
+
+  .movement-strip {
+    display: flex; align-items: center; gap: 1rem; background: var(--paper); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; box-shadow: 0 2px 6px var(--shadow);
+  }
+  .movement-num { font-size: 1.8rem; font-weight: 900; color: #5B5A9E; font-variant-numeric: tabular-nums; }
+  .movement-text { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .hero-row, .split-section, .coverage-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+<style>
+  .phase-bar { display: flex; height: 44px; border-radius: 6px; overflow: hidden; gap: 2px; background: var(--paper); margin: 0.5rem 0 0.75rem; }
+  .phase-seg { position: relative; min-width: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; font-variant-numeric: tabular-nums; cursor: default; }
+  .phase-seg:first-child { border-radius: 4px 0 0 4px; } .phase-seg:last-child { border-radius: 0 4px 4px 0; }
+  .phase-seg .seg-lbl { padding: 0 0.4rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ph-awareness { background: #DCEBE8; color: #144745; } .ph-discovery { background: #8DB4AF; color: #0B2B2A; }
+  .ph-adopt { background: #4B7774; color: #fff; } .ph-sustained { background: #144745; color: #fff; }
+  .ph-holding { background: repeating-linear-gradient(135deg, #D6D6D6 0 6px, #C4C4C4 6px 12px); color: #333; }
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--ink-mid); margin-bottom: 1rem; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 0.35rem; vertical-align: -1px; }
+  .tip { position: fixed; pointer-events: none; background: #144745; color: #fff; font-size: 0.75rem; padding: 0.45rem 0.6rem; border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.18); display: none; z-index: 20; max-width: 260px; }
+  table.tn { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 2.5rem; }
+  table.tn th { text-align: left; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-light); font-weight: 700; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); }
+  table.tn td { padding: 0.55rem 0.6rem; border-bottom: 1px solid #EEE; vertical-align: top; font-variant-numeric: tabular-nums; }
+  table.tn td.num, table.tn th.num { text-align: right; }
+  table.tn tr.flow-row td { background: var(--paper-mid); font-weight: 700; color: #144745; }
+  .muted { color: var(--ink-light); }
+  .empty-card { border: 1px dashed var(--border-mid); border-radius: 10px; padding: 1.25rem 1.4rem; color: var(--ink-mid); font-size: 0.88rem; margin-bottom: 2.5rem; background: #FCFCFB; }
+  .empty-card b { color: #144745; }
+  .flow-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-top: 0.75rem; }
+  .flow-stats div { font-size: 0.68rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.06em; }
+  .flow-stats b { display: block; font-size: 1.05rem; color: #144745; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+  .flow-trigger { font-size: 0.78rem; color: var(--ink-mid); margin-top: 0.35rem; }
+  .err { background: #FFF1F0; border: 1px solid #F99792; color: #6B0000; padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .oi-dot.amber { color: #B8860B; } .oi-dot.grey { color: var(--ink-light); }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wordmark">inquirED <span>/ Teacher Nurture</span></div>
+  <div class="header-divider"></div>
+  <div class="header-meta">
+    <div class="header-meta-item"><span class="header-label">Last pulled</span><span class="header-value" id="h-pulled">loading…</span></div>
+    <div class="header-meta-item"><span class="header-label">Flows sending</span><span class="header-value" id="h-live">…</span></div>
+    <div class="header-meta-item"><span class="header-label">Platform</span><span class="header-value">Mailchimp</span></div>
+  </div>
+  <div class="header-right"><span class="cadence-pill">Live on page load</span></div>
+</header>
+
+<main class="main">
+  <div class="freshness-strip">
+    <span class="fr-label">Source</span>
+    <span>Mailchimp Marketing API (audience 20beb95bf5) via the dash's own Netlify function. Phase counts come from Gainsight fields synced into Mailchimp.</span>
+  </div>
+  <div id="err"></div>
+
+  <div class="section-eyebrow">Where teachers are, the top metric</div>
+  <p class="section-note">Inquiry Journeys teachers in Medium, Large and Enterprise districts, by the Phase Status and Activation Substate Gainsight syncs into Mailchimp. The goal of the program is to move teachers left to right.</p>
+  <div id="phase-block"></div>
+
+  <div class="section-eyebrow">Flows</div>
+  <p class="section-note" id="flow-note">Six Mailchimp automation flows. Each card links to the flow in Mailchimp.</p>
+  <div class="flow-grid" id="flow-grid"></div>
+
+  <div class="section-eyebrow">Email performance</div>
+  <p class="section-note">Every email in the program, grouped by flow. Open and click rates come from Mailchimp's report for each flow step.</p>
+  <div id="email-block"></div>
+
+  <div class="section-eyebrow">Open items</div>
+  <ul class="open-items" id="open-items"></ul>
+</main>
+<div class="tip" id="tip"></div>
+
+<script>
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const n = (v) => v == null ? "—" : Number(v).toLocaleString("en-US");
+const pct = (v) => v == null ? "—" : (v * 100).toFixed(1) + "%";
+const tip = document.getElementById("tip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block"; tip.style.left = Math.min(e.clientX + 12, innerWidth - 280) + "px"; tip.style.top = (e.clientY + 14) + "px"; }
+function hideTip() { tip.style.display = "none"; }
+
+async function load() {
+  const reg = await (await fetch("data/teacher-nurture.json", { cache: "no-store" })).json();
+  let live = null, liveErr = null;
+  try {
+    const r = await fetch("/api/teacher-nurture", { cache: "no-store" });
+    live = await r.json();
+    if (!live.ok) { liveErr = live.error || "Mailchimp request failed"; live = null; }
+  } catch (e) { liveErr = "Couldn't reach /api/teacher-nurture (" + e.message + ")"; }
+  if (liveErr) document.getElementById("err").innerHTML = `<div class="err"><b>Live data unavailable.</b> ${esc(liveErr)} The flow and email lists below are from the registry only.</div>`;
+  document.getElementById("h-pulled").textContent = live ? new Date(live.fetched_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "not available";
+  renderPhases(reg, live);
+  const byCode = {};
+  (live && live.emails || []).forEach((e) => { (byCode[e.code] = byCode[e.code] || []).push(e); });
+  renderFlows(reg, byCode, live);
+  renderEmails(reg, byCode, live);
+  renderOpen(reg, live);
+}
+
+function renderPhases(reg, live) {
+  const el = document.getElementById("phase-block");
+  const ph = live && live.phases || {};
+  if (!live || !Object.keys(ph).length) {
+    el.innerHTML = `<div class="empty-card"><b>Phase segments aren't set up yet.</b> The page reads teacher counts from saved Mailchimp segments (names starting with <code>${esc(reg.segment_prefix)}</code>). They get created once through the function's setup call.</div>`;
+    return;
+  }
+  const rows = reg.phases.map((p) => ({ ...p, count: ph[p.key] ? ph[p.key].count : null }));
+  const total = rows.reduce((a, r) => a + (r.count || 0), 0);
+  const elig = ph.eligible ? ph.eligible.count : null, active = ph.active_users ? ph.active_users.count : null;
+  const unphased = elig != null ? Math.max(0, elig - total) : null;
+  const activated = (ph.adopt ? ph.adopt.count : 0) + (ph.sustained ? ph.sustained.count : 0);
+  const tile = (num, label, cap, cls = "") => `<div class="stat-tile"><div class="stat-number ${cls}">${num}</div><div class="stat-label">${label}</div>${cap ? `<div class="stat-cap">${cap}</div>` : ""}</div>`;
+  const share = (v) => total ? Math.round(v / total * 100) + "% of phased teachers" : "";
+  el.innerHTML = `
+    <div class="stat-row">
+      ${tile(n(elig), "Eligible IJ teachers", "Medium, Large, Enterprise districts in the audience")}
+      ${tile(n(total), "Have a phase", unphased != null ? n(unphased) + " eligible teachers have no Phase Status yet" : "")}
+      ${tile(n(activated), "In Activation", share(activated), "accent")}
+      ${tile(n(active), "Active Users", "Active User Flag is TRUE")}
+    </div>
+    <div class="phase-bar" role="img" aria-label="Teachers by phase">
+      ${rows.map((r) => r.count ? `<div class="phase-seg ph-${r.key}" style="flex:${r.count}" data-k="${r.key}"><span class="seg-lbl">${r.count / total >= 0.07 ? n(r.count) : ""}</span></div>` : "").join("")}
+    </div>
+    <div class="legend">${rows.map((r) => `<span><i class="ph-${r.key}"></i>${esc(r.label)}</span>`).join("")}</div>
+    <table class="tn"><thead><tr><th>Phase</th><th>What it means</th><th class="num">Teachers</th><th class="num">Share</th></tr></thead>
+      <tbody>${rows.map((r) => `<tr><td><b>${esc(r.label)}</b></td><td class="muted">${esc(r.desc)}</td><td class="num">${n(r.count)}</td><td class="num">${r.count != null && total ? Math.round(r.count / total * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table>`;
+  el.querySelectorAll(".phase-seg").forEach((s) => {
+    const r = rows.find((x) => x.key === s.dataset.k);
+    s.addEventListener("mousemove", (e) => showTip(e, `<b>${esc(r.label)}</b><br>${n(r.count)} teachers · ${Math.round(r.count / total * 100)}%<br><span style="opacity:.8">${esc(r.desc)}</span>`));
+    s.addEventListener("mouseleave", hideTip);
+  });
+}
+
+function flowTotals(f, byCode) {
+  const ems = f.emails.flatMap((c) => byCode[c] || []);
+  const sent = ems.reduce((a, e) => a + (e.sent || 0), 0);
+  const opens = ems.reduce((a, e) => a + (e.opens || 0), 0), clicks = ems.reduce((a, e) => a + (e.clicks || 0), 0);
+  const statuses = [...new Set(ems.map((e) => e.status))];
+  return { ems, sent, openRate: sent ? opens / sent : null, clickRate: sent ? clicks / sent : null, statuses };
+}
+
+function renderFlows(reg, byCode, live) {
+  let liveCount = 0;
+  document.getElementById("flow-grid").innerHTML = reg.flows.map((f) => {
+    const t = flowTotals(f, byCode);
+    const sending = t.sent > 0 || t.statuses.some((s) => /sending|active|sent/i.test(s));
+    if (sending) liveCount++;
+    const badge = !live ? `<span class="badge badge-pending">No live data</span>` : sending ? `<span class="badge badge-good">Sending</span>` : `<span class="badge badge-pending">Not sending yet</span>`;
+    return `<div class="flow-card">
+      <div class="flow-card-top"><div><div class="flow-name">${esc(f.name)}</div><div class="flow-id">Flow ${f.id} · ${f.emails.length} emails</div></div>${badge}</div>
+      <div class="flow-trigger">Starts when ${esc(f.trigger.charAt(0).toLowerCase() + f.trigger.slice(1))}</div>
+      <div class="flow-stats"><div>Sent<b>${n(t.sent)}</b></div><div>Open rate<b>${pct(t.openRate)}</b></div><div>Click rate<b>${pct(t.clickRate)}</b></div></div>
+      <div class="flow-links" style="margin-top:.75rem"><a class="flow-open" href="https://us14.admin.mailchimp.com/customer-journey/builder?id=${f.id}" target="_blank" rel="noopener">Open in Mailchimp ›</a></div>
+    </div>`;
+  }).join("");
+  document.getElementById("h-live").textContent = live ? `${liveCount} of ${reg.flows.length}` : "—";
+}
+
+function renderEmails(reg, byCode, live) {
+  const rows = reg.flows.map((f) => {
+    const head = `<tr class="flow-row"><td colspan="6">${esc(f.name)}</td></tr>`;
+    const body = f.emails.map((c) => {
+      const list = byCode[c] || [];
+      if (!list.length) return `<tr><td><b>${esc(c)}</b></td><td class="muted">${live ? "Not found in Mailchimp reports yet" : "—"}</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>`;
+      // An email can appear more than once in a flow (e.g. T3 on both grade paths): sum them.
+      const sent = list.reduce((a, e) => a + (e.sent || 0), 0), opens = list.reduce((a, e) => a + (e.opens || 0), 0), clicks = list.reduce((a, e) => a + (e.clicks || 0), 0);
+      const unsubs = list.some((e) => e.unsubs != null) ? list.reduce((a, e) => a + (e.unsubs || 0), 0) : null;
+      const flag = sent >= 50 && unsubs != null && unsubs / sent > 0.01 ? ` <span class="badge badge-flag">Unsubs over 1%</span>` : "";
+      return `<tr><td><b>${esc(c)}</b>${list.length > 1 ? ` <span class="muted">×${list.length}</span>` : ""}</td><td>${esc(list[0].subject)}${flag}</td><td class="num">${n(sent)}</td><td class="num">${sent ? pct(opens / sent) : "—"}</td><td class="num">${sent ? pct(clicks / sent) : "—"}</td><td class="num">${n(unsubs)}</td></tr>`;
+    }).join("");
+    return head + body;
+  }).join("");
+  document.getElementById("email-block").innerHTML = `<table class="tn"><thead><tr><th>Email</th><th>Subject</th><th class="num">Sent</th><th class="num">Open rate</th><th class="num">Click rate</th><th class="num">Unsubs</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderOpen(reg, live) {
+  const items = [...reg.open_items];
+  if (!reg.launch_date) items.unshift({ level: "grey", text: reg.launch_note });
+  if (live && live.segments_missing && live.segments_missing.length) items.unshift({ level: "amber", text: `${live.segments_missing.length} phase segments are missing in Mailchimp, so phase counts are incomplete.` });
+  document.getElementById("open-items").innerHTML = items.map((i) => `<li><span class="oi-dot ${i.level}">●</span><span class="oi-text">${esc(i.text)}</span></li>`).join("");
+}
+load();
+</script>
+</body>
+</html>
