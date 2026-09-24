@@ -395,7 +395,8 @@ function renderFlows(reg, byCode, live) {
   let liveCount = 0;
   document.getElementById("flow-grid").innerHTML = reg.flows.map((f) => {
     const t = flowTotals(f, byCode);
-    const sending = t.sent > 0 || t.statuses.some((s) => /sending|active|sent/i.test(s));
+    // Mailchimp reports every journey step as "sending" even while the flow is a draft, so only real sends count.
+    const sending = t.sent > 0;
     if (sending) liveCount++;
     const badge = !live ? `<span class="badge badge-pending">No live data</span>` : sending ? `<span class="badge badge-good">Sending</span>` : `<span class="badge badge-pending">Not sending yet</span>`;
     return `<div class="flow-card">
