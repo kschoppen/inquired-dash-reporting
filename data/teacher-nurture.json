@@ -11,28 +11,158 @@
   "eligible_filter": "Segment is Medium District, Large District, or Enterprise District",
   "segment_prefix": "[DYNAMIC] IJ Teacher Mktg _",
   "phases": [
-    { "key": "awareness", "label": "Awareness", "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Awareness _F26", "desc": "Oriented, no Inquiry Journeys activity yet" },
-    { "key": "discovery", "label": "Discovery", "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Discovery _F26", "desc": "First Inquiry Journeys activity" },
-    { "key": "adopt", "label": "Activation · Adopt", "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Activation Adopt _F26", "desc": "Taught a first lesson, not yet sustained" },
-    { "key": "sustained", "label": "Activation · Sustained", "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Activation Sustained _F26", "desc": "8+ active weeks, 2+ units, or a Gallery click" },
-    { "key": "holding", "label": "Holding", "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Holding _F26", "desc": "No activity 30 days after orientation" }
+    {
+      "key": "awareness",
+      "label": "Awareness",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Awareness _F26",
+      "desc": "Oriented, no Inquiry Journeys activity yet"
+    },
+    {
+      "key": "discovery",
+      "label": "Discovery",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Discovery _F26",
+      "desc": "First Inquiry Journeys activity"
+    },
+    {
+      "key": "adopt",
+      "label": "Activation · Adopt",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Activation Adopt _F26",
+      "desc": "Taught a first lesson, not yet sustained"
+    },
+    {
+      "key": "sustained",
+      "label": "Activation · Sustained",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Activation Sustained _F26",
+      "desc": "8+ active weeks, 2+ units, or a Gallery click"
+    },
+    {
+      "key": "holding",
+      "label": "Holding",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Phase Holding _F26",
+      "desc": "No activity 30 days after orientation"
+    }
   ],
   "extra_segments": [
-    { "key": "eligible", "label": "Eligible IJ teachers", "segment": "[DYNAMIC] IJ Teacher Mktg _Eligible _F26" },
-    { "key": "active_users", "label": "Active Users", "segment": "[DYNAMIC] IJ Teacher Mktg _Active User _F26" }
+    {
+      "key": "eligible",
+      "label": "Eligible IJ teachers",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Eligible _F26"
+    },
+    {
+      "key": "active_users",
+      "label": "Active Users",
+      "segment": "[DYNAMIC] IJ Teacher Mktg _Active User _F26"
+    }
   ],
   "flows": [
-    { "key": "awareness", "id": 5942, "name": "Awareness", "trigger": "Phase Status changes to Awareness", "emails": ["T1", "T2-K2", "T2-3-5", "T3"] },
-    { "key": "discovery", "id": 5943, "name": "Discovery", "trigger": "Phase Status changes to Discovery", "emails": ["T4", "T5-K2", "T5-3-5"] },
-    { "key": "activation", "id": 5944, "name": "Activation", "trigger": "Phase Status changes to Activation", "emails": ["T6-K2", "T6-3-5", "T7-K2", "T7-3-5", "T8"] },
-    { "key": "adopt", "id": 5947, "name": "Adopt", "trigger": "Active User Flag changes to TRUE", "emails": ["T9-K2", "T9-3-5", "T10", "T11", "T12", "T13-K2", "T13-3-5", "T14a", "T14b", "T15-K2", "T15-3-5", "T16", "T17", "T18", "T19", "T20"] },
-    { "key": "sustained", "id": 5945, "name": "Sustained", "trigger": "Activation Substate changes to Sustained", "emails": ["T21", "T22", "T23"] },
-    { "key": "holding", "id": 5946, "name": "Holding", "trigger": "Phase Status changes to Holding", "emails": ["H2", "H3"] }
+    {
+      "key": "awareness",
+      "id": 5942,
+      "name": "Awareness",
+      "trigger": "Phase Status changes to Awareness",
+      "emails": [
+        "T1",
+        "T2-K2",
+        "T2-3-5",
+        "T3"
+      ]
+    },
+    {
+      "key": "discovery",
+      "id": 5943,
+      "name": "Discovery",
+      "trigger": "Phase Status changes to Discovery",
+      "emails": [
+        "T4",
+        "T5-K2",
+        "T5-3-5"
+      ]
+    },
+    {
+      "key": "activation",
+      "id": 5944,
+      "name": "Activation",
+      "trigger": "Phase Status changes to Activation",
+      "emails": [
+        "T6-K2",
+        "T6-3-5",
+        "T7-K2",
+        "T7-3-5",
+        "T8"
+      ]
+    },
+    {
+      "key": "adopt",
+      "id": 5947,
+      "name": "Adopt",
+      "trigger": "Active User Flag changes to TRUE",
+      "emails": [
+        "T9-K2",
+        "T9-3-5",
+        "T10",
+        "T11",
+        "T12",
+        "T13-K2",
+        "T13-3-5",
+        "T14a",
+        "T14b",
+        "T15-K2",
+        "T15-3-5",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20"
+      ]
+    },
+    {
+      "key": "sustained",
+      "id": 5945,
+      "name": "Sustained",
+      "trigger": "Activation Substate changes to Sustained",
+      "emails": [
+        "T21",
+        "T22",
+        "T23"
+      ]
+    },
+    {
+      "key": "holding",
+      "id": 5946,
+      "name": "Holding",
+      "trigger": "Phase Status changes to Holding",
+      "emails": [
+        "H2",
+        "H3"
+      ]
+    }
   ],
   "open_items": [
-    { "level": "amber", "text": "T23 asks teachers to reply. Someone needs to watch the learn@inquired.com inbox before the Sustained flow goes live." },
-    { "level": "amber", "text": "T13-K2 and T13-3-5 link to a Google Slides /edit URL for the pacing models, which may ask outside teachers to request access." },
-    { "level": "amber", "text": "The 33 original campaign drafts are still addressed to all subscribed contacts (about 70k). The flows no longer depend on them, so they can be renamed DO NOT SEND or deleted." },
-    { "level": "grey", "text": "Several copy-doc 'verify before ship' flags remain open (T4 quote transcription, T12 Inquiry Challenge Statement naming, T19 gift link, T21 and H2 'free to join')." }
-  ]
+    {
+      "level": "amber",
+      "text": "Holding flow paused (Sep 24) until Gainsight's Holding logic requires an orientation date. Asked Jenn how the sync writes Phase Status and whether First IJ Activity can be backfilled before July 2026."
+    },
+    {
+      "level": "amber",
+      "text": "T23 asks teachers to reply. Someone needs to watch the learn@inquired.com inbox before the Sustained flow goes live."
+    },
+    {
+      "level": "amber",
+      "text": "T13-K2 and T13-3-5 link to a Google Slides /edit URL for the pacing models, which may ask outside teachers to request access."
+    },
+    {
+      "level": "amber",
+      "text": "The 33 original campaign drafts are still addressed to all subscribed contacts (about 70k). The flows no longer depend on them, so they can be renamed DO NOT SEND or deleted."
+    },
+    {
+      "level": "grey",
+      "text": "Several copy-doc 'verify before ship' flags remain open (T4 quote transcription, T12 Inquiry Challenge Statement naming, T19 gift link, T21 and H2 'free to join')."
+    }
+  ],
+  "data_quality": {
+    "level": "amber",
+    "phase": "holding",
+    "title": "Holding counts aren't reliable yet",
+    "text": "In a 1,000-teacher sample (Sep 24), only 3.5% of Holding teachers had an Orientation Complete Month and none had a First IJ Activity date, while 63% had logged in. Gainsight appears to place anyone it can't classify into Holding, including returning teachers who are using Inquiry Journeys. The Holding flow is paused and the question is with Jenn (RevOps). Treat the Holding and Eligible totals as upper bounds until the Gainsight logic is fixed."
+  }
 }

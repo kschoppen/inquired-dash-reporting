@@ -361,9 +361,10 @@ function renderPhases(reg, live) {
   const elig = ph.eligible ? ph.eligible.count : null, active = ph.active_users ? ph.active_users.count : null;
   const unphased = elig != null ? Math.max(0, elig - total) : null;
   const activated = (ph.adopt ? ph.adopt.count : 0) + (ph.sustained ? ph.sustained.count : 0);
+  const dq = reg.data_quality ? `<div class="err" style="background:#FFF8E1;border-color:#F7EC89;color:#5A4A00"><b>⚠ ${esc(reg.data_quality.title)}.</b> ${esc(reg.data_quality.text)}</div>` : "";
   const tile = (num, label, cap, cls = "") => `<div class="stat-tile"><div class="stat-number ${cls}">${num}</div><div class="stat-label">${label}</div>${cap ? `<div class="stat-cap">${cap}</div>` : ""}</div>`;
   const share = (v) => total ? Math.round(v / total * 100) + "% of phased teachers" : "";
-  el.innerHTML = `
+  el.innerHTML = dq + `
     <div class="stat-row">
       ${tile(n(elig), "Eligible IJ teachers", "Medium, Large, Enterprise districts in the audience")}
       ${tile(n(total), "Have a phase", unphased != null ? n(unphased) + " eligible teachers have no Phase Status yet" : "")}
@@ -375,7 +376,7 @@ function renderPhases(reg, live) {
     </div>
     <div class="legend">${rows.map((r) => `<span><i class="ph-${r.key}"></i>${esc(r.label)}</span>`).join("")}</div>
     <table class="tn"><thead><tr><th>Phase</th><th>What it means</th><th class="num">Teachers</th><th class="num">Share</th></tr></thead>
-      <tbody>${rows.map((r) => `<tr><td><b>${esc(r.label)}</b></td><td class="muted">${esc(r.desc)}</td><td class="num">${n(r.count)}</td><td class="num">${r.count != null && total ? Math.round(r.count / total * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table>`;
+      <tbody>${rows.map((r) => `<tr><td><b>${esc(r.label)}</b>${reg.data_quality && reg.data_quality.phase === r.key ? ' <span class="badge badge-watch">Data issue</span>' : ""}</td><td class="muted">${esc(r.desc)}</td><td class="num">${n(r.count)}</td><td class="num">${r.count != null && total ? Math.round(r.count / total * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table>`;
   el.querySelectorAll(".phase-seg").forEach((s) => {
     const r = rows.find((x) => x.key === s.dataset.k);
     s.addEventListener("mousemove", (e) => showTip(e, `<b>${esc(r.label)}</b><br>${n(r.count)} teachers · ${Math.round(r.count / total * 100)}%<br><span style="opacity:.8">${esc(r.desc)}</span>`));
