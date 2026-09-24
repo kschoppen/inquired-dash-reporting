@@ -6,8 +6,8 @@
   "platform": "Mailchimp",
   "audience_id": "20beb95bf5",
   "program": "IJ Teacher Marketing Program (F26)",
-  "launch_date": null,
-  "launch_note": "Flows were built and tested on 2026-09-24 and are still drafts. Set launch_date when the first flow is turned on, so 'since launch' figures measure from the real start.",
+  "launch_date": "2026-09-24",
+  "launch_note": "Flows turned on 2026-09-24 (Holding paused the same day pending the Gainsight fix).",
   "eligible_filter": "Segment is Medium District, Large District, or Enterprise District",
   "segment_prefix": "[DYNAMIC] IJ Teacher Mktg _",
   "phases": [
