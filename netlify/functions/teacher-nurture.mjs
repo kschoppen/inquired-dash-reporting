@@ -74,6 +74,34 @@ export default async (req) => {
       return json({ ok: true, created, already: defs.length - created.length });
     }
 
+    // Diagnostic: ?diag=<phase key> samples up to 1,000 members of that phase segment and returns
+    // aggregate field distributions only (no names, emails, or IDs), to sanity-check Gainsight data.
+    const diag = url.searchParams.get("diag");
+    if (diag) {
+      const d = defs.find((x) => x.key === diag);
+      const s = d && existing.get(d.name);
+      if (!s) return json({ ok: false, error: "Unknown or missing segment for diag=" + diag }, 400);
+      const m = await mc(`/lists/${AUDIENCE_ID}/segments/${s.id}/members?count=1000&fields=members.merge_fields,members.status,total_items`);
+      const tally = {};
+      const bump = (k, v) => { tally[k] = tally[k] || {}; tally[k][v] = (tally[k][v] || 0) + 1; };
+      const dateish = /Date|Month|Activity|Login/i;
+      const labels = { MMERGE3: "Segment", MMERGE45: "Phase Status", MMERGE48: "Activation Substate", MMERGE26: "Active User Flag",
+        MMERGE46: "Gainsight Company Status", MMERGE44: "Roster Method", MMERGE49: "No IJ Activity 30 Days Post-Orientation",
+        MMERGE32: "Curriculum Opened", MMERGE42: "Implementation Leader", MMERGE43: "School Leader",
+        ORIENTMONT: "Orientation Complete Month", "1STIJACTIV": "First IJ Activity", ACCOUNTCLM: "Account Claim Date", LASTLOGIN: "Last Login",
+        GRADEK: "Grade K", GRADE1: "Grade 1", GRADE2: "Grade 2", GRADE3: "Grade 3", GRADE4: "Grade 4", GRADE5: "Grade 5" };
+      for (const mem of m.members || []) {
+        const f = mem.merge_fields || {};
+        for (const [tag, label] of Object.entries(labels)) {
+          const v = f[tag];
+          if (dateish.test(label)) bump(label, !v ? "(blank)" : String(v).slice(0, 7));
+          else bump(label, v === "" || v == null ? "(blank)" : String(v));
+        }
+        bump("Subscription status", mem.status);
+      }
+      return json({ ok: true, diag, segment_total: m.total_items, sampled: (m.members || []).length, tally });
+    }
+
     const phases = {};
     const missing = [];
     for (const d of defs) {
