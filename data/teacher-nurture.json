@@ -143,18 +143,6 @@
       "text": "Holding flow paused (Sep 24) until Gainsight's Holding logic requires an orientation date. Asked Jenn how the sync writes Phase Status and whether First IJ Activity can be backfilled before July 2026."
     },
     {
-      "level": "amber",
-      "text": "T23 asks teachers to reply. Someone needs to watch the learn@inquired.com inbox before the Sustained flow goes live."
-    },
-    {
-      "level": "amber",
-      "text": "T13-K2 and T13-3-5 link to a Google Slides /edit URL for the pacing models, which may ask outside teachers to request access."
-    },
-    {
-      "level": "amber",
-      "text": "The 33 original campaign drafts are still addressed to all subscribed contacts (about 70k). The flows no longer depend on them, so they can be renamed DO NOT SEND or deleted."
-    },
-    {
       "level": "grey",
       "text": "Several copy-doc 'verify before ship' flags remain open (T4 quote transcription, T12 Inquiry Challenge Statement naming, T19 gift link, T21 and H2 'free to join')."
     }
