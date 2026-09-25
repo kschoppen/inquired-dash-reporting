@@ -895,15 +895,19 @@ function renderWeekly(d) {
   // top converting pieces
   const pieces = last.top_pieces || null, ce = rdLatestCE(w);
   const piecesTbl = pieces && pieces.length
-    ? pieces.map((p) => `<tr><td><b>${p.tag}</b></td><td>${p.type || rdPieceType(p.tag)}</td><td>${p.product || rdPieceProd(p.tag)}</td><td><b>${fmtN(p.fills)}</b></td><td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td><td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`).join("")
+    ? pieces.map((p) => { const nm = p.offer || p.tag || "—"; return `<tr><td><b>${escapeHtml(nm)}</b></td><td>${p.type || rdPieceType(nm)}</td><td>${p.product || rdPieceProd(nm)}</td><td><b>${fmtN(p.fills)}</b></td><td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td><td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`; }).join("")
     : ((ce && ce.top_content_tags) || []).map((t) => `<tr><td><b>${t.tag}</b><span class="rd-rt">${fmtN(t.count)} running total</span></td><td>${rdPieceType(t.tag)}</td><td>${rdPieceProd(t.tag)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>`).join("");
 
   // open pipeline (active pipelines only; legacy District/School hidden)
-  const act = pipe.active || null;
+  // stage detail: prefer `active` (with weekly movement), else fall back to the plain by_stage counts
+  const bst = pipe.by_stage || {};
+  const act = pipe.active || (RD_PIPES.some(([k]) => (bst[k] || []).length) ? Object.fromEntries(RD_PIPES.map(([k]) => [k, { stages: bst[k] || [] }])) : null);
+  const hasMove = !!pipe.active;
+  const normStage = (n) => String(n || "").toLowerCase().replace(/[^a-z]/g, "");
   const stageRows = (p) => {
-    const byName = {}; ((p && p.stages) || []).forEach((s) => { byName[s.stage] = s; });
+    const byName = {}; ((p && p.stages) || []).forEach((s) => { byName[normStage(s.stage)] = s; });
     const cell = (s, k, fmt) => s && s[k] != null ? (fmt ? fmt(s[k]) : fmtN(s[k])) : "—";
-    const rows = RD_STAGES.map((n, i) => { const s = byName[n]; return `<tr${i === 0 ? ' class="untagged"' : ""}><td>${n}${i === 0 ? ' <span class="rd-pill">not pipeline</span>' : i === 1 ? ' <span class="rd-pill">pipeline starts</span>' : ""}</td><td>${cell(s, "count")}</td><td>${cell(s, "amount", fmt$)}</td><td>${cell(s, "entered")}</td><td>${cell(s, "forward")}</td><td>${cell(s, "back")}</td></tr>`; }).join("");
+    const rows = RD_STAGES.map((n, i) => { const s = byName[normStage(n)]; return `<tr${i === 0 ? ' class="untagged"' : ""}><td>${n}${i === 0 ? ' <span class="rd-pill">not pipeline</span>' : i === 1 ? ' <span class="rd-pill">pipeline starts</span>' : ""}</td><td>${cell(s, "count")}</td><td>${cell(s, "amount", fmt$)}</td><td>${cell(s, "entered")}</td><td>${cell(s, "forward")}</td><td>${cell(s, "back")}</td></tr>`; }).join("");
     const inPipe = ((p && p.stages) || []).filter((s) => s.stage !== "Sales Qualified");
     const sum = (k) => inPipe.length ? inPipe.reduce((a, s) => a + (s[k] || 0), 0) : null;
     return rows + `<tr style="font-weight:900"><td>Total in pipeline</td><td>${fmtN(sum("count"))}</td><td>${sum("amount") != null ? fmt$(sum("amount")) : "—"}</td><td>${fmtN(sum("entered"))}</td><td>${fmtN(sum("forward"))}</td><td>${fmtN(sum("back"))}</td></tr>`;
@@ -975,7 +979,7 @@ function renderWeekly(d) {
       ${rdAbout("Definition", "A fill is a HubSpot form submission in the ISO week, grouped by the offer's content tag. Became HIH / MQL counts fillers whose intent tier or lifecycle stage changed in the same week. Page-level conversion rates stay on the Content Performance tab.")}
     </div>
 
-    <div id="sec-wpipe">${rdTier(2, "Open pipeline", `Active pipelines · snapshot ${pipe.as_of || ""} + movement this week`, act ? "" : rdNeeds())}</div>
+    <div id="sec-wpipe">${rdTier(2, "Open pipeline", `Active pipelines · snapshot ${pipe.as_of || ""} + movement this week`, hasMove ? "" : rdNeeds())}</div>
     <div class="rd-card">
       <div class="toolbar" style="margin:0 0 10px">${RD_PIPES.map(([k, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-pipe="${k}">${l}</button>`).join("")}</div>
       ${RD_PIPES.map(([k, l], i) => `<div class="rd-pipe" data-pipe-body="${k}"${i ? " hidden" : ""}><div class="tscroll"><table class="bd"><thead><tr><th>${l} stage</th><th>Open deals</th><th>$ open</th><th>Entered this week</th><th>Moved forward</th><th>Moved back / lost</th></tr></thead><tbody>${stageRows(act && act[k])}</tbody></table></div></div>`).join("")}

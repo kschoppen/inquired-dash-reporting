@@ -71,20 +71,38 @@ Values: `Single Site`, `Small District`, `Medium District`, `Large District`, `E
 
 Run each for current + prior windows. Also run each, current window only, with `product_interest EQ "<value>"` added for all four products (8 more queries) — simple `EQ` membership, not mutually exclusive. This is the per-product disposition breakdown.
 
+**Disposition reasons (added 2026-09-25, Weekly tab drawers).** For the current window, group the Disqualified contacts by `disqualified_lead_reason` and the Entered Nurture contacts by `nurture_reason` (`query_crm_data` `GROUP BY <reason property>`, same window filters as the table above). Confirm both property names via `get_properties` on the first run; if one doesn't exist, skip that list and add a data flag rather than guessing another field. Emit the top 8 reasons by count, blank/null reason as `"(no reason set)"`. `avg8` per reason = its mean count over the prior 8 runs in the run log (omit when fewer than 3 prior runs carry reasons).
+
 ### Pipeline snapshots (objectType: deals)
 
 | Metric | Filter |
 |---|---|
-| District open deals | `pipeline EQ "40953415" AND hs_is_closed EQ "false"` |
-| School open deals | `pipeline EQ "41400400" AND hs_is_closed EQ "false"` |
+| New Business open deals | `pipeline EQ "912820790" AND hs_is_closed EQ "false"` — active, mandatory |
+| Account Growth open deals | `pipeline EQ "907963407" AND hs_is_closed EQ "false"` — active |
+| Renewal open deals | `pipeline EQ "42174628" AND hs_is_closed EQ "false"` — active (~290 open deals) |
+| District open deals | `pipeline EQ "40953415" AND hs_is_closed EQ "false"` — legacy, keep pulling until RevOps confirms the migration |
+| School open deals | `pipeline EQ "41400400" AND hs_is_closed EQ "false"` — legacy, same |
+
+Active pipelines per RevOps (2026-09-16) are New Business, Account Growth and Renewal. The Weekly tab shows only those three; District/School stay in the data (and in `district_open`/`school_open`) but are hidden from the display. Awareness and Partnerships are never pulled.
 
 Pull the full list (not just a count) with `dealname`, `dealstage`, `product_s_`, `amount_in_home_currency`. Exclude deals whose `dealname` matches (case-insensitive): `Ashley Test`, `Tim Test`, `Testacct`, `^District Ashley`, `^School Ashley`.
 
+**Stage movement this week (active pipelines only, added 2026-09-25).** For each of the three active pipelines, find deals whose current stage was entered during the current window (the deal's `hs_v2_date_entered_<current dealstage id>` IN window; resolve per-pipeline stage IDs via `get_properties` on `dealstage`). For each such deal, `from` = the stage with the latest `hs_v2_date_entered_*` before the current one (null for brand-new deals), `to` = current stage label. Classify vs the RevOps stage order (Sales Qualified → Interest → Consideration → Conviction → Desire → Validation / Approval → Closed): new deal or later stage = `forward`, earlier stage or Closed Lost = `back`. Per stage, count `entered` (deals now in that stage that entered it this window), `forward`, `back`. Also pull, for each moved deal, the primary associated contact's `hs_analytics_last_touch_converting_campaign` (confirm the property name via `get_properties` first run; if absent, leave the field null and add a data flag). UTMs don't pass lead→deal today (RevOps, 2026-09-16), so this contact-level field is the stand-in. Cap `moved_deals` at 60 rows. Deal names are company names, not personal data, so they're fine in the public repo; never add contact names/emails.
+
 **Deal product field is `product_s_`, not `product_interest`** — the latter is contact-only and does not exist on deals. `product_s_` ("Product(s)") is a multi-select enum with exactly `Inquiry Journeys` / `Inkwell` / `World History` / `Great First 8`, semicolon-joined when multi-tagged; coverage on open deals ran ~66% as of 2026-08-31 (`entry_product` looked like the intended single-value field but had ~0% coverage when checked — don't use it). `dealstage` IDs are shared across pipelines — always resolve labels in the context of their own `pipeline` (e.g. `query_crm_data` with `GROUP BY pipeline, dealstage`).
 
-After test-deal exclusion, aggregate the combined district+school list:
-- **By product:** count + sum `amount_in_home_currency` per product (membership via `;`-split on `product_s_`; a multi-tagged deal counts toward each). Untagged deals roll into an `untagged` count/amount.
-- **By stage:** count + amount grouped by `(pipeline, dealstage)`, kept as separate district/school lists.
+After test-deal exclusion, aggregate:
+- **By product:** count + sum `amount_in_home_currency` per product (membership via `;`-split on `product_s_`; a multi-tagged deal counts toward each). Untagged deals roll into an `untagged` count/amount. Emit it twice: `by_product` across all five pulled pipelines (existing field) and `active_by_product` across the three active pipelines only (what the Weekly tab shows).
+- **By stage:** count + amount grouped by `(pipeline, dealstage)`, one list per pipeline (`new_business`, `account_growth`, `renewal`, `district`, `school`).
+
+### Form fills by offer — "Top converting pieces" (added 2026-09-25)
+
+`query_crm_data` over contacts with `recent_conversion_date IN current window`, `GROUP BY recent_conversion_event_name` → `fills`. For each of the top 10 offers by fills, also count within that group: `new_contacts` (`createdate IN window`), `to_hih` (`marketing_intent_tier = 'High'`), `to_mql` (`hs_v2_date_entered_marketingqualifiedlead IN window`). Label each offer with its content tag when the event name maps cleanly to one (e.g. `IJ-DL: Scope & Sequence`); otherwise use the event name as-is. `avg8` = the offer's mean `fills` over the prior 8 runs in the run log (omit with fewer than 3). Known limit: this counts each contact's most recent conversion only, so repeat fills by one contact in the same week count once; note it in the run log's data_flags on the first run.
+
+### Drill product + "The read" (added 2026-09-25)
+
+- Add a 4th element to every `drill` row: primary product short (`IJ` / `Inkwell` / `WH` / `GF8` / `""`), same Inkwell > IJ > WH > GF8 priority as the dashboard `by_product` emit.
+- Compose `read` for the week entry: three short sentences, `up` / `down` / `watch`, built from the same facts as the verdict, bright spots and watch items above. Compare to the prior 8-week average (not WoW) to match the dashboard tiles. Rates move in points, counts in % or "× avg". Wrap the key number in `<b>`. No em dashes. Never state a number that isn't in this run's pulls.
 
 Also pull: open pipeline total VALUE + deal count (active stages), closed-won MTD (value + count), and latest 3 closed-lost deals (pull `reason` field — scan for competitive mentions to include in Kelsey DM context).
 
@@ -441,9 +459,14 @@ Upsert the just-completed ISO week into `weeks[]`, keyed by `period` (that week'
   "funnel": { "hih": N, "mql": N, "sql": N, "opp": N },
   "by_product": { "ij": {"hih":N,"mql":N,"sql":N,"opp":N}, "inkwell": {…}, "wh": {…}, "gf8": {…} },
   "by_segment": { "single_small": {"hih":N,"mql":N,"sql":N,"opp":N}, "medium": {…}, "large": {…}, "enterprise": {…} },
-  "disposition": { "dq": N, "nurture": N, "by_product": { "ij": {"dq":N,"nurture":N}, "inkwell": {…}, "wh": {…}, "gf8": {…} } },
-  "drill": { "hih": [[id, "SegShort", "SrcShort"], …], "mql": [[…]], "sql": [[…]], "opp": [[…]] } }
+  "disposition": { "dq": N, "nurture": N, "by_product": { "ij": {"dq":N,"nurture":N}, "inkwell": {…}, "wh": {…}, "gf8": {…} },
+    "dq_reasons": [ {"reason":"…","count":N,"avg8":N}, … ], "nurture_reasons": [ {"reason":"…","count":N,"avg8":N}, … ] },
+  "top_pieces": [ {"offer":"IJ-DL: Scope & Sequence","type":"Download","product":"Inquiry Journeys","fills":N,"avg8":N,"new_contacts":N,"to_hih":N,"to_mql":N}, … ],
+  "read": { "up": "…", "down": "…", "watch": "…" },
+  "drill": { "hih": [[id, "SegShort", "SrcShort", "ProdShort"], …], "mql": [[…]], "sql": [[…]], "opp": [[…]] } }
 ```
+
+`read`, `top_pieces`, `disposition.dq_reasons` / `nurture_reasons` and the 4th `drill` element were added 2026-09-25 for the redesigned Weekly tab (see Phase 1). The tab shows a "Needs new pull" placeholder for any of these that's missing, so omit a field rather than emitting zeros when its pull fails, and add a data flag. `type` on `top_pieces` = Download / Webinar / Hand-raise / Form; `product` from the tag prefix (IJ-/SS- → Inquiry Journeys, ELA- → Inkwell, GF8-/ECE- → Great First 8, WH- → World History, else "—").
 
 `by_product` notes:
 - For the dashboard emit only, assign each contact a **single PRIMARY product** (mutual exclusivity for stacking). Priority: **Inkwell > IJ > WH > GF8** via exclusion filters: `inkwell` = `product_interest = 'Elementary ELA'`; `ij` = `...Elementary Social Studies Curriculum AND != Elementary ELA`; `wh` = `...Middle School Social Studies Curriculum AND != Elementary ELA AND != Elementary Social Studies Curriculum`; `gf8` = `...TK/Pre-K Curriculum AND != Elementary ELA AND != Elementary Social Studies Curriculum AND != Middle School Social Studies Curriculum`.
@@ -454,7 +477,8 @@ Upsert the just-completed ISO week into `weeks[]`, keyed by `period` (that week'
 
 `drill` notes (powers the click-into-HubSpot drawer):
 - For each stage, pull up to 60 contacts over the current-week window: properties `hs_object_id`, `segment__company_`, `hs_latest_source`.
-- Emit as compact triple `[hs_object_id (int), segment-short, source-short]`. **NEVER names or emails — the repo is public.**
+- Emit as compact row `[hs_object_id (int), segment-short, source-short, product-short]`. **NEVER names or emails — the repo is public.**
+- Always store the list for `hih` (the Weekly tab's HIH contacts drawer reads it). If a stage's pull fails, emit `[]` and add a data flag.
 - Segment short: Single / Small / Medium / Large / Enterprise / Other / ""
 - Source short: Direct / Paid / Organic / Email / Offline / Referral
 
@@ -462,11 +486,14 @@ Also refresh these top-level fields:
 - `updated` — run date
 - `pipeline` — point-in-time snapshot:
   ```json
-  { "district_open": N, "school_open": N, "as_of": "YYYY-MM-DD", "note": "…",
+  { "new_business_open": N, "account_growth_open": N, "renewal_open": N, "district_open": N, "school_open": N, "as_of": "YYYY-MM-DD", "note": "…",
     "by_product": { "ij": {"count":N,"amount":N}, "inkwell": {…}, "wh": {…}, "gf8": {…}, "untagged": {"count":N,"amount":N} },
-    "by_stage": { "district": [ {"stage":"Interest","count":N,"amount":N}, … ], "school": [ … ] } }
+    "active_by_product": { "ij": {"count":N,"amount":N}, …, "untagged": {…} },
+    "by_stage": { "new_business": [ {"stage":"Interest","count":N,"amount":N}, … ], "account_growth": [ … ], "renewal": [ … ], "district": [ … ], "school": [ … ] },
+    "active": { "new_business": { "stages": [ {"stage":"Interest","count":N,"amount":N,"entered":N,"forward":N,"back":N}, … ] }, "account_growth": {…}, "renewal": {…} },
+    "moved_deals": [ {"name":"…","url":"https://app.hubspot.com/contacts/4451852/record/0-3/<id>","pipeline":"New Business","from":"Interest","to":"Consideration","amount":N,"segment":"Medium","last_touch_campaign":"…"}, … ] }
   ```
-  `by_product`/`by_stage` from the Phase 1 deal-level aggregation. `by_stage` only lists stages that actually have open deals — don't pad with zeros.
+  `by_product`/`by_stage`/`active_by_product` from the Phase 1 deal-level aggregation; `active` and `moved_deals` from the Phase 1 stage-movement pull. `by_stage` only lists stages that actually have open deals — don't pad with zeros. Stage labels use the HubSpot label for that pipeline (e.g. "Validation/Approval"). If the stage-movement pull fails, omit `active`/`moved_deals` (the tab falls back to `by_stage` counts) and add a data flag.
 - `segment_coverage` — `{ "hih": %, "mql": %, "sql": %, "opp": % }`
 - `product_caveat` / `segment_caveat` — keep existing strings; update only if data reality changed
 - `pipeline_goal` — see **pipeline_goal (shared)** below; write the identical object here and into `data/overview.json`
@@ -515,10 +542,12 @@ Append this run's entry to the fetched run log array and write back to `data/run
     "by_product_current": { "ij": {"disqualified":0,"entered_nurture":0}, "inkwell": {…}, "wh": {…}, "gf8": {…} }
   },
   "pipeline": {
-    "district_open_deals": 0, "school_open_deals": 0,
+    "new_business_open_deals": 0, "account_growth_open_deals": 0, "renewal_open_deals": 0, "district_open_deals": 0, "school_open_deals": 0,
     "by_product": { "ij": {"count":0,"amount":0}, "inkwell": {…}, "wh": {…}, "gf8": {…}, "untagged": {"count":0,"amount":0} },
-    "by_stage": { "district": [ {"stage":"Interest","count":0,"amount":0} ], "school": [ … ] }
+    "by_stage": { "new_business": [ {"stage":"Interest","count":0,"amount":0} ], "account_growth": [ … ], "renewal": [ … ], "district": [ … ], "school": [ … ] }
   },
+  "top_pieces": [ {"offer":"…","fills":0} ],
+  "dq_reasons": [ {"reason":"…","count":0} ], "nurture_reasons": [ {"reason":"…","count":0} ],
   "list_event_detected": false,
   "acknowledged_events": [],
   "data_flags": []
