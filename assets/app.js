@@ -418,7 +418,7 @@ function renderMonthly(d) {
     <div class="rd-grid g4">
       ${rdKpi({ label: "New this month", value: fmtN(hihVel), hero: true, delta: hihPrev != null ? `<span class="d ${hihVel >= hihPrev ? "up" : "down"}">${hihVel >= hihPrev ? "↑" : "↓"}${Math.abs(hihVel - hihPrev)} MoM</span>` : "", cmp: `vs ${fmtN(hihPrev)} in ${(prev.label || "").split(" ")[0]}` })}
       ${rdKpi({ label: `vs ${ly.label || "last year"}`, value: hihLY ? (hihVel / hihLY).toFixed(1) + "×" : "—", delta: hihLY != null ? `<span class="d ${hihVel >= hihLY ? "up" : "down"}">${hihVel >= hihLY ? "↑" : "↓"}${Math.abs(hihVel - hihLY)} YoY</span>` : "", cmp: `vs ${fmtN(hihLY)} in ${ly.label || "—"}` })}
-      ${rdKpi({ label: "Active pool (90 days)", value: hihPool != null ? fmtN(hihPool) : "—", cap: hihPool != null ? "Contacts with High intent active in the last 90 days" : "Not populated this run. Fills in when the digest skill writes the 90-day pool." })}
+      ${rdKpi({ label: "Active pool (90 days)", value: hihPool != null ? fmtN(hihPool) : "—", cap: hihPool != null ? "High-intent or HIH-form contacts who converted in the last 90 days" : "Not populated this run. Fills in when the digest skill writes the 90-day pool." })}
       <div class="rd-card"><div class="eyebrow" style="margin-bottom:8px">By product <span class="lc">· tagged only</span></div>${rdBars(RD_PROD.map(([k, l, c]) => [l, bp[k] ? bp[k].hih : null, c]))}</div>
     </div>
     <div class="rd-card" style="margin-top:12px">
