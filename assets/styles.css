@@ -166,6 +166,8 @@ main { padding: 24px 28px 40px; max-width: 1120px; margin: 0 auto; }
 .fdp.flat { background: #eee; color: var(--muted); }
 .funnel-connector { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 0 3px; padding-top: 28px; }
 .conv-rate-pill { font-size: 10px; font-weight: 700; color: var(--iq-green); background: var(--iq-lt-green); border: 1px solid #cfead0; padding: 3px 7px; border-radius: 10px; white-space: nowrap; margin-bottom: 4px; text-align: center; }
+.conv-yoy { font-size: 10px; font-weight: 700; white-space: nowrap; margin-bottom: 2px; }
+.conv-yoy.up { color: var(--up); } .conv-yoy.down { color: var(--down); } .conv-yoy.flat { color: var(--muted); }
 .chevron { font-size: 22px; color: #ccc; line-height: 1; }
 .f-prospect { background: var(--iq-lt-blue); border-color: #c0cde0; }
 .f-prospect .f-count { color: #2d4a72; }

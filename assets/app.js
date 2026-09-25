@@ -95,8 +95,13 @@ function funnelStage(name, count, prevCount, subLabel, cssClass, yoyCount) {
   </div>`;
 }
 
-function funnelConnector(pill) {
-  return `<div class="funnel-connector"><div class="conv-rate-pill">${pill}</div><div class="chevron">›</div></div>`;
+function funnelConnector(pill, cur, yoyRate) {
+  // cur = this month's step conversion %, yoyRate = same step, same month prior year
+  const pp = (cur != null && yoyRate != null) ? +(cur - yoyRate).toFixed(1) : null;
+  const yoyPill = cur == null ? "" : pp == null
+    ? `<div class="conv-yoy flat">YoY n/a</div>`
+    : `<div class="conv-yoy ${pp > 0 ? "up" : pp < 0 ? "down" : "flat"}" title="vs ${yoyRate}% same month prior year">${pp > 0 ? "↑" : pp < 0 ? "↓" : ""}${Math.abs(pp)} pts YoY</div>`;
+  return `<div class="funnel-connector"><div class="conv-rate-pill">${cur != null ? cur + "% " : ""}${pill}</div>${yoyPill}<div class="chevron">›</div></div>`;
 }
 
 function topPageRows(pages, valKey, valClass, valFmt) {
@@ -340,6 +345,17 @@ function renderMonthly(d) {
   const sqlRate = rate(fp(last, "sql"), fp(last, "mql")), sqlRatePrev = rate(fp(prev, "sql"), fp(prev, "mql"));
   const sqlToOpp = rate(fu(last, "opp"), fu(last, "sql"));
 
+  // prior-year same month (e.g. Aug 2026 → Aug 2025) for funnel YoY
+  const [lastMon, lastYr] = (last.label || "").split(" ");
+  const ly = m.find((x) => x.label === `${lastMon} ${+lastYr - 1}`) || {};
+  const sessionsLY = yoy.sessions != null ? yoy.sessions : (ly.web || {}).sessions;
+  const stepConv = {
+    lead: [rate(lead, sessions), rate(fu(ly, "lead"), sessionsLY)],
+    mql:  [rate(fu(last, "mql"), lead), rate(fu(ly, "mql"), fu(ly, "lead"))],
+    sql:  [heroConv, rate(fu(ly, "sql"), fu(ly, "mql"))],
+    opp:  [sqlToOpp, rate(fu(ly, "opp"), fu(ly, "sql"))],
+  };
+
   document.getElementById("view").innerHTML = `
     <!-- HIH HERO -->
     <div id="sec-hih" class="hih-hero">
@@ -369,17 +385,17 @@ function renderMonthly(d) {
     <div id="sec-funnel" class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
     <div class="funnel-panel">
       <h3>Prospect → Opp · full funnel with conversion rates</h3>
-      <p class="f-sub">Monthly new contacts entering each stage. MoM delta shown; YoY populates once prior-year data is in history. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
+      <p class="f-sub">Monthly new contacts entering each stage, with MoM and YoY deltas. Connectors show step conversion and its YoY change in percentage points vs ${ly.label || "prior year"}. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
       <div class="funnel-flow">
-        ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", yoy.sessions)}
-        ${funnelConnector("form / download")}
-        ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", null)}
-        ${funnelConnector("MQL criteria")}
-        ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", null)}
-        ${funnelConnector(heroConv != null ? heroConv + "% MQL→SQL" : "MQL→SQL")}
-        ${funnelStage("SQL", fu(last,"sql"), fu(prev,"sql"), "sales qualified", "f-sql", null)}
-        ${funnelConnector(sqlToOpp != null ? sqlToOpp + "% SQL→Opp" : "SQL→Opp")}
-        ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", null)}
+        ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", sessionsLY)}
+        ${funnelConnector("Sess→Lead", ...stepConv.lead)}
+        ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", fu(ly,"lead"))}
+        ${funnelConnector("Lead→MQL", ...stepConv.mql)}
+        ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", fu(ly,"mql"))}
+        ${funnelConnector("MQL→SQL", ...stepConv.sql)}
+        ${funnelStage("SQL", fu(last,"sql"), fu(prev,"sql"), "sales qualified", "f-sql", fu(ly,"sql"))}
+        ${funnelConnector("SQL→Opp", ...stepConv.opp)}
+        ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", fu(ly,"opp"))}
       </div>
       ${lead == null ? `<p class="data-empty">Lead count not yet populated — run the monthly digest skill.</p>` : ""}
     </div>
