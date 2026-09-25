@@ -2600,7 +2600,12 @@
           "visits": 51,
           "type": "Blog"
         }
-      ]
+      ],
+      "read": {
+        "up": "Closed-won hit <b>$1.01M</b>, up 38% on last August. SQLs rose 25% YoY to <b>126</b>. HIH quadrupled year over year (52 vs 13).",
+        "down": "Lead\u2192MQL fell to <b>55%</b> (74% last year) and MQL\u2192SQL to <b>44.8%</b> (51.8%). An offline bulk import inflated MQLs, so SQL and Opp are the cleaner read.",
+        "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal. UTM attribution dropped to <b>4.4%</b> of MQLs (target 30%)."
+      }
     }
   ],
   "seo_topics": [

@@ -117,94 +117,6 @@ function topPageRows(pages, valKey, valClass, valFmt) {
   </div>`).join("");
 }
 
-function hihProdBreakdown(last) {
-  const total = last.funnel ? last.funnel.hih : 0;
-  const prods = [
-    { key: "ij",      label: "Inquiry Journeys", color: "#144745" },
-    { key: "inkwell", label: "Inkwell (ELA)",     color: "#F99792" },
-    { key: "wh",      label: "World History",     color: "#5B5A9E" },
-    { key: "gf8",     label: "Great First 8",     color: "#079DD9" },
-  ];
-  return prods.map((p) => {
-    const n = (last.by_product && last.by_product[p.key] && last.by_product[p.key].hih != null) ? last.by_product[p.key].hih : null;
-    const pct = (n != null && n > 0 && total) ? Math.round(n / total * 100) : null;
-    return `<div class="pb-row"><span class="pb-label"><span class="dot" style="background:${p.color}"></span>${p.label}</span><span><span class="pb-count">${n != null ? n : "—"}</span> <span class="pb-pct">${pct != null ? pct + "%" : "—"}</span></span></div>`;
-  }).join("");
-}
-
-function dualDelta(cur, prev, yoyPrev) {
-  const momP = (cur != null && prev != null && prev !== 0) ? ((cur - prev) / Math.abs(prev) * 100) : null;
-  const yoyP = (cur != null && yoyPrev != null && yoyPrev !== 0) ? ((cur - yoyPrev) / Math.abs(yoyPrev) * 100) : null;
-  const momCls = momP == null ? "flat" : (momP > 0 ? "up" : "down");
-  const yoyCls = yoyP == null ? "flat" : (yoyP > 0 ? "up" : "down");
-  const momTxt = momP == null ? `— <span class="sub">MoM</span>` : `${momP > 0 ? "▲" : "▼"} ${Math.abs(momP).toFixed(0)}% <span class="sub">MoM</span>`;
-  const yoyTxt = yoyP == null ? `— <span class="sub">YoY</span>` : `${yoyP > 0 ? "▲" : "▼"} ${Math.abs(yoyP).toFixed(0)}% <span class="sub">YoY</span>`;
-  return `<div class="dual-delta"><span class="delta ${momCls}">${momTxt}</span><span class="delta-sep">·</span><span class="delta ${yoyCls}">${yoyTxt}</span></div>`;
-}
-
-function kpiCard(label, value, momPrev, yoyPrev, sparkId, capText) {
-  return `<div class="card inside">
-    <div class="label">${label}</div>
-    <div class="value">${value}</div>
-    ${dualDelta(typeof value === "string" ? parseFloat(value) : value, momPrev, yoyPrev)}
-    ${sparkId ? `<div class="spk"><canvas id="${sparkId}"></canvas></div>` : ""}
-    ${capText ? `<div class="cap">${capText}</div>` : ""}
-  </div>`;
-}
-
-// ---- Brand lift (GSC branded search + Social Signals) — shared by Weekly + Monthly tabs ----
-// Data contract: { updated, status: "collecting"|"live", note, series: [ { period, label,
-//   branded: {clicks, impressions}, youtube: {clicks, impressions}, instagram: {clicks, impressions} } ] }
-const BL_CHANNELS = [
-  { key: "branded",   label: "Branded Search",             cap: "Organic clicks on branded queries · inquired.com", color: IJ },
-  { key: "youtube",   label: "YouTube in Google Search",   cap: "Clicks on our channel in Google Search",           color: ROSE },
-  { key: "instagram", label: "Instagram in Google Search", cap: "Clicks on our profile in Google Search",           color: PLUM },
-];
-function brandLiftSection(bl, deltaLabel, chartId) {
-  if (!bl) return "";
-  const series = bl.series || [];
-  const last = series[series.length - 1] || {}, prev = series[series.length - 2] || {};
-  const collecting = bl.status === "collecting" || !series.length;
-  const clk = (e, k) => (e && e[k]) ? e[k].clicks : null;
-  const imp = (e, k) => (e && e[k]) ? e[k].impressions : null;
-  // While the newest week sits inside GSC's reporting lag its full-week total is
-  // understated, so diffing it against a complete week invents a decline. The
-  // script publishes an aligned same-days-of-week comparison; prefer it.
-  const cmpAll = bl.comparable || null;
-  const provisional = !collecting && !!last.provisional;
-  const cards = BL_CHANNELS.map((c) => {
-    const cmp = cmpAll && cmpAll.channels ? cmpAll.channels[c.key] : null;
-    const deltaCell = collecting
-      ? '<span class="delta flat">Collecting</span>'
-      : cmp
-        ? deltaHTML(cmp.current, cmp.previous, { label: `${deltaLabel} · ${cmpAll.window}` })
-        : deltaHTML(clk(last, c.key), clk(prev, c.key), { label: deltaLabel });
-    const na = (bl.unavailable || []).includes(c.key);
-    if (na) {
-      return card(c.label, "—", '<span class="delta flat">Not in API</span>',
-        `${c.cap} · Search Console platform property — visible in the Search Console UI but not served by the Search Analytics API, so it can't be filled automatically`);
-    }
-    let cap = collecting ? c.cap : `${c.cap} · ${fmtN(imp(last, c.key))} impressions`;
-    if (provisional && clk(last, c.key) != null) {
-      cap += ` · ⏳ provisional, ${last.settled_days}/7 days final`;
-    }
-    return card(c.label, collecting ? "—" : fmtN(clk(last, c.key)), deltaCell, cap);
-  }).join("");
-  return `
-    <div class="section-label">📡 Brand lift — Google Search${!collecting && last.label ? ` · ${last.label}` : ""} <span class="muted">(GSC branded search + platform properties)</span></div>
-    ${bl.note ? `<div class="panel"><p class="insight" style="margin:0">${collecting ? "⏳" : "🛈"} ${bl.note}</p></div>` : ""}
-    <div class="cards">${cards}</div>
-    ${series.length >= 2 ? `<div class="panel"><h3>Brand lift — clicks by ${deltaLabel === "WoW" ? "week" : "month"}</h3><div class="chartbox sm"><canvas id="${chartId}"></canvas></div>${note(`Clicks in Google Search per channel. These are <strong>search visibility</strong> numbers — how often people find our brand and channels when they search — not social engagement.${provisional ? ` The final point (${last.label}) is <strong>provisional</strong> — Google has finalized ${last.settled_days} of its 7 days, so it sits artificially low and revises upward on the next run.` : ""}`)}</div>` : ""}`;
-}
-function brandLiftChart(bl, chartId) {
-  const series = (bl && bl.series) || [];
-  if (series.length < 2) return;
-  mkChart(chartId, { type: "line", data: {
-    labels: series.map((s) => s.label),
-    datasets: BL_CHANNELS.map((c) => ({ label: c.label, data: series.map((s) => (s[c.key] ? s[c.key].clicks : null)), borderColor: c.color, backgroundColor: c.color + "22", tension: 0.3, pointRadius: 2, spanGaps: true }))
-  }, options: { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false } });
-}
-
 // ---- Overview: command center ----
 // The KPI strip accepts either shape overview.json has shipped: the rich tile array
 // (label/value/delta/sub/spark) or the flat block the weekly routine writes
@@ -326,76 +238,203 @@ function buildJumpRail(sections) {
   }
 }
 
+// ---- digest redesign helpers (Monthly + Weekly) — tiered layout, one comparison per tile, detail in drawers ----
+const RD_PROD = [["ij", "Inquiry Journeys", "#144745"], ["inkwell", "Inkwell (ELA)", "#F99792"], ["wh", "World History", "#5B5A9E"], ["gf8", "Great First 8", "#079DD9"]];
+const RD_SEG = [["single_small", "Single / Small", "#B1E0BB"], ["medium", "Medium", "#4A9FD8"], ["large", "Large", "#5B5A9E"], ["enterprise", "Enterprise", "#144745"]];
+const RD_STAGES = ["Sales Qualified", "Interest", "Consideration", "Conviction", "Desire", "Validation / Approval"];
+const RD_PIPES = [["new_business", "New Business"], ["account_growth", "Account Growth"], ["renewal", "Renewal"]];
+const fmtK = (n) => n == null ? "—" : n >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.00$/, "") + "M" : n >= 1e3 ? "$" + Math.round(n / 1e3) + "K" : "$" + Math.round(n);
+
+// Count change in % ("↑25% YoY"); rate change in points ("↓7 pts YoY"); small-base change as raw count ("+11").
+function rdPct(cur, base, lbl) {
+  if (cur == null || base == null || base === 0) return `<span class="d flat">— ${lbl}</span>`;
+  const p = Math.round((cur - base) / Math.abs(base) * 100);
+  return `<span class="d ${p > 0 ? "up" : p < 0 ? "down" : "flat"}">${p > 0 ? "↑" : p < 0 ? "↓" : ""}${Math.abs(p)}% ${lbl}</span>`;
+}
+function rdPts(cur, base, lbl) {
+  if (cur == null || base == null) return `<span class="d flat">— ${lbl}</span>`;
+  const p = +(cur - base).toFixed(1);
+  return `<span class="d ${p > 0 ? "up" : p < 0 ? "down" : "flat"}">${p > 0 ? "↑" : p < 0 ? "↓" : ""}${Math.abs(p)} pts ${lbl}</span>`;
+}
+function rdRaw(cur, base) {
+  if (cur == null || base == null || cur === base) return "";
+  const d = cur - base;
+  return `<span class="chg ${d > 0 ? "up" : "down"}">${d > 0 ? "+" : "−"}${Math.abs(d)}</span>`;
+}
+// vs-average for weekly tiles: "5.0× avg", "−1 vs avg", "≈ avg"
+// invert = true when a rise is bad news (e.g. disqualifications)
+function rdVsAvg(cur, avg, invert) {
+  if (cur == null || !avg) return { html: `<span class="d flat">—</span>`, st: "watch", lbl: "—" };
+  const r = cur / avg, [hi, lo] = invert ? ["down", "up"] : ["up", "down"];
+  if (r >= 1.2) return { html: `<span class="d ${hi}">${r.toFixed(1)}× avg</span>`, st: invert ? "bad" : "good", lbl: r >= 2 ? "Surge" : "Up" };
+  if (r <= 0.8) return { html: `<span class="d ${lo}">${r.toFixed(1)}× avg</span>`, st: invert ? "good" : "bad", lbl: "Down" };
+  const diff = Math.round(cur - avg);
+  return { html: `<span class="d flat">${diff === 0 ? "≈ avg" : (diff > 0 ? "+" : "−") + Math.abs(diff) + " vs avg"}</span>`, st: "watch", lbl: "Flat" };
+}
+const rdStatus = (st, lbl) => `<span class="rd-status ${st}">${lbl}</span>`;
+const rdTier = (n, title, why, extra) => `<div class="rd-tier"><span class="n">${n}</span><h2>${title}</h2>${why ? `<span class="why">${why}</span>` : ""}${extra || ""}</div>`;
+const rdCov = (t) => `<span class="rd-cov">${t}</span>`;
+const rdNeeds = () => `<span class="rd-needs">Needs new pull</span>`;
+const rdCtx = (label, t) => t ? `<div class="rd-context"><b>${label}</b> ${t}</div>` : "";
+const rdAbout = (title, body) => body ? `<details class="rd-about"><summary>${title}</summary><div class="cap">${body}</div></details>` : "";
+function rdDz(title, right, body, opts = {}) {
+  return `<details class="rd-dz ${opts.cls || ""}"${opts.open ? " open" : ""}${opts.id ? ` id="${opts.id}"` : ""}>
+    <summary>${opts.tag ? `<span class="rd-tag">${opts.tag}</span>` : ""}<span class="dt">${title}${opts.src ? ` <span class="rd-src">${opts.src}</span>` : ""}</span><span class="ds">${right || ""}</span></summary>
+    <div class="dbody">${body}</div></details>`;
+}
+function rdBars(rows, fmt) {
+  const mx = Math.max(1, ...rows.map((r) => r[1] || 0));
+  return `<div class="rd-bars">${rows.map((r) => `<div class="rd-bar"><span>${r[2] ? `<span class="dot" style="background:${r[2]}"></span>` : ""}${r[0]}</span><span class="t"><i style="width:${((r[1] || 0) / mx * 100).toFixed(1)}%${r[2] ? `;background:${r[2]}` : ""}"></i></span><span class="n">${fmt ? fmt(r[1]) : fmtN(r[1])}${r.length > 3 ? rdRaw(r[1], r[3]) : ""}</span></div>`).join("")}</div>`;
+}
+function rdRead(read) {
+  if (!read || !(read.up || read.down || read.watch)) return "";
+  return `<div class="rd-read">${[["up", "Up"], ["down", "Down"], ["watch", "Watch"]].map(([k, l]) => read[k] ? `<div><div class="k ${k}">${l}</div><p>${read[k]}</p></div>` : "").join("")}</div>`;
+}
+function rdKpi(o) {
+  return `<div class="rd-kpi${o.hero ? " hero" : ""}">${o.st ? rdStatus(o.st, o.stLbl) : ""}
+    <div class="lab">${o.label}</div><div class="val">${o.value}</div>
+    ${o.bar != null ? `<div class="rd-meter"><i style="width:${Math.min(100, o.bar)}%"></i></div>` : ""}
+    <div>${o.delta || ""} ${o.cmp ? `<span class="cmp">${o.cmp}</span>` : ""}</div>
+    ${o.spark ? `<div class="rd-spk"><canvas id="${o.spark}"></canvas></div>` : ""}
+    ${o.cap ? `<div class="cap">${o.cap}</div>` : ""}</div>`;
+}
+function rdMini(label, value, deltas, cap, spark, valStyle) {
+  return `<div class="rd-mini"><div class="lab">${label}</div><div class="v"${valStyle ? ` style="${valStyle}"` : ""}>${value}</div><div>${deltas || ""}</div>${spark ? `<div class="rd-spk"><canvas id="${spark}"></canvas></div>` : ""}${cap ? `<div class="cap">${cap}</div>` : ""}</div>`;
+}
+function rdSpark(id, data, color) {
+  mkChart(id, { type: "line", data: { labels: data.map((_, i) => i), datasets: [{ data, borderColor: color || IJ, borderWidth: 1.8, backgroundColor: "rgba(20,71,69,0.08)", fill: true, tension: 0.35, spanGaps: true, pointRadius: data.map((_, i) => i === data.length - 1 ? 2.5 : 0), pointBackgroundColor: color || IJ }] }, options: spkOpts });
+}
+// Point value labels for line charts — opt in per chart via options.plugins.rdLabels.on
+if (window.Chart) Chart.register({ id: "rdLabels", afterDatasetsDraw(c, a, o) {
+  if (!o || !o.on) return;
+  const x = c.ctx; x.save(); x.font = "900 11px Lato, sans-serif"; x.textAlign = "center";
+  c.data.datasets.forEach((ds, di) => { if (ds.rdNoLabel) return; c.getDatasetMeta(di).data.forEach((p, i) => {
+    const v = ds.data[i]; if (v == null) return;
+    x.fillStyle = (o.hi || []).includes(i) ? IJ : "#757575"; x.fillText(o.fmt ? o.fmt(v) : v, p.x, p.y - 9);
+  }); });
+  x.restore();
+} });
+// Benchmark bands with inline labels (MQL→SQL trend)
+const rdBandLabels = { id: "rdBands", afterDatasetsDraw(c, a, o) {
+  if (!o || !o.bands) return;
+  const x = c.ctx, ar = c.chartArea; x.save(); x.font = "700 10px Lato, sans-serif"; x.fillStyle = "#757575"; x.textAlign = "left";
+  o.bands.forEach(([v, t]) => x.fillText(t, ar.left + 6, c.scales.y.getPixelForValue(v) - 5)); x.restore();
+} };
+if (window.Chart) Chart.register(rdBandLabels);
+const rdBand = (n, v) => ({ data: Array(n).fill(v), borderColor: "#aaa", borderDash: [5, 4], borderWidth: 1.2, pointRadius: 0, rdNoLabel: true });
+
+// Brand lift block: branded search number + weekly/monthly chart, YouTube/Instagram as placeholders
+function rdBrandBlock(bl, deltaLabel, chartId) {
+  if (!bl) return "";
+  const s = bl.series || [], last = s[s.length - 1] || {}, prev = s[s.length - 2] || {};
+  const collecting = bl.status === "collecting" || !s.length;
+  const cmp = bl.comparable && bl.comparable.channels ? bl.comparable.channels.branded : null;
+  const clk = (e) => e && e.branded ? e.branded.clicks : null;
+  const delta = collecting ? `<span class="d flat">Collecting</span>`
+    : cmp ? `${rdPct(cmp.current, cmp.previous, deltaLabel)} <span class="cmp">same ${bl.comparable.days} settled days</span>`
+    : rdPct(clk(last), clk(prev), deltaLabel);
+  const cap = collecting ? "Organic clicks on branded queries · inquired.com"
+    : `${fmtN(last.branded && last.branded.impressions)} impressions${last.provisional ? ` · provisional, ${last.settled_days} of 7 days final` : ""}`;
+  const ph = (t) => `<div class="rd-ph"><div class="lab">${t}</div><div class="phv">Placeholder</div><div class="cap">Not in the Search Analytics API. Wiring TBD.</div></div>`;
+  return `<div class="rd-g3b">
+      ${rdKpi({ label: "Branded search clicks", value: collecting ? "—" : fmtN(clk(last)), delta, cap })}
+      ${ph("YouTube in Google Search")}${ph("Instagram in Google Search")}
+    </div>
+    ${s.length >= 2 ? `<div class="rd-card" style="margin-top:12px"><div class="eyebrow">Branded search clicks by ${deltaLabel === "WoW" ? "week" : "month"}</div><div class="chartbox sm"><canvas id="${chartId}"></canvas></div>${last.provisional ? `<p class="cap">The ${last.label} point is provisional and revises upward on the next run.</p>` : ""}</div>` : ""}
+    ${rdAbout("About this data", bl.note)}`;
+}
+function rdBrandChart(bl, chartId) {
+  const s = (bl && bl.series) || [];
+  if (s.length < 2) return;
+  mkChart(chartId, { type: "line", data: { labels: s.map((x) => x.label), datasets: [{ data: s.map((x) => x.branded ? x.branded.clicks : null), borderColor: IJ, backgroundColor: "rgba(20,71,69,0.08)", fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: s.map((x) => x.provisional ? 5 : 3), pointBackgroundColor: s.map((x) => x.provisional ? "#fff" : IJ), pointBorderColor: IJ, pointBorderWidth: 2, spanGaps: true }] },
+    options: { maintainAspectRatio: false, layout: { padding: { top: 16 } }, plugins: { legend: { display: false }, rdLabels: { on: true, hi: [s.length - 1] } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, ticks: { maxTicksLimit: 5 } } } } });
+}
+
+// Latest content_engagement snapshot in the weekly history (it isn't written every week)
+function rdLatestCE(w) { for (let i = w.length - 1; i >= 0; i--) if (w[i].content_engagement) return w[i].content_engagement; return null; }
+const rdPieceType = (t) => /-DL:/.test(t) ? "Download" : /-WEB:/.test(t) ? "Webinar" : /Demo|Contact/i.test(t) ? "Hand-raise" : "Form";
+const rdPieceProd = (t) => /^(IJ|SS)/.test(t) ? "Inquiry Journeys" : /^ELA/.test(t) ? "Inkwell" : /^(GF8|ECE)/.test(t) ? "Great First 8" : /^WH/.test(t) ? "World History" : "—";
+
 function renderMonthly(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
   const m = d.months, last = m[m.length - 1], prev = m[m.length - 2] || {};
-  const labels = m.map((x) => x.label);
+  const labels = m.map((x) => x.label), short = labels.map((l) => l.replace(" 20", "’"));
   const hih = ser(m, "hih"), mql = ser(m, "mql"), sql = ser(m, "sql");
   const conv = m.map((x, i) => rate(sql[i], mql[i]));
 
-  const fu = (mo, s) => mo.funnel ? mo.funnel[s] : null;
-  const fp = (mo, s) => PRODUCT === "all" ? fu(mo, s) : (mo.by_product && mo.by_product[PRODUCT] ? mo.by_product[PRODUCT][s] : null);
+  const fu = (mo, s) => mo && mo.funnel ? mo.funnel[s] : null;
+  const fp = (mo, s) => PRODUCT === "all" ? fu(mo, s) : (mo && mo.by_product && mo.by_product[PRODUCT] ? mo.by_product[PRODUCT][s] : null);
+  const rv = (mo, k) => mo && mo.revenue ? mo.revenue[k] : null;
 
-  const q = last.quality || {}, utm = q.utm_completeness_pct;
+  const q = last.quality || {}, utm = q.utm_completeness_pct, utmPrev = (prev.quality || {}).utm_completeness_pct;
   const wv = last.web || {}, wt = d.web_trend || null, yoy = wv.yoy || {};
   const pLabel = PRODUCTS.find((p) => p[0] === PRODUCT)[1];
 
-  const hihVel = fu(last, "hih"), hihVelPrev = fu(prev, "hih");
-  const hihPool = (last.funnel && last.funnel.hih_pool_active != null) ? last.funnel.hih_pool_active : null;
-  const heroConv = rate(fu(last, "sql"), fu(last, "mql"));
+  // prior-year same month (e.g. Aug 2026 → Aug 2025) — the one comparison on the scorecard + funnel
+  const [lastMon, lastYr] = (last.label || "").split(" ");
+  const ly = m.find((x) => x.label === `${lastMon} ${+lastYr - 1}`) || {};
+  const lyIdx = m.indexOf(ly);
+
+  const hihVel = fu(last, "hih"), hihPrev = fu(prev, "hih"), hihLY = fu(ly, "hih");
+  const hihPool = fu(last, "hih_pool_active");
+  const heroConv = rate(fu(last, "sql"), fu(last, "mql")), lyConv = rate(fu(ly, "sql"), fu(ly, "mql"));
 
   const sessions = wv.sessions, sessionsPrev = (prev.web || {}).sessions;
   const lead = fu(last, "lead"), leadPrev = fu(prev, "lead");
-  const sqlRate = rate(fp(last, "sql"), fp(last, "mql")), sqlRatePrev = rate(fp(prev, "sql"), fp(prev, "mql"));
   const sqlToOpp = rate(fu(last, "opp"), fu(last, "sql"));
-
-  // prior-year same month (e.g. Aug 2026 → Aug 2025) for funnel YoY
-  const [lastMon, lastYr] = (last.label || "").split(" ");
-  const ly = m.find((x) => x.label === `${lastMon} ${+lastYr - 1}`) || {};
   const sessionsLY = yoy.sessions != null ? yoy.sessions : (ly.web || {}).sessions;
   const stepConv = {
     lead: [rate(lead, sessions), rate(fu(ly, "lead"), sessionsLY)],
     mql:  [rate(fu(last, "mql"), lead), rate(fu(ly, "mql"), fu(ly, "lead"))],
-    sql:  [heroConv, rate(fu(ly, "sql"), fu(ly, "mql"))],
+    sql:  [heroConv, lyConv],
     opp:  [sqlToOpp, rate(fu(ly, "opp"), fu(ly, "sql"))],
   };
 
+  // scorecard
+  const pg = d.pipeline_goal || null, pgAct = pg ? pgTotal(pg.actual) : null, pgPct = pg && pg.goal && pg.goal.generated ? pgAct / pg.goal.generated * 100 : null;
+  const won = rv(last, "total_won"), wonLY = rv(ly, "total_won");
+  const convPts = heroConv != null && lyConv != null ? heroConv - lyConv : null;
+  const sqlYoY = fu(ly, "sql") ? (fu(last, "sql") - fu(ly, "sql")) / fu(ly, "sql") * 100 : null;
+  const st = (v, goodAt, badAt) => v == null ? ["watch", "—"] : v >= goodAt ? ["good", "Up"] : v <= badAt ? ["bad", "Down"] : ["watch", "Flat"];
+  const [convSt, convLbl] = st(convPts, 2, -2), [sqlSt, sqlLbl] = st(sqlYoY, 5, -5);
+  const wonSt = wonLY ? (won >= wonLY ? ["good", "Ahead"] : ["bad", "Behind"]) : ["watch", "—"];
+
+  // leading indicators (product-scoped)
+  const pr = (mo) => rate(fp(mo, "sql"), fp(mo, "mql"));
+  const bp = last.by_product || {};
+
   document.getElementById("view").innerHTML = `
-    <!-- HIH HERO -->
-    <div id="sec-hih" class="hih-hero">
-      <div class="hih-hero-top">
-        <div class="hih-hero-main">
-          <div class="hero-label">★ HIGH-INTENT (HIH) POOL — active right now</div>
-          <div class="hero-val">${hihPool != null ? fmtN(hihPool) : (hihVel != null ? fmtN(hihVel) : "—")}</div>
-          <div class="hero-sub">Contacts active in the <strong>last 90 days</strong> with High marketing-intent — the working list of serious evaluators. This pool refreshes continuously in HubSpot.</div>
-          <a class="hih-hs-link" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>
-          <div class="hih-def-box"><strong>✦ What is HIH?</strong> A signal layer that spans all funnel stages — a contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. Because HIH isn't a sequential gate MQL passes through, there's no valid "HIH→MQL conversion rate" — it's a parallel signal, read alongside the funnel below rather than as a step in it.</div>
-        </div>
-        <div class="hih-hero-velocity">
-          <div class="hero-label">★ HIH VELOCITY — new contacts this month (${last.label})</div>
-          <div class="hero-val-sm">${fmtN(hihVel)} &nbsp;${deltaHTML(hihVel, hihVelPrev, {label:"MoM"})}</div>
-          <div class="hero-sub">New contacts reaching High-intent · MQL→SQL <strong>${heroConv != null ? heroConv + "%" : "—"}</strong><br><span style="color:var(--muted);font-size:12px">YoY available when prior-year month is in history</span></div>
-          <div class="sparkbox"><canvas id="cHihVelocity"></canvas></div>
-          <div class="hih-prod-breakdown">${hihProdBreakdown(last)}<p style="font-size:10px;color:var(--muted);margin:6px 0 0">product-tagged contacts only · partial coverage</p></div>
-        </div>
-      </div>
-      <div class="hih-hero-chart">
-        <h4>HIH velocity — trailing 12 months</h4>
-        <div class="hih-trend-box"><canvas id="cHihTrend"></canvas></div>
-      </div>
+    <div class="rd">
+    ${rdTier(1, "The read", "Written by the digest skill each run")}
+    ${rdRead(last.read) || `<p class="cap">No summary for ${last.label} yet. The digest skill writes it on the next run.</p>`}
+    <div class="rd-grid g4" style="margin-top:12px">
+      ${rdKpi({ label: "MQL → SQL", value: heroConv != null ? heroConv + "%" : "—", st: convSt, stLbl: convLbl, delta: rdPts(heroConv, lyConv, "YoY"), cmp: lyConv != null ? `vs ${lyConv}%` : "", spark: "rdSpkConv" })}
+      ${rdKpi({ label: "SQLs", value: fmtN(fu(last, "sql")), st: sqlSt, stLbl: sqlLbl, delta: rdPct(fu(last, "sql"), fu(ly, "sql"), "YoY"), cmp: `vs ${fmtN(fu(ly, "sql"))}`, spark: "rdSpkSql" })}
+      ${pg ? rdKpi({ label: `Pipeline · ${pg.school_year}`, value: fmtK(pgAct), st: pgPct >= 50 ? "good" : "watch", stLbl: pgPct >= 50 ? "On track" : "Watch", bar: pgPct, cap: `${pgPct.toFixed(1)}% of ${fmtK(pg.goal.generated)} generated goal` }) : ""}
+      ${rdKpi({ label: "Closed-won", value: fmtK(won), st: wonSt[0], stLbl: wonSt[1], delta: rdPct(won, wonLY, "YoY"), cmp: `vs ${fmtK(wonLY)}`, spark: "rdSpkWon" })}
     </div>
 
-    <!-- FUNNEL ARROW -->
-    <div id="sec-funnel" class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
+    <div id="sec-hih">${rdTier(1, "High-intent (HIH)", "North-star signal · spans all funnel stages")}</div>
+    <div class="rd-grid g4">
+      ${rdKpi({ label: "New this month", value: fmtN(hihVel), hero: true, delta: hihPrev != null ? `<span class="d ${hihVel >= hihPrev ? "up" : "down"}">${hihVel >= hihPrev ? "↑" : "↓"}${Math.abs(hihVel - hihPrev)} MoM</span>` : "", cmp: `vs ${fmtN(hihPrev)} in ${(prev.label || "").split(" ")[0]}` })}
+      ${rdKpi({ label: `vs ${ly.label || "last year"}`, value: hihLY ? (hihVel / hihLY).toFixed(1) + "×" : "—", delta: hihLY != null ? `<span class="d ${hihVel >= hihLY ? "up" : "down"}">${hihVel >= hihLY ? "↑" : "↓"}${Math.abs(hihVel - hihLY)} YoY</span>` : "", cmp: `vs ${fmtN(hihLY)} in ${ly.label || "—"}` })}
+      ${rdKpi({ label: "Active pool (90 days)", value: hihPool != null ? fmtN(hihPool) : "—", cap: hihPool != null ? "Contacts with High intent active in the last 90 days" : "Not populated this run. Fills in when the digest skill writes the 90-day pool." })}
+      <div class="rd-card"><div class="eyebrow" style="margin-bottom:8px">By product <span class="lc">· tagged only</span></div>${rdBars(RD_PROD.map(([k, l, c]) => [l, bp[k] ? bp[k].hih : null, c]))}</div>
+    </div>
+    <div class="rd-card" style="margin-top:12px">
+      <div class="rd-row"><div class="eyebrow">HIH new contacts by month · last ${m.length} months</div><a class="hih-hs-link" style="margin:0" href="https://app.hubspot.com/contacts/4451852/objectLists/10586/filters" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a></div>
+      <div class="chartbox" style="height:220px"><canvas id="rdHih"></canvas></div>
+      ${rdAbout("What is HIH?", "A signal layer that spans all funnel stages. A contact becomes HIH when they engage with high-intent content (ROI calculator, curriculum guide, demo request, whitepaper) regardless of lifecycle stage. It isn't a sequential gate, so there's no HIH→MQL conversion rate. Read it alongside the funnel.")}
+    </div>
+
+    <div id="sec-funnel">${rdTier(2, "Funnel", `Monthly new contacts per stage · YoY vs ${ly.label || "prior year"}`)}</div>
     <div class="funnel-panel">
-      <h3>Prospect → Opp · full funnel with conversion rates</h3>
-      <p class="f-sub">Monthly new contacts entering each stage, with MoM and YoY deltas. The strip below shows step-to-step conversion and its YoY change in percentage points vs ${ly.label || "prior year"}. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
       <div class="funnel-scroll"><div class="funnel-grid">
         ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", sessionsLY)}
-        ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", fu(ly,"lead"))}
-        ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", fu(ly,"mql"))}
-        ${funnelStage("SQL", fu(last,"sql"), fu(prev,"sql"), "sales qualified", "f-sql", fu(ly,"sql"))}
-        ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", fu(ly,"opp"))}
+        ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", fu(ly, "lead"))}
+        ${funnelStage("MQL", fu(last, "mql"), fu(prev, "mql"), "mktg qualified", "f-mql", fu(ly, "mql"))}
+        ${funnelStage("SQL", fu(last, "sql"), fu(prev, "sql"), "sales qualified", "f-sql", fu(ly, "sql"))}
+        ${funnelStage("Opp", fu(last, "opp"), fu(prev, "opp"), "open opportunity", "f-opp", fu(ly, "opp"))}
         <div class="f-strip-bg"></div>
         <div class="f-strip-label">Step<br>conversion</div>
         ${funnelBridge("Session → Lead", 2, ...stepConv.lead)}
@@ -403,192 +442,136 @@ function renderMonthly(d) {
         ${funnelBridge("MQL → SQL", 6, ...stepConv.sql)}
         ${funnelBridge("SQL → Opp", 8, ...stepConv.opp)}
       </div></div>
-      ${lead == null ? `<p class="data-empty">Lead count not yet populated — run the monthly digest skill.</p>` : ""}
+      ${lead == null ? `<p class="data-empty">Lead count not yet populated. Run the monthly digest skill.</p>` : ""}
     </div>
 
-    <!-- PRODUCT SECTION -->
-    <div id="sec-leading" class="product-section">
-      <div class="product-section-head">
-        <div>
-          <div class="product-section-title">▲ Leading Indicators · ${last.label}</div>
-          <div class="product-section-note">Product chips below scope <em>this entire section only</em> — all-product totals live in the funnel above.</div>
-        </div>
-        <div class="toolbar">
-          <span class="tlabel">Product:</span>
-          ${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}
-        </div>
+    <div id="sec-leading">${rdTier(2, "Leading indicators by product", "", rdCov("Product-tagged only · won't sum to totals"))}</div>
+    <div class="rd-card">
+      <div class="rd-row">
+        <div class="toolbar" style="margin:0">${PRODUCTS.map((p) => `<button class="chip ${p[0] === PRODUCT ? "on" : ""}" data-p="${p[0]}">${p[1]}</button>`).join("")}</div>
+        <span class="cap" style="margin:0">${PRODUCT === "all" ? "Chips filter this section only" : `Filtered to <strong>${pLabel}</strong> · partial coverage`}</span>
       </div>
-      ${PRODUCT !== "all" ? `<div class="product-filter-bar">Filtered to: <strong>${pLabel}</strong> <span class="pfbar-note">product-tagged contacts only · partial coverage · won't sum to totals · click <em>All products</em> to reset</span></div>` : ""}
-
-      <div class="cards">
-        ${kpiCard("HIH new this month", fmtN(fp(last,"hih")), fp(prev,"hih"), null, "spkHih", `vs ${fmtN(fp(prev,"hih"))} ${prev.label || ""} · YoY available when prior-year month in history`)}
-        ${kpiCard("MQLs", fmtN(fp(last,"mql")), fp(prev,"mql"), null, "spkMql", `vs ${fmtN(fp(prev,"mql"))} ${prev.label || ""} · seasonal May dip expected`)}
-        ${kpiCard("SQLs", fmtN(fp(last,"sql")), fp(prev,"sql"), null, "spkSql", `vs ${fmtN(fp(prev,"sql"))} ${prev.label || ""}`)}
-        ${kpiCard("MQL → SQL conv.", sqlRate != null ? sqlRate + "%" : "—", sqlRatePrev, null, "spkConv", `vs ${sqlRatePrev != null ? sqlRatePrev + "%" : "—"} ${prev.label || ""} · B2B benchmark 13–22%`)}
-        <div class="card inside">
-          <div class="label">UTM attribution</div>
-          <div class="value">${utm != null ? utm + "%" : "—"}</div>
-          <div class="dual-delta">${utm != null && utm < 30 ? '<span class="delta down">below 30% target</span>' : '<span class="delta flat">—</span>'}</div>
-          <div class="cap">% MQLs with source UTM · offline + direct dominate</div>
-        </div>
+      <div class="rd-grid g5">
+        ${rdMini("HIH new", fmtN(fp(last, "hih")), `${rdPct(fp(last, "hih"), fp(prev, "hih"), "MoM")} ${rdPct(fp(last, "hih"), fp(ly, "hih"), "YoY")}`, "", "rdSpkHih")}
+        ${rdMini("MQLs", fmtN(fp(last, "mql")), `${rdPct(fp(last, "mql"), fp(prev, "mql"), "MoM")} ${rdPct(fp(last, "mql"), fp(ly, "mql"), "YoY")}`, "", "rdSpkMql")}
+        ${rdMini("SQLs", fmtN(fp(last, "sql")), `${rdPct(fp(last, "sql"), fp(prev, "sql"), "MoM")} ${rdPct(fp(last, "sql"), fp(ly, "sql"), "YoY")}`, "", "rdSpkSql2")}
+        ${rdMini("MQL → SQL", pr(last) != null ? pr(last) + "%" : "—", `${rdPts(pr(last), pr(prev), "MoM")} ${rdPts(pr(last), pr(ly), "YoY")}`, "B2B benchmark 13–22%", "rdSpkConv2")}
+        ${rdMini("UTM attribution", utm != null ? utm + "%" : "—", rdPts(utm, utmPrev, "MoM"), `% of MQLs with a source UTM · target 30%`, "", utm != null && utm < 30 ? "color:var(--down)" : "")}
       </div>
-
-      <div class="panel" style="margin-bottom:14px">
-        <h3>MQL → SQL conversion — 12-month trend</h3>
-        <div class="chartbox"><canvas id="cConvTrend"></canvas></div>
-        ${note(funnelNarrative(d, last, sqlRate, sqlRatePrev))}
+      <div class="rd-sub">
+        <div class="rd-row"><div class="eyebrow">MQL → SQL conversion · ${m.length}-month trend</div></div>
+        <div class="chartbox" style="height:230px"><canvas id="rdConv"></canvas></div>
+        ${rdCtx("Context", funnelNarrative(d, last, pr(last), pr(prev)))}
       </div>
-
-      <div class="grid2" style="margin-bottom:0">
-        <div class="panel" style="margin-bottom:0">
-          <h3>HIH by source <span class="muted">(${last.label})</span></h3>
-          <div class="chartbox xs"><canvas id="cSrc"></canvas></div>
-        </div>
-        <div class="panel" style="margin-bottom:0">
-          <h3>HIH by product <span class="muted">(${last.label})</span></h3>
-          ${hihByProductTable(last)}
-        </div>
+      <div class="rd-grid g2 rd-sub">
+        <div><div class="eyebrow" style="margin-bottom:6px">HIH by source · ${last.label}</div>${rdBars((last.hih_by_source || []).map((s) => [s[0], s[1]]))}</div>
+        <div><div class="eyebrow" style="margin-bottom:6px">By product · ${last.label}</div>${hihByProductTable(last)}</div>
       </div>
     </div>
 
-    <!-- WEB ACQUISITION -->
-    ${wv.channels ? `
-    <div id="sec-web" class="section-label">🌐 Web acquisition · ${last.label} <span class="muted">(GA4 · top of funnel)</span></div>
-    <div class="cards">
-      <div class="card"><div class="label">Sessions</div><div class="value">${fmtN(wv.sessions)}</div>${dualDelta(wv.sessions, sessionsPrev, yoy.sessions)}<div class="cap">${yoy.sessions ? `vs ${fmtN(yoy.sessions)} same mo. prior year` : "YoY populates with 2 years of data"}</div></div>
-      <div class="card"><div class="label">Users</div><div class="value">${fmtN(wv.users)}</div>${dualDelta(wv.users, (prev.web||{}).users, yoy.users)}<div class="cap">${yoy.users ? `vs ${fmtN(yoy.users)} prior year` : ""}</div></div>
-      <div class="card"><div class="label">Page views</div><div class="value">${fmtN(wv.views)}</div>${dualDelta(wv.views, (prev.web||{}).views, yoy.views)}<div class="cap">${yoy.views ? `vs ${fmtN(yoy.views)} prior year` : ""}</div></div>
-      ${wv.engaged_pct != null ? `<div class="card"><div class="label">Engagement rate</div><div class="value">${wv.engaged_pct}%</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">GA4 engaged sessions / sessions</div></div>` : ""}
-    </div>
-    <div class="grid2">
-      <div class="panel"><h3>Channel mix <span class="muted">(sessions)</span></h3><div class="chartbox xs"><canvas id="mWebChannel"></canvas></div>${note("GA4's <strong>default channel grouping</strong> — independent of HubSpot lead-source UTMs. AI referrals (ChatGPT/Perplexity) land under Referral until we add a custom GA4 grouping.")}</div>
-      <div class="panel"><h3>Web conversions <span class="muted">(GA4 key events · ${last.label})</span></h3><div class="chartbox xs"><canvas id="mWebConv"></canvas></div>${note("Macro web conversions sit <strong>upstream of HIH</strong>: a visitor downloads a resource or signs up here, then — if high-intent — becomes an HIH lead.")}</div>
-    </div>
-    <div class="panel">
-      <h3>Top conversion pages <span class="source-badge ga4">GA4 API</span></h3>
-      <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages where visitors completed a key event (form submit, download, demo request) in ${last.label} — ranked by completions</p>
-      ${last.web && last.web.top_conversion_pages
-        ? topPageRows(last.web.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`)
-        : `<p class="data-empty">— Data pending — populated by the monthly digest run (GA4 API; credentials in the routine env)</p>`}
-    </div>` : ""}
-
-    <!-- SEO -->
-    <div id="sec-seo" class="seo-section">
-      <div class="section-label" style="margin-top:0">🔍 SEO — organic search · ${last.label} <span class="muted">(Semrush rankings · Semrush traffic)</span></div>
-      <div class="grid2">
-        <div class="panel">
-          <h3>Keyword rankings by topic <span class="source-badge semrush">Semrush</span></h3>
-          ${seoSection(d)}
-          <p class="insight">🛈 <strong>How these keywords are chosen:</strong> this is the full set of keywords configured in our Semrush Position Tracking project, not a hand-picked list. The dashboard pulls every tracked keyword and auto-groups it into a topic area by matching the keyword text (e.g. "ela"/"reading" → ELA, "social studies" → Social Studies, "pre-k"/"preschool" → ECE, product/brand names → Brand). <strong>Position</strong> = current Google rank · <strong>"—"</strong> = tracked but not ranking · <strong>Volume</strong> = est. monthly US searches. To add or remove keywords, edit the Semrush Position Tracking project. MoM movement begins once we have a prior month to compare.</p>
-          ${note(seoNarrative(d))}
+    <div class="rd-group g-out" id="sec-lagging">
+      <div class="rd-ghead"><span class="n">3</span><h2>Pipeline &amp; revenue</h2><span class="why">Lagging sales outcome · RevOps owns the official view</span></div>
+      <div class="rd-banner">Under construction: the numbers in this section haven't been validated. QA and RevOps alignment are in progress, so treat them as directional until reconciled.</div>
+      ${pg ? rdDz(`Pipeline vs ${pg.school_year} goal`, `<b>${fmtK(pgAct)}</b> of ${fmtK(pg.goal.generated)} generated · <b>${fmtK(pg.actual.won)}</b> of ${fmtK(pg.goal.closed_won)} won`,
+        pipelineGoalSection(pg, { full: true, bare: true }) + rdAbout("How this goal is measured", pg.note), { open: true }) : ""}
+      ${rdDz(`Closed-won · ${last.label}`, `<b>${fmt$(won)}</b> · ${rdPct(won, wonLY, "YoY")} · ${fmtN(rv(last, "wins"))} deals`, `
+        <div class="rd-grid g4">
+          ${rdMini("Closed-won", fmt$(won), `${rdPct(won, rv(prev, "total_won"), "MoM")} ${rdPct(won, wonLY, "YoY")}`, "total dollars won (non-test / non-RFP)")}
+          ${rdMini("New business", fmt$(rv(last, "nb_won")), rdPct(rv(last, "nb_won"), rv(prev, "nb_won"), "MoM"), "new + pilot + pilot-expansion deals")}
+          ${rdMini("Deals won", fmtN(rv(last, "wins")), `${rdPct(rv(last, "wins"), rv(prev, "wins"), "MoM")} ${rdPct(rv(last, "wins"), rv(ly, "wins"), "YoY")}`, "incl. $0 pilots")}
+          ${rv(last, "win_rate_count_pct") != null ? rdMini("Win rate (count)", rv(last, "win_rate_count_pct") + "%", "", "monthly close-date basis · RevOps owns the official rate") : ""}
         </div>
-        <div class="panel">
-          <h3>Top organic entry pages <span class="source-badge semrush">Semrush API</span></h3>
-          <p style="font-size:12px;color:var(--muted);margin:0 0 12px">Pages receiving the most organic search traffic in ${last.label} — ranked by estimated visits from Google</p>
-          ${last.seo_top_pages
-            ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`)
-            : `<p class="data-empty">— Data pending — populated by the monthly digest run (Semrush API; key in the routine env)</p>`}
+        <div class="rd-sub"><div class="eyebrow">Closed-won by month · District + School</div><div class="chartbox"><canvas id="cRev"></canvas></div>${rdCtx("Context", laggingNarrative(last))}</div>
+        ${last.deals ? dealDrill(last) : ""}
+        ${last.rev_by_product ? rdAbout("Closed-won by product", `<table class="bd"><tbody>${RD_PROD.map(([k, l]) => `<tr><td>${l}</td><td>${fmt$(last.rev_by_product[k])}</td></tr>`).join("")}</tbody></table>${last.rev_by_product.note || ""}`) : ""}`, { open: true })}
+    </div>
+
+    <div class="rd-group g-ch">
+      <div class="rd-ghead"><span class="n">3</span><h2>Channels</h2><span class="why">Top of funnel · each drawer shows its headline so you can skim it closed</span></div>
+      ${wv.channels ? rdDz("Web acquisition", `<b>${fmtN(wv.sessions)}</b> sessions · ${rdPct(wv.sessions, yoy.sessions, "YoY")}`, `
+        <div class="rd-grid g4" id="sec-web">
+          ${rdMini("Sessions", fmtN(wv.sessions), `${rdPct(wv.sessions, sessionsPrev, "MoM")} ${rdPct(wv.sessions, yoy.sessions, "YoY")}`, yoy.sessions ? `vs ${fmtN(yoy.sessions)} same month last year` : "")}
+          ${rdMini("Users", fmtN(wv.users), `${rdPct(wv.users, (prev.web || {}).users, "MoM")} ${rdPct(wv.users, yoy.users, "YoY")}`, yoy.users ? `vs ${fmtN(yoy.users)} last year` : "")}
+          ${rdMini("Page views", fmtN(wv.views), `${rdPct(wv.views, (prev.web || {}).views, "MoM")} ${rdPct(wv.views, yoy.views, "YoY")}`, yoy.views ? `vs ${fmtN(yoy.views)} last year` : "")}
+          ${wv.engaged_pct != null ? rdMini("Engagement rate", wv.engaged_pct + "%", "", "GA4 engaged sessions / sessions") : ""}
         </div>
-      </div>
-    </div>
-
-    <div id="sec-aeo" class="aeo-section">
-      <div class="section-label" style="margin-top:0">🎯 AEO — AI &amp; answer engine visibility · ${last.label}</div>
-      <div class="grid2">
-        <div class="panel">
-          <h3>AI visibility score <span class="source-badge semrush">Semrush</span></h3>
-          ${aiVisSection(last)}
+        ${wt ? `<div class="rd-sub"><div class="eyebrow">Sessions by month · this year vs last year</div><div class="chartbox sm"><canvas id="rdWebTrend"></canvas></div></div>` : ""}
+        <div class="rd-grid g2 rd-sub">
+          <div><div class="eyebrow" style="margin-bottom:6px">Channel mix · sessions</div>${rdBars(wv.channels.slice().sort((a, b) => b[1] - a[1]).map((c) => [c[0], c[1]]))}${rdAbout("About channel grouping", d.web_note || "GA4's default channel grouping, independent of HubSpot lead-source UTMs.")}</div>
+          <div><div class="eyebrow" style="margin-bottom:6px">Web conversions · GA4 key events</div>${wv.conversions ? rdBars(wv.conversions.map((c) => [c[0], c[1]])) : ""}<p class="cap">Macro web conversions sit upstream of HIH. A visitor downloads a resource or signs up here; if high-intent, they become an HIH lead.</p></div>
         </div>
-        <div class="panel">
-          <h3>Keyword gap — ELA &amp; SS only <span class="source-badge semrush">Semrush</span></h3>
-          ${kwGapSection(last)}
+        <div class="rd-sub"><div class="eyebrow" style="margin-bottom:6px">Top conversion pages <span class="source-badge ga4">GA4 API</span></div>
+          ${wv.top_conversion_pages ? topPageRows(wv.top_conversion_pages, "completions", "top-page-conv", (v) => `${fmtN(v)} completions`) : `<p class="data-empty">Data pending. Populated by the monthly digest run (GA4 API; credentials in the routine env).</p>`}</div>`,
+        { open: true, tag: "Web", cls: "ch-web", src: "GA4" }) : ""}
+      ${rdDz("Organic search", (() => { const t = d.seo_topics || []; return `<b>${t.reduce((a, x) => a + (x.top10 || 0), 0)} of ${t.reduce((a, x) => a + (x.tracked || 0), 0)}</b> tracked keywords in the top 10`; })(), `
+        <div class="rd-grid g2" id="sec-seo">
+          <div><div class="eyebrow" style="margin-bottom:6px">Keyword rankings by topic</div>${seoSection(d)}</div>
+          <div><div class="eyebrow" style="margin-bottom:6px">Top organic entry pages · ${last.label}</div>${last.seo_top_pages ? topPageRows(last.seo_top_pages, "visits", "top-page-traffic", (v) => `~${fmtN(v)} visits`) : `<p class="data-empty">Data pending. Populated by the monthly digest run (Semrush API).</p>`}</div>
         </div>
-      </div>
-      <div class="aeo-under-construction">
-        🚧 <strong>HubSpot AEO — under construction.</strong> Tracked-prompt visibility across AI assistants (ChatGPT, Claude, Gemini) plus competitor share of voice for specific buyer questions like "Great First Eight vs Frog Street" — a different lens than the Semrush score above, which tracks aggregate brand mentions rather than named prompts. The pull is built and waiting on HubSpot AEO permission; real numbers land here once that's sorted.
-      </div>
+        ${rdCtx("Context", seoNarrative(d))}
+        ${rdAbout("How these keywords are chosen", "The full set of keywords in our Semrush Position Tracking project, not a hand-picked list. Keywords are auto-grouped into topics by matching the keyword text (ela/reading → ELA, social studies → Social Studies, pre-k/preschool → ECE, product/brand names → Brand). Position is the current Google rank; “—” means tracked but not ranking. Volume is estimated US monthly searches. To add or remove keywords, edit the Semrush project. MoM starts once there's a prior month to compare.")}`,
+        { open: true, tag: "SEO", cls: "ch-seo", src: "Semrush" })}
+      ${rdDz("AI &amp; answer engines", last.ai_visibility ? `Visibility score <b>${last.ai_visibility.score}</b> ${last.ai_visibility.label} · ${fmtN(last.ai_visibility.citations)} citations` : "Data pending", `
+        <div class="rd-grid g2" id="sec-aeo">
+          <div><div class="eyebrow" style="margin-bottom:6px">AI visibility</div>${aiVisSection(last)}</div>
+          <div><div class="eyebrow" style="margin-bottom:6px">Keyword gap · ELA &amp; SS only</div>${kwGapSection(last)}</div>
+        </div>
+        ${rdCtx("HubSpot AEO", "Under construction. It tracks visibility for named prompts across AI assistants (ChatGPT, Claude, Gemini), plus competitor share of voice on buyer questions like “Great First Eight vs Frog Street.” That's a different lens from the Semrush score above, which counts overall brand mentions. The pull is built and waiting on HubSpot AEO permission.")}`,
+        { open: true, tag: "AEO", cls: "ch-aeo", src: "Semrush" })}
+      ${d.brand_lift ? rdDz("Brand lift", d.brand_lift.status === "collecting" || !(d.brand_lift.series || []).length ? `<span class="cap">Collecting · baseline month</span>` : `<b>${fmtN(((d.brand_lift.series.slice(-1)[0] || {}).branded || {}).clicks)}</b> branded clicks`,
+        rdBrandBlock(d.brand_lift, "MoM", "mBrandLift"), { open: d.brand_lift.status !== "collecting" && (d.brand_lift.series || []).length > 0, tag: "Brand", cls: "ch-brand", src: "Google Search Console" }) : ""}
     </div>
 
-    <!-- BRAND LIFT -->
-    ${brandLiftSection(d.brand_lift, "MoM", "mBrandLift")}
-
-    <!-- LAGGING -->
-    <div id="sec-lagging" class="section-label">💰 Pipeline · ${last.label} <span class="muted">(lagging sales outcome — $ + win rate context; RevOps owns the official view)</span></div>
-    <p class="pending-note">⚠️ Under construction — the numbers in this section have not been validated. QA and RevOps alignment are in progress; treat these figures as directional only until reconciled.</p>
-
-    ${pipelineGoalSection(d.pipeline_goal, { full: true })}
-
-    <div class="cards">
-      <div class="card"><div class="label">Closed-won ($)</div><div class="value">${fmt$(last.revenue.total_won)}</div>${dualDelta(last.revenue.total_won, prev.revenue && prev.revenue.total_won, null)}<div class="cap">${last.label} · total dollars won (non-test / non-RFP)</div></div>
-      <div class="card"><div class="label">New business ($)</div><div class="value">${fmt$(last.revenue.nb_won)}</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">new + pilot + pilot-expansion deals</div></div>
-      <div class="card"><div class="label">Deals won (count)</div><div class="value">${fmtN(last.revenue.wins)}</div>${dualDelta(last.revenue.wins, prev.revenue && prev.revenue.wins, null)}<div class="cap">${last.label} · incl. $0 pilots</div></div>
-      ${last.revenue.win_rate_count_pct != null ? `<div class="card"><div class="label">Win rate (count)</div><div class="value">${last.revenue.win_rate_count_pct}%</div><div class="dual-delta"><span class="delta flat">—</span></div><div class="cap">monthly close-date basis · RevOps owns pipeline</div></div>` : ""}
-    </div>
-    <div class="panel"><h3>Closed-won revenue (District + School) <span class="muted">— lagging</span></h3>
-      <div class="chartbox"><canvas id="cRev"></canvas></div>
-      ${note(laggingNarrative(last))}
-      ${last.deals ? dealDrill(last) : ""}
-    </div>
-
-    <div id="sec-detail" class="panel"><h3>Monthly detail — all products (trailing 12 months)</h3>
-      <table><thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead><tbody>
-      ${m.map((x) => `<tr><td>${x.label}</td><td>${fmtN(fu(x,"hih"))}</td><td>${fmtN(fu(x,"mql"))}</td><td>${fmtN(fu(x,"sql"))}</td><td>${rate(fu(x,"sql"),fu(x,"mql")) != null ? rate(fu(x,"sql"),fu(x,"mql"))+"%" : "—"}</td><td>${fmtN(x.revenue.wins)}</td><td>${fmt$(x.revenue.total_won)}</td></tr>`).join("")}
-      </tbody></table>
-      <p class="flag">${d.notes || ""}</p>
+    <div id="sec-detail">${rdTier(4, "Reference", "")}</div>
+    ${rdDz("Monthly detail · all products", `trailing ${m.length} months`, `<div class="tscroll"><table><thead><tr><th>Month</th><th>HIH</th><th>MQL</th><th>SQL</th><th>MQL→SQL</th><th>Wins</th><th>Closed-won</th></tr></thead><tbody>
+      ${m.map((x) => `<tr><td>${x.label}</td><td>${fmtN(fu(x, "hih"))}</td><td>${fmtN(fu(x, "mql"))}</td><td>${fmtN(fu(x, "sql"))}</td><td>${rate(fu(x, "sql"), fu(x, "mql")) != null ? rate(fu(x, "sql"), fu(x, "mql")) + "%" : "—"}</td><td>${fmtN(rv(x, "wins"))}</td><td>${fmt$(rv(x, "total_won"))}</td></tr>`).join("")}
+      </tbody></table></div>`)}
+    ${d.notes ? rdDz("Data notes &amp; methodology", "backfill, product splits, corrections", `<p class="cap">${d.notes}</p>`) : ""}
     </div>`;
 
-  // wire product chips
   document.querySelectorAll(".chip[data-p]").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
 
   buildJumpRail([
     { id: "sec-hih", label: "HIH" },
     { id: "sec-funnel", label: "Funnel" },
     { id: "sec-leading", label: "Leading ind." },
+    { id: "sec-lagging", label: "Pipeline" },
     { id: "sec-web", label: "Web" },
     { id: "sec-seo", label: "SEO" },
     { id: "sec-aeo", label: "AEO" },
-    { id: "sec-lagging", label: "Pipeline" },
     { id: "sec-detail", label: "Detail" },
   ]);
 
-  const botLeg = { plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11 } } } }, maintainAspectRatio: false };
-  const noLeg  = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  const grid = { color: "rgba(20,71,69,0.08)" };
+  rdSpark("rdSpkConv", conv, IJ); rdSpark("rdSpkSql", sql, PLUM); rdSpark("rdSpkWon", m.map((x) => rv(x, "total_won")), IJ);
+  rdSpark("rdSpkHih", ser(m, "hih"), AMBER); rdSpark("rdSpkMql", ser(m, "mql"), IJ); rdSpark("rdSpkSql2", ser(m, "sql"), PLUM);
+  rdSpark("rdSpkConv2", m.map((x) => pr(x)), "#1a7f5a");
 
-  // HIH velocity sparkline (6 months in hero right panel)
-  const hih6 = hih.slice(-6), labels6 = labels.slice(-6);
-  mkChart("cHihVelocity", { type: "line", data: { labels: labels6, datasets: [{ data: hih6, borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.15)", fill: true, tension: 0.4, pointRadius: [0,0,0,0,0,4], pointBackgroundColor: AMBER }] }, options: { ...noLeg, scales: { x: { display: true, ticks: { font: { size: 10 }, color: "#999" }, grid: { display: false } }, y: { display: false, beginAtZero: true } } } });
+  // HIH monthly trend — every point labeled; prior-year month + latest month emphasized
+  const hl = [lyIdx, m.length - 1].filter((i) => i >= 0);
+  mkChart("rdHih", { type: "line", data: { labels: short, datasets: [{ data: hih, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.08)", fill: true, tension: 0.3, borderWidth: 2.5, spanGaps: true,
+      pointRadius: hih.map((_, i) => hl.includes(i) ? 6 : 3.5), pointBackgroundColor: hih.map((_, i) => hl.includes(i) ? IJ : "#fff"), pointBorderColor: IJ, pointBorderWidth: 2 }] },
+    options: { maintainAspectRatio: false, layout: { padding: { top: 18 } }, plugins: { legend: { display: false }, rdLabels: { on: true, hi: hl } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, grid, ticks: { maxTicksLimit: 5 } } } } });
 
-  // HIH 12-month trend (full width inside hero)
-  mkChart("cHihTrend", { type: "line", data: { labels, datasets: [{ data: hih, borderColor: AMBER, backgroundColor: "rgba(20,71,69,0.10)", fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: "#fff", pointBorderColor: AMBER, pointBorderWidth: 2, spanGaps: true }] }, options: { ...noLeg, scales: { x: { ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } }, y: { beginAtZero: true, ticks: { font: { size: 11 }, color: "#5a7a78" }, grid: { color: "rgba(20,71,69,0.08)" } } } } });
+  const pconv = m.map((x) => pr(x));
+  mkChart("rdConv", { type: "line", data: { labels: short, datasets: [
+      { data: pconv, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.08)", fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 3, pointBackgroundColor: IJ, spanGaps: true },
+      rdBand(m.length, 45), rdBand(m.length, 22)] },
+    options: { maintainAspectRatio: false, layout: { padding: { top: 18 } }, plugins: { legend: { display: false }, rdLabels: { on: true, fmt: (v) => v + "%", hi: [m.length - 1] }, rdBands: { bands: [[45, "Top performers 45%"], [22, "B2B benchmark 22%"]] } },
+      scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100, grid, ticks: { callback: (v) => v + "%", maxTicksLimit: 6 } } } } });
 
-  // KPI sparklines
-  mkChart("spkHih",  { type: "line", data: { labels, datasets: [{ data: ser(m,"hih"),  borderColor: AMBER, borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
-  mkChart("spkMql",  { type: "line", data: { labels, datasets: [{ data: ser(m,"mql"),  borderColor: IJ,    borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
-  mkChart("spkSql",  { type: "line", data: { labels, datasets: [{ data: ser(m,"sql"),  borderColor: PLUM,  borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
-  mkChart("spkConv", { type: "line", data: { labels, datasets: [{ data: conv,          borderColor: "#1a7f5a", borderWidth: 2, fill: false, tension: 0.4, spanGaps: true }] }, options: spkOpts });
+  if (wt) mkChart("rdWebTrend", { type: "line", data: { labels: wt.labels, datasets: [
+      { label: "This year", data: wt.current, borderColor: PLUM, borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, pointBackgroundColor: PLUM },
+      { label: "Last year", data: wt.prior, borderColor: "#999", borderDash: [5, 4], borderWidth: 1.5, tension: 0.3, pointRadius: 0 }] },
+    options: { maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 10 } } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, grid, ticks: { maxTicksLimit: 5 } } } } });
 
-  // MQL→SQL 12-month trend with benchmarks
-  mkChart("cConvTrend", { type: "line", data: { labels, datasets: [
-    { label: "MQL→SQL %", data: conv, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.10)", fill: true, tension: 0.3, pointRadius: 3, spanGaps: true },
-    { label: "Top performer (45%)", data: Array(m.length).fill(45), borderColor: "#aaa", borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0 },
-    { label: "B2B benchmark (22%)", data: Array(m.length).fill(22), borderColor: "#ccc", borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0 }
-  ] }, options: { ...botLeg, scales: { y: { beginAtZero: true, max: 85, ticks: { callback: (v) => v + "%" } } } } });
+  rdBrandChart(d.brand_lift, "mBrandLift");
 
-  // HIH by source
-  const hsrc = last.hih_by_source || [];
-  mkChart("cSrc", { type: "bar", data: { labels: hsrc.map((s) => s[0]), datasets: [{ data: hsrc.map((s) => s[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
-
-  // Web channels + conversions
-  brandLiftChart(d.brand_lift, "mBrandLift");
-
-  if (wv.channels) mkChart("mWebChannel", { type: "bar", data: { labels: wv.channels.map((c) => c[0]), datasets: [{ data: wv.channels.map((c) => c[1]), backgroundColor: AMBER }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
-  if (wv.conversions) mkChart("mWebConv", { type: "bar", data: { labels: wv.conversions.map((c) => c[0]), datasets: [{ data: wv.conversions.map((c) => c[1]), backgroundColor: IJ }] }, options: { ...noLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
-
-  // Revenue stacked bar
-  mkChart("cRev", { type: "bar", data: { labels, datasets: [
-    { label: "District", data: m.map((x) => x.revenue.district_won), backgroundColor: IJ_FADE, stack: "r" },
-    { label: "School",   data: m.map((x) => x.revenue.school_won),   backgroundColor: "rgba(91,90,158,0.40)", stack: "r" }
-  ] }, options: { ...botLeg, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } } });
+  mkChart("cRev", { type: "bar", data: { labels: short, datasets: [
+    { label: "District", data: m.map((x) => rv(x, "district_won")), backgroundColor: IJ, stack: "r" },
+    { label: "School",   data: m.map((x) => rv(x, "school_won")),   backgroundColor: "#B1E0BB", stack: "r" }
+  ] }, options: { maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 10 } }, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${fmt$(c.raw)}` } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, grid, ticks: { callback: (v) => fmtK(v), maxTicksLimit: 5 } } } } });
 }
 
 function hihByProductTable(last) {
@@ -768,58 +751,8 @@ function dealDrill(last) {
 }
 
 // ---- weekly tab ----
-const WK_PRODUCT_ROWS = [["ij", "Inquiry Journeys"], ["inkwell", "Inkwell"], ["wh", "World History"], ["gf8", "Great First 8"]];
-const WK_SEGMENT_ROWS = [["single_small", "Single / Small"], ["medium", "Medium"], ["large", "Large"], ["enterprise", "Enterprise"]];
-const WK_STAGES = [["hih", "HIH"], ["mql", "MQL"], ["sql", "SQL"], ["opp", "Opp"]];
-
-// WoW arrow for a breakdown cell. Suppressed when last week's base < 5 (small-sample noise).
-function wowArrow(cur, prv) {
-  if (cur == null) return "";
-  if (prv == null || prv < 5) return "";
-  const p = (cur - prv) / Math.abs(prv) * 100;
-  if (Math.abs(p) < 5) return '<span class="delta flat">=</span>';
-  return p > 0 ? `<span class="delta up">▲${Math.round(p)}%</span>` : `<span class="delta down">▼${Math.round(Math.abs(p))}%</span>`;
-}
-
-// Always-on breakdown table: rows = product or segment, cols = funnel stages, cell = this week + WoW arrow.
-function wkBreakdownTable(rows, dimKey, last, prev, opts = {}) {
-  const get = (o, k, s) => (o[dimKey] && o[dimKey][k]) ? o[dimKey][k][s] : null;
-  const body = rows.map(([k, label]) => {
-    const cells = WK_STAGES.map(([s]) => `<td>${fmtN(get(last, k, s))} ${wowArrow(get(last, k, s), get(prev, k, s))}</td>`).join("");
-    return `<tr><td>${label}</td>${cells}</tr>`;
-  }).join("");
-  let extra = "";
-  if (opts.untagged) {
-    const cells = WK_STAGES.map(([s]) => {
-      const tot = last.funnel ? last.funnel[s] : null;
-      const tagged = rows.reduce((a, [k]) => a + (get(last, k, s) || 0), 0);
-      return `<td>${tot == null ? "—" : fmtN(Math.max(0, tot - tagged))}</td>`;
-    }).join("");
-    extra = `<tr class="untagged"><td>Untagged</td>${cells}</tr>`;
-  }
-  return `<table class="bd"><thead><tr><th></th>${WK_STAGES.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead><tbody>${body}${extra}</tbody></table>`;
-}
-
-// Product rows shared by the pipeline + disposition breakdowns (same 4 products/colors as WK_PRODUCT_ROWS)
+// Product rows for the disposition-by-product table
 const WK_PIPE_PRODUCT_ROWS = [["ij", "Inquiry Journeys", "#144745"], ["inkwell", "Inkwell", "#F99792"], ["wh", "World History", "#5B5A9E"], ["gf8", "Great First 8", "#079DD9"]];
-
-function pipelineProductTable(pipe) {
-  const bp = pipe.by_product || {};
-  const rows = WK_PIPE_PRODUCT_ROWS.map(([k, label, color]) => {
-    const r = bp[k] || {};
-    return `<tr><td><span class="dot" style="background:${color}"></span>${label}</td><td>${r.count != null ? fmtN(r.count) : "—"}</td><td>${r.amount != null ? fmt$(r.amount) : "—"}</td></tr>`;
-  }).join("");
-  const u = bp.untagged || {};
-  return `<table class="bd"><thead><tr><th>Product</th><th>Open deals</th><th>$ Amount</th></tr></thead><tbody>${rows}
-    <tr class="untagged"><td>Untagged</td><td>${u.count != null ? fmtN(u.count) : "—"}</td><td>${u.amount != null ? fmt$(u.amount) : "—"}</td></tr>
-    </tbody></table>`;
-}
-
-function pipelineStageTable(label, stages) {
-  if (!stages || !stages.length) return `<p class="cap">No open deals in the ${label} pipeline.</p>`;
-  const rows = stages.map((s) => `<tr><td>${s.stage}</td><td>${fmtN(s.count)}</td><td>${fmt$(s.amount)}</td></tr>`).join("");
-  return `<table><thead><tr><th>${label} stage</th><th>Deals</th><th>$ Amount</th></tr></thead><tbody>${rows}</tbody></table>`;
-}
 
 // ---- content engagement (intent tier + content tags — running totals, not a weekly-window count) ----
 const CE_TIER_COLORS = { high: "#144745", medium: "#1C2660", low: "#94A3AE" };
@@ -890,7 +823,7 @@ function pipelineGoalSection(pg, opts = {}) {
                         : { segment: ref.by_segment, product: ref.by_product, pipeline: ref.by_pipeline, label: `${ref.school_year || "last year"} for reference` };
 
   return `
-  <div class="panel"><h3>Pipeline vs. ${pg.school_year || ""} Goal</h3>
+  <div class="panel">${opts.bare ? "" : `<h3>Pipeline vs. ${pg.school_year || ""} Goal</h3>`}
     <p class="cap" style="margin-top:0">Deal Start Year = ${(pg.field_value || (pg.school_year || "").replace("SY", ""))} · District + School + New Business pipelines · as of ${pg.as_of || "—"}${opts.full ? "" : " · updates weekly"}${pg.hubspot_list_url ? ` · <a class="hih-hs-link" style="margin:0;padding:2px 9px;font-size:11.5px" href="${pg.hubspot_list_url}" target="_blank" rel="noopener">View deals in HubSpot ↗</a>` : ""}</p>
     <div class="goal-row">
       <div class="goal-block">
@@ -930,148 +863,190 @@ function renderWeekly(d) {
   const labels = w.map((x) => x.label);
   const f = (o, s) => (o && o.funnel) ? o.funnel[s] : null;
   const conv = w.map((x) => rate(f(x, "sql"), f(x, "mql")));
-  const pipe = d.pipeline || {}, cov = d.segment_coverage || {};
-  const covLine = `HIH ${cov.hih ?? "—"}% · MQL ${cov.mql ?? "—"}% · SQL ${cov.sql ?? "—"}% · Opp ${cov.opp ?? "—"}%`;
-  const drill = last.drill || {};
-  const dcard = (stage, l, v, dl) => {
-    const n = (drill[stage] || []).length;
-    return n ? `<div class="card drill" data-drill="${stage}"><div class="label">${l}</div><div class="value">${v}</div><div>${dl}</div><div class="cap">▸ ${n} contacts — click to view in HubSpot</div></div>` : card(l, v, dl);
+  const pipe = d.pipeline || {};
+
+  // baseline = prior 8 complete weeks (excludes the latest week)
+  const base = w.slice(-9, -1);
+  const avg = (s) => base.length ? base.reduce((a, x) => a + (f(x, s) || 0), 0) / base.length : null;
+  const avgD = (k) => { const b = base.filter((x) => x.disposition && x.disposition[k] != null); return b.length ? b.reduce((a, x) => a + x.disposition[k], 0) / b.length : null; };
+  const baseConv = base.length ? rate(base.reduce((a, x) => a + (f(x, "sql") || 0), 0), base.reduce((a, x) => a + (f(x, "mql") || 0), 0)) : null;
+  const lastConv = rate(f(last, "sql"), f(last, "mql"));
+  const spk = (s) => w.slice(-9).map((x) => f(x, s));
+  const tile = (s, label, hero) => {
+    const a = avg(s), v = rdVsAvg(f(last, s), a);
+    return rdKpi({ label, value: fmtN(f(last, s)), hero, st: v.st, stLbl: v.lbl, delta: v.html, cmp: a != null ? `avg ${a.toFixed(1)}` : "", spark: `rdW_${s}` });
   };
-  const segGet = (k, s) => (last.by_segment && last.by_segment[k]) ? last.by_segment[k][s] : 0;
+  const convPts = lastConv != null && baseConv != null ? lastConv - baseConv : null;
+  const convSt = convPts == null ? ["watch", "—"] : convPts >= 3 ? ["good", "Up"] : convPts <= -3 ? ["bad", "Down"] : ["watch", "Flat"];
+
+  // breakdowns
+  const bp = last.by_product || {}, bpp = prev.by_product || {}, bs = last.by_segment || {}, bsp = prev.by_segment || {};
+  const g = (o, k, s) => o[k] ? o[k][s] : null;
+  const tagged = (o, rows, s) => rows.reduce((a, [k]) => a + (g(o, k, s) || 0), 0);
+  const segHihAllZero = RD_SEG.every(([k]) => !g(bs, k, "hih"));
+  const segTbl = RD_SEG.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bs, k, s))}${rdRaw(g(bs, k, s), g(bsp, k, s))}</td>`).join("")}<td>${rate(g(bs, k, "sql"), g(bs, k, "mql")) != null ? rate(g(bs, k, "sql"), g(bs, k, "mql")) + "%" : "—"}</td></tr>`).join("")
+    + `<tr class="untagged"><td>Unassigned</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bs, RD_SEG, s)))}</td>`).join("")}<td></td></tr>`;
+  const prodTbl = RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bp, k, s))}${rdRaw(g(bp, k, s), g(bpp, k, s))}</td>`).join("")}</tr>`).join("")
+    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s)))}</td>`).join("")}</tr>`;
+
+  // HIH contact drill-down (IDs only; opens the side drawer)
+  const drillHih = (last.drill && last.drill.hih) || [];
+
+  // top converting pieces
+  const pieces = last.top_pieces || null, ce = rdLatestCE(w);
+  const piecesTbl = pieces && pieces.length
+    ? pieces.map((p) => `<tr><td><b>${p.tag}</b></td><td>${p.type || rdPieceType(p.tag)}</td><td>${p.product || rdPieceProd(p.tag)}</td><td><b>${fmtN(p.fills)}</b></td><td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td><td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`).join("")
+    : ((ce && ce.top_content_tags) || []).map((t) => `<tr><td><b>${t.tag}</b><span class="rd-rt">${fmtN(t.count)} running total</span></td><td>${rdPieceType(t.tag)}</td><td>${rdPieceProd(t.tag)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>`).join("");
+
+  // open pipeline (active pipelines only; legacy District/School hidden)
+  const act = pipe.active || null;
+  const stageRows = (p) => {
+    const byName = {}; ((p && p.stages) || []).forEach((s) => { byName[s.stage] = s; });
+    const cell = (s, k, fmt) => s && s[k] != null ? (fmt ? fmt(s[k]) : fmtN(s[k])) : "—";
+    const rows = RD_STAGES.map((n, i) => { const s = byName[n]; return `<tr${i === 0 ? ' class="untagged"' : ""}><td>${n}${i === 0 ? ' <span class="rd-pill">not pipeline</span>' : i === 1 ? ' <span class="rd-pill">pipeline starts</span>' : ""}</td><td>${cell(s, "count")}</td><td>${cell(s, "amount", fmt$)}</td><td>${cell(s, "entered")}</td><td>${cell(s, "forward")}</td><td>${cell(s, "back")}</td></tr>`; }).join("");
+    const inPipe = ((p && p.stages) || []).filter((s) => s.stage !== "Sales Qualified");
+    const sum = (k) => inPipe.length ? inPipe.reduce((a, s) => a + (s[k] || 0), 0) : null;
+    return rows + `<tr style="font-weight:900"><td>Total in pipeline</td><td>${fmtN(sum("count"))}</td><td>${sum("amount") != null ? fmt$(sum("amount")) : "—"}</td><td>${fmtN(sum("entered"))}</td><td>${fmtN(sum("forward"))}</td><td>${fmtN(sum("back"))}</td></tr>`;
+  };
+  const moved = pipe.moved_deals || null, actProd = pipe.active_by_product || null;
+  const movedBody = (moved && moved.length
+      ? `<div class="tscroll"><table class="bd"><thead><tr><th>Deal</th><th>Pipeline</th><th>From → to</th><th>Amount</th><th>Company size</th><th>Last-touch converting campaign (before open)</th></tr></thead><tbody>${moved.map((x) => `<tr><td><a class="lnk" href="${x.url}" target="_blank" rel="noopener">${escapeHtml(x.name)} ↗</a></td><td>${x.pipeline || "—"}</td><td>${x.from || "—"} → ${x.to || "—"}</td><td>${fmt$(x.amount)}</td><td>${x.segment || "—"}</td><td>${escapeHtml(x.last_touch_campaign || "—")}</td></tr>`).join("")}</tbody></table></div>`
+      : `<p class="data-empty">One row per deal that changed stage in the ISO week, linking to the HubSpot deal. ${moved ? "No deals moved this week." : "Fills in once the new pull runs."}</p>`)
+    + `<p class="cap">The campaign comes from the deal's primary contact (last touch converting campaign as of the deal's create date). UTMs don't pass lead→deal today, so this is the working stand-in until attribution work lands.</p>`;
+  const movedDz = rdDz("Deals that moved this week", moved ? `<b>${moved.length}</b> deals changed stage` : "stage change + last-touch campaign before the deal opened", movedBody, { cls: "inner" });
+  const prodBody = actProd
+    ? `<div class="tscroll"><table class="bd"><thead><tr><th>Product</th><th>Open deals</th><th>$ open</th></tr></thead><tbody>${RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td><td>${fmtN((actProd[k] || {}).count)}</td><td>${fmt$((actProd[k] || {}).amount)}</td></tr>`).join("")}<tr class="untagged"><td>Untagged</td><td>${fmtN((actProd.untagged || {}).count)}</td><td>${fmt$((actProd.untagged || {}).amount)}</td></tr></tbody></table></div><p class="cap">Deals tagged with more than one product count toward each.</p>`
+    : `<p class="data-empty">Re-pulled for New Business, Account Growth and Renewal once the new pull runs.</p>`;
+  const prodDz = rdDz("Open deals by product", "active pipelines only", prodBody, { cls: "inner" });
+  const disp = last.disposition || {}, dispPrev = prev.disposition || {};
+  const reasonTbl = (rows, k) => rows && rows.length
+    ? (() => { const tot = rows.reduce((a, r) => a + r.count, 0); return rows.map((r) => `<tr><td>${r.reason}</td><td>${fmtN(r.count)}</td><td>${tot ? Math.round(r.count / tot * 100) + "%" : "—"}</td><td>${r.avg8 != null ? rdVsAvg(r.count, r.avg8).html : "—"}</td></tr>`).join(""); })()
+    : `<tr class="untagged"><td colspan="4">Grouped by the ${k} reason on the lead. Top reasons first.</td></tr>`;
+  const dqAvg = avgD("dq"), nuAvg = avgD("nurture");
 
   document.getElementById("view").innerHTML = `
-    <div class="hih-hero">
-      <div class="hih-hero-top">
-        <div class="hih-hero-main">
-          <div class="hero-label">★ HIGH-INTENT (HIH) LEADS · ${last.label || ""} — north star</div>
-          <div class="hero-val">${fmtN(f(last,"hih"))} ${deltaHTML(f(last,"hih"), f(prev,"hih"), {label:"WoW"})}</div>
-          <div class="hero-sub">MQL→SQL ${rate(f(last,"sql"), f(last,"mql")) ?? "—"}%</div>
-        </div>
-        <div class="hih-hero-velocity">
-          <div class="hero-label">★ FUNNEL VELOCITY · ${last.label || ""}</div>
-          <div class="hero-val-sm">${fmtN(f(last,"mql"))} MQL &nbsp;${deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"})}</div>
-          <div class="hero-sub">${fmtN(f(last,"sql"))} SQL ${deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"})} · ${fmtN(f(last,"opp"))} Opp ${deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"})}</div>
-        </div>
-      </div>
-      <div class="hih-hero-def">HIH is the earliest read on high-intent demand — the north-star metric. Week-over-week swings are normal; watch the 10-week trend below.</div>
-      <div class="hih-hero-chart">
-        <h4>HIH — trailing ${w.length} weeks</h4>
-        <div class="chartbox sm"><canvas id="wHihMini"></canvas></div>
-      </div>
+    <div class="rd">
+    <div class="rd-row" style="margin-bottom:2px"><span class="cap" style="margin:0">Compares to the prior ${base.length}-week average (${base.length ? `${base[0].label} – ${base[base.length - 1].label}` : "—"}) · <a href="#" class="lnk" id="rdToMonthly">Pipeline vs goal lives on Monthly ›</a></span></div>
+    <p class="cap" style="margin:0 0 4px">${rdNeeds()} marks sections the weekly skill doesn't collect yet. Those show the layout only, with no numbers.</p>
+
+    ${rdTier(1, "The read", "Written by the digest skill each run")}
+    ${rdRead(last.read) || (last.note ? rdCtx(`Data note · ${last.label}`, last.note) : `<p class="cap">No summary for ${last.label || "this week"} yet.</p>`)}
+    <div class="rd-grid g5" style="margin-top:12px">
+      ${tile("hih", "HIH new", true)}${tile("mql", "MQLs")}${tile("sql", "SQLs")}${tile("opp", "Opps")}
+      ${rdKpi({ label: "MQL → SQL", value: lastConv != null ? lastConv + "%" : "—", st: convSt[0], stLbl: convSt[1], delta: rdPts(lastConv, baseConv, ""), cmp: baseConv != null ? `avg ${baseConv}%` : "", spark: "rdW_conv" })}
     </div>
 
-    <div class="section-label">▲ Latest complete week — ${last.label || ""}</div>
-    <div class="cards">
-      ${dcard("mql", "MQLs", fmtN(f(last,"mql")), deltaHTML(f(last,"mql"), f(prev,"mql"), {label:"WoW"}))}
-      ${dcard("sql", "SQLs", fmtN(f(last,"sql")), deltaHTML(f(last,"sql"), f(prev,"sql"), {label:"WoW"}))}
-      ${dcard("opp", "Opp", fmtN(f(last,"opp")), deltaHTML(f(last,"opp"), f(prev,"opp"), {label:"WoW"}))}
-      ${card("MQL → SQL", (rate(f(last,"sql"), f(last,"mql")) ?? "—") + "%", "")}
+    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent")}</div>
+    <div class="rd-grid g2">
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by product · vs last week</div>${rdCov("Primary product per contact")}</div>
+        ${rdBars(RD_PROD.map(([k, l, c]) => [l, g(bp, k, "hih"), c, g(bpp, k, "hih")]).sort((a, b) => (b[1] || 0) - (a[1] || 0)))}</div>
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by company size · vs last week</div>${segHihAllZero ? rdCov("Not captured this run") : ""}</div>
+        ${rdBars(RD_SEG.map(([k, l, c]) => [l, g(bs, k, "hih"), c, g(bsp, k, "hih")]))}
+        ${segHihAllZero ? `<p class="cap">This run didn't record company size for HIH, so every row shows 0.</p>` : ""}</div>
+    </div>
+    <details class="rd-dz" id="rdHihDrill"><summary><span class="dt">HIH contacts this week</span><span class="ds"><b>${fmtN(f(last, "hih"))}</b> contacts · ${drillHih.length ? "open to see each HubSpot record" : "list not stored this run"}</span></summary>
+      <div class="dbody">
+        <p class="cap" style="margin-top:0">One row per contact: HubSpot record (access-gated), company size, source, product. No names or emails, because the repo is public.</p>
+        ${drillHih.length ? `<div class="tscroll"><table><thead><tr><th>HubSpot record</th><th>Company size</th><th>Source</th><th>Product</th></tr></thead><tbody>${drillHih.map((r) => `<tr><td><a class="lnk" href="https://app.hubspot.com/contacts/4451852/record/0-1/${r[0]}" target="_blank" rel="noopener">Open contact ↗</a></td><td>${r[1] || '<span class="cap">untagged</span>'}</td><td>${r[2] || "—"}</td><td>${r[3] || "—"}</td></tr>`).join("")}</tbody></table></div>`
+          : `<p class="data-empty">The ${last.label} run didn't store the contact list. It fills in on the next run.</p>`}
+      </div></details>
+
+    ${rdTier(2, "Trend", `Last ${w.length} weeks`)}
+    <div class="rd-grid g2">
+      <div class="rd-card"><div class="eyebrow">Funnel by week</div><div class="chartbox" style="height:230px"><canvas id="wFunnel"></canvas></div><p class="cap">HIH shaded, MQL and SQL as lines.</p></div>
+      <div class="rd-card"><div class="eyebrow">MQL→SQL by week</div><div class="chartbox" style="height:230px"><canvas id="wConvRates"></canvas></div><p class="cap">Dashed line = ${base.length}-week average. Within-week stage entries, so read it as direction, not a cohort rate.</p></div>
     </div>
 
-    <div class="section-label">📦 By product — ${last.label || ""} <span class="muted">(this week · WoW)</span></div>
-    <div class="grid2">
-      <div class="panel"><h3>HIH · MQL · SQL by product</h3><div class="chartbox"><canvas id="wProdChart"></canvas></div></div>
-      <div class="panel"><h3>Funnel by product — detail</h3>
-        ${wkBreakdownTable(WK_PRODUCT_ROWS, "by_product", last, prev, {untagged:true})}
-        ${note("Each contact counted under its single <strong>primary</strong> product (priority Inkwell → IJ → World History → Great First 8). WoW arrow when last week's base was ≥ 5.")}
+    <div id="sec-wseg">${rdTier(2, "By company size &amp; product", "This week · raw change vs last week")}</div>
+    <div class="rd-grid g2">
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By company size</div>${rdCov(`Covers ${fmtN(tagged(bs, RD_SEG, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
+        <div class="tscroll"><table class="bd"><thead><tr><th>Segment</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>${segTbl}</tbody></table></div>
+        <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wSegChart"></canvas></div></div>
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(tagged(bp, RD_PROD, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
+        <div class="tscroll"><table class="bd"><thead><tr><th>Product</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th></tr></thead><tbody>${prodTbl}</tbody></table></div>
+        <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wProdChart"></canvas></div></div>
+    </div>
+    ${rdAbout("How these are counted", "Each contact counts under one primary product (priority Inkwell → IJ → World History → Great First 8). Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
+
+    <div id="sec-wtop">${rdTier(2, "Top converting pieces", "Form fills by offer this week", pieces ? "" : rdNeeds())}</div>
+    <div class="rd-card">
+      <div class="tscroll"><table class="bd"><thead><tr><th>Offer / form</th><th>Type</th><th>Product</th><th>Fills</th><th>vs 8-wk avg</th><th>New contacts</th><th>Became HIH</th><th>Became MQL</th></tr></thead><tbody>${piecesTbl || `<tr class="untagged"><td colspan="8">No offers yet.</td></tr>`}</tbody></table></div>
+      ${pieces ? "" : `<p class="cap">Offer names come from the HubSpot content tags the skill already reads${ce ? ` (as of ${ce.as_of})` : ""}. Weekly counts fill in once the new pull runs.</p>`}
+      ${rdAbout("Definition", "A fill is a HubSpot form submission in the ISO week, grouped by the offer's content tag. Became HIH / MQL counts fillers whose intent tier or lifecycle stage changed in the same week. Page-level conversion rates stay on the Content Performance tab.")}
+    </div>
+
+    <div id="sec-wpipe">${rdTier(2, "Open pipeline", `Active pipelines · snapshot ${pipe.as_of || ""} + movement this week`, act ? "" : rdNeeds())}</div>
+    <div class="rd-card">
+      <div class="toolbar" style="margin:0 0 10px">${RD_PIPES.map(([k, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-pipe="${k}">${l}</button>`).join("")}</div>
+      ${RD_PIPES.map(([k, l], i) => `<div class="rd-pipe" data-pipe-body="${k}"${i ? " hidden" : ""}><div class="tscroll"><table class="bd"><thead><tr><th>${l} stage</th><th>Open deals</th><th>$ open</th><th>Entered this week</th><th>Moved forward</th><th>Moved back / lost</th></tr></thead><tbody>${stageRows(act && act[k])}</tbody></table></div></div>`).join("")}
+      <p class="cap">Stages follow the RevOps source of truth. Sales Qualified is a booked meeting, not pipeline. Legacy District / School pipelines are hidden while RevOps finishes the migration.</p>
+      ${movedDz}
+      ${prodDz}
+    </div>
+
+    <div id="sec-wdisp">${rdTier(3, "Lead disposition", "Contacts leaving the active funnel this week")}</div>
+    <div class="rd-card">
+      <div class="rd-grid g2">
+        ${rdMini("Disqualified (DQ)", fmtN(disp.dq), `${rdVsAvg(disp.dq, dqAvg, true).html} <span class="cmp">${dqAvg != null ? "avg " + Math.round(dqAvg) : ""}</span>`, "", "rdW_dq")}
+        ${rdMini("Sent to nurture", fmtN(disp.nurture), `${rdVsAvg(disp.nurture, nuAvg).html} <span class="cmp">${nuAvg != null ? "avg " + Math.round(nuAvg) : ""}</span>`, "", "rdW_nu")}
       </div>
+      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>`, { cls: "inner" })}
+      ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
+      ${disp.by_product ? rdDz("DQ &amp; nurture by product", "product-tagged subset", dispositionProductTable(last) + `<p class="cap">Coverage runs lower here than on the funnel metrics, so these won't sum to the totals.</p>`, { cls: "inner" }) : ""}
+      ${rdAbout("About disposition", "Disposition reflects lifecycle stage exits: contacts removed from active funnel consideration this week. High DQ weeks can point to list quality or targeting issues.")}
     </div>
 
-    <div class="grid2">
-      <div class="panel"><h3>Funnel by week</h3><div class="chartbox"><canvas id="wFunnel"></canvas></div>${note("<strong>HIH</strong> (high-intent) shown as the shaded band; <strong>MQL</strong> and <strong>SQL</strong> as bold lines.")}</div>
-      <div class="panel"><h3>MQL→SQL conversion by week</h3><div class="chartbox"><canvas id="wConvRates"></canvas></div>${note("Within-week stage entries, not a cohort view — treat as directional velocity, not a true conversion rate.")}</div>
-    </div>
+    <div id="sec-wbrand">${rdTier(3, "Brand lift", "Google Search Console · how often people find us by searching")}</div>
+    ${rdBrandBlock(d.brand_lift, "WoW", "wBrandLift")}
 
-    <div class="section-label">🏢 By account segment — ${last.label || ""} <span class="muted">(segment tagging coverage: ${covLine})</span></div>
-    <div class="grid2">
-      <div class="panel"><h3>HIH · MQL · SQL by segment</h3><div class="chartbox"><canvas id="wSegChart"></canvas></div></div>
-      <div class="panel"><h3>Funnel by segment — detail</h3>
-        ${wkBreakdownTable(WK_SEGMENT_ROWS, "by_segment", last, prev, {})}
-        ${note("Segment is partially populated — unassigned contacts excluded from rows but included in headline totals. WoW arrow when last week's base was ≥ 5.")}
-      </div>
-    </div>
-
-    <div class="panel"><h3>Open pipeline <span class="muted">(snapshot ${pipe.as_of || d.updated})</span></h3>
-      <div class="cards">
-        ${card("New Business — open deals", fmtN(pipe.new_business_open), "", "New Business Pipeline")}
-        ${card("Account Growth — open deals", fmtN(pipe.account_growth_open), "", "Account Growth Pipeline")}
-        ${card("Renewal — open deals", fmtN(pipe.renewal_open), "", "Renewal Pipeline")}
-        ${card("District — open deals", fmtN(pipe.district_open), "", "District Sales Pipeline (legacy — being retired)")}
-        ${card("School — open deals", fmtN(pipe.school_open), "", "School Sales Pipeline (legacy — being retired)")}
-      </div>
-      ${note("Point-in-time count of open deals, not a weekly trend. New Business, Account Growth, and Renewal are the current active pipelines (confirmed by RevOps 2026-09-16); District and School are last year's structure and are being retired — kept here only until RevOps confirms the migration/archive is complete. " + (pipe.note || ""))}
-      ${pipe.by_product ? `
-      <div class="grid2">
-        <div><h4>By product</h4>${pipelineProductTable(pipe)}${note("Deals tagged with more than one product count toward each — totals won't sum to the open-deal count above.")}</div>
-        <div><h4>By stage</h4>${pipelineStageTable("New Business", pipe.by_stage && pipe.by_stage.new_business)}${pipelineStageTable("Account Growth", pipe.by_stage && pipe.by_stage.account_growth)}${pipelineStageTable("Renewal", pipe.by_stage && pipe.by_stage.renewal)}${pipelineStageTable("District", pipe.by_stage && pipe.by_stage.district)}${pipelineStageTable("School", pipe.by_stage && pipe.by_stage.school)}</div>
-      </div>` : ""}
-    </div>
-
-    ${pipelineGoalSection(d.pipeline_goal, { full: false })}
-
-    ${(last.disposition && (last.disposition.dq != null || last.disposition.nurture != null)) ? `
-    <div class="panel"><h3>Lead disposition — ${last.label || ""}</h3>
-      <div class="cards">
-        ${card("Disqualified (DQ)", fmtN(last.disposition.dq), wowArrow(last.disposition.dq, prev.disposition && prev.disposition.dq), "Contacts marked DQ this week")}
-        ${card("Sent to Nurture", fmtN(last.disposition.nurture), wowArrow(last.disposition.nurture, prev.disposition && prev.disposition.nurture), "Contacts moved to nurture track")}
-      </div>
-      ${note("Disposition reflects lifecycle stage exits — contacts removed from active funnel consideration this week. High DQ weeks may indicate list quality or targeting issues.")}
-      ${last.disposition.by_product ? `<h4>By product</h4>${dispositionProductTable(last)}${note("Product-tagged subset — coverage runs lower here than on the funnel metrics, so these won't sum to the totals above.")}` : ""}
-    </div>` : ""}
-
-    ${contentEngagementSection(last.content_engagement)}
-
-    ${brandLiftSection(d.brand_lift, "WoW", "wBrandLift")}
-
-    ${last.note ? `<div class="panel"><p class="insight" style="color:#b45309">⚠ <strong>Data note — ${last.label}:</strong> ${last.note}</p></div>` : ""}
-
-    <div class="panel"><h3>Weekly detail</h3>
-      <table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
-      ${w.map((x, i) => `<tr${x.note ? ' class="has-note"' : ""}><td>${x.label}${x.note ? ` <span class="week-note-flag" title="${x.note.replace(/"/g, "&quot;")}">⚠</span>` : ""}</td><td>${fmtN(f(x,"hih"))}</td><td>${fmtN(f(x,"mql"))}</td><td>${fmtN(f(x,"sql"))}</td><td>${fmtN(f(x,"opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${x.disposition ? fmtN(x.disposition.dq) : "—"}</td><td>${x.disposition ? fmtN(x.disposition.nurture) : "—"}</td></tr>`).join("")}
-      </tbody></table>
-      ${d.notes ? `<p class="flag">${d.notes}</p>` : ""}
+    <div id="sec-wref">${rdTier(4, "Reference", "")}</div>
+    ${ce ? rdDz("Content engagement", `intent tiers + top content tags · as of ${ce.as_of || "—"}`, contentEngagementSection(ce)) : ""}
+    ${rdDz("Weekly detail", `last ${w.length} weeks`, `<div class="tscroll"><table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
+      ${w.map((x, i) => `<tr${x.note ? ' class="has-note"' : ""}><td>${x.label}${x.note ? ` <span class="week-note-flag" title="${x.note.replace(/"/g, "&quot;")}">⚠</span>` : ""}</td><td>${fmtN(f(x, "hih"))}</td><td>${fmtN(f(x, "mql"))}</td><td>${fmtN(f(x, "sql"))}</td><td>${fmtN(f(x, "opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${x.disposition ? fmtN(x.disposition.dq) : "—"}</td><td>${x.disposition ? fmtN(x.disposition.nurture) : "—"}</td></tr>`).join("")}
+      </tbody></table></div>`)}
+    ${rdDz("Data notes", `${last.label || ""} run note + method`, `${last.note ? `<p class="cap"><strong>${last.label}:</strong> ${last.note}</p>` : ""}${d.notes ? `<p class="cap">${d.notes}</p>` : ""}`)}
     </div>`;
 
-  document.querySelectorAll("[data-drill]").forEach((el) => el.onclick = () => {
-    const s = el.dataset.drill, rows = (last.drill && last.drill[s]) || [];
-    const lbl = { hih: "High-intent (HIH)", mql: "MQLs", sql: "SQLs", opp: "Opportunities" };
-    openDrawer(`Week of ${last.label} · ${lbl[s] || s} (${rows.length})`, rows);
+  const toM = document.getElementById("rdToMonthly"); if (toM) toM.onclick = (e) => { e.preventDefault(); switchToTab("monthly"); };
+  document.querySelectorAll(".chip[data-pipe]").forEach((b) => b.onclick = () => {
+    document.querySelectorAll(".chip[data-pipe]").forEach((x) => x.classList.toggle("on", x === b));
+    document.querySelectorAll("[data-pipe-body]").forEach((el) => { el.hidden = el.dataset.pipeBody !== b.dataset.pipe; });
   });
 
-  const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
-  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  buildJumpRail([
+    { id: "sec-whih", label: "HIH" },
+    { id: "sec-wseg", label: "Segments" },
+    { id: "sec-wtop", label: "Top pieces" },
+    { id: "sec-wpipe", label: "Pipeline" },
+    { id: "sec-wdisp", label: "Disposition" },
+    { id: "sec-wbrand", label: "Brand lift" },
+    { id: "sec-wref", label: "Reference" },
+  ]);
 
-  brandLiftChart(d.brand_lift, "wBrandLift");
+  const grid = { color: "rgba(20,71,69,0.08)" };
+  ["hih", "mql", "sql", "opp"].forEach((s) => rdSpark(`rdW_${s}`, spk(s), s === "sql" ? PLUM : IJ));
+  rdSpark("rdW_conv", w.slice(-9).map((x) => rate(f(x, "sql"), f(x, "mql"))), IJ);
+  rdSpark("rdW_dq", w.slice(-9).map((x) => x.disposition ? x.disposition.dq : null), "#b3261e");
+  rdSpark("rdW_nu", w.slice(-9).map((x) => x.disposition ? x.disposition.nurture : null), PLUM);
 
-  mkChart("wHihMini", { type: "line", data: { labels, datasets: [{ label: "HIH", data: w.map((x) => f(x,"hih")), borderColor: AMBER, backgroundColor: "rgba(28,38,96,0.14)", fill: true, tension: 0.3, pointRadius: 2, spanGaps: true }] }, options: { ...noLeg } });
+  rdBrandChart(d.brand_lift, "wBrandLift");
 
   mkChart("wFunnel", { type: "line", data: { labels, datasets: [
-      { label: "HIH (high-intent)", data: w.map((x) => f(x,"hih")), borderColor: "#64748B", backgroundColor: "rgba(100,116,139,0.16)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 2 },
-      { label: "MQL", data: w.map((x) => f(x,"mql")), borderColor: IJ, borderWidth: 3, tension: 0.25, pointRadius: 2 },
-      { label: "SQL", data: w.map((x) => f(x,"sql")), borderColor: PLUM, borderWidth: 3, tension: 0.25, pointRadius: 2 } ] },
-    options: { ...botLeg } });
+      { label: "HIH", data: w.map((x) => f(x, "hih")), borderColor: "#B1E0BB", backgroundColor: "rgba(177,224,187,0.35)", fill: true, borderWidth: 1.5, tension: 0.3, pointRadius: 0 },
+      { label: "MQL", data: w.map((x) => f(x, "mql")), borderColor: IJ, borderWidth: 2.5, tension: 0.3, pointRadius: 2 },
+      { label: "SQL", data: w.map((x) => f(x, "sql")), borderColor: PLUM, borderWidth: 2.5, tension: 0.3, pointRadius: 2 } ] },
+    options: { maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 10 } } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, grid, ticks: { maxTicksLimit: 5 } } } } });
 
   mkChart("wConvRates", { type: "line", data: { labels, datasets: [
-      { label: "MQL→SQL %", data: conv, borderColor: IJ, borderWidth: 2, tension: 0.3, spanGaps: true, pointRadius: 2 }
-    ]}, options: { ...botLeg, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + "%" } } } } });
+      { data: conv, borderColor: IJ, backgroundColor: "rgba(20,71,69,0.08)", fill: true, borderWidth: 2.5, tension: 0.3, spanGaps: true, pointRadius: 3, pointBackgroundColor: IJ },
+      rdBand(w.length, baseConv) ] },
+    options: { maintainAspectRatio: false, layout: { padding: { top: 16 } }, plugins: { legend: { display: false }, rdLabels: { on: true, fmt: (v) => v + "%", hi: [w.length - 1] } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100, grid, ticks: { callback: (v) => v + "%", maxTicksLimit: 5 } } } } });
 
-  mkChart("wProdChart", { type: "bar", data: {
-    labels: WK_PRODUCT_ROWS.map(([, l]) => l),
-    datasets: [
-      { label: "HIH", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].hih : 0), backgroundColor: AMBER },
-      { label: "MQL", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].mql : 0), backgroundColor: IJ },
-      { label: "SQL", data: WK_PRODUCT_ROWS.map(([k]) => (last.by_product && last.by_product[k]) ? last.by_product[k].sql : 0), backgroundColor: PLUM }
-    ]
-  }, options: { ...botLeg, scales: { y: { beginAtZero: true } } } });
-
-  mkChart("wSegChart", { type: "bar", data: {
-    labels: WK_SEGMENT_ROWS.map(([, l]) => l),
-    datasets: [
-      { label: "HIH", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "hih")), backgroundColor: AMBER },
-      { label: "MQL", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "mql")), backgroundColor: IJ },
-      { label: "SQL", data: WK_SEGMENT_ROWS.map(([k]) => segGet(k, "sql")), backgroundColor: PLUM }
-    ]
-  }, options: { ...botLeg, indexAxis: "y", scales: { x: { beginAtZero: true } } } });
+  const hbar = (id, rows, src) => mkChart(id, { type: "bar", data: { labels: rows.map(([, l]) => l), datasets: [
+      { label: "MQL", data: rows.map(([k]) => g(src, k, "mql") || 0), backgroundColor: IJ },
+      { label: "SQL", data: rows.map(([k]) => g(src, k, "sql") || 0), backgroundColor: PLUM } ] },
+    options: { indexAxis: "y", maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 10 } } }, scales: { x: { beginAtZero: true, grid, ticks: { maxTicksLimit: 5 } }, y: { grid: { display: false }, ticks: { autoSkip: false } } } } });
+  hbar("wSegChart", RD_SEG, bs); hbar("wProdChart", RD_PROD, bp);
 }
 
 // ---- campaign tab ----

@@ -6249,7 +6249,12 @@
           }
         }
       },
-      "note": "Post-Labor Day surge: HIH at 55 exceeds 2.5x 8-week rolling median (28.75) -- consistent with back-to-school acceleration. MQL +167%, SQL +85%, Opp +100% WoW. Inkwell dominant top-of-funnel (39/55 HIH, 71%). Medium District led SQL (10/24). SQL and Opp product coverage below 30% threshold (3/24 tagged). HIH segment breakdown unavailable this run. DQ/Nurture surge (+202%/+235%) proportional to inbound volume -- no list event triggered. Disposition by_product not computed this run."
+      "note": "Post-Labor Day surge: HIH at 55 exceeds 2.5x 8-week rolling median (28.75) -- consistent with back-to-school acceleration. MQL +167%, SQL +85%, Opp +100% WoW. Inkwell dominant top-of-funnel (39/55 HIH, 71%). Medium District led SQL (10/24). SQL and Opp product coverage below 30% threshold (3/24 tagged). HIH segment breakdown unavailable this run. DQ/Nurture surge (+202%/+235%) proportional to inbound volume -- no list event triggered. Disposition by_product not computed this run.",
+      "read": {
+        "up": "Post-Labor Day surge. HIH hit <b>55</b>, 5× the 8-week average, and MQLs <b>128</b> (avg 55). Inkwell drove 71% of HIH.",
+        "down": "SQLs held flat at <b>24</b>, so MQL→SQL dropped to <b>18.8%</b> against a 46% average. The surge hasn't converted yet.",
+        "watch": "DQs jumped to <b>275</b> (avg 106). That's in line with inbound volume, but check list quality if it holds next week."
+      }
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
