@@ -368,8 +368,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Large District",
-        "last_touch_campaign": null
+        "segment": "Large District"
       },
       {
         "name": "Warren Consolidated Schools, MI, 27-28",
@@ -378,8 +377,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Large District",
-        "last_touch_campaign": null
+        "segment": "Large District"
       },
       {
         "name": "Allendale Public School District, MI, 2027-2028",
@@ -388,8 +386,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": 38700,
-        "segment": null,
-        "last_touch_campaign": null
+        "segment": null
       },
       {
         "name": "Louisville Public Schools, NE, 2027-2028",
@@ -398,8 +395,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Small District",
-        "last_touch_campaign": null
+        "segment": "Small District"
       },
       {
         "name": "Ashland Middle School, MA, 2027-2028",
@@ -408,8 +404,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Single Site",
-        "last_touch_campaign": null
+        "segment": "Single Site"
       },
       {
         "name": "Kettle Moraine School District, WI, 2026-2027",
@@ -418,8 +413,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Medium District",
-        "last_touch_campaign": null
+        "segment": "Medium District"
       },
       {
         "name": "Adams 12 Five Star Schools, CO, 2027-2028",
@@ -428,8 +422,7 @@
         "from": null,
         "to": "Sales Qualified",
         "amount": null,
-        "segment": "Enterprise District",
-        "last_touch_campaign": null
+        "segment": "Enterprise District"
       },
       {
         "name": "Haverhill High School, MA, 2027-28",
@@ -438,8 +431,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 10000,
-        "segment": "Medium District",
-        "last_touch_campaign": null
+        "segment": "Medium District"
       },
       {
         "name": "Le Monde French Immersion, IJ, 2027-2028",
@@ -448,8 +440,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 2500,
-        "segment": null,
-        "last_touch_campaign": null
+        "segment": null
       },
       {
         "name": "Walnut Ridge Childcare Center, MI, 2027-2028",
@@ -458,8 +449,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 21500,
-        "segment": null,
-        "last_touch_campaign": null
+        "segment": null
       },
       {
         "name": "Coral Academy Of Science Las Vegas (District), NV, 2027-2028",
@@ -468,8 +458,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 25000,
-        "segment": "Small District",
-        "last_touch_campaign": null
+        "segment": "Small District"
       },
       {
         "name": "Tootin' Hills School, CT, '27-'28",
@@ -478,8 +467,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 0,
-        "segment": "Single Site",
-        "last_touch_campaign": null
+        "segment": "Single Site"
       },
       {
         "name": "Innovative Education Management, CA, 27-28",
@@ -488,8 +476,7 @@
         "from": "Sales Qualified",
         "to": "Interest",
         "amount": 2500,
-        "segment": "Other",
-        "last_touch_campaign": null
+        "segment": "Other"
       },
       {
         "name": "The Academy, CA, 2026-2027",
@@ -498,8 +485,7 @@
         "from": "Consideration",
         "to": "Validation/Approval",
         "amount": 0,
-        "segment": "Single Site",
-        "last_touch_campaign": null
+        "segment": "Single Site"
       },
       {
         "name": "First Lutheran School, CA - IJ + GF8",
@@ -508,8 +494,7 @@
         "from": "Consideration",
         "to": "Conviction",
         "amount": 0,
-        "segment": "Single Site",
-        "last_touch_campaign": null
+        "segment": "Single Site"
       },
       {
         "name": "Cartersville City Schools, GA - IJ",
@@ -518,8 +503,7 @@
         "from": null,
         "to": "Closed Lost",
         "amount": null,
-        "segment": "Medium District",
-        "last_touch_campaign": null
+        "segment": "Medium District"
       },
       {
         "name": "Shawnee Mission School District, KS - SS",
@@ -528,8 +512,7 @@
         "from": null,
         "to": "Closed Lost",
         "amount": 50000,
-        "segment": "Enterprise District",
-        "last_touch_campaign": null
+        "segment": "Enterprise District"
       },
       {
         "name": "Aptakisic-Tripp School District 102, IL - SS",
@@ -538,8 +521,7 @@
         "from": null,
         "to": "Closed Lost",
         "amount": 32806,
-        "segment": "Medium District",
-        "last_touch_campaign": null
+        "segment": "Medium District"
       },
       {
         "name": "Haddon Township School District, NJ, 26-27 Renewal",
@@ -548,8 +530,7 @@
         "from": null,
         "to": "Closed Won",
         "amount": 12893.4,
-        "segment": "Small District",
-        "last_touch_campaign": null
+        "segment": "Small District"
       },
       {
         "name": "Haddon Township School District, NJ, Inquiry Journeys, 27-28 Renewal",
@@ -558,8 +539,7 @@
         "from": null,
         "to": "Nurture",
         "amount": 12893.4,
-        "segment": "Small District",
-        "last_touch_campaign": null
+        "segment": "Small District"
       },
       {
         "name": "Westerly School Of Long Beach, CA, Inquiry Journeys, 27-28 Renewal",
@@ -568,8 +548,7 @@
         "from": null,
         "to": "Nurture",
         "amount": 2602,
-        "segment": "Single Site",
-        "last_touch_campaign": null
+        "segment": "Single Site"
       }
     ],
     "active_by_product": {
