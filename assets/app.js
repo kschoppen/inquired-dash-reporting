@@ -904,17 +904,24 @@ function renderWeekly(d) {
   const act = pipe.active || (RD_PIPES.some(([k]) => (bst[k] || []).length) ? Object.fromEntries(RD_PIPES.map(([k]) => [k, { stages: bst[k] || [] }])) : null);
   const hasMove = !!pipe.active;
   const normStage = (n) => String(n || "").toLowerCase().replace(/[^a-z]/g, "");
-  const stageRows = (p) => {
-    const byName = {}; ((p && p.stages) || []).forEach((s) => { byName[normStage(s.stage)] = s; });
+  // Each pipeline shows the RevOps stage list (New Business / Account Growth) plus any stage it actually uses
+  // (Renewal runs Nurture / Engaged / Desire; Closed Won / Lost rows carry the week's exits).
+  const STAGE_ORDER = ["Sales Qualified", "Nurture", "Interest", "Engaged", "Consideration", "Conviction", "Desire", "Validation / Approval", "Closed Won", "Closed Lost"];
+  const stageRows = (p, key) => {
+    const data = (p && p.stages) || [], byName = {};
+    data.forEach((s) => { byName[normStage(s.stage)] = s; });
+    const names = STAGE_ORDER.filter((n) => byName[normStage(n)] || (key !== "renewal" && RD_STAGES.includes(n)));
+    data.forEach((s) => { if (!STAGE_ORDER.some((n) => normStage(n) === normStage(s.stage))) names.push(s.stage); });
     const cell = (s, k, fmt) => s && s[k] != null ? (fmt ? fmt(s[k]) : fmtN(s[k])) : "—";
-    const rows = RD_STAGES.map((n, i) => { const s = byName[normStage(n)]; return `<tr${i === 0 ? ' class="untagged"' : ""}><td>${n}${i === 0 ? ' <span class="rd-pill">not pipeline</span>' : i === 1 ? ' <span class="rd-pill">pipeline starts</span>' : ""}</td><td>${cell(s, "count")}</td><td>${cell(s, "amount", fmt$)}</td><td>${cell(s, "entered")}</td><td>${cell(s, "forward")}</td><td>${cell(s, "back")}</td></tr>`; }).join("");
-    const inPipe = ((p && p.stages) || []).filter((s) => s.stage !== "Sales Qualified");
-    const sum = (k) => inPipe.length ? inPipe.reduce((a, s) => a + (s[k] || 0), 0) : null;
-    return rows + `<tr style="font-weight:900"><td>Total in pipeline</td><td>${fmtN(sum("count"))}</td><td>${sum("amount") != null ? fmt$(sum("amount")) : "—"}</td><td>${fmtN(sum("entered"))}</td><td>${fmtN(sum("forward"))}</td><td>${fmtN(sum("back"))}</td></tr>`;
+    const isClosed = (n) => /^closed/i.test(n), isSQ = (n) => normStage(n) === "salesqualified";
+    const rows = names.map((n) => { const s = byName[normStage(n)]; return `<tr${isSQ(n) || isClosed(n) ? ' class="untagged"' : ""}><td>${n}${isSQ(n) ? ' <span class="rd-pill">not pipeline</span>' : normStage(n) === "interest" ? ' <span class="rd-pill">pipeline starts</span>' : ""}</td><td>${cell(s, "count")}</td><td>${cell(s, "amount", fmt$)}</td><td>${cell(s, "entered")}</td><td>${cell(s, "forward")}</td><td>${cell(s, "back")}</td></tr>`; }).join("");
+    const open = data.filter((s) => !isSQ(s.stage) && !isClosed(s.stage));
+    const sum = (arr, k) => arr.length ? arr.reduce((a, s) => a + (s[k] || 0), 0) : null;
+    return rows + `<tr style="font-weight:900"><td>Total in pipeline</td><td>${fmtN(sum(open, "count"))}</td><td>${sum(open, "amount") != null ? fmt$(sum(open, "amount")) : "—"}</td><td>${fmtN(sum(data, "entered"))}</td><td>${fmtN(sum(data, "forward"))}</td><td>${fmtN(sum(data, "back"))}</td></tr>`;
   };
   const moved = pipe.moved_deals || null, actProd = pipe.active_by_product || null;
   const movedBody = (moved && moved.length
-      ? `<div class="tscroll"><table class="bd"><thead><tr><th>Deal</th><th>Pipeline</th><th>From → to</th><th>Amount</th><th>Company size</th><th>Last-touch converting campaign (before open)</th></tr></thead><tbody>${moved.map((x) => `<tr><td><a class="lnk" href="${x.url}" target="_blank" rel="noopener">${escapeHtml(x.name)} ↗</a></td><td>${x.pipeline || "—"}</td><td>${x.from || "—"} → ${x.to || "—"}</td><td>${fmt$(x.amount)}</td><td>${x.segment || "—"}</td><td>${escapeHtml(x.last_touch_campaign || "—")}</td></tr>`).join("")}</tbody></table></div>`
+      ? `<div class="tscroll"><table class="bd"><thead><tr><th>Deal</th><th>Pipeline</th><th>From → to</th><th>Amount</th><th>Company size</th><th>Last-touch converting campaign (before open)</th></tr></thead><tbody>${moved.map((x) => `<tr><td><a class="lnk" href="${x.url}" target="_blank" rel="noopener">${escapeHtml(x.name)} ↗</a></td><td>${x.pipeline || "—"}</td><td>${x.from || (/^closed/i.test(x.to || "") ? "—" : "New")} → ${x.to || "—"}</td><td>${fmt$(x.amount)}</td><td>${x.segment || "—"}</td><td>${escapeHtml(x.last_touch_campaign || "—")}</td></tr>`).join("")}</tbody></table></div>`
       : `<p class="data-empty">One row per deal that changed stage in the ISO week, linking to the HubSpot deal. ${moved ? "No deals moved this week." : "Fills in once the new pull runs."}</p>`)
     + `<p class="cap">The campaign comes from the deal's primary contact (last touch converting campaign as of the deal's create date). UTMs don't pass lead→deal today, so this is the working stand-in until attribution work lands.</p>`;
   const movedDz = rdDz("Deals that moved this week", moved ? `<b>${moved.length}</b> deals changed stage` : "stage change + last-touch campaign before the deal opened", movedBody, { cls: "inner" });
@@ -982,7 +989,7 @@ function renderWeekly(d) {
     <div id="sec-wpipe">${rdTier(2, "Open pipeline", `Active pipelines · snapshot ${pipe.as_of || ""} + movement this week`, hasMove ? "" : rdNeeds())}</div>
     <div class="rd-card">
       <div class="toolbar" style="margin:0 0 10px">${RD_PIPES.map(([k, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-pipe="${k}">${l}</button>`).join("")}</div>
-      ${RD_PIPES.map(([k, l], i) => `<div class="rd-pipe" data-pipe-body="${k}"${i ? " hidden" : ""}><div class="tscroll"><table class="bd"><thead><tr><th>${l} stage</th><th>Open deals</th><th>$ open</th><th>Entered this week</th><th>Moved forward</th><th>Moved back / lost</th></tr></thead><tbody>${stageRows(act && act[k])}</tbody></table></div></div>`).join("")}
+      ${RD_PIPES.map(([k, l], i) => `<div class="rd-pipe" data-pipe-body="${k}"${i ? " hidden" : ""}><div class="tscroll"><table class="bd"><thead><tr><th>${l} stage</th><th>Open deals</th><th>$ open</th><th>Entered this week</th><th>Moved forward</th><th>Moved back / lost</th></tr></thead><tbody>${stageRows(act && act[k], k)}</tbody></table></div></div>`).join("")}
       <p class="cap">Stages follow the RevOps source of truth. Sales Qualified is a booked meeting, not pipeline. Legacy District / School pipelines are hidden while RevOps finishes the migration.</p>
       ${movedDz}
       ${prodDz}
@@ -994,7 +1001,7 @@ function renderWeekly(d) {
         ${rdMini("Disqualified (DQ)", fmtN(disp.dq), `${rdVsAvg(disp.dq, dqAvg, true).html} <span class="cmp">${dqAvg != null ? "avg " + Math.round(dqAvg) : ""}</span>`, "", "rdW_dq")}
         ${rdMini("Sent to nurture", fmtN(disp.nurture), `${rdVsAvg(disp.nurture, nuAvg).html} <span class="cmp">${nuAvg != null ? "avg " + Math.round(nuAvg) : ""}</span>`, "", "rdW_nu")}
       </div>
-      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>`, { cls: "inner" })}
+      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Leads</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>${disp.dq_reasons_note ? `<p class="cap">${disp.dq_reasons_note}</p>` : ""}`, { cls: "inner" })}
       ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
       ${disp.by_product ? rdDz("DQ &amp; nurture by product", "product-tagged subset", dispositionProductTable(last) + `<p class="cap">Coverage runs lower here than on the funnel metrics, so these won't sum to the totals.</p>`, { cls: "inner" }) : ""}
       ${rdAbout("About disposition", "Disposition reflects lifecycle stage exits: contacts removed from active funnel consideration this week. High DQ weeks can point to list quality or targeting issues.")}

@@ -100,7 +100,7 @@
   "pipeline": {
     "district_open": 33,
     "school_open": 12,
-    "as_of": "2026-09-14",
+    "as_of": "2026-09-25",
     "note": "Point-in-time count of OPEN deals per pipeline (District 40953415 / School 41400400). Test deals excluded.",
     "by_product": {
       "ij": {
@@ -173,11 +173,427 @@
           "count": 1,
           "amount": 1638
         }
+      ],
+      "new_business": [
+        {
+          "stage": "Sales Qualified",
+          "count": 26,
+          "amount": 205000
+        },
+        {
+          "stage": "Interest",
+          "count": 96,
+          "amount": 3659392.83
+        },
+        {
+          "stage": "Consideration",
+          "count": 3,
+          "amount": 123437
+        },
+        {
+          "stage": "Conviction",
+          "count": 2,
+          "amount": 0
+        },
+        {
+          "stage": "Desire",
+          "count": 1,
+          "amount": 0
+        },
+        {
+          "stage": "Validation/Approval",
+          "count": 1,
+          "amount": 0
+        }
+      ],
+      "account_growth": [
+        {
+          "stage": "Sales Qualified",
+          "count": 2,
+          "amount": 0
+        },
+        {
+          "stage": "Interest",
+          "count": 1,
+          "amount": 1500
+        }
+      ],
+      "renewal": [
+        {
+          "stage": "Nurture",
+          "count": 278,
+          "amount": 5565794.23
+        },
+        {
+          "stage": "Engaged",
+          "count": 10,
+          "amount": 60077.11
+        },
+        {
+          "stage": "Desire",
+          "count": 3,
+          "amount": 417401.96
+        }
       ]
     },
     "district_open_deals": 31,
     "school_open_deals": 11,
-    "hih_pool": 2362
+    "hih_pool": 2362,
+    "new_business_open": 129,
+    "account_growth_open": 3,
+    "renewal_open": 291,
+    "active": {
+      "new_business": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 26,
+            "amount": 205000,
+            "entered": 8,
+            "forward": 8,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 96,
+            "amount": 3659392.83,
+            "entered": 6,
+            "forward": 6,
+            "back": 0
+          },
+          {
+            "stage": "Consideration",
+            "count": 3,
+            "amount": 123437,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Conviction",
+            "count": 2,
+            "amount": 0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Closed Lost",
+            "count": null,
+            "amount": null,
+            "entered": 3,
+            "forward": 0,
+            "back": 3
+          }
+        ]
+      },
+      "account_growth": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 2,
+            "amount": 0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 1,
+            "amount": 1500,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          }
+        ]
+      },
+      "renewal": {
+        "stages": [
+          {
+            "stage": "Nurture",
+            "count": 278,
+            "amount": 5565794.23,
+            "entered": 2,
+            "forward": 2,
+            "back": 0
+          },
+          {
+            "stage": "Engaged",
+            "count": 10,
+            "amount": 60077.11,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 3,
+            "amount": 417401.96,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Closed Won",
+            "count": null,
+            "amount": null,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          }
+        ]
+      }
+    },
+    "moved_deals": [
+      {
+        "name": "Craven Co Schools, NC, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027679058",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Large District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Warren Consolidated Schools, MI, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64922979252",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Large District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Allendale Public School District, MI, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64410982310",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": 38700,
+        "segment": null,
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Louisville Public Schools, NE, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027333168",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Small District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Ashland Middle School, MA, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027106695",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Single Site",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Kettle Moraine School District, WI, 2026-2027",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65076662873",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Adams 12 Five Star Schools, CO, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027589767",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Enterprise District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Haverhill High School, MA, 2027-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027829315",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Le Monde French Immersion, IJ, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027712139",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 2500,
+        "segment": null,
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Walnut Ridge Childcare Center, MI, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027677338",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 21500,
+        "segment": null,
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Coral Academy Of Science Las Vegas (District), NV, 2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64880879288",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 25000,
+        "segment": "Small District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Tootin' Hills School, CT, '27-'28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63222955303",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 0,
+        "segment": "Single Site",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Innovative Education Management, CA, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63125288288",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 2500,
+        "segment": "Other",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "The Academy, CA, 2026-2027",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64779690377",
+        "pipeline": "New Business",
+        "from": "Consideration",
+        "to": "Validation/Approval",
+        "amount": 0,
+        "segment": "Single Site",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "First Lutheran School, CA - IJ + GF8",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61763857802",
+        "pipeline": "New Business",
+        "from": "Consideration",
+        "to": "Conviction",
+        "amount": 0,
+        "segment": "Single Site",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Cartersville City Schools, GA - IJ",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61507431241",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Closed Lost",
+        "amount": null,
+        "segment": "Medium District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Shawnee Mission School District, KS - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58135658537",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Closed Lost",
+        "amount": 50000,
+        "segment": "Enterprise District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Aptakisic-Tripp School District 102, IL - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/37011277916",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Closed Lost",
+        "amount": 32806,
+        "segment": "Medium District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Haddon Township School District, NJ, 26-27 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027799325",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Closed Won",
+        "amount": 12893.4,
+        "segment": "Small District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Haddon Township School District, NJ, Inquiry Journeys, 27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65074671898",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 12893.4,
+        "segment": "Small District",
+        "last_touch_campaign": null
+      },
+      {
+        "name": "Westerly School Of Long Beach, CA, Inquiry Journeys, 27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65035564684",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 2602,
+        "segment": "Single Site",
+        "last_touch_campaign": null
+      }
+    ],
+    "active_by_product": {
+      "ij": {
+        "count": 364,
+        "amount": 8324151.38
+      },
+      "inkwell": {
+        "count": 13,
+        "amount": 656120
+      },
+      "wh": {
+        "count": 78,
+        "amount": 766698.73
+      },
+      "gf8": {
+        "count": 25,
+        "amount": 566000
+      },
+      "untagged": {
+        "count": 19,
+        "amount": 514875.62
+      }
+    }
   },
   "segment_coverage": {
     "hih": 62,
@@ -6203,25 +6619,25 @@
       },
       "by_segment": {
         "single_small": {
-          "hih": 0,
+          "hih": 12,
           "mql": 28,
           "sql": 7,
           "opp": 7
         },
         "medium": {
-          "hih": 0,
+          "hih": 6,
           "mql": 24,
           "sql": 10,
           "opp": 10
         },
         "large": {
-          "hih": 0,
+          "hih": 1,
           "mql": 5,
           "sql": 1,
           "opp": 1
         },
         "enterprise": {
-          "hih": 0,
+          "hih": 6,
           "mql": 17,
           "sql": 5,
           "opp": 5
@@ -6247,14 +6663,505 @@
             "dq": 0,
             "nurture": 0
           }
-        }
+        },
+        "dq_reasons": [
+          {
+            "reason": "Gmail",
+            "count": 19
+          },
+          {
+            "reason": "University Professor",
+            "count": 19
+          },
+          {
+            "reason": "Non-Sellable Company",
+            "count": 13
+          },
+          {
+            "reason": "No longer at school/district",
+            "count": 3
+          },
+          {
+            "reason": "Bounced/Opted Out",
+            "count": 2
+          },
+          {
+            "reason": "Parent/Student",
+            "count": 1
+          },
+          {
+            "reason": "Spam",
+            "count": 1
+          }
+        ],
+        "dq_reasons_note": "LEAD-object disqualifications (58 leads entered 7 - Disqualified this week). The contact-level DQ total above (275) comes from a different workflow, so these won't sum to it.",
+        "nurture_reasons": [
+          {
+            "reason": "Did Not Engage",
+            "count": 102
+          },
+          {
+            "reason": "Teacher - No influence",
+            "count": 9
+          },
+          {
+            "reason": "Not interested - no reason specified",
+            "count": 6
+          },
+          {
+            "reason": "Open Opportunity",
+            "count": 4
+          },
+          {
+            "reason": "Current Partner (No Upsell)",
+            "count": 4
+          },
+          {
+            "reason": "Timing (>6 months)",
+            "count": 3
+          },
+          {
+            "reason": "Recently Contacted",
+            "count": 2
+          },
+          {
+            "reason": "Curriculum or Standards Fit",
+            "count": 2
+          }
+        ]
       },
       "note": "Post-Labor Day surge: HIH at 55 exceeds 2.5x 8-week rolling median (28.75) -- consistent with back-to-school acceleration. MQL +167%, SQL +85%, Opp +100% WoW. Inkwell dominant top-of-funnel (39/55 HIH, 71%). Medium District led SQL (10/24). SQL and Opp product coverage below 30% threshold (3/24 tagged). HIH segment breakdown unavailable this run. DQ/Nurture surge (+202%/+235%) proportional to inbound volume -- no list event triggered. Disposition by_product not computed this run.",
       "read": {
         "up": "Post-Labor Day surge. HIH hit <b>55</b>, 5× the 8-week average, and MQLs <b>128</b> (avg 55). Inkwell drove 71% of HIH.",
         "down": "SQLs held flat at <b>24</b>, so MQL→SQL dropped to <b>18.8%</b> against a 46% average. The surge hasn't converted yet.",
         "watch": "DQs jumped to <b>275</b> (avg 106). That's in line with inbound volume, but check list quality if it holds next week."
-      }
+      },
+      "drill": {
+        "hih": [
+          [
+            248628638643,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248819341740,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248631190803,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248684645268,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248623744399,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248628574736,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248859325028,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248864077647,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248830551614,
+            "Small",
+            "Direct",
+            "GF8"
+          ],
+          [
+            248873618183,
+            "Enterprise",
+            "Organic",
+            "GF8"
+          ],
+          [
+            248708012556,
+            "Enterprise",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248625653084,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248654829177,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248632640322,
+            "Single",
+            "Organic",
+            "WH"
+          ],
+          [
+            249146458912,
+            "",
+            "Organic",
+            "Inkwell"
+          ],
+          [
+            249050500436,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            249060111973,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            249235538977,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            248628010921,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249661445272,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            249447306119,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            248623413418,
+            "Enterprise",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248623733091,
+            "Single",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248660398178,
+            "Small",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248736674917,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248757204138,
+            "Enterprise",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249221440273,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249096804376,
+            "Single",
+            "Direct",
+            "WH"
+          ],
+          [
+            248727751785,
+            "Small",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248642364079,
+            "Single",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248635120403,
+            "Enterprise",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248631814267,
+            "Single",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248678873745,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248836264344,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249261374513,
+            "",
+            "Social",
+            "Inkwell"
+          ],
+          [
+            249285128091,
+            "Small",
+            "Organic",
+            "IJ"
+          ],
+          [
+            249254477154,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249161434530,
+            "",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            248653459839,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248630759294,
+            "Medium",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248630783313,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248633369614,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248647805875,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            249097721713,
+            "Enterprise",
+            "Direct",
+            "GF8"
+          ],
+          [
+            248918281888,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            248688493966,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            248698226974,
+            "Large",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248846540131,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248846525979,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248846548482,
+            "Single",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            248821248941,
+            "",
+            "Organic",
+            "IJ"
+          ],
+          [
+            248687370259,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            248441412939,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            249268693632,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            248590473485,
+            "",
+            "Direct",
+            "GF8"
+          ]
+        ]
+      },
+      "top_pieces": [
+        {
+          "offer": "SS-WEB: Source Material Webinar Series (NCSS)",
+          "type": "Webinar",
+          "product": "Inquiry Journeys",
+          "fills": 59,
+          "new_contacts": 24,
+          "to_hih": 0,
+          "to_mql": 4
+        },
+        {
+          "offer": "ELA-DL: Inkwell Integrated Instructional Block",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 42,
+          "new_contacts": 29,
+          "to_hih": 42,
+          "to_mql": 34
+        },
+        {
+          "offer": "ELA-WEB: Lit Talk with Dr. Nell K. Duke",
+          "type": "Webinar",
+          "product": "Inkwell",
+          "fills": 26,
+          "new_contacts": 5,
+          "to_hih": 0,
+          "to_mql": 0
+        },
+        {
+          "offer": "IJ-DL: Scope & Sequence",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 23,
+          "new_contacts": 11,
+          "to_hih": 1,
+          "to_mql": 3
+        },
+        {
+          "offer": "ELA-DL: Inkwell K-2 Sample Lesson",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 18,
+          "new_contacts": 11,
+          "to_hih": 4,
+          "to_mql": 13
+        },
+        {
+          "offer": "SS-DL: PD Deck, How Social Studies Boosts Literacy",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 16,
+          "new_contacts": 0,
+          "to_hih": 0,
+          "to_mql": 8
+        },
+        {
+          "offer": "ELA-DL: Inkwell, The Case for Integrated Core Curricula",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 13,
+          "new_contacts": 7,
+          "to_hih": 2,
+          "to_mql": 9
+        },
+        {
+          "offer": "ELA-DL: Inkwell K-2 Curriculum Map",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 10,
+          "new_contacts": 7,
+          "to_hih": 5,
+          "to_mql": 9
+        },
+        {
+          "offer": "Contact Us (website)",
+          "type": "Hand-raise",
+          "product": "—",
+          "fills": 7,
+          "new_contacts": 5,
+          "to_hih": 7,
+          "to_mql": 5
+        },
+        {
+          "offer": "GF8 Contact Us (Great-Gate website)",
+          "type": "Hand-raise",
+          "product": "Great First 8",
+          "fills": 7,
+          "new_contacts": 5,
+          "to_hih": 7,
+          "to_mql": 6
+        }
+      ]
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
