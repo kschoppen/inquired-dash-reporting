@@ -95,13 +95,17 @@ function funnelStage(name, count, prevCount, subLabel, cssClass, yoyCount) {
   </div>`;
 }
 
-function funnelConnector(pill, cur, yoyRate) {
-  // cur = this month's step conversion %, yoyRate = same step, same month prior year
+// step-conversion bridge: sits in the strip under the stage row, spanning the centers of two stages
+function funnelBridge(step, col, cur, yoyRate) {
   const pp = (cur != null && yoyRate != null) ? +(cur - yoyRate).toFixed(1) : null;
-  const yoyPill = cur == null ? "" : pp == null
-    ? `<div class="conv-yoy flat">YoY n/a</div>`
-    : `<div class="conv-yoy ${pp > 0 ? "up" : pp < 0 ? "down" : "flat"}" title="vs ${yoyRate}% same month prior year">${pp > 0 ? "↑" : pp < 0 ? "↓" : ""}${Math.abs(pp)} pts YoY</div>`;
-  return `<div class="funnel-connector"><div class="conv-rate-pill">${cur != null ? cur + "% " : ""}${pill}</div>${yoyPill}<div class="chevron">›</div></div>`;
+  const cls = pp == null ? "flat" : pp > 0 ? "up" : pp < 0 ? "down" : "flat";
+  return `<div class="f-bridge" style="grid-column:${col} / span 2">
+    <div class="f-bridge-bracket"></div>
+    <div class="f-bridge-step">${step}</div>
+    <div class="f-bridge-rate">${cur != null ? cur + "%" : "—"}</div>
+    <div class="f-bridge-yoy ${cls}">${pp == null ? "YoY n/a" : `${pp > 0 ? "↑" : pp < 0 ? "↓" : ""}${Math.abs(pp)} pts YoY`}</div>
+    ${yoyRate != null ? `<div class="f-bridge-ly">LY ${yoyRate}%</div>` : ""}
+  </div>`;
 }
 
 function topPageRows(pages, valKey, valClass, valFmt) {
@@ -385,18 +389,20 @@ function renderMonthly(d) {
     <div id="sec-funnel" class="section-label">★ Funnel — ${last.label} · all-product · monthly new contacts</div>
     <div class="funnel-panel">
       <h3>Prospect → Opp · full funnel with conversion rates</h3>
-      <p class="f-sub">Monthly new contacts entering each stage, with MoM and YoY deltas. Connectors show step conversion and its YoY change in percentage points vs ${ly.label || "prior year"}. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
-      <div class="funnel-flow">
+      <p class="f-sub">Monthly new contacts entering each stage, with MoM and YoY deltas. The strip below shows step-to-step conversion and its YoY change in percentage points vs ${ly.label || "prior year"}. HIH is a <em>signal layer</em>, not a sequential step — shown in the hero above.</p>
+      <div class="funnel-scroll"><div class="funnel-grid">
         ${funnelStage("Prospect", sessions, sessionsPrev, "web sessions", "f-prospect", sessionsLY)}
-        ${funnelConnector("Sess→Lead", ...stepConv.lead)}
         ${funnelStage("Lead", lead, leadPrev, "new this month", "f-prospect", fu(ly,"lead"))}
-        ${funnelConnector("Lead→MQL", ...stepConv.mql)}
         ${funnelStage("MQL", fu(last,"mql"), fu(prev,"mql"), "mktg qualified", "f-mql", fu(ly,"mql"))}
-        ${funnelConnector("MQL→SQL", ...stepConv.sql)}
         ${funnelStage("SQL", fu(last,"sql"), fu(prev,"sql"), "sales qualified", "f-sql", fu(ly,"sql"))}
-        ${funnelConnector("SQL→Opp", ...stepConv.opp)}
         ${funnelStage("Opp", fu(last,"opp"), fu(prev,"opp"), "open opportunity", "f-opp", fu(ly,"opp"))}
-      </div>
+        <div class="f-strip-bg"></div>
+        <div class="f-strip-label">Step<br>conversion</div>
+        ${funnelBridge("Session → Lead", 2, ...stepConv.lead)}
+        ${funnelBridge("Lead → MQL", 4, ...stepConv.mql)}
+        ${funnelBridge("MQL → SQL", 6, ...stepConv.sql)}
+        ${funnelBridge("SQL → Opp", 8, ...stepConv.opp)}
+      </div></div>
       ${lead == null ? `<p class="data-empty">Lead count not yet populated — run the monthly digest skill.</p>` : ""}
     </div>
 
