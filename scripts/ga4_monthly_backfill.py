@@ -18,6 +18,8 @@ import urllib.request
 
 PROPERTY = "326695663"
 DATA = os.path.join(os.path.dirname(__file__), "..", "data", "monthly-digest.json")
+MACRO_EVENTS = ["download_form_thank_you", "resource_download_click", "webinar_signup_success",
+                "contact_thank_you", "curriculum_review_guide_conversion", "inquiry_journy_download"]
 MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
@@ -61,14 +63,18 @@ def top_conversion_pages(tok, ym):
     rows = run_report(tok, {
         "dateRanges": [{"startDate": start, "endDate": end}],
         "dimensions": [{"name": "pagePath"}],
-        "metrics": [{"name": "keyEvents"}],
-        "orderBys": [{"metric": {"metricName": "keyEvents"}, "desc": True}],
-        "limit": 10,
+        "metrics": [{"name": "eventCount"}],
+        # Macro conversions only (same list as Step 3d report 8). keyEvents alone also counts
+        # engagement key events (viewed_3__pages, time_on_site), which ranks the homepage first.
+        "dimensionFilter": {"filter": {"fieldName": "eventName",
+                                       "inListFilter": {"values": MACRO_EVENTS}}},
+        "orderBys": [{"metric": {"metricName": "eventCount"}, "desc": True}],
+        "limit": 12,
     })
     out = []
     for r in rows:
         path, n = r["dimensionValues"][0]["value"], round(float(r["metricValues"][0]["value"]))
-        if n > 0:
+        if n > 0 and path != "(not set)" and len(out) < 10:
             out.append({"path": path, "completions": n, "type": page_type(path)})
     return out
 
