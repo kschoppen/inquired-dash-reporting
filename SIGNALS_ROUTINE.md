@@ -13,7 +13,7 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ```bash
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'Signals Update (cloud routine)'
-[ -n "$HC_SIGNALS_URL" ] && curl -fsS -m 10 --retry 3 "$HC_SIGNALS_URL/start" || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/69f355b5-2915-43dc-b67c-cbc77c3b1894/start || true
 ```
 
 Do each phase, then write its file(s) straight away. A later phase failing must never cost an earlier phase's data.
@@ -321,4 +321,9 @@ If a step failed, say why in brackets.
 
 ## STEP E: Healthchecks final ping
 
-If `$HC_SIGNALS_URL` is set: success (every phase written and pushed) → `curl -fsS -m 10 --retry 3 "$HC_SIGNALS_URL"`; any failure → `"$HC_SIGNALS_URL/fail"`. Never ping success on a partial run.
+Healthchecks check "Reporting – weekly signals" (cron `0 8 * * 1` America/New_York, 3h grace).
+
+- **Success** (every phase written and pushed): `curl -fsS -m 10 --retry 3 https://hc-ping.com/69f355b5-2915-43dc-b67c-cbc77c3b1894`
+- **Any failure:** `curl -fsS -m 10 --retry 3 https://hc-ping.com/69f355b5-2915-43dc-b67c-cbc77c3b1894/fail`
+
+Never ping success on a partial run.
