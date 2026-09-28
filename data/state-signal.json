@@ -15,7 +15,7 @@
   ],
   "national_totals": {
     "qualified": 1793,
-    "actionable": 1377,
+    "actionable": 1375,
     "unassigned_qualified": 264,
     "unassigned_actionable": 253,
     "states_with_signal": 52,
@@ -314,43 +314,43 @@
         },
         {
           "state": "NJ",
-          "qualified": 122,
-          "actionable": 112
-        },
-        {
-          "state": "NY",
-          "qualified": 112,
-          "actionable": 95
+          "qualified": 123,
+          "actionable": 107
         },
         {
           "state": "CA",
-          "qualified": 112,
+          "qualified": 113,
+          "actionable": 95
+        },
+        {
+          "state": "NY",
+          "qualified": 113,
           "actionable": 95
         },
         {
           "state": "IL",
-          "qualified": 119,
-          "actionable": 53
+          "qualified": 121,
+          "actionable": 54
         },
         {
           "state": "WI",
           "qualified": 61,
-          "actionable": 53
+          "actionable": 52
         },
         {
           "state": "MA",
           "qualified": 56,
-          "actionable": 52
+          "actionable": 50
         },
         {
           "state": "KY",
           "qualified": 51,
-          "actionable": 48
+          "actionable": 47
         },
         {
           "state": "PA",
-          "qualified": 58,
-          "actionable": 54
+          "qualified": 61,
+          "actionable": 41
         },
         {
           "state": "MN",
@@ -369,8 +369,8 @@
         },
         {
           "state": "CT",
-          "qualified": 40,
-          "actionable": 34
+          "qualified": 39,
+          "actionable": 32
         },
         {
           "state": "IA",
@@ -379,53 +379,48 @@
         },
         {
           "state": "TX",
-          "qualified": 43,
+          "qualified": 44,
           "actionable": 30
-        },
-        {
-          "state": "OH",
-          "qualified": 30,
-          "actionable": 29
-        },
-        {
-          "state": "OR",
-          "qualified": 50,
-          "actionable": 27
         },
         {
           "state": "AZ",
           "qualified": 35,
+          "actionable": 27
+        },
+        {
+          "state": "OH",
+          "qualified": 29,
           "actionable": 26
         },
         {
-          "state": "NC",
-          "qualified": 24,
-          "actionable": 20
+          "state": "OR",
+          "qualified": 49,
+          "actionable": 25
         },
         {
           "state": "MO",
           "qualified": 22,
+          "actionable": 21
+        },
+        {
+          "state": "NC",
+          "qualified": 25,
           "actionable": 20
         },
         {
           "state": "KS",
-          "qualified": 30,
-          "actionable": 17
+          "qualified": 32,
+          "actionable": 18
         },
         {
-          "state": "VA",
-          "qualified": 25,
+          "state": "CO",
+          "qualified": 27,
           "actionable": 17
         },
         {
           "state": "FL",
-          "qualified": 21,
+          "qualified": 22,
           "actionable": 17
-        },
-        {
-          "state": "CO",
-          "qualified": 26,
-          "actionable": 16
         },
         {
           "state": "GA",
@@ -434,13 +429,18 @@
         },
         {
           "state": "TN",
-          "qualified": 17,
+          "qualified": 18,
+          "actionable": 15
+        },
+        {
+          "state": "VA",
+          "qualified": 28,
           "actionable": 15
         },
         {
           "state": "ME",
           "qualified": 18,
-          "actionable": 14
+          "actionable": 13
         },
         {
           "state": "International",
@@ -465,17 +465,12 @@
         {
           "state": "AL",
           "qualified": 10,
-          "actionable": 9
+          "actionable": 8
         },
         {
           "state": "IN",
           "qualified": 9,
-          "actionable": 9
-        },
-        {
-          "state": "LA",
-          "qualified": 8,
-          "actionable": 7
+          "actionable": 8
         },
         {
           "state": "NE",
@@ -483,13 +478,18 @@
           "actionable": 7
         },
         {
-          "state": "HI",
+          "state": "AK",
           "qualified": 7,
-          "actionable": 7
+          "actionable": 6
         },
         {
-          "state": "NH",
-          "qualified": 10,
+          "state": "AR",
+          "qualified": 7,
+          "actionable": 6
+        },
+        {
+          "state": "HI",
+          "qualified": 7,
           "actionable": 6
         },
         {
@@ -498,33 +498,23 @@
           "actionable": 6
         },
         {
-          "state": "UT",
-          "qualified": 8,
-          "actionable": 6
-        },
-        {
-          "state": "AK",
-          "qualified": 7,
-          "actionable": 6
-        },
-        {
           "state": "MT",
           "qualified": 6,
           "actionable": 6
         },
         {
+          "state": "NH",
+          "qualified": 10,
+          "actionable": 6
+        },
+        {
+          "state": "LA",
+          "qualified": 8,
+          "actionable": 5
+        },
+        {
           "state": "NV",
           "qualified": 10,
-          "actionable": 5
-        },
-        {
-          "state": "AR",
-          "qualified": 7,
-          "actionable": 5
-        },
-        {
-          "state": "VT",
-          "qualified": 7,
           "actionable": 5
         },
         {
@@ -533,14 +523,24 @@
           "actionable": 5
         },
         {
-          "state": "DE",
-          "qualified": 4,
-          "actionable": 4
+          "state": "UT",
+          "qualified": 8,
+          "actionable": 5
+        },
+        {
+          "state": "VT",
+          "qualified": 7,
+          "actionable": 5
         },
         {
           "state": "WV",
           "qualified": 4,
           "actionable": 4
+        },
+        {
+          "state": "DE",
+          "qualified": 4,
+          "actionable": 3
         },
         {
           "state": "DC",
@@ -560,7 +560,7 @@
         {
           "state": "MS",
           "qualified": 3,
-          "actionable": 3
+          "actionable": 2
         },
         {
           "state": "NM",
@@ -575,7 +575,7 @@
         {
           "state": "AS",
           "qualified": 1,
-          "actionable": 1
+          "actionable": 0
         }
       ]
     }
@@ -584,57 +584,57 @@
     {
       "rank": 1,
       "state": "NJ",
-      "qualified": 122,
-      "actionable": 112,
+      "qualified": 123,
+      "actionable": 107,
       "product": "inkwell"
     },
     {
       "rank": 2,
       "state": "NY",
-      "qualified": 112,
+      "qualified": 113,
       "actionable": 95,
       "product": "ij"
     },
     {
       "rank": 3,
       "state": "CA",
-      "qualified": 112,
+      "qualified": 113,
       "actionable": 95,
       "product": "inkwell"
     },
     {
       "rank": 4,
       "state": "IL",
-      "qualified": 119,
-      "actionable": 53,
+      "qualified": 121,
+      "actionable": 54,
       "product": "ij"
     },
     {
       "rank": 5,
       "state": "WI",
       "qualified": 61,
-      "actionable": 53,
+      "actionable": 52,
       "product": "inkwell"
     },
     {
       "rank": 6,
       "state": "MA",
       "qualified": 56,
-      "actionable": 52,
+      "actionable": 50,
       "product": "inkwell"
     },
     {
       "rank": 7,
       "state": "KY",
       "qualified": 51,
-      "actionable": 48,
+      "actionable": 47,
       "product": "ij"
     },
     {
       "rank": 8,
       "state": "PA",
-      "qualified": 58,
-      "actionable": 54,
+      "qualified": 61,
+      "actionable": 41,
       "product": "ij"
     },
     {

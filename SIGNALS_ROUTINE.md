@@ -157,6 +157,8 @@ full bridge" because the window itself is server-filtered and bounded). Append a
 line noting the pull date and that the KPI's 90-day window is a display scope decision, not a
 limit on what counts as a real signal (the per-account match above isn't time-boxed).
 
+**Consistency check before writing (added 2026-09-28).** The 9/28 test run ranked with fresh counts but wrote last week's per-state numbers into `top_states` and the new `history` entry. Build `top_states[].qualified/actionable` and `history[<today>].states` **only from this run's three Step 1 GROUP BY results** (actionable = `< cutoff` count + `IS NULL` count), never copied from a previous entry. Then assert, in a Bash/python step, that `sum(history[today].states[].actionable) == national_totals.actionable`, that `top_states` is sorted by `actionable` descending with `rank` 1..10, and that today's history entry differs from last week's. If any check fails, fix it before writing, and never push a file that fails them.
+
 Write `data/state-signal.json` (pushed in PHASE C).
 
 ---
