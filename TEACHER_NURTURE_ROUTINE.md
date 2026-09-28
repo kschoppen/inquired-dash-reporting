@@ -15,10 +15,9 @@ Secrets come from the environment: `MAILCHIMP_API_KEY`, and the Slack bot token 
 ```bash
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'Teacher Nurture (cloud routine)'
-curl -fsS -m 10 --retry 3 https://hc-ping.com/HC_TEACHER_NURTURE/start || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a/start || true
 ```
 
-(While the Healthchecks line still reads `HC_TEACHER_NURTURE`, skip every Healthchecks call in this file.)
 
 ## STEP 1: Pull the snapshot
 
@@ -26,7 +25,7 @@ curl -fsS -m 10 --retry 3 https://hc-ping.com/HC_TEACHER_NURTURE/start || true
 python3 scripts/teacher_nurture_snapshot.py
 ```
 
-It prints one JSON line. Exit `2` = the key isn't in the environment. Exit `3` = Mailchimp refused a call (the error line says which). On either, don't commit anything: go to STEP 4 with the error, then send the fail ping in STEP 5.
+Run it as written. Don't check or echo environment variables first; the script reports a missing key itself. It prints one JSON line. Exit `2` = the key isn't in the environment. Exit `3` = Mailchimp refused a call (the error line says which). On either, don't commit anything: go to STEP 4 with the error, then send the fail ping in STEP 5.
 
 ## STEP 2: Read what changed
 
@@ -79,7 +78,7 @@ No row 6+ days older yet: skip the week-over-week numbers and say it's the basel
 Success = snapshot pushed to `main` AND the DM returned `"ok":true`:
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/HC_TEACHER_NURTURE || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a || true
 ```
 
-On a handled failure: `https://hc-ping.com/HC_TEACHER_NURTURE/fail`. Never ping success when nothing was pushed.
+On a handled failure: `https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a/fail`. Never ping success when nothing was pushed.

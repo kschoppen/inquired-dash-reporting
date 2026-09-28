@@ -13,7 +13,7 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ```bash
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'Nurture Update (cloud routine)'
-[ -n "$HC_NURTURE_URL" ] && curl -fsS -m 10 --retry 3 "$HC_NURTURE_URL/start" || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d/start || true
 ```
 
 Read these three files in full before pulling anything:
@@ -123,7 +123,7 @@ The live site is password protected, so a curl of the page proves nothing. Confi
 
 ## STEP 5: Slack DM to Kelsey
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKEN` (`conversations.open`, then `chat.postMessage`). Never echo tokens.
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `${CLAWRENCE_BOT_TOKEN:-${DASH_BOT_TOKEN:-$SLACK_TOKEN}}` from the environment (`conversations.open`, then `chat.postMessage`). Never echo tokens.
 
 ```
 🌿 *Nurture Programs refreshed* (<date>)
@@ -144,7 +144,7 @@ No em or en dashes in the message.
 Success = JSON pushed to `main` AND the DM returned `ok:true`:
 
 ```bash
-[ -n "$HC_NURTURE_URL" ] && curl -fsS -m 10 --retry 3 "$HC_NURTURE_URL" || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d || true
 ```
 
-On a handled failure (push failed, or both phases failed): `"$HC_NURTURE_URL/fail"`. Never ping success on a partial run where nothing was pushed.
+On a handled failure (push failed, or both phases failed): `https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d/fail`. Never ping success on a partial run where nothing was pushed.
