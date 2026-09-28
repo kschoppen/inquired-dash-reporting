@@ -10,5 +10,8 @@
   "enabledPlugins": {
     "growth-marketing@growth-marketing": true,
     "inquired-marketing@inquired-marketing-marketplace": true
+  },
+  "permissions": {
+    "allow": ["Bash(python3 scripts/teacher_nurture_snapshot.py)"]
   }
 }
