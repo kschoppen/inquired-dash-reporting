@@ -177,7 +177,7 @@ Flag current week if: `Disqualified > 50` AND `(Disqualified + Nurture) > 2 × (
 
 ## PHASES 1.5 / 2 / 2.6 moved to `SIGNALS_ROUTINE.md` (2026-09-28)
 
-State Signal (MQA), Competitive Intel (signals + keywords) and Content Performance now run in their own Monday 8am routine, so this one has room to finish the funnel digest. Don't do them here.
+State Signal (MQA) and Content Performance run in `SIGNALS_ROUTINE.md` (Monday 8am), and the weekly Competitive Intel refresh runs in `CI_WEEKLY_ROUTINE.md` (Monday 9am), so this one has room to finish the funnel digest. Don't do them here.
 
 ---
 
