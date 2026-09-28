@@ -114,7 +114,7 @@ After pushing, sanity-check the page script: `node -e "const s=require('fs').rea
 
 ## STEP 3: DM Kelsey (checklist only)
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKEN` (`conversations.open`, then `chat.postMessage`; never echo tokens):
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN` (`conversations.open`, then `chat.postMessage`; never echo tokens):
 
 ```
 *🔭 Competitive intel (weekly) — [Mon D]*

@@ -171,12 +171,12 @@ Push failure = hard fail (the run's only deliverable is the page). Go to STEP 8 
 
 ## STEP 7: DM Kelsey
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKEN`. Never
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN`. Never
 echo tokens.
 
 ```bash
 CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
-  -H "Authorization: Bearer $SLACK_TOKEN" -H 'Content-type: application/json; charset=utf-8' \
+  -H "Authorization: Bearer $CLAWRENCE_BOT_TOKEN" -H 'Content-type: application/json; charset=utf-8' \
   -d '{"users":"U06QR3G0CCA"}' | python3 -c 'import sys,json;print(json.load(sys.stdin)["channel"]["id"])')
 ```
 

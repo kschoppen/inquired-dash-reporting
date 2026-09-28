@@ -374,8 +374,7 @@ Push failure = soft-fail: record the exact error in the checklist and continue. 
 ```bash
 cd html-pages
 python3 -m pip install --user requests beautifulsoup4
-# ASANA_TOKEN is provided in the routine prompt — set it here, never echo it
-export ASANA_TOKEN=$ASANA_TOKEN
+# ASANA_TOKEN comes from the environment; never echo it
 python3 scripts/sync_asana.py          # dry run — capture N changes
 python3 scripts/sync_asana.py --apply  # apply
 git fetch origin && git log --oneline -2 origin/main
@@ -425,12 +424,12 @@ Capture `ts` from the response — store in run log as `slack_message_ts`.
 
 ## STEP 6: DM Kelsey
 
-Send ONE DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKEN`. Never echo tokens.
+Send ONE DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN`. Never echo tokens.
 
 Open DM channel:
 ```bash
 CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
-  -H "Authorization: Bearer $SLACK_TOKEN" \
+  -H "Authorization: Bearer $CLAWRENCE_BOT_TOKEN" \
   -H 'Content-type: application/json; charset=utf-8' \
   -d '{"users":"U06QR3G0CCA"}' | python3 -c 'import sys,json;print(json.load(sys.stdin)["channel"]["id"])')
 ```

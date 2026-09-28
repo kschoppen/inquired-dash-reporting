@@ -6,7 +6,7 @@ This routine owns `data/teacher-nurture-snapshot.json`, which the **Teacher Nurt
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app. Mailchimp audience `20beb95bf5`.
 
-Secrets come from the environment: `MAILCHIMP_API_KEY`, and the Slack bot token as `${CLAWRENCE_BOT_TOKEN:-${DASH_BOT_TOKEN:-$SLACK_TOKEN}}`. Never print either.
+Secrets come from the environment: `MAILCHIMP_API_KEY`, and the Slack bot token as `$CLAWRENCE_BOT_TOKEN`. Never print either.
 
 ---
 
@@ -55,7 +55,7 @@ Only ever commit `data/teacher-nurture-snapshot.json`. On a rebase conflict in t
 One DM to Kelsey (`U06QR3G0CCA`) with the Web API, as the bot, never the Slack MCP:
 
 ```bash
-TOKEN="${CLAWRENCE_BOT_TOKEN:-${DASH_BOT_TOKEN:-$SLACK_TOKEN}}"
+TOKEN="$CLAWRENCE_BOT_TOKEN"
 curl -sS -X POST https://slack.com/api/chat.postMessage -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json; charset=utf-8" -d @/tmp/dm.json
 ```

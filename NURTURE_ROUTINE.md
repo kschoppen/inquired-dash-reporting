@@ -123,7 +123,7 @@ The live site is password protected, so a curl of the page proves nothing. Confi
 
 ## STEP 5: Slack DM to Kelsey
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `${CLAWRENCE_BOT_TOKEN:-${DASH_BOT_TOKEN:-$SLACK_TOKEN}}` from the environment (`conversations.open`, then `chat.postMessage`). Never echo tokens.
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN` from the environment (`conversations.open`, then `chat.postMessage`). Never echo tokens.
 
 ```
 🌿 *Nurture Programs refreshed* (<date>)

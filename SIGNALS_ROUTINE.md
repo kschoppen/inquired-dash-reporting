@@ -235,7 +235,7 @@ git fetch origin && git log --oneline -2 origin/main
 
 ## STEP D: DM Kelsey (checklist only)
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKEN` (open the DM with `conversations.open`, then `chat.postMessage`; never echo tokens):
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN` (open the DM with `conversations.open`, then `chat.postMessage`; never echo tokens):
 
 ```
 *🛰️ Signals update — [Mon D]*
