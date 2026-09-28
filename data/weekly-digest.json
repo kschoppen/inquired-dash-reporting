@@ -6706,6 +6706,255 @@
             "delta": null
           }
         ]
+      },
+      "content_touch": {
+        "population": "Contacts who became MQL this week",
+        "total": 76,
+        "unassigned": 12,
+        "rows": [
+          {
+            "piece": "ELA-DL: Inkwell Integrated Instructional Block",
+            "product": "Inkwell",
+            "first": 10,
+            "last": 12
+          },
+          {
+            "piece": "SS-DL: IJ In-Practice Implementation Brief",
+            "product": "Inquiry Journeys",
+            "first": 1,
+            "last": 10
+          },
+          {
+            "piece": "ELA-DL: Inkwell K-2 Sample Lesson",
+            "product": "Inkwell",
+            "first": 6,
+            "last": 7
+          },
+          {
+            "piece": "SS-DL: IJ Scope & Sequence",
+            "product": "Inquiry Journeys",
+            "first": 6,
+            "last": 5
+          },
+          {
+            "piece": "Contact Sales form (website)",
+            "product": "—",
+            "first": 4,
+            "last": 5
+          },
+          {
+            "piece": "GF8 Contact Us (website)",
+            "product": "Great First 8",
+            "first": 4,
+            "last": 4
+          },
+          {
+            "piece": "ELA-DL: Inkwell K-2 Curriculum Map",
+            "product": "Inkwell",
+            "first": 1,
+            "last": 4
+          },
+          {
+            "piece": "SS-DL: WH Scope & Sequence",
+            "product": "World History",
+            "first": 3,
+            "last": 3
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "product": "—",
+            "first": 2,
+            "last": 3
+          },
+          {
+            "piece": "ELA-DL: Inkwell PPC lander (K-2 Scope & Sequence)",
+            "product": "Inkwell",
+            "first": 2,
+            "last": 2
+          },
+          {
+            "piece": "SS Thought Leadership webinars (2019–2026 series)",
+            "product": "Inquiry Journeys",
+            "first": 7,
+            "last": 0
+          },
+          {
+            "piece": "SS-DL: Curriculum Review Guide",
+            "product": "Inquiry Journeys",
+            "first": 4,
+            "last": 0
+          },
+          {
+            "piece": "Literacy Practices & Supports download",
+            "product": "Inquiry Journeys",
+            "first": 2,
+            "last": 0
+          }
+        ],
+        "note": "First touch = the first form the contact ever submitted (first_conversion_event_name). Last touch = their most recent form (recent_conversion_event_name). Variants of the same piece are grouped. Rows under 2 in both columns are left out."
+      },
+      "hih_existing": {
+        "count": 21,
+        "excluded": {
+          "internal": 0,
+          "higher_ed": 7,
+          "competitor": 0
+        },
+        "by_piece": [
+          {
+            "piece": "Inkwell Integrated Instructional Block",
+            "count": 15
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "count": 2
+          },
+          {
+            "piece": "IJ Pilot Interest",
+            "count": 1
+          },
+          {
+            "piece": "Inkwell K-2 demo request",
+            "count": 1
+          },
+          {
+            "piece": "Contact Sales form (website)",
+            "count": 1
+          },
+          {
+            "piece": "IJ Scope & Sequence",
+            "count": 1
+          }
+        ],
+        "drill": [
+          [
+            249268693632,
+            "Small",
+            "—",
+            "Meetings link (sales rep)"
+          ],
+          [
+            208340277868,
+            "Single",
+            "IJ",
+            "IJ Pilot Interest"
+          ],
+          [
+            205317885025,
+            "Small",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            205318744956,
+            "",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            197501192274,
+            "Single",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            160144096625,
+            "Other",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            154267490997,
+            "Large",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            144339055984,
+            "Other",
+            "Inkwell",
+            "Inkwell K-2 demo request"
+          ],
+          [
+            102620115890,
+            "",
+            "IJ",
+            "Contact Sales form (website)"
+          ],
+          [
+            86048679491,
+            "Medium",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            50040924596,
+            "Enterprise",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            22864051,
+            "",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            21248751,
+            "Single",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            19792101,
+            "Other",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            19790251,
+            "Enterprise",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            17198503,
+            "Single",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            14812751,
+            "Other",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            13413751,
+            "Medium",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            13378551,
+            "Small",
+            "IJ",
+            "IJ Scope & Sequence"
+          ],
+          [
+            10980751,
+            "Enterprise",
+            "Inkwell",
+            "Inkwell Integrated Instructional Block"
+          ],
+          [
+            10409806,
+            "Small",
+            "—",
+            "Meetings link (sales rep)"
+          ]
+        ],
+        "note": "Contacts created before this week who are High intent now and submitted a form this week, grouped by that form. HubSpot keeps no date for when the intent tier changed, so this can include a few contacts who were already High before this week. Same exclusions as new HIH."
       }
     }
   ],
@@ -6865,6 +7114,6 @@
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
   },
-  "hih_exclusions": "HIH excludes inquirED staff (inquired.com), competitor domains, and higher-ed contacts (.edu domain or University/College company name, unless tagged with a K-12 company size, so e.g. cps.edu stays). Applied to every week shown.",
+  "hih_exclusions": "HIH leaves out inquirED staff (inquired.com), competitor domains, and higher-ed contacts (University/College company names, or .edu domains that aren't a school, district or education agency). Anyone tagged with a K-12 company size stays, so cps.edu and bie.edu count.",
   "hih_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10586/filters"
 }

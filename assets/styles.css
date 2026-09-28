@@ -838,3 +838,5 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .rd-ph .cap { font-size: 12px; color: var(--muted); }
 .rd .tscroll { overflow-x: auto; }
 .rd .funnel-panel { margin-bottom: 0; }
+
+.rd-touch { display: inline-block; width: 70px; height: 8px; background: var(--line); border-radius: 4px; margin-right: 8px; vertical-align: middle; overflow: hidden; } .rd-touch i { display: block; height: 100%; background: var(--iq-green); }

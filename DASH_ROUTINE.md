@@ -48,7 +48,7 @@ Spell out "High Intent Handraisers [HIH]" on first mention in any Slack post; us
 **HIH is list-based, with exclusions (added 2026-09-28).** Don't use the `total` for HIH. Page the full current-window HIH list (`limit: 200`; properties `hs_email_domain`, `company`, `segment__company_`, `product_interest`, `hs_analytics_source`) and drop:
 - **internal:** `hs_email_domain` = `inquired.com`
 - **competitor:** domain equals or ends in `.`+ any of `amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`, `teachtci.com`, `teachingstrategies.com`, `savvas.com`, `benchmarkeducation.com`, `highscope.org`, `cengage.com`
-- **higher_ed:** domain ends in `.edu` OR `company` matches `/\b(universit|college)/i`, **unless** `segment__company_` is a K-12 size (Single Site / Small / Medium / Large / Enterprise District). K-12 districts can use `.edu` (Chicago Public Schools is `cps.edu`), so this guard is required.
+- **higher_ed:** never when `segment__company_` is a K-12 size (Single Site / Small / Medium / Large / Enterprise District). Otherwise: `company` matches `/\b(universit|college)/i`, OR domain ends in `.edu` and `company` doesn't match `/school|district|education|academy|public/i`. K-12 bodies use `.edu` too (Chicago Public Schools is `cps.edu`, the Bureau of Indian Education is `bie.edu`), so both guards are required.
 
 `funnel.hih` = the count left after exclusions. Emit `funnel.hih_excluded = {internal, higher_ed, competitor}` counts. Build HIH `by_product` (primary product per contact, Inkwell > IJ > WH > GF8, mutually exclusive), HIH `by_segment`, and `drill.hih` **from this same filtered list**. Don't run the per-product / per-segment HIH count queries, since one list gives all three. Never write null HIH by-product when the list pulled: an empty product is 0. The prior window's HIH comes from the run log (it already uses the same rule from 2026-09-28 on). Do the list pull and write the HIH fields into the week entry **before** the MQL/SQL/Opp breakdowns, so they survive if the run runs long.
 
@@ -114,6 +114,12 @@ After test-deal exclusion, aggregate:
 
 **Piece type comes from the event name, not the page title** (fix 2026-09-28: the W39 run labelled an `ss-dl:` download as a Webinar). `-dl:` → Download, `-webinars:` / `-web:` / `webinars:` → Webinar, `[hih]` contact / demo / pilot forms → Hand-raise, else Form. Product from the tag prefix: `ela-`/`iw-` → Inkwell, `ss-`/`ij-` → Inquiry Journeys (including `ss-webinars`), `wh-` → World History, `gf8-`/`ece_gf8`/`great first eight` → Great First 8. `fills` is the `GROUP BY recent_conversion_event_name` count exactly. Don't merge or rename rows before counting.
 
+### First vs last touch + HIH from existing contacts (added 2026-09-28)
+
+**`content_touch`** — for this week's MQLs: `SELECT first_conversion_event_name, COUNT(*) FROM CONTACT WHERE hs_v2_date_entered_marketingqualifiedlead IN window GROUP BY first_conversion_event_name`, and the same with `recent_conversion_event_name`. Group variants of one piece into one row (e.g. every "[HIH] Lead Gen Form: Contact Sales" page → "Contact Sales form (website)", all SS thought-leadership webinar series → one row, all `Meetings Link:` → "Meetings link (sales rep)"). Drop rows under 2 in both columns. Emit `{"population": "Contacts who became MQL this week", "total": N, "unassigned": N, "rows": [{"piece","product","first","last"}], "note": "<keep the 9/28 wording>"}`, sorted by `last` desc, then `first`.
+
+**`hih_existing`** — `search_crm_objects` contacts with `marketing_intent_tier EQ High` AND `recent_conversion_date IN window` AND `createdate LT window start` (properties `hs_email_domain`, `company`, `segment__company_`, `product_interest`, `recent_conversion_event_name`). Apply the same HIH exclusions. Emit `{"count": N, "excluded": {internal, higher_ed, competitor}, "by_piece": [{"piece","count"}], "drill": [[id, segShort, prodShort, piece]], "note": "<keep the 9/28 wording>"}`. HubSpot stores no date for an intent-tier change, so this is a proxy and the note says so. Never add names or emails.
+
 ### Content engagement (running totals, added 2026-09-28)
 
 Two `query_crm_data` pulls, no window: `SELECT marketing_intent_tier, COUNT(*) FROM CONTACT GROUP BY marketing_intent_tier` and `SELECT content_tags, COUNT(*) FROM CONTACT WHERE content_tags IS NOT NULL GROUP BY content_tags ORDER BY COUNT(*) DESC` (strip the parenthetical label from each tag). Write to the week entry: `"content_engagement": {"as_of": "<run date>", "prior_as_of": "<previous snapshot's as_of>", "intent_tier": {"high","medium","low"}, "intent_tier_prior": {…}, "top_content_tags": [{"tag","count","delta"}]}` (top 12, `delta` = count minus the previous snapshot's count for that tag, null if the tag is new). The Weekly tab's Brand & content lift section reads the latest entry that has one.
@@ -169,224 +175,9 @@ Flag current week if: `Disqualified > 50` AND `(Disqualified + Nurture) > 2 × (
 
 ---
 
-## PHASE 1.5: State Signal (MQA) — actionable accounts by state
+## PHASES 1.5 / 2 / 2.6 moved to `SIGNALS_ROUTINE.md` (2026-09-28)
 
-Powers the **State Signal (MQA)** tab — ranks states by count of MQA/Engaged
-accounts with no sales contact in 60+ days, so marketing + sales can see where
-to focus outreach this week.
-
-**Cutoff:** today minus 60 days (`YYYY-MM-DD`).
-
-### Step 1 — national totals by state (HubSpot MCP — `query_crm_data`, objectType COMPANY)
-
-Run three GROUP BY queries:
-
-```sql
-SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') GROUP BY state_st
-SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND notes_last_contacted < '<cutoff>' GROUP BY state_st
-SELECT state_st, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND notes_last_contacted IS NULL GROUP BY state_st
-```
-
-For each state, `actionable = (query 2 count) + (query 3 count)`. Sum the first
-query's counts for `national_totals.qualified`; sum `actionable` across all
-states for `national_totals.actionable`. `Unassigned` (no `state_st` set) and
-`International` are real buckets — keep them in `history[].states` but exclude
-them from `top_states` ranking.
-
-### Step 2 — rank + pick top 10
-
-Sort all states by `actionable` descending, excluding `Unassigned` /
-`International`. Take the top 10 for `top_states` (fields: `rank`, `state`,
-`qualified`, `actionable`). **This list can reshuffle week to week** — a state
-that drops out of the top 10 loses its `accounts_by_state` entry; a state that
-enters gets a fresh pull (Step 3).
-
-### Step 3 — account drill-down for each top-10 state
-
-For each of the 10 states, one query:
-
-```sql
-SELECT hs_object_id, name, segment, mqa_lifecycle_stage, mqa_signal, notes_last_contacted, hubspot_owner_id, recent_mqa_date
-FROM COMPANY
-WHERE mqa_lifecycle_stage IN ('MQA','Engaged') AND state_st = '<state>'
-  AND (notes_last_contacted < '<cutoff>' OR notes_last_contacted IS NULL)
-ORDER BY recent_mqa_date DESC
-LIMIT 10
-```
-
-**Do not** sort by `recent_mqa_date` alone without the actionability filter in
-the WHERE clause — the most-recently-MQA'd accounts are often the ones sales
-just worked, which inflates the list with accounts that are NOT actually
-actionable. The filter must be in the query, not applied after.
-
-Resolve `hubspot_owner_id` → name via `search_owners` (batch all unique owner
-IDs across the 10 states in one call). Build each account row:
-
-```json
-{ "id": <hs_object_id, int>, "name": "...", "segment": "...", "stage": "MQA|Engaged",
-  "signal": "<mqa_signal or null if empty>", "owner": "<resolved name>",
-  "last_contacted": "YYYY-MM-DD or null", "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/<id>" }
-```
-
-District/school names are shown (not scrubbed to ID-only) — matches this
-dashboard's existing Account Pulse (MQA) tab convention (institutional names,
-not personal contact names, are fine in this public repo).
-
-### Step 4 — write `data/state-signal.json`
-
-- `updated` → run date.
-- `national_totals` → from Step 1.
-- `history[]` → append `{period: run date, states: [...]}` (all states incl.
-  Unassigned/International), cap at 13 entries oldest-dropped-first, matching
-  `weekly-digest.json`'s pattern.
-- `top_states` → from Step 2.
-- `accounts_by_state` → **replace entirely** with this run's 10 states from
-  Step 3 (don't merge with last run's — a state that fell out of the top 10
-  should lose its stale account list).
-- `data_flags` → recompute the "Unassigned" % flag with this run's numbers.
-  Leave the `product_interest` (CONTACT-only) and `policy_context` /
-  `outreach_templates` caveats as static text until one of those is built.
-- Leave `policy_context`, `outreach_templates`, `watch_states` alone — not
-  wired yet (see the tab's own "What this tab doesn't do yet" section). Do
-  not fabricate policy citations here.
-
-### Step 5 — recompute watch-state priority tiers
-
-`watch_states` entries carry a `priority_score` (0-100) and `priority_tier`
-(`act_now` / `watch` / `low_priority`) that tier the list for Marketing/Sales
-instead of a flat 41-state dump. Whenever a watch state's `actionable`,
-`since`, or `starbridge_open_rfps` changes, rerun:
-
-```
-python3 scripts/score_watch_states.py
-```
-
-This recomputes both fields and re-sorts `watch_states` by score descending.
-See the script's docstring for the scoring formula (RFP presence weighted
-heaviest, then policy recency, then existing HubSpot footprint).
-
-### Step 6 — Warm Signals refresh (board-meeting bridges, every run)
-
-Mirrors the `state-signal-refresh` skill's Step 3 — keep the two in sync if either changes.
-Separate from any Starbridge RFP pull: Warm Signals are board-meeting-derived buying signals
-(a district's own board minutes/LCAP/agenda), not posted RFPs.
-
-**Bridges** (`listBridges` to reconfirm current IDs): `[MASTER] Warm Signals (GFE) > 1.5k` →
-`gf8`, `[MASTER] Warm Signals (IJ) > 1.5k` → `ij`, `[MASTER] Warm Signals (Inkwell) > 1.5k` →
-`inkwell`.
-
-**Threshold:** `Status` in (`New`, `Saved`) AND the `Meeting Score and Relevance` column's
-`Meeting_Score` sub-field `>= 10`, displayed as-is (uncapped — don't normalize). Do not confuse
-`Meeting_Score` with the separate `Match Score`/`Match reasoning` column pair (bridge-scope
-confidence, not lead quality) — only `Meeting_Score` filters/displays here.
-
-**Filtering:** `Meeting_Score` lives in an object-typed column and can't be filtered
-server-side (confirmed — filters on it silently return 0 rows). Filter server-side on what you
-can (`Status` via `getBridgeColumnMetadata`'s real `columnId`, `Buyer State Code`, `Added to
-Bridge` for a recency cutoff) and apply the `Meeting_Score` cut client-side after fetching. Scope
-to the same 10 `top_states` + `watch_states` already in `top_states`/`watch_states` — never page
-through a full bridge (each holds ~4,000-10,500 rows).
-
-**No personal contact data** — `Contact Name - Document`/`Contact Name - Web` never get rendered
-on the dashboard, same no-PII convention as the rest of this tab.
-
-**Per-account matching:** HubSpot COMPANY `starbridge_id` = a bridge row's top-level `buyerId`
-(exact UUID match, not time-boxed to any window). Batch-fetch `starbridge_id` for the accounts
-already pulled in Step 3 above (`search_crm_objects`, `hs_object_id IN [...]`), then check which
-UUIDs appear as a qualifying row's `buyerId` (`listBridgeRows` filtered `buyerId Any [...]` per
-bridge, batched — never one call per account). Write the highest-scoring match onto that account
-as `warm_signal`.
-
-**Write:** `warm_signals_by_state[state]` (top 3-5 by score, sparse — only states with a real
-qualifying row, same convention as `starbridge_by_state`), `accounts_by_state[state][].warm_signal`
-for matched accounts, and `warm_signals_90d_total` (Status + `Added to Bridge` in the last 90
-days, `Meeting_Score >= 10`, counted across all three bridges — page through that bounded 90-day
-window since the score can't be filtered server-side, this is the one exception to "never page a
-full bridge" because the window itself is server-filtered and bounded). Append a `data_flags`
-line noting the pull date and that the KPI's 90-day window is a display scope decision, not a
-limit on what counts as a real signal (the per-account match above isn't time-boxed).
-
-### Push
-
-Add `data/state-signal.json` to the `git add` list in PHASE 3's push step
-below, and add its checklist line to STEP 6.
-
----
-
-## PHASE 2: Competitive intel scan
-
-### Part A — Signal check (WebSearch)
-
-Do NOT use WebFetch — competitor sites block cloud IPs with 403s. Use WebSearch instead.
-
-For each of these 6 competitors, run a WebSearch for recent news, product updates, press releases, pricing changes, or partnerships from the past 7 days. Search query pattern: `"[company/product name]" (announcement OR launch OR update OR pricing OR partnership) after:YYYY-MM-DD` (use the date 7 days ago).
-
-- Amplify CKLA: search `"Amplify CKLA" OR "Amplify ELA" site:amplify.com OR news`
-- Great Minds Wit & Wisdom: search `"Wit & Wisdom" OR "Great Minds ELA"`
-- Great Minds Arts & Letters: search `"Great Minds" curriculum announcement`
-- Benchmark Education: search `"Benchmark Education" curriculum`
-- TCI (Social Studies): search `"TCI" OR "TeachTCI" social studies curriculum`
-- National Geographic Learning (SS): search `"National Geographic Learning" social studies`
-
-Note any obvious new content: new product pages, press releases, major messaging changes, new pricing, new partnerships. If a search returns nothing newsworthy from the past week, skip — no update needed.
-
-Update `competitive-intel.html` in `inquired-dash-reporting` — DRAWER JS object:
-- Prepend any new signals to each competitor's `signals` array, keep max 5. Format: `[Finding] — [implication for inquirED]`
-- If nothing new, leave unchanged
-- Do NOT change threat levels, messaging themes, AI summaries, or keywords — signals only
-
-### Part B — Keyword refresh (SEMrush)
-
-Pull fresh organic keyword data from SEMrush for each of these 10 domains. Get top 6–8 non-branded organic keywords they rank for, plus any paid keywords they bid on. Skip keywords that are just the company or product name.
-
-Domains:
-`amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`,
-`teachtci.com`, `teachingstrategies.com`, `savvas.com`, `benchmarkeducation.com`, `highscope.org`
-
-Update the `keywords` field for each matching competitor in the DRAWER object in `competitive-intel.html`. Exact DRAWER entry names to update:
-
-```
-'Amplify CKLA'
-'Great Minds · Wit &amp; Wisdom'
-'Great Minds · Arts &amp; Letters'
-'Imagine Learning · Dragonfly'
-'HMH Into Reading'
-'McGraw-Hill Emerge'
-'Teachers\' Curriculum Institute'
-'Teaching Strategies'
-'Savvas · myView Literacy'
-'Benchmark Education'
-'HighScope'
-```
-
-Each keywords field structure:
-```js
-keywords: {
-  paid: ['keyword 1', 'keyword 2'],
-  organic: ['keyword 1', 'keyword 2']
-}
-```
-
-Replace the entire keywords object with fresh data. `greatminds.org` covers both Great Minds entries — use the same data for both. If SEMrush returns no paid data for a domain, set `paid: []`.
-
-**String safety:** keyword strings are written into single-quoted JS literals. Before writing, replace any apostrophe (`'`) in a keyword with a double-quoted wrapper — i.e. use `"keyword with apostrophe's"` instead of `'keyword with apostrophe's'`. Unescaped apostrophes break the entire script block and silently disable the page's expand buttons.
-
-### Part C — Stamp the refresh date (REQUIRED whenever Part A or B changed anything)
-
-Set `updated` in `data/competitive-intel.json` to today's date (`YYYY-MM-DD`). Leave `full_run`
-alone — that one belongs to the bi-monthly full run (its own routine, instructions in
-`CI_FULL_RUN.md`), and the page shows the two separately. The AI Overview block, stat tiles,
-and Strategic Opportunities also belong to the full run; don't rewrite them here.
-
-This is not optional bookkeeping. That field feeds the freshness strip on the page, the "Last
-Run" stamp on the dash tab banner, and the green "Current" / amber "N days old" pill. Skip it
-and the tab reports itself as stale even though you just refreshed it, which is exactly how the
-page ended up looking abandoned in August 2026. If Part A and Part B both came back with
-nothing to change, leave `updated` as it was — the date means "when the page last changed," not
-"when we last looked."
-
-Never hardcode a date into `competitive-intel.html` itself. Every date the page shows is read
-from this JSON at load time.
+State Signal (MQA), Competitive Intel (signals + keywords) and Content Performance now run in their own Monday 8am routine, so this one has room to finish the funnel digest. Don't do them here.
 
 ---
 
@@ -415,55 +206,6 @@ The script upserts the TWO most recently completed ISO weeks each run — re-pul
 **YouTube / Instagram are not fillable via the API.** They are Search Console **platform properties** (the property type Google launched July 2026 for Instagram / TikTok / X / YouTube). They show in the Search Console UI — and inquirED has both connected — but `sites.list` returns only `sc-domain:inquired.com` and `https://www.inquired.org/`, so the Search Analytics API cannot query them. This is not a credential or API-enablement gap and more OAuth scopes will not fix it. The script auto-detects their absence, lists them in `unavailable`, leaves the channels null (never a fabricated zero), and both surfaces render "Not in API" with an explanation. Revisit if Google exposes platform properties through the API. First meaningful WoW is the Aug 17, 2026 run.
 
 No extra git step: the two files are already in PHASE 3's `git add`.
-
----
-
-## PHASE 2.6: Content performance (HubSpot content analytics)
-
-Powers the **Content Performance** tab — ranks pages, blog posts, and landing pages by
-view to contact conversion, so the tab surfaces high-traffic content with no working CTA.
-
-**Pull:** HubSpot MCP `get_content_analytics_report`, `mode: "TOTALS"`, `sortMetric:
-"rawViews"`, `sortDirection: "DESC"`, `includeMetadata: true`, `limit: 40`. All-time
-totals (this report has no native weekly window) — the tab still refreshes weekly so the
-ranking stays current as pages accrue traffic.
-
-**Exclude before ranking (do not include these rows at all):**
-- Any `contentId`/`url` under `share.hsforms.com` (form embeds, not content)
-- Thank-you / confirmation pages (title contains "Thank You" or "TY_", or url contains
-  "thank-you")
-- Non-marketing corporate pages: `/careers`, `/our-team`, `/about-us`
-
-**Never fabricate a title or url.** If HubSpot returns a row with no `title` and no
-`url` (an unresolved contentId), drop that row rather than invent one — this bit Claude
-on the first build (a placeholder url was almost shipped for one row). If a row's
-`title` is missing but it has a `url`, derive a readable title from the url's last path
-segment (title-case, dashes to spaces) rather than leaving the raw slug or contentId.
-
-**Threshold:** drop rows with `rawViews` under 2,000 (noise). For everything else,
-compute `conversion_rate_pct = contacts / rawViews * 100` and flag:
-- `gap` — under 0.5%
-- `watch` — 0.5% to 2%
-- `healthy` — 2%+
-
-Sort ascending by `conversion_rate_pct` (worst gap first).
-
-**Write `data/content-performance.json`:** upsert this run into `weeks[]`, keyed by
-`period` (this run's date, `YYYY-MM-DD`), replace if present else append, cap at 8
-entries (oldest dropped first). Full entry shape:
-
-```json
-{ "period": "YYYY-MM-DD", "label": "Mon D, YYYY",
-  "totals": { "pages_tracked": N, "gap_count": N, "watch_count": N, "healthy_count": N },
-  "verdict": "1-2 sentence headline naming the worst gap by raw_views and the best-converting lander, no emoji, no em dash",
-  "pages": [ { "contentId": "...", "title": "...", "url": "...",
-    "content_type": "landing_page|blog_post|site_page", "raw_views": N, "contacts": N,
-    "conversion_rate_pct": N, "bounce_rate_pct": N, "flag": "gap|watch|healthy" }, … ] }
-```
-
-Also refresh top-level `updated` (run date) and `min_views_threshold` (leave at 2000
-unless traffic volume has changed enough to warrant revisiting). Preserve
-`excluded_note`. This tab's JSON is included in PHASE 3's `git add` below.
 
 ---
 
@@ -614,7 +356,7 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 ```bash
 cd inquired-dash-reporting
-git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json competitive-intel.html data/competitive-intel.json data/content-performance.json data/state-signal.json
+git add data/weekly-digest.json data/overview.json data/run-logs/weekly-marketing-digest-run-log.json
 git commit -m "Weekly dash update — $(date +%Y-%m-%d)"
 git push origin main
 git fetch origin && git log --oneline -2 origin/main
@@ -713,12 +455,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 *Updated this run:*
 • [✓/✗] Weekly overview + funnel data → data/overview.json + data/weekly-digest.json [N records]
 • [✓/✗] Run log updated → data/run-logs/weekly-marketing-digest-run-log.json [run N]
-• [✓/✗] Competitor signals refreshed → competitive-intel.html [N searched, N new signals]
-• [✓/✗] Competitor keywords refreshed → competitive-intel.html [N domains via SEMrush]
-• [✓/✗] Competitive Intel refresh date stamped → data/competitive-intel.json [updated = YYYY-MM-DD, or unchanged if nothing moved]
 • [✓/—/✗] Brand lift (GSC) → data/overview.json + data/weekly-digest.json [N weeks upserted / deferred: creds not set / error]
-• [✓/✗] Content performance → data/content-performance.json [N pages tracked, N gaps flagged]
-• [✓/✗] State Signal (MQA) → data/state-signal.json [top state + actionable count, N states refreshed]
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]

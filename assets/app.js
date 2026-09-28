@@ -286,6 +286,10 @@ function rdBars(rows, fmt) {
   const mx = Math.max(1, ...rows.map((r) => r[1] || 0));
   return `<div class="rd-bars">${rows.map((r) => `<div class="rd-bar"><span>${r[2] ? `<span class="dot" style="background:${r[2]}"></span>` : ""}${r[0]}</span><span class="t"><i style="width:${((r[1] || 0) / mx * 100).toFixed(1)}%${r[2] ? `;background:${r[2]}` : ""}"></i></span><span class="n">${fmt ? fmt(r[1]) : fmtN(r[1])}${r.length > 3 ? rdRaw(r[1], r[3]) : ""}</span></div>`).join("")}</div>`;
 }
+function rdTouchBar(v, rows) {
+  const mx = Math.max(1, ...rows.map((r) => Math.max(r.first || 0, r.last || 0)));
+  return `<span class="rd-touch"><i style="width:${((v || 0) / mx * 100).toFixed(1)}%"></i></span><b>${fmtN(v)}</b>`;
+}
 function rdRead(read) {
   if (!read || !(read.up || read.down || read.watch)) return "";
   return `<div class="rd-read">${[["up", "Up"], ["down", "Down"], ["watch", "Watch"]].map(([k, l]) => read[k] ? `<div><div class="k ${k}">${l}</div><p>${read[k]}</p></div>` : "").join("")}</div>`;
@@ -1017,6 +1021,17 @@ function renderWeekly(d) {
 
     <div id="sec-wbrand">${rdTier(3, "Brand &amp; content lift", "Branded search (Google Search Console) + how contacts engage with content")}</div>
     ${rdBrandBlock(d.brand_lift, "WoW", "wBrandLift")}
+    <div class="rd-grid g2" style="margin-top:12px">
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">What brings MQLs in vs. what they convert on</div>${last.content_touch ? rdCov(`${fmtN(last.content_touch.total - last.content_touch.unassigned)} of ${fmtN(last.content_touch.total)} MQLs have a form`) : ""}</div>
+        ${last.content_touch ? `<div class="tscroll"><table class="bd"><thead><tr><th>Piece</th><th>First touch</th><th>Last touch</th></tr></thead><tbody>${last.content_touch.rows.map((r) => `<tr><td>${escapeHtml(r.piece)}${r.product && r.product !== "—" ? ` <span class="cap">${r.product}</span>` : ""}</td><td>${rdTouchBar(r.first, last.content_touch.rows)}</td><td>${rdTouchBar(r.last, last.content_touch.rows)}</td></tr>`).join("")}</tbody></table></div><p class="cap">${last.content_touch.population}. ${last.content_touch.note}</p>`
+          : `<p class="data-empty">Fills in on the next Monday run.</p>`}</div>
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH from existing contacts</div>${last.hih_existing ? rdCov(`vs ${fmtN(f(last, "hih"))} new HIH`) : ""}</div>
+        ${last.hih_existing ? `<div class="val" style="font-size:30px;font-weight:900;color:var(--iq-green)">${fmtN(last.hih_existing.count)}</div><p class="cap" style="margin-top:0">existing contacts, High intent now, converted this week</p>
+          ${rdBars(last.hih_existing.by_piece.map((r) => [escapeHtml(r.piece), r.count, IJ]))}
+          <p class="cap">${last.hih_existing.note}</p>
+          ${last.hih_existing.drill && last.hih_existing.drill.length ? rdDz("Existing-contact HIH", `<b>${last.hih_existing.drill.length}</b> contacts`, `<div class="tscroll"><table><thead><tr><th>HubSpot record</th><th>Company size</th><th>Product</th><th>Converted on</th></tr></thead><tbody>${last.hih_existing.drill.map((r) => `<tr><td><a class="lnk" href="https://app.hubspot.com/contacts/4451852/record/0-1/${r[0]}" target="_blank" rel="noopener">Open contact ↗</a></td><td>${r[1] || '<span class="cap">untagged</span>'}</td><td>${r[2] || "—"}</td><td>${escapeHtml(r[3] || "—")}</td></tr>`).join("")}</tbody></table></div>`, { cls: "inner" }) : ""}`
+          : `<p class="data-empty">Fills in on the next Monday run.</p>`}</div>
+    </div>
     ${ce ? rdDz("Content engagement", `intent tiers + top content tags · as of ${ce.as_of || "—"}`, contentEngagementSection(ce), { cls: "inner" }) : ""}
 
     <div id="sec-wref">${rdTier(4, "Reference", "")}</div>
