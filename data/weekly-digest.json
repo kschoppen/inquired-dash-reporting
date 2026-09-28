@@ -6252,6 +6252,12 @@
           "mql": 5,
           "sql": 0,
           "opp": 0
+        },
+        "untagged": {
+          "hih": 0,
+          "mql": 16,
+          "sql": 14,
+          "opp": 15
         }
       },
       "by_segment": {

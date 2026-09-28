@@ -898,8 +898,10 @@ function renderWeekly(d) {
   const segHihAllZero = RD_SEG.every(([k]) => !g(bs, k, "hih"));
   const segTbl = RD_SEG.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bs, k, s))}${rdRaw(g(bs, k, s), g(bsp, k, s))}</td>`).join("")}<td>${rate(g(bs, k, "sql"), g(bs, k, "mql")) != null ? rate(g(bs, k, "sql"), g(bs, k, "mql")) + "%" : "—"}</td></tr>`).join("")
     + `<tr class="untagged"><td>Unassigned</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bs, RD_SEG, s)))}</td>`).join("")}<td></td></tr>`;
+  // Untagged comes from the pull when present (MQL/SQL/Opp are multi-tag, so total − Σproducts undercounts it)
+  const prodUntagged = (s) => bp.untagged && bp.untagged[s] != null ? bp.untagged[s] : Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s));
   const prodTbl = RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bp, k, s))}${rdRaw(g(bp, k, s), g(bpp, k, s))}</td>`).join("")}</tr>`).join("")
-    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s)))}</td>`).join("")}</tr>`;
+    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(prodUntagged(s))}</td>`).join("")}</tr>`;
 
   // HIH contact drill-down (IDs only; opens the side drawer)
   const drillHih = (last.drill && last.drill.hih) || [];
@@ -986,11 +988,11 @@ function renderWeekly(d) {
       <div class="rd-card"><div class="rd-row"><div class="eyebrow">By company size</div>${rdCov(`Covers ${fmtN(tagged(bs, RD_SEG, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
         <div class="tscroll"><table class="bd"><thead><tr><th>Segment</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>${segTbl}</tbody></table></div>
         <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wSegChart"></canvas></div></div>
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(tagged(bp, RD_PROD, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(Math.min(f(last, "mql") || 0, (f(last, "mql") || 0) - prodUntagged("mql")))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
         <div class="tscroll"><table class="bd"><thead><tr><th>Product</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th></tr></thead><tbody>${prodTbl}</tbody></table></div>
         <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wProdChart"></canvas></div></div>
     </div>
-    ${rdAbout("How these are counted", "Each contact counts under one primary product (priority Inkwell → IJ → World History → Great First 8). Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
+    ${rdAbout("How these are counted", "HIH counts each contact once, under its primary product (priority Inkwell → IJ → World History → Great First 8). MQL, SQL and Opp count a contact toward every product it's tagged with, so those columns can add up to more than the total. Untagged is contacts with no product. Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
 
     <div id="sec-wtop">${rdTier(2, "Top converting pieces", "Form fills by offer this week", pieces ? "" : rdNeeds())}</div>
     <div class="rd-card">
