@@ -2090,5 +2090,399 @@
       "HIH segment breakdown unavailable (property filter returned no results)",
       "Disposition by_product not computed this run"
     ]
+  },
+  {
+    "run_date": "2026-09-28",
+    "period_label": "2026-W39",
+    "window_current": [
+      "2026-09-21",
+      "2026-09-27"
+    ],
+    "window_prior": [
+      "2026-09-14",
+      "2026-09-20"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 23,
+      "hih_prior": 55,
+      "hih_wow_pct": -58.2,
+      "mql_current": 76,
+      "mql_prior": 128,
+      "mql_wow_pct": -40.6,
+      "sql_current": 17,
+      "sql_prior": 24,
+      "sql_wow_pct": -29.2,
+      "opp_current": 18,
+      "opp_prior": 24,
+      "opp_wow_pct": -25.0
+    },
+    "by_product": null,
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          3,
+          null
+        ],
+        "mql": [
+          null,
+          null
+        ],
+        "sql": [
+          6,
+          null
+        ],
+        "opp": [
+          6,
+          null
+        ]
+      },
+      "medium": {
+        "hih": [
+          0,
+          null
+        ],
+        "mql": [
+          null,
+          null
+        ],
+        "sql": [
+          3,
+          null
+        ],
+        "opp": [
+          3,
+          null
+        ]
+      },
+      "large": {
+        "hih": [
+          1,
+          null
+        ],
+        "mql": [
+          null,
+          null
+        ],
+        "sql": [
+          2,
+          null
+        ],
+        "opp": [
+          2,
+          null
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          1,
+          null
+        ],
+        "mql": [
+          null,
+          null
+        ],
+        "sql": [
+          6,
+          null
+        ],
+        "opp": [
+          7,
+          null
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": null,
+        "mql": null,
+        "sql": null,
+        "opp": null
+      },
+      "segment": {
+        "hih": 22,
+        "mql": null,
+        "sql": 100,
+        "opp": 100
+      }
+    },
+    "disposition": {
+      "disqualified_current": 126,
+      "disqualified_prior": null,
+      "entered_nurture_current": 52,
+      "entered_nurture_prior": null,
+      "by_product_current": {
+        "ij": {
+          "disqualified": 25,
+          "entered_nurture": 2
+        },
+        "inkwell": {
+          "disqualified": 32,
+          "entered_nurture": 6
+        },
+        "wh": {
+          "disqualified": 5,
+          "entered_nurture": 0
+        },
+        "gf8": {
+          "disqualified": 6,
+          "entered_nurture": 7
+        }
+      }
+    },
+    "pipeline": {
+      "new_business_open_deals": 130,
+      "account_growth_open_deals": 3,
+      "renewal_open_deals": 291,
+      "district_open_deals": 33,
+      "school_open_deals": 10,
+      "by_product": {
+        "ij": {
+          "count": 27,
+          "amount": 95375
+        },
+        "inkwell": {
+          "count": 1,
+          "amount": 0
+        },
+        "wh": {
+          "count": 3,
+          "amount": 11977
+        },
+        "gf8": {
+          "count": 3,
+          "amount": 191700
+        },
+        "untagged": {
+          "count": 14,
+          "amount": 0
+        }
+      },
+      "by_stage": {
+        "district": [
+          {
+            "stage": "Interest",
+            "count": 23,
+            "amount": 254798.99
+          },
+          {
+            "stage": "Sales Qualified",
+            "count": 6,
+            "amount": 0
+          },
+          {
+            "stage": "Consideration",
+            "count": 2,
+            "amount": 10920
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 0
+          }
+        ],
+        "school": [
+          {
+            "stage": "Consideration",
+            "count": 5,
+            "amount": 13078
+          },
+          {
+            "stage": "Interest",
+            "count": 4,
+            "amount": 5000
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 1640
+          }
+        ],
+        "new_business": [
+          {
+            "stage": "Sales Qualified",
+            "count": 26,
+            "amount": 205000
+          },
+          {
+            "stage": "Interest",
+            "count": 97,
+            "amount": 3629392.83
+          },
+          {
+            "stage": "Consideration",
+            "count": 3,
+            "amount": 123437
+          },
+          {
+            "stage": "Conviction",
+            "count": 2,
+            "amount": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 0
+          }
+        ],
+        "account_growth": [
+          {
+            "stage": "Sales Qualified",
+            "count": 2,
+            "amount": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 1,
+            "amount": 1500
+          }
+        ],
+        "renewal": [
+          {
+            "stage": "Nurture",
+            "count": 278,
+            "amount": 5565794.23
+          },
+          {
+            "stage": "Engaged",
+            "count": 10,
+            "amount": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 3,
+            "amount": 0
+          }
+        ]
+      }
+    },
+    "top_pieces": [
+      {
+        "offer": "k-5 social studies in practice | IJ",
+        "fills": 28
+      },
+      {
+        "offer": "ela-dl: inkwell the integrated instructional block_f26",
+        "fills": 27
+      },
+      {
+        "offer": "inquiry journeys scope & sequence_s25",
+        "fills": 23
+      },
+      {
+        "offer": "lit talk with dr. nell k. duke",
+        "fills": 16
+      },
+      {
+        "offer": "ela-dl: inkwell k2 sample lesson_sy2627",
+        "fills": 11
+      },
+      {
+        "offer": "source material webinar series",
+        "fills": 9
+      },
+      {
+        "offer": "great first eight pre-k/tk webinar",
+        "fills": 7
+      },
+      {
+        "offer": "ss-dl: wh-scope and sequence_s25",
+        "fills": 6
+      },
+      {
+        "offer": "ela-dl: inkwell k2 curriculum map_sy2627",
+        "fills": 5
+      },
+      {
+        "offer": "home > great first eight",
+        "fills": 4
+      }
+    ],
+    "dq_reasons": [
+      {
+        "reason": "Non-Sellable Company",
+        "count": 20
+      },
+      {
+        "reason": "Gmail/Personal Email",
+        "count": 16
+      },
+      {
+        "reason": "University Professor",
+        "count": 8
+      },
+      {
+        "reason": "Bounced/Opted Out",
+        "count": 4
+      },
+      {
+        "reason": "No Longer at School/District",
+        "count": 4
+      }
+    ],
+    "nurture_reasons": [
+      {
+        "reason": "Did Not Engage",
+        "count": 22
+      },
+      {
+        "reason": "Not Interested",
+        "count": 8
+      },
+      {
+        "reason": "Teacher - No Influence",
+        "count": 6
+      },
+      {
+        "reason": "Timing",
+        "count": 6
+      },
+      {
+        "reason": "Open Opportunity",
+        "count": 4
+      },
+      {
+        "reason": "Current Partner",
+        "count": 2
+      },
+      {
+        "reason": "Curriculum Fit",
+        "count": 2
+      },
+      {
+        "reason": "No Budget",
+        "count": 1
+      },
+      {
+        "reason": "Recently Contacted",
+        "count": 1
+      }
+    ],
+    "list_event_detected": false,
+    "acknowledged_events": [],
+    "data_flags": [
+      "by_product: funnel by-product pulls incomplete \u2014 MQL/SQL/Opp product breakdowns unavailable due to context compaction; HIH product partially recovered (4/23 drill rows). All by_product entries set to null this run.",
+      "by_segment.mql: MQL segment breakout unavailable (pulled in prior session, lost to compaction). Null emitted.",
+      "hih_segment_coverage: 22% (5 of 23 HIH contacts had segment data). Below 30% threshold \u2014 data_flag per spec.",
+      "drill.hih: Only 4 of 23 HIH contact rows recovered from session (19 lost to compaction). MQL/SQL/Opp drills not pulled this run.",
+      "top_pieces: new_contacts/to_hih/to_mql sub-queries not completed \u2014 all null this run.",
+      "disposition.dq_prior/nurture_prior: prior-window DQ and Nurture counts not re-pulled this run. Null in run log.",
+      "stage_movement: stage-movement pull not completed this run. `active` and `moved_deals` omitted from pipeline snapshot; by_stage carried from 2026-09-25 run with count totals updated.",
+      "closed_won_mtd: not re-pulled this run; carried forward from prior run ($18,118).",
+      "competitive_intel_html: signal updates for 6 competitors NOT written to competitive-intel.html this run (token budget). New signals noted in run log only. competitive-intel.json updated field stamped.",
+      "phase_1_5_state_signal: State Signal (MQA) pull not completed this run.",
+      "content_performance: Phase 2.6 content analytics pull not completed this run.",
+      "semrush_keywords: SEMrush keyword refresh (Phase 2B) not completed this run."
+    ]
   }
 ]
