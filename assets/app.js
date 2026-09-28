@@ -906,8 +906,9 @@ function renderWeekly(d) {
 
   // top converting pieces
   const pieces = last.top_pieces || null, ce = rdLatestCE(w);
+  const pAvg = !!(pieces && pieces.some((p) => p.avg8 != null));
   const piecesTbl = pieces && pieces.length
-    ? pieces.map((p) => { const nm = p.offer || p.tag || "—"; return `<tr><td><b>${escapeHtml(nm)}</b></td><td>${p.type || rdPieceType(nm)}</td><td>${p.product || rdPieceProd(nm)}</td><td><b>${fmtN(p.fills)}</b></td><td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td><td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`; }).join("")
+    ? pieces.map((p) => { const nm = p.offer || p.tag || "—"; return `<tr><td><b>${escapeHtml(nm)}</b></td><td>${p.type || rdPieceType(nm)}</td><td>${p.product || rdPieceProd(nm)}</td><td><b>${fmtN(p.fills)}</b></td>${pAvg ? `<td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td>` : ""}<td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`; }).join("")
     : ((ce && ce.top_content_tags) || []).map((t) => `<tr><td><b>${t.tag}</b><span class="rd-rt">${fmtN(t.count)} running total</span></td><td>${rdPieceType(t.tag)}</td><td>${rdPieceProd(t.tag)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>`).join("");
 
   // open pipeline (active pipelines only; legacy District/School hidden)
@@ -942,7 +943,7 @@ function renderWeekly(d) {
   const prodDz = rdDz("Open deals by product", "active pipelines only", prodBody, { cls: "inner" });
   const disp = last.disposition || {}, dispPrev = prev.disposition || {};
   const reasonTbl = (rows, k) => rows && rows.length
-    ? (() => { const tot = rows.reduce((a, r) => a + r.count, 0); return rows.map((r) => `<tr><td>${r.reason}</td><td>${fmtN(r.count)}</td><td>${tot ? Math.round(r.count / tot * 100) + "%" : "—"}</td><td>${r.avg8 != null ? rdVsAvg(r.count, r.avg8).html : "—"}</td></tr>`).join(""); })()
+    ? (() => { const tot = rows.reduce((a, r) => a + r.count, 0), ha = rows.some((r) => r.avg8 != null); return rows.map((r) => `<tr><td>${r.reason}</td><td>${fmtN(r.count)}</td><td>${tot ? Math.round(r.count / tot * 100) + "%" : "—"}</td>${ha ? `<td>${r.avg8 != null ? rdVsAvg(r.count, r.avg8).html : "—"}</td>` : ""}</tr>`).join(""); })()
     : `<tr class="untagged"><td colspan="4">Grouped by the ${k} reason on the lead. Top reasons first.</td></tr>`;
   const dqAvg = avgD("dq"), nuAvg = avgD("nurture");
 
@@ -993,7 +994,7 @@ function renderWeekly(d) {
 
     <div id="sec-wtop">${rdTier(2, "Top converting pieces", "Form fills by offer this week", pieces ? "" : rdNeeds())}</div>
     <div class="rd-card">
-      <div class="tscroll"><table class="bd"><thead><tr><th>Offer / form</th><th>Type</th><th>Product</th><th>Fills</th><th>vs 8-wk avg</th><th>New contacts</th><th>Became HIH</th><th>Became MQL</th></tr></thead><tbody>${piecesTbl || `<tr class="untagged"><td colspan="8">No offers yet.</td></tr>`}</tbody></table></div>
+      <div class="tscroll"><table class="bd"><thead><tr><th>Offer / form</th><th>Type</th><th>Product</th><th>Fills</th>${pAvg ? "<th>vs 8-wk avg</th>" : ""}<th>New contacts</th><th>Became HIH</th><th>Became MQL</th></tr></thead><tbody>${piecesTbl || `<tr class="untagged"><td colspan="8">No offers yet.</td></tr>`}</tbody></table></div>
       ${pieces ? "" : `<p class="cap">Offer names come from the HubSpot content tags the skill already reads${ce ? ` (as of ${ce.as_of})` : ""}. Weekly counts fill in once the new pull runs.</p>`}
       ${rdAbout("Definition", "A fill is a HubSpot form submission in the ISO week, grouped by the offer's content tag. Became HIH / MQL counts fillers whose intent tier or lifecycle stage changed in the same week. Page-level conversion rates stay on the Content Performance tab.")}
     </div>
@@ -1013,8 +1014,8 @@ function renderWeekly(d) {
         ${rdMini("Disqualified (DQ)", fmtN(disp.dq), `${rdVsAvg(disp.dq, dqAvg, true).html} <span class="cmp">${dqAvg != null ? "avg " + Math.round(dqAvg) : ""}</span>`, "", "rdW_dq")}
         ${rdMini("Sent to nurture", fmtN(disp.nurture), `${rdVsAvg(disp.nurture, nuAvg).html} <span class="cmp">${nuAvg != null ? "avg " + Math.round(nuAvg) : ""}</span>`, "", "rdW_nu")}
       </div>
-      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Leads</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>${disp.dq_reasons_note ? `<p class="cap">${disp.dq_reasons_note}</p>` : ""}`, { cls: "inner" })}
-      ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
+      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Leads</th><th>Share</th>${(disp.dq_reasons || []).some((r) => r.avg8 != null) ? "<th>vs 8-wk avg</th>" : ""}</tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>${disp.dq_reasons_note ? `<p class="cap">${disp.dq_reasons_note}</p>` : ""}`, { cls: "inner" })}
+      ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th>${(disp.nurture_reasons || []).some((r) => r.avg8 != null) ? "<th>vs 8-wk avg</th>" : ""}</tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
       ${disp.by_product ? rdDz("DQ &amp; nurture by product", "product-tagged subset", dispositionProductTable(last) + `<p class="cap">Coverage runs lower here than on the funnel metrics, so these won't sum to the totals.</p>`, { cls: "inner" }) : ""}
       ${rdAbout("About disposition", "Disposition reflects lifecycle stage exits: contacts removed from active funnel consideration this week. High DQ weeks can point to list quality or targeting issues.")}
     </div>
