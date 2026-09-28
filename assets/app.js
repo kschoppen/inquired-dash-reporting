@@ -663,11 +663,11 @@ function seoSection(d) {
   const topics = d.seo_topics || [];
   if (!topics.length) return '<p class="flag">SEO data unavailable.</p>';
   return `<table><thead><tr><th>Topic area</th><th>Tracked</th><th>Ranked</th><th>In top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
-    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
+    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : '<span class="cap">None ranked</span>'}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
   </tbody></table>
   ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${t.keywords.length} keywords</summary>
     <table><thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>MoM</th></tr></thead><tbody>
-    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
+    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : '<span class="cap">Not ranked</span>'}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
     </tbody></table></details>`).join("")}`;
 }
 
