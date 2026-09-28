@@ -138,6 +138,8 @@ Bridge` for a recency cutoff) and apply the `Meeting_Score` cut client-side afte
 to the same 10 `top_states` + `watch_states` already in `top_states`/`watch_states` — never page
 through a full bridge (each holds ~4,000-10,500 rows).
 
+**Self-check for `warm_signals_90d_total` (added 2026-09-28).** Record, per bridge, how many rows you paged in the 90-day window and how many cleared `Meeting_Score >= 10`. Write them to `warm_signals_audit: {"window_start": "YYYY-MM-DD", "by_bridge": {"gf8": {"rows_scanned": N, "qualifying": N}, "ij": {…}, "inkwell": {…}}}`, then assert in a python step that `warm_signals_90d_total == sum(qualifying)`. If the server-side date filter returns 0 rows (it did on 9/28, using `op:added_date`), don't write 0 or carry last week's number: page with the `Status` filter only, apply the date cut client-side, and note it in `data_flags`. If you can't finish the scan, leave `warm_signals_90d_total` at last week's value **and** say so in `data_flags` and the DM checklist (✗).
+
 **No personal contact data** — `Contact Name - Document`/`Contact Name - Web` never get rendered
 on the dashboard, same no-PII convention as the rest of this tab.
 

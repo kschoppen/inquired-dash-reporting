@@ -325,6 +325,8 @@ Append this run's entry to the fetched run log array and write back to `data/run
 
 Fetch current `data/overview.json` from GitHub. Update ONLY these keys — preserve everything else:
 
+**Never write `summary` in overview.json.** It is the Overview's "AI Monthly Digest Summary" card and belongs to the monthly digest. The 2026-09-21 run overwrote it with a weekly narrative. The weekly talk-track goes in `weekly_signal` only.
+
 ```json
 "weekly_signal": {
   "current": {

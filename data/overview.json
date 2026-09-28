@@ -3,23 +3,23 @@
   "title": "Overview",
   "updated": "2026-09-28",
   "summary": {
-    "headline": "Post-Labor Day surge: HIH +323% and MQL +167% -- largest single-week top-of-funnel spike of the year. Inkwell drove 71% of high-intent activity.",
-    "body": "W38 (Sep 14-20) delivered the sharpest top-of-funnel acceleration of 2026: HIH at 55 exceeded 2.5x the 8-week rolling median, MQL reached 128, and SQL/Opp each hit 24 -- all triple-digit WoW gains after the Labor Day lull. Inkwell dominated new high-intent inbound (39/55 HIH), while Medium District led SQL conversion. DQ (275) and Nurture (114) surged proportionally, with no list event triggered. Pipeline stands at 31 district + 11 school open deals SY27-28.",
+    "headline": "August funnel numbers are inflated by a bulk import; win rate jumped to 85% even as revenue cooled for the season.",
+    "body": "HIH (48) and MQL (281) more than doubled MoM, but nearly 80% of new contacts arrived via an offline bulk import, not organic demand — SQL (126, +12.5%) and Opportunities (124, +9.7%) are the more reliable read. Revenue fell to $149.6K across 34 deals as the spring-summer district buying peak tapered into the August lull, but win rate improved sharply to 85% (from 56%), so deal quality held even as deal size shrank. MQA accounts stand at 12 in the buy window.",
     "signals": [
       {
-        "label": "HIH +323% WoW -- exceeds 2.5x rolling median",
+        "label": "Win rate 85% (up from 56%)",
         "dir": "up"
       },
       {
-        "label": "MQL +167%, SQL/Opp +85-100% WoW",
+        "label": "LinkedIn Ads data now live",
         "dir": "up"
       },
       {
-        "label": "Inkwell 71% of new HIH (39/55)",
-        "dir": "up"
+        "label": "UTM completeness 4.4% (down from 7.7%)",
+        "dir": "watch"
       },
       {
-        "label": "Branded search -10% WoW (provisional)",
+        "label": "August funnel inflated by offline import",
         "dir": "watch"
       }
     ]
