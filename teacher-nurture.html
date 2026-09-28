@@ -15,7 +15,7 @@
     <div class="header-meta-item"><span class="header-label">Flows sending</span><span class="header-value" id="h-live">…</span></div>
     <div class="header-meta-item"><span class="header-label">Platform</span><span class="header-value">Mailchimp</span></div>
   </div>
-  <div class="header-right"><span class="cadence-pill">Live on page load</span></div>
+  <div class="header-right"><span class="cadence-pill">Weekly, Tuesdays</span></div>
 </header>
 
 <main class="main">
@@ -27,7 +27,7 @@
   </div>
   <div id="err"></div>
 
-  <p class="intro-note">Pulled live from Mailchimp every time this page loads, so the numbers are always current. Teacher phases come from the Gainsight fields synced into Mailchimp (Phase Status, Activation Substate, Active User Flag). Flow and email names come from the registry in <code>data/teacher-nurture.json</code>.</p>
+  <p class="intro-note">A weekly snapshot pulled from Mailchimp every Tuesday morning, with each week saved so phase movement shows week over week. If the snapshot is missing, the page falls back to a live read. Teacher phases come from the Gainsight fields synced into Mailchimp (Phase Status, Activation Substate, Active User Flag). Flow and email names come from the registry in <code>data/teacher-nurture.json</code>.</p>
 
   <div class="section-eyebrow">Where teachers are, the top metric</div>
   <p class="section-note">Inquiry Journeys teachers in Medium, Large and Enterprise districts, by the Phase Status and Activation Substate Gainsight syncs into Mailchimp. The goal of the program is to move teachers left to right.</p>
@@ -65,17 +65,31 @@ async function load() {
   renderFlows(reg, {}, null, true);
   renderEmails(reg, {}, null, true);
   renderOpen(reg, null);
+  // Weekly snapshot first (written by TEACHER_NURTURE_ROUTINE.md); live function only as a fallback.
   let live = null, liveErr = null;
   try {
-    const r = await fetch("/api/teacher-nurture", { cache: "no-store" });
-    live = await r.json();
-    if (!live.ok) { liveErr = live.error || "Mailchimp request failed"; live = null; }
-  } catch (e) { liveErr = "Couldn't reach /api/teacher-nurture (" + e.message + ")"; }
-  if (liveErr) document.getElementById("err").innerHTML = `<div class="err"><b>Live data unavailable.</b> ${esc(liveErr)} The flow and email lists below are from the registry only.</div>`;
+    const r = await fetch("data/teacher-nurture-snapshot.json", { cache: "no-store" });
+    if (r.ok) { live = await r.json(); if (!live.ok) live = null; }
+  } catch (_) { /* no snapshot yet */ }
+  if (!live) {
+    try {
+      const r = await fetch("/api/teacher-nurture", { cache: "no-store" });
+      live = await r.json();
+      if (!live.ok) { liveErr = live.error || "Mailchimp request failed"; live = null; }
+    } catch (e) { liveErr = "Couldn't reach /api/teacher-nurture (" + e.message + ")"; }
+  }
+  if (liveErr) document.getElementById("err").innerHTML = `<div class="err"><b>Data unavailable.</b> ${esc(liveErr)} The flow and email lists below are from the registry only.</div>`;
   const pulled = live ? new Date(live.fetched_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "not available";
   document.getElementById("h-pulled").textContent = document.getElementById("fr-pulled").textContent = pulled;
   const pill = document.getElementById("fr-pill");
-  pill.className = "fr-pill " + (live ? "current" : "stale"); pill.textContent = live ? "Live" : "Unavailable"; pill.hidden = false;
+  if (!live) { pill.className = "fr-pill stale"; pill.textContent = "Unavailable"; }
+  else if (live.source !== "snapshot") { pill.className = "fr-pill current"; pill.textContent = "Live read"; }
+  else {
+    const age = Math.floor((Date.now() - new Date(live.fetched_at)) / 86400000);
+    const stale = age > (live.stale_after_days || 8);
+    pill.className = "fr-pill " + (stale ? "stale" : "current"); pill.textContent = stale ? age + " days old" : "Current";
+  }
+  pill.hidden = false;
   renderPhases(reg, live);
   const byCode = {};
   (live && live.emails || []).forEach((e) => { (byCode[e.code] = byCode[e.code] || []).push(e); });
@@ -85,6 +99,12 @@ async function load() {
 }
 
 function renderPhases(reg, live) {
+  const hist = (live && live.history) || [];
+  // "Last week" = the newest history row at least 6 days older than this snapshot (ignores same-week test runs).
+  const lastDate = hist.length ? new Date(hist[hist.length - 1].date + "T12:00:00Z") : null;
+  const prevRow = lastDate ? [...hist].reverse().find((h) => (lastDate - new Date(h.date + "T12:00:00Z")) / 86400000 >= 6) : null;
+  const prevWeek = prevRow ? prevRow.phases || {} : null;
+  const delta = (k, v) => { if (!prevWeek || prevWeek[k] == null || v == null) return '<span class="muted">—</span>'; const d = v - prevWeek[k]; return d === 0 ? '<span class="muted">0</span>' : (d > 0 ? "+" : "") + n(d); };
   const el = document.getElementById("phase-block");
   const ph = live && live.phases || {};
   if (!live || !Object.keys(ph).length) {
@@ -110,8 +130,8 @@ function renderPhases(reg, live) {
       ${rows.map((r) => r.count ? `<div class="phase-seg ph-${r.key}" style="flex:${r.count}" data-k="${r.key}"><span class="seg-lbl">${r.count / total >= 0.07 ? n(r.count) : ""}</span></div>` : "").join("")}
     </div>
     <div class="legend">${rows.map((r) => `<span><i class="ph-${r.key}"></i>${esc(r.label)}</span>`).join("")}</div>
-    <table class="tn"><thead><tr><th>Phase</th><th>What it means</th><th class="num">Teachers</th><th class="num">Share</th></tr></thead>
-      <tbody>${rows.map((r) => `<tr><td><b>${esc(r.label)}</b>${reg.data_quality && reg.data_quality.phase === r.key ? ' <span class="badge badge-watch">Data issue</span>' : ""}</td><td class="muted">${esc(r.desc)}</td><td class="num">${n(r.count)}</td><td class="num">${r.count != null && total ? Math.round(r.count / total * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table>`;
+    <table class="tn"><thead><tr><th>Phase</th><th>What it means</th><th class="num">Teachers</th><th class="num">vs last week</th><th class="num">Share</th></tr></thead>
+      <tbody>${rows.map((r) => `<tr><td><b>${esc(r.label)}</b>${reg.data_quality && reg.data_quality.phase === r.key ? ' <span class="badge badge-watch">Data issue</span>' : ""}</td><td class="muted">${esc(r.desc)}</td><td class="num">${n(r.count)}</td><td class="num">${delta(r.key, r.count)}</td><td class="num">${r.count != null && total ? Math.round(r.count / total * 100) + "%" : "—"}</td></tr>`).join("")}</tbody></table>`;
   el.querySelectorAll(".phase-seg").forEach((s) => {
     const r = rows.find((x) => x.key === s.dataset.k);
     s.addEventListener("mousemove", (e) => showTip(e, `<b>${esc(r.label)}</b><br>${n(r.count)} teachers · ${Math.round(r.count / total * 100)}%<br><span style="opacity:.8">${esc(r.desc)}</span>`));
