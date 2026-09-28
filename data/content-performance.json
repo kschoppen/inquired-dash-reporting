@@ -1,7 +1,7 @@
 {
   "skill": "content-performance",
   "title": "Content Performance",
-  "updated": "2026-09-21",
+  "updated": "2026-09-28",
   "min_views_threshold": 2000,
   "excluded_note": "Form-embed URLs (share.hsforms.com), thank-you/confirmation pages, and non-marketing corporate pages (careers, about, team) are excluded from this table so the gap/watch/healthy flags stay meaningful.",
   "weeks": [
@@ -280,7 +280,7 @@
         "watch_count": 2,
         "healthy_count": 9
       },
-      "verdict": "The inquirED.org homepage remains the biggest conversion gap at 199,954 all-time views and only 0.02% contact rate — no functional CTA on the primary entry point. Dedicated digest landers continue to convert at 12–18%, anchored by the Scope and Sequence Download at 18.2% conversion rate across 11,776 views.",
+      "verdict": "The inquirED.org homepage remains the biggest conversion gap at 199,954 all-time views and only 0.02% contact rate \u2014 no functional CTA on the primary entry point. Dedicated digest landers continue to convert at 12\u201318%, anchored by the Scope and Sequence Download at 18.2% conversion rate across 11,776 views.",
       "pages": [
         {
           "contentId": "www.inquired.org/post/inquiry-unit-design",
@@ -802,6 +802,31 @@
           "flag": "healthy"
         }
       ]
+    },
+    {
+      "period": "2026-09-28",
+      "label": "Sep 28, 2026",
+      "totals": {
+        "pages_tracked": 1,
+        "gap_count": 1,
+        "watch_count": 0,
+        "healthy_count": 0
+      },
+      "verdict": "Professional-learning page (2,044 all-time views) converts at 0.44% \u2014 well below the 0.5% gap threshold. No other pages cleared the 2,000-view minimum this run; HubSpot content analytics may be restricted to CMS-hosted pages only.",
+      "pages": [
+        {
+          "contentId": "inquired.com/professional-learning",
+          "title": "Professional Learning",
+          "url": "https://inquired.com/professional-learning",
+          "content_type": "site_page",
+          "raw_views": 2044,
+          "contacts": 9,
+          "conversion_rate_pct": 0.44,
+          "bounce_rate_pct": 65.2,
+          "flag": "gap"
+        }
+      ],
+      "note": "HubSpot get_content_analytics_report returned 40 entries; only 1 passed the 2,000-rawViews threshold after excluding form embeds, thank-you pages, curriculum app URLs (app.inquired.org), and together/connections platform pages. The main marketing site (inquired.com landing pages) appears underrepresented in this API. Flag for review."
     }
   ]
 }

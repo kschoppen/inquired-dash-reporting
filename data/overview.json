@@ -1,7 +1,7 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-09-21",
+  "updated": "2026-09-28",
   "summary": {
     "headline": "Post-Labor Day surge: HIH +323% and MQL +167% -- largest single-week top-of-funnel spike of the year. Inkwell drove 71% of high-intent activity.",
     "body": "W38 (Sep 14-20) delivered the sharpest top-of-funnel acceleration of 2026: HIH at 55 exceeded 2.5x the 8-week rolling median, MQL reached 128, and SQL/Opp each hit 24 -- all triple-digit WoW gains after the Labor Day lull. Inkwell dominated new high-intent inbound (39/55 HIH), while Medium District led SQL conversion. DQ (275) and Nurture (114) surged proportionally, with no list event triggered. Pipeline stands at 31 district + 11 school open deals SY27-28.",
@@ -25,21 +25,21 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2362,
-    "mql_to_sql_pct": 18.8,
+    "hih_pool": 2383,
+    "mql_to_sql_pct": 22.4,
     "closed_won_mtd": "$18,118"
   },
   "brand_lift": {
-    "updated": "2026-09-21",
+    "updated": "2026-09-28",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 14 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (434 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 21 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (395 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
         "sub": "Organic clicks on branded queries · inquired.com property",
-        "value": 434,
-        "delta": "-10% WoW ⚠️",
+        "value": 395,
+        "delta": "-6% WoW",
         "delta_dir": "down",
         "spark": [
           239,
@@ -47,7 +47,8 @@
           240,
           307,
           510,
-          434
+          441,
+          395
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -86,26 +87,26 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Sep 21",
+      "updated": "2026-09-28",
+      "narrative": "W39 (Sep 21-27) delivered a sharp mean-reversion from last week’s post-Labor Day surge: HIH fell to 23 (-58% WoW 🚨), MQL to 76 (-41% 🚨), SQL to 17 (-29% 🚨), and Opp to 18 (-25% ⚠️). All four stages are below the prior 8-week median — likely a correction after an outsized W38, but a second consecutive down week would signal structural softening. Content engagement held: Inkwell ELA and K-5 SS led form fills (top 2 offers: 55 fills combined). Open pipeline: 130 NB + 3 AG + 291 Renewal + 33 District + 10 School deals. Two NB SY27-28 deals closed lost this week: Aptakisic-Tripp IL ($32.8K) and Norman PS OK ($110.2K)."
+    },
+    "previous": {
       "week_label": "Week of Sep 14",
       "updated": "2026-09-21",
       "narrative": "Post-Labor Day surge delivered the headline week: HIH jumped to 55 (+323% WoW), exceeding 2.5x the 8-week rolling median (28.75) -- consistent with back-to-school acceleration. MQL hit 128 (+167%) and SQL and Opp each reached 24 (+85%/+100%). Inkwell drove 71% of new high-intent activity (39 of 55 HIH). Medium District led SQL conversion (10 of 24). DQ surged to 275 (+202%) and Nurture to 114 (+235%), tracking with the top-of-funnel spike. Open pipeline: 31 district + 11 school deals SY27-28. Branded search at 434 clicks (-10% WoW provisional)."
-    },
-    "previous": {
-      "week_label": "Week of Sep 7",
-      "updated": "2026-09-14",
-      "narrative": "Labor Day week delivered an expected seasonal pullback: 48 MQLs entered (−30% WoW), with Inkwell driving the top of funnel at 23 of 48 new MQLs — its strongest weekly share yet. Lower-funnel stages slowed sharply as the holiday interrupted conversion activity: SQL fell to 13 (−58% WoW) and Opportunities to 12 (−59% WoW), though the Enterprise segment held with 9 SQLs and 8 Opps. September closed-won revenue climbed to $5,225 across 7 deals MTD, and two closed-lost deals carry competitive flags — Norman Public Schools (OK, $110K) lost to regulatory timeline disruption, and Griffin-Spalding (GA) was already in a shortlist. The HIH pool stands at 2,297 with 13 new High Intent Handraisers, setting up recovery potential for next week's lower-funnel numbers."
     }
   },
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-09-21",
+    "as_of": "2026-09-28",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 3678442.83,
-      "lost": 1524836.0,
+      "open": 3535477.83,
+      "lost": 1667801.0,
       "won": 72521.91
     },
     "by_segment": {
@@ -120,20 +121,20 @@
         "won": 0.0
       },
       "large": {
-        "open": 814248.0,
-        "lost": 224615.0,
+        "open": 703089.0,
+        "lost": 335774.0,
         "won": 69938.91
       },
       "enterprise": {
         "open": 1131354.0,
-        "lost": 778995.0,
+        "lost": 921921.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2172497.83,
-        "lost": 1306371.0,
+        "open": 2029532.83,
+        "lost": 1449336.0,
         "won": 72521.91
       },
       "inkwell": {
@@ -169,8 +170,8 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 3143747.83,
-        "lost": 8500.0,
+        "open": 3000782.83,
+        "lost": 151465.0,
         "won": 69938.91
       }
     },
@@ -247,7 +248,7 @@
         }
       }
     },
-    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved.",
+    "note": "Filtered on deal_start_year across District Sales, School Sales, and New Business pipelines. 'Generated' = open+lost+won combined. Aptakisic-Tripp ($32,806) and Norman PS ($110,159) moved NB open→lost since 2026-09-21 run. by_segment large/enterprise updated to reflect those moves. reference_year (SY25-26) static — carried forward.",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
   }
