@@ -2050,54 +2050,54 @@
         ],
         "top_conversion_pages": [
           {
-            "path": "/",
-            "completions": 41933,
-            "type": "resource"
-          },
-          {
-            "path": "/careers",
-            "completions": 34225,
-            "type": "resource"
-          },
-          {
             "path": "/inquiry-based-social-studies/elementary-curriculum",
-            "completions": 22422,
+            "completions": 158,
             "type": "resource"
           },
           {
-            "path": "/about-us",
-            "completions": 16952,
+            "path": "/thank-you/inkwell-k2-curriculum-map",
+            "completions": 122,
+            "type": "download"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 37,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/wh-scope-and-sequence",
+            "completions": 24,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/social-studies-curriculum-review",
+            "completions": 20,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-demo",
+            "completions": 17,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/ppc-k2-curriculum-maps",
+            "completions": 14,
+            "type": "download"
+          },
+          {
+            "path": "/",
+            "completions": 10,
             "type": "resource"
           },
           {
-            "path": "/inquiry-based-social-studies/middle-school-curriculum",
-            "completions": 14267,
-            "type": "resource"
+            "path": "/thank-you/inquiry-journeys-curriculum",
+            "completions": 10,
+            "type": "download"
           },
           {
-            "path": "/post/inquiry-unit-design",
-            "completions": 12348,
-            "type": "resource"
-          },
-          {
-            "path": "/post/districts-making-time-for-k5-social-studies",
-            "completions": 10263,
-            "type": "resource"
-          },
-          {
-            "path": "/inquiry-based-social-studies",
-            "completions": 5371,
-            "type": "resource"
-          },
-          {
-            "path": "/integrated-ela-curriculum/elementary-curriculum",
-            "completions": 5206,
-            "type": "resource"
-          },
-          {
-            "path": "/post/see-think-wonder",
-            "completions": 4654,
-            "type": "resource"
+            "path": "/thank-you/pacing-guide",
+            "completions": 10,
+            "type": "download"
           }
         ]
       },
@@ -2388,53 +2388,53 @@
         ],
         "top_conversion_pages": [
           {
-            "path": "/",
-            "completions": 10059,
-            "type": "resource"
-          },
-          {
-            "path": "/careers",
-            "completions": 9938,
-            "type": "resource"
-          },
-          {
-            "path": "/integrated-ela-curriculum/ppc-k2-curriculum-maps",
-            "completions": 4947,
-            "type": "resource"
-          },
-          {
-            "path": "(not set)",
-            "completions": 2065,
+            "path": "/integrated-ela-curriculum/elementary-curriculum",
+            "completions": 259,
             "type": "resource"
           },
           {
             "path": "/inquiry-based-social-studies/elementary-curriculum",
-            "completions": 1728,
+            "completions": 220,
             "type": "resource"
           },
           {
-            "path": "/post/assessment-elementary-social-studies-an-inquiry-based-approach",
-            "completions": 1485,
+            "path": "/thank-you/source-material",
+            "completions": 143,
+            "type": "download"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 73,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-lesson-sample",
+            "completions": 72,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/pd-how-social-studies-boosts-literacy-outcomes",
+            "completions": 70,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/lit-talk",
+            "completions": 60,
+            "type": "download"
+          },
+          {
+            "path": "/",
+            "completions": 48,
             "type": "resource"
           },
           {
-            "path": "/post/designing-for-depth-giving-writing-its-due-in-early-literacy",
-            "completions": 1468,
-            "type": "resource"
+            "path": "/thank-you/inkwell-demo",
+            "completions": 33,
+            "type": "download"
           },
           {
-            "path": "/inquiry-based-social-studies",
-            "completions": 1017,
-            "type": "resource"
-          },
-          {
-            "path": "/post/group-roles-inquiry-lesson-plan-strategy",
-            "completions": 811,
-            "type": "resource"
-          },
-          {
-            "path": "/inquiry-based-social-studies/middle-school-curriculum",
-            "completions": 761,
+            "path": "/learn/inkwell-lesson-sample",
+            "completions": 25,
             "type": "resource"
           }
         ]
