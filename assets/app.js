@@ -295,6 +295,7 @@ function rdKpi(o) {
     <div class="lab">${o.label}</div><div class="val">${o.value}</div>
     ${o.bar != null ? `<div class="rd-meter"><i style="width:${Math.min(100, o.bar)}%"></i></div>` : ""}
     <div>${o.delta || ""} ${o.cmp ? `<span class="cmp">${o.cmp}</span>` : ""}</div>
+    ${o.yoy ? `<div class="rd-yoy">${o.yoy}</div>` : ""}
     ${o.spark ? `<div class="rd-spk"><canvas id="${o.spark}"></canvas></div>` : ""}
     ${o.cap ? `<div class="cap">${o.cap}</div>` : ""}</div>`;
 }
@@ -872,10 +873,17 @@ function renderWeekly(d) {
   const baseConv = base.length ? rate(base.reduce((a, x) => a + (f(x, "sql") || 0), 0), base.reduce((a, x) => a + (f(x, "mql") || 0), 0)) : null;
   const lastConv = rate(f(last, "sql"), f(last, "mql"));
   const spk = (s) => w.slice(-9).map((x) => f(x, s));
+  // YoY = same ISO week last year (`last.yoy`, written by the routine). HIH has no YoY: it's a current-state tier.
+  const ly = last.yoy || null;
+  const yoyLine = (s) => {
+    if (!ly || ly[s] == null) return `<span class="rd-cov"${ly && ly[s + "_note"] ? ` title="${escapeHtml(ly[s + "_note"])}"` : ""}>No YoY data</span>`;
+    return `${rdPct(f(last, s), ly[s], "YoY")} <span class="cmp">LY ${fmtN(ly[s])}</span>`;
+  };
   const tile = (s, label, hero) => {
     const a = avg(s), v = rdVsAvg(f(last, s), a);
-    return rdKpi({ label, value: fmtN(f(last, s)), hero, st: v.st, stLbl: v.lbl, delta: v.html, cmp: a != null ? `avg ${a.toFixed(1)}` : "", spark: `rdW_${s}` });
+    return rdKpi({ label, value: fmtN(f(last, s)), hero, st: v.st, stLbl: v.lbl, delta: v.html, cmp: a != null ? `avg ${a.toFixed(1)}` : "", yoy: yoyLine(s), spark: `rdW_${s}` });
   };
+  const lyConv = ly ? rate(ly.sql, ly.mql) : null;
   const convPts = lastConv != null && baseConv != null ? lastConv - baseConv : null;
   const convSt = convPts == null ? ["watch", "—"] : convPts >= 3 ? ["good", "Up"] : convPts <= -3 ? ["bad", "Down"] : ["watch", "Flat"];
 
@@ -943,10 +951,11 @@ function renderWeekly(d) {
     ${rdRead(last.read) || (last.note ? rdCtx(`Data note · ${last.label}`, last.note) : `<p class="cap">No summary for ${last.label || "this week"} yet.</p>`)}
     <div class="rd-grid g5" style="margin-top:12px">
       ${tile("hih", "HIH new", true)}${tile("mql", "MQLs")}${tile("sql", "SQLs")}${tile("opp", "Opps")}
-      ${rdKpi({ label: "MQL → SQL", value: lastConv != null ? lastConv + "%" : "—", st: convSt[0], stLbl: convSt[1], delta: rdPts(lastConv, baseConv, ""), cmp: baseConv != null ? `avg ${baseConv}%` : "", spark: "rdW_conv" })}
+      ${rdKpi({ label: "MQL → SQL", value: lastConv != null ? lastConv + "%" : "—", st: convSt[0], stLbl: convSt[1], delta: rdPts(lastConv, baseConv, ""), cmp: baseConv != null ? `avg ${baseConv}%` : "", yoy: lyConv != null ? `${rdPts(lastConv, lyConv, "YoY")} <span class="cmp">LY ${lyConv}%</span>` : `<span class="rd-cov">No YoY data</span>`, spark: "rdW_conv" })}
     </div>
 
-    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent")}</div>
+    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent", d.hih_list_url ? `<a class="lnk" style="margin-left:auto;font-size:13px" href="${d.hih_list_url}" target="_blank" rel="noopener">HIH list in HubSpot ↗</a>` : "")}</div>
+    ${d.hih_exclusions ? `<p class="cap" style="margin:0 0 8px">${d.hih_exclusions}${last.funnel && last.funnel.hih_excluded ? ` This week: ${["internal", "higher_ed", "competitor"].map((k) => `${last.funnel.hih_excluded[k] || 0} ${{ internal: "inquirED", higher_ed: "higher-ed", competitor: "competitor" }[k]}`).join(", ")} removed.` : ""}</p>` : ""}
     <div class="rd-grid g2">
       <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by product · vs last week</div>${rdCov("Primary product per contact")}</div>
         ${rdBars(RD_PROD.map(([k, l, c]) => [l, g(bp, k, "hih"), c, g(bpp, k, "hih")]).sort((a, b) => (b[1] || 0) - (a[1] || 0)))}</div>

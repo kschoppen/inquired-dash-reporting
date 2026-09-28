@@ -776,6 +776,7 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .rd-kpi .val { font-size: 30px; font-weight: 900; line-height: 1.05; color: var(--iq-green); font-variant-numeric: tabular-nums; }
 .rd-kpi .cmp, .rd .cmp { font-size: 12px; color: var(--muted); }
 .rd-kpi .cap { font-size: 12px; color: var(--muted); }
+.rd-kpi .rd-yoy { font-size: 12px; }
 .rd-status { position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; }
 .rd-status.good { background: rgba(26,127,90,.10); color: var(--up); }
 .rd-status.bad { background: rgba(179,38,30,.09); color: var(--down); }

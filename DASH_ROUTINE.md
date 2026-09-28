@@ -45,6 +45,15 @@ Run each metric twice (current + prior windows) for WoW. Use `limit: 1` — only
 
 Spell out "High Intent Handraisers [HIH]" on first mention in any Slack post; use "HIH" thereafter.
 
+**HIH is list-based, with exclusions (added 2026-09-28).** Don't use the `total` for HIH. Page the full current-window HIH list (`limit: 200`; properties `hs_email_domain`, `company`, `segment__company_`, `product_interest`, `hs_analytics_source`) and drop:
+- **internal:** `hs_email_domain` = `inquired.com`
+- **competitor:** domain equals or ends in `.`+ any of `amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`, `teachtci.com`, `teachingstrategies.com`, `savvas.com`, `benchmarkeducation.com`, `highscope.org`, `cengage.com`
+- **higher_ed:** domain ends in `.edu` OR `company` matches `/\b(universit|college)/i`, **unless** `segment__company_` is a K-12 size (Single Site / Small / Medium / Large / Enterprise District). K-12 districts can use `.edu` (Chicago Public Schools is `cps.edu`), so this guard is required.
+
+`funnel.hih` = the count left after exclusions. Emit `funnel.hih_excluded = {internal, higher_ed, competitor}` counts. Build HIH `by_product` (primary product per contact, Inkwell > IJ > WH > GF8, mutually exclusive), HIH `by_segment`, and `drill.hih` **from this same filtered list**. Don't run the per-product / per-segment HIH count queries, since one list gives all three. Never write null HIH by-product when the list pulled: an empty product is 0. The prior window's HIH comes from the run log (it already uses the same rule from 2026-09-28 on). Do the list pull and write the HIH fields into the week entry **before** the MQL/SQL/Opp breakdowns, so they survive if the run runs long.
+
+**YoY (added 2026-09-28).** Pull MQL / SQL / Opp totals (`limit: 1`, `total`) for the **same ISO week last year** (Monday of the current window minus 364 days, through the following Sunday). Emit on the week entry: `"yoy": {"period": "<LY Monday>", "label": "<Mon D, YYYY>", "mql": N, "sql": N, "opp": N, "hih": null, "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."}`. HIH YoY is always null. The tiles show "No YoY data" for any null.
+
 ### Product segmentation (add `product_interest EQ "<value>"` to each metric × window query)
 
 | Product | `product_interest` value |

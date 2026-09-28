@@ -270,7 +270,12 @@
         "hih": 6,
         "mql": 34,
         "sql": 26,
-        "opp": 27
+        "opp": 27,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
@@ -290,6 +295,12 @@
           "mql": 0,
           "sql": 0,
           "opp": 0
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
         }
       },
       "products_included": [
@@ -299,7 +310,7 @@
       ],
       "by_segment": {
         "single_small": {
-          "hih": 1,
+          "hih": 2,
           "mql": 15,
           "sql": 15,
           "opp": 15
@@ -811,7 +822,12 @@
         "hih": 10,
         "mql": 47,
         "sql": 31,
-        "opp": 32
+        "opp": 32,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
@@ -825,6 +841,18 @@
           "mql": 5,
           "sql": 1,
           "opp": 1
+        },
+        "wh": {
+          "hih": 1,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
         }
       },
       "products_included": [
@@ -833,7 +861,7 @@
       ],
       "by_segment": {
         "single_small": {
-          "hih": 6,
+          "hih": 8,
           "mql": 26,
           "sql": 21,
           "opp": 21
@@ -1480,11 +1508,16 @@
         "hih": 5,
         "mql": 27,
         "sql": 23,
-        "opp": 23
+        "opp": 23,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
-          "hih": 0,
+          "hih": 5,
           "mql": 11,
           "sql": 7,
           "opp": 7
@@ -1500,6 +1533,12 @@
           "mql": 1,
           "sql": 2,
           "opp": 2
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
         }
       },
       "products_included": [
@@ -1509,13 +1548,13 @@
       ],
       "by_segment": {
         "single_small": {
-          "hih": 0,
+          "hih": 2,
           "mql": 11,
           "sql": 13,
           "opp": 13
         },
         "medium": {
-          "hih": 0,
+          "hih": 1,
           "mql": 7,
           "sql": 6,
           "opp": 6
@@ -1527,7 +1566,7 @@
           "opp": 1
         },
         "enterprise": {
-          "hih": 0,
+          "hih": 1,
           "mql": 2,
           "sql": 0,
           "opp": 0
@@ -1542,7 +1581,12 @@
         "hih": 5,
         "mql": 40,
         "sql": 27,
-        "opp": 27
+        "opp": 27,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
@@ -1557,8 +1601,18 @@
           "sql": 0,
           "opp": 0
         },
-        "wh": null,
-        "gf8": null
+        "wh": {
+          "hih": 1,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        }
       },
       "products_included": [
         "ij",
@@ -2107,7 +2161,12 @@
         "hih": 4,
         "mql": 33,
         "sql": 23,
-        "opp": 22
+        "opp": 22,
+        "hih_excluded": {
+          "internal": 1,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
@@ -2122,8 +2181,18 @@
           "sql": 0,
           "opp": 0
         },
-        "wh": null,
-        "gf8": null
+        "wh": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        },
+        "gf8": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        }
       },
       "products_included": [
         "ij",
@@ -2131,25 +2200,25 @@
       ],
       "by_segment": {
         "single_small": {
-          "hih": null,
+          "hih": 3,
           "mql": 14,
           "sql": 12,
           "opp": 12
         },
         "medium": {
-          "hih": null,
+          "hih": 0,
           "mql": 9,
           "sql": 5,
           "opp": 4
         },
         "large": {
-          "hih": null,
+          "hih": 0,
           "mql": 0,
           "sql": 0,
           "opp": 0
         },
         "enterprise": {
-          "hih": null,
+          "hih": 1,
           "mql": 3,
           "sql": 2,
           "opp": 2
@@ -2585,14 +2654,19 @@
       "period": "2026-08-03",
       "label": "Aug 3",
       "funnel": {
-        "hih": 10,
+        "hih": 11,
         "mql": 60,
         "sql": 30,
-        "opp": 30
+        "opp": 30,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
-          "hih": 6,
+          "hih": 7,
           "mql": 14,
           "sql": 9,
           "opp": 10
@@ -2603,7 +2677,12 @@
           "sql": 0,
           "opp": 0
         },
-        "wh": null,
+        "wh": {
+          "hih": 0,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        },
         "gf8": {
           "hih": 2,
           "mql": 22,
@@ -2636,7 +2715,7 @@
           "opp": 0
         },
         "enterprise": {
-          "hih": 0,
+          "hih": 1,
           "mql": 10,
           "sql": 7,
           "opp": 7
@@ -3312,10 +3391,15 @@
       "period": "2026-08-10",
       "label": "Aug 10",
       "funnel": {
-        "hih": 14,
+        "hih": 13,
         "mql": 77,
         "sql": 30,
-        "opp": 29
+        "opp": 29,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 1,
+          "competitor": 0
+        }
       },
       "by_product": {
         "inkwell": {
@@ -3325,19 +3409,19 @@
           "opp": 2
         },
         "ij": {
-          "hih": 5,
+          "hih": 4,
           "mql": 21,
           "sql": 9,
           "opp": 9
         },
         "wh": {
-          "hih": 2,
+          "hih": 1,
           "mql": 5,
           "sql": 0,
           "opp": 0
         },
         "gf8": {
-          "hih": 1,
+          "hih": 2,
           "mql": 3,
           "sql": 1,
           "opp": 1
@@ -3351,7 +3435,7 @@
       ],
       "by_segment": {
         "single_small": {
-          "hih": 5,
+          "hih": 4,
           "mql": 21,
           "sql": 13,
           "opp": 13
@@ -4103,11 +4187,16 @@
         "hih": 8,
         "mql": 54,
         "sql": 33,
-        "opp": 33
+        "opp": 33,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
-          "hih": 4,
+          "hih": 3,
           "mql": 8,
           "sql": 3,
           "opp": 3
@@ -4124,7 +4213,12 @@
           "sql": 1,
           "opp": 1
         },
-        "gf8": null
+        "gf8": {
+          "hih": 3,
+          "mql": null,
+          "sql": null,
+          "opp": null
+        }
       },
       "products_included": [
         "ij",
@@ -4173,32 +4267,37 @@
       "period": "2026-08-24",
       "label": "Aug 24",
       "funnel": {
-        "hih": 16,
+        "hih": 13,
         "mql": 56,
         "sql": 13,
-        "opp": 12
+        "opp": 12,
+        "hih_excluded": {
+          "internal": 1,
+          "higher_ed": 1,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
-          "hih": 4,
+          "hih": 3,
           "mql": 29,
           "sql": 3,
           "opp": 3
         },
         "inkwell": {
-          "hih": 8,
+          "hih": 6,
           "mql": 8,
           "sql": 0,
           "opp": 0
         },
         "wh": {
-          "hih": 3,
+          "hih": 0,
           "mql": 6,
           "sql": 0,
           "opp": 0
         },
         "gf8": {
-          "hih": 5,
+          "hih": 4,
           "mql": 5,
           "sql": 0,
           "opp": 0
@@ -4206,7 +4305,7 @@
       },
       "by_segment": {
         "single_small": {
-          "hih": 5,
+          "hih": 4,
           "mql": 18,
           "sql": 4,
           "opp": 4
@@ -4224,7 +4323,7 @@
           "opp": 0
         },
         "enterprise": {
-          "hih": 1,
+          "hih": 0,
           "mql": 10,
           "sql": 4,
           "opp": 4
@@ -4265,11 +4364,6 @@
             "Direct"
           ],
           [
-            244892630874,
-            "",
-            "Direct"
-          ],
-          [
             244769020691,
             "Medium",
             "Organic"
@@ -4287,11 +4381,6 @@
           [
             244635677786,
             "Other",
-            "Email"
-          ],
-          [
-            244503608116,
-            "Enterprise",
             "Email"
           ],
           [
@@ -4752,10 +4841,15 @@
       "period": "2026-08-31",
       "label": "Aug 31",
       "funnel": {
-        "hih": 17,
+        "hih": 16,
         "mql": 69,
         "sql": 31,
-        "opp": 29
+        "opp": 29,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "by_product": {
         "ij": {
@@ -4765,19 +4859,19 @@
           "opp": 5
         },
         "inkwell": {
-          "hih": 5,
+          "hih": 3,
           "mql": 14,
           "sql": 0,
           "opp": 0
         },
         "wh": {
-          "hih": 1,
+          "hih": 0,
           "mql": 2,
           "sql": 0,
           "opp": 0
         },
         "gf8": {
-          "hih": 9,
+          "hih": 8,
           "mql": 9,
           "sql": 1,
           "opp": 1
@@ -4785,7 +4879,7 @@
       },
       "by_segment": {
         "single_small": {
-          "hih": 6,
+          "hih": 5,
           "mql": 23,
           "sql": 12,
           "opp": 11
@@ -5124,7 +5218,12 @@
         "hih": 13,
         "mql": 48,
         "sql": 13,
-        "opp": 12
+        "opp": 12,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        }
       },
       "products_included": [
         "ij",
@@ -5160,13 +5259,13 @@
       },
       "by_segment": {
         "single_small": {
-          "hih": 6,
+          "hih": 5,
           "mql": 17,
           "sql": 5,
           "opp": 5
         },
         "medium": {
-          "hih": 1,
+          "hih": 2,
           "mql": 6,
           "sql": 0,
           "opp": 0
@@ -5218,10 +5317,15 @@
       "period": "2026-09-14",
       "label": "Sep 14",
       "funnel": {
-        "hih": 55,
+        "hih": 46,
         "mql": 128,
         "sql": 24,
-        "opp": 24
+        "opp": 24,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 9,
+          "competitor": 0
+        }
       },
       "products_included": [
         "ij",
@@ -5231,13 +5335,13 @@
       ],
       "by_product": {
         "ij": {
-          "hih": 8,
+          "hih": 7,
           "mql": 8,
           "sql": 2,
           "opp": 2
         },
         "inkwell": {
-          "hih": 39,
+          "hih": 30,
           "mql": 2,
           "sql": 1,
           "opp": 1
@@ -5257,7 +5361,7 @@
       },
       "by_segment": {
         "single_small": {
-          "hih": 12,
+          "hih": 13,
           "mql": 28,
           "sql": 7,
           "opp": 7
@@ -5407,18 +5511,6 @@
             "Inkwell"
           ],
           [
-            248628574736,
-            "",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
-            248859325028,
-            "",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
             248864077647,
             "Medium",
             "Campaign",
@@ -5445,12 +5537,6 @@
           [
             248625653084,
             "Medium",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
-            248654829177,
-            "",
             "Campaign",
             "Inkwell"
           ],
@@ -5482,12 +5568,6 @@
             249235538977,
             "",
             "Direct",
-            "Inkwell"
-          ],
-          [
-            248628010921,
-            "Other",
-            "Campaign",
             "Inkwell"
           ],
           [
@@ -5569,18 +5649,6 @@
             "Inkwell"
           ],
           [
-            248678873745,
-            "Other",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
-            248836264344,
-            "",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
             249261374513,
             "",
             "Social",
@@ -5605,12 +5673,6 @@
             "Inkwell"
           ],
           [
-            248653459839,
-            "Other",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
             248630759294,
             "Medium",
             "Campaign",
@@ -5619,12 +5681,6 @@
           [
             248630783313,
             "",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
-            248633369614,
-            "Other",
             "Campaign",
             "Inkwell"
           ],
@@ -5655,12 +5711,6 @@
           [
             248698226974,
             "Large",
-            "Campaign",
-            "Inkwell"
-          ],
-          [
-            248846540131,
-            "",
             "Campaign",
             "Inkwell"
           ],
@@ -5805,10 +5855,15 @@
       "period": "2026-09-21",
       "label": "Sep 21",
       "funnel": {
-        "hih": 23,
+        "hih": 20,
         "mql": 76,
         "sql": 17,
-        "opp": 18
+        "opp": 18,
+        "hih_excluded": {
+          "internal": 1,
+          "higher_ed": 2,
+          "competitor": 0
+        }
       },
       "products_included": [
         "ij",
@@ -5818,25 +5873,25 @@
       ],
       "by_product": {
         "ij": {
-          "hih": null,
+          "hih": 5,
           "mql": null,
           "sql": null,
           "opp": null
         },
         "inkwell": {
-          "hih": null,
+          "hih": 10,
           "mql": null,
           "sql": null,
           "opp": null
         },
         "wh": {
-          "hih": null,
+          "hih": 0,
           "mql": null,
           "sql": null,
           "opp": null
         },
         "gf8": {
-          "hih": null,
+          "hih": 5,
           "mql": null,
           "sql": null,
           "opp": null
@@ -5862,7 +5917,7 @@
           "opp": 2
         },
         "enterprise": {
-          "hih": 1,
+          "hih": 0,
           "mql": null,
           "sql": 6,
           "opp": 7
@@ -5979,21 +6034,117 @@
             "IJ"
           ],
           [
-            250995823510,
+            250969495665,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250836873827,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250731421749,
             "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250728548462,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250693375534,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250690072926,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250691913609,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250689651525,
+            "Small",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            250684984100,
+            "",
+            "Campaign",
+            "IJ"
+          ],
+          [
+            250661352962,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            250471250829,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            250265619892,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            250065530885,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            250011555684,
+            "Small",
             "Direct",
             "Inkwell"
           ],
           [
-            250698213395,
-            "Enterprise",
-            "Social",
+            249955754525,
+            "",
+            "Direct",
             "GF8"
+          ],
+          [
+            249942088199,
+            "",
+            "Direct",
+            "Inkwell"
           ],
           [
             249796406892,
             "Large",
-            "Organic",
+            "Direct",
+            "GF8"
+          ],
+          [
+            249784237868,
+            "",
+            "Referral",
+            "GF8"
+          ],
+          [
+            249661445272,
+            "",
+            "Direct",
             "GF8"
           ]
         ],
@@ -6105,10 +6256,8 @@
       ],
       "note": "W39 run 2026-09-28. by_product/drill incomplete — see data_flags. MQL segment unavailable. Stage-movement not pulled.",
       "data_flags": [
-        "by_product: funnel by-product pulls incomplete — MQL/SQL/Opp product breakdowns unavailable due to context compaction; HIH product partially recovered (4/23 drill rows). All by_product entries set to null this run.",
+        "by_product: HIH by product rebuilt 2026-09-28 from the full HIH list (primary product per contact). MQL/SQL/Opp by product still unavailable this run.",
         "by_segment.mql: MQL segment breakout unavailable (pulled in prior session, lost to compaction). Null emitted.",
-        "hih_segment_coverage: 22% (5 of 23 HIH contacts had segment data). Below 30% threshold — data_flag per spec.",
-        "drill.hih: Only 4 of 23 HIH contact rows recovered from session (19 lost to compaction). MQL/SQL/Opp drills not pulled this run.",
         "top_pieces: new_contacts/to_hih/to_mql sub-queries not completed — all null this run.",
         "disposition.dq_prior/nurture_prior: prior-window DQ and Nurture counts not re-pulled this run. Null in run log.",
         "stage_movement: stage-movement pull not completed this run. `active` and `moved_deals` omitted from pipeline snapshot; by_stage carried from 2026-09-25 run with count totals updated.",
@@ -6117,7 +6266,16 @@
         "phase_1_5_state_signal: State Signal (MQA) pull not completed this run.",
         "content_performance: Phase 2.6 content analytics pull not completed this run.",
         "semrush_keywords: SEMrush keyword refresh (Phase 2B) not completed this run."
-      ]
+      ],
+      "yoy": {
+        "period": "2025-09-22",
+        "label": "Sep 22, 2025",
+        "mql": 99,
+        "sql": 81,
+        "opp": 83,
+        "hih": null,
+        "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."
+      }
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
@@ -6275,5 +6433,7 @@
     "note": "Filtered on deal_start_year across District Sales, School Sales, and New Business pipelines. 'Generated' = open+lost+won combined. Aptakisic-Tripp ($32,806) and Norman PS ($110,159) moved NB open→lost since 2026-09-21 run. by_segment large/enterprise updated to reflect those moves. reference_year (SY25-26) static — carried forward.",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
-  }
+  },
+  "hih_exclusions": "HIH excludes inquirED staff (inquired.com), competitor domains, and higher-ed contacts (.edu domain or University/College company name, unless tagged with a K-12 company size, so e.g. cps.edu stays). Applied to every week shown.",
+  "hih_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10586/filters"
 }
