@@ -6252,6 +6252,12 @@
           "mql": 5,
           "sql": 0,
           "opp": 0
+        },
+        "untagged": {
+          "hih": 0,
+          "mql": 16,
+          "sql": 14,
+          "opp": 15
         }
       },
       "by_segment": {
@@ -6378,9 +6384,9 @@
         "dq_reasons_note": "LEAD-object DQ count (52) differs from contact-level DQ count (126); both emitted. LEAD reasons represent the stage-entry subset."
       },
       "read": {
-        "up": "Inkwell ELA and K-5 SS content dominate form fills — top 2 offers alone drove 55 fills; GF8 pre-K webinar and hand-raise re-entered top 10.",
-        "down": "All 4 funnel stages fell sharply WoW after last week's post-Labor Day surge: HIH -58% 🚨, MQL -41% 🚨, SQL -29% 🚨, Opp -25% ⚠️ — steepest single-week reversion of the quarter.",
-        "watch": "One down week is likely a mean-reversion from an outsized W38; a second consecutive decline would signal structural softening. MQL by-product and segment breakouts unavailable this run (context compacted); monitor next week for complete picture."
+        "up": "HIH came in at <b>20</b>, 1.3× the 8-week average of 15.5, and another <b>21</b> existing contacts converted at High intent. The Inkwell Integrated Instructional Block led fills with <b>27</b>.",
+        "down": "SQLs fell to <b>17</b> against a 24.6 average, and MQL→SQL dropped to <b>22.4%</b>, 15 pts under average. The same week last year had <b>81</b> SQLs.",
+        "watch": "<b>4</b> New Business deals closed lost (Adams 12, Warren County VA, First Steps, Lynn). Five deals moved into Interest, led by New Bedford at <b>$246K</b>."
       },
       "drill": {
         "hih": [

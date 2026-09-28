@@ -50,7 +50,7 @@ Spell out "High Intent Handraisers [HIH]" on first mention in any Slack post; us
 - **competitor:** domain equals or ends in `.`+ any of `amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`, `teachtci.com`, `teachingstrategies.com`, `savvas.com`, `benchmarkeducation.com`, `highscope.org`, `cengage.com`
 - **higher_ed:** never when `segment__company_` is a K-12 size (Single Site / Small / Medium / Large / Enterprise District). Otherwise: `company` matches `/\b(universit|college)/i`, OR domain ends in `.edu` and `company` doesn't match `/school|district|education|academy|public/i`. K-12 bodies use `.edu` too (Chicago Public Schools is `cps.edu`, the Bureau of Indian Education is `bie.edu`), so both guards are required.
 
-`funnel.hih` = the count left after exclusions. Emit `funnel.hih_excluded = {internal, higher_ed, competitor}` counts. Build HIH `by_product` (primary product per contact, Inkwell > IJ > WH > GF8, mutually exclusive), HIH `by_segment`, and `drill.hih` **from this same filtered list**. Don't run the per-product / per-segment HIH count queries, since one list gives all three. Never write null HIH by-product when the list pulled: an empty product is 0. The prior window's HIH comes from the run log (it already uses the same rule from 2026-09-28 on). Do the list pull and write the HIH fields into the week entry **before** the MQL/SQL/Opp breakdowns, so they survive if the run runs long.
+Also emit `by_product.untagged = {hih, mql, sql, opp}`: contacts with no `product_interest` per stage (the GROUP BY "Unassigned" row). MQL/SQL/Opp product counts are multi-tag, so the tab can't derive untagged by subtraction. `funnel.hih` = the count left after exclusions. Emit `funnel.hih_excluded = {internal, higher_ed, competitor}` counts. Build HIH `by_product` (primary product per contact, Inkwell > IJ > WH > GF8, mutually exclusive), HIH `by_segment`, and `drill.hih` **from this same filtered list**. Don't run the per-product / per-segment HIH count queries, since one list gives all three. Never write null HIH by-product when the list pulled: an empty product is 0. The prior window's HIH comes from the run log (it already uses the same rule from 2026-09-28 on). Do the list pull and write the HIH fields into the week entry **before** the MQL/SQL/Opp breakdowns, so they survive if the run runs long.
 
 **YoY (added 2026-09-28).** Pull MQL / SQL / Opp totals (`limit: 1`, `total`) for the **same ISO week last year** (Monday of the current window minus 364 days, through the following Sunday). Emit on the week entry: `"yoy": {"period": "<LY Monday>", "label": "<Mon D, YYYY>", "mql": N, "sql": N, "opp": N, "hih": null, "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."}`. HIH YoY is always null. The tiles show "No YoY data" for any null.
 
@@ -177,7 +177,7 @@ Flag current week if: `Disqualified > 50` AND `(Disqualified + Nurture) > 2 × (
 
 ## PHASES 1.5 / 2 / 2.6 moved to `SIGNALS_ROUTINE.md` (2026-09-28)
 
-State Signal (MQA), Competitive Intel (signals + keywords) and Content Performance now run in their own Monday 8am routine, so this one has room to finish the funnel digest. Don't do them here.
+State Signal (MQA) and Content Performance run in `SIGNALS_ROUTINE.md` (Monday 8am), and the weekly Competitive Intel refresh runs in `CI_WEEKLY_ROUTINE.md` (Monday 9am), so this one has room to finish the funnel digest. Don't do them here.
 
 ---
 

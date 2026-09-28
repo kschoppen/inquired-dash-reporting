@@ -27,8 +27,8 @@ const TABS = [
       sources: ["Competitor websites", "Meta Ad Library", "LinkedIn Ad Library", "Google Ads Transparency Center", "Semrush (keywords)", "Web search (weekly news signals)", "HubSpot (closed-lost deals)", "Gainsight (churn)"] } },
   { id: "nurture",     label: "Nurture Programs",   static: true,                        render: renderNurturePrograms,
     metaFile: "data/nurture-programs.json",
-    meta: { desc: "HubSpot email nurture programs: linked workflows for status checks, plus send/open/click performance by track.", cadence: "On demand", next: "On demand",
-      sources: ["HubSpot Marketing Email", "HubSpot CRM (lifecycle + nurture_track)", "Manually maintained workflow registry (data/nurture-workflows.json)"] } },
+    meta: { desc: "HubSpot email nurture programs: lifecycle movement since launch, plus delivery, open, click and click-to-open by program and email.", cadence: "Weekly, Tue 7am ET", next: "Tuesday",
+      sources: ["HubSpot Marketing Email", "HubSpot CRM (lifecycle + nurture_track)", "Manually maintained workflow registry (data/nurture-workflows.json)", "Refreshed by the Tuesday nurture routine (NURTURE_ROUTINE.md)"] } },
   { id: "teacher-nurture", label: "Teacher Nurture", static: true,                      render: renderTeacherNurture,
     metaFile: "data/teacher-nurture.json",
     meta: { desc: "IJ Teacher Marketing Program in Mailchimp: teachers by phase, plus send/open/click performance for all six automation flows.", cadence: "Live on page load", next: "Always current",
@@ -461,7 +461,7 @@ function renderMonthly(d) {
         ${rdMini("MQLs", fmtN(fp(last, "mql")), `${rdPct(fp(last, "mql"), fp(prev, "mql"), "MoM")} ${rdPct(fp(last, "mql"), fp(ly, "mql"), "YoY")}`, "", "rdSpkMql")}
         ${rdMini("SQLs", fmtN(fp(last, "sql")), `${rdPct(fp(last, "sql"), fp(prev, "sql"), "MoM")} ${rdPct(fp(last, "sql"), fp(ly, "sql"), "YoY")}`, "", "rdSpkSql2")}
         ${rdMini("MQL → SQL", pr(last) != null ? pr(last) + "%" : "—", `${rdPts(pr(last), pr(prev), "MoM")} ${rdPts(pr(last), pr(ly), "YoY")}`, "B2B benchmark 13–22%", "rdSpkConv2")}
-        ${rdMini("UTM attribution", utm != null ? utm + "%" : "—", rdPts(utm, utmPrev, "MoM"), `% of MQLs with a source UTM · target 30%`, "", utm != null && utm < 30 ? "color:var(--down)" : "")}
+        ${rdMini("UTM attribution", utm != null ? utm + "%" : "—", rdPts(utm, utmPrev, "MoM"), `% of MQLs with a UTM · excl. offline, organic, AI · target 30%`, "", utm != null && utm < 30 ? "color:var(--down)" : "")}
       </div>
       <div class="rd-sub">
         <div class="rd-row"><div class="eyebrow">MQL → SQL conversion · ${m.length}-month trend</div></div>
@@ -663,11 +663,11 @@ function seoSection(d) {
   const topics = d.seo_topics || [];
   if (!topics.length) return '<p class="flag">SEO data unavailable.</p>';
   return `<table><thead><tr><th>Topic area</th><th>Tracked</th><th>Ranked</th><th>In top 10</th><th>Avg pos</th><th>MoM</th></tr></thead><tbody>
-    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : "—"}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
+    ${topics.map((t) => `<tr><td><strong>${t.topic}</strong></td><td>${t.tracked}</td><td>${t.ranked}</td><td>${t.top10}</td><td>${t.avg_position != null ? t.avg_position : '<span class="cap">None ranked</span>'}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
   </tbody></table>
   ${topics.map((t) => `<details class="kwd"><summary>${t.topic} — ${t.keywords.length} keywords</summary>
     <table><thead><tr><th>Keyword</th><th>Position</th><th>Volume</th><th>MoM</th></tr></thead><tbody>
-    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : "—"}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">—</span></td></tr>`).join("")}
+    ${t.keywords.map((k) => `<tr><td>${k.kw}</td><td>${k.pos != null ? k.pos : '<span class="cap">Not ranked</span>'}</td><td>${fmtN(k.vol)}</td><td><span class="delta flat">baseline</span></td></tr>`).join("")}
     </tbody></table></details>`).join("")}`;
 }
 
@@ -898,16 +898,19 @@ function renderWeekly(d) {
   const segHihAllZero = RD_SEG.every(([k]) => !g(bs, k, "hih"));
   const segTbl = RD_SEG.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bs, k, s))}${rdRaw(g(bs, k, s), g(bsp, k, s))}</td>`).join("")}<td>${rate(g(bs, k, "sql"), g(bs, k, "mql")) != null ? rate(g(bs, k, "sql"), g(bs, k, "mql")) + "%" : "—"}</td></tr>`).join("")
     + `<tr class="untagged"><td>Unassigned</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bs, RD_SEG, s)))}</td>`).join("")}<td></td></tr>`;
+  // Untagged comes from the pull when present (MQL/SQL/Opp are multi-tag, so total − Σproducts undercounts it)
+  const prodUntagged = (s) => bp.untagged && bp.untagged[s] != null ? bp.untagged[s] : Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s));
   const prodTbl = RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bp, k, s))}${rdRaw(g(bp, k, s), g(bpp, k, s))}</td>`).join("")}</tr>`).join("")
-    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s)))}</td>`).join("")}</tr>`;
+    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(prodUntagged(s))}</td>`).join("")}</tr>`;
 
   // HIH contact drill-down (IDs only; opens the side drawer)
   const drillHih = (last.drill && last.drill.hih) || [];
 
   // top converting pieces
   const pieces = last.top_pieces || null, ce = rdLatestCE(w);
+  const pAvg = !!(pieces && pieces.some((p) => p.avg8 != null));
   const piecesTbl = pieces && pieces.length
-    ? pieces.map((p) => { const nm = p.offer || p.tag || "—"; return `<tr><td><b>${escapeHtml(nm)}</b></td><td>${p.type || rdPieceType(nm)}</td><td>${p.product || rdPieceProd(nm)}</td><td><b>${fmtN(p.fills)}</b></td><td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td><td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`; }).join("")
+    ? pieces.map((p) => { const nm = p.offer || p.tag || "—"; return `<tr><td><b>${escapeHtml(nm)}</b></td><td>${p.type || rdPieceType(nm)}</td><td>${p.product || rdPieceProd(nm)}</td><td><b>${fmtN(p.fills)}</b></td>${pAvg ? `<td>${p.avg8 != null ? rdVsAvg(p.fills, p.avg8).html : "—"}</td>` : ""}<td>${fmtN(p.new_contacts)}</td><td>${fmtN(p.to_hih)}</td><td>${fmtN(p.to_mql)}</td></tr>`; }).join("")
     : ((ce && ce.top_content_tags) || []).map((t) => `<tr><td><b>${t.tag}</b><span class="rd-rt">${fmtN(t.count)} running total</span></td><td>${rdPieceType(t.tag)}</td><td>${rdPieceProd(t.tag)}</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>`).join("");
 
   // open pipeline (active pipelines only; legacy District/School hidden)
@@ -942,7 +945,7 @@ function renderWeekly(d) {
   const prodDz = rdDz("Open deals by product", "active pipelines only", prodBody, { cls: "inner" });
   const disp = last.disposition || {}, dispPrev = prev.disposition || {};
   const reasonTbl = (rows, k) => rows && rows.length
-    ? (() => { const tot = rows.reduce((a, r) => a + r.count, 0); return rows.map((r) => `<tr><td>${r.reason}</td><td>${fmtN(r.count)}</td><td>${tot ? Math.round(r.count / tot * 100) + "%" : "—"}</td><td>${r.avg8 != null ? rdVsAvg(r.count, r.avg8).html : "—"}</td></tr>`).join(""); })()
+    ? (() => { const tot = rows.reduce((a, r) => a + r.count, 0), ha = rows.some((r) => r.avg8 != null); return rows.map((r) => `<tr><td>${r.reason}</td><td>${fmtN(r.count)}</td><td>${tot ? Math.round(r.count / tot * 100) + "%" : "—"}</td>${ha ? `<td>${r.avg8 != null ? rdVsAvg(r.count, r.avg8).html : "—"}</td>` : ""}</tr>`).join(""); })()
     : `<tr class="untagged"><td colspan="4">Grouped by the ${k} reason on the lead. Top reasons first.</td></tr>`;
   const dqAvg = avgD("dq"), nuAvg = avgD("nurture");
 
@@ -985,15 +988,15 @@ function renderWeekly(d) {
       <div class="rd-card"><div class="rd-row"><div class="eyebrow">By company size</div>${rdCov(`Covers ${fmtN(tagged(bs, RD_SEG, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
         <div class="tscroll"><table class="bd"><thead><tr><th>Segment</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>${segTbl}</tbody></table></div>
         <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wSegChart"></canvas></div></div>
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(tagged(bp, RD_PROD, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
+      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(Math.min(f(last, "mql") || 0, (f(last, "mql") || 0) - prodUntagged("mql")))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
         <div class="tscroll"><table class="bd"><thead><tr><th>Product</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th></tr></thead><tbody>${prodTbl}</tbody></table></div>
         <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wProdChart"></canvas></div></div>
     </div>
-    ${rdAbout("How these are counted", "Each contact counts under one primary product (priority Inkwell → IJ → World History → Great First 8). Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
+    ${rdAbout("How these are counted", "HIH counts each contact once, under its primary product (priority Inkwell → IJ → World History → Great First 8). MQL, SQL and Opp count a contact toward every product it's tagged with, so those columns can add up to more than the total. Untagged is contacts with no product. Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
 
     <div id="sec-wtop">${rdTier(2, "Top converting pieces", "Form fills by offer this week", pieces ? "" : rdNeeds())}</div>
     <div class="rd-card">
-      <div class="tscroll"><table class="bd"><thead><tr><th>Offer / form</th><th>Type</th><th>Product</th><th>Fills</th><th>vs 8-wk avg</th><th>New contacts</th><th>Became HIH</th><th>Became MQL</th></tr></thead><tbody>${piecesTbl || `<tr class="untagged"><td colspan="8">No offers yet.</td></tr>`}</tbody></table></div>
+      <div class="tscroll"><table class="bd"><thead><tr><th>Offer / form</th><th>Type</th><th>Product</th><th>Fills</th>${pAvg ? "<th>vs 8-wk avg</th>" : ""}<th>New contacts</th><th>Became HIH</th><th>Became MQL</th></tr></thead><tbody>${piecesTbl || `<tr class="untagged"><td colspan="8">No offers yet.</td></tr>`}</tbody></table></div>
       ${pieces ? "" : `<p class="cap">Offer names come from the HubSpot content tags the skill already reads${ce ? ` (as of ${ce.as_of})` : ""}. Weekly counts fill in once the new pull runs.</p>`}
       ${rdAbout("Definition", "A fill is a HubSpot form submission in the ISO week, grouped by the offer's content tag. Became HIH / MQL counts fillers whose intent tier or lifecycle stage changed in the same week. Page-level conversion rates stay on the Content Performance tab.")}
     </div>
@@ -1013,8 +1016,8 @@ function renderWeekly(d) {
         ${rdMini("Disqualified (DQ)", fmtN(disp.dq), `${rdVsAvg(disp.dq, dqAvg, true).html} <span class="cmp">${dqAvg != null ? "avg " + Math.round(dqAvg) : ""}</span>`, "", "rdW_dq")}
         ${rdMini("Sent to nurture", fmtN(disp.nurture), `${rdVsAvg(disp.nurture, nuAvg).html} <span class="cmp">${nuAvg != null ? "avg " + Math.round(nuAvg) : ""}</span>`, "", "rdW_nu")}
       </div>
-      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Leads</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>${disp.dq_reasons_note ? `<p class="cap">${disp.dq_reasons_note}</p>` : ""}`, { cls: "inner" })}
-      ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th><th>vs 8-wk avg</th></tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
+      ${rdDz("DQ reasons", disp.dq_reasons ? `top: <b>${escapeHtml((disp.dq_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Leads</th><th>Share</th>${(disp.dq_reasons || []).some((r) => r.avg8 != null) ? "<th>vs 8-wk avg</th>" : ""}</tr></thead><tbody>${reasonTbl(disp.dq_reasons, "disqualification")}</tbody></table></div>${disp.dq_reasons_note ? `<p class="cap">${disp.dq_reasons_note}</p>` : ""}`, { cls: "inner" })}
+      ${rdDz("Nurture reasons", disp.nurture_reasons ? `top: <b>${escapeHtml((disp.nurture_reasons[0] || {}).reason || "—")}</b>` : rdNeeds(), `<div class="tscroll"><table class="bd"><thead><tr><th>Reason</th><th>Contacts</th><th>Share</th>${(disp.nurture_reasons || []).some((r) => r.avg8 != null) ? "<th>vs 8-wk avg</th>" : ""}</tr></thead><tbody>${reasonTbl(disp.nurture_reasons, "nurture")}</tbody></table></div>`, { cls: "inner" })}
       ${disp.by_product ? rdDz("DQ &amp; nurture by product", "product-tagged subset", dispositionProductTable(last) + `<p class="cap">Coverage runs lower here than on the funnel metrics, so these won't sum to the totals.</p>`, { cls: "inner" }) : ""}
       ${rdAbout("About disposition", "Disposition reflects lifecycle stage exits: contacts removed from active funnel consideration this week. High DQ weeks can point to list quality or targeting issues.")}
     </div>

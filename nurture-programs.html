@@ -4,931 +4,254 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nurture Programs · inquirED</title>
-<style>
-  /* ── inquirED Brand Tokens (mirrors competitive-intel.html) ── */
-  :root {
-    --dg: #144745; --mg: #B1E0BB; --lg: #E4FBCE; --lp: #DAD0FF; --mp: #5B5A9E;
-    --dp: #1C2660; --yellow: #F7EC89; --pink: #F99792; --lb: #EAEEF5; --beige: #F6EFE7;
-    --grey-300: #CECECE; --grey-600: #757575; --grey-700: #515151; --black: #000000;
-    --paper: #FFFFFF; --paper-mid: var(--beige); --paper-deep: var(--lg);
-    --ink: var(--dg); --ink-mid: var(--grey-700); --ink-light: var(--grey-600);
-    --border: var(--grey-300); --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
-  }
-  :root[data-theme="light"], :root[data-theme="dark"], :root {
-    --paper: #FFFFFF; --paper-mid: #F6EFE7; --paper-deep: #E4FBCE;
-    --ink: #144745; --ink-mid: #515151; --ink-light: #757575;
-    --border: #CECECE; --border-mid: #BEBEBE; --shadow: rgba(20,71,69,0.08);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 15px; }
-  body {
-    background: var(--paper); color: var(--black);
-    font-family: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    font-size: 1rem; line-height: 1.5; min-height: 100vh;
-  }
-  a { color: var(--mp); text-decoration: none; font-weight: 700; }
-  a:hover { text-decoration: underline; }
-  a:focus-visible { outline: 2px solid var(--dg); outline-offset: 2px; }
-
-  /* ── Header ── */
-  .site-header {
-    background: var(--dg); color: #fff;
-    padding: 1.1rem 2rem; display: flex; align-items: center; gap: 1.25rem;
-    flex-wrap: wrap;
-  }
-  .wordmark { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.01em; }
-  .wordmark span { font-weight: 400; opacity: 0.85; }
-  .header-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.25); }
-  .header-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-  .header-meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
-  .header-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
-  .header-value { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .header-right { margin-left: auto; }
-  .cadence-pill {
-    font-size: 0.65rem; background: rgba(177,224,187,0.15); border: 1px solid rgba(177,224,187,0.3);
-    color: rgba(177,224,187,0.85); padding: 0.2rem 0.65rem; border-radius: 24px;
-    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700;
-  }
-
-  .main { max-width: 1300px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-
-  .freshness-strip {
-    display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
-    margin: -0.75rem 0 1.25rem; font-size: 0.72rem; color: var(--ink-mid);
-    font-variant-numeric: tabular-nums;
-  }
-  .freshness-strip .fr-label { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-light); }
-  .freshness-strip .fr-sep { width: 1px; height: 12px; background: var(--grey-300); }
-  .fr-pill { padding: 0.1rem 0.5rem; border-radius: 24px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-  .fr-pill.current { background: var(--mg); color: var(--dg); }
-  .fr-pill.stale { background: var(--yellow); color: #5A4A00; }
-
-  .section-eyebrow {
-    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    color: #144745; background: rgba(20,71,69,0.08); padding: 0.25rem 0.75rem;
-    border-radius: 10px; display: inline-block; margin-bottom: 1.25rem;
-  }
-  .section-note { font-size: 0.85rem; color: var(--ink-mid); margin: -0.75rem 0 1.25rem; max-width: 80ch; }
-
-  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
-  .stat-tile {
-    background: var(--paper-mid); padding: 1.25rem 1.4rem; border-radius: 10px;
-    display: flex; flex-direction: column; gap: 0.3rem; border: 1px solid var(--border);
-  }
-  .stat-number { font-size: 2.2rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
-  .stat-number.accent { color: #5B5A9E; }
-  .stat-number.flag { color: #C0392B; }
-  .stat-label { font-size: 0.78rem; color: var(--ink-mid); line-height: 1.35; }
-  .stat-cap { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.1rem; }
-
-  .badge {
-    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 0.15rem 0.5rem; border-radius: 10px; font-weight: 700; display: inline-block;
-  }
-  .badge-good  { background: #B1E0BB; color: #144745; }
-  .badge-watch { background: #F7EC89; color: #5A4A00; }
-  .badge-flag  { background: #F99792; color: #6B0000; }
-  .badge-pending { background: var(--lb); color: var(--ink-mid); }
-
-  /* ── Workflow link cards ── */
-  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
-  .flow-card {
-    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
-    padding: 1rem 1.15rem; box-shadow: 0 2px 6px var(--shadow); display: flex; flex-direction: column; gap: 0.6rem;
-  }
-  .flow-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
-  .flow-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
-  .flow-id { font-size: 0.72rem; color: var(--ink-light); font-variant-numeric: tabular-nums; }
-  .flow-open { font-size: 0.8rem; }
-  .flow-links { display: flex; flex-direction: column; gap: 0.35rem; }
-  .flow-list-link { font-size: 0.78rem; color: var(--ink-mid); font-weight: 400; }
-  .flow-list-link a { font-weight: 700; }
-
-  /* ── Program cards ── */
-  .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
-  .program-card {
-    background: var(--paper); border: 1px solid var(--border); border-radius: 10px;
-    box-shadow: 0 2px 6px var(--shadow); overflow: hidden;
-  }
-  .program-card-top {
-    padding: 1rem 1.25rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
-  }
-  .program-name { font-weight: 700; color: #144745; font-size: 0.95rem; }
-  .program-body { padding: 1rem 1.25rem; }
-  .program-stats { display: flex; gap: 1.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-  .pstat { display: flex; flex-direction: column; }
-  .pstat-val { font-weight: 900; font-size: 1.15rem; color: #144745; font-variant-numeric: tabular-nums; }
-  .pstat-lbl { font-size: 0.68rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.04em; }
-  .program-note { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
-
-  /* ── Open items ── */
-  .open-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
-  .open-items li {
-    background: var(--paper-mid); border: 1px solid var(--border); border-radius: 8px;
-    padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--ink-mid); line-height: 1.5;
-    display: flex; gap: 0.65rem; align-items: flex-start;
-  }
-  .open-items .oi-dot { color: #C0392B; font-weight: 900; margin-top: 0.05rem; }
-  .open-items .oi-text { flex: 1; min-width: 0; }
-
-  /* ── Top performing content ── */
-  .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
-  .content-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 2px 6px var(--shadow); overflow: hidden; }
-  .content-card-top {
-    padding: 0.85rem 1.15rem; background: var(--paper-mid); border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
-  }
-  .content-card-name { font-weight: 700; color: #144745; font-size: 0.92rem; }
-  .content-body { padding: 0.9rem 0.9rem 1rem; }
-  .content-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-  .content-metric {
-    background: var(--paper-mid); border: 1px solid var(--border); border-top: 3px solid var(--border);
-    border-radius: 8px; padding: 0.65rem 0.7rem 0.75rem;
-  }
-  .content-metric.opened { border-top-color: #144745; }
-  .content-metric.clicked { border-top-color: #5B5A9E; }
-  .content-metric.exit { border-top-color: #C0392B; }
-  .content-metric.empty { opacity: 0.55; }
-  .content-metric-label {
-    font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;
-    color: var(--ink-light); margin-bottom: 0.3rem;
-  }
-  .content-metric-value { font-size: 1.45rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: #144745; }
-  .content-metric.clicked .content-metric-value { color: #5B5A9E; }
-  .content-metric.exit .content-metric-value { color: #C0392B; }
-  .content-metric-count { font-size: 0.66rem; color: var(--ink-light); margin-top: 0.15rem; }
-  .content-bar { height: 5px; border-radius: 4px; background: var(--border); overflow: hidden; margin: 0.5rem 0 0.55rem; }
-  .content-bar-fill { height: 100%; border-radius: 4px; background: #144745; }
-  .content-metric.clicked .content-bar-fill { background: #5B5A9E; }
-  .content-metric.exit .content-bar-fill { background: #C0392B; }
-  .content-metric-email { font-size: 0.68rem; font-weight: 700; line-height: 1.3; }
-  .content-metric-email a { color: inherit; }
-  .content-metric details { margin-top: 0.4rem; }
-  .content-metric summary { font-size: 0.62rem; color: var(--mp); cursor: pointer; font-weight: 700; }
-  .content-metric-preview { font-size: 0.68rem; color: var(--ink-mid); font-style: italic; margin: 0.35rem 0; }
-  .content-metric-cta { font-size: 0.68rem; color: var(--ink-mid); }
-  .content-metric-cta a { color: #5B5A9E; }
-  .content-metric-none { font-size: 0.85rem; color: var(--ink-light); font-weight: 700; }
-  .content-metric-none-sub { font-size: 0.64rem; color: var(--ink-light); margin-top: 0.25rem; line-height: 1.3; }
-  .content-empty-card { padding: 1.5rem 1.15rem; text-align: center; color: var(--ink-light); font-size: 0.85rem; font-style: italic; }
-  .content-scale-note { font-size: 0.68rem; color: var(--ink-light); margin: -0.9rem 0 1.25rem; }
-
-  .foot-note { font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-
-  /* ── Intro / framing ── */
-  .intro-note {
-    font-size: 0.88rem; color: var(--ink-mid); line-height: 1.6; max-width: 90ch;
-    margin: -0.5rem 0 1.75rem; padding: 0.9rem 1.1rem; background: var(--paper-mid);
-    border-left: 3px solid #144745; border-radius: 6px;
-  }
-
-  /* ── Hero metric row (bigger tiles for the #1 metric) ── */
-  .hero-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
-  .hero-tile {
-    background: var(--paper); border: 1px solid var(--border); border-top: 4px solid #144745;
-    border-radius: 12px; padding: 1.4rem 1.5rem; box-shadow: 0 2px 8px var(--shadow);
-    display: flex; flex-direction: column; gap: 0.4rem;
-  }
-  .hero-tile.accent { border-top-color: #5B5A9E; }
-  .hero-tile.flag { border-top-color: #C0392B; }
-  .hero-number { font-size: 2.6rem; font-weight: 900; line-height: 1; color: #144745; font-variant-numeric: tabular-nums; }
-  .hero-tile.accent .hero-number { color: #5B5A9E; }
-  .hero-tile.flag .hero-number { color: #C0392B; }
-  .hero-label { font-size: 0.82rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
-  .hero-sub { font-size: 0.74rem; color: var(--ink-light); line-height: 1.4; }
-
-  /* ── Coverage / methodology banner ── */
-  .coverage-banner {
-    background: var(--paper); border: 1px solid var(--border); border-left: 4px solid #F7EC89;
-    border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; display: flex; gap: 0.9rem; align-items: flex-start;
-  }
-  .coverage-banner .cb-icon { font-size: 1.1rem; line-height: 1.2; }
-  .coverage-banner .cb-body { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; }
-  .coverage-banner .cb-title { font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3rem; font-size: 0.85rem; }
-  .coverage-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-top: 0.85rem; }
-  .cov-chip { border-radius: 8px; padding: 0.55rem 0.7rem; text-align: center; border: 1px solid var(--border); }
-  .cov-chip.good { background: rgba(177,224,187,0.35); border-color: #B1E0BB; }
-  .cov-chip.bad { background: rgba(249,151,146,0.2); border-color: #F99792; }
-  .cov-chip-name { font-size: 0.68rem; font-weight: 700; color: var(--ink); }
-  .cov-chip-val { font-size: 0.68rem; color: var(--ink-mid); margin-top: 0.15rem; }
-
-  /* ── Split bars (role / source breakdowns) ── */
-  .split-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
-  .split-card { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; box-shadow: 0 2px 6px var(--shadow); }
-  .split-card-title { font-weight: 700; color: #144745; font-size: 0.92rem; margin-bottom: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
-  .split-card-title .n { font-size: 0.72rem; color: var(--ink-light); font-weight: 400; }
-  .bar-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.55rem; }
-  .bar-row:last-child { margin-bottom: 0; }
-  .bar-label { flex: 0 0 128px; font-size: 0.76rem; color: var(--ink-mid); }
-  .bar-track { flex: 1; height: 16px; background: var(--paper-mid); border-radius: 4px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; background: #144745; }
-  .bar-fill.teacher { background: #5B5A9E; }
-  .bar-fill.other { background: #CECECE; }
-  .bar-val { flex: 0 0 76px; text-align: right; font-size: 0.76rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-
-  /* ── CTOR rank table ── */
-  .rank-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 0.6rem; }
-  .rank-table th {
-    text-align: left; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--ink-light); font-weight: 700; padding: 0.5rem 0.7rem; border-bottom: 2px solid var(--border);
-  }
-  .rank-table td { padding: 0.65rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  .rank-table tr:last-child td { border-bottom: none; }
-  .rank-table .rt-subject { font-weight: 700; color: #144745; }
-  .rank-table .rt-subject a { color: inherit; }
-  .rank-table .rt-meta { font-size: 0.68rem; color: var(--ink-light); margin-top: 0.15rem; }
-  .track-chip { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 8px; display: inline-block; }
-  .track-chip.ct { background: #DAD0FF; color: #1C2660; }
-  .track-chip.lt { background: #E4FBCE; color: #144745; }
-  .rank-table .rt-ctor { font-weight: 900; font-size: 0.98rem; color: #144745; font-variant-numeric: tabular-nums; text-align: right; }
-  .rank-table .rt-ctor.low { color: #C0392B; }
-  .rank-callout {
-    font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; background: var(--paper-mid);
-    border-radius: 8px; padding: 0.85rem 1.05rem; margin-top: 0.8rem;
-  }
-  .rank-callout strong { color: #144745; }
-
-  .movement-strip {
-    display: flex; align-items: center; gap: 1rem; background: var(--paper); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2.5rem; box-shadow: 0 2px 6px var(--shadow);
-  }
-  .movement-num { font-size: 1.8rem; font-weight: 900; color: #5B5A9E; font-variant-numeric: tabular-nums; }
-  .movement-text { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.5; }
-
-  @media (max-width: 900px) {
-    .hero-row, .split-section, .coverage-grid { grid-template-columns: 1fr 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="assets/nurture.css">
 </head>
 <body>
-
+<!--
+  Data-driven since 2026-09-28. Every number and note on this page comes from
+  data/nurture-programs.json (written by the nurture refresh, NURTURE_ROUTINE.md)
+  joined with data/nurture-workflows.json (the hand-confirmed workflow registry).
+  Don't hand-edit numbers into this file: update the JSON instead.
+-->
 <header class="site-header">
   <div class="wordmark">inquirED <span>/ Nurture Programs</span></div>
   <div class="header-divider"></div>
   <div class="header-meta">
-    <div class="header-meta-item">
-      <span class="header-label">Last Checked</span>
-      <span class="header-value" id="meta-updated">, </span>
-    </div>
+    <div class="header-meta-item"><span class="header-label">Last checked</span><span class="header-value" id="meta-updated">…</span></div>
     <div class="header-divider"></div>
-    <div class="header-meta-item">
-      <span class="header-label">Workflows Linked</span>
-      <span class="header-value" id="meta-flows">, </span>
-    </div>
+    <div class="header-meta-item"><span class="header-label">Workflows linked</span><span class="header-value" id="meta-flows">…</span></div>
     <div class="header-divider"></div>
-    <div class="header-meta-item">
-      <span class="header-label">Cadence</span>
-      <span class="header-value">On demand</span>
-    </div>
+    <div class="header-meta-item"><span class="header-label">Platform</span><span class="header-value">HubSpot</span></div>
   </div>
-  <div class="header-right">
-    <span class="cadence-pill" id="meta-next">Next: On demand</span>
-  </div>
+  <div class="header-right"><span class="cadence-pill">Weekly, Tuesdays</span></div>
 </header>
 
 <main class="main">
-
-  <div class="freshness-strip" id="freshness-strip" hidden>
-    <span class="fr-item"><span class="fr-label">Last checked</span> <span id="fr-updated">, </span></span>
+  <div class="freshness-strip" id="freshness-strip">
+    <span class="fr-item"><span class="fr-label">Last checked</span> <span id="fr-updated">…</span></span>
     <span class="fr-pill" id="fr-pill" hidden></span>
     <span class="fr-sep"></span>
-    <span class="fr-item">HubSpot portal 4451852 · Marketing Email Analytics API</span>
+    <span class="fr-item" id="fr-source">HubSpot portal 4451852</span>
   </div>
+  <div id="err"></div>
+  <p class="intro-note" id="intro" hidden></p>
 
-  <p class="intro-note">
-    Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle
-    stages, nurture-track properties, and per-email send data, as an independent read alongside
-    Tim's own workflow-reporting build. <strong>Every section on this page was pulled fresh on Sep 22, 2026.</strong>
-    Lifecycle movement is measured from <strong>Aug 18</strong>, the date the program went live per the Asana
-    launch milestone.
-  </p>
+  <div class="section-eyebrow">Lifecycle stage movement, the top metric</div>
+  <p class="section-note" id="lc-note"></p>
+  <div id="lc-block"><div class="loading">Loading…</div></div>
 
-  <!-- ── Lifecycle stage movement (the #1 metric) ── -->
-  <span class="section-eyebrow">Lifecycle Stage Movement, the top metric</span>
-  <p class="section-note">
-    "Scratch everything else, lifecycle stage movement is the top metric." Contacts currently
-    tagged into a Fall 2026 nurture track whose <code>lifecyclestage</code> advanced
-    (entered MQL, SQL, Opportunity, or Customer) on or after <strong>Aug 18</strong>, the launch date.
-    Only Inquiry Journeys and Inkwell have usable contact-level tracking right now, see the coverage
-    note below.
-  </p>
-  <div class="hero-row">
-    <div class="hero-tile accent">
-      <div class="hero-number">15</div>
-      <div class="hero-label">Nurtured contacts reached a new lifecycle stage since the Aug 18 launch</div>
-      <div class="hero-sub">14 in Inkwell, 1 in Inquiry Journeys. Five weeks in, on a population of 524 active contacts across the two programs with usable tracking.</div>
-    </div>
-    <div class="hero-tile">
-      <div class="hero-number">13%</div>
-      <div class="hero-label">Of active Inkwell nurture contacts have hit MQL since launch</div>
-      <div class="hero-sub">14 of 108 active contacts, and the strongest movement signal in the portfolio by a wide margin. Inkwell is under a fifth of IJ's email volume and is producing 14x its lifecycle movement.</div>
-    </div>
-    <div class="hero-tile flag">
-      <div class="hero-number">1</div>
-      <div class="hero-label">Inquiry Journeys contact has moved at all, out of 416 active</div>
-      <div class="hero-sub">The same single contact accounts for IJ's MQL, SQL and Customer entries since launch. IJ carries 79% of all nurture email volume and has produced one lifecycle move; that gap is the thing to explain.</div>
-    </div>
-    <div class="hero-tile flag">
-      <div class="hero-number">0</div>
-      <div class="hero-label">Became Customers since launch, in Inkwell</div>
-      <div class="hero-sub">1 in Inquiry Journeys, the same contact counted in the tile to the left, and 0 in Inkwell. GF8, Agnostic and World History have no usable movement data at all, see Data Coverage.</div>
-    </div>
-  </div>
+  <div class="section-eyebrow" id="pf-eyebrow">Portfolio delivery</div>
+  <p class="section-note" id="pf-note"></p>
+  <div id="pf-block"><div class="loading">Loading…</div></div>
 
-  <!-- ── Data coverage ── -->
-  <div class="coverage-banner">
-    <span class="cb-icon">⚠️</span>
-    <div class="cb-body">
-      <span class="cb-title">Data coverage, worth checking against Tim's read</span>
-      Every metric above comes from four per-product <code>nurture_track</code> contact properties.
-      Two of them are essentially empty: <strong>Great First Eight</strong> has zero contacts tagged
-      (out of ~77k) despite 116 emails already delivered per the email-analytics view below, and
-      <strong>Agnostic</strong> has exactly one, despite 42 delivered. That gap points to the
-      workflow sending mail without writing the nurture-track field back to the contact record, or a different, unmapped property holding that data. <strong>World History</strong> has no
-      contact-level nurture-track property at all. None of this is guesswork on the email side
-      (that data is real and complete); it's specifically the contact-record tracking that's
-      missing for three of the five programs, which is exactly the kind of thing to compare against
-      whatever Tim's exploration turns up.
-      <div class="coverage-grid">
-        <div class="cov-chip good"><div class="cov-chip-name">Inquiry Journeys</div><div class="cov-chip-val">485 tagged</div></div>
-        <div class="cov-chip good"><div class="cov-chip-name">Inkwell</div><div class="cov-chip-val">108 tagged</div></div>
-        <div class="cov-chip bad"><div class="cov-chip-name">Great First Eight</div><div class="cov-chip-val">0 tagged</div></div>
-        <div class="cov-chip bad"><div class="cov-chip-name">Agnostic</div><div class="cov-chip-val">1 tagged</div></div>
-        <div class="cov-chip bad"><div class="cov-chip-name">World History</div><div class="cov-chip-val">No property</div></div>
-      </div>
-    </div>
-  </div>
+  <div class="section-eyebrow">Programs</div>
+  <p class="section-note" id="flow-note"></p>
+  <div class="flow-grid wide" id="flow-grid"></div>
 
-  <!-- ── Classroom vs Administrator ── -->
-  <span class="section-eyebrow">Classroom vs. Administrator, who's actually in the nurture funnel</span>
-  <p class="section-note">
-    Split by the contact's <code>Role</code> property, for the two programs with usable
-    contact-level data. "Admin/Leadership" groups School Leader, District Leader, and
-    Coach/Specialist; "Other/Unassigned" is everyone without a classified role. Both programs look
-    much the same on this cut: roughly half administrators, about a fifth teachers, and the rest
-    unclassified.
-  </p>
-  <div class="split-section">
-    <div class="split-card">
-      <div class="split-card-title">Inquiry Journeys <span class="n">416 active contacts</span></div>
-      <div class="bar-row"><span class="bar-label">Teacher</span><div class="bar-track"><div class="bar-fill teacher" style="width:19%"></div></div><span class="bar-val">79 · 19%</span></div>
-      <div class="bar-row"><span class="bar-label">Admin / Leadership</span><div class="bar-track"><div class="bar-fill" style="width:52.4%"></div></div><span class="bar-val">218 · 52%</span></div>
-      <div class="bar-row"><span class="bar-label">Other / Unassigned</span><div class="bar-track"><div class="bar-fill other" style="width:28.6%"></div></div><span class="bar-val">119 · 29%</span></div>
-    </div>
-    <div class="split-card">
-      <div class="split-card-title">Inkwell <span class="n">108 active contacts</span></div>
-      <div class="bar-row"><span class="bar-label">Teacher</span><div class="bar-track"><div class="bar-fill teacher" style="width:20.4%"></div></div><span class="bar-val">22 · 20%</span></div>
-      <div class="bar-row"><span class="bar-label">Admin / Leadership</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="bar-val">54 · 50%</span></div>
-      <div class="bar-row"><span class="bar-label">Other / Unassigned</span><div class="bar-track"><div class="bar-fill other" style="width:29.6%"></div></div><span class="bar-val">32 · 30%</span></div>
-    </div>
-  </div>
+  <div class="section-eyebrow">Email performance, ranked by click-to-open</div>
+  <details class="method" id="em-method"><summary>How this is measured</summary><p id="em-note"></p></details>
+  <div id="email-block"></div>
 
-  <!-- ── Click-to-open + CT/LT track comparison ── -->
-  <span class="section-eyebrow">Click-to-Open Rate, top and bottom performers, by track</span>
-  <p class="section-note">
-    Click-to-open rate (clicks ÷ opens, excluding bots) directly from HubSpot's marketing-email
-    analytics, a purer read on content quality than open rate, since it isolates people who
-    opened and then found something worth clicking. Ranked among emails with real volume (100+
-    delivered as of today); everything thinner is too early to rank. CT = Classroom Track
-    (teacher-facing), LT = Leadership Track (admin-facing), inquirED's own nurture email naming
-    already encodes the classroom/administrator split the call asked for.
-  </p>
-  <table class="rank-table">
-    <thead><tr><th>Email</th><th>Program / Track</th><th>Delivered</th><th>Opened</th><th style="text-align:right">Click-to-Open</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/574629478506/performance" target="_blank" rel="noopener">What integration actually means</a><div class="rt-meta">[NE-IW-CT-1]</div></td>
-        <td>Inkwell <span class="track-chip ct">CT</span></td>
-        <td>184</td>
-        <td>50 (27%)</td>
-        <td class="rt-ctor">20.0%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261028635/performance" target="_blank" rel="noopener">Knowledge to comprehension</a><div class="rt-meta">[NE-IW-CT-2]</div></td>
-        <td>Inkwell <span class="track-chip ct">CT</span></td>
-        <td>149</td>
-        <td>38 (26%)</td>
-        <td class="rt-ctor">13.2%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261181258/performance" target="_blank" rel="noopener">Knowledge to comprehension</a><div class="rt-meta">[NE-IJ-LT-2]</div></td>
-        <td>Inquiry Journeys <span class="track-chip lt">LT</span></td>
-        <td>1,103</td>
-        <td>237 (21%)</td>
-        <td class="rt-ctor">12.7%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575828298664/performance" target="_blank" rel="noopener">Knowledge to comprehension</a><div class="rt-meta">[NE-IJ-CT-2]</div></td>
-        <td>Inquiry Journeys <span class="track-chip ct">CT</span></td>
-        <td>1,216</td>
-        <td>259 (21%)</td>
-        <td class="rt-ctor">10.4%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575828855855/performance" target="_blank" rel="noopener">The time problem</a><div class="rt-meta">[NE-IJ-CT-1]</div></td>
-        <td>Inquiry Journeys <span class="track-chip ct">CT</span></td>
-        <td>1,249</td>
-        <td>337 (27%)</td>
-        <td class="rt-ctor">8.9%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575352992950/performance" target="_blank" rel="noopener">The time problem</a><div class="rt-meta">[NE-IJ-LT-1]</div></td>
-        <td>Inquiry Journeys <span class="track-chip lt">LT</span></td>
-        <td>1,060</td>
-        <td>300 (28%)</td>
-        <td class="rt-ctor">8.3%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575261008716/performance" target="_blank" rel="noopener">Knowledge to comprehension</a><div class="rt-meta">[NE-IW-LT-2]</div></td>
-        <td>Inkwell <span class="track-chip lt">LT</span></td>
-        <td>260</td>
-        <td>73 (28%)</td>
-        <td class="rt-ctor">5.5%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575828240529/performance" target="_blank" rel="noopener">Whole-child research</a><div class="rt-meta">[NE-GF8-LT-2]</div></td>
-        <td>Great First 8 <span class="track-chip lt">LT</span></td>
-        <td>112</td>
-        <td>22 (20%)</td>
-        <td class="rt-ctor">4.6%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575258277299/performance" target="_blank" rel="noopener">What integration actually means</a><div class="rt-meta">[NE-IW-LT-1]</div></td>
-        <td>Inkwell <span class="track-chip lt">LT</span></td>
-        <td>294</td>
-        <td>97 (33%)</td>
-        <td class="rt-ctor">4.1%</td>
-      </tr>
-      <tr>
-        <td class="rt-subject"><a href="https://app.hubspot.com/email/4451852/details/575849181295/performance" target="_blank" rel="noopener">Real curriculum vs. activities</a><div class="rt-meta">[NE-GF8-LT-1]</div></td>
-        <td>Great First 8 <span class="track-chip lt">LT</span></td>
-        <td>120</td>
-        <td>30 (25%)</td>
-        <td class="rt-ctor">3.3%</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="rank-callout">
-    <strong>Inkwell's Classroom Track emails convert opens to clicks roughly 4x better than its
-    Leadership Track emails</strong> (16.7% CTOR across both CT emails vs. 4.4% across both LT
-    emails), even though the LT emails get slightly higher open rates. Teachers who open are
-    clicking; admins who open mostly aren't. Inquiry Journeys can't make the same comparison yet, only one of its Classroom Track emails has meaningful volume so far, the rest of the sequence
-    is still thin.
-  </div>
+  <div class="section-eyebrow" id="tc-eyebrow">Top performing content, by audience</div>
+  <details class="method"><summary>How this is measured</summary><p id="tc-note"></p></details>
+  <p class="content-scale-note" id="tc-scale"></p>
+  <div class="content-grid" id="tc-grid"></div>
 
-  <!-- ── Entry source ── -->
-  <span class="section-eyebrow">Where nurtured contacts came from</span>
-  <p class="section-note">Original source (first-touch attribution) for currently-active nurture contacts, IJ and Inkwell.</p>
-  <div class="split-section">
-    <div class="split-card">
-      <div class="split-card-title">Inquiry Journeys <span class="n">485 active</span></div>
-      <div class="bar-row"><span class="bar-label">Direct Traffic</span><div class="bar-track"><div class="bar-fill" style="width:32.2%"></div></div><span class="bar-val">156 · 32%</span></div>
-      <div class="bar-row"><span class="bar-label">Offline</span><div class="bar-track"><div class="bar-fill" style="width:23.9%"></div></div><span class="bar-val">116 · 24%</span></div>
-      <div class="bar-row"><span class="bar-label">Organic Search</span><div class="bar-track"><div class="bar-fill" style="width:14.8%"></div></div><span class="bar-val">72 · 15%</span></div>
-      <div class="bar-row"><span class="bar-label">Paid Search</span><div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div><span class="bar-val">52 · 11%</span></div>
-      <div class="bar-row"><span class="bar-label">Other Campaigns</span><div class="bar-track"><div class="bar-fill" style="width:8.2%"></div></div><span class="bar-val">40 · 8%</span></div>
-      <div class="bar-row"><span class="bar-label">Email Marketing</span><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div><span class="bar-val">27</span></div>
-      <div class="bar-row"><span class="bar-label">Organic Social</span><div class="bar-track"><div class="bar-fill" style="width:2.7%"></div></div><span class="bar-val">13</span></div>
-      <div class="bar-row"><span class="bar-label">Referrals</span><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div><span class="bar-val">8</span></div>
-    </div>
-    <div class="split-card">
-      <div class="split-card-title">Inkwell <span class="n">108 active</span></div>
-      <div class="bar-row"><span class="bar-label">Direct Traffic</span><div class="bar-track"><div class="bar-fill" style="width:44.4%"></div></div><span class="bar-val">48 · 44%</span></div>
-      <div class="bar-row"><span class="bar-label">Offline</span><div class="bar-track"><div class="bar-fill" style="width:18.5%"></div></div><span class="bar-val">20 · 19%</span></div>
-      <div class="bar-row"><span class="bar-label">Email Marketing</span><div class="bar-track"><div class="bar-fill" style="width:11.1%"></div></div><span class="bar-val">12 · 11%</span></div>
-      <div class="bar-row"><span class="bar-label">Organic Search</span><div class="bar-track"><div class="bar-fill" style="width:7.4%"></div></div><span class="bar-val">8 · 7%</span></div>
-      <div class="bar-row"><span class="bar-label">Other Campaigns</span><div class="bar-track"><div class="bar-fill" style="width:7.4%"></div></div><span class="bar-val">8 · 7%</span></div>
-      <div class="bar-row"><span class="bar-label">Organic Social</span><div class="bar-track"><div class="bar-fill" style="width:4.6%"></div></div><span class="bar-val">5</span></div>
-      <div class="bar-row"><span class="bar-label">Referrals + AI</span><div class="bar-track"><div class="bar-fill" style="width:3.7%"></div></div><span class="bar-val">4</span></div>
-    </div>
-  </div>
+  <div class="section-eyebrow">Who's in the nurture funnel</div>
+  <p class="section-note" id="role-note"></p>
+  <div class="split-section" id="role-grid"></div>
+  <p class="section-note" id="src-note"></p>
+  <div class="split-section" id="src-grid"></div>
+  <div id="movement"></div>
 
-  <!-- ── Movement between programs ── -->
-  <div class="movement-strip">
-    <div class="movement-num">2</div>
-    <div class="movement-text"><strong>Contacts tagged active/exited in both Inquiry Journeys and Inkwell nurture</strong> this season, the only cross-program movement the data shows. GF8 and Agnostic can't be checked for overlap given the tracking gap above; World History has no property to check against.</div>
-  </div>
+  <div class="section-eyebrow">Open items</div>
+  <ul class="open-items" id="open-items"></ul>
 
-  <!-- ── Linked workflows ── -->
-  <span class="section-eyebrow">Linked Workflows, the 5 flows nurturing this fall (SY26, 27)</span>
-  <p class="section-note">
-    Confirmed by Kelsey as the only workflows currently nurturing contacts this fall; everything
-    else in the portal's nurture history is retired. HubSpot's Automation/Workflow objects aren't
-    exposed through the connected API, so enabled/paused state and branch logic still need a manual
-    check in HubSpot, the performance below comes from each flow's marketing emails instead.
-  </p>
-  <div class="flow-grid">
-    <div class="flow-card">
-      <div class="flow-card-top">
-        <div>
-          <div class="flow-name">Contact - GF8 Nurture Flow 2627</div>
-          <div class="flow-id">Flow ID 1854413985</div>
-        </div>
-        <span class="badge badge-good">Active this fall</span>
-      </div>
-      <div class="flow-links">
-        <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/details/1854413985/performance" target="_blank" rel="noopener">Open in HubSpot ↗</a>
-        <span class="flow-list-link">Enrollment list: <a href="https://app.hubspot.com/contacts/4451852/objectLists/10601/filters" target="_blank" rel="noopener">Great First Eight Enrollment Trigger ↗</a></span>
-      </div>
-    </div>
-    <div class="flow-card">
-      <div class="flow-card-top">
-        <div>
-          <div class="flow-name">Contact - WH Nurture Flow 2627</div>
-          <div class="flow-id">Flow ID 1854346100</div>
-        </div>
-        <span class="badge badge-good">Active this fall</span>
-      </div>
-      <div class="flow-links">
-        <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/details/1854346100/performance" target="_blank" rel="noopener">Open in HubSpot ↗</a>
-        <span class="flow-list-link">Enrollment list: <a href="https://app.hubspot.com/contacts/4451852/objectLists/10739/filters" target="_blank" rel="noopener">World History Enrollment Trigger ↗</a></span>
-      </div>
-    </div>
-    <div class="flow-card">
-      <div class="flow-card-top">
-        <div>
-          <div class="flow-name">Contact - IJ Nurture Flow 2627</div>
-          <div class="flow-id">Flow ID 1852090643</div>
-        </div>
-        <span class="badge badge-good">Active this fall</span>
-      </div>
-      <div class="flow-links">
-        <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/details/1852090643/performance" target="_blank" rel="noopener">Open in HubSpot ↗</a>
-        <span class="flow-list-link">Enrollment list: <a href="https://app.hubspot.com/contacts/4451852/objectLists/10599/filters" target="_blank" rel="noopener">Inquiry Journeys Enrollment Trigger ↗</a></span>
-      </div>
-    </div>
-    <div class="flow-card">
-      <div class="flow-card-top">
-        <div>
-          <div class="flow-name">Contact - Inkwell Nurture Flow 2627</div>
-          <div class="flow-id">Flow ID 1849158449</div>
-        </div>
-        <span class="badge badge-good">Active this fall</span>
-      </div>
-      <div class="flow-links">
-        <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/details/1849158449/performance" target="_blank" rel="noopener">Open in HubSpot ↗</a>
-        <span class="flow-list-link">Enrollment list: <a href="https://app.hubspot.com/contacts/4451852/objectLists/10597/filters" target="_blank" rel="noopener">Inkwell Enrollment Trigger ↗</a></span>
-      </div>
-    </div>
-    <div class="flow-card">
-      <div class="flow-card-top">
-        <div>
-          <div class="flow-name">Contact - Agnostic Nurture Flow 2627</div>
-          <div class="flow-id">Flow ID 1854800935</div>
-        </div>
-        <span class="badge badge-good">Active this fall</span>
-      </div>
-      <div class="flow-links">
-        <a class="flow-open" href="https://app.hubspot.com/workflows/4451852/details/1854800935/performance" target="_blank" rel="noopener">Open in HubSpot ↗</a>
-        <span class="flow-list-link">Enrollment list: <a href="https://app.hubspot.com/contacts/4451852/objectLists/10603/filters" target="_blank" rel="noopener">Agnostic Enrollment Trigger ↗</a></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Portfolio KPIs ── -->
-  <span class="section-eyebrow">Portfolio delivery, Jul 30 to Sep 22, 2026</span>
-  <p class="section-note">
-    Five weeks after the Aug 18 launch, delivery has roughly doubled since the Sep 3 check
-    (2,832 to 5,940). The shape of the send is the thing to read here: every program has
-    delivered its first two modules at full volume, and almost nothing past module 2. That is
-    consistent with a fixed cadence that has not reached module 3 yet, not a fault, but it does
-    mean engagement rates below describe modules 1 and 2 only.
-  </p>
-  <div class="stat-row">
-    <div class="stat-tile">
-      <div class="stat-number">5,940</div>
-      <div class="stat-label">Total delivered across the portfolio, up from 2,832 on Sep 3</div>
-      <div class="stat-cap">IJ 4,662 &middot; Inkwell 892 &middot; GF8 236 &middot; Agnostic 150 &middot; World History 0. Inquiry Journeys alone is 78% of all delivery.</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-number accent">24.8%</div>
-      <div class="stat-label">Unique open rate portfolio-wide, bots excluded</div>
-      <div class="stat-cap">1,473 unique opens on 5,940 delivered. By program: Inkwell 29.3%, IJ 24.4%, GF8 22.0%, Agnostic 16.0%. Click rate is 2.3% and unsubscribe 0.54%, inside the under-1% guardrail.</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-number flag">23 / 49</div>
-      <div class="stat-label">Nurture emails that have sent at all</div>
-      <div class="stat-cap">26 of the 49 registered emails have no send data yet. Nearly all are module 3 and later. The ones showing 1 or 2 sends are test sends, not audience delivery.</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-number flag">0</div>
-      <div class="stat-label">Sends on World History, still, across all 4 emails</div>
-      <div class="stat-cap">Unchanged since Aug 31. Either the enrollment audience is empty or the workflow is not live; neither is confirmable through the API. WH also still has no <code>nurture_track__world_history</code> property, checked again Sep 22.</div>
-    </div>
-  </div>
-
-  <!-- ── Program-level status ── -->
-  <span class="section-eyebrow">Program-level status, Jul 30 to Sep 22, 2026</span>
-  <div class="program-grid">
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - IJ Nurture Flow 2627</span>
-        <span class="badge badge-good">Highest volume</span>
-      </div>
-      <div class="program-body">
-        4,662 delivered &middot; 717 suppressed &middot; 24.4% open &middot; 2.4% click &middot; 0.43% unsubscribe &middot; 8 of 17 emails sending.
-        Both tracks are running: Leadership modules 1 and 2 (1,060 and 1,103 delivered) and Classroom
-        modules 1 and 2 (1,249 and 1,216). Module 3 has barely started, 12 sends on LT and 2 on CT.
-        Open rate drops from about 28% on module 1 to about 21% on module 2 in both tracks, which is a
-        normal second-touch settle, not a warning. The thing worth explaining is downstream: this
-        program carries 78% of portfolio delivery and has produced exactly one lifecycle stage move.
-      </div>
-    </div>
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - Inkwell Nurture Flow 2627</span>
-        <span class="badge badge-good">Best engagement</span>
-      </div>
-      <div class="program-body">
-        892 delivered &middot; 52 suppressed &middot; 29.3% open &middot; 2.7% click &middot; 1.01% unsubscribe &middot; 7 of 16 emails sending.
-        The strongest engagement in the portfolio on both open and click, and the lowest suppression
-        rate by a wide margin (6% of delivered, against 15% portfolio-wide). Leadership module 1 opens
-        at 33.0%, the best single result anywhere. Unsubscribe is just over the 1% guardrail at 1.01%
-        (9 of 892), worth watching rather than acting on. Inkwell also accounts for 14 of the 15
-        lifecycle moves since launch.
-      </div>
-    </div>
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - GF8 Nurture Flow 2627</span>
-        <span class="badge badge-watch">Thin sample</span>
-      </div>
-      <div class="program-body">
-        236 delivered &middot; 35 suppressed &middot; 22.0% open &middot; 0.8% click &middot; 1.27% unsubscribe &middot; 4 of 6 emails sending.
-        Only Leadership modules 1 and 2 have real volume (120 and 112); modules 3 and 4 show 2 sends
-        each, which are tests. Clicks are 2 across the whole program, so no click read is possible yet.
-        Unsubscribe reads 1.27%, above the guardrail, but that is 3 people out of 236 and too thin to
-        act on. GF8 still has no contact-level nurture tracking, so none of it reaches the lifecycle
-        section above.
-      </div>
-    </div>
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - Agnostic Nurture Flow 2627</span>
-        <span class="badge badge-watch">Suppression outlier</span>
-      </div>
-      <div class="program-body">
-        150 delivered &middot; 112 suppressed &middot; 16.0% open &middot; 0.7% click &middot; 0 unsubscribes &middot; 4 of 6 emails sending.
-        Suppression is the story: 112 suppressed against 150 delivered, a 75% ratio against 15%
-        portfolio-wide. Two of the four sending emails suppress more than they deliver (module 2:
-        23 delivered, 30 suppressed; module 3: 22 delivered, 26 suppressed). Open rate is also the
-        lowest of any program at 16.0%, and module 3 sits at 4.5%. Worth checking the suppression
-        lists and frequency caps on this track before reading anything else into the engagement
-        numbers. The cause is not confirmable from the API.
-      </div>
-    </div>
-
-    <div class="program-card">
-      <div class="program-card-top">
-        <span class="program-name">Contact - WH Nurture Flow 2627</span>
-        <span class="badge badge-bad">Not sending</span>
-      </div>
-      <div class="program-body">
-        0 delivered &middot; 0 suppressed &middot; no data on any of its 4 emails.
-        Unchanged across every check since Aug 31. All four World History emails exist and carry the
-        correct nurture property, but none has ever sent. Two possible causes, neither confirmable
-        through the API: the enrollment audience is empty, or the workflow is not switched on. This
-        program also lacks the <code>nurture_track__world_history</code> contact property entirely,
-        re-checked in HubSpot Sep 22, so it has an enrollment list but no active or exited tracking
-        lists and cannot appear in the lifecycle section above.
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── Top performing content ── -->
-  <span class="section-eyebrow">Top performing content, by audience, Sep 22, 2026</span>
-  <p class="section-note">
-    Best email per metric, per program. Bars are scaled per metric type (opened, clicked, exit each
-    on their own scale) so they compare fairly against each other, not against raw percent.
-    Only emails with at least 20 delivered are eligible, which excludes the 1 and 2 send test
-    records that would otherwise show impossible rates like 100% open on a single send.
-    Click "Details" on any tile for the subject line and preview text.
-  </p>
-  <p class="content-scale-note">Bar scale: Opened capped at 35% &middot; Clicked capped at 5% &middot; Exit (unsubscribe) capped at 1.5%. A full bar means "at or above" that cap, not 100%.</p>
-  <div class="content-grid">
-
-    <div class="content-card">
-      <div class="content-card-top"><span class="content-card-name">Inquiry Journeys</span><span class="badge badge-good">Highest volume</span></div>
-      <div class="content-body">
-        <div class="content-metrics">
-          <div class="content-metric opened">
-            <div class="content-metric-label">Opened</div>
-            <div class="content-metric-value">28.3%</div>
-            <div class="content-metric-count">300 of 1,060 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:81%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218375886118/performance" target="_blank" rel="noopener">K-5 social studies time: what nine districts found</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"Across nine districts with different contexts, one pattern held: a structural decision came first."</div>
-            </details>
-          </div>
-          <div class="content-metric clicked">
-            <div class="content-metric-label">Clicked</div>
-            <div class="content-metric-value">2.7%</div>
-            <div class="content-metric-count">30 of 1,103 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:54%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218381037668/performance" target="_blank" rel="noopener">Social studies time and reading gains: what the research found</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"Fordham researchers found more social studies time was linked to fifth-grade reading gains."</div>
-            </details>
-          </div>
-          <div class="content-metric exit">
-            <div class="content-metric-label">Exit (unsub)</div>
-            <div class="content-metric-value">0.58%</div>
-            <div class="content-metric-count">7 of 1,216 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:38%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218450134046/performance" target="_blank" rel="noopener">What your students are building in social studies shows up in reading</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"Teachers in our nine district cohort started noticing it in their reading groups."</div>
-            </details>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-card">
-      <div class="content-card-top"><span class="content-card-name">Inkwell</span><span class="badge badge-good">Best engagement</span></div>
-      <div class="content-body">
-        <div class="content-metrics">
-          <div class="content-metric opened">
-            <div class="content-metric-label">Opened</div>
-            <div class="content-metric-value">33.0%</div>
-            <div class="content-metric-count">97 of 294 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:94%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218357778197/performance" target="_blank" rel="noopener">What "integrated ELA and social studies" actually means in practice</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"In Inkwell, students build literacy skills through inquiry, beginning in Kindergarten."</div>
-            </details>
-          </div>
-          <div class="content-metric clicked">
-            <div class="content-metric-label">Clicked</div>
-            <div class="content-metric-value">5.4%</div>
-            <div class="content-metric-count">10 of 184 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:100%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218366148164/performance" target="_blank" rel="noopener">When social studies keeps getting pushed out of the K-2 day</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"Social studies tends to go first when the schedule fills up. Most K-2 teachers who've been there know why."</div>
-            </details>
-          </div>
-          <div class="content-metric exit">
-            <div class="content-metric-label">Exit (unsub)</div>
-            <div class="content-metric-value">1.36%</div>
-            <div class="content-metric-count">4 of 294 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:91%"></div></div>
-            <div class="content-metric-email">Same email as Opened, above.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-card">
-      <div class="content-card-top"><span class="content-card-name">Great First Eight</span><span class="badge badge-watch">Thin sample</span></div>
-      <div class="content-body">
-        <div class="content-metrics">
-          <div class="content-metric opened">
-            <div class="content-metric-label">Opened</div>
-            <div class="content-metric-value">25.0%</div>
-            <div class="content-metric-count">30 of 120 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:71%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218459623755/performance" target="_blank" rel="noopener">The difference between a real Pre-K curriculum and a box of activities</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"In Great First Eight Pre-K/TK, joy and rigor are designed to work together."</div>
-            </details>
-          </div>
-          <div class="content-metric clicked">
-            <div class="content-metric-label">Clicked</div>
-            <div class="content-metric-value">0.89%</div>
-            <div class="content-metric-count">1 of 112 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:18%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218459498794/performance" target="_blank" rel="noopener">What the research says about integrating academic and social-emotional development in Pre-K</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"Young children don't develop in silos. Great First Eight is designed so their curriculum doesn't either."</div>
-            </details>
-          </div>
-          <div class="content-metric exit">
-            <div class="content-metric-label">Exit (unsub)</div>
-            <div class="content-metric-value">2.50%</div>
-            <div class="content-metric-count">3 of 120 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:100%"></div></div>
-            <div class="content-metric-email">Same email as Opened, above.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-card">
-      <div class="content-card-top"><span class="content-card-name">Agnostic</span><span class="badge badge-watch">Suppression outlier</span></div>
-      <div class="content-body">
-        <div class="content-metrics">
-          <div class="content-metric opened">
-            <div class="content-metric-label">Opened</div>
-            <div class="content-metric-value">18.3%</div>
-            <div class="content-metric-count">13 of 71 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:52%"></div></div>
-            <div class="content-metric-email"><a href="https://app.hubspot.com/email/4451852/details/218370876217/performance" target="_blank" rel="noopener">Which inquirED curriculum fits?</a></div>
-            <details><summary>Details</summary>
-              <div class="content-metric-preview">"inquirED creates high-quality curricula grounded in inquiry, from Pre-K/TK through middle school."</div>
-            </details>
-          </div>
-          <div class="content-metric clicked">
-            <div class="content-metric-label">Clicked</div>
-            <div class="content-metric-value">1.41%</div>
-            <div class="content-metric-count">1 of 71 sent</div>
-            <div class="content-bar"><div class="content-bar-fill" style="width:28%"></div></div>
-            <div class="content-metric-email">Same email as Opened, above.</div>
-          </div>
-          <div class="content-metric exit empty">
-            <div class="content-metric-label">Exit (unsub)</div>
-            <div class="content-metric-none">No data</div>
-            <div class="content-metric-none-sub">Zero unsubscribes recorded on any Agnostic email. Genuinely none, not missing data.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-card">
-      <div class="content-card-top"><span class="content-card-name">World History</span><span class="badge badge-bad">No data</span></div>
-      <div class="content-body">
-        <div class="content-empty-card">No World History email has ever sent, so there is no content to rank. See the program card above.</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── Open items ── -->
-  <span class="section-eyebrow">Open items</span>
-  <ul class="open-items">
-        <li><span class="oi-dot">●</span><span class="oi-text"><strong>Inquiry Journeys carries 78% of delivery and has produced one lifecycle move.</strong> 4,662 emails delivered to 416 active contacts, and a single contact accounts for IJ’s only MQL, SQL and Customer entry since launch. Inkwell, at less than a fifth of IJ’s volume, produced 14. This is the biggest open question on the program and it is not an email-performance problem: IJ’s open and click rates are healthy.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Nothing has sent past module 2 in any program.</strong> 26 of 49 registered emails have no send data; the handful showing 1 or 2 sends are tests. Five weeks post-launch on a spaced cadence, this is expected rather than broken, but it means every engagement rate on this page describes modules 1 and 2 only. Re-check once module 3 is genuinely in flight.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Agnostic suppresses more than it delivers on half its live emails.</strong> Program-wide, 112 suppressed against 150 delivered (75%, against 15% portfolio-wide), and modules 2 and 3 each individually suppress more than they send. Worth checking that track’s suppression lists and frequency caps. The cause cannot be confirmed through the API.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>World History has still never sent an email</strong>, unchanged since Aug 31: 0 delivered across all 4 emails. Either the enrollment audience is empty or the workflow is not live, and neither is readable via API. Separately, the <code>nurture_track__world_history</code> contact property still does not exist (re-checked Sep 22), so WH has an enrollment list but no active or exited tracking lists. That property sits on Tim’s build list and blocks WH from ever appearing in the lifecycle section above.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text">GF8 and Agnostic still have essentially no contact-level nurture tracking despite actively sending (236 and 150 delivered). Nothing in the lifecycle section can include them. Worth comparing against what Tim’s reporting rebuild finds.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text">Inkwell’s unsubscribe rate is 1.01% (9 of 892) and GF8’s is 1.27% (3 of 236), both fractionally over the under-1% program guardrail. Both are thin enough that one or two people move the number. Watch, do not act yet.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Tim’s reporting-structure rebuild is still open and is now the binding constraint.</strong> It was due Aug 17 and is five weeks overdue in Asana as of Sep 22. This page is a workaround built from raw API pulls; the Tier 1/2/3 reporting it is standing in for is what the Dec 18 program end and Jan 11 postmortem are supposed to read from.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text">Confirm enabled/paused state and branch logic for all 5 flows directly in HubSpot. Still not readable via API.</span></li>
-    <li><span class="oi-dot">●</span><span class="oi-text"><strong>Query note for the next refresh:</strong> the <code>nurture_track*</code> properties store the internal value <code>Active</code>, while the display label reads "Active - Inkwell Nurture" and so on per product. Filtering on the label returns zero rows silently. Filter on <code>Active</code>.</span></li>
-  </ul>
-
-  <p class="foot-note">Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates, <code>nurture_track</code> properties) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded), both pulled Sep 22, 2026, scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement measured from Aug 18, 2026, the launch date recorded on the Asana milestone. Email window Jul 30 to Sep 22, 2026. Active-contact counts are contacts currently tagged Active, so contacts who have exited are not counted. Workflow enabled/paused state is not available via API.</p>
-
+  <p class="foot-note" id="foot"></p>
 </main>
 
 <script>
-// Hide our own header when embedded inside the reporting dash iframe
-if (window.self !== window.top) {
-  document.addEventListener('DOMContentLoaded', () => {
-    const h = document.querySelector('.site-header');
-    if (h) h.style.display = 'none';
-  });
-}
+// Hide our own header when embedded inside the reporting dash iframe (the dash has its own)
+if (window.self !== window.top) document.querySelector(".site-header").style.display = "none";
 
-const FRESHNESS_FILE = 'data/nurture-programs.json';
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const n = (v) => v == null ? "—" : Number(v).toLocaleString("en-US");
+const pct = (v, d = 1) => v == null ? "—" : (v * 100).toFixed(d) + "%";
+const $ = (id) => document.getElementById(id);
+const html = (id, h) => { const el = $(id); if (el) el.innerHTML = h || ""; };
 
 function fmtDate(iso) {
-  if (!iso) return ', ';
-  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + 'T12:00:00Z' : iso);
-  if (isNaN(d)) return iso;
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  if (!iso) return "—";
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + "T12:00:00Z" : iso);
+  return isNaN(d) ? iso : d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+const shortDate = (iso) => fmtDate(iso).replace(/, \d{4}$/, "");
+const daysSince = (iso) => { const d = new Date(iso + "T12:00:00Z"); return isNaN(d) ? null : Math.floor((Date.now() - d) / 86400000); };
+const tile = (t) => `<div class="stat-tile"><div class="stat-number ${esc(t.tone || "")}">${esc(t.value)}</div><div class="stat-label">${esc(t.label)}</div>${t.cap ? `<div class="stat-cap">${t.cap}</div>` : ""}</div>`;
+const badge = (b) => b ? `<span class="badge badge-${esc(b.tone || "pending")}">${esc(b.label)}</span>` : "";
+const listShort = (name) => String(name || "").replace(/^\[NURTURE\]\s*MKTG Nurture - /, "").replace(/\s*_SY\d+$/, "");
+
+async function load() {
+  let d, reg;
+  try {
+    [d, reg] = await Promise.all([
+      fetch("data/nurture-programs.json", { cache: "no-store" }).then((r) => r.json()),
+      fetch("data/nurture-workflows.json", { cache: "no-store" }).then((r) => r.json()),
+    ]);
+  } catch (e) {
+    html("err", `<div class="err"><b>Couldn't load the nurture data files.</b> ${esc(e.message)}</div>`);
+    return;
+  }
+  const flows = Object.fromEntries((reg.workflows || []).map((w) => [w.flow_id, w]));
+  const progLabel = Object.fromEntries((d.programs || []).map((p) => [p.key, p.label]));
+  renderFreshness(d, reg);
+  renderLifecycle(d);
+  renderPortfolio(d);
+  renderPrograms(d, flows);
+  renderEmails(d, progLabel);
+  renderContent(d, progLabel);
+  renderAudience(d);
+  renderOpen(d);
+  html("foot", d.footnote_html);
 }
 
-function daysSince(iso) {
-  const d = new Date(iso + 'T12:00:00Z');
-  if (isNaN(d)) return null;
-  return Math.floor((Date.now() - d.getTime()) / 86400000);
-}
-
-function renderFreshness(meta) {
-  const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-  set('meta-updated', fmtDate(meta.updated));
-  set('meta-flows', (meta.flows_linked || 5) + ' linked');
-  set('fr-updated', fmtDate(meta.updated));
-
-  const age = daysSince(meta.updated);
-  const limit = meta.stale_after_days || 30;
-  const pill = document.getElementById('fr-pill');
-  if (pill && age !== null) {
-    if (age > limit) { pill.className = 'fr-pill stale'; pill.textContent = age + ' days old'; }
-    else { pill.className = 'fr-pill current'; pill.textContent = 'Current'; }
+function renderFreshness(d, reg) {
+  $("meta-updated").textContent = $("fr-updated").textContent = fmtDate(d.updated);
+  $("meta-flows").textContent = (reg.workflows || []).length + " linked";
+  if (d.source_line) $("fr-source").textContent = d.source_line;
+  const age = daysSince(d.updated), pill = $("fr-pill");
+  if (age != null) {
+    const stale = age > (d.stale_after_days || 14);
+    pill.className = "fr-pill " + (stale ? "stale" : "current");
+    pill.textContent = stale ? age + " days old" : "Current";
     pill.hidden = false;
   }
-  const strip = document.getElementById('freshness-strip');
-  if (strip) strip.hidden = false;
+  if (d.intro_html) { html("intro", d.intro_html); $("intro").hidden = false; }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch(FRESHNESS_FILE, { cache: 'no-store' })
-    .then(r => r.json())
-    .then(renderFreshness)
-    .catch(() => {
-      const strip = document.getElementById('freshness-strip');
-      if (strip) strip.hidden = false;
-    });
-});
+function renderLifecycle(d) {
+  const lc = d.lifecycle;
+  if (!lc) return html("lc-block", `<div class="empty-card">Lifecycle data is filled on the next refresh.</div>`);
+  html("lc-note", lc.note_html);
+  const rows = (lc.by_program || []).map((p) => `<tr>
+      <td><b>${esc(p.program)}</b></td>
+      <td>${p.tracking === "good" ? `<span class="badge badge-good">${esc(p.tracking_label)}</span>` : `<span class="badge badge-flag">${esc(p.tracking_label)}</span>`}</td>
+      <td class="num">${n(p.tagged)}</td><td class="num">${n(p.active)}</td>
+      <td class="num"><b>${n(p.moved)}</b></td><td class="muted">${esc(p.moved_note)}</td></tr>`).join("");
+  const cov = lc.coverage ? `<div class="coverage-banner"><span class="cb-icon">⚠️</span><div class="cb-body"><span class="cb-title">${esc(lc.coverage.title)}</span>${lc.coverage.html}</div></div>` : "";
+  html("lc-block", `
+    <div class="stat-row">${(lc.tiles || []).map(tile).join("")}</div>
+    <div class="tscroll"><table class="tn"><thead><tr><th>Program</th><th>Contact tracking</th><th class="num">Tagged</th><th class="num">Active</th><th class="num">Moved since launch</th><th>Detail</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>${cov}`);
+}
+
+function renderPortfolio(d) {
+  const pf = d.portfolio;
+  if (d.email_window) $("pf-eyebrow").textContent = `Portfolio delivery, ${shortDate(d.email_window.start)} to ${fmtDate(d.email_window.end)}`;
+  if (!pf) return html("pf-block", "");
+  html("pf-note", pf.note_html);
+  const progs = d.programs || [];
+  const total = progs.reduce((a, p) => a + (p.delivered || 0), 0);
+  const bar = total ? `
+    <div class="phase-bar" role="img" aria-label="Delivered emails by program">
+      ${progs.map((p) => p.delivered ? `<div class="phase-seg ph-${esc(p.key)}" style="flex:${p.delivered}" title="${esc(p.label)}: ${n(p.delivered)} delivered, ${Math.round(p.delivered / total * 100)}%"><span class="seg-lbl">${p.delivered / total >= 0.07 ? esc(p.label) + " " + Math.round(p.delivered / total * 100) + "%" : ""}</span></div>` : "").join("")}
+    </div>
+    <div class="legend">${progs.map((p) => `<span><i class="ph-${esc(p.key)}"></i>${esc(p.label)} · ${n(p.delivered)}</span>`).join("")}</div>` : "";
+  html("pf-block", `<div class="stat-row" style="margin-bottom:1.25rem">${(pf.tiles || []).map(tile).join("")}</div>${bar}<div style="margin-bottom:2.5rem"></div>`);
+}
+
+function renderPrograms(d, flows) {
+  html("flow-note", d.workflows_note_html);
+  html("flow-grid", (d.programs || []).map((p) => {
+    const f = flows[p.flow_id] || {};
+    const list = f.enrollment_list_url ? `<span class="flow-list-link">Enrolls from <a href="${esc(f.enrollment_list_url)}" target="_blank" rel="noopener">${esc(listShort(f.enrollment_list_name))} ↗</a></span>` : "";
+    return `<div class="flow-card">
+      <div class="flow-card-top"><div><div class="flow-name">${esc(p.label)}</div><div class="flow-id">${esc(f.name || "")} · Flow ${esc(p.flow_id)}${p.status_label ? " · " + esc(p.status_label) : ""}</div></div>${badge(p.badge)}</div>
+      <div class="flow-stats six">
+        <div>Delivered<b>${n(p.delivered)}</b></div><div>Open rate<b>${pct(p.open_rate)}</b></div><div>Click rate<b>${pct(p.click_rate)}</b></div>
+        <div>Suppressed<b>${n(p.suppressed)}</b></div><div>Unsub rate<b>${pct(p.unsub_rate, 2)}</b></div><div>Sending<b>${n(p.emails_sending)} of ${n(p.emails_total)}</b></div>
+      </div>
+      ${p.note_html ? `<details class="flow-note"><summary>What's happening</summary>${p.note_html}</details>` : ""}
+      <div class="flow-links">
+        ${f.performance_url ? `<a class="flow-open" href="${esc(f.performance_url)}" target="_blank" rel="noopener">Open in HubSpot ↗</a>` : ""}
+        ${list}
+      </div>
+    </div>`;
+  }).join(""));
+}
+
+function renderEmails(d, progLabel) {
+  const em = d.emails;
+  if (!em) return html("email-block", `<div class="empty-card">Email-level data is filled on the next refresh.</div>`);
+  html("em-note", em.note_html);
+  const rows = em.rows || [];
+  const has = (k) => rows.some((r) => r[k] != null);
+  const extra = [["clicks", "Clicks"], ["unsubs", "Unsubs"]].filter(([k]) => has(k));
+  const cols = 6 + extra.length;
+  const body = (d.programs || []).map((p) => {
+    const mine = rows.filter((r) => r.program === p.key).sort((a, b) => (b.ctor ?? -1) - (a.ctor ?? -1));
+    const head = `<tr class="flow-row"><td colspan="${cols}">${esc(p.label)}</td></tr>`;
+    if (!mine.length) return head + `<tr><td colspan="${cols}" class="muted">No email with ${n(em.min_delivered || 100)}+ delivered yet.</td></tr>`;
+    return head + mine.map((r) => {
+      const openRate = r.open_rate != null ? r.open_rate : (r.delivered ? r.opened / r.delivered : null);
+      const cls = r.ctor >= 0.1 ? "ctor-strong" : r.ctor != null && r.ctor < 0.05 ? "ctor-low" : "";
+      return `<tr>
+        <td><b>${esc(r.code)}</b></td>
+        <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.subject)}</a>` : esc(r.subject)}</td>
+        <td class="track-cell">${r.track ? `<span class="track-chip ${esc(r.track.toLowerCase())}">${esc(r.track)}</span>` : ""}</td>
+        <td class="num">${n(r.delivered)}</td>
+        <td class="num">${pct(openRate)}${r.opened != null ? ` <span class="muted">(${n(r.opened)})</span>` : ""}</td>
+        <td class="num ${cls}">${pct(r.ctor)}</td>
+        ${extra.map(([k]) => `<td class="num">${n(r[k])}</td>`).join("")}
+      </tr>`;
+    }).join("");
+  }).join("");
+  html("email-block", `<div class="tscroll"><table class="tn"><thead><tr><th>Email</th><th>Subject</th><th>Track</th><th class="num">Delivered</th><th class="num">Open rate</th><th class="num">Click-to-open</th>${extra.map(([, l]) => `<th class="num">${l}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>
+    ${em.callout_html ? `<div class="rank-callout" style="margin:-1.5rem 0 2.5rem">${em.callout_html}</div>` : ""}`);
+}
+
+function renderContent(d, progLabel) {
+  const tc = d.top_content;
+  if (!tc) return;
+  if (tc.as_of_label) $("tc-eyebrow").textContent = "Top performing content, by audience, " + tc.as_of_label;
+  html("tc-note", tc.note_html);
+  const caps = tc.caps || { opened: 0.35, clicked: 0.05, exit: 0.015 };
+  $("tc-scale").innerHTML = `Bar scale: Opened capped at ${pct(caps.opened, 0)} &middot; Clicked capped at ${pct(caps.clicked, 0)} &middot; Exit (unsubscribe) capped at ${pct(caps.exit)}. A full bar means "at or above" that cap, not 100%.`;
+  const LBL = { opened: "Opened", clicked: "Clicked", exit: "Exit (unsub)" };
+  const metric = (m) => {
+    if (m.none) return `<div class="content-metric ${m.type} empty"><div class="content-metric-label">${LBL[m.type]}</div><div class="content-metric-none">No data</div><div class="content-metric-none-sub">${esc(m.none_sub)}</div></div>`;
+    const w = Math.min(100, Math.round(m.rate / caps[m.type] * 100));
+    const digits = m.type === "opened" ? 1 : m.rate < 0.03 ? 2 : 1;
+    const who = m.same_as ? `<div class="content-metric-email">Same email as ${esc(m.same_as)}, above.</div>`
+      : `<div class="content-metric-email">${m.url ? `<a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.subject)}</a>` : esc(m.subject)}</div>
+         ${m.preview || m.cta ? `<details><summary>Details</summary>${m.preview ? `<div class="content-metric-preview">"${esc(m.preview)}"</div>` : ""}${m.cta ? `<div class="content-metric-cta">CTA: ${esc(m.cta)}</div>` : ""}</details>` : ""}`;
+    return `<div class="content-metric ${m.type}"><div class="content-metric-label">${LBL[m.type]}</div><div class="content-metric-value">${pct(m.rate, digits)}</div>
+      <div class="content-metric-count"><b>${n(m.n)}</b> of <b>${n(m.of)}</b> sent</div>
+      <div class="content-bar"><div class="content-bar-fill" style="width:${w}%"></div></div>${who}</div>`;
+  };
+  html("tc-grid", (tc.cards || []).map((c) => `<div class="content-card">
+      <div class="content-card-top"><span class="content-card-name">${esc(progLabel[c.program] || c.program)}</span>${badge(c.badge)}</div>
+      <div class="content-body">${c.empty_text ? `<div class="content-empty-card">${esc(c.empty_text)}</div>` : `<div class="content-metrics">${(c.metrics || []).map(metric).join("")}</div>`}</div>
+    </div>`).join(""));
+}
+
+function renderAudience(d) {
+  const a = d.audience;
+  if (!a) return;
+  const card = (s) => `<div class="split-card"><div class="split-card-title">${esc(s.program)} <span class="n">${esc(s.n_label)}</span></div>
+    ${(s.rows || []).map((r) => { const p = s.total ? r.count / s.total * 100 : 0; return `<div class="bar-row"><span class="bar-label">${esc(r.label)}</span><div class="bar-track"><div class="bar-fill ${esc(r.cls || "")}" style="width:${p.toFixed(1)}%"></div></div><span class="bar-val">${n(r.count)} · ${Math.round(p)}%</span></div>`; }).join("")}</div>`;
+  html("role-note", a.role_note_html);
+  html("role-grid", (a.roles || []).map(card).join(""));
+  html("src-note", a.source_note_html);
+  html("src-grid", (a.sources || []).map(card).join(""));
+  if (a.movement) html("movement", `<div class="movement-strip"><div class="movement-num">${n(a.movement.value)}</div><div class="movement-text">${a.movement.html}</div></div>`);
+}
+
+function renderOpen(d) {
+  html("open-items", (d.open_items || []).map((i) => `<li><span class="oi-dot ${esc(i.level || "red")}">●</span><span class="oi-text">${i.html}</span></li>`).join(""));
+}
+
+load();
 </script>
 </body>
 </html>
