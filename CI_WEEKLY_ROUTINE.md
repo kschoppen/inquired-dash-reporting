@@ -13,7 +13,7 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ```bash
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'CI Weekly (cloud routine)'
-[ -n "$HC_CI_WEEKLY_URL" ] && curl -fsS -m 10 --retry 3 "$HC_CI_WEEKLY_URL/start" || true
+curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/start || true
 ```
 
 Write `competitive-intel.html` after Part A, then again after Part B, so a Part B failure never loses Part A's signals.
@@ -126,4 +126,9 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$SLACK_TOKE
 
 ## STEP 4: Healthchecks final ping
 
-If `$HC_CI_WEEKLY_URL` is set: success → `curl -fsS -m 10 --retry 3 "$HC_CI_WEEKLY_URL"`; any failure → `"$HC_CI_WEEKLY_URL/fail"`. Never ping success on a partial run.
+Healthchecks check "Reporting – weekly competitive intel" (cron `0 9 * * 1` America/New_York, 3h grace).
+
+- **Success** (both parts written, pushed, script check passed): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c`
+- **Any failure:** `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/fail`
+
+Never ping success on a partial run.
