@@ -2062,7 +2062,7 @@
           {
             "path": "/contact-thank-you",
             "completions": 37,
-            "type": "download"
+            "type": "hand-raise"
           },
           {
             "path": "/thank-you/wh-scope-and-sequence",
@@ -2077,7 +2077,7 @@
           {
             "path": "/thank-you/inkwell-demo",
             "completions": 17,
-            "type": "download"
+            "type": "hand-raise"
           },
           {
             "path": "/thank-you/ppc-k2-curriculum-maps",
@@ -2405,7 +2405,7 @@
           {
             "path": "/contact-thank-you",
             "completions": 73,
-            "type": "download"
+            "type": "hand-raise"
           },
           {
             "path": "/thank-you/inkwell-lesson-sample",
@@ -2430,7 +2430,7 @@
           {
             "path": "/thank-you/inkwell-demo",
             "completions": 33,
-            "type": "download"
+            "type": "hand-raise"
           },
           {
             "path": "/learn/inkwell-lesson-sample",

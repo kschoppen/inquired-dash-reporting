@@ -51,10 +51,10 @@ def page_type(path):
     p = path.lower()
     if "/webinar" in p:
         return "webinar signup"
+    if "contact" in p or "demo" in p or "pilot" in p:
+        return "hand-raise"
     if "thank-you" in p or "/download" in p:
         return "download"
-    if "/contact" in p or "demo" in p:
-        return "hand-raise"
     return "resource"
 
 
