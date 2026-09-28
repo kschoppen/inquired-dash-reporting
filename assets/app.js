@@ -461,7 +461,7 @@ function renderMonthly(d) {
         ${rdMini("MQLs", fmtN(fp(last, "mql")), `${rdPct(fp(last, "mql"), fp(prev, "mql"), "MoM")} ${rdPct(fp(last, "mql"), fp(ly, "mql"), "YoY")}`, "", "rdSpkMql")}
         ${rdMini("SQLs", fmtN(fp(last, "sql")), `${rdPct(fp(last, "sql"), fp(prev, "sql"), "MoM")} ${rdPct(fp(last, "sql"), fp(ly, "sql"), "YoY")}`, "", "rdSpkSql2")}
         ${rdMini("MQL → SQL", pr(last) != null ? pr(last) + "%" : "—", `${rdPts(pr(last), pr(prev), "MoM")} ${rdPts(pr(last), pr(ly), "YoY")}`, "B2B benchmark 13–22%", "rdSpkConv2")}
-        ${rdMini("UTM attribution", utm != null ? utm + "%" : "—", rdPts(utm, utmPrev, "MoM"), `% of MQLs with a source UTM · target 30%`, "", utm != null && utm < 30 ? "color:var(--down)" : "")}
+        ${rdMini("UTM attribution", utm != null ? utm + "%" : "—", rdPts(utm, utmPrev, "MoM"), `% of MQLs with a UTM · excl. offline, organic, AI · target 30%`, "", utm != null && utm < 30 ? "color:var(--down)" : "")}
       </div>
       <div class="rd-sub">
         <div class="rd-row"><div class="eyebrow">MQL → SQL conversion · ${m.length}-month trend</div></div>

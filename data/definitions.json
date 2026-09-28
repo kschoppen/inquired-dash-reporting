@@ -102,7 +102,7 @@
     {
       "heading": "Attribution and SEO",
       "terms": [
-        {"term": "Attribution (UTM completeness)", "def": "Share of new contacts with a utm_campaign populated. Low coverage means source-level cuts are unreliable. Target is 30% or higher."},
+        {"term": "Attribution (UTM completeness)", "def": "Share of MQLs in the month with a utm_campaign populated, counting only MQLs whose original source can carry a UTM (Offline imports, Organic Search, and AI Referrals are excluded because they never have one). Low coverage means campaign-level cuts are unreliable. Target is 30% or higher."},
         {"term": "Tracked / Ranked / In top 10", "def": "Keywords we track in Semrush Position Tracking, how many currently rank at all, and how many rank in positions 1 to 10."},
         {"term": "Avg position", "def": "Average Google position across ranked keywords (lower is better)."},
         {"term": "Topic areas (SEO)", "def": "Keywords grouped by Brand, Social Studies, ELA, ECE / Pre-K, and Other, so we can see where we rank by product line. MoM deltas begin once a second month of history exists."}

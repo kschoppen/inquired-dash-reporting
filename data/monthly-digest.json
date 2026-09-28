@@ -1138,8 +1138,8 @@
       ],
       "quality": {
         "mql_to_sql_pct": 36.8,
-        "utm_completeness_pct": 24.8,
-        "utm_gap_flag": "UTM completeness 24.8% \u2014 below 30% threshold. Data flag: ~75% of new contacts lack utm_campaign.",
+        "utm_completeness_pct": 15.3,
+        "utm_gap_flag": "UTM attribution 15.3% (13/85 MQLs from sources that can carry a UTM; Offline, Organic Search and AI Referrals excluded) \u2014 below the 30% target.",
         "sql_by_source": [
           [
             "DIRECT_TRAFFIC",
@@ -1217,7 +1217,9 @@
           "wh": 0,
           "gf8": 0,
           "note": "45% coverage in sample of 200; 55% of contacts have no product_interest set"
-        }
+        },
+        "utm_completeness_n": 13,
+        "utm_completeness_denom": 85
       },
       "hih_by_source": [
         [
@@ -1633,8 +1635,8 @@
       },
       "quality": {
         "mql_to_sql_pct": 82.1,
-        "utm_completeness_pct": 2.1,
-        "utm_gap_flag": "UTM completeness collapsed to 2.1% (14/683) from 24.8% in May \u2014 severe drop, tied to offline lifecycle import which lacks UTM by nature.",
+        "utm_completeness_pct": 16.9,
+        "utm_gap_flag": "UTM attribution 16.9% (13/77 MQLs from sources that can carry a UTM; Offline, Organic Search and AI Referrals excluded) \u2014 below the 30% target.",
         "sql_by_source": [
           [
             "OFFLINE",
@@ -1653,7 +1655,9 @@
             1
           ]
         ],
-        "top_utm_campaigns": []
+        "top_utm_campaigns": [],
+        "utm_completeness_n": 13,
+        "utm_completeness_denom": 77
       },
       "hih_by_source": [
         [
@@ -2016,8 +2020,8 @@
       },
       "quality": {
         "mql_to_sql_pct": 70.9,
-        "utm_completeness_pct": 7.7,
-        "utm_gap_flag": "UTM completeness improved to 7.7% (26/337) from 2.0% in June, but still well below the 30% healthy-gap threshold.",
+        "utm_completeness_pct": 31.2,
+        "utm_gap_flag": "UTM attribution 31.2% (20/64 MQLs from sources that can carry a UTM; Offline, Organic Search and AI Referrals excluded) \u2014 at or above the 30% target.",
         "sql_by_source": [
           [
             "OFFLINE",
@@ -2053,7 +2057,9 @@
             "Sonar | Brand | Search",
             1
           ]
-        ]
+        ],
+        "utm_completeness_n": 20,
+        "utm_completeness_denom": 64
       },
       "hih_by_source": [
         [
@@ -2295,8 +2301,8 @@
       },
       "quality": {
         "mql_to_sql_pct": 44.8,
-        "utm_completeness_pct": 4.4,
-        "utm_gap_flag": "UTM completeness fell to 4.4% (52/1,178) from 7.7% in July \u2014 still well below the 30% healthy-gap threshold.",
+        "utm_completeness_pct": 24.5,
+        "utm_gap_flag": "UTM attribution 24.5% (40/163 MQLs from sources that can carry a UTM; Offline, Organic Search and AI Referrals excluded) \u2014 below the 30% target.",
         "sql_by_source": [
           [
             "OFFLINE",
@@ -2332,7 +2338,9 @@
             "7741335-Content: Inquiry Journeys Scope & Sequence",
             1
           ]
-        ]
+        ],
+        "utm_completeness_n": 40,
+        "utm_completeness_denom": 163
       },
       "hih_by_source": [
         [
@@ -2605,7 +2613,7 @@
       "read": {
         "up": "Closed-won hit <b>$1.01M</b>, up 38% on last August. SQLs rose 25% YoY to <b>126</b>. HIH quadrupled year over year (52 vs 13).",
         "down": "Lead\u2192MQL fell to <b>55%</b> (74% last year) and MQL\u2192SQL to <b>44.8%</b> (51.8%). An offline bulk import inflated MQLs, so SQL and Opp are the cleaner read.",
-        "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal. UTM attribution dropped to <b>4.4%</b> of MQLs (target 30%)."
+        "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal. UTM attribution is <b>24.5%</b> of addressable MQLs (target 30%); UTMs are lost when visitors click to a second page before converting."
       }
     }
   ],
