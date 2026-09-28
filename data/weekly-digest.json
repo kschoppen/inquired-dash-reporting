@@ -139,7 +139,28 @@
         "amount": 0
       }
     },
-    "active_by_product": null,
+    "active_by_product": {
+      "ij": {
+        "count": 367,
+        "amount": 8324151.38
+      },
+      "inkwell": {
+        "count": 13,
+        "amount": 656120
+      },
+      "wh": {
+        "count": 78,
+        "amount": 766698.73
+      },
+      "gf8": {
+        "count": 23,
+        "amount": 825400
+      },
+      "untagged": {
+        "count": 19,
+        "amount": 514875.62
+      }
+    },
     "by_stage": {
       "district": [
         {
@@ -246,7 +267,343 @@
           "amount": 0
         }
       ]
-    }
+    },
+    "active": {
+      "new_business": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 26,
+            "amount": 205000,
+            "entered": 9,
+            "forward": 9,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 97,
+            "amount": 3629392.83,
+            "entered": 5,
+            "forward": 5,
+            "back": 0
+          },
+          {
+            "stage": "Consideration",
+            "count": 3,
+            "amount": 123437,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Conviction",
+            "count": 2,
+            "amount": 0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Closed Lost",
+            "count": 4,
+            "amount": 18500,
+            "entered": 4,
+            "forward": 0,
+            "back": 4
+          }
+        ]
+      },
+      "account_growth": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 2,
+            "amount": 0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 1,
+            "amount": 1500,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          }
+        ]
+      },
+      "renewal": {
+        "stages": [
+          {
+            "stage": "Nurture",
+            "count": 278,
+            "amount": 5565794.23,
+            "entered": 2,
+            "forward": 2,
+            "back": 0
+          },
+          {
+            "stage": "Engaged",
+            "count": 10,
+            "amount": 0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 3,
+            "amount": 0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Closed Won",
+            "count": 1,
+            "amount": 1260,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          }
+        ]
+      }
+    },
+    "moved_deals": [
+      {
+        "name": "Provo City School District,UT, RFP, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65267678784",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Large"
+      },
+      {
+        "name": "School District 62,IL,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65260469258",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium"
+      },
+      {
+        "name": "School District 62,IL,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65266518132",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium"
+      },
+      {
+        "name": "Irvington Public Schools, NJ , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65264478560",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium"
+      },
+      {
+        "name": "Visions In Education Charter School,CA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65204523555",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Single"
+      },
+      {
+        "name": "Millard Public Schools - IJ - SY 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65211282549",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Interest",
+        "amount": 25000,
+        "segment": "Enterprise"
+      },
+      {
+        "name": "Roxborough Christian School,PA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65204449810",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": ""
+      },
+      {
+        "name": "Kiski Area School District,PA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65211115099",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium"
+      },
+      {
+        "name": "Mulvane Unified School District 263,KS,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65077070987",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Small"
+      },
+      {
+        "name": "Monticello School District,MN,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65162288418",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Medium"
+      },
+      {
+        "name": "Warren Consolidated Schools, MI , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64922979252",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 21500,
+        "segment": "Large"
+      },
+      {
+        "name": "Allendale Public School District, MI , 2027 - 2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64410982310",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 38700,
+        "segment": ""
+      },
+      {
+        "name": "New Bedford Public Schools, MA , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64287760953",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 246400,
+        "segment": "Large"
+      },
+      {
+        "name": "Little Blessings Learning House, MI, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64286280614",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 4300,
+        "segment": "Other"
+      },
+      {
+        "name": "Syracuse City School District, NY , 26-27",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64576883869",
+        "pipeline": "New Business",
+        "from": "Conviction",
+        "to": "Desire",
+        "amount": 0,
+        "segment": "Large"
+      },
+      {
+        "name": "Adams 12 Five Star Schools,CO,2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027589767",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Closed Lost",
+        "amount": null,
+        "segment": "Enterprise"
+      },
+      {
+        "name": "Warren County Public Schools,VA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64576289700",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "First Steps Learning Academy, VA , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64333356389",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Closed Lost",
+        "amount": null,
+        "segment": "Other"
+      },
+      {
+        "name": "Lynn Public Schools, MA - GF8",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59225095481",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 8500,
+        "segment": "Single"
+      },
+      {
+        "name": "Nha Schools, CO , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65264881967",
+        "pipeline": "Account Growth",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": null,
+        "segment": "Single"
+      },
+      {
+        "name": "Chicago Public Schools - Dever Elementary School , IL, Inquiry Journeys, 27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65236994918",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 1260,
+        "segment": "Single"
+      },
+      {
+        "name": "Lakeville Public School District, MN, Inquiry Journeys, 27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65170638096",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 0,
+        "segment": "Large"
+      },
+      {
+        "name": "Pierce City R-vi School District,MO, Add-on 26-27",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65204350287",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Desire",
+        "amount": 1,
+        "segment": "Small"
+      },
+      {
+        "name": "Chicago Public Schools - Dever Elementary School Renewal (SY 26-27)",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/46569574823",
+        "pipeline": "Renewal",
+        "from": "Desire",
+        "to": "Closed Won",
+        "amount": 1260,
+        "segment": "Single"
+      }
+    ]
   },
   "segment_coverage": {
     "hih": 22,
@@ -6154,117 +6511,116 @@
       },
       "top_pieces": [
         {
-          "offer": "k-5 social studies in practice | IJ",
-          "type": "Webinar",
-          "product": "Inquiry Journeys",
-          "fills": 28,
-          "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
-        },
-        {
-          "offer": "ela-dl: inkwell the integrated instructional block_f26",
+          "offer": "ELA-DL: Inkwell Integrated Instructional Block",
           "type": "Download",
           "product": "Inkwell",
           "fills": 27,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 6,
+          "to_hih": 27,
+          "to_mql": 12
         },
         {
-          "offer": "inquiry journeys scope & sequence_s25",
+          "offer": "SS-DL: IJ In-Practice Implementation Brief",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 26,
+          "avg8": null,
+          "new_contacts": 0,
+          "to_hih": 0,
+          "to_mql": 10
+        },
+        {
+          "offer": "SS-DL: IJ Scope & Sequence",
           "type": "Download",
           "product": "Inquiry Journeys",
           "fills": 23,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 12,
+          "to_hih": 1,
+          "to_mql": 5
         },
         {
-          "offer": "lit talk with dr. nell k. duke",
+          "offer": "ELA Webinar: Lit Talk with Dr. Nell K. Duke",
           "type": "Webinar",
           "product": "Inkwell",
           "fills": 16,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 2,
+          "to_hih": 0,
+          "to_mql": 1
         },
         {
-          "offer": "ela-dl: inkwell k2 sample lesson_sy2627",
+          "offer": "ELA-DL: Inkwell K-2 Sample Lesson",
           "type": "Download",
           "product": "Inkwell",
           "fills": 11,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 5,
+          "to_hih": 2,
+          "to_mql": 7
         },
         {
-          "offer": "source material webinar series",
+          "offer": "SS Webinar: Source Material Series (NCSS)",
           "type": "Webinar",
-          "product": "Inkwell",
+          "product": "Inquiry Journeys",
           "fills": 9,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 7,
+          "to_hih": 0,
+          "to_mql": 1
         },
         {
-          "offer": "great first eight pre-k/tk webinar",
+          "offer": "GF8 Webinar: Pre-K/TK California Funding",
           "type": "Webinar",
           "product": "Great First 8",
           "fills": 7,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 0,
+          "to_hih": 0,
+          "to_mql": 0
         },
         {
-          "offer": "ss-dl: wh-scope and sequence_s25",
+          "offer": "SS-DL: WH Scope & Sequence",
           "type": "Download",
           "product": "World History",
           "fills": 6,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 4,
+          "to_hih": 0,
+          "to_mql": 3
         },
         {
-          "offer": "ela-dl: inkwell k2 curriculum map_sy2627",
+          "offer": "ELA-DL: Inkwell K-2 Curriculum Map",
           "type": "Download",
           "product": "Inkwell",
           "fills": 5,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 4,
+          "to_hih": 1,
+          "to_mql": 4
         },
         {
-          "offer": "home > great first eight",
+          "offer": "GF8 Contact Us (website)",
           "type": "Hand-raise",
           "product": "Great First 8",
           "fills": 4,
           "avg8": null,
-          "new_contacts": null,
-          "to_hih": null,
-          "to_mql": null
+          "new_contacts": 4,
+          "to_hih": 4,
+          "to_mql": 4
         }
       ],
       "note": "W39 run 2026-09-28. by_product/drill incomplete — see data_flags. MQL segment unavailable. Stage-movement not pulled.",
       "data_flags": [
-        "top_pieces: new_contacts/to_hih/to_mql sub-queries not completed — all null this run.",
         "disposition.dq_prior/nurture_prior: prior-window DQ and Nurture counts not re-pulled this run. Null in run log.",
-        "stage_movement: stage-movement pull not completed this run. `active` and `moved_deals` omitted from pipeline snapshot; by_stage carried from 2026-09-25 run with count totals updated.",
         "closed_won_mtd: not re-pulled this run; carried forward from prior run ($18,118).",
         "competitive_intel_html: signal updates for 6 competitors NOT written to competitive-intel.html this run (token budget). New signals noted in run log only. competitive-intel.json updated field stamped.",
         "phase_1_5_state_signal: State Signal (MQA) pull not completed this run.",
         "content_performance: Phase 2.6 content analytics pull not completed this run.",
         "semrush_keywords: SEMrush keyword refresh (Phase 2B) not completed this run.",
-        "by_product / by_segment.mql backfilled 2026-09-28 via query_crm_data GROUP BY (product = EQ membership, multi-tagged contacts count toward each; 16 of 76 MQLs have no product)."
+        "by_product / by_segment.mql backfilled 2026-09-28 via query_crm_data GROUP BY (product = EQ membership, multi-tagged contacts count toward each; 16 of 76 MQLs have no product).",
+        "top_pieces, pipeline.active, moved_deals, active_by_product backfilled 2026-09-28 from HubSpot. avg8 stays empty until 3 prior runs carry piece-level data. active_by_product is product membership (multi-tagged deals count toward each); test-deal exclusion not applied to it."
       ],
       "yoy": {
         "period": "2025-09-22",
@@ -6274,6 +6630,82 @@
         "opp": 83,
         "hih": null,
         "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."
+      },
+      "content_engagement": {
+        "as_of": "2026-09-28",
+        "prior_as_of": "2026-09-08",
+        "intent_tier": {
+          "high": 2382,
+          "medium": 1628,
+          "low": 29894
+        },
+        "intent_tier_prior": {
+          "high": 2305,
+          "medium": 1498,
+          "low": 29792
+        },
+        "top_content_tags": [
+          {
+            "tag": "Other Form",
+            "count": 3998,
+            "delta": 365
+          },
+          {
+            "tag": "SS-WEB: Thought Leadership Series",
+            "count": 1695,
+            "delta": -14
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence",
+            "count": 1673,
+            "delta": 52
+          },
+          {
+            "tag": "IJ-DL: Curriculum Review Guide",
+            "count": 1186,
+            "delta": 8
+          },
+          {
+            "tag": "Contact Us",
+            "count": 615,
+            "delta": 7
+          },
+          {
+            "tag": "ELA-WEB: Thought Leadership Series",
+            "count": 524,
+            "delta": -9
+          },
+          {
+            "tag": "IJ-DL: Pacing Guide",
+            "count": 411,
+            "delta": -2
+          },
+          {
+            "tag": "Book a Demo",
+            "count": 364,
+            "delta": 23
+          },
+          {
+            "tag": "SS-WEB: Source Material Webinar Registration",
+            "count": 348,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: PD Deck-Literacy & SS Outcomes",
+            "count": 322,
+            "delta": null
+          },
+          {
+            "tag": "Newsletter Sign Up",
+            "count": 274,
+            "delta": null
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence (PPC)",
+            "count": 272,
+            "delta": null
+          }
+        ]
       }
     }
   ],

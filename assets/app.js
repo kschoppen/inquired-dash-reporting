@@ -769,7 +769,7 @@ function contentEngagementSection(ce) {
   const tier = ce.intent_tier || {};
   const tierCards = ["high", "medium", "low"].map((k) => {
     const label = k.charAt(0).toUpperCase() + k.slice(1) + " intent";
-    return `<div class="card"><div class="label" style="color:${CE_TIER_COLORS[k]}">${label}</div><div class="value">${fmtN(tier[k])}</div><div class="cap">Contacts currently tagged</div></div>`;
+    return `<div class="card"><div class="label" style="color:${CE_TIER_COLORS[k]}">${label}</div><div class="value">${fmtN(tier[k])}</div><div class="cap">Contacts currently tagged${ce.intent_tier_prior && ce.intent_tier_prior[k] != null ? ` · ${ceTagDeltaHTML(tier[k] - ce.intent_tier_prior[k])} since ${ce.prior_as_of}` : ""}</div></div>`;
   }).join("");
 
   const tags = ce.top_content_tags || [];
@@ -777,10 +777,10 @@ function contentEngagementSection(ce) {
 
   return `
     <div class="panel"><h3>Content engagement <span class="muted">(as of ${ce.as_of || "—"})</span></h3>
-      ${note("Running totals — how many contacts currently carry each value, not new this week. WoW compares against last week's stored snapshot.")}
+      ${note("Running totals — how many contacts currently carry each value, not new this week. The change column compares against the previous stored snapshot.")}
       <div class="cards">${tierCards}</div>
       <h4>Top content tags</h4>
-      ${tagRows ? `<table class="bd"><thead><tr><th>Tag</th><th>Contacts</th><th>WoW</th></tr></thead><tbody>${tagRows}</tbody></table>` : `<p class="cap">No tagged contacts yet.</p>`}
+      ${tagRows ? `<table class="bd"><thead><tr><th>Tag</th><th>Contacts</th><th>${ce.prior_as_of ? `Since ${ce.prior_as_of}` : "WoW"}</th></tr></thead><tbody>${tagRows}</tbody></table>` : `<p class="cap">No tagged contacts yet.</p>`}
       ${note("Content tags are multi-select — a contact with more than one tag counts toward each, so this won't sum to total contacts.")}
     </div>`;
 }
@@ -1015,11 +1015,11 @@ function renderWeekly(d) {
       ${rdAbout("About disposition", "Disposition reflects lifecycle stage exits: contacts removed from active funnel consideration this week. High DQ weeks can point to list quality or targeting issues.")}
     </div>
 
-    <div id="sec-wbrand">${rdTier(3, "Brand lift", "Google Search Console · how often people find us by searching")}</div>
+    <div id="sec-wbrand">${rdTier(3, "Brand &amp; content lift", "Branded search (Google Search Console) + how contacts engage with content")}</div>
     ${rdBrandBlock(d.brand_lift, "WoW", "wBrandLift")}
+    ${ce ? rdDz("Content engagement", `intent tiers + top content tags · as of ${ce.as_of || "—"}`, contentEngagementSection(ce), { cls: "inner" }) : ""}
 
     <div id="sec-wref">${rdTier(4, "Reference", "")}</div>
-    ${ce ? rdDz("Content engagement", `intent tiers + top content tags · as of ${ce.as_of || "—"}`, contentEngagementSection(ce)) : ""}
     ${rdDz("Weekly detail", `last ${w.length} weeks`, `<div class="tscroll"><table><thead><tr><th>Week of</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th><th>DQ</th><th>Nurture</th></tr></thead><tbody>
       ${w.map((x, i) => `<tr${x.note ? ' class="has-note"' : ""}><td>${x.label}${x.note ? ` <span class="week-note-flag" title="${x.note.replace(/"/g, "&quot;")}">⚠</span>` : ""}</td><td>${fmtN(f(x, "hih"))}</td><td>${fmtN(f(x, "mql"))}</td><td>${fmtN(f(x, "sql"))}</td><td>${fmtN(f(x, "opp"))}</td><td>${conv[i] != null ? conv[i] + "%" : "—"}</td><td>${x.disposition ? fmtN(x.disposition.dq) : "—"}</td><td>${x.disposition ? fmtN(x.disposition.nurture) : "—"}</td></tr>`).join("")}
       </tbody></table></div>`)}
@@ -1038,7 +1038,7 @@ function renderWeekly(d) {
     { id: "sec-wtop", label: "Top pieces" },
     { id: "sec-wpipe", label: "Pipeline" },
     { id: "sec-wdisp", label: "Disposition" },
-    { id: "sec-wbrand", label: "Brand lift" },
+    { id: "sec-wbrand", label: "Brand & content" },
     { id: "sec-wref", label: "Reference" },
   ]);
 
