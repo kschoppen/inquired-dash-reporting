@@ -197,7 +197,7 @@ compute `conversion_rate_pct = contacts / rawViews * 100` and flag:
 - `watch` — 0.5% to 2%
 - `healthy` — 2%+
 
-Sort ascending by `conversion_rate_pct` (worst gap first).
+Sort ascending by `conversion_rate_pct` (the tab re-sorts into its own sections, so order here doesn't matter much). `time_per_view_sec` = the row's `timePerPageview` metric, rounded. The tab shows it for blog posts, which are judged on engagement (views, non-bounce share, time per view) because they aren't expected to convert on the page. Keep flagging blog rows by the same thresholds in the JSON, but `totals.gap_count` counts **non-blog** gaps only.
 
 **Write `data/content-performance.json`:** upsert this run into `weeks[]`, keyed by
 `period` (this run's date, `YYYY-MM-DD`), replace if present else append, cap at 8
@@ -206,10 +206,10 @@ entries (oldest dropped first). Full entry shape:
 ```json
 { "period": "YYYY-MM-DD", "label": "Mon D, YYYY",
   "totals": { "pages_tracked": N, "gap_count": N, "watch_count": N, "healthy_count": N },
-  "verdict": "1-2 sentence headline naming the worst gap by raw_views and the best-converting lander, no emoji, no em dash",
+  "verdict": "1-2 sentence headline: lead with the best-converting page (most contacts), then name the highest-traffic non-blog conversion gap. Blog posts are judged on reach, never called a conversion gap. No emoji, no em dash",
   "pages": [ { "contentId": "...", "title": "...", "url": "...",
     "content_type": "landing_page|blog_post|site_page", "raw_views": N, "contacts": N,
-    "conversion_rate_pct": N, "bounce_rate_pct": N, "flag": "gap|watch|healthy" }, … ] }
+    "conversion_rate_pct": N, "bounce_rate_pct": N, "time_per_view_sec": N, "flag": "gap|watch|healthy" }, … ] }
 ```
 
 Also refresh top-level `updated` (run date) and `min_views_threshold` (leave at 2000
