@@ -259,7 +259,7 @@ function rdPts(cur, base, lbl) {
 function rdRaw(cur, base) {
   if (cur == null || base == null || cur === base) return "";
   const d = cur - base;
-  return `<span class="chg ${d > 0 ? "up" : "down"}">${d > 0 ? "+" : "−"}${Math.abs(d)}</span>`;
+  return `<span class="chg ${d > 0 ? "up" : "down"}" title="Last week: ${base}">${d > 0 ? "↑" : "↓"}${Math.abs(d)}</span>`;
 }
 // vs-average for weekly tiles: "5.0× avg", "−1 vs avg", "≈ avg"
 // invert = true when a rise is bad news (e.g. disqualifications)
@@ -976,7 +976,7 @@ function renderWeekly(d) {
       <div class="rd-card"><div class="eyebrow">MQL→SQL by week</div><div class="chartbox" style="height:230px"><canvas id="wConvRates"></canvas></div><p class="cap">Dashed line = ${base.length}-week average. Within-week stage entries, so read it as direction, not a cohort rate.</p></div>
     </div>
 
-    <div id="sec-wseg">${rdTier(2, "By company size &amp; product", "This week · raw change vs last week")}</div>
+    <div id="sec-wseg">${rdTier(2, "By company size &amp; product", "This week · ↑↓ = change vs last week (hover for last week's number)")}</div>
     <div class="rd-grid g2">
       <div class="rd-card"><div class="rd-row"><div class="eyebrow">By company size</div>${rdCov(`Covers ${fmtN(tagged(bs, RD_SEG, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
         <div class="tscroll"><table class="bd"><thead><tr><th>Segment</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>${segTbl}</tbody></table></div>

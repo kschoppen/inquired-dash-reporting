@@ -5874,51 +5874,51 @@
       "by_product": {
         "ij": {
           "hih": 5,
-          "mql": null,
-          "sql": null,
-          "opp": null
+          "mql": 24,
+          "sql": 1,
+          "opp": 1
         },
         "inkwell": {
           "hih": 10,
-          "mql": null,
-          "sql": null,
-          "opp": null
+          "mql": 30,
+          "sql": 1,
+          "opp": 1
         },
         "wh": {
           "hih": 0,
-          "mql": null,
-          "sql": null,
-          "opp": null
+          "mql": 5,
+          "sql": 1,
+          "opp": 1
         },
         "gf8": {
           "hih": 5,
-          "mql": null,
-          "sql": null,
-          "opp": null
+          "mql": 5,
+          "sql": 0,
+          "opp": 0
         }
       },
       "by_segment": {
         "single_small": {
           "hih": 3,
-          "mql": null,
+          "mql": 19,
           "sql": 6,
           "opp": 6
         },
         "medium": {
           "hih": 0,
-          "mql": null,
+          "mql": 7,
           "sql": 3,
           "opp": 3
         },
         "large": {
           "hih": 1,
-          "mql": null,
+          "mql": 5,
           "sql": 2,
           "opp": 2
         },
         "enterprise": {
           "hih": 0,
-          "mql": null,
+          "mql": 6,
           "sql": 6,
           "opp": 7
         }
@@ -6256,8 +6256,6 @@
       ],
       "note": "W39 run 2026-09-28. by_product/drill incomplete — see data_flags. MQL segment unavailable. Stage-movement not pulled.",
       "data_flags": [
-        "by_product: HIH by product rebuilt 2026-09-28 from the full HIH list (primary product per contact). MQL/SQL/Opp by product still unavailable this run.",
-        "by_segment.mql: MQL segment breakout unavailable (pulled in prior session, lost to compaction). Null emitted.",
         "top_pieces: new_contacts/to_hih/to_mql sub-queries not completed — all null this run.",
         "disposition.dq_prior/nurture_prior: prior-window DQ and Nurture counts not re-pulled this run. Null in run log.",
         "stage_movement: stage-movement pull not completed this run. `active` and `moved_deals` omitted from pipeline snapshot; by_stage carried from 2026-09-25 run with count totals updated.",
@@ -6265,7 +6263,8 @@
         "competitive_intel_html: signal updates for 6 competitors NOT written to competitive-intel.html this run (token budget). New signals noted in run log only. competitive-intel.json updated field stamped.",
         "phase_1_5_state_signal: State Signal (MQA) pull not completed this run.",
         "content_performance: Phase 2.6 content analytics pull not completed this run.",
-        "semrush_keywords: SEMrush keyword refresh (Phase 2B) not completed this run."
+        "semrush_keywords: SEMrush keyword refresh (Phase 2B) not completed this run.",
+        "by_product / by_segment.mql backfilled 2026-09-28 via query_crm_data GROUP BY (product = EQ membership, multi-tagged contacts count toward each; 16 of 76 MQLs have no product)."
       ],
       "yoy": {
         "period": "2025-09-22",
