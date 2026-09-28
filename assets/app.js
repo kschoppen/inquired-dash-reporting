@@ -1169,6 +1169,81 @@ function renderCampaign(d) {
     ? `<div class="cc-pill cc-pill-${r}"><span class="cc-dot cc-dot-${r}"></span>${ragCounts[r]} ${RAG_LABEL[r]}</div>`
     : "").join("");
 
+  document.getElementById("view").innerHTML = `
+    ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
+    <div class="cards">
+      ${card("Active campaigns", fmtN(t.active_campaigns ?? camps.length))}
+      ${card("Contacts touched", fmtN(t.contacts ?? grpTotal("contacts")))}
+      ${card("HIH leads", fmtN(t.hih ?? grpTotal("hih")), "", "high-intent handraisers")}
+      ${card("HIH share", (t.hih_pct ?? rate(t.hih ?? grpTotal("hih"), t.contacts ?? grpTotal("contacts"))) + "%")}
+      ${card("MQLs", fmtN(t.mql ?? grpTotal("mql")), deltaHTML(t.mql, t.mql_prior, {label:"MoM"}))}
+    </div>
+    <div class="section-label">Status at a glance</div>
+    <div class="cc-strip">${ragStrip}</div>
+    ${groups.length ? `
+    <div class="section-label">By strategic group — ${last.label}</div>
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bd">
+        <thead><tr><th>Group</th><th>Contacts</th><th>HIH</th><th>HIH%</th><th>MQL</th></tr></thead>
+        <tbody>${groups.map((g) => {
+          const gpct = g.hih_pct != null ? g.hih_pct : rate(g.hih, g.contacts);
+          const grag = gpct == null ? "" : gpct >= 20 ? "cc-thr-green" : gpct >= 10 ? "cc-thr-amber" : "cc-thr-red";
+          return `<tr>
+            <td><span class="dot" style="background:${gColor(g.group)};display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px"></span>${g.group}</td>
+            <td>${fmtN(g.contacts)}</td>
+            <td>${fmtN(g.hih)}</td>
+            <td><span class="${grag}" style="font-weight:600">${gpct != null ? gpct.toFixed(1) + "%" : "—"}</span></td>
+            <td>${fmtN(g.mql)}</td>
+          </tr>`;
+        }).join("")}</tbody>
+      </table>
+    </div>` : ""}
+    <div class="section-label">Campaign health — ${last.label}</div>
+    <div class="cc-grid">${camps.map((c) => campCard(c, benchPct)).join("")}</div>
+    <div class="cc-threshold">
+      <strong>RAG thresholds (HIH% of contacts touched):</strong>
+      <span class="cc-thr-green">Green ≥ 20%</span> ·
+      <span class="cc-thr-amber">Amber 10–19%</span> ·
+      <span class="cc-thr-red">Red &lt;10%</span> ·
+      <span class="cc-thr-grey">Grey &lt;10 contacts</span> —
+      benchmark line = ${benchPct.toFixed(0)}% portfolio average (${last.label})
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>MQL trend <span class="muted">(all campaigns)</span></h3><div class="chartbox"><canvas id="cTrend"></canvas></div></div>
+      ${intentCamps.length ? `<div class="panel"><h3>Intent distribution <span class="muted">(lists ≥100 contacts)</span></h3><div class="chartbox"><canvas id="cIntent"></canvas></div>
+        ${note("High / Medium / Low intent tier per campaign. A list skewing High is a bright spot; skewing Low flags targeting or asset-tagging issues.")}</div>` : ""}
+    </div>`;
+
+  const noLeg = { plugins: { legend: { display: false } }, maintainAspectRatio: false };
+  const botLeg = { plugins: { legend: { position: "bottom" } }, maintainAspectRatio: false };
+  mkChart("cTrend", { type: "line", data: { labels, datasets: [{ label: "MQL", data: months.map((m) => m.total && m.total.mql), borderColor: IJ, backgroundColor: IJ_FADE, fill: true, tension: 0.25 }] }, options: { ...noLeg } });
+  if (intentCamps.length) {
+    mkChart("cIntent", { type: "bar", data: { labels: intentCamps.map((c) => c.name), datasets: [
+        { label: "High", data: intentCamps.map((c) => c.intent.high), backgroundColor: IJ, stack: "i" },
+        { label: "Medium", data: intentCamps.map((c) => c.intent.medium), backgroundColor: PLUM, stack: "i" },
+        { label: "Low", data: intentCamps.map((c) => c.intent.low), backgroundColor: GREY, stack: "i" } ] },
+      options: { ...botLeg, indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true }, y: { stacked: true } } } });
+  }
+}
+
+// ---- content performance tab ----
+function renderContentPerformance(d) {
+  charts.forEach((c) => c.destroy()); charts.length = 0;
+  const weeks = d.weeks || [];
+  if (!weeks.length) {
+    document.getElementById("view").innerHTML = `
+      <div class="panel"><h3>Content Performance: awaiting first run</h3>
+        <p class="insight">This tab populates on the next weekly Dash refresh.</p>
+      </div>`;
+    return;
+  }
+  const last = weeks[weeks.length - 1];
+  const pages = last.pages || [];
+  const t = last.totals || {};
+  const FLAG_LABEL = { gap: "Conversion gap", watch: "Watch", healthy: "Healthy" };
+  const FLAG_CLASS = { gap: "cc-thr-red", watch: "cc-thr-amber", healthy: "cc-thr-green" };
+  const TYPE_LABEL = { landing_page: "Landing page", blog_post: "Blog post", site_page: "Site page" };
+
   // Sections: top converters → watch → blog engagement → conversion gaps (site/landing pages only).
   // Blogs aren't expected to convert, so they're judged on reach + engagement instead of the gap flag.
   const isBlog = (p) => p.content_type === "blog_post";
