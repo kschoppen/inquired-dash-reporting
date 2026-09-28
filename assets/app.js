@@ -954,7 +954,7 @@ function renderWeekly(d) {
       ${rdKpi({ label: "MQL → SQL", value: lastConv != null ? lastConv + "%" : "—", st: convSt[0], stLbl: convSt[1], delta: rdPts(lastConv, baseConv, ""), cmp: baseConv != null ? `avg ${baseConv}%` : "", yoy: lyConv != null ? `${rdPts(lastConv, lyConv, "YoY")} <span class="cmp">LY ${lyConv}%</span>` : `<span class="rd-cov">No YoY data</span>`, spark: "rdW_conv" })}
     </div>
 
-    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent", d.hih_list_url ? `<a class="lnk" style="margin-left:auto;font-size:13px" href="${d.hih_list_url}" target="_blank" rel="noopener">HIH list in HubSpot ↗</a>` : "")}</div>
+    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent", d.hih_list_url ? `<a class="hih-hs-link" style="margin:0 0 0 auto" href="${d.hih_list_url}" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>` : "")}</div>
     ${d.hih_exclusions ? `<p class="cap" style="margin:0 0 8px">${d.hih_exclusions}${last.funnel && last.funnel.hih_excluded ? ` This week: ${["internal", "higher_ed", "competitor"].map((k) => `${last.funnel.hih_excluded[k] || 0} ${{ internal: "inquirED", higher_ed: "higher-ed", competitor: "competitor" }[k]}`).join(", ")} removed.` : ""}</p>` : ""}
     <div class="rd-grid g2">
       <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by product · vs last week</div>${rdCov("Primary product per contact")}</div>
