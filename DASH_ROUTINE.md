@@ -187,7 +187,7 @@ Wired via **`scripts/gsc_brand_lift.py`** (stdlib-only, no pip installs). It pul
 
 **Credentials (env vars, never echo):** `GSC_CLIENT_ID` / `GSC_CLIENT_SECRET` (the GA4 OAuth client) + `GSC_REFRESH_TOKEN` (refresh token minted with the `https://www.googleapis.com/auth/webmasters.readonly` scope).
 
-**Project prerequisite (one-time):** the **Search Console API** (`searchconsole.googleapis.com`) must be enabled in the Google Cloud project that owns the OAuth client — project **68420228287**, the same project as GA4. Enabling GA4's API does *not* enable this one; each API is toggled separately. If it's off, every call 403s with `accessNotConfigured` and the script exits `1` with a flag naming the enable URL. Enable at <https://console.cloud.google.com/apis/library/searchconsole.googleapis.com?project=68420228287> and re-run; allow a few minutes to propagate. This is distinct from a credential problem — a valid refresh token with the right scope still 403s while the API is off.
+**Project prerequisite (one-time):** the **Search Console API** (`searchconsole.googleapis.com`) must be enabled in the Google Cloud project that owns the OAuth client — project **68420228287**, the same project as GA4. Enabling GA4's API does *not* enable this one; each API is toggled separately. If it's off, every call 403s with `accessNotConfigured` and the script exits `1` with a flag naming the enable URL. Enable at [Search Console API in Cloud Console](https://console.cloud.google.com/apis/library/searchconsole.googleapis.com?project=68420228287) and re-run; allow a few minutes to propagate. This is distinct from a credential problem — a valid refresh token with the right scope still 403s while the API is off.
 
 ```bash
 cd inquired-dash-reporting
@@ -258,6 +258,9 @@ Also refresh these top-level fields:
   `by_product`/`by_stage`/`active_by_product` from the Phase 1 deal-level aggregation; `active` and `moved_deals` from the Phase 1 stage-movement pull. `by_stage` only lists stages that actually have open deals — don't pad with zeros. Stage labels use the HubSpot label for that pipeline (e.g. "Validation/Approval"). If the stage-movement pull fails, omit `active`/`moved_deals` (the tab falls back to `by_stage` counts) and add a data flag.
 - `segment_coverage` — `{ "hih": %, "mql": %, "sql": %, "opp": % }`
 - `product_caveat` / `segment_caveat` — keep existing strings; update only if data reality changed
+- `hih_exclusions` — the caption the tab shows under "HIH this week" (the tab appends this week's `funnel.hih_excluded` counts to it). Keep the existing string. Update it only when the HIH exclusion rules in Phase 1 change, and then make it describe exactly the same three exclusions (internal, competitor, higher-ed, plus the K-12 size guard).
+- `hih_list_url` — the "View HIH list in HubSpot" link (list 10586). Keep unchanged unless the list ID changes.
+- `drill_note` — keep the existing string (drill rows store only HubSpot record ID + segment + source, because the repo is public).
 - `pipeline_goal` — see **pipeline_goal (shared)** below; write the identical object here and into `data/overview.json`
 
 Preserve all other fields — do not delete or restructure.
