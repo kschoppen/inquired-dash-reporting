@@ -10,7 +10,7 @@ const TABS = [
     meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
       sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)"] } },
   { id: "campaign",   label: "Campaign Health",     data: "data/campaign-analytics.json", render: renderCampaign,
-    meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026",
+    meta: { desc: "Per-campaign health by strategic group: list reach, MQLs, high-intent contacts and month-over-month movement.", cadence: "Twice monthly (15th + 28th)", next: "~Aug 1, 2026",
       sources: ["HubSpot CRM (list membership)"] } },
   { id: "pulse",      label: "Account Pulse (MQA)", static: true,                    render: renderAccountPulse,
     metaFile: "data/account-pulse.json",
@@ -124,7 +124,7 @@ function topPageRows(pages, valKey, valClass, valFmt) {
 // ({hih_pool, mql_to_sql_pct, closed_won_mtd}). Anything else degrades to no tiles
 // rather than throwing and blanking the whole tab.
 const KPI_FLAT_META = {
-  hih_pool:       { label: "HIH Pool",        sub: "High-intent contacts · 90-day rolling pool", fmt: fmtN },
+  hih_pool:       { label: "HIH Pool",        sub: "All contacts at intent tier High", fmt: fmtN },
   mql_to_sql_pct: { label: "MQL → SQL Conv.", sub: "Latest weekly run",                          fmt: (v) => v + "%" },
   closed_won_mtd: { label: "Closed Won MTD",  sub: "Month to date",                              fmt: (v) => v },
 };

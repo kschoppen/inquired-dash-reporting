@@ -4,7 +4,7 @@
   "updated": "2026-09-28",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
-  "cadence": "Weekly · Mondays (HubSpot numbers via DASH_ROUTINE.md PHASE 1.5); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
+  "cadence": "Weekly · Mondays (HubSpot numbers + Warm Signals via SIGNALS_ROUTINE.md PHASE A, Mondays 8am ET); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
     "266 of 1781 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
     "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",

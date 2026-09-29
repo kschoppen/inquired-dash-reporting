@@ -7,8 +7,8 @@ unknown. America/Detroit for all dates.
 
 This is the bi-monthly **full run** that owns everything on the Competitive Intel tab except
 keywords: threat levels, ad activity, positioning, latest signals, messaging, AI summaries,
-the AI Overview block, stat tiles, and Strategic Opportunities. The Monday Dash routine
-(DASH_ROUTINE.md PHASE 2) only prepends weekly signals and refreshes keywords between runs.
+the AI Overview block, stat tiles, and Strategic Opportunities. The Monday CI weekly routine
+(CI_WEEKLY_ROUTINE.md) only prepends weekly signals and refreshes keywords between runs.
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app.
 `inquired-miles/inquired-marketing-skills` is also checked out (it holds `scripts/ci-screenshot.js`).

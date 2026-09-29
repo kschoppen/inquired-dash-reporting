@@ -9,7 +9,7 @@ weekly-owned brand_lift blocks in place:
 
 It NEVER touches data/monthly-digest.json (monthly digest owns that block).
 
-Channels (see DASH_ROUTINE.md PHASE 2.5 / weekly-marketing-digest SKILL):
+Channels (see DASH_ROUTINE.md / weekly-marketing-digest SKILL):
   branded    — clicks/impressions on branded queries, inquired.com property
                (query contains: inquired / inquiry journeys / inkwell /
                 great first eight / gf8)

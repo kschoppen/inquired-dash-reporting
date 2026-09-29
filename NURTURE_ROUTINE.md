@@ -2,7 +2,7 @@
 
 Run UNATTENDED every Tuesday at 7am ET. Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
-This routine owns the **Nurture Programs** tab: it rewrites `data/nurture-programs.json` and nothing else on the page. `nurture-programs.html` renders every number and note from that file (joined with `data/nurture-workflows.json`), so **never edit the HTML**. It never touches the Teacher Nurture tab (that page pulls Mailchimp live on every load) or any file another routine owns.
+This routine owns the **Nurture Programs** tab: it rewrites `data/nurture-programs.json` and nothing else on the page. `nurture-programs.html` renders every number and note from that file (joined with `data/nurture-workflows.json`), so **never edit the HTML**. It never touches the Teacher Nurture tab (its own Tuesday 7:30am routine, TEACHER_NURTURE_ROUTINE.md, writes the snapshot it reads) or any file another routine owns.
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app. HubSpot portal `4451852`.
 
