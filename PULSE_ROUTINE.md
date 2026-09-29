@@ -65,7 +65,22 @@ If any of the five pulls fails after retries, stop: don't run the script, don't 
 
 ## STEP 2: Decision log snapshot (Airtable MCP)
 
-`list_records_for_table` on base `appzko62XB8YDvyqU`, table **Account Decisions** (page through every record). Write `data/pulse-decisions.json`:
+First `list_tables_for_base` on base `appzko62XB8YDvyqU`. **If there is no table named "Account Decisions", create it** with `create_table` (this is one-time setup; the dashboard's decision buttons write to it). Pass `fields` as a real JSON array:
+
+| Field | Type |
+|---|---|
+| Entry | singleLineText (primary field, first in the array) |
+| CompanyId | singleLineText |
+| CompanyName | singleLineText |
+| Decision | singleSelect, choices Demote, Recycle, Escalate, Cleared |
+| Note | multilineText |
+| DecidedBy | singleLineText |
+| DecidedAt | singleLineText |
+| DaysMqaAtDecision | number, precision 0 |
+
+Description: "Append-only log of Demote / Recycle / Escalate decisions on stale MQA accounts from the Account Pulse (MQA) tab. One row per click, never overwritten." Never modify or delete the existing "Decisions" table (State Signal owns it). Say in the DM whether you created the table this run.
+
+Then `list_records_for_table` on table **Account Decisions** (page through every record). Write `data/pulse-decisions.json`:
 
 ```json
 { "as_of": "<TODAY>", "entries": [ { "companyId": "...", "companyName": "...", "decision": "Demote|Recycle|Escalate|Cleared", "note": "...", "decidedBy": "...", "decidedAt": "<ISO timestamp>", "daysMqa": 316 } ] }
