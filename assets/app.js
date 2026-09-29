@@ -2,7 +2,7 @@
 const TABS = [
   { id: "overview",    label: "Overview",           data: "data/overview.json",          render: renderOverview,
     meta: { desc: "Command center — funnel health, campaign signals, and weekly pulse across all products.", cadence: "Live", next: "Always current",
-      sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)", "Account Pulse snapshot (MQA count)"] } },
+      sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)"] } },
   { id: "monthly",    label: "Monthly Digest",      data: "data/monthly-digest.json",    render: renderMonthly,
     meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026",
       sources: ["HubSpot CRM", "HubSpot Marketing Email", "MKT1 AEO site audit (monthly)", "GA4", "Semrush (Position Tracking · AI Visibility · Keyword Gap)", "Google Ads", "LinkedIn Ads", "Google Search Console (brand lift)"] } },
@@ -12,9 +12,10 @@ const TABS = [
   { id: "campaign",   label: "Campaign Health",     data: "data/campaign-analytics.json", render: renderCampaign,
     meta: { desc: "Per-campaign performance: impressions, CTR, CPL, and pipeline attribution by channel.", cadence: "Monthly", next: "~Aug 1, 2026",
       sources: ["HubSpot CRM (list membership)"] } },
-  { id: "pulse",      label: "Account Pulse (MQA)", data: "data/account-pulse.json",     render: renderAccountPulse,
-    meta: { desc: "Marketing-qualified account list: engagement scores, HIH activity, and stage readiness by account.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
-      sources: ["HubSpot CRM (company + contact records)"] } },
+  { id: "pulse",      label: "Account Pulse (MQA)", static: true,                    render: renderAccountPulse,
+    metaFile: "data/account-pulse.json",
+    meta: { desc: "Which MQA accounts to pass to Sales, marketing's down-funnel impact, what moved this week, and stale MQAs to demote, recycle or escalate.", cadence: "Weekly · Mondays", next: "Monday",
+      sources: ["HubSpot CRM (company MQA lifecycle stage + stage dates, mqa_signal, notes_last_contacted, owner)", "Airtable Account Decisions log (stale-MQA decisions)", "Refreshed by the Monday pulse routine (PULSE_ROUTINE.md)"] } },
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
     meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
       sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
@@ -1426,225 +1427,12 @@ function renderPipelineStructure(ps) {
   </div>`;
 }
 
-// ---- Account Pulse (MQA) tab ----
-function renderAccountPulse(d) {
-  charts.forEach(function(c) { c.destroy(); }); charts.length = 0;
-
-  var fc = d.funnel_counts || {};
-  var s1 = d.section1 || [];
-  var s2 = d.section2 || [];
-  var s3 = d.section3 || [];
-  var s4 = d.section4 || [];
-  var s5 = d.section5 || {};
-  var hist = d.history || [];
-  var hasHistory = hist.length >= 2;
-
-  var weekOnePill = '<span class="delta flat">Week 1</span>';
-  var weekOneOrDelta = function(cur, prev) {
-    return (hasHistory && prev != null) ? deltaHTML(cur, prev, {label: 'WoW'}) : weekOnePill;
-  };
-
-  var hsLink = function(url, name) {
-    return '<a href="' + url + '" target="_blank" rel="noopener" class="hs-link">' + name + '</a>';
-  };
-  var metaSmall = function(t) { return '<span class="meta-small">' + t + '</span>'; };
-
-  // Section 1 rows
-  var s1RowsHtml = function(rows) {
-    return rows.map(function(r) {
-      var stageBadge = r.stage + (r.stage_new ? ' <span class="badge-new">new</span>' : '');
-      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · ' + r.owner) + '</td>'
-        + '<td>' + stageBadge + metaSmall(r.signal) + '</td>'
-        + '<td>' + metaSmall(r.why) + '</td></tr>';
-    }).join('');
-  };
-
-  // Section 2 cohort helper
-  var cohortHtml = function(label, predicate, color) {
-    var rows = s2.filter(predicate);
-    if (!rows.length) return '';
-    var rowsHtml = rows.map(function(r) {
-      var coldStr = r.days_cold == null ? '<strong>never</strong>' : ('~' + fmtN(r.days_cold));
-      var lastCampaign = r.last_campaign
-        ? r.last_campaign
-        : '<span class="placeholder-cell">—</span>';
-      var dealContext = r.deal_context
-        ? r.deal_context
-        : '<span class="placeholder-cell">—</span>';
-      return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · ' + r.owner) + '</td>'
-        + '<td>' + metaSmall(r.signal) + '</td>'
-        + '<td style="text-align:right;font-weight:700">' + coldStr + '</td>'
-        + '<td>' + lastCampaign + '</td>'
-        + '<td>' + dealContext + '</td></tr>';
-    }).join('');
-    return '<div class="pulse-cohort-hdr" style="border-left:3px solid ' + color + '">'
-      + '<strong>' + label + '</strong> <span class="badge-count">' + rows.length + ' accounts</span> ' + weekOneOrDelta(rows.length, null)
-      + '</div>'
-      + '<table class="pulse-table"><thead><tr>'
-      + '<th>District</th>'
-      + '<th>Signal</th>'
-      + '<th style="text-align:right">Days cold</th>'
-      + '<th>Last campaign touched <span class="source-badge hs">HubSpot</span></th>'
-      + '<th>Deal context / notes <span class="source-badge" style="background:rgba(106,62,154,0.09);color:#6a3e9a;border-color:rgba(106,62,154,0.2)">Starbridge</span></th>'
-      + '</tr></thead>'
-      + '<tbody>' + rowsHtml + '</tbody></table>';
-  };
-
-  // Section 3 rows with days bar
-  var s3MaxDays = Math.max.apply(null, s3.map(function(r) { return r.days_engaged || 0; }).concat([1]));
-  var s3RowsHtml = s3.map(function(r) {
-    var pct = Math.round((r.days_engaged || 0) / s3MaxDays * 100);
-    return '<tr><td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state) + '</td>'
-      + '<td>' + metaSmall(r.signals) + '</td>'
-      + '<td><div class="days-bar-wrap"><div class="days-bar" style="width:' + pct + '%"></div></div>' + metaSmall(r.days_engaged + ' days') + '</td>'
-      + '<td>' + metaSmall(r.action) + '</td></tr>';
-  }).join('');
-
-  // Section 4 rows with bar + batch flag
-  var BATCH_DATE = '2025-11-17';
-  var batchCount = s4.filter(function(r) { return r.first_mqa_date === BATCH_DATE; }).length;
-  var s4MaxDays = Math.max.apply(null, s4.map(function(r) { return r.days_mqa || 0; }).concat([1]));
-  var s4RowsHtml = s4.map(function(r) {
-    var pct = Math.round((r.days_mqa || 0) / s4MaxDays * 100);
-    var isBatch = r.first_mqa_date === BATCH_DATE;
-    var batchTag = isBatch ? ' <span class="batch-badge">11/17 batch</span>' : '';
-    return '<tr' + (isBatch ? ' class="batch-row"' : '') + '>'
-      + '<td>' + hsLink(r.hs_url, r.name) + metaSmall(r.segment + ' · ' + r.state + ' · last contact ' + r.last_contact) + batchTag + '</td>'
-      + '<td>' + metaSmall(r.signal || '(no signal recorded)') + '</td>'
-      + '<td style="text-align:right"><div class="days-bar-wrap"><div class="days-bar stale-bar" style="width:' + pct + '%"></div></div><strong>' + r.days_mqa + '</strong></td></tr>';
-  }).join('');
-
-  // Section 5 action cards
-  var s5Html = '';
-  if (s5.cmo) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a7c4a">Marketing</div><div class="pulse-action-body">' + s5.cmo + '</div></div>';
-  if (s5.sales) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#c2540a">Sales</div><div class="pulse-action-body">' + s5.sales + '</div></div>';
-  if (s5.marketing_ops) s5Html += '<div class="pulse-action-card"><div class="pulse-action-role" style="color:#0a5dc2">Marketing Ops</div><div class="pulse-action-body">' + s5.marketing_ops + '</div></div>';
-
-  // Batch callout
-  var batchCallout = batchCount >= 3
-    ? '<div class="batch-callout">⚠️ <strong>' + batchCount + ' accounts share a first_mqa_date of ' + BATCH_DATE + '</strong> — likely a backfill or import event, not organic signal. These are highlighted below. Recommend: audit MQA scoring rules + tie to November import if one exists.</div>'
-    : '';
-
-  // Owner filter chips
-  var owners = [];
-  s1.forEach(function(r) { if (owners.indexOf(r.owner) === -1) owners.push(r.owner); });
-  var ownerChips = owners.map(function(o) {
-    return '<button class="chip" data-pf="owner" data-val="' + o + '">' + o.split(' ')[0] + '</button>';
-  }).join('');
-
-  var sectionHdr = function(label, color) {
-    return '<div class="section-label" style="border-left:3px solid ' + color + ';padding-left:8px">' + label + '</div>';
-  };
-
-  var openDecisions = '<div class="open-decisions">'
-    + '<div class="open-decision">'
-    + '<div class="open-decision-icon">🔌</div>'
-    + '<div class="open-decision-body">'
-    + '<div class="open-decision-label">Open integration</div>'
-    + '<strong>Starbridge not yet connected.</strong> This tab currently pulls from a static JSON snapshot. Once the Starbridge MCP is wired in, the page will pull live HubSpot account data on load — stages, signals, owner, last contact — without a manual skill run each week. Kelsey is working on getting the Starbridge MCP download working locally.'
-    + '</div></div>'
-    + '<div class="open-decision">'
-    + '<div class="open-decision-icon">🗂️</div>'
-    + '<div class="open-decision-body">'
-    + '<div class="open-decision-label">Open decision</div>'
-    + '<strong>MQA definition needs revisiting.</strong> The current Aware / Engaged / MQA stage logic was built by Nick and lives in HubSpot lists — but the scoring criteria haven\'t been revalidated to reflect how we think about account intent today. Before this dashboard becomes a GTM tool, marketing + Kelsey need to audit the list rules, confirm which signals belong at each stage, and decide whether Starbridge or GA4 signals should supplement or replace the current HubSpot-only scoring. Tim is the HubSpot list owner.'
-    + '</div></div>'
-    + '<div class="open-decision">'
-    + '<div class="open-decision-icon">🪣</div>'
-    + '<div class="open-decision-body">'
-    + '<div class="open-decision-label">Needs validation</div>'
-    + '<strong>Account buckets need spot-checking before we act on them.</strong> The Hot+Cold, Warming, and Stale MQA buckets are signal-based but haven\'t been validated against actual account activity and history. Before using these buckets to drive outreach or demotion decisions, we should pull a sample from each and check HubSpot activity logs, deal history, and sequence enrollment to confirm the bucketing logic holds up in practice.'
-    + '</div></div>'
-    + '<div class="open-decision">'
-    + '<div class="open-decision-icon">🤝</div>'
-    + '<div class="open-decision-body">'
-    + '<div class="open-decision-label">Needs workshopping</div>'
-    + '<strong>Marketing vs. Sales action ownership on accounts is unresolved.</strong> The "Three Things" section and suggested actions throughout this dashboard assign work to Marketing or Sales — but we haven\'t aligned as a team on who owns what at each stage, when marketing hands off vs. supports, or how to avoid duplicate outreach. This needs a collaborative session before we move into execution.'
-    + '</div></div>'
-    + '</div>';
-
-  document.getElementById('view').innerHTML =
-    openDecisions
-
-    // Trend strip
-    + sectionHdr('★ This week at a glance <span class="muted">(WoW Δ collects after 2+ snapshots)</span>', '#0a7c4a')
-    + '<div class="cards">'
-    + card('New MQAs (7d)', fmtN(fc.new_mqa_7d), weekOneOrDelta(fc.new_mqa_7d, null), 'MQA stage reached this week')
-    + card('Hot + Cold flagged', fmtN(fc.hot_cold_flagged), weekOneOrDelta(fc.hot_cold_flagged, null), 'MQA + high-intent + 60d+ cold')
-    + card('Warming accounts', fmtN(fc.warming_2plus_signals), weekOneOrDelta(fc.warming_2plus_signals, null), 'Engaged + 2+ signals')
-    + card('Stale MQAs (120d+)', fmtN(fc.stale_mqa_120d_no_opp), weekOneOrDelta(fc.stale_mqa_120d_no_opp, null), 'MQA, no opp, 120+ days')
-    + '</div>'
-
-    // Section 1
-    + sectionHdr('1. What Changed This Week <span class="muted">(last 7 days · ' + s1.length + ' accounts)</span>', '#0a7c4a')
-    + '<div class="panel">'
-    + '<div class="pulse-filter-bar">'
-    + '<span class="tlabel">Stage:</span>'
-    + '<button class="chip on" data-pf="stage" data-val="all">All</button>'
-    + '<button class="chip" data-pf="stage" data-val="MQA">New MQA</button>'
-    + '<button class="chip" data-pf="stage" data-val="Engaged">New Engaged</button>'
-    + '<span class="tlabel" style="margin-left:10px">Owner:</span>'
-    + '<button class="chip on" data-pf="owner" data-val="all">All</button>'
-    + ownerChips
-    + '</div>'
-    + note('📍 All ' + s1.length + ' movers are NJ/NY/MN districts owned by <b>Anne Matz</b>. Two are net-new MQAs; ten are Engaged-stage triggers from one DL fire on 4/25. Pressure-test: pull the source DL and check unique vs. repeat opens before reading this as broad pipeline growth.')
-    + '<table class="pulse-table"><thead><tr><th style="width:40%">District</th><th style="width:28%">Stage / Signal</th><th>Why it matters</th></tr></thead>'
-    + '<tbody id="s1Tbody">' + s1RowsHtml(s1) + '</tbody></table>'
-    + '</div>'
-
-    // Section 2
-    + sectionHdr('2. Hot Signal + Cold Outreach <span class="muted">(top 15 of ' + fmtN(fc.hot_cold_flagged) + ' flagged)</span>', '#c2540a')
-    + '<div class="panel">'
-    + note('⚠️ MQA-stage accounts with high-intent signals and 60+ days since last contact. Sorted by days cold, descending. +14 more accounts in HubSpot (60–125 days cold).')
-    + cohortHtml('Never contacted', function(r) { return r.days_cold == null; }, '#b3261e')
-    + cohortHtml('› 365 days cold — multi-year', function(r) { return r.days_cold != null && r.days_cold >= 365; }, '#c2540a')
-    + cohortHtml('180–365 days cold', function(r) { return r.days_cold != null && r.days_cold >= 180 && r.days_cold < 365; }, '#f59e0b')
-    + cohortHtml('60–180 days cold', function(r) { return r.days_cold != null && r.days_cold >= 60 && r.days_cold < 180; }, '#1C2660')
-    + '</div>'
-
-    // Section 3
-    + sectionHdr('3. Warming Accounts <span class="muted">(Engaged + 2+ signals · ' + s3.length + ' accounts)</span>', '#0a5dc2')
-    + '<div class="panel">'
-    + note('One signal away from MQA. Marketing should accelerate, not wait. Bar = relative days in Engaged — longer = more urgency.')
-    + '<table class="pulse-table"><thead><tr><th style="width:32%">District</th><th style="width:26%">Signals</th><th style="width:16%">Days Engaged</th><th>Suggested action</th></tr></thead>'
-    + '<tbody>' + s3RowsHtml + '</tbody></table>'
-    + '</div>'
-
-    // Section 4
-    + sectionHdr('4. Stale MQAs <span class="muted">(120+ days, no opp · ' + s4.length + ' accounts)</span>', '#6a3e9a')
-    + '<div class="panel">'
-    + note('These have been MQA for a long time — should they be demoted, re-engaged, or escalated?')
-    + batchCallout
-    + '<table class="pulse-table"><thead><tr><th style="width:44%">District</th><th style="width:32%">Signal</th><th style="text-align:right">Days MQA</th></tr></thead>'
-    + '<tbody>' + s4RowsHtml + '</tbody></table>'
-    + '</div>'
-
-    // Section 5
-    + sectionHdr('5. Three Things to Do This Week', '#0a7c4a')
-    + '<div class="pulse-actions">' + s5Html + '</div>'
-
-    + '<p class="flag" style="margin-top:4px">'
-    + 'Source: HubSpot portal 4451852 · '
-    + (hist.length >= 1 ? 'History: ' + hist.length + ' snapshot' + (hist.length > 1 ? 's' : '') + ' — WoW Δ appears after 2 snapshots.' : 'Week 1 of history — WoW Δ will appear next week after the pulse-history-tracker skill runs.')
-    + '</p>';
-
-  // Wire filter pills
-  var pulseFilter = { stage: 'all', owner: 'all' };
-  document.querySelectorAll('[data-pf]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var dim = btn.getAttribute('data-pf');
-      var val = btn.getAttribute('data-val');
-      pulseFilter[dim] = val;
-      document.querySelectorAll('[data-pf="' + dim + '"]').forEach(function(b) {
-        b.classList.toggle('on', b.getAttribute('data-val') === val);
-      });
-      var filtered = s1.filter(function(r) {
-        return (pulseFilter.stage === 'all' || r.stage === pulseFilter.stage)
-          && (pulseFilter.owner === 'all' || r.owner === pulseFilter.owner);
-      });
-      document.getElementById('s1Tbody').innerHTML = s1RowsHtml(filtered);
-    });
-  });
+// ---- Account Pulse (MQA) tab ---- data-driven page, see account-pulse.html
+function renderAccountPulse() {
+  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
+  const view = document.getElementById("view");
+  view.style.cssText = "padding:0;max-width:none;margin:0;";
+  view.innerHTML = `<iframe src="account-pulse.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Account Pulse (MQA)"></iframe>`;
 }
 
 // ---- State Signal (MQA) tab ----

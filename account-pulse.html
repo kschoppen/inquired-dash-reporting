@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Pulse · inquirED</title>
+<link rel="stylesheet" href="assets/nurture.css">
+<style>
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: -0.5rem 0 1rem; font-size: 0.75rem; }
+  .chips .lbl { text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: var(--ink-light); font-size: 0.66rem; margin-right: 0.2rem; }
+  .chip { font: inherit; font-size: 0.75rem; border: 1px solid var(--border); background: #fff; color: var(--ink-mid); padding: 0.2rem 0.65rem; border-radius: 24px; cursor: pointer; }
+  .chip.on { background: #144745; color: #fff; border-color: #144745; }
+  .chip:focus-visible, .dbtn:focus-visible { outline: 2px solid #144745; outline-offset: 2px; }
+  .score { font-weight: 900; color: #144745; font-size: 0.95rem; }
+  .score-bar { display: flex; height: 6px; width: 90px; border-radius: 3px; overflow: hidden; background: #EEE; margin-top: 0.25rem; }
+  .score-bar i { display: block; height: 100%; }
+  .sb-sig { background: #144745; } .sb-rec { background: #5B5A9E; } .sb-con { background: #F99792; }
+  .legend-inline { font-size: 0.72rem; color: var(--ink-light); display: flex; gap: 0.9rem; flex-wrap: wrap; margin: -0.5rem 0 0.9rem; }
+  .legend-inline i { display: inline-block; width: 10px; height: 6px; border-radius: 2px; margin-right: 0.3rem; vertical-align: middle; }
+  .sig { display: inline-block; font-size: 0.68rem; background: var(--lb); color: var(--ink-mid); padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.1rem 0.2rem 0.1rem 0; }
+  .acct small { display: block; color: var(--ink-light); font-weight: 400; font-size: 0.72rem; }
+  .cold { color: #C0392B; font-weight: 700; }
+  .origin-bar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; margin: 0.25rem 0 0.5rem; border: 1px solid var(--border); }
+  .origin-bar div { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; }
+  .o-mqa { background: #144745; } .o-eng { background: #5B5A9E; } .o-none { background: #9A9A9A; } .o-amb { background: #CECECE; color: #515151 !important; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .decider { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; margin: -0.5rem 0 1rem; flex-wrap: wrap; }
+  .decider input { font: inherit; font-size: 0.8rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; width: 12rem; }
+  .dbtns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .dbtn { font: inherit; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--border); background: #fff; padding: 0.2rem 0.55rem; border-radius: 6px; cursor: pointer; color: var(--ink-mid); }
+  .dbtn:hover { border-color: #144745; color: #144745; }
+  .dbtn[disabled] { opacity: 0.5; cursor: wait; }
+  .dnote { font: inherit; font-size: 0.75rem; width: 100%; margin-top: 0.35rem; padding: 0.25rem 0.45rem; border: 1px solid var(--border); border-radius: 6px; }
+  .dec { font-size: 0.72rem; margin-bottom: 0.3rem; }
+  .dec-Demote { background: #F99792; color: #6B0000; } .dec-Recycle { background: #F7EC89; color: #5A4A00; } .dec-Escalate { background: #B1E0BB; color: #144745; }
+  .followup { display: block; font-size: 0.72rem; color: #C0392B; font-weight: 700; margin-top: 0.2rem; }
+  .hist { font-size: 0.72rem; color: var(--ink-mid); margin-top: 0.3rem; }
+  .hist summary { cursor: pointer; color: var(--mp); font-weight: 700; }
+  .hist li { margin: 0.15rem 0 0 1rem; }
+  .dmsg { font-size: 0.72rem; margin-top: 0.25rem; }
+  .dmsg.bad { color: #C0392B; } .dmsg.ok { color: #144745; }
+  .src { font-size: 0.72rem; color: var(--ink-light); margin: -1.75rem 0 2.5rem; }
+  .chart-box { position: relative; height: 240px; margin-bottom: 1rem; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<!--
+  Data-driven. Every number on this page comes from data/account-pulse.json, written each
+  Monday by PULSE_ROUTINE.md (scripts/build_account_pulse.py does the math). Decisions on
+  stale MQAs are read live from the Airtable "Account Decisions" log through
+  /.netlify/functions/get-account-decisions. Don't hand-edit numbers into this file.
+-->
+<header class="site-header">
+  <div class="wordmark">inquirED <span>/ Account Pulse (MQA)</span></div>
+  <div class="header-divider"></div>
+  <div class="header-meta">
+    <div class="header-meta-item"><span class="header-label">Last pulled</span><span class="header-value" id="meta-updated">…</span></div>
+    <div class="header-divider"></div>
+    <div class="header-meta-item"><span class="header-label">Universe</span><span class="header-value">Medium, Large, Enterprise districts</span></div>
+  </div>
+  <div class="header-right"><span class="cadence-pill">Weekly, Mondays</span></div>
+</header>
+
+<main class="main">
+  <div class="freshness-strip">
+    <span class="fr-item"><span class="fr-label">Last pulled</span> <span id="fr-updated">…</span></span>
+    <span class="fr-pill" id="fr-pill" hidden></span>
+    <span class="fr-sep"></span>
+    <span class="fr-item" id="fr-source">HubSpot portal 4451852</span>
+  </div>
+  <div id="err"></div>
+
+  <div class="section-eyebrow">This week</div>
+  <div class="stat-row" id="tiles"><div class="loading">Loading…</div></div>
+  <p class="src" id="tiles-src"></p>
+
+  <div class="section-eyebrow">Pass to Sales</div>
+  <p class="section-note" id="pts-note"></p>
+  <details class="method"><summary>How the readiness score works</summary><div id="pts-method"></div></details>
+  <div class="chips" id="pts-chips"></div>
+  <div class="legend-inline"><span><i class="sb-sig"></i>Signal</span><span><i class="sb-rec"></i>How recently it hit MQA</span><span><i class="sb-con"></i>Contact gap</span></div>
+  <div id="pts-block"></div>
+  <p class="src" id="pts-src"></p>
+
+  <div class="section-eyebrow">Marketing's down-funnel impact</div>
+  <p class="section-note" id="imp-note"></p>
+  <div class="stat-row" id="imp-tiles"></div>
+  <div id="imp-origin"></div>
+  <div class="two-col">
+    <div id="imp-cohorts"></div>
+    <div id="imp-signals"></div>
+  </div>
+  <p class="src" id="imp-src"></p>
+
+  <div class="section-eyebrow">Moved this week</div>
+  <p class="section-note" id="mv-note"></p>
+  <div id="mv-block"></div>
+  <p class="src" id="mv-src"></p>
+
+  <div class="section-eyebrow">Stale MQAs: demote, recycle or escalate</div>
+  <p class="section-note" id="st-note"></p>
+  <div class="decider"><label for="decider">Your name</label><input id="decider" type="text" maxlength="80" placeholder="Needed to save a decision" autocomplete="name"><span class="muted" id="dec-status"></span></div>
+  <div class="chips" id="st-chips"></div>
+  <div id="st-block"></div>
+  <p class="src" id="st-src"></p>
+
+  <div class="section-eyebrow">12-week trend</div>
+  <p class="section-note" id="tr-note"></p>
+  <div id="tr-block"></div>
+  <p class="src" id="tr-src"></p>
+</main>
+
+<script src="assets/chart.umd.min.js"></script>
+<script>
+if (window.self !== window.top) document.querySelector(".site-header").style.display = "none";
+
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const n = (v) => v == null ? "—" : Number(v).toLocaleString("en-US");
+const pct = (v, d = 0) => v == null ? "—" : (v * 100).toFixed(d) + "%";
+const $ = (id) => document.getElementById(id);
+const html = (id, h) => { const el = $(id); if (el) el.innerHTML = h || ""; };
+function fmtDate(iso) {
+  if (!iso) return "—";
+  const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso + "T12:00:00Z" : iso);
+  return isNaN(d) ? iso : d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+const shortDate = (iso) => fmtDate(iso).replace(/, \d{4}$/, "");
+const daysSince = (iso) => { const d = new Date(iso + "T12:00:00Z"); return isNaN(d) ? null : Math.floor((Date.now() - d) / 86400000); };
+const tile = (value, label, cap, tone) => `<div class="stat-tile"><div class="stat-number ${tone || ""}">${value}</div><div class="stat-label">${esc(label)}</div>${cap ? `<div class="stat-cap">${cap}</div>` : ""}</div>`;
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+};
+
+let D = null, DEC = { entries: [], ok: false, error: null };
+const filt = { ptsOwner: "all", stOwner: "all", stView: "all" };
+
+function wow(key) {
+  const h = (D.history || []).filter((x) => x[key] != null);
+  if (h.length < 2) return "";
+  const cur = h[h.length - 1][key], prev = h[h.length - 2][key];
+  const diff = cur - prev;
+  if (key === "warmed_share") return `${diff >= 0 ? "▲" : "▼"} ${Math.abs(diff * 100).toFixed(0)} pts vs ${shortDate(h[h.length - 2].date)}`;
+  return diff === 0 ? `No change vs ${shortDate(h[h.length - 2].date)}` : `${diff > 0 ? "▲" : "▼"} ${Math.abs(diff)} vs ${shortDate(h[h.length - 2].date)}`;
+}
+const pulled = () => `pulled ${fmtDate(D.updated)}`;
+
+async function load() {
+  try {
+    D = await fetch("data/account-pulse.json", { cache: "no-store" }).then((r) => r.json());
+  } catch (e) {
+    return html("err", `<div class="err"><b>Couldn't load data/account-pulse.json.</b> ${esc(e.message)}</div>`);
+  }
+  renderFreshness(); renderTiles(); renderPass(); renderImpact(); renderMoved(); renderTrend();
+  renderStale();
+  loadDecisions();
+}
+
+function renderFreshness() {
+  $("meta-updated").textContent = $("fr-updated").textContent = fmtDate(D.updated);
+  if (D.source_line) $("fr-source").textContent = D.source_line;
+  const age = daysSince(D.updated), pill = $("fr-pill");
+  if (age != null) {
+    const stale = age > (D.stale_after_days || 8);
+    pill.className = "fr-pill " + (stale ? "stale" : "current");
+    pill.textContent = stale ? `Data is ${age} days old` : "Current";
+    pill.hidden = false;
+  }
+}
+
+function renderTiles() {
+  const t = D.tiles || {}, w = t.warmed_share || {};
+  html("tiles", [
+    tile(n(t.mqa_total), "Open MQAs", wow("mqa_total") || `${n(t.pass_to_sales)} in the pass-to-Sales window, ${n(t.stale_mqa)} stale`),
+    tile(n(t.engaged_total), "Engaged accounts", wow("engaged_total") || "Accounts one stage below MQA"),
+    tile(`${n(t.new_mqa_7d)} / ${n(t.new_engaged_7d)} / ${n(t.new_opp_7d)}`, "New MQA / Engaged / Opportunity, 7 days", "Details in Moved this week"),
+    tile(pct(w.pct), "New Opportunities marketing warmed first", `${n(w.warmed)} of ${n(w.of)} since ${shortDate(w.since)}${wow("warmed_share") ? " · " + wow("warmed_share") : ""}`, "accent"),
+  ].join(""));
+  html("tiles-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> counts, plus <code>recent_mqa_date</code>, <code>recent_mqa_engaged_date</code> and <code>first_mqa_opportunity_date</code> for the 7-day moves · ${esc(D.universe)} · ${pulled()}. Week-over-week change appears once two Monday pulls exist.`);
+}
+
+function ownerChips(rows, key, target) {
+  const owners = [...new Set(rows.map((r) => r.owner))].sort();
+  return `<span class="lbl">Owner</span>` + ["all", ...owners].map((o) =>
+    `<button class="chip ${filt[key] === o ? "on" : ""}" data-f="${key}" data-v="${esc(o)}">${o === "all" ? "All" : esc(o)}</button>`).join("");
+}
+function wireChips(containerId, rerender) {
+  $(containerId).querySelectorAll("[data-f]").forEach((b) => b.onclick = () => { filt[b.dataset.f] = b.dataset.v; rerender(); });
+}
+function contactCell(r) {
+  if (r.days_since_contact == null) return `<span class="cold">Never</span>`;
+  const cls = r.days_since_contact > 60 ? "cold" : "";
+  return `<span class="${cls}">${n(r.days_since_contact)} days ago</span><small class="muted">${shortDate(r.last_contacted)}</small>`;
+}
+const acct = (r) => `<td class="acct"><a href="${esc(r.hs_url)}" target="_blank" rel="noopener">${esc(r.name)} ↗</a><small>${esc(r.segment)} · ${esc(r.state)} · ${esc(r.owner)}</small></td>`;
+const sigs = (list) => (list || []).length ? list.map((s) => `<span class="sig">${esc(s)}</span>`).join("") : `<span class="muted">No signal recorded</span>`;
+
+function renderPass() {
+  const p = D.pass_to_sales || {}, rows = p.rows || [], sc = p.scoring || {};
+  html("pts-note", `Open MQAs that hit MQA in the last ${p.window_days || 120} days, ranked by a readiness score out of 100. Most MQAs that become an Opportunity do it within about 100 days, so this is the list worth working now. An MQA in HubSpot has no open deal yet (an open deal moves the account to Opportunity).`);
+  const sigRows = (sc.signal_points || []).map((s) => `<tr><td>${esc(s.signal)}</td><td class="num">${pct(s.rate)}${s.small_sample ? ' <span class="muted">(small sample)</span>' : ""}</td><td class="num">${n(s.mqa)}</td><td class="num"><b>${n(s.points)}</b></td></tr>`).join("");
+  html("pts-method", `<p><b>Signal, up to ${sc.signal_cap || 50} points.</b> Each signal earns points in proportion to how often accounts with that signal became an Opportunity (the best-converting signal gets ${sc.signal_cap || 50}). Signals with fewer than 10 accounts get a flat 20. Each extra signal adds ${sc.extra_signal_points || 5}.</p>
+    <div class="tscroll"><table class="tn" style="margin-bottom:0.75rem"><thead><tr><th>Signal</th><th class="num">Became Opportunity</th><th class="num">Accounts</th><th class="num">Points</th></tr></thead><tbody>${sigRows}</tbody></table></div>
+    <p><b>How recently it hit MQA, up to 30 points:</b> ${(sc.recency || []).map(([l, v]) => `${esc(l)} = ${v}`).join(" · ")}.</p>
+    <p><b>Contact gap, up to 20 points:</b> ${(sc.contact || []).map(([l, v]) => `${esc(l)} = ${v}`).join(" · ")}. A long gap raises the score because nobody is working the account.</p>`);
+  const draw = () => {
+    html("pts-chips", ownerChips(rows, "ptsOwner"));
+    wireChips("pts-chips", draw);
+    const shown = rows.filter((r) => filt.ptsOwner === "all" || r.owner === filt.ptsOwner);
+    if (!shown.length) return html("pts-block", `<div class="empty-card">No open MQAs in the window for this owner.</div>`);
+    html("pts-block", `<div class="tscroll"><table class="tn"><thead><tr><th>Score</th><th>Account</th><th>Signals</th><th class="num">Hit MQA</th><th>Last contacted</th></tr></thead><tbody>${shown.map((r) => {
+      const b = r.breakdown || {};
+      return `<tr><td><span class="score" title="Signal ${b.signal} + recency ${b.recency} + contact ${b.contact}">${n(r.score)}</span><div class="score-bar" aria-hidden="true"><i class="sb-sig" style="width:${b.signal}%"></i><i class="sb-rec" style="width:${b.recency}%"></i><i class="sb-con" style="width:${b.contact}%"></i></div></td>
+        ${acct(r)}<td>${sigs(r.signals)}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
+        <td class="num">${n(r.days_mqa)} days ago<small class="muted" style="display:block">${shortDate(r.recent_mqa_date)}</small></td><td>${contactCell(r)}</td></tr>`;
+    }).join("")}</tbody></table></div>`);
+  };
+  draw();
+  html("pts-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA, <code>mqa_signal</code>, <code>recent_mqa_date</code>, <code>notes_last_contacted</code>, <code>hubspot_owner_id</code> · signal conversion from every account with a <code>first_mqa_date</code> · ${pulled()}.`);
+}
+
+function renderImpact() {
+  const im = D.impact || {}, o = im.origin || {}, md = im.median_days || {};
+  html("imp-note", `How marketing-qualified accounts move into pipeline. Deal source fields are blank on every deal in HubSpot, so this is measured at the account level: which stage an account reached before it became an Opportunity. HubSpot backfilled MQA stage dates on ${shortDate(D.backfill_date)} when stages launched, so accounts dated that day are left out of the origin and timing numbers.`);
+  html("imp-tiles", [
+    tile(pct(im.ever_rate), "MQAs that became an Opportunity", `${n(im.ever_opp)} of ${n(im.ever_mqa)} accounts that ever hit MQA`),
+    tile(md.mqa_to_opp == null ? "—" : n(md.mqa_to_opp) + " days", "Median time, MQA to Opportunity", `${n(md.mqa_within_100)} of ${n(md.mqa_n)} did it within 100 days`),
+    tile(md.engaged_to_opp == null ? "—" : n(md.engaged_to_opp) + " days", "Median time, Engaged to Opportunity", `${n(md.engaged_n)} accounts went straight from Engaged`),
+    tile(pct(o.total ? (o.mqa_first + o.engaged_first) / o.total : null), "New Opportunities marketing warmed first", `${n(o.mqa_first + o.engaged_first)} of ${n(o.total)} since ${shortDate(o.since)}`, "accent"),
+  ].join(""));
+  const seg = (k, cls, label) => o[k] ? `<div class="${cls}" style="flex:${o[k]}" title="${esc(label)}: ${o[k]}">${o[k] / o.total >= 0.12 ? esc(label) + " " + Math.round(o[k] / o.total * 100) + "%" : ""}</div>` : "";
+  const l9 = o.last_90d || {};
+  html("imp-origin", o.total ? `<div class="split-card-title" style="font-weight:700;color:#144745;font-size:0.85rem">Where ${n(o.total)} new Opportunities came from, since ${fmtDate(o.since)}</div>
+    <div class="origin-bar" role="img" aria-label="Origin of new Opportunities">${seg("mqa_first", "o-mqa", "MQA first")}${seg("engaged_first", "o-eng", "Engaged first")}${seg("no_stage", "o-none", "No marketing stage")}${seg("ambiguous", "o-amb", "Unclear")}</div>
+    <div class="legend" style="margin-bottom:1.75rem"><span><i class="o-mqa"></i>MQA first · ${n(o.mqa_first)}</span><span><i class="o-eng"></i>Engaged first · ${n(o.engaged_first)}</span><span><i class="o-none"></i>No marketing stage · ${n(o.no_stage)}</span><span><i class="o-amb"></i>Unclear · ${n(o.ambiguous)} (stage on the same day, after, or on the backfill date)</span>${l9.total != null ? `<span>Last ${l9.window_days} days: ${n(l9.mqa_first + l9.engaged_first)} of ${n(l9.total)} warmed first</span>` : ""}</div>` : "");
+  html("imp-cohorts", `<div class="tscroll"><table class="tn"><thead><tr><th>First hit MQA</th><th class="num">Accounts</th><th class="num">Became Opp</th><th class="num">Rate</th></tr></thead><tbody>${(im.cohorts || []).map((c) =>
+    `<tr><td>${esc(c.quarter)}${c.includes_backfill ? ' <span class="muted">(includes backfill)</span>' : ""}</td><td class="num">${n(c.mqa)}</td><td class="num">${n(c.opp)}</td><td class="num"><b>${pct(c.rate)}</b></td></tr>`).join("")}</tbody></table></div>`);
+  html("imp-signals", `<div class="tscroll"><table class="tn"><thead><tr><th>Signal</th><th class="num">Accounts</th><th class="num">Became Opp</th><th class="num">Rate</th></tr></thead><tbody>${(im.signals || []).filter((s) => !s.small_sample).map((s) =>
+    `<tr><td>${esc(s.signal)}</td><td class="num">${n(s.mqa)}</td><td class="num">${n(s.opp)}</td><td class="num"><b>${pct(s.rate)}</b></td></tr>`).join("")}</tbody></table></div>`);
+  html("imp-src", `Source: HubSpot company <code>first_mqa_date</code>, <code>first_mqa_engaged_date</code>, <code>first_mqa_opportunity_date</code>, <code>mqa_signal</code> · ${esc(D.universe)} · ${pulled()}. <code>mqa_signal</code> is the account's current signal, not always the one it had when it hit MQA. Accounts can carry several signals, so signal rows add up to more than the account total. Signals with fewer than 10 accounts are left out of the table.`);
+}
+
+function renderMoved() {
+  const rows = D.moved || [];
+  html("mv-note", `Accounts that entered MQA, Engaged or Opportunity in the 7 days up to ${fmtDate(D.updated)}.`);
+  html("mv-block", rows.length ? `<div class="tscroll"><table class="tn"><thead><tr><th>Move</th><th>Account</th><th>Signal</th><th class="num">Date</th></tr></thead><tbody>${rows.map((r) =>
+    `<tr><td><span class="badge ${r.move === "New Opportunity" ? "badge-good" : r.move === "New MQA" ? "badge-watch" : "badge-pending"}">${esc(r.move)}</span></td>${acct(r)}<td>${r.signal ? esc(r.signal) : '<span class="muted">—</span>'}</td><td class="num">${shortDate(r.date)}</td></tr>`).join("")}</tbody></table></div>`
+    : `<div class="empty-card">No accounts changed stage this week.</div>`);
+  html("mv-src", `Source: HubSpot company <code>recent_mqa_date</code> (open MQAs), <code>recent_mqa_engaged_date</code> (currently Engaged), <code>first_mqa_opportunity_date</code> · ${pulled()}.`);
+}
+
+// ---- Stale MQAs + decision log ----
+function latestByCompany() {
+  const m = {};
+  (DEC.entries || []).forEach((e) => { (m[e.companyId] = m[e.companyId] || []).push(e); });
+  return m;
+}
+function renderStale() {
+  const st = D.stale || {}, rows = st.rows || [];
+  const backfill = rows.filter((r) => r.backfill).length;
+  const md = (D.impact || {}).median_days || {};
+  html("st-note", `Open MQAs with no new MQA activity in over ${st.threshold_days || 120} days. ${md.mqa_n ? `Of the ${n(md.mqa_n)} MQAs that became an Opportunity since ${shortDate(D.backfill_date)}, ${n(md.mqa_within_100)} did it within 100 days, so each of these needs a call:` : "Each of these needs a call:"} <b>Demote</b> (not a real buyer now), <b>Recycle</b> (back to nurture, check again later) or <b>Escalate</b> (a rep should act). Decisions are saved to a shared log with your name, and every past decision stays in the account's history. Nothing here changes HubSpot. ${backfill ? `${n(backfill)} of these have MQA dates of ${shortDate(D.backfill_date)} from the launch backfill, so they may never have been real MQAs.` : ""}`);
+  const draw = () => {
+    const byCo = latestByCompany();
+    const views = [["all", "All"], ["needs", "No decision yet"], ["decided", "Has a decision"], ["followup", "Needs follow-up"], ["organic", "Hide backfill"]];
+    html("st-chips", `<span class="lbl">Show</span>` + views.map(([k, l]) => `<button class="chip ${filt.stView === k ? "on" : ""}" data-f="stView" data-v="${k}">${l}</button>`).join("") + `<span style="width:0.75rem"></span>` + ownerChips(rows, "stOwner"));
+    wireChips("st-chips", draw);
+    const shown = rows.filter((r) => {
+      const hist = byCo[r.id] || [], last = hist[hist.length - 1], decided = last && last.decision !== "Cleared";
+      if (filt.stOwner !== "all" && r.owner !== filt.stOwner) return false;
+      if (filt.stView === "needs") return !decided;
+      if (filt.stView === "decided") return decided;
+      if (filt.stView === "followup") return !!r.followup;
+      if (filt.stView === "organic") return !r.backfill;
+      return true;
+    });
+    if (!shown.length) return html("st-block", `<div class="empty-card">No stale MQAs match this filter.</div>`);
+    html("st-block", `<div class="tscroll"><table class="tn"><thead><tr><th>Account</th><th>Signals</th><th class="num">Last hit MQA</th><th>Last contacted</th><th style="min-width:15rem">Decision</th></tr></thead><tbody>${shown.map((r) => {
+      const hist = byCo[r.id] || [], last = hist[hist.length - 1];
+      const cur = last && last.decision !== "Cleared" ? `<div class="dec"><span class="badge dec-${esc(last.decision)}">${esc(last.decision)}</span> <span class="muted">${esc(last.decidedBy)}, ${shortDate(last.decidedAt.slice(0, 10))}</span>${last.note ? `<div class="muted">“${esc(last.note)}”</div>` : ""}</div>` : "";
+      const histHtml = hist.length ? `<details class="hist"><summary>History (${hist.length})</summary><ul>${hist.slice().reverse().map((e) => `<li>${fmtDate(e.decidedAt.slice(0, 10))}: <b>${esc(e.decision)}</b> by ${esc(e.decidedBy)}${e.note ? `, “${esc(e.note)}”` : ""}${e.daysMqa != null ? ` <span class="muted">(${n(e.daysMqa)} days since MQA)</span>` : ""}</li>`).join("")}</ul></details>` : "";
+      const btns = DEC.ok ? `<div class="dbtns">${["Demote", "Recycle", "Escalate"].map((d) => `<button class="dbtn" data-dec="${d}" data-id="${esc(r.id)}">${d}</button>`).join("")}${cur ? `<button class="dbtn" data-dec="Cleared" data-id="${esc(r.id)}">Clear</button>` : ""}</div><input class="dnote" type="text" maxlength="500" placeholder="Note (optional)" data-note="${esc(r.id)}" aria-label="Decision note for ${esc(r.name)}"><div class="dmsg" data-msg="${esc(r.id)}"></div>` : "";
+      return `<tr>${acct(r)}<td>${sigs(r.signals)}${r.backfill ? `<span class="sig" style="background:#F7EC89;color:#5A4A00">${shortDate(D.backfill_date)} backfill</span>` : ""}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
+        <td class="num">${n(r.days_mqa)} days ago<small class="muted" style="display:block">${shortDate(r.recent_mqa_date)}</small></td><td>${contactCell(r)}</td>
+        <td>${cur}${btns}${histHtml}</td></tr>`;
+    }).join("")}</tbody></table></div>`);
+    $("st-block").querySelectorAll("[data-dec]").forEach((b) => b.onclick = () => saveDecision(b.dataset.id, b.dataset.dec, draw));
+  };
+  STALE_DRAW = draw;
+  draw();
+  html("st-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA with <code>recent_mqa_date</code> over ${st.threshold_days || 120} days ago, plus <code>notes_last_contacted</code> · ${pulled()}. Decisions: Airtable “Account Decisions” log, read live${D.decisions_snapshot && D.decisions_snapshot.as_of ? `, with follow-up flags from the ${shortDate(D.decisions_snapshot.as_of)} snapshot` : ""}.`);
+}
+let STALE_DRAW = null;
+
+async function loadDecisions() {
+  const who = store.get("pulseDecider");
+  if (who) $("decider").value = who;
+  $("decider").addEventListener("change", (e) => store.set("pulseDecider", e.target.value.trim()));
+  try {
+    const res = await fetch("/.netlify/functions/get-account-decisions", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    DEC = { entries: (await res.json()).entries || [], ok: true };
+    $("dec-status").textContent = DEC.entries.length ? `${n(DEC.entries.length)} decisions logged so far` : "No decisions logged yet";
+  } catch (e) {
+    DEC = { entries: [], ok: false, error: e.message };
+    $("dec-status").innerHTML = `<span class="cold">The decision log isn't reachable right now (${esc(e.message)}), so decisions can't be saved.</span>`;
+  }
+  if (STALE_DRAW) STALE_DRAW();
+}
+
+async function saveDecision(id, decision, redraw) {
+  const who = $("decider").value.trim(), msg = document.querySelector(`[data-msg="${id}"]`);
+  if (!who) { msg.className = "dmsg bad"; msg.textContent = "Add your name above first."; $("decider").focus(); return; }
+  store.set("pulseDecider", who);
+  const row = (D.stale.rows || []).find((r) => r.id === id) || {};
+  const note = (document.querySelector(`[data-note="${id}"]`) || {}).value || "";
+  document.querySelectorAll(`[data-id="${id}"]`).forEach((b) => b.disabled = true);
+  try {
+    const res = await fetch("/.netlify/functions/set-account-decision", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ companyId: id, companyName: row.name, decision, note, decidedBy: who, daysMqa: row.days_mqa }),
+    });
+    const body = await res.json();
+    if (!res.ok) throw new Error(body.error || "HTTP " + res.status);
+    DEC.entries.push(body);
+    $("dec-status").textContent = `${n(DEC.entries.length)} decisions logged so far`;
+    redraw();
+    const m2 = document.querySelector(`[data-msg="${id}"]`);
+    if (m2) { m2.className = "dmsg ok"; m2.textContent = `Saved: ${decision}.`; }
+  } catch (e) {
+    msg.className = "dmsg bad"; msg.textContent = "Couldn't save: " + e.message;
+    document.querySelectorAll(`[data-id="${id}"]`).forEach((b) => b.disabled = false);
+  }
+}
+
+function renderTrend() {
+  const h = (D.history || []).slice(-12);
+  html("tr-note", `Weekly snapshots from each Monday pull. The chart fills in as weeks accumulate.`);
+  const table = `<div class="tscroll"><table class="tn"><thead><tr><th>Week of</th><th class="num">Open MQAs</th><th class="num">Engaged</th><th class="num">New MQA</th><th class="num">New Engaged</th><th class="num">New Opp</th><th class="num">Stale MQAs</th><th class="num">Warmed first</th></tr></thead><tbody>${h.slice().reverse().map((x) =>
+    `<tr><td>${fmtDate(x.date)}</td><td class="num">${n(x.mqa_total)}</td><td class="num">${n(x.engaged_total)}</td><td class="num">${n(x.new_mqa_7d)}</td><td class="num">${n(x.new_engaged_7d)}</td><td class="num">${n(x.new_opp_7d)}</td><td class="num">${n(x.stale_mqa)}</td><td class="num">${pct(x.warmed_share)}</td></tr>`).join("")}</tbody></table></div>`;
+  if (h.length < 2) {
+    html("tr-block", `<div class="empty-card">The chart starts after the second Monday pull. <b>${n(h.length)}</b> snapshot so far.</div>${table}`);
+  } else {
+    html("tr-block", `<div class="chart-box"><canvas id="trChart" aria-label="Weekly new MQA, Engaged and Opportunity accounts"></canvas></div>${table}`);
+    new Chart($("trChart"), {
+      type: "line",
+      data: { labels: h.map((x) => shortDate(x.date)), datasets: [
+        { label: "New MQA", data: h.map((x) => x.new_mqa_7d), borderColor: "#144745", backgroundColor: "#144745", tension: 0.25 },
+        { label: "New Engaged", data: h.map((x) => x.new_engaged_7d), borderColor: "#5B5A9E", backgroundColor: "#5B5A9E", tension: 0.25 },
+        { label: "New Opportunity", data: h.map((x) => x.new_opp_7d), borderColor: "#F99792", backgroundColor: "#F99792", tension: 0.25 },
+      ] },
+      options: { maintainAspectRatio: false, plugins: { legend: { position: "bottom" } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } },
+    });
+  }
+  html("tr-src", `Source: <code>history[]</code> in data/account-pulse.json, one row per Monday pull of the HubSpot fields above · last ${pulled()}.`);
+}
+
+load();
+</script>
+</body>
+</html>
