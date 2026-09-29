@@ -16,6 +16,7 @@ Raw folder (one file per query, the MCP result saved verbatim):
   engaged_7d.json   Engaged accounts that entered Engaged in the last 7 days (rows)
   stage_totals.json COUNT(*) GROUP BY mqa_lifecycle_stage (aggregate)
   owners.json       {"<owner id>": "<name>", ...}  (optional; merged into data/hubspot-owners.json)
+  starbridge.json   {"pulled": {"rfp": bool, "warm": bool}, "rows": [...]} (optional; see PULSE_ROUTINE.md STEP 1b)
 
 Also reads, when present:
   data/account-pulse.json    previous output, for history[]
@@ -37,6 +38,8 @@ PASS_WINDOW = 120         # Pass to Sales covers MQAs inside this window
 ORIGIN_WINDOW = 90
 HISTORY_KEEP = 26
 MIN_SIGNAL_SAMPLE = 10
+WARM_MIN_SCORE = 10       # same Meeting_Score floor State Signal uses
+SB_KEEP = 2               # badges per type per account
 
 SIGNAL_SHORT = {
     'Marked "Yes, Reviewing"': "Yes, Reviewing",
@@ -137,6 +140,33 @@ def main():
         unknown_owners.add(oid)
         return f"Owner {oid}"
 
+    sb_raw, _ = load_raw(os.path.join(a.raw, "starbridge.json"))
+    sb_pulled = (json.load(open(os.path.join(a.raw, "starbridge.json"))).get("pulled", {})
+                 if os.path.exists(os.path.join(a.raw, "starbridge.json")) else {})
+    sb_by_buyer = {}
+    for r in sb_raw or []:
+        if r.get("status") not in ("New", "Saved") or not r.get("buyerId"):
+            continue
+        if r.get("bridge") == "warm":
+            if (r.get("meeting_score") or 0) < WARM_MIN_SCORE:
+                continue
+            item = {"type": "warm", "product": r.get("product"), "score": r.get("meeting_score"),
+                    "title": (r.get("title") or "").strip(), "added": r.get("added")}
+        elif r.get("bridge") == "rfp":
+            if r.get("due") and r["due"] < today:
+                continue
+            item = {"type": "rfp", "product": r.get("product"), "due": r.get("due") or None,
+                    "title": (r.get("title") or "").strip(), "summary": r.get("summary") or "", "url": r.get("url") or ""}
+        else:
+            continue
+        sb_by_buyer.setdefault(r["buyerId"], []).append(item)
+
+    def sb_for(p):
+        items = sb_by_buyer.get(p.get("starbridge_id") or "", [])
+        warm = sorted([i for i in items if i["type"] == "warm"], key=lambda i: -(i["score"] or 0))[:SB_KEEP]
+        rfp = sorted([i for i in items if i["type"] == "rfp"], key=lambda i: i["due"] or "9999")[:SB_KEEP]
+        return {"warm": warm, "rfp": rfp} if (warm or rfp) else None
+
     stage_totals = {r[0]: int(r[1]) for r in totals_tsv if len(r) >= 2 and r[1].isdigit()}
 
     # ---- signal conversion (all accounts that ever hit MQA) ----
@@ -226,6 +256,9 @@ def main():
                 "segment": (p.get("segment") or "").replace(" District", ""), "state": p.get("state_st") or "",
                 "owner": owner(p), "signals": [short(s) for s in sigs], "recent_mqa_date": rm, "first_mqa_date": fm,
                 "days_mqa": days_mqa, "last_contacted": lc, "days_since_contact": dsc, "hs_url": hs_url(cid)}
+        sb = sb_for(p)
+        if sb:
+            base["starbridge"] = sb
         dec = latest.get(cid)
         if dec and dec.get("decision") and dec["decision"] != "Cleared":
             flag = None
@@ -272,6 +305,7 @@ def main():
         "opportunity_total": stage_totals.get("Opportunity"),
         "new_mqa_7d": len(new_mqa), "new_engaged_7d": len(engaged_7d), "new_opp_7d": new_opp_7d,
         "mqa_cold_60d": cold_60, "stale_mqa": len(stale_rows), "pass_to_sales": len(pass_rows),
+        "starbridge_accounts": sum(1 for r in pass_rows + stale_rows if r.get("starbridge")),
         "warmed_share": {"pct": round(warmed / opp_total, 3) if opp_total else None,
                          "warmed": warmed, "of": opp_total, "since": BACKFILL,
                          "last_90d": {"warmed": warmed_90, "of": opp_rows_90}},
@@ -316,6 +350,9 @@ def main():
         },
         "moved": moved,
         "stale": {"threshold_days": STALE_DAYS, "rows": stale_rows},
+        "starbridge": {"pulled": {"rfp": bool(sb_pulled.get("rfp")), "warm": bool(sb_pulled.get("warm"))},
+                       "warm_min_score": WARM_MIN_SCORE,
+                       "accounts_with_signal": sum(1 for r in pass_rows + stale_rows if r.get("starbridge"))},
         "decisions_snapshot": {"entries": len(decisions),
                                "as_of": (json.load(open(DECISIONS)).get("as_of") if os.path.exists(DECISIONS) else None)},
         "unknown_owner_ids": sorted(unknown_owners),

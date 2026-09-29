@@ -39,6 +39,9 @@
   .hist li { margin: 0.15rem 0 0 1rem; }
   .dmsg { font-size: 0.72rem; margin-top: 0.25rem; }
   .dmsg.bad { color: #C0392B; } .dmsg.ok { color: #144745; }
+  .sb { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.15rem 0.2rem 0.1rem 0; }
+  .sb-rfp { background: #DAD0FF; color: #1C2660; } .sb-warm { background: #E4FBCE; color: #144745; }
+  a.sb { text-decoration: none; } a.sb:hover { text-decoration: underline; }
   .src { font-size: 0.72rem; color: var(--ink-light); margin: -1.75rem 0 2.5rem; }
   .chart-box { position: relative; height: 240px; margin-bottom: 1rem; }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
@@ -109,6 +112,7 @@
   <p class="section-note" id="tr-note"></p>
   <div id="tr-block"></div>
   <p class="src" id="tr-src"></p>
+  <div id="mth-section"></div>
 </main>
 
 <script src="assets/chart.umd.min.js"></script>
@@ -155,6 +159,11 @@ async function load() {
   renderFreshness(); renderTiles(); renderPass(); renderImpact(); renderMoved(); renderTrend();
   renderStale();
   loadDecisions();
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-state-link]"); if (!a) return;
+    e.preventDefault();
+    try { if (window.parent && window.parent !== window && window.parent.switchToTab) window.parent.switchToTab("state-signal"); } catch (err) {}
+  });
 }
 
 function renderFreshness() {
@@ -193,12 +202,32 @@ function contactCell(r) {
   const cls = r.days_since_contact > 60 ? "cold" : "";
   return `<span class="${cls}">${n(r.days_since_contact)} days ago</span><small class="muted">${shortDate(r.last_contacted)}</small>`;
 }
-const acct = (r) => `<td class="acct"><a href="${esc(r.hs_url)}" target="_blank" rel="noopener">${esc(r.name)} ↗</a><small>${esc(r.segment)} · ${esc(r.state)} · ${esc(r.owner)}</small></td>`;
+const acct = (r) => `<td class="acct"><a href="${esc(r.hs_url)}" target="_blank" rel="noopener">${esc(r.name)} ↗</a><small>${esc(r.segment)} · ${stateLink(r.state)} · ${esc(r.owner)}</small></td>`;
+const PROD = { ij: "IJ", inkwell: "Inkwell", gf8: "GF8" };
+function sbBadges(r) {
+  const sb = r.starbridge; if (!sb) return "";
+  const rfp = (sb.rfp || []).map((x) => {
+    const lbl = `Open RFP · ${PROD[x.product] || x.product}${x.due ? " · due " + shortDate(x.due) : ""}`;
+    const tip = esc((x.title || "") + (x.summary ? ": " + x.summary : ""));
+    return x.url ? `<a class="sb sb-rfp" href="${esc(x.url)}" target="_blank" rel="noopener" title="${tip}">${esc(lbl)} ↗</a>` : `<span class="sb sb-rfp" title="${tip}">${esc(lbl)}</span>`;
+  });
+  const warm = (sb.warm || []).map((x) => `<span class="sb sb-warm" title="${esc(x.title || "")}">Board meeting · ${esc(PROD[x.product] || x.product)} · score ${n(x.score)}</span>`);
+  return `<div>${rfp.concat(warm).join("")}</div>`;
+}
+function stateLink(st) {
+  return st ? `<a href="#" data-state-link="${esc(st)}" title="Open State Signal for state context">${esc(st)}</a>` : "";
+}
+function sbNote() {
+  const sb = D.starbridge || {}, p = sb.pulled || {};
+  const got = [p.rfp ? "open RFPs" : null, p.warm ? `board-meeting signals (Meeting Score ${sb.warm_min_score || 10}+)` : null].filter(Boolean);
+  const missing = [!p.rfp ? "open RFPs" : null, !p.warm ? "board-meeting signals" : null].filter(Boolean);
+  return `Starbridge badges show ${got.length ? got.join(" and ") : "nothing yet"} matched to these accounts${missing.length ? `; ${missing.join(" and ")} weren't part of this pull` : ""}. They're context only and don't change the score.`;
+}
 const sigs = (list) => (list || []).length ? list.map((s) => `<span class="sig">${esc(s)}</span>`).join("") : `<span class="muted">No signal recorded</span>`;
 
 function renderPass() {
   const p = D.pass_to_sales || {}, rows = p.rows || [], sc = p.scoring || {};
-  html("pts-note", `Open MQAs that hit MQA in the last ${p.window_days || 120} days, ranked by a readiness score out of 100. Most MQAs that become an Opportunity do it within about 100 days, so this is the list worth working now. An MQA in HubSpot has no open deal yet (an open deal moves the account to Opportunity).`);
+  html("pts-note", `Open MQAs that hit MQA in the last ${p.window_days || 120} days, ranked by a readiness score out of 100. Most MQAs that become an Opportunity do it within about 100 days, so this is the list worth working now. An MQA in HubSpot has no open deal yet (an open deal moves the account to Opportunity). ${sbNote()}`);
   const sigRows = (sc.signal_points || []).map((s) => `<tr><td>${esc(s.signal)}</td><td class="num">${pct(s.rate)}${s.small_sample ? ' <span class="muted">(small sample)</span>' : ""}</td><td class="num">${n(s.mqa)}</td><td class="num"><b>${n(s.points)}</b></td></tr>`).join("");
   html("pts-method", `<p><b>Signal, up to ${sc.signal_cap || 50} points.</b> Each signal earns points in proportion to how often accounts with that signal became an Opportunity (the best-converting signal gets ${sc.signal_cap || 50}). Signals with fewer than 10 accounts get a flat 20. Each extra signal adds ${sc.extra_signal_points || 5}.</p>
     <div class="tscroll"><table class="tn" style="margin-bottom:0.75rem"><thead><tr><th>Signal</th><th class="num">Became Opportunity</th><th class="num">Accounts</th><th class="num">Points</th></tr></thead><tbody>${sigRows}</tbody></table></div>
@@ -212,12 +241,12 @@ function renderPass() {
     html("pts-block", `<div class="tscroll"><table class="tn"><thead><tr><th>Score</th><th>Account</th><th>Signals</th><th class="num">Hit MQA</th><th>Last contacted</th></tr></thead><tbody>${shown.map((r) => {
       const b = r.breakdown || {};
       return `<tr><td><span class="score" title="Signal ${b.signal} + recency ${b.recency} + contact ${b.contact}">${n(r.score)}</span><div class="score-bar" aria-hidden="true"><i class="sb-sig" style="width:${b.signal}%"></i><i class="sb-rec" style="width:${b.recency}%"></i><i class="sb-con" style="width:${b.contact}%"></i></div></td>
-        ${acct(r)}<td>${sigs(r.signals)}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
+        ${acct(r)}<td>${sigs(r.signals)}${sbBadges(r)}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
         <td class="num">${n(r.days_mqa)} days ago<small class="muted" style="display:block">${shortDate(r.recent_mqa_date)}</small></td><td>${contactCell(r)}</td></tr>`;
     }).join("")}</tbody></table></div>`);
   };
   draw();
-  html("pts-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA, <code>mqa_signal</code>, <code>recent_mqa_date</code>, <code>notes_last_contacted</code>, <code>hubspot_owner_id</code> · signal conversion from every account with a <code>first_mqa_date</code> · ${pulled()}.`);
+  html("pts-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA, <code>mqa_signal</code>, <code>recent_mqa_date</code>, <code>notes_last_contacted</code>, <code>hubspot_owner_id</code> · Starbridge badges: RFP bridges (ELA, IJ, GF8) and Warm Signals bridges (GFE, IJ, Inkwell), Status New or Saved, matched on HubSpot <code>starbridge_id</code> = bridge <code>buyerId</code> · signal conversion from every account with a <code>first_mqa_date</code> · ${pulled()}.`);
 }
 
 function renderImpact() {
@@ -260,10 +289,10 @@ function renderStale() {
   const st = D.stale || {}, rows = st.rows || [];
   const backfill = rows.filter((r) => r.backfill).length;
   const md = (D.impact || {}).median_days || {};
-  html("st-note", `Open MQAs with no new MQA activity in over ${st.threshold_days || 120} days. ${md.mqa_n ? `Of the ${n(md.mqa_n)} MQAs that became an Opportunity since ${shortDate(D.backfill_date)}, ${n(md.mqa_within_100)} did it within 100 days, so each of these needs a call:` : "Each of these needs a call:"} <b>Demote</b> (not a real buyer now), <b>Recycle</b> (back to nurture, check again later) or <b>Escalate</b> (a rep should act). Decisions are saved to a shared log with your name, and every past decision stays in the account's history. Nothing here changes HubSpot. ${backfill ? `${n(backfill)} of these have MQA dates of ${shortDate(D.backfill_date)} from the launch backfill, so they may never have been real MQAs.` : ""}`);
+  html("st-note", `Open MQAs with no new MQA activity in over ${st.threshold_days || 120} days. ${md.mqa_n ? `Of the ${n(md.mqa_n)} MQAs that became an Opportunity since ${shortDate(D.backfill_date)}, ${n(md.mqa_within_100)} did it within 100 days, so each of these needs a call:` : "Each of these needs a call:"} <b>Demote</b> (not a real buyer now), <b>Recycle</b> (back to nurture, check again later) or <b>Escalate</b> (a rep should act). Decisions are saved to a shared log with your name, and every past decision stays in the account's history. Nothing here changes HubSpot. An open RFP or board-meeting badge on a stale account is a reason to look before demoting. ${backfill ? `${n(backfill)} of these have MQA dates of ${shortDate(D.backfill_date)} from the launch backfill, so they may never have been real MQAs.` : ""}`);
   const draw = () => {
     const byCo = latestByCompany();
-    const views = [["all", "All"], ["needs", "No decision yet"], ["decided", "Has a decision"], ["followup", "Needs follow-up"], ["organic", "Hide backfill"]];
+    const views = [["all", "All"], ["needs", "No decision yet"], ["decided", "Has a decision"], ["followup", "Needs follow-up"], ["organic", "Hide backfill"], ["starbridge", "Has Starbridge signal"]];
     html("st-chips", `<span class="lbl">Show</span>` + views.map(([k, l]) => `<button class="chip ${filt.stView === k ? "on" : ""}" data-f="stView" data-v="${k}">${l}</button>`).join("") + `<span style="width:0.75rem"></span>` + ownerChips(rows, "stOwner"));
     wireChips("st-chips", draw);
     const shown = rows.filter((r) => {
@@ -273,6 +302,7 @@ function renderStale() {
       if (filt.stView === "decided") return decided;
       if (filt.stView === "followup") return !!r.followup;
       if (filt.stView === "organic") return !r.backfill;
+      if (filt.stView === "starbridge") return !!r.starbridge;
       return true;
     });
     if (!shown.length) return html("st-block", `<div class="empty-card">No stale MQAs match this filter.</div>`);
@@ -281,7 +311,7 @@ function renderStale() {
       const cur = last && last.decision !== "Cleared" ? `<div class="dec"><span class="badge dec-${esc(last.decision)}">${esc(last.decision)}</span> <span class="muted">${esc(last.decidedBy)}, ${shortDate(last.decidedAt.slice(0, 10))}</span>${last.note ? `<div class="muted">“${esc(last.note)}”</div>` : ""}</div>` : "";
       const histHtml = hist.length ? `<details class="hist"><summary>History (${hist.length})</summary><ul>${hist.slice().reverse().map((e) => `<li>${fmtDate(e.decidedAt.slice(0, 10))}: <b>${esc(e.decision)}</b> by ${esc(e.decidedBy)}${e.note ? `, “${esc(e.note)}”` : ""}${e.daysMqa != null ? ` <span class="muted">(${n(e.daysMqa)} days since MQA)</span>` : ""}</li>`).join("")}</ul></details>` : "";
       const btns = DEC.ok ? `<div class="dbtns">${["Demote", "Recycle", "Escalate"].map((d) => `<button class="dbtn" data-dec="${d}" data-id="${esc(r.id)}">${d}</button>`).join("")}${cur ? `<button class="dbtn" data-dec="Cleared" data-id="${esc(r.id)}">Clear</button>` : ""}</div><input class="dnote" type="text" maxlength="500" placeholder="Note (optional)" data-note="${esc(r.id)}" aria-label="Decision note for ${esc(r.name)}"><div class="dmsg" data-msg="${esc(r.id)}"></div>` : "";
-      return `<tr>${acct(r)}<td>${sigs(r.signals)}${r.backfill ? `<span class="sig" style="background:#F7EC89;color:#5A4A00">${shortDate(D.backfill_date)} backfill</span>` : ""}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
+      return `<tr>${acct(r)}<td>${sigs(r.signals)}${sbBadges(r)}${r.backfill ? `<span class="sig" style="background:#F7EC89;color:#5A4A00">${shortDate(D.backfill_date)} backfill</span>` : ""}${r.followup ? `<span class="followup">${esc(r.followup)}</span>` : ""}</td>
         <td class="num">${n(r.days_mqa)} days ago<small class="muted" style="display:block">${shortDate(r.recent_mqa_date)}</small></td><td>${contactCell(r)}</td>
         <td>${cur}${btns}${histHtml}</td></tr>`;
     }).join("")}</tbody></table></div>`);
@@ -289,7 +319,7 @@ function renderStale() {
   };
   STALE_DRAW = draw;
   draw();
-  html("st-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA with <code>recent_mqa_date</code> over ${st.threshold_days || 120} days ago, plus <code>notes_last_contacted</code> · ${pulled()}. Decisions: Airtable “Account Decisions” log, read live${D.decisions_snapshot && D.decisions_snapshot.as_of ? `, with follow-up flags from the ${shortDate(D.decisions_snapshot.as_of)} snapshot` : ""}.`);
+  html("st-src", `Source: HubSpot company <code>mqa_lifecycle_stage</code> = MQA with <code>recent_mqa_date</code> over ${st.threshold_days || 120} days ago, plus <code>notes_last_contacted</code> · Starbridge badges matched on <code>starbridge_id</code> · ${pulled()}. Decisions: Airtable “Account Decisions” log, read live${D.decisions_snapshot && D.decisions_snapshot.as_of ? `, with follow-up flags from the ${shortDate(D.decisions_snapshot.as_of)} snapshot` : ""}.`);
 }
 let STALE_DRAW = null;
 
@@ -358,5 +388,7 @@ function renderTrend() {
 
 load();
 </script>
+<script src="assets/methodology.js"></script>
+<script>window.renderMethodology(document.getElementById("mth-section"), "pulse");</script>
 </body>
 </html>

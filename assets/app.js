@@ -1773,7 +1773,7 @@ function renderStateSignal(d) {
 
     const feat = (SS_TOPO_CACHE || []).find((f) => f.abbr === abbr);
     const label = feat ? feat.name : abbr;
-    if (infoBox) infoBox.innerHTML = note(`No active signal for ${label} right now — see Methodology below for how a state qualifies.`);
+    if (infoBox) infoBox.innerHTML = note(`No active signal for ${label} right now — see Data methodology and sources below for how a state qualifies.`);
   }
 
   function renderBody(product) {
@@ -1824,7 +1824,7 @@ function renderStateSignal(d) {
       + '<div class="panel">'
       + `<h3>Top states to work (Marketing) <span class="muted">(${fmtN(mktRows.length)} states, High + Medium priority only)</span></h3>`
       + note('All 50 states + DC scanned for real, cited policy activity (state legislation, standards revisions, adoption cycles) outside the top-10 sales states, cross-referenced against live Starbridge RFP data where available. A marketing signal, not yet a sales one — no dedicated account drill-down here.')
-      + note('Sorted by a priority score (0-100) by default — see Methodology at the bottom of this tab for the full point breakdown and sources. High ≥56 pts, Medium 32-55, Low <32 (dropped from this table).')
+      + note('Sorted by a priority score (0-100) by default — see Data methodology and sources at the bottom of this tab for the full point breakdown and sources. High ≥56 pts, Medium 32-55, Low <32 (dropped from this table).')
       + '<div class="chiprow" style="margin:12px 0 10px">'
       + '<span class="meta-small" style="margin-right:6px">Sort:</span>'
       + `<button class="chip${ssSortMkt === 'score' ? ' on' : ''}" data-sort-mkt="score">Priority score</button>`
@@ -1853,19 +1853,6 @@ function renderStateSignal(d) {
 
       + sectionHdr('What this tab doesn\'t do yet', '#c2540a')
       + '<div class="panel">' + flags.map((f) => note(f)).join('') + '</div>'
-
-      + sectionHdr('Methodology', '#5B5A9E')
-      + '<div class="panel">'
-      + '<p style="font-size:13px;color:var(--ink);line-height:1.55;margin:0 0 14px">The <b>priority score</b> (0-100) ranks the 41 "States to watch" into High / Medium / Low priority tiers above. It only applies to that table — the 10 "Top states to work" are ranked simply by actionable-account count, no scoring needed there since HubSpot already tells you who to call. Recomputed by <code>scripts/score_watch_states.py</code> on every refresh; rebalanced 2026-09-22 to add the Starbridge Warm Signals ingredient.</p>'
-      + '<table class="ss-dash"><thead><tr><th>Ingredient</th><th>Max</th><th>Tiers</th><th>Source &amp; how it\'s pulled</th></tr></thead><tbody>'
-      + '<tr><td>Open RFP right now</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge RFP bridges (ELA/IJ/GF8), live via <code>listBridgeRows</code>, Status New or Saved only</td></tr>'
-      + '<tr><td>Starbridge signal for upcoming adoption</td><td style="text-align:right">30</td><td>0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30</td><td>Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via <code>listBridgeRows</code>. Counted only if Meeting Score ≥10 and Status is New or Saved — anything scored lower or marked Not Interested is dropped before it reaches this table</td></tr>'
-      + '<tr><td>Policy news recency</td><td style="text-align:right">20</td><td>≤6mo → 20 · ≤12mo → 16 · ≤24mo → 12 · ≤36mo → 8 · ≤60mo → 4 · older → 1</td><td>WebSearch, re-run roughly monthly (not every refresh) — every claim needs a real, dated source URL or it doesn\'t get a since-date at all</td></tr>'
-      + '<tr><td>Existing HubSpot footprint</td><td style="text-align:right">20</td><td>20+ accounts → 20 · 12+ → 15 · 6+ → 10 · 3+ → 5 · fewer → 2</td><td>HubSpot portal 4451852 — MQA/Engaged company count, no sales contact in 60+ days</td></tr>'
-      + '</tbody></table>'
-      + note('Tiers: High priority ≥56 pts · Medium 32-55 pts · Low <32 pts. A state only shows up in "States to watch" at all if it has a real, cited policy signal outside the top-10 sales states — no policy citation, no row, regardless of score.')
-      + note('Account-level matching (which specific district a Warm Signal belongs to, inside the state drill-downs above) uses an exact join: HubSpot\'s <code>starbridge_id</code> company property against the Starbridge bridge row\'s <code>buyerId</code> — not name/state fuzzy-matching.')
-      + '</div>'
 
       + `<p class="flag" style="margin-top:4px">Source: HubSpot portal 4451852 (mqa_lifecycle_stage, notes_last_contacted, state_st) + verified policy research (WebSearch, cited per state) + Starbridge (RFP and Warm Signals bridges, live) · ${d.cadence || ''}</p>`;
 
@@ -1961,12 +1948,13 @@ function renderTabMeta(tab, lastRun, nextOverride) {
   renderTabSourcesFooter(tab);
 }
 
+// Bottom-of-tab "Data methodology and sources" section (assets/methodology.js + data/methodology.json).
+// Iframed tabs (static) render their own copy inside the page, so the shell hides its footer for them.
 function renderTabSourcesFooter(tab) {
   const el = document.getElementById("tab-sources-footer");
-  const sources = tab.meta && tab.meta.sources;
-  if (!sources || !sources.length) { el.hidden = true; return; }
-  el.hidden = false;
-  el.innerHTML = `<b>Data sources — ${tab.label}:</b> ${sources.join(" · ")}`;
+  el.className = "";
+  if (tab.static || !window.renderMethodology) { el.hidden = true; el.innerHTML = ""; return; }
+  window.renderMethodology(el, tab.id);
 }
 
 // ---- shell ----

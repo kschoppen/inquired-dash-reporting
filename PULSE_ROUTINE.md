@@ -34,11 +34,11 @@ Don't read `data/account-pulse.json` or `account-pulse.html`. The script handles
 
 Five queries. Put `<TODAY>` and `<WEEK_AGO>` in as literal dates. Always use `BETWEEN` for date ranges (`>=` on dates has returned 503s). If a call returns 503, wait a few seconds and retry, up to 3 times.
 
-**How to save each result into `$RAW`:** when the tool says the output was saved to a file, `cp` that file to `$RAW/<name>.json` unchanged. When the result comes back inline and is small, write it to `$RAW/<name>.json` in the compact form `{"rows": [{...properties...}]}`, one object per record, copying `hs_object_id`, `name`, `segment`, `state_st`, `hubspot_owner_id`, `mqa_signal` and each date as `<property>_iso` (YYYY-MM-DD). For the aggregate query use `{"tsv": [["MQA","99"], ...]}`. Never retype a large result by hand.
+**How to save each result into `$RAW`:** when the tool says the output was saved to a file, `cp` that file to `$RAW/<name>.json` unchanged. When the result comes back inline and is small, write it to `$RAW/<name>.json` in the compact form `{"rows": [{...properties...}]}`, one object per record, copying `hs_object_id`, `name`, `segment`, `state_st`, `hubspot_owner_id`, `mqa_signal`, `starbridge_id` and each date as `<property>_iso` (YYYY-MM-DD). For the aggregate query use `{"tsv": [["MQA","99"], ...]}`. Never retype a large result by hand.
 
 1. `mqa_open`:
 ```sql
-SELECT hs_object_id, name, segment, state_st, mqa_signal, hubspot_owner_id, notes_last_contacted, first_mqa_date, recent_mqa_date FROM COMPANY WHERE mqa_lifecycle_stage = 'MQA' AND segment IN ('Medium District','Large District','Enterprise District') ORDER BY recent_mqa_date DESC LIMIT 500
+SELECT hs_object_id, name, segment, state_st, mqa_signal, hubspot_owner_id, notes_last_contacted, first_mqa_date, recent_mqa_date, starbridge_id FROM COMPANY WHERE mqa_lifecycle_stage = 'MQA' AND segment IN ('Medium District','Large District','Enterprise District') ORDER BY recent_mqa_date DESC LIMIT 500
 ```
 2. `mqa_ever`:
 ```sql
@@ -60,6 +60,27 @@ SELECT mqa_lifecycle_stage, COUNT(*) FROM COMPANY WHERE mqa_lifecycle_stage IS N
 If a query returns exactly as many rows as its LIMIT, the LIMIT cut it off: page with `offset` and merge the `results` arrays before saving. Check with `python3 -c "import json;print(len(json.load(open('$RAW/mqa_open.json'))['results']))"`-style counts that each file is complete.
 
 If any of the five pulls fails after retries, stop: don't run the script, don't commit, and send the failure DM (STEP 5).
+
+---
+
+## STEP 1b: Starbridge badges (Starbridge MCP, read only)
+
+Badges on Pass to Sales and Stale MQA rows. Context only: they never change the score. Match key: HubSpot `starbridge_id` (from `mqa_open`) = a bridge row's top-level `buyerId`, exact UUID match. Same filters as State Signal (`SIGNALS_ROUTINE.md` Step 6 and the `state-signal-refresh` skill). Never change a row's status in Starbridge.
+
+Collect the unique `starbridge_id` values from `$RAW/mqa_open.json` first.
+
+- **RFP bridges** (small, a few hundred rows each): `ELA RFPs` `88904f95-4ec1-48d2-8b85-51228ab43910` → `inkwell`, `IJ RFPs` `3b98c6a6-76f6-4353-8807-f7eb3f59031e` → `ij`, `GF8 RFPs` `dcc18a67-1b69-4f64-9dfe-342e588e1aa7` → `gf8`. `listBridgeRows` with `pageSize` 100 and a `Status` filter (`Any`, `["New","Saved"]`, column ID from `getBridgeColumnMetadata`); if the filter won't take, page the whole bridge and filter client-side.
+- **Warm Signals bridges** (large, 4,000 to 10,500 rows: never page them in full): `[MASTER] Warm Signals (GFE) > 1.5k` `bb1657a1-9519-4d39-b8ba-be427503ab48` → `gf8`, `(IJ)` `452c4f42-f692-49cb-b33f-77ff8572e539` → `ij`, `(Inkwell)` `682a158c-ddfa-4139-b9fd-1a38d439af88` → `inkwell`. `listBridgeRows` filtered server-side on `Status` Any New/Saved AND `buyerId` Any [the starbridge_id list], batched. `Meeting_Score` (inside the `Meeting Score and Relevance` column) can't be filtered server-side: keep everything the filter returns and let the script apply the 10+ cut. Don't confuse it with `Match Score`. If the `buyerId` filter won't take, skip the warm pull (don't page the bridge) and set `"warm": false`.
+
+Pages are large, so the tool saves them to files: parse them with `python3`, don't read them inline. Write `$RAW/starbridge.json`:
+
+```json
+{ "pulled": {"rfp": true, "warm": true},
+  "rows": [ {"buyerId": "...", "bridge": "rfp", "product": "ij", "status": "New", "title": "<row name>", "due": "YYYY-MM-DD", "summary": "<Summary column>", "url": "<Source Url>", "added": "YYYY-MM-DD"},
+            {"buyerId": "...", "bridge": "warm", "product": "gf8", "status": "Saved", "title": "<row name / meeting>", "meeting_score": 11, "added": "YYYY-MM-DD"} ] }
+```
+
+Only keep rows whose `buyerId` is in the starbridge_id list. `pulled.rfp` / `pulled.warm` = whether that half actually completed (the page says which half is missing). No contact names or emails, ever. If Starbridge fails entirely, write `{"pulled": {"rfp": false, "warm": false}, "rows": []}` and carry on; it's not a reason to stop the run.
 
 ---
 
@@ -117,8 +138,9 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_
 • Pass to Sales: top 3 are <name (owner, score)>, <...>, <...>
 • Marketing warmed first: <x%> of <N> new Opportunities since Nov 17
 • Stale MQAs: <N> · decisions logged: <N> · follow-ups: <N flagged, or none>
+• Starbridge: <N> accounts with an open RFP or board-meeting signal <(name them if 5 or fewer)>
 🔗 https://inquired-marketing-dash.netlify.app/ → Account Pulse (MQA)
-[✓/✗] HubSpot pulls · [✓/✗] decision log · [✓/✗] pushed <SHA>
+[✓/✗] HubSpot pulls · [✓/✗] Starbridge (RFP / warm) · [✓/✗] decision log · [✓/✗] pushed <SHA>
 ```
 
 Follow-ups = rows in `pass_to_sales.rows` or `stale.rows` with a `followup` field. No em or en dashes in the message. On a failed run, send the same header with `❌` and the step that failed instead of the bullets.

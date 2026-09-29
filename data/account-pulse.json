@@ -14,6 +14,7 @@
   "mqa_cold_60d": 37,
   "stale_mqa": 80,
   "pass_to_sales": 19,
+  "starbridge_accounts": 2,
   "warmed_share": {
    "pct": 0.517,
    "warmed": 46,
@@ -170,8 +171,8 @@
     "recent_mqa_date": "2026-09-17",
     "first_mqa_date": "2026-09-17",
     "days_mqa": 12,
-    "last_contacted": "2026-09-24",
-    "days_since_contact": 5,
+    "last_contacted": "2026-09-29",
+    "days_since_contact": 0,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976072987",
     "score": 79,
     "breakdown": {
@@ -464,8 +465,8 @@
     "recent_mqa_date": "2026-08-26",
     "first_mqa_date": "2026-08-26",
     "days_mqa": 34,
-    "last_contacted": "2026-09-28",
-    "days_since_contact": 1,
+    "last_contacted": "2026-09-29",
+    "days_since_contact": 0,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/952062871",
     "score": 30,
     "breakdown": {
@@ -1471,8 +1472,8 @@
     "recent_mqa_date": "2026-02-14",
     "first_mqa_date": "2026-02-14",
     "days_mqa": 227,
-    "last_contacted": "2026-09-25",
-    "days_since_contact": 4,
+    "last_contacted": "2026-09-29",
+    "days_since_contact": 0,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8162393117"
    },
    {
@@ -1592,7 +1593,28 @@
     "days_mqa": 217,
     "last_contacted": "2026-09-28",
     "days_since_contact": 1,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314443"
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314443",
+    "starbridge": {
+     "warm": [],
+     "rfp": [
+      {
+       "type": "rfp",
+       "product": "ij",
+       "due": "2026-10-14",
+       "title": "Books and Publications (Request For Proposal)",
+       "summary": "Provide books and publications. ",
+       "url": "https://humbleisd.ionwave.net/PublicDetail.aspx?bidID=1390&SourceType=1"
+      },
+      {
+       "type": "rfp",
+       "product": "inkwell",
+       "due": "2026-10-14",
+       "title": "Books and Publications (Request For Proposal)",
+       "summary": "Provide books and publications. ",
+       "url": "https://humbleisd.ionwave.net/PublicDetail.aspx?bidID=1390&SourceType=1"
+      }
+     ]
+    }
    },
    {
     "id": "4689373657",
@@ -2119,9 +2141,30 @@
     "days_mqa": 123,
     "last_contacted": "2026-09-28",
     "days_since_contact": 1,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1084227890"
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1084227890",
+    "starbridge": {
+     "warm": [],
+     "rfp": [
+      {
+       "type": "rfp",
+       "product": "ij",
+       "due": "2026-09-30",
+       "title": "Instructional Curriculum Materials, Supplies, and Digital Resources (RFP)",
+       "summary": "Houston Independent School District (HISD) is soliciting proposals to provide instructional curriculum materials, supplies, and digital resources under Project Number 26-04-46. The solicitation is intended to create an Approved Vendor list to be recommended to the HISD Board of Managers for procurement needs. Awarded vendors will be managed through HISD Purchasing Services and must submit questions and proposals through the district's electronic bidding portal.",
+       "url": "https://houstonisd.ionwave.net/PublicDetail.aspx?bidID=2298&SourceType=1"
+      }
+     ]
+    }
    }
   ]
+ },
+ "starbridge": {
+  "pulled": {
+   "rfp": true,
+   "warm": false
+  },
+  "warm_min_score": 10,
+  "accounts_with_signal": 2
  },
  "decisions_snapshot": {
   "entries": 0,

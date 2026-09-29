@@ -45,6 +45,7 @@
   <ul class="open-items" id="open-items"></ul>
 
   <p class="foot-note">Source: Mailchimp Marketing API, audience 20beb95bf5. Phase counts are saved segment member counts (Mailchimp refreshes those itself, the "as of" time is on each segment). Email stats are Mailchimp's report for each Customer Journey step created on or after Sep 1, 2026. Eligible = Segment is Medium, Large or Enterprise District.</p>
+  <div id="mth-section"></div>
 </main>
 <div class="tip" id="tip"></div>
 
@@ -190,5 +191,7 @@ function renderOpen(reg, live) {
 }
 load();
 </script>
+<script src="assets/methodology.js"></script>
+<script>window.renderMethodology(document.getElementById("mth-section"), "teacher-nurture");</script>
 </body>
 </html>

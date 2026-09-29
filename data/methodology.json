@@ -1,0 +1,1050 @@
+{
+ "updated": "2026-09-29",
+ "tabs": {
+  "overview": {
+   "built_by": {
+    "skill": "weekly-marketing-digest, monthly-marketing-digest",
+    "routine": "Dash weekly funnel routine, Mondays 6am ET (weekly card, KPI strip, pipeline goal); Monthly Digest routine, first Wednesday of the month, 8am ET (monthly summary card)",
+    "instructions": "DASH_ROUTINE.md (weekly keys); monthly-marketing-digest SKILL.md, Output 5 (monthly keys)"
+   },
+   "intro": "A one-screen read on funnel health: the latest monthly summary, the last two weekly summaries, a few headline KPIs and progress against the school-year pipeline goal. Two routines write the same file, and each one only touches the keys it owns.",
+   "sources": [
+    {
+     "source": "Monthly digest output",
+     "what": "The AI Monthly Digest Summary card: headline, body and signal chips",
+     "how": "Written into `summary` by monthly-marketing-digest from the same HubSpot, GA4 and Semrush pulls as the Monthly tab; the weekly routine never writes `summary`"
+    },
+    {
+     "source": "Weekly digest output",
+     "what": "The AI Weekly Digest Summary cards for the latest week and the week before",
+     "how": "`weekly_signal.current` holds this run's 2 to 4 sentence narrative; the prior `current` block moves to `previous` unchanged"
+    },
+    {
+     "source": "HubSpot CRM (contacts)",
+     "what": "HIH Pool and MQL to SQL KPI tiles",
+     "how": "HubSpot MCP `search_crm_objects`: HIH Pool = total contacts with `marketing_intent_tier` = High, no date window; MQL to SQL = SQL stage entries / MQL stage entries (`hs_v2_date_entered_*`) for the latest ISO week"
+    },
+    {
+     "source": "HubSpot CRM (deals)",
+     "what": "Closed Won MTD tile and the Pipeline vs goal card",
+     "how": "Goal card: deals with `deal_start_year` = 27-28 in the District Sales, School Sales and New Business pipelines listed in `data/goals.json`, split open / lost / won by `hs_is_closed_won` and `hs_is_closed_lost`, summed on `amount_in_home_currency`"
+    },
+    {
+     "source": "data/goals.json",
+     "what": "Pipeline and closed-won targets, deal cohort field and value, reference-year actuals",
+     "how": "Read each weekly run; `reference_year` (SY25-26) is carried forward unchanged"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Key ownership",
+     "value": "Monthly digest owns `summary`; weekly routine owns `weekly_signal`, `kpis`, `brand_lift` and `pipeline_goal`",
+     "why": "Two routines share one file, so each updates only its own keys and preserves the rest"
+    },
+    {
+     "rule": "Weekly summary rotation",
+     "value": "Two cards: current week and the week before",
+     "why": "The prior week's card is moved down verbatim so the two reads can be compared side by side"
+    },
+    {
+     "rule": "HIH Pool definition",
+     "value": "All contacts with intent tier High, no time window (2,383 in the current file)",
+     "why": "Used only for this KPI tile; kept separate from the windowed weekly HIH count and from the Monthly tab's 90-day active pool (HubSpot list 10586)"
+    },
+    {
+     "rule": "MQL to SQL on the tile",
+     "value": "Latest weekly run's rate",
+     "why": "The weekly routine writes the flat KPI block each Monday"
+    },
+    {
+     "rule": "Pipeline goal scope",
+     "value": "`deal_start_year` = 27-28, District Sales + School Sales + New Business pipelines",
+     "why": "Renewal is retention, not new growth; Awareness has never closed a deal; Account Growth and Partnerships are out of the goal scope (per `goals.json` and the monthly skill)"
+    },
+    {
+     "rule": "What counts as pipeline generated",
+     "value": "Open + lost + won",
+     "why": "Lost deals count on purpose, because the goal implies a target win rate"
+    },
+    {
+     "rule": "Test deal exclusion",
+     "value": "Drops deal names matching Ashley Test, Tim Test, Testacct, and names starting District Ashley or School Ashley",
+     "why": "Internal test deals would inflate pipeline totals"
+    },
+    {
+     "rule": "Compact goal card",
+     "value": "Top-line totals only; segment, product and pipeline breakdowns live on Monthly",
+     "why": "Keeps the Overview to headline numbers"
+    }
+   ],
+   "limits": [
+    "The two summary cards come from different cadences: the monthly card covers the last full calendar month, the weekly cards cover the last full ISO week, so their numbers will not match.",
+    "The monthly card's \"Generated\" date and \"Data month of\" label are computed from the file's `updated` date, which the weekly routine also stamps, so the label reflects the last write by either routine rather than the monthly run date.",
+    "The KPI strip takes whichever shape was written last: the weekly routine writes three flat tiles (HIH Pool, MQL to SQL, Closed Won MTD) and the monthly skill's spec writes four tiles with sparklines (HIH Velocity, MQL to SQL, Active Campaigns, MQA Accounts). Flat tiles show no delta or sparkline.",
+    "The HIH Pool tile caption reads \"90-day rolling pool\", but the routine counts every contact currently at intent tier High with no window; the 90-day pool is a different, smaller number shown on the Monthly tab.",
+    "`brand_lift` (Google Search Console) is written to this file each week but the Overview does not render it; branded search appears on the Weekly and Monthly tabs.",
+    "Pipeline and closed-won figures are directional; RevOps owns the official numbers, and the SY25-26 reference year does not match the ~$7.1M figure from goal setting (unresolved)."
+   ]
+  },
+  "monthly": {
+   "built_by": {
+    "skill": "monthly-marketing-digest",
+    "routine": "Monthly Digest cloud routine, first Wednesday of the month, 8am ET",
+    "instructions": "growth-marketing/skills/monthly-marketing-digest/SKILL.md (the routine prompt invokes the skill)"
+   },
+   "intro": "Answers whether the funnel is healthy and turning into revenue, by comparing the last full calendar month with the same month last year. The skill pulls HubSpot, GA4 and Semrush each run and adds one month to a history that starts Jun 2025.",
+   "sources": [
+    {
+     "source": "HubSpot CRM (contacts)",
+     "what": "HIH, Lead count, MQL, SQL, Opp, product and source splits, UTM attribution, 90-day HIH pool",
+     "how": "HubSpot MCP `search_crm_objects` / `query_crm_data`: HIH = `marketing_intent_tier` High AND `createdate` in month; Lead = `recent_conversion_date` in month; MQL / SQL / Opp = `hs_v2_date_entered_marketingqualifiedlead` / `salesqualifiedlead` / `opportunity` in month; products from `product_interest`; HIH by source from `hs_latest_source`; 90-day pool = size of list 10586"
+    },
+    {
+     "source": "HubSpot CRM (deals)",
+     "what": "Closed-won revenue, wins, win rate, closed-won deal list, revenue by product, pipeline vs goal",
+     "how": "Full won and lost lists filtered on `hs_is_closed_won` / `hs_is_closed_lost` and `closedate` in month across New Business, Account Growth, Renewal, District Sales and School Sales; properties `amount`, `dealtype`, `segment`, `rfp`, `pipeline`; product from `product_s_`; goal from `deal_start_year` per `data/goals.json`"
+    },
+    {
+     "source": "GA4 (property 326695663)",
+     "what": "Sessions, users, page views, engagement rate, channel mix, key-event conversions, top conversion pages, 24-month sessions trend",
+     "how": "GA4 Data API `RunReport`: `sessions`, `activeUsers`, `screenPageViews`, `engagementRate`, `sessionDefaultChannelGroup`, `eventName` with `keyEvents` / `eventCount`, `pagePath`, `yearMonth`"
+    },
+    {
+     "source": "Semrush",
+     "what": "Keyword rankings by topic, top organic entry pages, AI visibility, keyword gap",
+     "how": "Position Tracking API (project 30090954); `domain_organic_unique` + `domain_ranks` for page visits; monthly AI Visibility and Keyword Gap PDFs read from Google Drive (My Drive > SEMrush Reports)"
+    },
+    {
+     "source": "MKT1 AEO audit",
+     "what": "Site AEO audit pillars, checks and P0 to P2 fixes",
+     "how": "Loaded from `data/aeo-audit.json`, written by the monthly-aeo-audit local task from a clean-context `mkt1_aeo_audit` run on inquired.com"
+    },
+    {
+     "source": "Google Search Console",
+     "what": "Brand lift block (branded search clicks by month)",
+     "how": "Search Analytics API, branded queries on inquired.com; the monthly block stays in its collecting state until the monthly GSC pull is wired"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Window and comparison",
+     "value": "Last completed calendar month (UTC), compared with the same month last year on the scorecard and funnel; MoM shown as secondary",
+     "why": "K-12 buying is seasonal, so MoM compares different seasons and misleads"
+    },
+    {
+     "rule": "Scorecard status labels",
+     "value": "MQL to SQL: Up at +2 pts or more YoY, Down at -2 pts or less; SQLs: Up at +5% YoY, Down at -5%; Pipeline: On track at 50% of goal; Closed-won: Ahead or Behind last year",
+     "why": "Set in the tab code so each tile carries one clear status"
+    },
+    {
+     "rule": "HIH exclusions",
+     "value": "Drops inquired.com staff, 11 competitor domains and higher-ed contacts; keeps anyone tagged with a K-12 company size",
+     "why": "K-12 bodies also use .edu (cps.edu, bie.edu), so the size guard stops real districts being removed; every month is recounted under the same rule"
+    },
+    {
+     "rule": "Lead definition",
+     "value": "Any contact with a form submission in the month (`recent_conversion_date`), new or returning",
+     "why": "Measures demand activity; not the HubSpot LEAD object and not the `lead` lifecycle stage"
+    },
+    {
+     "rule": "Pipelines in revenue and win rate",
+     "value": "New Business, Account Growth, Renewal, plus legacy District Sales and School Sales; Awareness and Partnerships excluded",
+     "why": "RevOps-confirmed structure; Awareness has never closed a deal and Partnerships is a non-buyer demo placeholder"
+    },
+    {
+     "rule": "Deal exclusions",
+     "value": "Test deals (name patterns such as Ashley Test, Tim Test, Test Deal, Testacct, Pandadoc Test) and `rfp` = true, removed from both won and lost",
+     "why": "Matches how RevOps reports win rate and revenue"
+    },
+    {
+     "rule": "New Business vs Existing",
+     "value": "New Business = newbusiness + Pilot + Pilot Expansion; Existing / Expansion = Renewal + Upsell + Add On + Cross Sell; Renewal Pipeline revenue lands in Existing",
+     "why": "A pilot converting or expanding is new business, matching RevOps"
+    },
+    {
+     "rule": "District vs School split",
+     "value": "Legacy pipelines by pipeline ID; New Business, Account Growth and Renewal deals by their `segment` (Single Site = School, any District size = District)",
+     "why": "Newer pipelines carry both kinds of buyer"
+    },
+    {
+     "rule": "Win rate basis",
+     "value": "Monthly close-date basis only: won / (won + lost) by count and by dollars; cumulative FYTD view withheld",
+     "why": "The FYTD basis stays off until RevOps confirms the deal-inclusion rules, so marketing does not publish a conflicting number"
+    },
+    {
+     "rule": "UTM attribution rate",
+     "value": "MQLs with `utm_campaign` / addressable MQLs, excluding Offline, Organic Search and AI Referrals sources; target 30%",
+     "why": "Those three sources never carry a UTM, so including them would measure import mix instead of tracking"
+    }
+   ],
+   "limits": [
+    "Product splits use the multi-select `product_interest` (contacts) and `product_s_` (deals) fields with partial coverage that drops down-funnel, so product rows are directional and will not sum to totals.",
+    "MQL to SQL divides stage entries in the same month, so it is not a cohort conversion rate.",
+    "The Pipeline and revenue section is flagged as under construction on the tab: its numbers have not been reconciled with RevOps and should be read as directional.",
+    "History from Jun 2025 to May 2026 was backfilled and is not test-excluded except May 2026; Renewal Pipeline revenue is included in totals across history, but individual Renewal deals are not in each month's deal list.",
+    "The 90-day HIH pool is a live HubSpot list snapshot taken on the run day, so it cannot be rebuilt for past months and may be dated after month end.",
+    "Monthly HIH by product counts a contact under every product it is tagged with, unlike the Weekly tab's single primary product.",
+    "`utm_campaign` holds one value per contact, so campaign credit goes to a single campaign per MQL; SQL-by-source and top campaigns come from a sample of up to 200 SQL contacts.",
+    "GA4 channel grouping is GA4's own session attribution and is independent of HubSpot lead-source UTMs; AI tools land under Referral in the default grouping.",
+    "The Semrush History API is not on the current plan, so top organic pages are a snapshot at run time, and keyword MoM columns show a baseline until month-over-month history is wired in.",
+    "AI Visibility and Keyword Gap depend on monthly Semrush emails reaching Google Drive; when a PDF is missing the section shows data pending.",
+    "Brand lift on this tab stays in the collecting state; the monthly GSC pull is not wired, and YouTube and Instagram are not available through the Search Console API.",
+    "HubSpot AEO tracked-prompt data is not shown while the HubSpot AEO permission is pending.",
+    "HubSpot marketing email, Google Ads and LinkedIn Ads data feed the Slack post and run log when available, but this tab does not render them."
+   ]
+  },
+  "weekly": {
+   "built_by": {
+    "skill": "weekly-marketing-digest",
+    "routine": "Dash weekly funnel routine, Mondays 6am ET",
+    "instructions": "DASH_ROUTINE.md"
+   },
+   "intro": "Answers whether the funnel moved last week: new high-intent contacts, MQL, SQL and Opp entries, what they converted on, open pipeline movement and lead disposition. Each Monday the routine pulls the last full ISO week from HubSpot and compares it with the prior 8-week average and the same week last year.",
+   "sources": [
+    {
+     "source": "HubSpot CRM (contacts)",
+     "what": "HIH, MQL, SQL, Opp, product and company-size splits, disqualified and nurture counts, form fills by offer, first vs last touch, HIH from existing contacts, intent tier and content tag totals",
+     "how": "HubSpot MCP `search_crm_objects` / `query_crm_data`: HIH = `marketing_intent_tier` High AND `createdate` in week (paged list); MQL / SQL / Opp = `hs_v2_date_entered_*` in week; `product_interest`, `segment__company_`; DQ = `hs_latest_disqualified_lead_date`; nurture = `nurture_reason_last_updated` and `nurture_reason`; offers = `recent_conversion_event_name` on `recent_conversion_date`; first touch = `first_conversion_event_name`"
+    },
+    {
+     "source": "HubSpot CRM (LEAD object)",
+     "what": "Disqualification reasons",
+     "how": "`query_crm_data` on LEAD: `hs_lead_disqualification_reason` for leads that entered the 7 - Disqualified stage (`hs_v2_date_entered_unqualified_stage_id_1675714327`) in the week"
+    },
+    {
+     "source": "HubSpot CRM (deals)",
+     "what": "Open pipeline by stage, stage movement this week, deals that moved, open deals by product",
+     "how": "Open deals (`hs_is_closed` = false) in New Business, Account Growth and Renewal; `dealstage`, `amount_in_home_currency`, `product_s_`; stage entries from `hs_v2_date_entered_<stageId>`; exits from `closedate` with `hs_is_closed_won` / `hs_is_closed_lost`"
+    },
+    {
+     "source": "Google Search Console",
+     "what": "Branded search clicks and impressions by week",
+     "how": "`scripts/gsc_brand_lift.py` calls the Search Analytics API on inquired.com, counting queries that contain inquired, inquiry journeys, inkwell, great first eight or gf8"
+    },
+    {
+     "source": "Weekly run log",
+     "what": "Prior-week numbers, 8-week reason and offer averages, acknowledged list events",
+     "how": "`data/run-logs/weekly-marketing-digest-run-log.json`, read at the start of each run"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Reporting window",
+     "value": "Last completed ISO week, Monday 00:00 to Sunday 23:59 UTC; the in-progress week is left out",
+     "why": "Only whole weeks are compared"
+    },
+    {
+     "rule": "Main comparison",
+     "value": "Prior 8 complete weeks' average: Up at 1.2x average or more, Surge at 2x, Down at 0.8x or less, otherwise Flat; MQL to SQL is Up or Down at 3 pts or more from the 8-week rate",
+     "why": "Weekly counts are small and noisy, so an 8-week baseline is steadier than week over week"
+    },
+    {
+     "rule": "Year-over-year",
+     "value": "Same ISO week last year (Monday minus 364 days) for MQL, SQL and Opp; no HIH YoY",
+     "why": "HIH reads the current intent tier, so a year-old cohort has had 12 months to reach High and is not comparable"
+    },
+    {
+     "rule": "HIH exclusions",
+     "value": "Drops inquired.com staff, 11 competitor domains and higher-ed contacts (University or College company names, or .edu domains that are not a school, district or education body); keeps anyone with a K-12 company size",
+     "why": "K-12 bodies also use .edu (cps.edu, bie.edu), so both guards are needed; the tab lists how many were removed each week"
+    },
+    {
+     "rule": "Product assignment",
+     "value": "HIH: one primary product per contact, priority Inkwell, IJ, World History, Great First 8. MQL / SQL / Opp: every tagged product counts. Untagged shown as its own row",
+     "why": "Primary product keeps HIH bars mutually exclusive; multi-tag counts mean MQL to Opp columns can sum above the total"
+    },
+    {
+     "rule": "Company size",
+     "value": "Single Site and Small District combined as Single / Small; Other excluded; segment pulls skipped when a metric's current + prior total is under 10",
+     "why": "Small samples make the mix noise"
+    },
+    {
+     "rule": "Pipelines shown",
+     "value": "New Business, Account Growth and Renewal; legacy District and School pulled but hidden; Awareness and Partnerships never pulled; test deals removed by name",
+     "why": "RevOps confirmed these three as the active pipelines"
+    },
+    {
+     "rule": "Stage movement",
+     "value": "Forward = new deal or a later stage; back = an earlier stage or Closed Lost, against the RevOps order Sales Qualified to Interest to Consideration to Conviction to Desire to Validation / Approval to Closed; Renewal uses its own stages; moved deals capped at 60",
+     "why": "Sales Qualified is a booked meeting, not pipeline; pipeline starts at Interest"
+    },
+    {
+     "rule": "Top converting pieces",
+     "value": "Top 10 offers by fills, grouped by `recent_conversion_event_name`; type (Download, Webinar, Hand-raise, Form) and product read from the event name prefix",
+     "why": "Event names carry the content tag; page titles mislabel downloads"
+    },
+    {
+     "rule": "Branded search deltas",
+     "value": "Weeks with fewer than 7 settled days are marked provisional and compared over the same settled days of each week; the two latest weeks are re-pulled each run",
+     "why": "GSC finalizes data 2 to 3 days late, so a full-week diff on a partial week manufactures a drop"
+    }
+   ],
+   "limits": [
+    "MQL to SQL divides stage entries within the same week, so it shows direction, not a cohort conversion rate.",
+    "Product tagging is thin below HIH (the current caveat shows MQL 9%, SQL 12%, Opp 12% coverage), so product rows for MQL, SQL and Opp are directional.",
+    "Company size (`segment__company_`) is partially populated; unassigned contacts are left out of the size rows but included in headline totals.",
+    "DQ reasons come from the LEAD object, which records far fewer disqualifications than the contact-level DQ count (52 vs 126 for the Sep 21 week); both numbers are shown.",
+    "Form fills count each contact's most recent conversion only, so repeat fills by one contact in the same week count once. \"Became HIH\" is contacts in the offer group whose intent tier is High at pull time, not a dated tier change.",
+    "HIH from existing contacts is a proxy: HubSpot stores no date for an intent-tier change, so it can include contacts who were already High before the week.",
+    "Intent tier and content tag figures are running totals, not weekly counts; the change column compares with the previous stored snapshot, which is not written every week.",
+    "Last-touch campaign on moved deals is not pulled: the contact campaign field is mostly blank and UTMs do not pass from lead to deal.",
+    "YouTube and Instagram are Search Console platform properties that the API does not return, so those tiles stay as placeholders.",
+    "The \"View HIH list in HubSpot\" link opens list 10586, the 90-day active pool, which is a different population from the weekly HIH count.",
+    "Pipeline vs goal is written to this tab's data file but displayed on the Monthly and Overview tabs."
+   ]
+  },
+  "campaign": {
+   "built_by": {
+    "skill": "campaign-analytics-report",
+    "routine": "Campaign Health cloud routines, 15th (mid-month checkpoint) and 28th (month close) at 4:00am ET",
+    "instructions": "growth-marketing/routines/CAMPAIGN_HEALTH_ROUTINE.md (steps), growth-marketing/skills/campaign-analytics-report/SKILL.md (master spec)"
+   },
+   "intro": "Shows how much high-intent interest each active campaign is producing, grouped by strategic priority, so you can see which campaigns are working and which have too little data to judge. Each run pulls live HubSpot list membership for every campaign in the curated roster, counts High Intent Handraisers (HIH) and MQLs month-to-date, and writes one entry per month that the 15th run opens and the 28th run updates.",
+   "sources": [
+    {
+     "source": "Campaign roster (campaign-lists.md)",
+     "what": "Which campaigns to pull: campaign name, HubSpot list ID, campaign object ID, strategic group, and notes such as target-list-driven or excluded",
+     "how": "Skill-bundled file `skills/campaign-analytics-report/reporting/campaign-lists.md`, re-read at the start of every run; the inquirED Campaigns sheet wins if the two conflict"
+    },
+    {
+     "source": "HubSpot CRM (list membership)",
+     "what": "Total contacts on each campaign list and how many of them are HIH",
+     "how": "HubSpot MCP `search_crm_objects` on contacts with `ilsListIds IN [<list_id>]`, `limit: 1`, reading only `total`; HIH adds `marketing_intent_tier EQ \"High\"`"
+    },
+    {
+     "source": "HubSpot CRM (MQL dates)",
+     "what": "MQL conversions this month-to-date and in the same day range of the prior month",
+     "how": "Same list filter plus `hs_v2_date_entered_marketingqualifiedlead` between window start and end (Unix milliseconds)"
+    },
+    {
+     "source": "HubSpot CRM (contact samples)",
+     "what": "Intent tier mix (High, Medium, Low, Unknown) and top conversion events",
+     "how": "Sample of 100 contacts per list for `marketing_intent_tier`; sample of up to 50 current MQLs for `recent_conversion_event_name`"
+    },
+    {
+     "source": "Campaign Health run log",
+     "what": "Prior run's numbers, used as the prior column for month-over-month comparison",
+     "how": "`campaign-analytics-run-log.json`, read at the start of each run and appended after a successful run"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Headline quality metric",
+     "value": "HIH count and share of contacts touched (HIH = `marketing_intent_tier = High`)",
+     "why": "The report measures quality, not just volume; MQLs, intent mix and engagement are supporting context"
+    },
+    {
+     "rule": "Campaign status color",
+     "value": "Green at 20%+ HIH, Amber 10 to 19%, Red under 10%, Grey under 10 contacts",
+     "why": "Set in the tab code so every card reads on the same HIH scale; lists under 10 contacts are too small to judge"
+    },
+    {
+     "rule": "Readable threshold",
+     "value": "A campaign needs 20+ contacts to be readable; the month is a baseline period when fewer than half of active campaigns clear it",
+     "why": "A high HIH rate on a handful of contacts is noise, not signal"
+    },
+    {
+     "rule": "Card order",
+     "value": "Red first, then Amber, Green, Grey",
+     "why": "Puts the campaigns that need attention at the top"
+    },
+    {
+     "rule": "Benchmark line on each card",
+     "value": "Portfolio average HIH share for the month",
+     "why": "Lets each campaign be read against the whole portfolio"
+    },
+    {
+     "rule": "MQL window",
+     "value": "Month-to-date versus the same day range of the prior month",
+     "why": "Apples-to-apples month-over-month comparison"
+    },
+    {
+     "rule": "Intent distribution chart",
+     "value": "Only lists with 100+ contacts and a sampled intent mix",
+     "why": "Intent is sampled at 100 contacts, so smaller lists have no reliable mix"
+    },
+    {
+     "rule": "Strategic groups",
+     "value": "Inkwell, Inquiry Journeys, Evergreen + Thought Leadership, ABM, Great First Eight",
+     "why": "Group rollups are where strategy meets data"
+    },
+    {
+     "rule": "Data quality flags",
+     "value": "Under 10 contacts flags an asset-attachment audit; target-list-driven lists at 0 get a note that list-membership OR groups are needed",
+     "why": "Low counts usually mean the campaign object is missing assets or the list only captures engagement"
+    },
+    {
+     "rule": "Excluded campaigns",
+     "value": "Campaigns marked Excluded in the roster are noted but not pulled (for example Conferences, Think Time with NCSS, Inquiry Week)",
+     "why": "They have no HubSpot list yet or live in Mailchimp"
+    }
+   ],
+   "limits": [
+    "Contacts and HIH are gross list-membership counts: a contact on several campaign lists is counted in each, so group and total sums are not deduplicated.",
+    "HIH and total contacts are current list membership, not limited to the month; only MQLs are windowed to month-to-date.",
+    "Campaign attribution is list membership only: a contact counts toward a campaign if the HubSpot list includes them, whatever the list's own filter logic is.",
+    "Target-list-driven campaigns (Symposium, Account Driven) show engagement-only counts until their HubSpot lists add list-membership OR groups.",
+    "Teacher campaigns that run in Mailchimp, such as Inquiry Week, are out of scope.",
+    "Month-over-month totals can be distorted by a list definition change or bulk import; the run flags these as not comparable.",
+    "No campaign currently targets current customers, so this tab does not cover customer marketing.",
+    "The full report with per-campaign breakdown and chart is a private Slack DM; this tab is its visual companion."
+   ]
+  },
+  "pulse": {
+   "built_by": {
+    "skill": "account-pulse-refresh",
+    "routine": "Account Pulse routine, Mondays 7:30am ET",
+    "instructions": "PULSE_ROUTINE.md + scripts/build_account_pulse.py"
+   },
+   "intro": "Which marketing-qualified accounts to pass to Sales, how MQAs turn into pipeline, and which stale MQAs need a decision. The routine pulls HubSpot company records and Starbridge bridge rows, and a script does every count and score so the numbers are reproducible.",
+   "sources": [
+    {
+     "source": "HubSpot CRM (companies)",
+     "what": "Open MQAs, every account that ever hit MQA, accounts that became an Opportunity, accounts that entered Engaged this week, stage totals",
+     "how": "query_crm_data on `mqa_lifecycle_stage`, `first_mqa_date`, `recent_mqa_date`, `first_mqa_engaged_date`, `recent_mqa_engaged_date`, `first_mqa_opportunity_date`, `mqa_signal`, `notes_last_contacted`, `hubspot_owner_id`"
+    },
+    {
+     "source": "HubSpot Users",
+     "what": "Owner names",
+     "how": "query_crm_data on the USER object (`hubspot_owner_id` to name), cached in data/hubspot-owners.json"
+    },
+    {
+     "source": "Starbridge RFP bridges",
+     "what": "Open RFPs at these accounts",
+     "how": "listBridgeRows on ELA RFPs, IJ RFPs, GF8 RFPs, Status New or Saved, due date not passed"
+    },
+    {
+     "source": "Starbridge Warm Signals bridges",
+     "what": "Board-meeting buying signals at these accounts",
+     "how": "listBridgeRows on the GFE, IJ and Inkwell Warm Signals bridges, Status New or Saved, filtered to these accounts' buyer IDs"
+    },
+    {
+     "source": "Airtable Account Decisions log",
+     "what": "Demote, Recycle and Escalate decisions with notes and history",
+     "how": "Read live on page load through a Netlify function; snapshotted weekly into data/pulse-decisions.json"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Universe",
+     "value": "Medium, Large and Enterprise districts",
+     "why": "The segments Sales works as named accounts"
+    },
+    {
+     "rule": "Backfill date left out of origin and timing numbers",
+     "value": "Nov 17, 2025",
+     "why": "HubSpot stamped MQA stage dates on that day when stages launched, so it isn't real movement"
+    },
+    {
+     "rule": "Pass to Sales window",
+     "value": "Hit MQA in the last 120 days",
+     "why": "Most MQAs that became an Opportunity did it within 100 days (median 22)"
+    },
+    {
+     "rule": "Stale MQA",
+     "value": "No new MQA activity in over 120 days",
+     "why": "Same evidence: conversions after this point are rare"
+    },
+    {
+     "rule": "Readiness score",
+     "value": "Signal up to 50 + recency up to 30 + contact gap up to 20",
+     "why": "Signal points scale to each signal's own MQA to Opportunity rate; the full points table is in the Pass to Sales section"
+    },
+    {
+     "rule": "Signals with small samples",
+     "value": "Under 10 accounts get a flat 20 points",
+     "why": "Too few accounts to trust the rate"
+    },
+    {
+     "rule": "Marketing warmed first",
+     "value": "Account was MQA or Engaged before its first Opportunity date",
+     "why": "Deal source fields are blank in HubSpot, so credit comes from stage order"
+    },
+    {
+     "rule": "Starbridge badges",
+     "value": "Context only, never scored; board-meeting signals need Meeting Score 10+",
+     "why": "No conversion evidence for Starbridge signals yet; 10+ matches State Signal"
+    },
+    {
+     "rule": "Account matching",
+     "value": "HubSpot `starbridge_id` = bridge `buyerId`, exact",
+     "why": "Same exact join State Signal uses, no fuzzy name matching"
+    },
+    {
+     "rule": "Decisions",
+     "value": "Append-only, never written to HubSpot",
+     "why": "Keeps the full history; MQA list rules stay with the HubSpot list owner"
+    }
+   ],
+   "limits": [
+    "`mqa_signal` holds an account's current signals, not the one it had when it hit MQA.",
+    "Signal conversion rates include backfilled accounts; origin and timing numbers don't.",
+    "Accounts can carry several signals, so signal rows add up to more than the account total.",
+    "Starbridge only covers buyers it tracks; no badge doesn't mean no buying activity.",
+    "Decision names are typed by the viewer (the site uses one shared password)."
+   ]
+  },
+  "state-signal": {
+   "built_by": {
+    "skill": "state-signal-refresh",
+    "routine": "Signals Update (cloud routine), Mondays 8am ET, PHASE A; policy research and the Starbridge RFP pull run through the state-signal-refresh skill on request or roughly monthly",
+    "instructions": "SIGNALS_ROUTINE.md (PHASE A), growth-marketing/skills/state-signal-refresh/SKILL.md, scripts/score_watch_states.py (priority score and tiers)"
+   },
+   "intro": "Which states to work this week. The Sales table ranks the 10 states with the most MQA/Engaged accounts that have had no sales contact in 60+ days; the Marketing table ranks states with a real, cited policy signal by a 0-100 priority score built from Starbridge buying signals, policy news recency, and existing HubSpot footprint.",
+   "sources": [
+    {
+     "source": "HubSpot CRM (portal 4451852), companies",
+     "what": "MQA/Engaged company counts by state (qualified and actionable), plus up to 10 actionable accounts per top-10 state with segment, stage, signal, owner, and last contact date",
+     "how": "HubSpot MCP `query_crm_data` on COMPANY: three GROUP BY `state_st` queries on `mqa_lifecycle_stage` IN ('MQA','Engaged'), split by `notes_last_contacted` < cutoff and `notes_last_contacted` IS NULL; drill-down pulls `hs_object_id`, `name`, `segment`, `mqa_signal`, `hubspot_owner_id`, `recent_mqa_date`; owner names via `search_owners`"
+    },
+    {
+     "source": "Starbridge RFP bridges (ELA RFPs, GF8 RFPs, IJ RFPs)",
+     "what": "Open RFPs per state and product (`starbridge_open_rfps`), with the top 3 per state by Match Score shown in the watch-state drawer",
+     "how": "Starbridge `listBridges` to confirm IDs, then `listBridgeRows` filtered to `Status` New or Saved; aggregated by `Buyer State Code` into `starbridge_by_state`"
+    },
+    {
+     "source": "Starbridge Warm Signals bridges ([MASTER] Warm Signals GFE, IJ, Inkwell > 1.5k)",
+     "what": "Board-meeting buying signals (board minutes, LCAP, agendas) per state and product, the 90-day Warm Signals KPI, and per-account matches",
+     "how": "`listBridgeRows` filtered server-side on `Status`, `Buyer State Code`, and `Added to Bridge`; `Meeting_Score` (inside `Meeting Score and Relevance`) applied client-side; displays `Summarized Relevance` and `Sales Talking Points`. GFE routes to GF8, IJ to Inquiry Journeys, Inkwell to Inkwell"
+    },
+    {
+     "source": "HubSpot CRM, company `starbridge_id`",
+     "what": "The key that ties a Warm Signal row to a specific tracked district account",
+     "how": "`search_crm_objects` batch fetch of `starbridge_id` for the tracked accounts (`hs_object_id` IN [...]), matched exactly to the bridge row's top-level `buyerId`"
+    },
+    {
+     "source": "State policy research (state DOE and legislature sites, EdWeek, Chalkbeat, K-12 Dive, District Administration, named local outlets)",
+     "what": "Each state's cited policy signal: headline, detail, since-date, product, and source links (social studies standards and adoption cycles for IJ, K-3 literacy laws for Inkwell, Pre-K/TK standards or funding for GF8)",
+     "how": "WebSearch, with WebFetch to confirm promising results; written to `policy_context` and the `watch_states` `headline` / `since` / `sources` fields"
+    },
+    {
+     "source": "Airtable Decisions table",
+     "what": "Actioned / Not Interested triage decisions and notes per state and product",
+     "how": "Netlify functions `get-decisions` (read on tab load) and `set-decision` (write on click), keyed state + product"
+    },
+    {
+     "source": "Account-driven campaign post-mortems (inquirED Fall 2025-2026 Account-Driven Campaign brief)",
+     "what": "Past MQA campaigns table: open rate, CTR, deal metrics, and takeaways for Iowa and South Carolina",
+     "how": "Entered by hand from each campaign's post-mortem into `past_campaigns`; not touched by the weekly refresh"
+    }
+   ],
+   "score_table": [
+    {
+     "ingredient": "Open RFP right now",
+     "max": 30,
+     "tiers": "0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30",
+     "source": "Starbridge RFP bridges (ELA/IJ/GF8), live via `listBridgeRows`, Status New or Saved only"
+    },
+    {
+     "ingredient": "Starbridge signal for upcoming adoption",
+     "max": 30,
+     "tiers": "0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30",
+     "source": "Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via `listBridgeRows`. Counted only if Meeting Score ≥10 and Status is New or Saved; anything scored lower or marked Not Interested is dropped before it reaches this table"
+    },
+    {
+     "ingredient": "Policy news recency",
+     "max": 20,
+     "tiers": "≤6mo → 20 · ≤12mo → 16 · ≤24mo → 12 · ≤36mo → 8 · ≤60mo → 4 · older → 1",
+     "source": "WebSearch, re-run roughly monthly (not every refresh). Every claim needs a real, dated source URL or it doesn't get a since-date at all"
+    },
+    {
+     "ingredient": "Existing HubSpot footprint",
+     "max": 20,
+     "tiers": "20+ accounts → 20 · 12+ → 15 · 6+ → 10 · 3+ → 5 · fewer → 2",
+     "source": "HubSpot portal 4451852: MQA/Engaged company count, no sales contact in 60+ days"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "What counts as actionable",
+     "value": "MQA or Engaged company with no logged call, email, or meeting (`notes_last_contacted`) in the last 60 days, or never contacted",
+     "why": "Surfaces accounts nobody in Sales is working right now, so Marketing and Sales can see where outreach is open this week"
+    },
+    {
+     "rule": "Actionability filter lives inside the query",
+     "value": "The 60-day filter is in the WHERE clause of the account drill-down, then sorted by `recent_mqa_date`, newest first",
+     "why": "The most recently MQA'd accounts are often the ones Sales just worked; sorting by recency and filtering afterward surfaces accounts that aren't actually actionable"
+    },
+    {
+     "rule": "Top states to work (Sales) ranking",
+     "value": "Top 10 states by actionable count, descending; `Unassigned` and `International` stay in national totals but are excluded from ranking; each state shows up to 10 accounts, and the account lists are replaced in full every run",
+     "why": "HubSpot already says who to call, so no score is needed here; replacing the lists means a state that leaves the top 10 loses its old accounts instead of showing stale ones"
+    },
+    {
+     "rule": "Who gets a row in the Marketing table",
+     "value": "Every state (of 50 + DC) with a real, cited policy signal that isn't already a top-10 Sales state. No policy citation, no row, regardless of score",
+     "why": "The watch list is derived from the research, not hand-picked; a state moves to the Sales table on its own once it enters the top 10"
+    },
+    {
+     "rule": "Priority tiers",
+     "value": "High priority ≥56 pts · Medium 32-55 pts · Low <32 pts. Recomputed by `scripts/score_watch_states.py` on every refresh",
+     "why": "Turns a 41-state list into a workable shortlist for Marketing and Sales"
+    },
+    {
+     "rule": "Low priority states are hidden",
+     "value": "The Marketing table and the map shading show High and Medium only; Low priority states render as gray \"no signal yet\" on the map",
+     "why": "Keeps the table focused on states worth working this cycle"
+    },
+    {
+     "rule": "Warm Signals filters",
+     "value": "Status New or Saved, and `Meeting_Score` 10 or higher, shown as-is and uncapped. Not Interested rows are dropped. The IJ bridge's `Relevance Check` (Y/N) is used as an extra filter where present. Match Score is never used for filtering",
+     "why": "Meeting Score measures opportunity quality; Match Score only measures confidence a row belongs in the bridge's buyer scope. Only board meetings that scored well count"
+    },
+    {
+     "rule": "Warm Signals KPI window",
+     "value": "The \"Warm signals (90d)\" card counts qualifying rows added to the three bridges in the trailing 90 days; per-account matches cover the full bridge history",
+     "why": "The 90-day window is a display scope for the KPI, not a limit on what counts as a real signal, so an older board meeting still matches to its account"
+    },
+    {
+     "rule": "Account-level Warm Signal matching",
+     "value": "Exact join: HubSpot company `starbridge_id` = Starbridge bridge row `buyerId`. Not name or state fuzzy-matching. The highest-scoring match is shown under that account; other qualifying districts appear in a separate state-level block, never twice",
+     "why": "An exact UUID join means a signal only lands on an account when it is truly the same district"
+    },
+    {
+     "rule": "Policy research cadence",
+     "value": "Only when Marketing asks for a re-research pass or about a month has passed; the Monday routine never touches policy fields. Every claim needs a real source URL; a state with nothing verifiable says so plainly",
+     "why": "States don't pass new laws weekly, and re-running research every week risks drifting citations nobody has reviewed"
+    },
+    {
+     "rule": "Most actionable state to watch",
+     "value": "Picked automatically: the watch state with the highest priority score, recomputed each refresh",
+     "why": "The pick moves with the scores and is never a hand-chosen state"
+    },
+    {
+     "rule": "Actioned / Not Interested buttons",
+     "value": "Each state + product row has Actioned, Not interested, and Clear buttons plus a notes field, saved to the Airtable Decisions table and shown as a badge in the Decision column for everyone who opens the dashboard",
+     "why": "A shared triage log (not per-browser storage). Decisions are a record only: they do not change a state's score, tier, or ranking"
+    }
+   ],
+   "limits": [
+    "The product tag on each state is a state policy or procurement signal (which inquirED product that state's legislation, adoption cycle, or open RFP relates to), not which product a specific account is interested in. HubSpot has no company-level product rollup yet.",
+    "Companies with no `state_st` value show as Unassigned and are left out of the ranking; the share is recomputed every run and shown in the tab's flags.",
+    "The Open RFP ingredient refreshes only when the policy and Starbridge RFP pass runs (on request or roughly monthly), while Warm Signals refresh every Monday, so RFP counts can be a few weeks old.",
+    "`Meeting_Score` can't be filtered inside Starbridge, so it is applied after fetching, and Starbridge's scores are not bounded to its documented 1-10 range.",
+    "A state with no dated policy source gets 0 recency points.",
+    "Few tracked accounts carry a `starbridge_id` that matches a qualifying Warm Signal, so most Warm Signals show at the state level for districts not yet cross-checked against full HubSpot records.",
+    "Draft outreach emails in the account drawers are templates built from the account's HubSpot signal and the state's policy context, meant as starting points for a rep to personalize.",
+    "The Past MQA campaigns table only includes campaigns with a real post-mortem; a campaign that ran without one (Kentucky, September 2025) is absent.",
+    "No personal contact data from Starbridge or HubSpot appears on this tab; only institutional district and school names.",
+    "If the Airtable connection is unavailable, Decision badges stay blank; the rest of the tab still works."
+   ]
+  },
+  "content": {
+   "built_by": {
+    "skill": "content-performance-refresh",
+    "routine": "Monday Signals Update cloud routine, Mondays at 8:00am ET (PHASE B2)",
+    "instructions": "inquired-dash-reporting/SIGNALS_ROUTINE.md"
+   },
+   "intro": "Shows which website pages, landing pages and blog posts turn visitors into contacts, and which high-traffic pages are not converting. Each Monday the routine pulls HubSpot content analytics, drops noise and non-marketing pages, flags each page by contacts per view, and writes a weekly snapshot.",
+   "sources": [
+    {
+     "source": "HubSpot Content Analytics",
+     "what": "Top 40 pages by views with all-time totals: views, contacts, bounce rate and time per view, plus title, url and content type",
+     "how": "HubSpot MCP `get_content_analytics_report` with `mode: TOTALS`, `sortMetric: rawViews`, `sortDirection: DESC`, `includeMetadata: true`, `limit: 40`; fields `rawViews`, `contacts`, bounce rate, `timePerPageview`"
+    },
+    {
+     "source": "Previous weekly snapshots",
+     "what": "The last 8 weekly entries kept in the data file",
+     "how": "`data/content-performance.json` `weeks[]`, upserted by run date"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Conversion rate",
+     "value": "`contacts / rawViews * 100`",
+     "why": "Ranks content by how well views turn into contacts"
+    },
+    {
+     "rule": "Conversion flags",
+     "value": "Gap under 0.5%, Watch 0.5 to 2%, Healthy 2%+",
+     "why": "Surfaces high-traffic content with no working call to action"
+    },
+    {
+     "rule": "Minimum views",
+     "value": "Pages under 2,000 views are dropped",
+     "why": "Low-traffic pages are noise"
+    },
+    {
+     "rule": "Blogs versus landing and site pages",
+     "value": "Blog posts are ranked by reach (most views first) and shown with engaged share (100 minus bounce) and time per view; they are never counted as conversion gaps",
+     "why": "Blog posts are not expected to convert on the page"
+    },
+    {
+     "rule": "Section order and ranking",
+     "value": "Top converters (non-blog Healthy, most contacts first), Watch (highest views first), Blog engagement (most views first), Conversion gaps (non-blog, highest views first)",
+     "why": "Leads with what works, then the pages worth fixing in order of traffic"
+    },
+    {
+     "rule": "Excluded pages",
+     "value": "Form embeds (`share.hsforms.com`), thank-you and confirmation pages, and corporate pages (`/careers`, `/our-team`, `/about-us`)",
+     "why": "They are not marketing content and would skew the flags"
+    },
+    {
+     "rule": "Unresolved rows",
+     "value": "Rows with no title and no url are dropped; a missing title is built from the url's last path segment",
+     "why": "Titles and urls are never invented"
+    },
+    {
+     "rule": "Verdict",
+     "value": "Leads with the best-converting page by contacts, then names the highest-traffic non-blog conversion gap",
+     "why": "Gives the one win and the one fix for the week"
+    },
+    {
+     "rule": "History kept",
+     "value": "8 weekly snapshots, oldest dropped first",
+     "why": "Keeps a short trend without growing the file"
+    }
+   ],
+   "limits": [
+    "Numbers are all-time totals, not weekly: HubSpot's content report has no native weekly window, so the weekly refresh only keeps the ranking current as pages gain traffic.",
+    "Only the top 40 pages by views are pulled, so lower-traffic pages never appear even above the 2,000-view floor.",
+    "The contacts count is HubSpot's own page-level attribution from the content report; the routine does not define or adjust how HubSpot credits a contact to a page.",
+    "Time per view shows only when the run includes it; the column is hidden when no page has a value.",
+    "The tab shows the latest week only; earlier snapshots are kept in the file but not charted."
+   ]
+  },
+  "competitive": {
+   "built_by": {
+    "skill": "competitive-intel",
+    "routine": "CI Weekly (cloud routine), Mondays 9am ET; CI Full Run (cloud routine), the 10th of every odd month (Jan, Mar, May, Jul, Sep, Nov) at 10am ET during daylight time (14:00 UTC); ci-incognito-research local task, the 7th of odd months",
+    "instructions": "CI_WEEKLY_ROUTINE.md (weekly signals + keywords), CI_FULL_RUN.md (full run), scripts/apply_ci_full_run.py (writes cards and drawers), growth-marketing/skills/competitive-intel/SKILL.md (freshness contract, What Buyers Find)"
+   },
+   "intro": "Where the 17 tracked competitors across Inkwell, Inquiry Journeys, and GF8 stand: threat level, ad activity, positioning, recent moves, keywords, and what buyers find when they research the category. A bi-monthly full run rewrites the cards and synthesis; a Monday refresh adds new competitor news and fresh keywords between runs.",
+   "sources": [
+    {
+     "source": "Competitor websites",
+     "what": "Current positioning line and 4 short messaging lines per competitor, quoted verbatim",
+     "how": "WebSearch for the product's current headline and messaging (competitor sites usually block cloud IPs with a 403); WebFetch only when it works"
+    },
+    {
+     "source": "Ad libraries: LinkedIn Ad Library, Meta Ad Library, Google Ads Transparency Center",
+     "what": "Ad activity level (0 to 4) and a short description of what each competitor is running",
+     "how": "Headless screenshot helper `scripts/ci-screenshot.js` (Playwright/Chromium) in inquired-marketing-skills; only what is visible in each screenshot is recorded"
+    },
+    {
+     "source": "SEMrush",
+     "what": "Top 6-8 non-branded organic keywords and any paid keywords for 10 competitor domains; paid data also stands in as the ad signal when screenshots fail",
+     "how": "SEMrush organic and paid research (full run fallback: `paid_search_research` → `get_report_schema` → `execute_report`, database `us`); written to each DRAWER entry's `keywords` {paid, organic}"
+    },
+    {
+     "source": "Web search (news)",
+     "what": "Launches, state and district adoptions, pricing, partnerships, awards, and efficacy studies, added as dated signals",
+     "how": "WebSearch: weekly for the past 7 days across 6 competitors (Amplify CKLA, Great Minds Wit & Wisdom and Arts & Letters, Benchmark Education, TCI, National Geographic Learning); on the full run, everything since the last `full_run` date for all 17"
+    },
+    {
+     "source": "HubSpot CRM, closed-lost deals",
+     "what": "Real losses since the last full run: count, total $, share of $ by loss category, and every loss reason that names or implies a competitor",
+     "how": "`search_crm_objects` on DEAL with `hs_is_closed_lost` = true and `closedate` >= `full_run`; properties `dealname`, `closedate`, `amount_in_home_currency`, `closed_lost_reason`, `closed_lost_category`, `product_s_`, `dealtype`"
+    },
+    {
+     "source": "Incognito buyer research (MKT1 `mkt1_incognito_competitive_research`)",
+     "what": "What Buyers Find: how an AI assistant with no prior context compares inquirED with 5 competitors, from a district administrator lens and a curriculum director lens (comparison, findability, and source-quality tables)",
+     "how": "Run from a clean context by the ci-incognito-research task, or by hand in a claude.ai incognito chat; saved to `data/competitive-intel-incognito.json` (`run_date`, `companies`, `lenses`)"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Two refresh clocks",
+     "value": "The Monday refresh changes only competitor `signals` and `keywords`. Threat levels, ad activity, positioning, messaging, AI summaries, the AI Overview, stat tiles, and Strategic Opportunities change only on the full run",
+     "why": "Keeps each routine small enough to finish in one session, and keeps judgment calls like threat levels on the deeper bi-monthly review"
+    },
+    {
+     "rule": "Signals per competitor",
+     "value": "Max 5, newest first, each written as a finding followed by its implication for inquirED. A week with nothing newsworthy adds nothing",
+     "why": "Keeps each drawer short and focused on what matters to inquirED"
+    },
+    {
+     "rule": "Keyword selection",
+     "value": "Top 6-8 non-branded organic keywords plus any paid keywords; keywords that are just the company or product name are skipped; `greatminds.org` data covers both Great Minds entries; no paid data means an empty paid list",
+     "why": "Shows which category terms each competitor is competing on, not its own brand traffic"
+    },
+    {
+     "rule": "Threat level",
+     "value": "High, Med, or Low, each with a one-line rationale; the card badge and drawer are written together by `scripts/apply_ci_full_run.py`",
+     "why": "Writing both from one value means the card and drawer can't disagree"
+    },
+    {
+     "rule": "Ad activity level",
+     "value": "Scored 0 to 4 from what is visible in the ad-library screenshots. When a competitor couldn't be observed, the level is left out and the card keeps its last observed level",
+     "why": "An unknown stays unknown instead of being shown as a guess"
+    },
+    {
+     "rule": "Messaging quotes",
+     "value": "Verbatim, under about 15 words each",
+     "why": "Shows competitors in their own words"
+    },
+    {
+     "rule": "Freshness pills",
+     "value": "Signals pill reads green \"Current\" until `updated` is more than 10 days old, then amber \"N days old\"; the AI Overview has its own pill that turns amber after 45 days. `updated` moves only when something on the page changed",
+     "why": "Anyone can tell at a glance whether the page is current. The date means when the page last changed, not when someone last looked"
+    },
+    {
+     "rule": "Dates and counts are never typed into the page",
+     "value": "Every date is read from `data/competitive-intel.json` at load, and the competitor count is counted from the rendered cards",
+     "why": "A hand-typed date or count goes wrong within weeks"
+    },
+    {
+     "rule": "Closed-lost deals exclude bulk cleanups",
+     "value": "Batches of old deals closed within the same few minutes (typically SQL Call Booked deals, category Uninterested, no product) are counted separately and never mixed into loss totals",
+     "why": "Those batches are pipeline hygiene, not losses to competitors"
+    },
+    {
+     "rule": "What Buyers Find freshness and use",
+     "value": "The full run uses the incognito research only if its `run_date` is within 21 days; the section's pill reads Stale after 70 days. Its claims are never copied into competitor cards or drawers as verified facts",
+     "why": "The research shows what a buyer sees on the public web, not verified truth; its source-quality table says how far each claim can be trusted"
+    },
+    {
+     "rule": "Next incognito comparison set",
+     "value": "5 competitors picked on each full run from High threats, covering each product lane (Inkwell, IJ, GF8) at least once, then ranked by that run's headline alerts",
+     "why": "Keeps the buyer-view research pointed at the competitors that matter most this cycle"
+    },
+    {
+     "rule": "The competitive-intel skill never runs the incognito research itself",
+     "value": "Research runs only from a clean folder with no memory, plugins, or CLAUDE.md, or from a claude.ai incognito chat",
+     "why": "A session with inquirED context would not give a clean buyer's-eye answer"
+    }
+   ],
+   "limits": [
+    "Competitor websites usually block cloud IPs, so positioning and messaging often come from WebSearch results rather than the live page.",
+    "Ad screenshots can fail in the cloud environment; when they do, SEMrush paid data stands in and ad activity levels carry over from the last run where they were observed.",
+    "Ad libraries have their own gaps: Meta can show \"no ads found\" for a company that is advertising, and Google Ads Transparency only shows the last 30 days.",
+    "Weekly news covers 6 of the 17 competitors; the rest get new signals only on the full run.",
+    "Weekly keywords cover 11 of the 17 competitors; EL Education · Kiddom, Fishtank Learning, Bookworms K-5, Studies Weekly, McGraw-Hill IMPACT, and Frog Street have no keyword refresh.",
+    "The AI Overview, stat tiles (other than the competitor count), and Strategic Opportunities are written by hand on the full run and can be up to two months old between runs.",
+    "Competitor share of closed-lost deals relies on free-text loss reasons that name or imply a competitor.",
+    "What Buyers Find reflects one AI assistant's answer on one date, from the public web only.",
+    "Gainsight (churn) is listed as a tab source, but no step in either routine pulls Gainsight data."
+   ]
+  },
+  "nurture": {
+   "built_by": {
+    "skill": "nurture-dashboard-refresh",
+    "routine": "Tuesday Nurture Update, Tuesdays 7am ET",
+    "instructions": "NURTURE_ROUTINE.md"
+   },
+   "intro": "This tab answers whether the Fall 2026 HubSpot nurture programs are moving contacts through lifecycle stages and how each program's emails are performing. Every number renders from `data/nurture-programs.json`, which the refresh rewrites from HubSpot CRM contact data and marketing-email analytics, joined to the hand-confirmed workflow registry in `data/nurture-workflows.json`.",
+   "sources": [
+    {
+     "source": "Workflow registry (`data/nurture-workflows.json`)",
+     "what": "The five active nurture workflows: flow ID, workflow name, HubSpot performance link, `nurture` property value, product, and the enrollment list that triggers each workflow",
+     "how": "Hand-maintained file confirmed by Marketing, because HubSpot workflow objects are not readable through the connected API. Enrollment-list links come from the Enrollment Lists table on the `nurture-program-f26` campaign page."
+    },
+    {
+     "source": "HubSpot marketing emails (portal 4451852)",
+     "what": "The emails that belong to each program",
+     "how": "`search_crm_objects` on MARKETING_EMAIL filtered by the `nurture` enumeration property IN the registry's `nurture_property_value` list; properties `hs_object_id`, `hs_name`, `hs_email_type`, `nurture`, `product`, `hs_createdate`"
+    },
+    {
+     "source": "HubSpot Marketing Email Analytics API",
+     "what": "Per-email delivered, suppressed, opens, clicks, unsubscribes and bounces",
+     "how": "`get_marketing_email_analytics` in OVERVIEW mode, `dimensions: [\"MARKETING_EMAIL_OBJECT_ID\"]`, `frequency: \"TOTAL\"`, from the earliest `hs_createdate` in the batch to the refresh date; opens and clicks use the `*ExcludingBots` fields"
+    },
+    {
+     "source": "HubSpot email details",
+     "what": "Subject line and preview text for the top opened, clicked and exit email per program",
+     "how": "`manage_marketing_email` `GET_EMAIL_DETAILS` (subject, `previewText`, `emailUrl`), pulled only for emails that already rank as a program's top content"
+    },
+    {
+     "source": "HubSpot CRM contacts",
+     "what": "Contacts in each nurture track, their lifecycle-stage movement since launch, role split and original source",
+     "how": "Contacts where `nurture_track`, `nurture_track__inkwell`, `nurture_track__great_first_eight` or `nurture_track__agnostic` = `Active`; movement from the v2 stage-entry dates (for example `hs_v2_date_entered_marketingqualifiedlead`); `role` for the role split; `hs_analytics_source` for original source"
+    },
+    {
+     "source": "Asana (`F26_🌿 Nurture Program` project)",
+     "what": "The confirmed program launch date, Aug 18, 2026",
+     "how": "The `Fall Nurture Program Launch` milestone; the date is stored as `launch_date` in the JSON and every \"since launch\" figure starts from it"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Emails are matched to programs by the `nurture` property, not by name search",
+     "value": "`nurture` IN the registry's property values, mapped to program by `product`",
+     "why": "Email names are inconsistent across seasons, so a text search for \"nurture\" pulls in 170+ mostly retired emails. The `nurture` property is HubSpot's own exact tag for which program an email belongs to."
+    },
+    {
+     "rule": "\"Since launch\" figures start from the actual launch date",
+     "value": "Aug 18, 2026 (not the planned Aug 3)",
+     "why": "Measuring from the planned date counts pre-launch lifecycle movement as nurture-driven and inflates the headline metric roughly 3x."
+    },
+    {
+     "rule": "Lifecycle movement is the headline metric",
+     "value": "A contact counts as moved when it entered MQL, SQL, Opportunity or Customer on or after the launch date",
+     "why": "The page treats lifecycle stage movement as the top metric for the program, ahead of email engagement."
+    },
+    {
+     "rule": "Minimum volume for an email to be listed, ranked or used as top content",
+     "value": "20+ delivered",
+     "why": "Emails with 1 or 2 sends are test records that would otherwise show impossible rates like 100% open on a single send."
+    },
+    {
+     "rule": "Opens and clicks exclude bots; emails are ranked by click-to-open",
+     "value": "CTOR = clicks divided by opens, bots excluded; 10% and up is highlighted as strong, under 5% as low",
+     "why": "Click-to-open isolates people who opened and then found something worth clicking, a purer read on content quality than open rate."
+    },
+    {
+     "rule": "Contact tracking is only reported where the population is usable",
+     "value": "Roughly 20+ contacts tagged Active; otherwise the row shows \"Not tracked\" or \"No property\"",
+     "why": "Role, source and lifecycle figures on a near-empty population would not mean anything."
+    },
+    {
+     "rule": "Role split groups",
+     "value": "Teacher; Admin / Leadership = School Leader + District Leader + Coach/Specialist; Other / Unassigned = no classified role",
+     "why": "Shows the classroom versus administrator mix of each program's active contacts."
+    },
+    {
+     "rule": "Program flags",
+     "value": "Zero sends: \"Not sending\" (cause unconfirmed, empty audience or workflow off). Suppressed at or above delivered: \"Check suppression\". Step-to-step volume drop over 5x: noted, cause unconfirmed. Unsubscribes over 1% on 50+ sends: called out.",
+     "why": "Flags point at what to check without asserting a cause the API cannot confirm."
+    },
+    {
+     "rule": "No verdicts on thin data",
+     "value": "Under about 30 sends, or under about 4 to 6 weeks since an email started sending, the page says volume is too low to read",
+     "why": "Early, low-volume rates swing too much to support a performance call."
+    },
+    {
+     "rule": "Week-over-week delivery and freshness",
+     "value": "Total delivered is compared with the previous `history` entry (up to 26 weekly entries kept); the freshness pill turns stale after 14 days",
+     "why": "Shows real period-over-period movement, and the 14-day threshold suits programs this new and fast-moving."
+    }
+   ],
+   "limits": [
+    "Workflow enabled or paused state and branch logic are not readable through the API, so the page never states a workflow is on or off; that needs a manual check in HubSpot.",
+    "The set of active workflows is only as current as the hand-confirmed registry; HubSpot cannot report which nurture workflows are live.",
+    "Great First Eight and Agnostic show zero contacts tagged in their `nurture_track` properties even though their emails have delivered, so lifecycle, role and source figures cover Inquiry Journeys and Inkwell only.",
+    "World History has no `nurture_track` contact property, so it has no contact-level tracking at all.",
+    "Active-contact counts are contacts currently tagged Active, so contacts who have exited a track are not counted.",
+    "Cross-program overlap can only be checked between Inquiry Journeys and Inkwell, given the tracking gaps above.",
+    "Most programs have only sent their first few modules, so engagement rates mostly describe early modules.",
+    "Enumeration filters must use internal values (for example `Active`, lowercase `role` values) rather than the labels shown in HubSpot; a label filter silently returns zero rows.",
+    "If a refresh cannot pull a block, the page keeps last week's values for it and records a `data_flags` entry rather than showing zeros."
+   ]
+  },
+  "teacher-nurture": {
+   "built_by": {
+    "skill": "teacher-nurture-refresh",
+    "routine": "Tuesday Teacher Nurture Snapshot, Tuesdays 7:30am ET",
+    "instructions": "TEACHER_NURTURE_ROUTINE.md"
+   },
+   "intro": "This tab answers where Inquiry Journeys teachers in Medium, Large and Enterprise districts sit across the program's phases, and how the six Mailchimp automation flows and their emails are performing. It renders the weekly Mailchimp snapshot in `data/teacher-nurture-snapshot.json`, with flow and email names from the registry in `data/teacher-nurture.json`, and falls back to a live read through the dash's Netlify function when the snapshot is missing.",
+   "sources": [
+    {
+     "source": "Mailchimp saved segments (audience 20beb95bf5)",
+     "what": "Teacher counts for Eligible, Awareness, Discovery, Activation Adopt, Activation Sustained, Holding and Active Users",
+     "how": "Seven saved segments named `[DYNAMIC] IJ Teacher Mktg _... _F26`; the weekly script counts members at request time from the segment members endpoint (`total_items`) and also stores Mailchimp's cached `member_count`"
+    },
+    {
+     "source": "Gainsight fields synced into Mailchimp",
+     "what": "The phase each teacher is in and whether they are an Active User",
+     "how": "Merge tags Segment `MMERGE3`, Phase Status `MMERGE45`, Activation Substate `MMERGE48`, Active User Flag `MMERGE26`"
+    },
+    {
+     "source": "Mailchimp campaigns and reports",
+     "what": "Per-email sent, unique opens, open rate, clicks, click rate, unsubscribes and bounces for every Customer Journey step",
+     "how": "`/campaigns` created on or after Sep 1, 2026, type `automation-email`, titles starting with a touch code (`T1:`, `T2-K2:`, `H3:`...); `report_summary` for opens and clicks, `/reports/{id}` for `unsubscribed` and bounces once an email has sent"
+    },
+    {
+     "source": "Flow registry (`data/teacher-nurture.json`)",
+     "what": "The six flows (Awareness 5942, Discovery 5943, Activation 5944, Adopt 5947, Sustained 5945, Holding 5946), their triggers, which touch codes belong to each, phase labels and definitions, open items and the data-quality note",
+     "how": "Hand-maintained file; the page draws it first, then fills in numbers"
+    },
+    {
+     "source": "Netlify function `/api/teacher-nurture`",
+     "what": "The same phase and email data read live, used only when the snapshot file is missing or not ok",
+     "how": "`netlify/functions/teacher-nurture.mjs` calls the Mailchimp Marketing API server-side with `MAILCHIMP_API_KEY`; its phase counts are the segments' cached `member_count`"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Who is eligible",
+     "value": "Segment is Medium District, Large District or Enterprise District (Single Site, Small District, Other and blank are excluded)",
+     "why": "Every phase segment applies this filter, so the program's audience is Inquiry Journeys teachers in those districts."
+    },
+    {
+     "rule": "Phase definitions",
+     "value": "Awareness: oriented, no Inquiry Journeys activity yet. Discovery: first activity. Activation Adopt: Phase Status Activation with a substate other than Sustained. Activation Sustained: 8+ active weeks, 2+ units, or a Gallery click. Holding: no activity 30 days after orientation. Active Users: Active User Flag is TRUE.",
+     "why": "Phases come straight from the Phase Status and Activation Substate fields Gainsight syncs into Mailchimp; the program's goal is moving teachers left to right."
+    },
+    {
+     "rule": "Phase counts use a request-time member count",
+     "value": "`total_items` from the segment members endpoint, not the segment's cached `member_count`",
+     "why": "Mailchimp's saved-segment member count is cached and can be days old."
+    },
+    {
+     "rule": "A flow counts as sending only when one of its emails has sent",
+     "value": "`sent > 0`; the step `status` is ignored",
+     "why": "Mailchimp reports every Customer Journey step as \"sending\" even while the flow is a draft or paused."
+    },
+    {
+     "rule": "Which emails are included",
+     "value": "Campaigns created on or after Sep 1, 2026, titles starting with a touch code, `regular` campaigns excluded; an email that appears twice (for example T3 on both grade paths) is summed",
+     "why": "Flow steps show up as `automation-email` campaigns; the original source drafts are `regular` campaigns and would double count."
+    },
+    {
+     "rule": "Open and click rates on flow cards and the email table",
+     "value": "Unique opens divided by sent, and clicks divided by sent",
+     "why": "Keeps rates comparable when an email's stats are summed across more than one flow step."
+    },
+    {
+     "rule": "Unsubscribe flag",
+     "value": "Badge \"Unsubs over 1%\" on an email with 50+ sent",
+     "why": "Mirrors the Nurture Programs flagging rule; smaller sends are too thin to judge."
+    },
+    {
+     "rule": "Week-over-week phase change",
+     "value": "Compares the newest `history` row with the newest row at least 6 days older; up to 26 weekly rows kept",
+     "why": "Skips same-week test runs so the change reflects a real week."
+    },
+    {
+     "rule": "Freshness pill",
+     "value": "\"Current\" until the snapshot is more than 8 days old; \"Live read\" when the page fell back to the Netlify function; \"Unavailable\" when neither source loaded",
+     "why": "The snapshot is weekly, so anything past 8 days means a Tuesday run was missed."
+    },
+    {
+     "rule": "Zero-send flows",
+     "value": "A registry flow whose emails have 0 sends for a second week in a row is flagged, cause unconfirmed",
+     "why": "No sends can mean no teachers changed into that phase yet, or a trigger problem; the data cannot tell which."
+    }
+   ],
+   "limits": [
+    "Holding counts are not reliable: in a 1,000-teacher sample (Sep 24), only 3.5% of Holding teachers had an Orientation Complete Month and none had a First IJ Activity date, while 63% had logged in. Treat the Holding and Eligible totals as upper bounds until the Gainsight logic is fixed.",
+    "Gainsight usage flags only count activity on or after Jul 1, 2026, so teachers who used Inquiry Journeys in prior years but not yet this school year read as having no activity.",
+    "The Holding flow is paused pending the Gainsight Holding fix, so it shows no sends.",
+    "Active User follows PE's model (activity on three qualifying features on 4 distinct days this school year); whether the flag matches the program spec's rolling 4-week window is an open question with RevOps.",
+    "Some eligible teachers have no Phase Status yet, so the phases do not add up to the eligible total; the gap is shown as teachers without a phase.",
+    "The live fallback reads Mailchimp's cached segment counts, which can be days old, while the weekly snapshot uses request-time counts, so the two can differ slightly.",
+    "The flows turned on Sep 24, 2026, so email volume is still too low to call trends.",
+    "The live fallback only works behind the dash's password gate, and if both the snapshot and the function fail the page shows the registry's flow and email lists with no numbers."
+   ]
+  },
+  "defs": {
+   "built_by": {
+    "skill": "Maintained by hand (no skill)",
+    "routine": "Updated when a definition changes",
+    "instructions": "data/definitions.json"
+   },
+   "intro": "How every metric, stage, segment and product on the dash is defined, plus the pipeline structure RevOps confirmed.",
+   "sources": [
+    {
+     "source": "RevOps pipeline review",
+     "what": "Pipeline and CRM structure",
+     "how": "Monthly RevOps check-in, written into data/definitions.json"
+    },
+    {
+     "source": "Skill definitions",
+     "what": "Metric and stage definitions",
+     "how": "Copied from the skills that compute each metric"
+    }
+   ],
+   "choices": [
+    {
+     "rule": "Single source for definitions",
+     "value": "Each tab's methodology names the skill that owns its numbers",
+     "why": "Definitions here describe terms; the tab methodology describes how each number is built"
+    }
+   ],
+   "limits": [
+    "Not refreshed on a schedule, so a definition can lag a skill change until someone updates it."
+   ]
+  }
+ }
+}

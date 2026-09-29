@@ -1,5 +1,5 @@
 {
-  "skill": "content-performance",
+  "skill": "content-performance-refresh",
   "title": "Content Performance",
   "updated": "2026-09-28",
   "min_views_threshold": 2000,
@@ -280,7 +280,7 @@
         "watch_count": 2,
         "healthy_count": 9
       },
-      "verdict": "The inquirED.org homepage remains the biggest conversion gap at 199,954 all-time views and only 0.02% contact rate \u2014 no functional CTA on the primary entry point. Dedicated digest landers continue to convert at 12\u201318%, anchored by the Scope and Sequence Download at 18.2% conversion rate across 11,776 views.",
+      "verdict": "The inquirED.org homepage remains the biggest conversion gap at 199,954 all-time views and only 0.02% contact rate — no functional CTA on the primary entry point. Dedicated digest landers continue to convert at 12–18%, anchored by the Scope and Sequence Download at 18.2% conversion rate across 11,776 views.",
       "pages": [
         {
           "contentId": "www.inquired.org/post/inquiry-unit-design",
@@ -1089,7 +1089,7 @@
         "watch_count": 2,
         "healthy_count": 9
       },
-      "verdict": "The homepage (inquired.org, 199,954 views) has a 0.02% contact rate \u2014 the largest absolute conversion gap on the site \u2014 while the Scope and Sequence Download lander converts at 18.2%, the highest rate of any tracked page."
+      "verdict": "The homepage (inquired.org, 199,954 views) has a 0.02% contact rate — the largest absolute conversion gap on the site — while the Scope and Sequence Download lander converts at 18.2%, the highest rate of any tracked page."
     }
   ]
 }
