@@ -1,12 +1,12 @@
 {
  "ok": true,
  "source": "snapshot",
- "updated": "2026-09-28",
- "fetched_at": "2026-09-28T15:23:16+00:00",
+ "updated": "2026-09-29",
+ "fetched_at": "2026-09-29T11:36:16+00:00",
  "stale_after_days": 8,
  "phases": {
   "awareness": {
-   "count": 3479,
+   "count": 3477,
    "segment_id": 40199920,
    "cached_count": 3544,
    "cached_as_of": "2026-09-24T17:48:02+00:00"
@@ -18,7 +18,7 @@
    "cached_as_of": "2026-09-24T17:48:04+00:00"
   },
   "adopt": {
-   "count": 1092,
+   "count": 1091,
    "segment_id": 40199922,
    "cached_count": 1094,
    "cached_as_of": "2026-09-24T17:48:06+00:00"
@@ -30,19 +30,19 @@
    "cached_as_of": "2026-09-24T17:48:08+00:00"
   },
   "holding": {
-   "count": 53970,
+   "count": 53955,
    "segment_id": 40199924,
    "cached_count": 54704,
    "cached_as_of": "2026-09-24T17:48:10+00:00"
   },
   "eligible": {
-   "count": 62610,
+   "count": 62591,
    "segment_id": 40199919,
    "cached_count": 63478,
    "cached_as_of": "2026-09-24T17:47:59+00:00"
   },
   "active_users": {
-   "count": 1099,
+   "count": 1098,
    "segment_id": 40199925,
    "cached_count": 1101,
    "cached_as_of": "2026-09-24T17:48:11+00:00"
@@ -504,6 +504,19 @@
     "holding": 53970,
     "eligible": 62610,
     "active_users": 1099
+   },
+   "sent_total": 0
+  },
+  {
+   "date": "2026-09-29",
+   "phases": {
+    "awareness": 3477,
+    "discovery": 2553,
+    "adopt": 1091,
+    "sustained": 7,
+    "holding": 53955,
+    "eligible": 62591,
+    "active_users": 1098
    },
    "sent_total": 0
   }
