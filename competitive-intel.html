@@ -2501,8 +2501,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script>
 // What buyers find: filled from data/competitive-intel-incognito.json, which the
-// competitive-intel skill writes after Kelsey runs mkt1_incognito_competitive_research
-// in a claude.ai incognito chat before each full run.
+// local task ci-incognito-research writes from a clean-context run of
+// mkt1_incognito_competitive_research before each full run (or Kelsey, from a claude.ai incognito chat).
 (function () {
   const box = document.getElementById('buyers-find');
   if (!box) return;
@@ -2538,7 +2538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('bf-body').innerHTML = lensView(lenses[+btn.dataset.i]);
       });
     })
-    .catch(() => { box.innerHTML = '<div class="bf-empty">Not run yet. Before each full run, Kelsey runs this in an incognito claude.ai chat (district administrator and curriculum director lenses); results appear here once saved.</div>'; });
+    .catch(() => { box.innerHTML = '<div class="bf-empty">Not run yet. Before each full run, a clean-context AI research run compares inquirED with the top competitors as a district administrator and a curriculum director would; results appear here once it finishes.</div>'; });
 })();
 </script>
 </body>

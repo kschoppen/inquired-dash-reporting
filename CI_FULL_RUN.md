@@ -131,9 +131,10 @@ closed_lost_category, product_s_, dealtype`. Page through all results and check 
 
 ## STEP 4b: Buyer view (incognito research)
 
-Kelsey runs `mkt1_incognito_competitive_research` in a claude.ai incognito chat before each full
-run (lenses: district administrator, curriculum director) and saves it with the competitive-intel
-skill to `data/competitive-intel-incognito.json`. Read that file. It is read-only for this routine.
+The local task `ci-incognito-research` runs `mkt1_incognito_competitive_research` from a clean
+context on the 7th of odd months (lenses: district administrator, curriculum director) and writes
+`data/competitive-intel-incognito.json`. Kelsey can also run it by hand in a claude.ai incognito
+chat and save it with the competitive-intel skill. Read that file. It is read-only for this routine.
 
 - If it exists and its `run_date` is within 21 days of `$TODAY`: use it in STEP 5 as evidence of
   what buyers see. Findability gaps and "How they describe themselves" rows for inquirED can
