@@ -65,22 +65,7 @@ If any of the five pulls fails after retries, stop: don't run the script, don't 
 
 ## STEP 2: Decision log snapshot (Airtable MCP)
 
-First `list_tables_for_base` on base `appzko62XB8YDvyqU`. **If there is no table named "Account Decisions", create it** with `create_table` (this is one-time setup; the dashboard's decision buttons write to it). Pass `fields` as a real JSON array:
-
-| Field | Type |
-|---|---|
-| Entry | singleLineText (primary field, first in the array) |
-| CompanyId | singleLineText |
-| CompanyName | singleLineText |
-| Decision | singleSelect, choices Demote, Recycle, Escalate, Cleared |
-| Note | multilineText |
-| DecidedBy | singleLineText |
-| DecidedAt | singleLineText |
-| DaysMqaAtDecision | number, precision 0 |
-
-Description: "Append-only log of Demote / Recycle / Escalate decisions on stale MQA accounts from the Account Pulse (MQA) tab. One row per click, never overwritten." Never modify or delete the existing "Decisions" table (State Signal owns it). Say in the DM whether you created the table this run.
-
-Then `list_records_for_table` on table **Account Decisions** (page through every record). Write `data/pulse-decisions.json`:
+`list_records_for_table` on base `apprP4OjHNI918JlX`, table `tblksZcY1lzbWKh8C` (the Account Decisions table; page through every record). Only rows with a `CompanyId` and `DecidedAt` count; ignore the table's other default columns (Name, Notes, Assignee, Status, Attachments). Never create, edit or delete tables or records. Write `data/pulse-decisions.json`:
 
 ```json
 { "as_of": "<TODAY>", "entries": [ { "companyId": "...", "companyName": "...", "decision": "Demote|Recycle|Escalate|Cleared", "note": "...", "decidedBy": "...", "decidedAt": "<ISO timestamp>", "daysMqa": 316 } ] }
@@ -96,7 +81,13 @@ Sorted by `decidedAt`, oldest first. Copy the values exactly. If the table is em
 python3 scripts/build_account_pulse.py --raw $RAW --today $TODAY
 ```
 
-It must print `PULSE_BUILD_OK`. If its JSON line lists `unknown_owner_ids`, resolve those with HubSpot `search_owners` (page through with `offset` until `hasMore` is false, or pass the IDs if the tool accepts `ownerIds`), write `$RAW/owners.json` as `{"<id>": "<name>"}`, and run the script again. Owners the tool can't resolve stay as "Owner <id>"; list them in the DM.
+It must print `PULSE_BUILD_OK`. If its JSON line lists `unknown_owner_ids`, resolve them through the HubSpot Users object (more reliable than `search_owners`):
+
+```sql
+SELECT hs_object_id, hs_searchable_calculated_name, hubspot_owner_id FROM USER LIMIT 500
+```
+
+Write `$RAW/owners.json` as `{"<hubspot_owner_id>": "<hs_searchable_calculated_name>"}` for every row, then run the script again (it merges them into `data/hubspot-owners.json`). IDs still unresolved stay as "Owner <id>"; list them in the DM.
 
 Any `ERROR:` exit means a raw file is missing or malformed: fix the file from STEP 1 and rerun. Never edit `data/account-pulse.json` by hand.
 

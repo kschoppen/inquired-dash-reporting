@@ -116,7 +116,7 @@
     "name": "Montgomery County Public Schools",
     "segment": "Enterprise",
     "state": "MD",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "Yes, Reviewing",
      "Upcoming Adoption"
@@ -371,7 +371,7 @@
     "name": "School District U-46",
     "segment": "Enterprise",
     "state": "IL",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "2+ DL form fills",
      "Clicked email / 5+ clicks",
@@ -743,7 +743,7 @@
    "name": "North Olmsted Schools",
    "segment": "Medium",
    "state": "OH",
-   "owner": "Owner 91827100",
+   "owner": "LJ Grab",
    "move": "New Engaged",
    "date": "2026-09-29",
    "signal": "High Intent DL",
@@ -754,7 +754,7 @@
    "name": "Hamilton County Schools",
    "segment": "Enterprise",
    "state": "TN",
-   "owner": "Owner 473647452",
+   "owner": "Jason Long",
    "move": "New Engaged",
    "date": "2026-09-29",
    "signal": "Yes, Reviewing",
@@ -787,7 +787,7 @@
    "name": "Richland School District One",
    "segment": "Enterprise",
    "state": "SC",
-   "owner": "Owner 473647452",
+   "owner": "Jason Long",
    "move": "New Engaged",
    "date": "2026-09-28",
    "signal": "Yes, Reviewing",
@@ -824,7 +824,7 @@
     "name": "Prince George's County Public Schools",
     "segment": "Enterprise",
     "state": "MD",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "Clicked email / 5+ clicks",
      "DL attended webinar",
@@ -894,7 +894,7 @@
     "name": "Houston County School District",
     "segment": "Enterprise",
     "state": "GA",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "High Intent DL",
      "Upcoming Adoption"
@@ -966,7 +966,7 @@
     "name": "Fayette County Public Schools",
     "segment": "Enterprise",
     "state": "GA",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "Clicked email / 5+ clicks",
      "DL attended webinar",
@@ -1112,7 +1112,7 @@
     "name": "Utica Schools",
     "segment": "Enterprise",
     "state": "MI",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [],
     "recent_mqa_date": "2025-12-09",
     "first_mqa_date": "2025-12-09",
@@ -1371,7 +1371,7 @@
     "name": "Weber School District",
     "segment": "Enterprise",
     "state": "UT",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [],
     "recent_mqa_date": "2026-02-05",
     "first_mqa_date": "2026-02-05",
@@ -1583,7 +1583,7 @@
     "name": "Humble Independent School District",
     "segment": "Enterprise",
     "state": "TX",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "DL attended webinar"
     ],
@@ -1726,7 +1726,7 @@
     "name": "Anne Arundel County Public Schools",
     "segment": "Enterprise",
     "state": "MD",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [],
     "recent_mqa_date": "2026-03-04",
     "first_mqa_date": "2026-03-04",
@@ -1915,7 +1915,7 @@
     "name": "Rockwood School District",
     "segment": "Enterprise",
     "state": "MO",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "DL attended webinar",
      "Upcoming Adoption"
@@ -2082,7 +2082,7 @@
     "name": "Millard Public Schools",
     "segment": "Enterprise",
     "state": "NE",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [],
     "recent_mqa_date": "2026-05-21",
     "first_mqa_date": "2026-05-21",
@@ -2110,7 +2110,7 @@
     "name": "Houston Independent School District",
     "segment": "Enterprise",
     "state": "TX",
-    "owner": "Owner 473647452",
+    "owner": "Jason Long",
     "signals": [
      "Upcoming Adoption"
     ],
@@ -2127,8 +2127,5 @@
   "entries": 0,
   "as_of": null
  },
- "unknown_owner_ids": [
-  "473647452",
-  "91827100"
- ]
+ "unknown_owner_ids": []
 }

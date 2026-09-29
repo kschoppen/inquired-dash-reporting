@@ -9,8 +9,9 @@
 // Env vars: see get-account-decisions.js.
 
 const AIRTABLE_TOKEN = process.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_DECISIONS_BASE_ID;
-const TABLE = process.env.AIRTABLE_ACCOUNT_DECISIONS_TABLE_NAME || 'Account Decisions';
+// Own base (not State Signal's). IDs aren't secrets; env vars can override them.
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_ACCOUNT_DECISIONS_BASE_ID || 'apprP4OjHNI918JlX';
+const TABLE = process.env.AIRTABLE_ACCOUNT_DECISIONS_TABLE || 'tblksZcY1lzbWKh8C';
 
 const ORIGIN = 'https://inquired-marketing-dash.netlify.app';
 const VALID_DECISIONS = new Set(['Demote', 'Recycle', 'Escalate', 'Cleared']);
@@ -31,7 +32,7 @@ exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
 
   if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID) {
-    console.error('Airtable not configured — missing AIRTABLE_API_KEY and/or AIRTABLE_DECISIONS_BASE_ID env var');
+    console.error('Airtable not configured — missing AIRTABLE_API_KEY env var');
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };
   }
 
@@ -64,6 +65,7 @@ exports.handler = async function (event) {
 
   const decidedAt = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
   const fields = {
+    Name: `${companyName || companyId} · ${decision}`,
     Entry: `${companyId}-${decidedAt}`,
     CompanyId: companyId,
     CompanyName: companyName,

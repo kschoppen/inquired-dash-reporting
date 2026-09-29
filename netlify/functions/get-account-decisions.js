@@ -3,13 +3,15 @@
 // Recycle / Escalate decision and its full history.
 //
 // Env vars (Netlify → Site configuration → Environment variables):
-//   AIRTABLE_API_KEY                      (secret) same token State Signal's decisions use
-//   AIRTABLE_DECISIONS_BASE_ID            same base as State Signal ("inquirED Dashboard Decisions")
-//   AIRTABLE_ACCOUNT_DECISIONS_TABLE_NAME optional, defaults to "Account Decisions"
+//   AIRTABLE_API_KEY                     (secret) same token State Signal's decisions use; it must
+//                                         have read/write access to base apprP4OjHNI918JlX too
+//   AIRTABLE_ACCOUNT_DECISIONS_BASE_ID   optional, defaults to apprP4OjHNI918JlX
+//   AIRTABLE_ACCOUNT_DECISIONS_TABLE     optional, defaults to tblksZcY1lzbWKh8C (the decisions table)
 
 const AIRTABLE_TOKEN = process.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = process.env.AIRTABLE_DECISIONS_BASE_ID;
-const TABLE = process.env.AIRTABLE_ACCOUNT_DECISIONS_TABLE_NAME || 'Account Decisions';
+// Own base (not State Signal's). IDs aren't secrets; env vars can override them.
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_ACCOUNT_DECISIONS_BASE_ID || 'apprP4OjHNI918JlX';
+const TABLE = process.env.AIRTABLE_ACCOUNT_DECISIONS_TABLE || 'tblksZcY1lzbWKh8C';
 
 const ORIGIN = 'https://inquired-marketing-dash.netlify.app';
 
@@ -29,7 +31,7 @@ exports.handler = async function (event) {
   if (event.httpMethod !== 'GET') return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
 
   if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID) {
-    console.error('Airtable not configured — missing AIRTABLE_API_KEY and/or AIRTABLE_DECISIONS_BASE_ID env var');
+    console.error('Airtable not configured — missing AIRTABLE_API_KEY env var');
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };
   }
 
