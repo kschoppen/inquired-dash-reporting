@@ -129,6 +129,21 @@ closed_lost_category, product_s_, dealtype`. Page through all results and check 
 
 ---
 
+## STEP 4b: Buyer view (incognito research)
+
+Kelsey runs `mkt1_incognito_competitive_research` in a claude.ai incognito chat before each full
+run (lenses: district administrator, curriculum director) and saves it with the competitive-intel
+skill to `data/competitive-intel-incognito.json`. Read that file. It is read-only for this routine.
+
+- If it exists and its `run_date` is within 21 days of `$TODAY`: use it in STEP 5 as evidence of
+  what buyers see. Findability gaps and "How they describe themselves" rows for inquirED can
+  shape "Where to focus this cycle" and the Strategic Opportunities cards; cite them as
+  "incognito buyer research, <run_date>". Never copy its claims into competitor cards or
+  drawers as verified facts; its source-quality table says how far each claim can be trusted.
+- If it is older or missing: do not use it, and say so in the DM (STEP 7).
+
+---
+
 ## STEP 5: Rewrite the synthesis blocks in `competitive-intel.html`
 
 Edit these by hand from STEPS 2–4. Every number must come from this run:
@@ -142,6 +157,11 @@ Edit these by hand from STEPS 2–4. Every number must come from this run:
    tiles' numbers and labels.
 3. **Strategic Opportunities · By Product:** one card each for Inkwell, IJ, and GF8. Rewrite the
    title, body, and tag if the landscape moved. Keep the ones that still hold.
+
+Also set `next_incognito_companies` in `data/competitive-intel.json`: the 5 competitors
+Kelsey should compare inquirED against in her next incognito run. Pick from `high` threats,
+cover each product lane (Inkwell, IJ, GF8) at least once, then rank by this run's headline
+alerts. Use the card names. The competitive-intel skill builds her prompt from this list.
 
 Then in `data/competitive-intel.json` set `overview_updated` to `$TODAY` and `overview_sources`
 to `Data: HubSpot <N> closed-lost deals (<since>–<today>) · competitor sites + ad libraries · SEMrush`.
@@ -194,6 +214,7 @@ Message (Slack mrkdwn):
 Threat changes: [list, or "none"]
 Closed-lost since [date]: [N] real losses, $[X] ([top category] [share]%) · [M] bulk cleanups excluded
 Ads: [captured N/51 screenshots | SEMrush fallback — screenshots failed]
+Buyer view: [used incognito research from <run_date> | not refreshed since <run_date>, run it before next cycle | missing]
 
 🔗 inquired-marketing-dash.netlify.app (Competitive Intel tab)
 ```

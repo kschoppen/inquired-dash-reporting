@@ -1,0 +1,368 @@
+{
+  "run_date": "2026-09-29",
+  "updated": "2026-09-29",
+  "source": "mkt1_incognito_competitive_research, claude.ai incognito chat (run by Kelsey)",
+  "companies": [
+    "inquirED",
+    "HMH Into Reading",
+    "Great Minds Arts & Letters",
+    "Amplify CKLA",
+    "TCI",
+    "Teaching Strategies"
+  ],
+  "lenses": [
+    {
+      "lens": "District administrator",
+      "summary": "For core ELA, three nationally scaled vendors carry EdReports all-green ratings: HMH Into Reading (2020 review), Great Minds Arts & Letters (July 2026), and Amplify CKLA. Social studies is a two-way race between inquirED and TCI, while Teaching Strategies only fits PreK and K. inquirED shows the thinnest public proof: no reach numbers, no pricing, and a 2022 New Mexico state review that scored it below the adoption cutoff, partly offset by an Oregon \"Exemplary\" designation it reports and a free district pilot.",
+      "differences": {
+        "columns": [
+          "inquirED",
+          "HMH Into Reading",
+          "Great Minds Arts & Letters",
+          "Amplify CKLA",
+          "TCI",
+          "Teaching Strategies"
+        ],
+        "rows": [
+          {
+            "dimension": "How they describe themselves",
+            "values": [
+              "\"High-quality core curriculum, grounded in inquiry\"",
+              "\"Build skilled readers\"",
+              "\"Helping students read fluently and understand deeply through one coherent system.\"",
+              "\"The next chapter in the Science of Reading\"",
+              "\"Active Learning for Social Studies and Science\"",
+              "\"Evidence-Based. Classroom-Proven.\""
+            ]
+          },
+          {
+            "dimension": "K-8 coverage",
+            "values": [
+              "PreK/TK, K-2 ELA plus social studies, K-5 social studies, MS world history",
+              "K-6 literacy in English and Spanish",
+              "K-8 ELA",
+              "PreK-5 ELA; 6-8 is separate Amplify ELA",
+              "K-12 social studies, K-8 science",
+              "Birth to PreK/TK and K, plus grades 1-3 solutions"
+            ]
+          },
+          {
+            "dimension": "Vendor footprint",
+            "values": [
+              "Teacher-founded, about 70 staff, founded 2017",
+              "Multi-subject publisher; owns NWEA and Heinemann",
+              "Public benefit corp; ELA, math, science",
+              "Literacy, math, science plus mCLASS assessment",
+              "Social studies and science only",
+              "Early childhood curriculum, assessment, family engagement"
+            ]
+          },
+          {
+            "dimension": "Independent validation",
+            "values": [
+              "Oregon \"Exemplary\" (per inquirED); NM 2022 review below 80% cutoff",
+              "EdReports all-green (2020 edition)",
+              "EdReports all-green (July 2026)",
+              "EdReports all-green (review found covers 2015 edition)",
+              "Hawaii DOE top designation; Learning List review",
+              "NIEER randomized trial (2026)"
+            ]
+          },
+          {
+            "dimension": "Efficacy evidence",
+            "values": [
+              "Logic model; no efficacy study found",
+              "Third-party QED rated moderate evidence",
+              "Logic model; no efficacy study found",
+              "Claims ESSA Tier 1",
+              "Not findable",
+              "Claims ESSA Tier 1 via NIEER RCT"
+            ]
+          },
+          {
+            "dimension": "Named districts",
+            "values": [
+              "SFUSD, Oconomowoc, Canby (webinars, stories)",
+              "Warren County KY, Jones County NC",
+              "Ann Arbor board adoption (2025)",
+              "Sampson County NC, Quincy MA, Fox Chapel PA",
+              "Hillsboro OR (K-12)",
+              "Fort Worth ISD, Graves County"
+            ]
+          },
+          {
+            "dimension": "Path to price or trial",
+            "values": [
+              "Free pilot; no pricing posted",
+              "Samples; request-info form",
+              "Sample request; Ann Arbor: about $1.29M for 3 years",
+              "Sample and demo request",
+              "Public list price, $22-62 per K-5 student",
+              "Request-pricing form only"
+            ]
+          }
+        ]
+      },
+      "sources_summary": "HMH, Great Minds, and Amplify have independent EdReports reports a superintendent can verify directly, with Great Minds' the most recent. inquirED's positive validation lives mostly on its own pages, and the one independent state review found is unfavorable and dated. Teaching Strategies has a genuinely independent RCT, but its own site quotes two different headline numbers from it.",
+      "sources": [
+        {
+          "company": "HMH",
+          "claim": "Into Reading meets expectations on all EdReports gateways",
+          "source": "EdReports reports (Jan 2020), linked from HMH page",
+          "confidence": "High (independent; older edition)"
+        },
+        {
+          "company": "Great Minds",
+          "claim": "Arts & Letters all-green, Building Knowledge 97%",
+          "source": "EdReports report (July 16, 2026), PR Newswire",
+          "confidence": "High"
+        },
+        {
+          "company": "Amplify",
+          "claim": "4M+ students in all 50 states; an older release said 2.7M",
+          "source": "Amplify program page; older BusinessWire release",
+          "confidence": "Medium (company-controlled, figure grew over time)"
+        },
+        {
+          "company": "inquirED",
+          "claim": "Inquiry Journeys scored below New Mexico's 80% adoption cutoff (grades 1, 2, 4)",
+          "source": "NM PED 2022 appraisal PDFs",
+          "confidence": "High for 2022 version; may not reflect current edition"
+        },
+        {
+          "company": "TCI",
+          "claim": "K-5 license priced $22-62 per student",
+          "source": "TCI online shop",
+          "confidence": "High (primary)"
+        },
+        {
+          "company": "Teaching Strategies",
+          "claim": "Teacher retention up 59%; an older page says 54%",
+          "source": "TS site citing NIEER RCT",
+          "confidence": "Medium (independent study, company-stated number varies)"
+        }
+      ],
+      "findability_summary": "HMH and Amplify are the easiest to research, with dense, crawlable program pages. The URL supplied for Great Minds returns a 404, inquirED has published template placeholders, and TCI and Teaching Strategies hide their reach stats in JavaScript counters or images. Only TCI posts pricing.",
+      "findability": [
+        {
+          "company": "inquirED",
+          "findability": "Medium",
+          "gap": "Massachusetts page shows unfilled template tokens ([STATE], [VENDOR STATUS]); no pricing; old inquired.org pages still indexed",
+          "fix": "Fix template pages and 301 legacy inquired.org URLs"
+        },
+        {
+          "company": "HMH",
+          "findability": "Easy",
+          "gap": "No pricing; EdReports badge cites 2020 review",
+          "fix": "Add pricing guidance and edition date to review badge"
+        },
+        {
+          "company": "Great Minds",
+          "findability": "Medium",
+          "gap": "Supplied URL (greatminds.org/arts-and-letters) returns 404",
+          "fix": "301 redirect to /programs/literacy/arts-and-letters"
+        },
+        {
+          "company": "Amplify",
+          "findability": "Easy",
+          "gap": "EdReports report found is for 2015 edition; site sells 3rd edition",
+          "fix": "State which edition each review covers"
+        },
+        {
+          "company": "TCI",
+          "findability": "Medium",
+          "gap": "Homepage reach stats render as 0 to crawlers (JS counters)",
+          "fix": "Server-render the stat numbers"
+        },
+        {
+          "company": "Teaching Strategies",
+          "findability": "Medium",
+          "gap": "Key stats are images; K-8 fit unclear; pricing gated",
+          "fix": "Put stats in HTML text and add a K-3 landing summary"
+        }
+      ]
+    },
+    {
+      "lens": "Curriculum director",
+      "summary": "An ELA director gets the most verifiable detail from Into Reading, Arts & Letters, and CKLA, which all have scored EdReports reports; Arts & Letters has the newest, but its core does not claim foundational skills, which are sold separately or bundled with partner programs. A social studies director comparing inquirED and TCI sees similar inquiry and literacy claims, but TCI offers open samples and public prices. inquirED's integrated Inkwell block is distinctive, yet a September 2026 job post shows its foundational literacy component is still being designed.",
+      "differences": {
+        "columns": [
+          "inquirED",
+          "HMH Into Reading",
+          "Great Minds Arts & Letters",
+          "Amplify CKLA",
+          "TCI",
+          "Teaching Strategies"
+        ],
+        "rows": [
+          {
+            "dimension": "How they describe themselves",
+            "values": [
+              "\"High-quality core curriculum, grounded in inquiry\"",
+              "\"Build skilled readers\"",
+              "\"Helping students read fluently and understand deeply through one coherent system.\"",
+              "\"The next chapter in the Science of Reading\"",
+              "\"Active Learning for Social Studies and Science\"",
+              "\"Evidence-Based. Classroom-Proven.\""
+            ]
+          },
+          {
+            "dimension": "Program under review",
+            "values": [
+              "Inkwell (K-2 ELA plus social studies); Inquiry Journeys (K-5 social studies)",
+              "Into Reading K-6",
+              "Arts & Letters: Language Arts K-8",
+              "CKLA 3rd edition, K-5",
+              "Social Studies Alive! K-5",
+              "The Creative Curriculum, PreK and K"
+            ]
+          },
+          {
+            "dimension": "Block design",
+            "values": [
+              "Inkwell: one 70-minute block for reading, writing, grammar, social studies",
+              "Whole-class sessions plus small-group minilessons",
+              "4 modules per grade; 60-minute lessons",
+              "K-2: two strands (skills, knowledge); 3-5 integrated",
+              "Slide-deck lessons plus a unit Inquiry Project",
+              "180 days of project-based studies"
+            ]
+          },
+          {
+            "dimension": "Foundational skills",
+            "values": [
+              "Still in development per a Sept 2026 job posting",
+              "Built in; decodable readers; morphology in 3-6",
+              "Not in core; sold as Reading Foundations or bundled with UFLI or Really Great Reading",
+              "Built in through grade 5; 44 sounds, 150 spellings",
+              "Not applicable; literacy integrated into social studies",
+              "Supplemental Kickstart Literacy (preschool)"
+            ]
+          },
+          {
+            "dimension": "Independent review detail",
+            "values": [
+              "Oregon \"Exemplary\" (per inquirED); NM 2022 alignment scores 37-58%",
+              "EdReports meets all gateways; foundational skills 81/84",
+              "EdReports Building Knowledge 97%; foundational skills not claimed",
+              "EdReports foundational skills 75%, building knowledge 92% (2015 ed.)",
+              "Learning List review (standards alignment not reviewed)",
+              "NIEER RCT in preschool classrooms"
+            ]
+          },
+          {
+            "dimension": "Multilingual support",
+            "values": [
+              "NM reviewers found ELL support limited to Spanish translation (2022)",
+              "¡Arriba la Lectura! Spanish K-6",
+              "Prologue for Language Development",
+              "Language Studio; Caminos Spanish pairing",
+              "Professionally translated Spanish components",
+              "Not findable"
+            ]
+          },
+          {
+            "dimension": "Trial access",
+            "values": [
+              "Free pilot: one full unit per grade, unlimited teachers, PD included",
+              "Downloadable sample lessons",
+              "Digital review kit request",
+              "Sample request; free lessons on Amplify Classroom",
+              "Open Sample Hub",
+              "Product demos page"
+            ]
+          },
+          {
+            "dimension": "PD model",
+            "values": [
+              "Curriculum-Based Professional Learning framework",
+              "Coachly coaching, Teacher's Corner",
+              "Professional learning guidance (details not public)",
+              "On-demand PD, live partner sessions, AI SoR coach",
+              "In-app courses; on-site orientation $4,500 per trainer-day (PYLUSD quote)",
+              "Teacher and coach PD memberships"
+            ]
+          }
+        ]
+      },
+      "sources_summary": "The three ELA vendors can be compared on EdReports scores, though Amplify's publicly findable report covers an older edition. Social studies has no EdReports-style common yardstick, so inquirED and TCI rely on state designations and a single Learning List review. The most decision-relevant inquirED fact for an ELA director came from a job posting, not product documentation.",
+      "sources": [
+        {
+          "company": "inquirED",
+          "claim": "Oregon \"Exemplary Program\" designation",
+          "source": "inquirED Oregon page only",
+          "confidence": "Medium (not verified at ODE this session)"
+        },
+        {
+          "company": "inquirED",
+          "claim": "Inkwell foundational literacy still being designed",
+          "source": "edtech.com job listing, Sept 8, 2026",
+          "confidence": "Medium (job post, not product doc)"
+        },
+        {
+          "company": "HMH",
+          "claim": "Foundational skills 81/84",
+          "source": "EdReports Into Reading reports (2020)",
+          "confidence": "High"
+        },
+        {
+          "company": "Great Minds",
+          "claim": "Building Knowledge 97%, foundational skills not claimed",
+          "source": "EdReports report (July 2026)",
+          "confidence": "High"
+        },
+        {
+          "company": "Amplify",
+          "claim": "Foundational skills 75%, building knowledge 92%",
+          "source": "EdReports report for 2015 edition",
+          "confidence": "Medium (older edition)"
+        },
+        {
+          "company": "TCI",
+          "claim": "Learning List reviewed quality, not state alignment",
+          "source": "Learning List post",
+          "confidence": "High"
+        }
+      ],
+      "findability_summary": "For a director, HMH, Amplify, and TCI are easiest because samples are open or one click away. inquirED contradicts itself on Inkwell's grade band and has no public Inkwell scope or sample in what I found. Great Minds' reviewer guides sit on third-party file hosting.",
+      "findability": [
+        {
+          "company": "inquirED",
+          "findability": "Medium",
+          "gap": "Grade band conflicts: site says Inkwell K-2, job posts say K-5; no Inkwell scope or sample found",
+          "fix": "Publish Inkwell scope, grade roadmap, and a public sample unit"
+        },
+        {
+          "company": "HMH",
+          "findability": "Easy",
+          "gap": "Minutes per day not stated on program page",
+          "fix": "Add daily block time to program page"
+        },
+        {
+          "company": "Great Minds",
+          "findability": "Medium",
+          "gap": "404 at supplied URL; reviewer guides live on HubSpot file URLs",
+          "fix": "Redirect and host reviewer guides on greatminds.org"
+        },
+        {
+          "company": "Amplify",
+          "findability": "Easy",
+          "gap": "Current-edition EdReports report not surfaced",
+          "fix": "Link the edition-specific review"
+        },
+        {
+          "company": "TCI",
+          "findability": "Easy",
+          "gap": "No common third-party alignment review for social studies",
+          "fix": "Publish an independent standards alignment review"
+        },
+        {
+          "company": "Teaching Strategies",
+          "findability": "Medium",
+          "gap": "Grades 1-3 offering not described in pages reviewed",
+          "fix": "Add K-3 program pages with scope and samples"
+        }
+      ]
+    }
+  ]
+}
