@@ -758,10 +758,11 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .rd-tier .why, .rd-ghead .why { color: var(--muted); font-size: 12px; }
 .rd-grid { display: grid; gap: 12px; }
 .rd-grid.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rd-grid.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .rd-grid.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .rd-grid.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 1000px) { .rd-grid.g5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .rd-grid.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 720px) { .rd-grid.g2, .rd-grid.g5 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) { .rd-grid.g3 { grid-template-columns: 1fr; } .rd-grid.g2, .rd-grid.g5 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .rd-grid.g2, .rd-grid.g4, .rd-grid.g5 { grid-template-columns: 1fr; } }
 .rd-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
 .rd-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 10px; margin-bottom: 10px; }

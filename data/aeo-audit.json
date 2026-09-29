@@ -1,0 +1,126 @@
+{
+  "updated": "2026-09-29",
+  "source": "mkt1_aeo_audit, clean-context run (local task monthly-aeo-audit)",
+  "site": "https://www.inquired.com",
+  "pillars": [
+    {
+      "name": "Crawlable",
+      "checks": [
+        {
+          "check": "Homepage content readable without JS",
+          "status": "pass",
+          "note": "GPTBot and browser user agents both return 158,565 bytes. H1, section H2s, FAQ, team and product copy are in raw HTML. Most images have empty alt text but no core copy is JS-only."
+        },
+        {
+          "check": "robots.txt addresses LLM crawlers",
+          "status": "partial",
+          "note": "robots.txt contains only a Sitemap line. GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, CCBot and Applebot-Extended are not mentioned. Nothing is blocked, default is allow."
+        },
+        {
+          "check": "sitemap.xml present and current",
+          "status": "pass",
+          "note": "280 URLs including 131 blog posts, curriculum pages, learn, resources, webinars, about-us and careers. Latest lastmod 2026-09-25. Sitemap uses non-www URLs."
+        },
+        {
+          "check": "Canonical link tag set on key pages",
+          "status": "pass",
+          "note": "Homepage canonical is https://inquired.com. Interior pages not individually checked."
+        },
+        {
+          "check": "llms.txt present",
+          "status": "fail",
+          "note": "/llms.txt returns 404."
+        }
+      ]
+    },
+    {
+      "name": "Understandable",
+      "checks": [
+        {
+          "check": "Single descriptive H1 per page",
+          "status": "partial",
+          "note": "Homepage has one H1: High-quality core curriculum, grounded in inquiry. /careers has two H1s."
+        },
+        {
+          "check": "Heading hierarchy clean",
+          "status": "partial",
+          "note": "Homepage opens with an H2 before the H1, uses H2 for the repeated Contact sales CTA (3 times) and an H3 for the cookie banner. Some headings appear styled for looks."
+        },
+        {
+          "check": "JSON-LD schema coverage",
+          "status": "partial",
+          "note": "FAQPage, Organization, WebSite (twice) and SiteNavigationElement on the homepage. Organization has sameAs, logo, address and contactPoint but no foundingDate. No Product/Course, Article or BreadcrumbList found on pages checked."
+        },
+        {
+          "check": "Open Graph tags complete",
+          "status": "partial",
+          "note": "og:title, og:description, og:image, og:type and og:site_name present. og:url not found."
+        },
+        {
+          "check": "Image alt text coverage ≥50%",
+          "status": "fail",
+          "note": "About 7 of the first 40 img tags (roughly 18%) have non-empty alt. Logo alt text inconsistent (inkwell-logo-white is a filename)."
+        }
+      ]
+    },
+    {
+      "name": "Citable",
+      "checks": [
+        {
+          "check": "Meta description present, 50 to 160 chars",
+          "status": "pass",
+          "note": "About 150 chars and describes the curricula."
+        },
+        {
+          "check": "≥100 words readable body text on key pages",
+          "status": "pass",
+          "note": "Homepage has substantial text (product copy, team bios, testimonial, FAQ). Exact word count not computed."
+        },
+        {
+          "check": "Page-level freshness signal",
+          "status": "pass",
+          "note": "Sitemap lastmod up to 2026-09-25 and homepage published 2026-09-28. No dateModified in JSON-LD."
+        },
+        {
+          "check": "FAQ section or FAQPage schema",
+          "status": "pass",
+          "note": "FAQPage JSON-LD plus about 9 on-page FAQ questions."
+        },
+        {
+          "check": "≥3 in-body internal links per key page",
+          "status": "pass",
+          "note": "Homepage and /careers link to curriculum, professional learning, webinars, resources and blog. Contextual versus nav and footer links not strictly separated."
+        },
+        {
+          "check": "≥2 external citation links on long-form pages",
+          "status": "partial",
+          "note": "Not verified. No blog post fetched in full and no clear outbound citation links seen on the homepage."
+        }
+      ]
+    }
+  ],
+  "fixes": {
+    "p0": [
+      "Add named customer proof to the homepage and a /customers page: district names as text (not only images), each with a short outcome or quote. Currently only Detroit Public Schools is findable and no logo wall exists.",
+      "Publish pricing guidance, even a \"starts at\" range or a per-student pricing model explanation, on a public /pricing page. Pricing is currently not findable anywhere on the site."
+    ],
+    "p1": [
+      "Add descriptive alt text to homepage images. About 82% of the first 40 img tags have `alt=\"\"`. Use \"[District or product] logo\" for logos and describe classroom photos. Fix \"inkwell-logo-white\" and the trailing space in \"Great First Eight \".",
+      "Add `/llms.txt` at the site root with a one-paragraph company summary and links to each curriculum page (Great First Eight, Inkwell, Inquiry Journeys, World History), professional learning, about-us and the FAQ.",
+      "Add explicit User-agent rules to robots.txt for GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, CCBot and Applebot-Extended (Allow: / if you want visibility) and keep the Sitemap line.",
+      "Resume blog publishing. The newest posts shown are from Dec 2025. Add publish dates and `Article` JSON-LD with `datePublished` and `dateModified` to blog posts.",
+      "Add `Course` or `Product` JSON-LD for each curriculum page (Inkwell, Great First Eight, Inquiry Journeys, World History) with name, description, audience (grade levels) and provider.",
+      "Add `foundingDate` to the Organization JSON-LD on the homepage."
+    ],
+    "p2": [
+      "Fix /careers to have a single H1 (change \"Current openings\" to an H2) and either list open roles or state that none are open.",
+      "Clean up the homepage heading order: make the H1 the first heading, use non-heading styling for the repeated \"Contact sales\" CTA, and turn the cookie banner heading into a non-heading element.",
+      "Add `og:url` to the homepage and interior pages.",
+      "Add `BreadcrumbList` JSON-LD to blog posts and the /inquiry-based-social-studies pages.",
+      "Add a changelog or \"What's new\" page for product releases and curriculum updates.",
+      "Add 2 or more outbound citation links to credible research sources in long-form blog posts, and verify the count on interior pages.",
+      "Add /compare or \"how we differ\" pages covering alternatives in the HQIM category.",
+      "Add `dateModified` to page-level JSON-LD, and confirm canonical tags on interior pages match their own URLs."
+    ]
+  }
+}

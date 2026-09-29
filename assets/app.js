@@ -5,7 +5,7 @@ const TABS = [
       sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)", "Account Pulse snapshot (MQA count)"] } },
   { id: "monthly",    label: "Monthly Digest",      data: "data/monthly-digest.json",    render: renderMonthly,
     meta: { desc: "Full-funnel monthly report: new contacts, MQLs, SQLs, revenue, win rate by segment, and SEO.", cadence: "Monthly", next: "~Aug 1, 2026",
-      sources: ["HubSpot CRM", "HubSpot Marketing Email", "HubSpot AEO", "GA4", "Semrush (Position Tracking · AI Visibility · Keyword Gap)", "Google Ads", "LinkedIn Ads", "Google Search Console (brand lift)"] } },
+      sources: ["HubSpot CRM", "HubSpot Marketing Email", "MKT1 AEO site audit (monthly)", "GA4", "Semrush (Position Tracking · AI Visibility · Keyword Gap)", "Google Ads", "LinkedIn Ads", "Google Search Console (brand lift)"] } },
   { id: "weekly",     label: "Weekly Digest",       data: "data/weekly-digest.json",     render: renderWeekly,
     meta: { desc: "Weekly funnel snapshot: stage entries, MQL velocity, open pipeline, and active account list.", cadence: "Weekly · Mondays", next: "Jul 21, 2026",
       sources: ["HubSpot CRM (contacts + deals)", "Google Search Console (brand lift)"] } },
@@ -521,7 +521,7 @@ function renderMonthly(d) {
           <div><div class="eyebrow" style="margin-bottom:6px">AI visibility</div>${aiVisSection(last)}</div>
           <div><div class="eyebrow" style="margin-bottom:6px">Keyword gap · ELA &amp; SS only</div>${kwGapSection(last)}</div>
         </div>
-        ${rdCtx("HubSpot AEO", "Under construction. It tracks visibility for named prompts across AI assistants (ChatGPT, Claude, Gemini), plus competitor share of voice on buyer questions like “Great First Eight vs Frog Street.” That's a different lens from the Semrush score above, which counts overall brand mentions. The pull is built and waiting on HubSpot AEO permission.")}`,
+        <div id="aeo-audit-box" class="rd-sub"><p class="data-empty">Loading site AEO audit…</p></div>`,
         { open: true, tag: "AEO", cls: "ch-aeo", src: "Semrush" })}
       ${d.brand_lift ? rdDz("Brand lift", d.brand_lift.status === "collecting" || !(d.brand_lift.series || []).length ? `<span class="cap">Collecting · baseline month</span>` : `<b>${fmtN(((d.brand_lift.series.slice(-1)[0] || {}).branded || {}).clicks)}</b> branded clicks`,
         rdBrandBlock(d.brand_lift, "MoM", "mBrandLift"), { open: d.brand_lift.status !== "collecting" && (d.brand_lift.series || []).length > 0, tag: "Brand", cls: "ch-brand", src: "Google Search Console" }) : ""}
@@ -536,6 +536,7 @@ function renderMonthly(d) {
 
   document.querySelectorAll(".chip[data-p]").forEach((b) => b.onclick = () => { PRODUCT = b.dataset.p; renderMonthly(DATA); });
 
+  loadAeoAudit();
   buildJumpRail([
     { id: "sec-hih", label: "HIH" },
     { id: "sec-funnel", label: "Funnel" },
@@ -689,6 +690,32 @@ function aiVisSection(m) {
       <div class="ai-vis-llm-hdr">By AI engine</div>
       ${llms.map((l) => `<div class="ai-vis-llm-row"><span class="ai-vis-llm-name">${l.llm}</span><div class="ai-vis-bar-wrap"><div class="ai-vis-bar" style="width:${l.pct}%"></div></div><span class="ai-vis-llm-pct">${l.pct}% · ${l.count}</span></div>`).join("")}
     </div>` : ""}`;
+}
+
+// ---- site AEO audit (monthly mkt1_aeo_audit, clean-context local task) ----
+const AEO_STATUS = { pass: ["Pass", "var(--iq-green)"], partial: ["Partial", "#b7791f"], fail: ["Fail", "#c53030"] };
+function aeoAuditSection(a) {
+  const pill = (st) => { const [t, c] = AEO_STATUS[st] || [st, "var(--muted)"]; return `<span style="font-size:11px;font-weight:700;color:${c}">${t}</span>`; };
+  const count = (checks, st) => checks.filter((c) => c.status === st).length;
+  const pillars = (a.pillars || []).map((p) => `<div><div class="eyebrow" style="margin-bottom:4px">${escapeHtml(p.name)}</div><p class="cap" style="margin:0">${count(p.checks, "pass")} pass · ${count(p.checks, "partial")} partial · ${count(p.checks, "fail")} fail</p></div>`).join("");
+  const rows = (a.pillars || []).flatMap((p) => p.checks.map((c) => `<tr><td>${escapeHtml(p.name)}</td><td>${escapeHtml(c.check)}</td><td>${pill(c.status)}</td><td>${escapeHtml(c.note || "")}</td></tr>`)).join("");
+  const f = a.fixes || {};
+  const list = (items) => (items || []).map((x) => `<li>${escapeHtml(x)}</li>`).join("");
+  return `<div class="eyebrow" style="margin-bottom:6px">Site AEO audit · ${escapeHtml(a.updated || "")} <span class="source-badge">MKT1 AEO audit</span></div>
+    <div class="rd-grid g3">${pillars}</div>
+    ${(f.p0 || []).length ? `<div class="rd-sub"><div class="eyebrow" style="margin-bottom:4px">Fix first (P0)</div><ul class="cap" style="margin:0;padding-left:18px">${list(f.p0)}</ul></div>` : `<p class="cap">No P0 fixes this run.</p>`}
+    ${rdDz("All checks and fixes", `${(f.p1 || []).length} P1 · ${(f.p2 || []).length} P2 fixes`, `<div class="tscroll"><table><thead><tr><th>Pillar</th><th>Check</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody></table></div>
+      ${(f.p1 || []).length ? `<div class="eyebrow" style="margin:10px 0 4px">P1</div><ul class="cap" style="padding-left:18px">${list(f.p1)}</ul>` : ""}
+      ${(f.p2 || []).length ? `<div class="eyebrow" style="margin:10px 0 4px">P2</div><ul class="cap" style="padding-left:18px">${list(f.p2)}</ul>` : ""}`)}
+    ${rdAbout("About this audit", `Monthly run of the MKT1 AEO audit on ${escapeHtml(a.site || "inquired.com")}, from a clean context (no memory or internal docs), so it only reports what an AI crawler can learn from the public site. Source: ${escapeHtml(a.source || "local task monthly-aeo-audit")}. HubSpot AEO prompt tracking stays off until the HubSpot AEO permission is granted.`)}`;
+}
+function loadAeoAudit() {
+  const box = document.getElementById("aeo-audit-box");
+  if (!box) return;
+  fetch("data/aeo-audit.json", { cache: "no-store" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((a) => { box.innerHTML = aeoAuditSection(a); })
+    .catch(() => { box.innerHTML = '<p class="data-empty">Site AEO audit pending. The first monthly run is the second Tuesday of the month (next: Tue Oct 13, 2026).</p>'; });
 }
 
 // ---- keyword gap section ----
