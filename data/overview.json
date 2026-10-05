@@ -1,7 +1,7 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-09-28",
+  "updated": "2026-10-05",
   "summary": {
     "headline": "August funnel numbers are inflated by a bulk import; win rate jumped to 85% even as revenue cooled for the season.",
     "body": "HIH (48) and MQL (281) more than doubled MoM, but nearly 80% of new contacts arrived via an offline bulk import, not organic demand — SQL (126, +12.5%) and Opportunities (124, +9.7%) are the more reliable read. Revenue fell to $149.6K across 34 deals as the spring-summer district buying peak tapered into the August lull, but win rate improved sharply to 85% (from 56%), so deal quality held even as deal size shrank. MQA accounts stand at 12 in the buy window.",
@@ -25,22 +25,22 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2383,
-    "mql_to_sql_pct": 22.4,
-    "closed_won_mtd": "$23,620"
+    "hih_pool": 2396,
+    "mql_to_sql_pct": 31.3,
+    "closed_won_mtd": "$417,347"
   },
   "brand_lift": {
-    "updated": "2026-09-28",
+    "updated": "2026-10-05",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 21 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (395 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 28 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (593 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
         "sub": "Organic clicks on branded queries · inquired.com property",
-        "value": 395,
-        "delta": "-6% WoW",
-        "delta_dir": "down",
+        "value": 593,
+        "delta": "+55% WoW 🔥",
+        "delta_dir": "up",
         "spark": [
           239,
           177,
@@ -48,7 +48,8 @@
           307,
           510,
           441,
-          395
+          402,
+          593
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -87,54 +88,54 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Sep 28",
+      "updated": "2026-10-05",
+      "narrative": "Sep 28-Oct 4: a huge week for mid-funnel conversion. MQLs more than doubled to 166 (vs 76 last week), largely on the back of the Nell Duke Lit Talk webinar, which alone logged 462 recent-conversion touches. SQL (52) and Opportunities (52) each roughly tripled WoW, though product tagging on those stages is thin (only 17% carry a product tag) so the mix is hard to read yet. HIH held steady at 28 (+40%), led by Inkwell (18) and IJ (6). Separately, Disqualified (868) and Nurture (560) counts both spiked 6-11x WoW, consistent with a database cleanup sweep rather than a lead-quality drop, flagged for confirmation."
+    },
+    "previous": {
       "week_label": "Week of Sep 21",
       "updated": "2026-09-28",
       "narrative": "W39 (Sep 21-27): HIH came in at 20, 1.3× the 8-week average, and 21 existing contacts also converted at High intent, most on the Inkwell Integrated Instructional Block (27 fills, the top piece). MQLs held at 76 (avg 66), but SQLs fell to 17 (avg 25) and MQL→SQL to 22.4%, down 15 pts on average and well below the same week last year (81 SQLs). Pipeline: 24 deals changed stage. Five moved into Interest, led by New Bedford ($246K), and four New Business deals closed lost: Adams 12, Warren County VA, First Steps and Lynn. Open pipeline: 130 New Business, 3 Account Growth, 291 Renewal."
-    },
-    "previous": {
-      "week_label": "Week of Sep 14",
-      "updated": "2026-09-21",
-      "narrative": "Post-Labor Day surge delivered the headline week: HIH jumped to 46 -- consistent with back-to-school acceleration. MQL hit 128 (+167%) and SQL and Opp each reached 24 (+85%/+100%). Inkwell drove most new high-intent activity (30 of 46 HIH). Medium District led SQL conversion (10 of 24). DQ surged to 275 (+202%) and Nurture to 114 (+235%), tracking with the top-of-funnel spike. Open pipeline: 31 district + 11 school deals SY27-28. Branded search at 434 clicks (-10% WoW provisional)."
     }
   },
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-09-28",
+    "as_of": "2026-10-05",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 3535477.83,
-      "lost": 1667801.0,
+      "open": 4012842.83,
+      "lost": 1533336.0,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 376050.0,
-        "lost": 2000.0,
+        "open": 414050.0,
+        "lost": 10500.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 694393.5,
-        "lost": 326261.0,
+        "open": 696497.5,
+        "lost": 359067.0,
         "won": 0.0
       },
       "large": {
-        "open": 703089.0,
-        "lost": 335774.0,
+        "open": 1131989.0,
+        "lost": 334774.0,
         "won": 69938.91
       },
       "enterprise": {
-        "open": 1131354.0,
-        "lost": 921921.0,
+        "open": 1406354.0,
+        "lost": 828995.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2029532.83,
-        "lost": 1449336.0,
+        "open": 2529442.83,
+        "lost": 1499336.0,
         "won": 72521.91
       },
       "inkwell": {
@@ -143,13 +144,13 @@
         "won": 0.0
       },
       "wh": {
-        "open": 13250.0,
+        "open": 9250.0,
         "lost": 0.0,
         "won": 0.0
       },
       "gf8": {
-        "open": 701500.0,
-        "lost": 25500.0,
+        "open": 978400.0,
+        "lost": 34000.0,
         "won": 0.0
       },
       "untagged": {
@@ -160,7 +161,7 @@
     },
     "by_pipeline": {
       "district": {
-        "open": 231250.0,
+        "open": 192550.0,
         "lost": 1321371.0,
         "won": 2583.0
       },
@@ -170,8 +171,8 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 3000782.83,
-        "lost": 151465.0,
+        "open": 3820292.83,
+        "lost": 209965.0,
         "won": 69938.91
       }
     },
@@ -248,7 +249,7 @@
         }
       }
     },
-    "note": "Filtered on deal_start_year across District Sales, School Sales, and New Business pipelines. 'Generated' = open+lost+won combined. Aptakisic-Tripp ($32,806) and Norman PS ($110,159) moved NB open→lost since 2026-09-21 run. by_segment large/enterprise updated to reflect those moves. reference_year (SY25-26) static — carried forward.",
+    "note": "Weekly refresh (2026-10-05). No new closed-won this week (still 4 deals / $72,521.91 for SY27-28). Open pipeline grew to $4.01M (+$477K vs 09-28 run) and ~$134K shifted out of lost; by_segment/by_product/by_pipeline reflect the current snapshot (note: by_product counts are multi-tag membership, so they sum above the deal count). reference_year (SY25-26) static, carried forward unchanged.",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
   }
