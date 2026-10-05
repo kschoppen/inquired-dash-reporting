@@ -15,10 +15,6 @@
         "dir": "up"
       },
       {
-        "label": "UTM completeness 4.4% (down from 7.7%)",
-        "dir": "watch"
-      },
-      {
         "label": "August funnel inflated by offline import",
         "dir": "watch"
       }
