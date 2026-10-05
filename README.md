@@ -33,7 +33,7 @@ Use `null` for metrics not available in a given month — the dashboard renders 
 - **Content Performance** — pages/blog posts/landing pages ranked by view-to-contact conversion, sourced from HubSpot content analytics; refreshed Mondays via `SIGNALS_ROUTINE.md` PHASE B2, owned by the `content-performance-refresh` skill (live)
 - **State Signal (MQA)** — MQA/Engaged accounts ranked by state, surfacing which states have the most actionable warm accounts (no sales contact in 60+ days); refreshed Mondays via `SIGNALS_ROUTINE.md` PHASE A, owned by the `state-signal-refresh` skill (live). Policy context + tailored outreach templates not yet built — see the tab's own caveats.
 - **Account Pulse (MQA)** — `account-pulse.html`, rendered from `data/account-pulse.json`: Pass to Sales ranking, marketing's down-funnel impact, moves this week, stale MQAs with Demote / Recycle / Escalate decisions (Airtable "Account Decisions" log via `netlify/functions/*-account-decision*.js`), 12-week trend. Refreshed Mondays 7:30am ET via `PULSE_ROUTINE.md` + `scripts/build_account_pulse.py` (live)
-- _planned:_ Weekly Funnel · Campaign Analytics · Competitor · SEO
+- _planned:_ Weekly Funnel · Competitor · SEO
 
 ## Local preview
 Open `index.html` in a browser, or `python3 -m http.server` from the repo root (needed so `fetch()` can read `/data`). The site is password-protected on Netlify, so deploys can't be curl-verified — verify locally before pushing.
