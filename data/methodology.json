@@ -79,7 +79,7 @@
    ],
    "limits": [
     "The two summary cards come from different cadences: the monthly card covers the last full calendar month, the weekly cards cover the last full ISO week, so their numbers will not match.",
-    "The monthly card's \"Generated\" date and \"Data month of\" label are computed from the file's `updated` date, which the weekly routine also stamps, so the label reflects the last write by either routine rather than the monthly run date.",
+    "The monthly card's \"Generated\" date and \"Data month of\" label come from `monthly_summary_updated` in overview.json, which only the monthly digest run stamps. The weekly routine stamps `updated` and its own `weekly_signal` and `brand_lift` blocks, never this field.",
     "The KPI strip takes whichever shape was written last: the weekly routine writes three flat tiles (HIH Pool, MQL to SQL, Closed Won MTD) and the monthly skill's spec writes four tiles with sparklines (HIH Velocity, MQL to SQL, Active Campaigns, MQA Accounts). Flat tiles show no delta or sparkline.",
     "`brand_lift` (Google Search Console) is written to this file each week but the Overview does not render it; branded search appears on the Weekly and Monthly tabs.",
     "Pipeline and closed-won figures are directional; RevOps owns the official numbers, and the SY25-26 reference year does not match the ~$7.1M figure from goal setting (unresolved)."

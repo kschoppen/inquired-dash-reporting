@@ -327,6 +327,8 @@ Fetch current `data/overview.json` from GitHub. Update ONLY these keys — prese
 
 **Never write `summary` in overview.json.** It is the Overview's "AI Monthly Digest Summary" card and belongs to the monthly digest. The 2026-09-21 run overwrote it with a weekly narrative. The weekly talk-track goes in `weekly_signal` only.
 
+**Never touch top-level `updated` or `monthly_summary_updated` in overview.json.** They drive the monthly card's "Generated · Data month of" stamp and belong to the monthly digest. The 2026-10-05 run bumped `updated` and made the card read October over August's text. Only `weekly_signal.current.updated` and `brand_lift.updated` carry the weekly date.
+
 ```json
 "weekly_signal": {
   "current": {

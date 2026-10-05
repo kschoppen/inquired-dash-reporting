@@ -180,7 +180,7 @@ function renderOverview(d) {
     <div class="ov-narrative">
       <div class="ov-narr-meta">
         <span class="ov-ai-badge">AI Monthly Digest Summary</span>
-        <span class="ov-narr-date">Generated ${new Date(d.updated + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · Data month of ${(() => { const r = new Date(d.updated + "T12:00:00Z"); r.setUTCMonth(r.getUTCMonth() - 1); return r.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }); })()}</span>
+        <span class="ov-narr-date">Generated ${new Date((d.monthly_summary_updated || d.updated) + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })} · Data month of ${(() => { const r = new Date((d.monthly_summary_updated || d.updated) + "T12:00:00Z"); r.setUTCMonth(r.getUTCMonth() - 1); return r.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }); })()}</span>
       </div>
       <div class="ov-narr-headline">${s.headline || ""}</div>
       <div class="ov-narr-body">${s.body || ""}</div>
