@@ -1511,6 +1511,19 @@ function renderStateSignal(d) {
     return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th><th>Decision</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
   }
 
+  function guruFitHtml(state) {
+    const g = (d.guru_fit_by_state || {})[state];
+    if (!g) return '';
+    const verdictClass = g.verdict === 'good' ? 'good' : g.verdict === 'not_yet' ? 'notyet' : 'gap';
+    const verdictLabel = g.verdict === 'good' ? 'Good fit' : g.verdict === 'not_yet' ? 'Not yet' : 'No read yet';
+    const src = `${g.source_label || 'Source:'} <a href="${g.source_url}" target="_blank" rel="noopener">${g.source_title}</a>${g.source_note || ''}`;
+    return `<div class="ss-guru-fit"><div class="ss-gf-row"><div class="ss-gf-label">\ud83e\udded Guru: product fit, ${state} x ${SS_LABELS[g.product] || g.product}</div><span class="ss-gf-verdict ss-gf-${verdictClass}">${verdictLabel}</span></div>`
+      + `<p>${g.why}</p>`
+      + `<p class="ss-gf-src">${src}</p>`
+      + (g.next_step ? `<p class="ss-gf-src" style="margin-top:6px"><strong>Next step:</strong> ${g.next_step}</p>` : '')
+      + '</div>';
+  }
+
   function stateDetailHtml(s) {
     const policy = policyByState[s.state];
     const accts = accountsByState[s.state] || [];
@@ -1521,6 +1534,7 @@ function renderStateSignal(d) {
         + `<div class="ss-sc-item" style="color:var(--muted)">${policy.detail || ''}</div>`
         + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
     }
+    html += guruFitHtml(s.state);
     const shownBuyers = new Set();
     if (!accts.length) {
       html += '<p class="insight" style="margin:10px 16px">No account-level drill-down pulled for this state.</p>';
@@ -1547,6 +1561,7 @@ function renderStateSignal(d) {
     html += `<div class="ss-state-ctx"><div class="ss-sc-label">State context: ${s.state}</div>`
       + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(since ${policy.since})</span></div>`
       + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
+    html += guruFitHtml(s.state);
     if (sb && sb.open_rfps_total > 0) {
       html += `<div class="ss-watch-action"><div class="ss-wa-label">Starbridge — ${sb.open_rfps_total} open RFP${sb.open_rfps_total > 1 ? 's' : ''} right now</div>`
         + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')

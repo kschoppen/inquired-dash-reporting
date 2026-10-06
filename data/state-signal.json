@@ -4457,5 +4457,37 @@
         "qualifying": 6
       }
     }
+  },
+  "guru_fit_by_state": {
+    "OR": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Aligns well across every grade the standard scope and sequence covers: 70-85% within-grade, 80-100% at the full-unit level, and no state-specific edition is needed. This is a stock-product sale. The open question is the 2029 implementation timeline, not whether the curriculum covers Oregon's standards.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Oregon",
+      "source_url": "https://app.getguru.com/cards/T7Xnzkdc/State-Information-Oregon",
+      "source_note": "",
+      "next_step": ""
+    },
+    "SC": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "Weakest standards alignment of any state on this tab. Grade 1 minimally aligns at 33%, and Grades 3 and 5 are marked out of scope entirely. No near-term adoption window either, social studies isn't up for state adoption until 2027, purchasable off that list only by 2028-29. A timing and coverage gap, not a wrong-product one.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: South Carolina",
+      "source_url": "https://app.getguru.com/cards/ir9M9zKT/State-Information-South-Carolina",
+      "source_note": "",
+      "next_step": ""
+    },
+    "CA": {
+      "product": "inkwell",
+      "verdict": "gap",
+      "why": "A California card exists in Guru, but it's written for Inquiry Journeys (K-5 social studies and ELA alignment, plus a California-specific Grade 4 edition) and says nothing about Great First Eight's PreK/TK content, which is what most of the board signals here actually concern. Shown as a gap rather than borrowing a verdict from a different product's data.",
+      "source_label": "Related card:",
+      "source_title": "Guru, State Information: California",
+      "source_url": "https://app.getguru.com/cards/ie9zrnrT/State-Information-California",
+      "source_note": ", Inquiry Journeys scope, not Great First 8",
+      "next_step": "Raise with Jeanette whether Guru's State Information collection should carry a Great First 8 specific read. Today's cards don't track PreK/TK standards at all."
+    }
   }
 }
