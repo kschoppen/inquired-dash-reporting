@@ -1,50 +1,50 @@
 {
  "ok": true,
  "source": "snapshot",
- "updated": "2026-09-29",
- "fetched_at": "2026-09-29T11:36:16+00:00",
+ "updated": "2026-10-06",
+ "fetched_at": "2026-10-06T11:42:36+00:00",
  "stale_after_days": 8,
  "phases": {
   "awareness": {
-   "count": 3477,
+   "count": 34,
    "segment_id": 40199920,
-   "cached_count": 3544,
+   "cached_count": 34,
    "cached_as_of": "2026-09-24T17:48:02+00:00"
   },
   "discovery": {
-   "count": 2553,
+   "count": 13440,
    "segment_id": 40199921,
-   "cached_count": 2572,
+   "cached_count": 13606,
    "cached_as_of": "2026-09-24T17:48:04+00:00"
   },
   "adopt": {
-   "count": 1091,
+   "count": 3791,
    "segment_id": 40199922,
-   "cached_count": 1094,
+   "cached_count": 3810,
    "cached_as_of": "2026-09-24T17:48:06+00:00"
   },
   "sustained": {
-   "count": 7,
+   "count": 13,
    "segment_id": 40199923,
-   "cached_count": 7,
+   "cached_count": 13,
    "cached_as_of": "2026-09-24T17:48:08+00:00"
   },
   "holding": {
-   "count": 53955,
+   "count": 2703,
    "segment_id": 40199924,
-   "cached_count": 54704,
+   "cached_count": 2737,
    "cached_as_of": "2026-09-24T17:48:10+00:00"
   },
   "eligible": {
-   "count": 62591,
+   "count": 66950,
    "segment_id": 40199919,
-   "cached_count": 63478,
+   "cached_count": 67876,
    "cached_as_of": "2026-09-24T17:47:59+00:00"
   },
   "active_users": {
-   "count": 1098,
+   "count": 3910,
    "segment_id": 40199925,
-   "cached_count": 1101,
+   "cached_count": 3930,
    "cached_as_of": "2026-09-24T17:48:11+00:00"
   }
  },
@@ -109,11 +109,13 @@
    "web_id": 10349266,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
+   "sent": 7,
+   "opens": 4,
+   "open_rate": 0.5714285714285714,
    "clicks": 0,
-   "click_rate": 0
+   "click_rate": 0,
+   "unsubs": 0,
+   "bounces": 0
   },
   {
    "code": "T4",
@@ -122,11 +124,13 @@
    "web_id": 10349292,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 12141,
+   "opens": 3036,
+   "open_rate": 0.25333778371161547,
+   "clicks": 1206,
+   "click_rate": 0.10063417890520694,
+   "unsubs": 9,
+   "bounces": 157
   },
   {
    "code": "T5-3-5",
@@ -135,11 +139,13 @@
    "web_id": 10349294,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 5723,
+   "opens": 1543,
+   "open_rate": 0.270559354725583,
+   "clicks": 517,
+   "click_rate": 0.09065404173242153,
+   "unsubs": 9,
+   "bounces": 20
   },
   {
    "code": "T5-K2",
@@ -148,11 +154,13 @@
    "web_id": 10349295,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 6290,
+   "opens": 1898,
+   "open_rate": 0.30300127713920816,
+   "clicks": 675,
+   "click_rate": 0.10775862068965517,
+   "unsubs": 3,
+   "bounces": 26
   },
   {
    "code": "T6-3-5",
@@ -161,11 +169,13 @@
    "web_id": 10349298,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1543,
+   "opens": 381,
+   "open_rate": 0.24708171206225682,
+   "clicks": 114,
+   "click_rate": 0.07392996108949416,
+   "unsubs": 0,
+   "bounces": 1
   },
   {
    "code": "T6-K2",
@@ -174,11 +184,13 @@
    "web_id": 10349299,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1426,
+   "opens": 440,
+   "open_rate": 0.3085553997194951,
+   "clicks": 157,
+   "click_rate": 0.11009817671809256,
+   "unsubs": 0,
+   "bounces": 0
   },
   {
    "code": "T7-3-5",
@@ -264,12 +276,14 @@
    "subject": "How are you fitting Inquiry Journeys into your year?",
    "web_id": 10349306,
    "type": "automation-email",
-   "status": "paused",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "status": "sending",
+   "sent": 574,
+   "opens": 82,
+   "open_rate": 0.14411247803163443,
+   "clicks": 11,
+   "click_rate": 0.019332161687170474,
+   "unsubs": 1,
+   "bounces": 5
   },
   {
    "code": "H3",
@@ -277,7 +291,7 @@
    "subject": "Your Inquiry Journeys access isn't going anywhere",
    "web_id": 10349307,
    "type": "automation-email",
-   "status": "paused",
+   "status": "sending",
    "sent": 0,
    "opens": 0,
    "open_rate": 0,
@@ -291,11 +305,13 @@
    "web_id": 10349309,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1586,
+   "opens": 366,
+   "open_rate": 0.2309148264984227,
+   "clicks": 104,
+   "click_rate": 0.06561514195583597,
+   "unsubs": 0,
+   "bounces": 1
   },
   {
    "code": "T9-K2",
@@ -304,11 +320,13 @@
    "web_id": 10349310,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1464,
+   "opens": 419,
+   "open_rate": 0.28620218579234974,
+   "clicks": 143,
+   "click_rate": 0.0976775956284153,
+   "unsubs": 0,
+   "bounces": 0
   },
   {
    "code": "T10",
@@ -519,6 +537,19 @@
     "active_users": 1098
    },
    "sent_total": 0
+  },
+  {
+   "date": "2026-10-06",
+   "phases": {
+    "awareness": 34,
+    "discovery": 13440,
+    "adopt": 3791,
+    "sustained": 13,
+    "holding": 2703,
+    "eligible": 66950,
+    "active_users": 3910
+   },
+   "sent_total": 30754
   }
  ]
 }
