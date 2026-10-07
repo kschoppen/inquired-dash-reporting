@@ -4459,35 +4459,365 @@
     }
   },
   "guru_fit_by_state": {
+    "AL": {
+      "product": "ij",
+      "verdict": "not_yet",
+      "why": "Alabama's within-grade alignment swings widely, from 94% in Grade 1 down to 45% in Grade 2 and 38% in Grade 4, and Grade 5 is marked fully out of scope because it covers the Progressive Era to present. The all-units figures look better, with Grades 1 and 2 at 100% and Grades 3 and 4 at 94%, but that is a looser measure, and the within-grade dips plus the Grade 5 gap point to real coverage holes rather than a consistently strong fit. The state's Social Studies Course of Study was adopted in 2024, and Alabama law requires courses to be reviewed and revised at least once every two years, but the card names no specific upcoming textbook adoption window. Given the grade level gaps and the lack of a defined near-term buying window, this reads as not yet a strong fit for Inquiry Journeys.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Alabama",
+      "source_url": "https://app.getguru.com/cards/iAL6AoBT/State-Information-Alabama",
+      "source_note": "",
+      "next_step": "Flag the Grade 2 (45%), Grade 4 (38%), and Grade 5 (out of scope) alignment gaps to Product/Curriculum, and ask Sales to confirm Alabama's next textbook adoption window with the State Textbook Committee before prioritizing it as a near-term IJ target."
+    },
+    "AK": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card lists Percent Coverage as TBD, and it names no state adoption of instructional materials, so there is no clear near-term buying window to point to. Alaska's content standards date to 2006, revised 2016, and were under revision as of Spring 2023, with no known state mandates and no updated growth correlation document on file. An Alaska-specific edition exists but is flagged as missing some critical elements in the Our State and Region unit. This is only a partial read of Inkwell's social studies half, since Guru has no independent ELA-specific alignment score here.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Alaska",
+      "source_url": "https://app.getguru.com/cards/i5zXLKpT/State-Information-Alaska",
+      "source_note": "",
+      "next_step": "Flag to Product/Curriculum that Alaska's Standards Alignment section is marked TBD with no adoption window listed, and request updated alignment data before this card is used to support Inkwell outreach in Alaska."
+    },
+    "AZ": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "Arizona's card shows social studies alignment scores of 85% in kindergarten, 83% in grade 1, 85% in grade 2, 87% in grade 3, 84% in grade 4, and 80% in grade 5, with every grade rated Aligns Well. There is no state-level adoption in Arizona, since LEAs select instructional materials on their own and there is no scheduled standards review, so purchasing happens on a rolling district-by-district basis rather than waiting on one statewide window. This is a partial read: these percentages score only the social studies half of Inkwell against Inquiry Journeys scope and sequence, and Guru has no independent ELA-specific alignment score for Inkwell here. No Arizona-specific edition currently exists.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Arizona",
+      "source_url": "https://app.getguru.com/cards/iRdjdLoT/State-Information-Arizona",
+      "source_note": "",
+      "next_step": ""
+    },
+    "CA": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "This is a partial read of Inkwell's social-studies half; no ELA-specific alignment score exists in Guru, so the verdict reflects that gap rather than a full product match. The card's Inquiry Journeys alignment in California is strong across most grades, with within-grade scores of 71% in Grade K, 76% in Grade 1, 69% in Grade 2, and 100% in Grade 4 (all rated Aligns Well or Fully Aligns), and all-units scores of 92-100% in grades K-3. Grades 3 and 5 are lower at 52% and 65% within-grade (Partially Aligns), but nothing falls into the 30s and no grade is marked out of scope. Timing favors action now too: California's 2025-2026 ELA/ELD Instructional Materials Follow-up Adoption for grades TK-8 is active, which is the ELA-side window Inkwell would ride, even though the state's social-studies textbook adoption (originally planned for 2026) currently has no funding or timeline.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: California",
+      "source_url": "https://app.getguru.com/cards/ie9zrnrT/State-Information-California",
+      "source_note": "",
+      "next_step": "Use this card to support Inquiry Journeys outreach in California, not a full Inkwell pitch. Before extending a complete Inkwell fit claim, locate or request ELA-specific alignment data, and track the active 2025-2026 ELA/ELD Instructional Materials Follow-up Adoption for grades TK-8 as the timing window to act within."
+    },
+    "CO": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "Colorado is a partial read for Inkwell: the card only scores the social-studies half of Inkwell against Inquiry Journeys' scope and sequence, and Guru has no separate ELA-specific alignment score for the product. Within that scope, the alignment is strong: five of six grades land in Aligns Well or Fully Aligns within grade (K 91%, 1 78%, 2 90%, 4 94%, 5 84%), and all six grades reach 93-100% once all units are counted, including Grade 3's 69% within-grade score climbing to 100% across all units. Colorado has no state adoption cycle for instructional materials, since local school boards control textbook decisions, and the state's ELA standards were re-adopted in 2018 and hold through 2032, while social studies standards face review in late 2026 or early 2027 with revisions due by summer 2028.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Colorado",
+      "source_url": "https://app.getguru.com/card/czbqjnXi/State-Information-Colorado-",
+      "source_note": "",
+      "next_step": ""
+    },
+    "CT": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "This Guru card is written for Inquiry Journeys' social studies scope and sequence, so it gives only a partial read of Inkwell, which integrates social studies as half its design; there is no independent ELA-specific alignment score here. Connecticut's within-grade alignment is strong across all six grades, ranging from 74% in Grade 4 to 89% in Grade 5, and all-units alignment runs from 91% to 100%. The card lists no periodic review or revision schedule for Connecticut's academic standards and no known state mandates, though it notes that under Right to Read legislation, districts must adopt K-3 reading curricula from an approved list. Based on the social studies numbers alone the fit looks good, but the ELA side and the Right to Read approved-list status still need separate confirmation.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Connecticut",
+      "source_url": "https://app.getguru.com/cards/cqzG8bki/State-Information-Connecticut",
+      "source_note": "",
+      "next_step": ""
+    },
+    "DE": {
+      "product": "gf8",
+      "verdict": "gap",
+      "why": "This Guru card is written for Inquiry Journeys and social studies, and it says nothing about Great First Eight's PreK/TK scope. It cites Delaware's 2018 Social Studies standards and the 2010 Common Core ELA standards, notes there is no state-level adoption of instructional materials in Delaware (districts select materials locally), and lists Delaware HB 198's K-12 Black History curriculum mandate. The card has no standard alignment percentage table at all here, Percent Coverage is listed as Unknown, and the Delaware Edition is marked N/A, so there is no early-childhood or PreK/TK content here to judge GF8 fit against.",
+      "source_label": "Related card:",
+      "source_title": "Guru, State Information: Delaware",
+      "source_url": "https://app.getguru.com/cards/TAR6dx8c/State-Information-Delaware",
+      "source_note": ", Inquiry Journeys scope, not Great First Eight",
+      "next_step": "Flag to Product/Content that Delaware has no GF8 PreK/TK specific signal card; this IJ-scoped card should not back GF8 outreach until early-childhood specific research is done."
+    },
+    "FL": {
+      "product": "ij",
+      "verdict": "not_yet",
+      "why": "Within-grade alignment is uneven across Florida's K-5 scope: Grade 2 sits at just 45% (Minimally Aligns), Grade 5 at 51%, and Grade K at 55%, with only Grade 1 reaching Aligns Well at 83%. The all-units view looks much stronger, 88% to 100% across all six grades, but that reflects full-year coverage rather than a close match to each grade's native standards. Florida's Social Studies adoption window is active now, with the criterion available since January 2026 and the state adoption process running June 2026 to July 2027 ahead of the 2027-2028 adoption year and a 2028-2033 contract term. With three of six grades below or at the 55% within-grade mark, this needs a closer alignment check before it is called a strong fit.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Florida",
+      "source_url": "https://app.getguru.com/cards/c5MnM7xi/State-Information-Florida",
+      "source_note": "",
+      "next_step": "Route the Grade 2 (45%) and Grade 5 (51%) within-grade alignment gaps to Product for review before using this card in Florida outreach ahead of the 2026-2027 state adoption process."
+    },
+    "GA": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card lists percent coverage as unknown, noting that a correlation spreadsheet and new correlation documents are still pending, so there is no scored alignment data to judge fit against yet. Georgia's current standards are the 2016 Social Studies GSE, updated in 2023, and the 2023 ELA K-12 standards, both reviewed on a four-year cycle, and upcoming adoptions of instructional materials are marked N/A, though HB 538 requires the state to maintain a K-3 ELA HQIM list districts choose from for early literacy. Since Georgia is tagged Inkwell, this is only a partial read of the social studies half of Inkwell's integrated design, and no ELA-specific alignment score exists in this card. With alignment data unscored and no confirmed near-term adoption window, this reads as not yet rather than a confirmed fit.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Georgia",
+      "source_url": "https://app.getguru.com/cards/i9qnq9XT/State-Information-Georgia",
+      "source_note": "",
+      "next_step": "Ask Product/Curriculum to supply the pending Georgia correlation spreadsheet and confirm K-3 ELA HQIM list timing before prioritizing Georgia for Inkwell outreach."
+    },
+    "HI": {
+      "product": "gf8",
+      "verdict": "gap",
+      "why": "This Guru card is a Hawaii standards-alignment reference built for Inquiry Journeys: it scores K-5 social studies alignment grade by grade, for example Grade 4 at just 55% within-grade (64% all-units) against Grade 5 at 96% within-grade and Kindergarten at 81%. It also tracks Hawaii's social studies standards timeline (2018 standards, next review in 2027-2029, board adoption in 2029-2030) and notes HIDOE's January 2026 call for social studies materials, where Inquiry Journeys landed on the recommended list without reservations. None of this addresses Great First Eight's PreK/TK scope; the card has no early-childhood content, assessment, or procurement signal in it at all.",
+      "source_label": "Related card:",
+      "source_title": "Guru, State Information: Hawaii",
+      "source_url": "https://app.getguru.com/card/iaEnk6ET/State-Information-Hawaii",
+      "source_note": ", Inquiry Journeys/social studies scope, not Great First Eight's PreK/TK scope",
+      "next_step": "Flag the coverage gap to Product: no Guru card addresses GF8 PreK/TK alignment or procurement signal for Hawaii, so confirm whether that read exists elsewhere before using this card for GF8 positioning."
+    },
+    "ID": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "Idaho's social studies alignment is strong on this card: four of six grades score Aligns Well within grade (70-89%), the other two (K and Grade 2) still clear 63% and 65%, and every grade hits Fully Aligns on the all-units measure (86-97%). Idaho's social studies standards were approved by the Board in October 2025, with legislative approval expected January through April 2026 and full implementation set for 2026-2027, and the card notes materials adoption could open as early as Fall 2026 once that approval lands. This is only a partial read for Inkwell, since the card scores Inquiry Journeys' social studies scope and sequence and Inkwell is half ELA; no ELA-specific alignment score appears anywhere in this card.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Idaho",
+      "source_url": "https://app.getguru.com/cards/TjqzXkac/State-Information-Idaho",
+      "source_note": "",
+      "next_step": ""
+    },
+    "IL": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Illinois alignment is strong across most grades: grade 1 is 88%, grade 2 is 83%, grade 3 is 86%, grade 4 is 91%, and grade 5 is 72% within-grade, with all six grades reaching 96-100% when counting all units. Kindergarten is the softest spot at 60% within-grade (rated Partially Aligns), but the card notes gaps are grade-banded, with coverage picked back up elsewhere across the K-5 span rather than left as true gaps. Illinois uses local control with no state-level curriculum review, so districts set their own buying timelines under the 2022 Illinois Learning Standards for Social Studies rather than following one statewide adoption cycle. inquirED already has correlation documents tied to Illinois mandates, including the TEAACH Act and Mandate 105 ILCS 5/27-20.4, which supports direct conversations with districts now.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Illinois",
+      "source_url": "https://app.getguru.com/card/cxb5rARi/State-Information-Illinois",
+      "source_note": "",
+      "next_step": ""
+    },
+    "IA": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Iowa's standards alignment is strong across grades K through 5, all landing in the Aligns Well or Fully Aligns range, from 75% up to 100% within grade and 79% to 100% across all units. Grade 6 shows as not yet correlated, but that reflects a separate World History crosswalk for 6th grade social studies rather than a gap in the Inquiry Journeys scope itself. Iowa approved new Iowa Academic Standards for Social Studies in December 2025, with districts expected to implement by fall 2026, and inquirED already has a recommended scope and sequence plus branded Iowa specific collateral built to those standards. The combination of consistently strong alignment numbers and a near term fall 2026 implementation window makes this a good fit.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Iowa",
+      "source_url": "https://app.getguru.com/cards/iEqoE5rT/State-Information-Iowa",
+      "source_note": "",
+      "next_step": ""
+    },
+    "KY": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Kentucky's within-grade alignment to Inquiry Journeys ranges from 70% in Kindergarten to 96% in Grade 4, with most grades rated Aligns Well or Fully Aligns, and all-units alignment runs 96% to 100% across every grade. Kentucky's current social studies standards date to 2022 and are currently under review and revision, and the 2019 ELA standards are under review as well. There is no state-level adoption of instructional materials since local districts choose their own materials, so there is no near-term adoption-cycle conflict blocking a sale. Based on these numbers, Kentucky is a good fit for Inquiry Journeys.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Kentucky",
+      "source_url": "https://app.getguru.com/cards/TgE487xc/State-Information-Kentucky",
+      "source_note": "",
+      "next_step": ""
+    },
+    "LA": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card scores only the social studies half of Inkwell against Inquiry Journeys scope and sequence, and Guru holds no separate ELA-specific alignment score for Louisiana. Within-grade alignment is weak across most grades: Kindergarten sits at 26%, Grade 1 at 38%, Grade 2 at 52%, Grade 4 at 27%, and Grade 5 at 46%, all under a 55% bar, with only Grade 3 at 67% clearing it comfortably. All-units coverage is stronger in K, 1, 2, and 3 (83-100%) but falls to 38% and 53% in Grades 4 and 5. Louisiana does not mandate or adopt instructional materials statewide and leaves timing to local districts, and the next social studies standards revision is only predicted for 2028-2029, so there is no clear near-term buying window either.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Louisiana",
+      "source_url": "https://app.getguru.com/cards/cMzL5ori/State-Information-Louisiana",
+      "source_note": "",
+      "next_step": "Route Louisiana's sub-55% within-grade alignment in Grades K, 1, 2, 4, and 5 to Product/Curriculum for a closer look at Inkwell's social studies component, and check with Sales whether any individual district has a near-term adoption window given the state's locally-paced, non-mandated materials process."
+    },
+    "MD": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card scores Inquiry Journeys' social studies scope and sequence against Maryland's 2020 Social Studies Standards and Frameworks, revised in 2025, so it only reflects the social studies half of Inkwell; there is no independent ELA-specific alignment score here, even though Maryland's ELA standards remain Common Core from 2014. Within-grade alignment is mixed: Kindergarten sits at 51 percent (Minimally Aligns), Grade 3 at 60 percent and Grade 5 at 64 percent (both Partially Aligns), while Grades 1, 2, and 4 run 74-77 percent (Aligns Well). All-units alignment is much stronger, from 85 percent in Grade 5 up to 100 percent in Kindergarten through Grade 2, but the card lists no known Maryland mandates and names no specific near-term adoption window, only an ongoing HQIM materials review process where individual LEAs adopt on their own timelines. Given uneven within-grade scores in three of six grades and the absence of a defined buying window, this reads as not yet a strong fit, and the ELA picture specifically remains unscored.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Maryland",
+      "source_url": "https://app.getguru.com/card/T69MzGXc/State-Information-Maryland",
+      "source_note": "",
+      "next_step": "Route to Product/Sales Ops to confirm whether a concrete Maryland instructional-materials adoption window exists beyond the HQIM review process, and flag that no ELA-specific alignment score exists for Inkwell before using this card as a buying signal."
+    },
+    "MA": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card's K through 5 standards alignment table is Inquiry Journeys' social studies scope and sequence, but Inkwell only serves grades K through 2, so the Grade 3 and Grade 4 figures the original note relied on do not apply to Inkwell. Within Inkwell's actual K-2 range, within-grade alignment runs from 55% in Kindergarten and 66% in Grade 1, both Partially Aligns, up to 70% in Grade 2, Aligns Well; no K-2 grade is marked Minimally Aligns. All-units alignment across the same grades is strong: 100% in Kindergarten, 94% in Grade 1, and 96% in Grade 2, all Fully Aligns. Massachusetts's Right to Read Act (S.2924, signed by Governor Healey on June 26, 2026) requires districts to adopt a K-3 reading curriculum by the start of the 2027-28 school year, a real near-term window, though the state's approved curriculum list and free K-3 option are due around end of 2026 and do not exist yet. This is still a partial read of only the social studies half of Inkwell's integrated ELA and social studies design; Guru does not contain an ELA-specific alignment score for Inkwell in Massachusetts, which is why a full fit call is not yet possible.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Massachusetts",
+      "source_url": "https://app.getguru.com/cards/c5z7rEki/State-Information-Massachusetts",
+      "source_note": "",
+      "next_step": "Ask Product whether an ELA-specific Massachusetts alignment score exists for Inkwell so this social-studies-only read can become a full fit call, and confirm the Right to Read Act's 2027-28 K-3 adoption deadline is loaded into the Massachusetts account plan."
+    },
+    "MI": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Michigan's within-grade alignment runs from 61% in Grade 3 (Partially Aligns) up to 96% in Grade 5, with the other five grades rated Aligns Well or Fully Aligns, and the all-units view puts every grade at 90% or above, including 100% in Grade 4. Standards are tied to the 2019 Michigan K-12 Social Studies Standards, and Michigan has no state adoption cycle for instructional materials since curriculum decisions are made at the local level, so there is no fixed cycle timing to work around. The card lists no known state mandates and no Michigan-specific edition exists yet. Taken together, the alignment data supports a strong Inquiry Journeys fit in Michigan.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Michigan",
+      "source_url": "https://app.getguru.com/cards/cBopByKi/State-Information-Michigan",
+      "source_note": "",
+      "next_step": ""
+    },
+    "MN": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Minnesota's card shows strong alignment across five of six grades: Grade K is 84% within grade and 100% across all units, Grade 1 is 95% and 100%, Grade 2 is 70% and 95%, Grade 4 is 95% and 100%, and Grade 5 is 96% and 100%, all rated Aligns Well or Fully Aligns. Grade 3 is the lone soft spot at 60% within grade and 85% across all units, driven by an Ancient Civilizations gap that inquirED has already helped Minnesota districts fill with supplemental content. There is no state-mandated adoption cycle for instructional materials, so districts set their own timeline, and the state's new 2021 Social Studies Standards take full effect in the 2026-27 school year, which reads as a near-term review window rather than a blocking conflict.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Minnesota",
+      "source_url": "https://app.getguru.com/cards/c8E5Rkgi/State-Information-Minnesota",
+      "source_note": "",
+      "next_step": ""
+    },
+    "MS": {
+      "product": "ij",
+      "verdict": "not_yet",
+      "why": "Mississippi's card lists Minimally Aligns scores of 23% for Kindergarten, 45% for Grade 1, and 50% for Grade 2, all well below a strong-fit level, while Grades 3 through 5 remain marked TBD, with that correlation work still pending after the K-2 document was completed in July 2024. The card also notes Mississippi reviews and revises its standards periodically rather than on a fixed cycle, and it only links out to the current textbook adoption schedule rather than naming a specific near-term window. Because alignment is weak in the grades that have been scored and half the K-5 scope is still undocumented, this is not yet a strong fit for Inquiry Journeys in Mississippi.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Mississippi",
+      "source_url": "https://app.getguru.com/cards/T9bG89nc/State-Information-Mississippi",
+      "source_note": "",
+      "next_step": "Flag the pending Grade 3-5 Mississippi correlation data with Product/Curriculum and re-check IJ alignment once that work completes, before any near-term state outreach."
+    },
+    "NV": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card is written for Inquiry Journeys and only reads the social studies half of Inkwell's design, there is no separate ELA-specific alignment score here. Nevada's social studies alignment itself is strong, running from 84% to 100% within grade and 89% to 100% across all units for grades K through 5. But the state's instructional materials adoption is tentative and on hold until 2026-2027, and the Nevada Department of Education has not announced a timeline for when that review process will resume. With no confirmed near-term buying window, Nevada is not yet a clear fit even though the social studies numbers look good.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Nevada",
+      "source_url": "https://app.getguru.com/cards/i7Maq49T/State-Information-Nevada",
+      "source_note": "",
+      "next_step": "Set a reminder to re-check Nevada's HQIM adoption timeline once NDE/SBE posts guidance ahead of the 2026-2027 cycle, and ask Product whether an ELA-specific alignment read exists outside Guru before pitching Inkwell here."
+    },
+    "NJ": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "This card scores Inquiry Journeys against New Jersey's social studies standards, so for Inkwell it is a partial read of only the social-studies half of the program; there is no separate ELA-specific alignment score in Guru. Within-grade alignment is mixed, with Grade 1 at 36% and Grade 3 at 30% (both Minimally Aligns) while Grade 2 sits at 70% and Grade 5 at 79% (Aligns Well), but the card's all-units measure tells a stronger story: Grades K through 2 are 100% Fully Aligns and Grades 3 through 5 are 91% Fully Aligns. New Jersey's social studies standards are under review with adoption expected this year (2026) and no implementation date set, and the card confirms New Jersey is a local control state with no state-level adoption of instructional materials. The stronger near-term signal for Inkwell is not the standards cycle but the New Jersey Literacy Framework, a 2024 state law requiring universal K-3 literacy screening and evidence-based literacy instruction and intervention, with district implementation starting in the 2025-2026 school year. That mandate lines up directly with Inkwell's ELA strand even though Guru does not score ELA alignment separately. Given the active literacy mandate and the strong all-units alignment on the social studies side, this reads as a fit worth pursuing now rather than not yet.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: New Jersey",
+      "source_url": "https://app.getguru.com/card/c5z7jp9i/State-Information-New-Jersey",
+      "source_note": "",
+      "next_step": "Flag this as a near-term fit for Inkwell driven by the New Jersey Literacy Framework (2024 law, K-3 universal screening and evidence-based literacy instruction required starting 2025-2026), and route a question to Product on whether an ELA-specific alignment read exists outside Guru so outreach can speak to both the literacy mandate and the social studies standards cycle."
+    },
+    "NY": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "New York's Inquiry Journeys alignment is strong across every grade: within-grade alignment ranges from 60% in grades 4 and 5 up to 75% in grade 3, and the all-units alignment reaches 86% to 100% across grades K through 5. New York's Social Studies Learning Standards date to 2016, revised March 2017, with no next revision date set, and the state uses local control rather than a fixed state-level adoption cycle, so there is no review window blocking a purchase. A crosswalk document already shows how Inquiry Journeys meets New York's Instructional Mandates for Financial Literacy, removing a potential compliance barrier to adoption.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: New York",
+      "source_url": "https://app.getguru.com/cards/TdxBkRnc/State-Information-New-York",
+      "source_note": "",
+      "next_step": ""
+    },
+    "OH": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "This card shows consistently strong social studies alignment across Ohio's K-5 grades, with within-grade scores from 82% to 88% (all rated Aligns Well) and all-units scores from 88% to 100% (mostly Fully Aligns), measured against the 2018 Ohio Learning Standards for Social Studies. Ohio is a local adoption state for social studies, but for ELA the state keeps an approved K-5 list aligned to the Science of Reading, and inquirED is already named on Ohio's Pricing and Accessibility Compliant Publishers List, so there is an active district-level buying window right now. Because Ohio is tagged to Inkwell, this is only a partial read: it scores the social-studies half of Inkwell's integrated design, and Guru has no independent ELA-specific alignment score for Inkwell here. Given the strong alignment numbers and the open ELA adoption pathway, the fit reads as good.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Ohio",
+      "source_url": "https://app.getguru.com/cards/i9bG89oT/State-Information-Ohio",
+      "source_note": "",
+      "next_step": ""
+    },
+    "OK": {
+      "product": "ij",
+      "verdict": "not_yet",
+      "why": "Oklahoma's 2019 Social Studies standards align well in four of six grades within grade (73-88%) and fully align across all units in every grade (94-100%), with kindergarten and grade 4 landing lower within-grade at 63% and 56%. The bigger issue right now is timing: the Oklahoma Supreme Court issued a stay on the 2025 Social Studies Standards, so the state paused the March 2025 social studies adoption and the committee voted to extend the current instructional materials contracts for one more year. That means there is no clear near-term buying window open for new social studies curriculum, even though the underlying alignment numbers are strong.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Oklahoma",
+      "source_url": "https://app.getguru.com/card/Taxzxakc/State-Information-Oklahoma",
+      "source_note": "",
+      "next_step": "Flag Oklahoma as a watch item: monitor the Supreme Court stay on the 2025 Social Studies Standards and the one-year contract extension, and route to Sales/Product to re-open outreach once OSDE sets a new adoption window."
+    },
     "OR": {
       "product": "ij",
       "verdict": "good",
-      "why": "Aligns well across every grade the standard scope and sequence covers: 70-85% within-grade, 80-100% at the full-unit level, and no state-specific edition is needed. This is a stock-product sale. The open question is the 2029 implementation timeline, not whether the curriculum covers Oregon's standards.",
+      "why": "Inquiry Journeys aligns well across every Oregon grade band, with within-grade percentages ranging from 70% (grade 2) to 85% (grade K), and all-units alignment at 100% for grades K through 3, 97% for grade 5, and 80% for grade 4. The card ties this to Oregon's 2024 K-12 Social Science Standards and notes no separate Oregon edition is needed. Oregon is an adoption state that posts adopted materials lists and runs subject caravans, and the only requirement noted is that districts route orders through Northwest Textbook Depository, with no other conflict that would block a near-term sale.",
       "source_label": "Source:",
       "source_title": "Guru, State Information: Oregon",
-      "source_url": "https://app.getguru.com/cards/T7Xnzkdc/State-Information-Oregon",
+      "source_url": "https://app.getguru.com/card/T7Xnzkdc/State-Information-Oregon",
+      "source_note": "",
+      "next_step": ""
+    },
+    "PA": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Pennsylvania's within-grade alignment ranges from 58.54% in Grade 2 to 84.62% in Grade 1, with Grade 1 and Grade 5 rated Aligns Well and Kindergarten, Grade 2, Grade 3, and Grade 4 rated Partially Aligns, none falling into the 30s percent and no grade marked fully out of scope. Looking across all units, alignment is much stronger, running from 95.24% in Grade 4 up to 100% in Kindergarten through Grade 2, with five of six grades rated Fully Aligns. Pennsylvania's Economics standards changed as of July 1, 2026, and inquirED's sales correlation documents have already been updated to show alignment to them, giving sales a current, concrete talking point. PA is a local control state with no statewide adoption of instructional materials and no known state mandates, so there is no single state adoption deadline to clear, but also nothing blocking a sale at the district level.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Pennsylvania",
+      "source_url": "https://app.getguru.com/cards/cdxLgGEi/State-Information-Pennsylvania",
       "source_note": "",
       "next_step": ""
     },
     "SC": {
       "product": "inkwell",
       "verdict": "not_yet",
-      "why": "Weakest standards alignment of any state on this tab. Grade 1 minimally aligns at 33%, and Grades 3 and 5 are marked out of scope entirely. No near-term adoption window either, social studies isn't up for state adoption until 2027, purchasable off that list only by 2028-29. A timing and coverage gap, not a wrong-product one.",
+      "why": "This is a partial read of the social studies half of Inkwell, since Guru does not carry a separate ELA-specific alignment score for South Carolina. Alignment to South Carolina's social studies standards is weak across most benchmarked grades, with Grade K at 50%, Grade 1 at 33%, and Grade 2 at 60%, while Grade 3 and Grade 5 are marked out of scope entirely. South Carolina's social studies standards are due for revision in 2026, and the state's social studies adoption year is 2027 with materials available in 2028-2029, so there is no near-term buying window. No South Carolina-specific edition exists yet.",
       "source_label": "Source:",
       "source_title": "Guru, State Information: South Carolina",
       "source_url": "https://app.getguru.com/cards/ir9M9zKT/State-Information-South-Carolina",
       "source_note": "",
+      "next_step": "Route South Carolina to Product/Curriculum to review the Grade 1 (33%) and Grade 3/5 out-of-scope gaps before prioritizing outreach ahead of the 2027 social studies adoption cycle."
+    },
+    "TN": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This card scores Inquiry Journeys' social studies scope and sequence against Tennessee's standards, which is only a partial read for Inkwell since social studies is half its design and there is no separate ELA-specific score in Guru. The social studies alignment itself is mixed: grades K through 2 fully align (92%, 90%, 100%) and grade 3 aligns well (87%), but grade 4 content is marked entirely out of scope (it covers 19th and 20th century U.S. history) and grade 5 only partially aligns at 58%, with grade 6 still listed as TBD. Tennessee's social studies materials adoption is active now, with state adoption in fall 2025-2026, local adoption in 2026-2027, and implementation in 2027-2028, so the timing window is real but the grade 4 gap and partial grade 5 score keep this short of a clean fit.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Tennessee",
+      "source_url": "https://app.getguru.com/cards/cGz6zdGi/State-Information-Tennessee",
+      "source_note": "",
+      "next_step": "Flag the Grade 4 out-of-scope content gap and the Grade 5 58% partial alignment to Product/Curriculum so they can confirm whether Inkwell's own ELA scope (not just its social-studies half) needs a separate Tennessee alignment check before the local materials adoption window opens in 2026-2027."
+    },
+    "TX": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Texas alignment is strong overall: on the all-units measure every grade K through 5 scores Aligns Well or Fully Aligns, ranging from 84% in Grade 4 to 97% in Grade 1. Within-grade scores are solid too, with five grades between 61% and 74% and only Grade 5 dipping to 53% (Minimally Aligns). The State Board of Education approved new K-12 social studies TEKS at its June 2026 meeting, with staggered implementation reaching grades K-5 in the 2030-2031 school year, and the next Instructional Materials Review and Approval cycle for social studies runs May-Aug 2029 with implementation in Nov 2029. There is no state-specific Texas edition yet, but the recent TEKS adoption plus consistently high alignment support a good fit for Inquiry Journeys today.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Texas",
+      "source_url": "https://app.getguru.com/cards/iGRkqERT/State-Information-Texas",
+      "source_note": "",
       "next_step": ""
     },
-    "CA": {
+    "UT": {
+      "product": "ij",
+      "verdict": "good",
+      "why": "Utah's own instructional materials review gave Inquiry Journeys a Recommended Primary rating for grades K-5 social studies during the 2025-2025 RIMS adoption cycle, and that rating is searchable in the state's RIMS database. This card does not list specific per-grade alignment percentages for Utah; the Percent Coverage field is still marked Pending, so no numeric alignment score can be cited here. Utah's Social Studies standards were last revised in 2022 and its ELA standards in 2023, both reviewed on a seven-year cycle, and there are no known state mandates that would block adoption. Since Utah LEAs choose their own materials, the statewide Recommended Primary status gives Inquiry Journeys a real, documented path into district decisions right now.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Utah",
+      "source_url": "https://app.getguru.com/card/i8bgA8GT/State-Information-Utah",
+      "source_note": "",
+      "next_step": ""
+    },
+    "VA": {
       "product": "inkwell",
-      "verdict": "gap",
-      "why": "A California card exists in Guru, but it's written for Inquiry Journeys (K-5 social studies and ELA alignment, plus a California-specific Grade 4 edition) and says nothing about Great First Eight's PreK/TK content, which is what most of the board signals here actually concern. Shown as a gap rather than borrowing a verdict from a different product's data.",
-      "source_label": "Related card:",
-      "source_title": "Guru, State Information: California",
-      "source_url": "https://app.getguru.com/cards/ie9zrnrT/State-Information-California",
-      "source_note": ", Inquiry Journeys scope, not Great First 8",
-      "next_step": "Raise with Jeanette whether Guru's State Information collection should carry a Great First 8 specific read. Today's cards don't track PreK/TK standards at all."
+      "verdict": "not_yet",
+      "why": "The card scores Inquiry Journeys' social studies scope and sequence against Virginia's 2023 History and Social Science Standards of Learning, and within-grade alignment is mixed: Grade 2 sits at 30%, Grade 3 at 50%, and Grade K at 52%, with only Grade 4 reaching 77% and rated Aligns Well. The All Units view looks stronger, 81-87% in five of six grades, but Virginia's instructional materials adoption timeline is still unknown, so there is no confirmed near-term buying window. Because Inkwell integrates social studies as only half of its K-2 design, this is a partial read of that social-studies half only, and Guru has no independent ELA-specific alignment score here against Virginia's 2024 English Standards of Learning. Given weak within-grade numbers in multiple grades and unclear adoption timing, this reads as not yet rather than a confirmed fit today.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Virginia",
+      "source_url": "https://app.getguru.com/cards/cGRkqEEi/State-Information-Virginia",
+      "source_note": "",
+      "next_step": "Before citing these percentages externally, confirm messaging with Rachel per the card's own internal note, and flag to Product that within-grade alignment is weak in multiple grades (30% in Grade 2, 50% in Grade 3) with Virginia's instructional materials adoption timeline still unknown."
+    },
+    "WA": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "Washington's social-studies alignment to Inquiry Journeys is strong across grades, with within-grade alignment ranging from 63% in Kindergarten (Partially Aligns) up to 90% in Grade 2 (Fully Aligns), and Grades 1, 3, 4, and 5 all landing in the 75-87% Aligns Well range. All-units alignment is even stronger, from 86% in Grade 4 up to 100% in Kindergarten, Grade 1, and Grade 2. Washington is a local control state with no state adoption of instructional materials at all, and standards review happens on an as-needed basis rather than a fixed cycle. Known local context includes the Since Time Immemorial tribal sovereignty mandate and 2025 Parents' Bill of Rights guidance on curriculum access. This card is written for Inquiry Journeys' social-studies scope and sequence, so for Inkwell it is only a partial read of the social-studies half of the program, and no separate ELA-specific alignment score exists here.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Washington",
+      "source_url": "https://app.getguru.com/cards/iydAAzKT/State-Information-Washington",
+      "source_note": "",
+      "next_step": ""
+    },
+    "WV": {
+      "product": "inkwell",
+      "verdict": "good",
+      "why": "West Virginia's social studies alignment is strong within grade: 82% in Grade K, 84% in Grade 1, 81% in Grade 2, 76% in Grade 3 (using some Grade 4 inquiries), and 80% in Grade 4 (using some Grade 5 inquiries), while Grade 5 is marked n/a and the all-units percentage is still listed as pending. West Virginia's ELA standards are due for their next revision in spring 2026, and the state has an ELA instructional materials review set for 2027-2028 with new materials expected in classrooms by 2028-2029, giving a defined near-term window. Because Inkwell integrates social studies as half of its K-2 design, these figures are only a partial read of that social-studies half, and Guru holds no separate ELA-specific alignment score for Inkwell. The card also notes West Virginia does not use Common Core standards, so CCSS-ELA alignment is not displayed for this state.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: West Virginia",
+      "source_url": "https://app.getguru.com/cards/TgEr5Axc/State-Information-West-Virginia",
+      "source_note": "",
+      "next_step": ""
+    },
+    "WI": {
+      "product": "inkwell",
+      "verdict": "not_yet",
+      "why": "This is a partial read of Inkwell, since the card only scores the social studies half of Inkwell's design and Guru has no separate ELA-specific alignment figure for Wisconsin. Within-grade alignment ranges from 48% in Grade 2 to 61% in Grade 1, with three of six grades (K at 51%, Grade 2 at 48%, Grade 3 at 49%) below the 55% mark and none rated above \"Partially Aligns.\" Wisconsin is a local control state with no state adoption of instructional materials, so there is no near-term adoption window to target, and in January 2026 the state's Department of Public Instruction confirmed it will not revise its social studies standards beyond a late-summer, formatting-only update. No Wisconsin-specific edition exists yet.",
+      "source_label": "Source:",
+      "source_title": "Guru, State Information: Wisconsin",
+      "source_url": "https://app.getguru.com/cards/cayLgeqi/State-Information-Wisconsin-",
+      "source_note": "",
+      "next_step": "Route to Product/Curriculum to confirm whether an Inkwell-specific ELA alignment read for Wisconsin is planned, and hold Wisconsin as a longer-term watch rather than a near-term push since there is no state adoption cycle to anchor outreach."
+    },
+    "DC": {
+      "product": "ij",
+      "verdict": "not_yet",
+      "why": "The Washington DC card lists Standard Alignment Percentage as TBD, so there is no grade-by-grade alignment data to measure against Inquiry Journeys' scope and sequence. It cites the 2023 DC Social Studies Standards with no known next revision date, and it marks Upcoming Adoption of Instructional Materials as N/A, no state adoption, so there is no near-term buying window to anchor on. No state mandates are listed, and DC-specific content runs through the shared Our State and Region unit rather than its own state edition. Until the alignment table and growth correlation document are filled in, this card cannot support a good fit verdict.",
+      "source_label": "Source:",
+      "source_title": "Guru, Washington DC Information Card",
+      "source_url": "https://app.getguru.com/cards/TLRAaoEc/Washington-DC-Information-Card",
+      "source_note": "",
+      "next_step": "Flag to Rachel Strang/Content team to populate DC's Standard Alignment Percentage table and growth correlation document, since the card currently shows no state adoption window to anchor outreach timing."
     }
   }
 }
