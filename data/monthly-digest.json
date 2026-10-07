@@ -1,7 +1,7 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Digest",
-  "updated": "2026-09-02",
+  "updated": "2026-10-07",
   "fiscal_year_start_month": 10,
   "brand_lift": {
     "updated": null,
@@ -2790,6 +2790,515 @@
         "down": "Lead→MQL fell to <b>55%</b> (74% last year) and MQL→SQL to <b>44.8%</b> (51.8%). An offline bulk import inflated MQLs, so SQL and Opp are the cleaner read.",
         "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal. UTM attribution is <b>24.5%</b> of addressable MQLs (target 30%); UTMs are lost when visitors click to a second page before converting."
       }
+    },
+    {
+      "period": "2026-09",
+      "label": "Sep 2026",
+      "funnel": {
+        "hih": 110,
+        "lead": 760,
+        "mql": 374,
+        "sql": 77,
+        "opp": 75,
+        "hih_pool_active": 314,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 11,
+          "competitor": 0
+        }
+      },
+      "revenue": {
+        "district_won": 13943.4,
+        "school_won": 11314.8,
+        "total_won": 25258.2,
+        "nb_won": 3278.0,
+        "existing_won": 21980.2,
+        "wins": 18,
+        "win_rate_count_pct": 42.9,
+        "win_rate_dollar_pct": 9.8,
+        "by_segment": {
+          "single_small": {
+            "won": 11,
+            "lost": 14
+          },
+          "medium": {
+            "won": 2,
+            "lost": 5
+          },
+          "large": {
+            "won": 3,
+            "lost": 2
+          },
+          "enterprise": {
+            "won": 2,
+            "lost": 2
+          }
+        }
+      },
+      "web": {
+        "sessions": 40324,
+        "users": 27122,
+        "views": 49957,
+        "yoy": {
+          "sessions": 26003,
+          "users": 14932,
+          "views": 37996
+        },
+        "engaged_pct": 35.5,
+        "channels": [
+          [
+            "Organic Search",
+            10137
+          ],
+          [
+            "Direct",
+            17264
+          ],
+          [
+            "Paid Search",
+            4026
+          ],
+          [
+            "Email",
+            3185
+          ],
+          [
+            "Referral",
+            773
+          ],
+          [
+            "Organic Social",
+            402
+          ],
+          [
+            "Other",
+            4105
+          ]
+        ],
+        "conversions": [
+          [
+            "Form thank-you",
+            1035
+          ],
+          [
+            "Resource downloads",
+            616
+          ],
+          [
+            "Webinar signups",
+            0
+          ],
+          [
+            "Contact sales",
+            53
+          ],
+          [
+            "Curriculum guide",
+            0
+          ]
+        ],
+        "top_conversion_pages": [
+          {
+            "path": "/thank-you/source-material",
+            "completions": 339,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/lit-talk",
+            "completions": 210,
+            "type": "download"
+          },
+          {
+            "path": "/inquiry-based-social-studies/elementary-curriculum",
+            "completions": 203,
+            "type": "resource"
+          },
+          {
+            "path": "/integrated-ela-curriculum/elementary-curriculum",
+            "completions": 174,
+            "type": "resource"
+          },
+          {
+            "path": "/thank-you/in-practice-social-studies-implementation-brief",
+            "completions": 119,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-the-integrated-instructional-block",
+            "completions": 110,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-lesson-sample",
+            "completions": 68,
+            "type": "download"
+          },
+          {
+            "path": "/",
+            "completions": 58,
+            "type": "resource"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 53,
+            "type": "hand-raise"
+          },
+          {
+            "path": "/thank-you/pd-how-social-studies-boosts-literacy-outcomes",
+            "completions": 48,
+            "type": "download"
+          }
+        ]
+      },
+      "seo": {
+        "tracked": null,
+        "top10": null,
+        "avg_position": null,
+        "ranked": null
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "keywords": 129,
+          "visits": 3478,
+          "type": "Homepage"
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "keywords": 21,
+          "visits": 635,
+          "type": "Blog"
+        },
+        {
+          "path": "/careers",
+          "keywords": 14,
+          "visits": 184,
+          "type": "Page"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "keywords": 67,
+          "visits": 180,
+          "type": "Product"
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "keywords": 6,
+          "visits": 148,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "keywords": 43,
+          "visits": 102,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "keywords": 48,
+          "visits": 89,
+          "type": "Product"
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "keywords": 22,
+          "visits": 84,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
+          "keywords": 19,
+          "visits": 52,
+          "type": "Product"
+        },
+        {
+          "path": "/post/concentric-circles-lesson-activity",
+          "keywords": 6,
+          "visits": 49,
+          "type": "Blog"
+        }
+      ],
+      "by_product": {
+        "ij": {
+          "hih": 36,
+          "mql": 127,
+          "sql": 21
+        },
+        "inkwell": {
+          "hih": 57,
+          "mql": 175,
+          "sql": 5
+        },
+        "wh": {
+          "hih": 10,
+          "mql": 16,
+          "sql": 1
+        },
+        "gf8": {
+          "hih": 29,
+          "mql": 29,
+          "sql": 1
+        }
+      },
+      "rev_by_product": {
+        "ij": 25258.2,
+        "inkwell": 0,
+        "wh": 1050.0,
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional; won't sum to totals"
+      },
+      "quality": {
+        "mql_to_sql_pct": 20.6,
+        "utm_completeness_pct": 62.2,
+        "utm_completeness_n": 176,
+        "utm_completeness_denom": 283,
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            32
+          ],
+          [
+            "DIRECT_TRAFFIC",
+            19
+          ],
+          [
+            "EMAIL_MARKETING",
+            16
+          ],
+          [
+            "PAID_SEARCH",
+            4
+          ],
+          [
+            "OTHER_CAMPAIGNS",
+            4
+          ]
+        ],
+        "top_utm_campaigns": [
+          [
+            "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+            12
+          ],
+          [
+            "43370150-Partner-Newsletters_SY2627",
+            4
+          ],
+          [
+            "43370070-IJ-In-Practice_F26",
+            3
+          ]
+        ],
+        "top_conversion_forms": [
+          [
+            "Source Material webinar series (ss-webinars)",
+            215
+          ],
+          [
+            "Lit Talk with Dr. Nell K. Duke (ela-webinars)",
+            153
+          ],
+          [
+            "ELA-DL: Inkwell Integrated Instructional Block_F26",
+            77
+          ]
+        ]
+      },
+      "disposition": {
+        "dq": 960,
+        "nurture": 617,
+        "lead_object": {
+          "dq": 157,
+          "nurture": 837,
+          "divergence_flagged": true
+        }
+      },
+      "hih_by_source": [
+        [
+          "Direct Traffic",
+          47
+        ],
+        [
+          "Other Campaigns",
+          36
+        ],
+        [
+          "Organic Search",
+          13
+        ],
+        [
+          "Paid Search",
+          5
+        ],
+        [
+          "Email Marketing",
+          4
+        ],
+        [
+          "Organic Social",
+          2
+        ],
+        [
+          "Referrals",
+          2
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Haddon Township School District, NJ, 26-27 Renewal",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Renewal",
+          "amount": 12893.4,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027799325"
+        },
+        {
+          "name": "Westerly School Of Long Beach K, 1, 2, 3, 4, 5 Renewal (SY 26-27)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 2602.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/43515598361"
+        },
+        {
+          "name": "Chicago Public Schools - Audubon School Renewal (SY 26-27)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 2557.8,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/46576393024"
+        },
+        {
+          "name": "Open Window School, WA - SS",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 1640.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59369563498"
+        },
+        {
+          "name": "South Hancock Elementary School, KY - 4th and 5th",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 1638.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/37186845075"
+        },
+        {
+          "name": "Chicago Public Schools - Dever Elementary School  Renewal (SY 26-27)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 1260.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/46569574823"
+        },
+        {
+          "name": "Parkview School District,WI, WH Expansion 26-27",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Upsell",
+          "amount": 1050.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64338474558"
+        },
+        {
+          "name": "St. Thomas School 4 Renewal (SY 26-27)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 840.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/43498798471"
+        },
+        {
+          "name": "Sabot School 5 Renewal (SY 26-27)",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 777.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/43499644071"
+        },
+        {
+          "name": "Roseville Area Schools MN Soc Stu- Add Ons 2nd and 3rd",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65204400287"
+        },
+        {
+          "name": "Lakeville Public School District - Add Ons",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027515158"
+        },
+        {
+          "name": "San Francisco Unified School District - Add Ons",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64930664809"
+        },
+        {
+          "name": "The Academy, CA, 2026-2027",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64779690377"
+        },
+        {
+          "name": "Lakeville Public School District - Add On",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64836371292"
+        },
+        {
+          "name": "Lakeville Public School District - Add On",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64576770829"
+        },
+        {
+          "name": "San Francisco Unified School District - Add Ons",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64519459948"
+        },
+        {
+          "name": "The Winston School, TX, Fall 2026",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64434254725"
+        },
+        {
+          "name": "School District Of Fort Atkinson,WI 2026",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0.0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/62704554161"
+        }
+      ],
+      "ai_visibility": null,
+      "keyword_gap": null,
+      "aeo": {
+        "run_status": "no_permission"
+      },
+      "funnel_note": "September's HIH count (110) includes 36 Other Campaigns contacts, many created in a single batch on Sept 15, and UTM attribution (62.2%) jumped for the same reason. SQLs and Opportunities are the cleaner read on demand this month.",
+      "read": {
+        "up": "Web sessions hit <b>40.3K</b>, up 55% on last September. MQLs rose 23% YoY to <b>374</b>, led by the Source Material and Lit Talk webinars.",
+        "down": "SQLs fell to <b>77</b> (120 last September) and MQL to SQL conversion to <b>20.6%</b> (39.3% last year). Closed-won was <b>$25.3K</b>, about flat on last September ($27.4K).",
+        "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal, and pipeline generated is <b>57.7%</b> of the $10M goal. 66% of September's SQLs came from Offline and Direct sources."
+      }
     }
   ],
   "seo_topics": [
@@ -3016,7 +3525,6 @@
   ],
   "web_trend": {
     "labels": [
-      "Sep",
       "Oct",
       "Nov",
       "Dec",
@@ -3027,10 +3535,10 @@
       "May",
       "Jun",
       "Jul",
-      "Aug"
+      "Aug",
+      "Sep"
     ],
     "current": [
-      26003,
       35976,
       21037,
       14977,
@@ -3041,10 +3549,10 @@
       39181,
       28599,
       25711,
-      36236
+      36236,
+      40324
     ],
     "prior": [
-      24368,
       25022,
       17754,
       13312,
@@ -3055,66 +3563,74 @@
       14781,
       9508,
       7962,
-      11372
+      11372,
+      26003
     ],
-    "current_total": 310277,
-    "prior_total": 198743,
-    "yoy_pct": 56.1
+    "current_total": 324598,
+    "prior_total": 200378,
+    "yoy_pct": 62.0
   },
   "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) — independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups.",
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-09-08",
+    "field_value": "27-28",
+    "as_of": "2026-10-07",
+    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 3374997.83,
-      "lost": 1331871.0,
+      "open": 4142842.83,
+      "lost": 1553336.0,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 376050.0,
-        "lost": 2000.0,
+        "open": 414050.0,
+        "lost": 10500.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 694393.5,
-        "lost": 326261.0,
+        "open": 676497.5,
+        "lost": 379067.0,
         "won": 0.0
       },
       "large": {
-        "open": 814248.0,
-        "lost": 224615.0,
+        "open": 1131989.0,
+        "lost": 334774.0,
         "won": 69938.91
       },
       "enterprise": {
-        "open": 1131354.0,
-        "lost": 778995.0,
+        "open": 1556354.0,
+        "lost": 828995.0,
+        "won": 0.0
+      },
+      "unmapped": {
+        "open": 363952.33,
+        "lost": 0.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2172497.83,
-        "lost": 1306371.0,
+        "open": 2659442.83,
+        "lost": 1519336.0,
         "won": 72521.91
       },
       "inkwell": {
-        "open": 551000.0,
+        "open": 701000.0,
         "lost": 0.0,
         "won": 0.0
       },
       "wh": {
-        "open": 13250.0,
+        "open": 9250.0,
         "lost": 0.0,
         "won": 0.0
       },
       "gf8": {
-        "open": 701500.0,
-        "lost": 25500.0,
+        "open": 978400.0,
+        "lost": 34000.0,
         "won": 0.0
       },
       "untagged": {
@@ -3125,7 +3641,7 @@
     },
     "by_pipeline": {
       "district": {
-        "open": 231250.0,
+        "open": 192550.0,
         "lost": 1321371.0,
         "won": 2583.0
       },
@@ -3135,8 +3651,8 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 3143747.83,
-        "lost": 8500.0,
+        "open": 3950292.83,
+        "lost": 229965.0,
         "won": 69938.91
       }
     },
@@ -3213,9 +3729,7 @@
         }
       }
     },
-    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved.",
-    "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
-    "field_value": "27-28"
+    "note": "Filtered on deal_start_year (a dedicated HubSpot property with values like '27-28', not derived from closedate) across District Sales, School Sales, and New Business pipelines only. Awareness Pipeline excluded (zero deals in its history have ever reached Closed Won -- it isn't real revenue pipeline); Renewal Pipeline excluded (existing-customer retention, not new growth); Account Growth + Partnerships excluded (immaterial, $0 in this cohort anyway). 'Generated' = open+lost+won combined -- lost deals count toward the goal on purpose. Segment/product/pipeline breakdowns are descriptive context, not separate sub-goals. reference_year (SY25-26) uses this same corrected methodology; it does not match the ~$7.1M figure mentioned in the original goal-setting meeting -- flagged for Kelsey/Jeanette to sanity-check, not yet resolved."
   },
   "hih_exclusions": "HIH leaves out inquirED staff, competitor domains and higher-ed contacts (University/College company names, or .edu domains that aren't a school, district or education agency). Anyone tagged with a K-12 company size stays. Recounted for every month from current HubSpot data."
 }

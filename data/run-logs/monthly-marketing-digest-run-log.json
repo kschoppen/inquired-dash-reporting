@@ -150,7 +150,7 @@
         "win_rate_dollar_pct": null,
         "win_rate_nb_count_pct": null,
         "by_segment": {},
-        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+        "status": "GATED — omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
       },
       "segment_coverage_pct": 100.0,
       "dealtype_unclassified_count": 1,
@@ -226,7 +226,7 @@
         "ctr_pct": 0
       },
       "low_ctr_flags": [],
-      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
+      "api_status": "unreachable — api.hubapi.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
     },
     "mailchimp": {
       "sends": 17191,
@@ -402,7 +402,7 @@
       "top_movers_up": [],
       "top_movers_down": [],
       "top_performers": [],
-      "api_status": "error \u2014 project 30090954 confirmed valid (Management API: OWNER access, tracking tool enabled) but tracking_position_organic / REST tracking endpoint returns 'campaign not found' for campaign_id=30090954. campaigns listing for the project returns null targets. Needs Semrush account investigation to find correct campaign_id. Section skipped this run.",
+      "api_status": "error — project 30090954 confirmed valid (Management API: OWNER access, tracking tool enabled) but tracking_position_organic / REST tracking endpoint returns 'campaign not found' for campaign_id=30090954. campaigns listing for the project returns null targets. Needs Semrush account investigation to find correct campaign_id. Section skipped this run.",
       "gsc": {
         "property": "inquired.com",
         "clicks_total": null,
@@ -413,7 +413,7 @@
         "avg_position_actual": null,
         "top_queries_by_clicks_top5": [],
         "optimization_targets_top5": [],
-        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+        "api_status": "not integrated — deferred per SKILL.md Step 3f"
       }
     },
     "paid_ads": {
@@ -423,7 +423,7 @@
         "clicks": null,
         "ctr_pct": null,
         "top_campaign": "",
-        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN not configured"
+        "api_status": "soft-skipped — GOOGLE_ADS_DEVELOPER_TOKEN not configured"
       },
       "linkedin": {
         "spend": null,
@@ -431,26 +431,26 @@
         "clicks": null,
         "ctr_pct": null,
         "top_campaign": "",
-        "api_status": "unreachable \u2014 api.linkedin.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
+        "api_status": "unreachable — api.linkedin.com blocked by sandbox network egress policy (403 CONNECT rejected by proxy)"
       }
     },
     "list_event_detected": true,
     "acknowledged_events": [],
     "data_flags": [
       "Lifecycle import suspected in MQL/SQL: MQL +137% MoM (336 vs 142), SQL sample is 95% OFFLINE-sourced (190/200) with 0% utm_campaign presence in-sample; 73% of MQLs (244/336) and 87% of SQLs (240/276) have no product_interest set. Product-tagged funnel (IJ/Inkwell/WH) is roughly flat MoM. Treat headline MQL/SQL/MQL-to-SQL-rate as inflated; the by-product figures are the clean read.",
-      "UTM completeness collapsed to 2.1% (14/683 new contacts) from 24.8% in May \u2014 well below the 30% healthy threshold and a large MoM drop; likely tied to the same lifecycle import (offline-sourced contacts lack UTM by nature).",
-      "product_interest is a multi-select property for contacts \u2014 by-product funnel counts are directional and will not sum to stage totals (contacts can carry more than one product interest).",
-      "MQL coverage 27.4% and SQL coverage 13.0% (both current month) are below the 30% coverage threshold \u2014 flagged per Step 6.",
-      "Win rate depressed by backlog flush: 13 of 20 closed-lost deals (65%) were created >90 days before window start \u2014 this month's monthly win rate reflects stale-deal cleanup, not current selling velocity.",
-      "Medium segment lost the month: 3 won ($9,450) vs 5 lost ($114,171) \u2014 37.5% count / 7.6% dollar win rate, while Enterprise and Single/Small carried the blended rate.",
-      "Revenue concentration: 2 deals (Idea Public Schools $640,511 + Yonkers $160,030) = 82.5% of total won revenue ($970,129) \u2014 hold as context, not broad-based momentum.",
-      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
-      "LinkedIn Ads API unreachable this run \u2014 api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
-      "Google Ads data unavailable (credentials not configured) \u2014 GOOGLE_ADS_DEVELOPER_TOKEN not set; soft-skipped per SKILL.md.",
-      "Semrush Position Tracking unavailable \u2014 project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the tracking campaign itself returns 'campaign not found' via both the REST endpoint and the equivalent Semrush MCP report; project's campaign listing returns null targets. Needs Semrush account-side investigation. SEO section skipped.",
-      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps deal-inclusion-rule reconciliation.",
-      "A pre-existing '2026-06' entry was already present in monthly-digest.json (missing required 'label' field, funnel.opp=281 which looks swapped with the prior-month SQL count, and a differently-worded SEO gap note) \u2014 this run's freshly-pulled, cross-verified figures replaced it per the upsert rule.",
-      "xlsx upload to Slack thread failed \u2014 files.slack.com blocked by sandbox egress policy (403 on CONNECT); file bytes never reached Slack despite files.completeUploadExternal returning ok:true. Local copy saved at Reporting/monthly-marketing-digest-2026-06.xlsx; posted a one-line follow-up in the Slack thread."
+      "UTM completeness collapsed to 2.1% (14/683 new contacts) from 24.8% in May — well below the 30% healthy threshold and a large MoM drop; likely tied to the same lifecycle import (offline-sourced contacts lack UTM by nature).",
+      "product_interest is a multi-select property for contacts — by-product funnel counts are directional and will not sum to stage totals (contacts can carry more than one product interest).",
+      "MQL coverage 27.4% and SQL coverage 13.0% (both current month) are below the 30% coverage threshold — flagged per Step 6.",
+      "Win rate depressed by backlog flush: 13 of 20 closed-lost deals (65%) were created >90 days before window start — this month's monthly win rate reflects stale-deal cleanup, not current selling velocity.",
+      "Medium segment lost the month: 3 won ($9,450) vs 5 lost ($114,171) — 37.5% count / 7.6% dollar win rate, while Enterprise and Single/Small carried the blended rate.",
+      "Revenue concentration: 2 deals (Idea Public Schools $640,511 + Yonkers $160,030) = 82.5% of total won revenue ($970,129) — hold as context, not broad-based momentum.",
+      "HubSpot Marketing Email API unreachable this run — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
+      "LinkedIn Ads API unreachable this run — api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped.",
+      "Google Ads data unavailable (credentials not configured) — GOOGLE_ADS_DEVELOPER_TOKEN not set; soft-skipped per SKILL.md.",
+      "Semrush Position Tracking unavailable — project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the tracking campaign itself returns 'campaign not found' via both the REST endpoint and the equivalent Semrush MCP report; project's campaign listing returns null targets. Needs Semrush account-side investigation. SEO section skipped.",
+      "Cumulative FYTD win rate omitted per SKILL.md — gated pending RevOps deal-inclusion-rule reconciliation.",
+      "A pre-existing '2026-06' entry was already present in monthly-digest.json (missing required 'label' field, funnel.opp=281 which looks swapped with the prior-month SQL count, and a differently-worded SEO gap note) — this run's freshly-pulled, cross-verified figures replaced it per the upsert rule.",
+      "xlsx upload to Slack thread failed — files.slack.com blocked by sandbox egress policy (403 on CONNECT); file bytes never reached Slack despite files.completeUploadExternal returning ok:true. Local copy saved at Reporting/monthly-marketing-digest-2026-06.xlsx; posted a one-line follow-up in the Slack thread."
     ]
   },
   {
@@ -604,7 +604,7 @@
         "win_rate_dollar_pct": null,
         "win_rate_nb_count_pct": null,
         "by_segment": {},
-        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+        "status": "GATED — omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
       },
       "segment_coverage_pct": 98.1,
       "dealtype_unclassified_count": 0,
@@ -683,7 +683,7 @@
         "ctr_pct": 0
       },
       "low_ctr_flags": [],
-      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped."
+      "api_status": "unreachable — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped."
     },
     "mailchimp": {
       "sends": 17191,
@@ -802,7 +802,7 @@
       "top_movers_up": [],
       "top_movers_down": [],
       "top_performers": [],
-      "api_status": "error \u2014 project 30090954 confirmed valid (Management API: OWNER access, tracking tool enabled) but tracking_position_organic (both MCP and direct REST) returns 'campaign not found' for campaign_id=30090954; the project's campaigns listing returns null targets. Needs Semrush account-side investigation to find the correct Position Tracking campaign ID. SEO section skipped this run.",
+      "api_status": "error — project 30090954 confirmed valid (Management API: OWNER access, tracking tool enabled) but tracking_position_organic (both MCP and direct REST) returns 'campaign not found' for campaign_id=30090954; the project's campaigns listing returns null targets. Needs Semrush account-side investigation to find the correct Position Tracking campaign ID. SEO section skipped this run.",
       "gsc": {
         "property": "inquired.com",
         "clicks_total": null,
@@ -813,33 +813,33 @@
         "avg_position_actual": null,
         "top_queries_by_clicks_top5": [],
         "optimization_targets_top5": [],
-        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+        "api_status": "not integrated — deferred per SKILL.md Step 3f"
       }
     },
     "paid_ads": {
       "google_ads": {
-        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN not configured in this environment."
+        "api_status": "soft-skipped — GOOGLE_ADS_DEVELOPER_TOKEN not configured in this environment."
       },
       "linkedin": {
-        "api_status": "unreachable \u2014 api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite LINKEDIN_ACCESS_TOKEN + LINKEDIN_AD_ACCOUNT_ID being set. Not a credential issue; section skipped."
+        "api_status": "unreachable — api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite LINKEDIN_ACCESS_TOKEN + LINKEDIN_AD_ACCOUNT_ID being set. Not a credential issue; section skipped."
       }
     },
     "list_event_detected": true,
     "acknowledged_events": [],
     "data_flags": [
-      "Lifecycle import suspected: MQL +136.6% MoM (336 vs 142), SQL +312.0% MoM (276 vs 67), Opp +325.8% MoM (281 vs 66). SQL sample (n=200 of 276) is 95% OFFLINE-sourced with 0% utm_campaign populated. Coverage (product_interest present) collapsed: MQL 31.5% (vs 76.8% in May), SQL 14.1% (vs 47.8%), Opp 15.3% (vs 50.0%). Product-tagged funnel (IJ/Inkwell/WH) is roughly flat MoM \u2014 treat that as the clean read; headline MQL/SQL/Opp/MQL-to-SQL-rate are inflated by the import.",
-      "UTM completeness collapsed to 2.1% (14/683 new contacts) from 5.9% (30/512) in May \u2014 both are already well below the 30% healthy-gap threshold; likely tied to the same OFFLINE-sourced lifecycle import (imported contacts lack UTM by nature).",
-      "product_interest is a multi-select property for contacts \u2014 HIH by-product coverage exceeds 100% (multiple products per contact possible); by-product counts are directional and won't sum to stage totals.",
-      "Win rate depressed context: 13 of 20 closed-lost deals (65%) this month were created >90 days before the window start \u2014 a backlog/stale-deal cleanup, not current-month selling velocity. (Monthly win rate is still strong: 63.0% by count / 82.7% by dollar \u2014 the flush affected the denominator's composition, not the direction.)",
-      "Medium segment lost the month: 3 won ($9,450) vs 5 lost ($114,171) \u2014 37.5% count / 7.6% dollar win rate, while Enterprise (4-0, 100%) and Single/Small (23-14, 62%/70%) carried the blended rate.",
-      "Revenue concentration: 2 deals (Idea Public Schools $640,511 + Yonkers $160,030 = $800,541) are 82.5% of total won revenue ($970,129) \u2014 hold as context, not broad-based momentum.",
-      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com is blocked by the sandbox's network egress policy (403 on CONNECT, confirmed via direct curl). Not a credential issue ($HUBSPOT_PRIVATE_APP_TOKEN is set); section skipped.",
-      "LinkedIn Ads API unreachable this run \u2014 api.linkedin.com is blocked by the sandbox's network egress policy (403 on CONNECT, confirmed via direct curl), despite $LINKEDIN_ACCESS_TOKEN and $LINKEDIN_AD_ACCOUNT_ID both being set. Not a credential issue; section skipped.",
-      "Google Ads data unavailable \u2014 $GOOGLE_ADS_DEVELOPER_TOKEN is not set in this environment (all other Google Ads env vars are set). Soft-skipped per SKILL.md; not treated as an error.",
-      "Semrush Position Tracking unavailable \u2014 project 30090954 (inquirED.com) confirmed valid (OWNER access, tracking tool enabled) via both the Semrush MCP and direct REST API, but every tracking-data call returns 'campaign not found'; the project's own campaign listing returns null targets. Needs Semrush account-side investigation (correct campaign_id). SEO section skipped this run.",
-      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps confirmation of deal-inclusion rules (predicted vs actual close-won, RFP handling). Monthly (close-date) basis reported instead.",
-      "Discrepancy vs the prior run log entry for this same period (run_date 2026-07-22): that entry recorded sql_prior=281 / opp_current=67 (and correspondingly ~flat MoM% for both). This run independently re-verified SQL-prior and Opp-current via two separate query methods (ms-timestamp filterGroups search AND a separate SQL BETWEEN query) and got sql_prior=67 / opp_current=281 both times \u2014 the reverse of the prior entry. The values now match the 2026-07-22 entry's own SQL-current (276) and Opp-prior (66) exactly, and coverage math is internally consistent with SQL/Opp both being inflated by the same OFFLINE import that inflated MQL (which the 2026-07-22 entry's own coverage/OFFLINE narrative already established) \u2014 the 2026-07-22 entry's opp/sql_prior figures for this period appear to have been transposed. This run's totals block uses the re-verified values.",
-      "A prior monthly-digest run for this exact period (2026-06) already completed on 2026-07-22, with its own Slack post (ts 1784723515.885619), run-log entry, and dashboard/overview publish. This run recomputes and re-publishes per the skill's re-run/correction upsert rule for the dashboard files, appends a new (not replacing) run-log entry per the append-only spec, and posts a second Slack message for the same period \u2014 flagging this so Kelsey can reconcile/remove the duplicate channel post if not wanted."
+      "Lifecycle import suspected: MQL +136.6% MoM (336 vs 142), SQL +312.0% MoM (276 vs 67), Opp +325.8% MoM (281 vs 66). SQL sample (n=200 of 276) is 95% OFFLINE-sourced with 0% utm_campaign populated. Coverage (product_interest present) collapsed: MQL 31.5% (vs 76.8% in May), SQL 14.1% (vs 47.8%), Opp 15.3% (vs 50.0%). Product-tagged funnel (IJ/Inkwell/WH) is roughly flat MoM — treat that as the clean read; headline MQL/SQL/Opp/MQL-to-SQL-rate are inflated by the import.",
+      "UTM completeness collapsed to 2.1% (14/683 new contacts) from 5.9% (30/512) in May — both are already well below the 30% healthy-gap threshold; likely tied to the same OFFLINE-sourced lifecycle import (imported contacts lack UTM by nature).",
+      "product_interest is a multi-select property for contacts — HIH by-product coverage exceeds 100% (multiple products per contact possible); by-product counts are directional and won't sum to stage totals.",
+      "Win rate depressed context: 13 of 20 closed-lost deals (65%) this month were created >90 days before the window start — a backlog/stale-deal cleanup, not current-month selling velocity. (Monthly win rate is still strong: 63.0% by count / 82.7% by dollar — the flush affected the denominator's composition, not the direction.)",
+      "Medium segment lost the month: 3 won ($9,450) vs 5 lost ($114,171) — 37.5% count / 7.6% dollar win rate, while Enterprise (4-0, 100%) and Single/Small (23-14, 62%/70%) carried the blended rate.",
+      "Revenue concentration: 2 deals (Idea Public Schools $640,511 + Yonkers $160,030 = $800,541) are 82.5% of total won revenue ($970,129) — hold as context, not broad-based momentum.",
+      "HubSpot Marketing Email API unreachable this run — api.hubapi.com is blocked by the sandbox's network egress policy (403 on CONNECT, confirmed via direct curl). Not a credential issue ($HUBSPOT_PRIVATE_APP_TOKEN is set); section skipped.",
+      "LinkedIn Ads API unreachable this run — api.linkedin.com is blocked by the sandbox's network egress policy (403 on CONNECT, confirmed via direct curl), despite $LINKEDIN_ACCESS_TOKEN and $LINKEDIN_AD_ACCOUNT_ID both being set. Not a credential issue; section skipped.",
+      "Google Ads data unavailable — $GOOGLE_ADS_DEVELOPER_TOKEN is not set in this environment (all other Google Ads env vars are set). Soft-skipped per SKILL.md; not treated as an error.",
+      "Semrush Position Tracking unavailable — project 30090954 (inquirED.com) confirmed valid (OWNER access, tracking tool enabled) via both the Semrush MCP and direct REST API, but every tracking-data call returns 'campaign not found'; the project's own campaign listing returns null targets. Needs Semrush account-side investigation (correct campaign_id). SEO section skipped this run.",
+      "Cumulative FYTD win rate omitted per SKILL.md — gated pending RevOps confirmation of deal-inclusion rules (predicted vs actual close-won, RFP handling). Monthly (close-date) basis reported instead.",
+      "Discrepancy vs the prior run log entry for this same period (run_date 2026-07-22): that entry recorded sql_prior=281 / opp_current=67 (and correspondingly ~flat MoM% for both). This run independently re-verified SQL-prior and Opp-current via two separate query methods (ms-timestamp filterGroups search AND a separate SQL BETWEEN query) and got sql_prior=67 / opp_current=281 both times — the reverse of the prior entry. The values now match the 2026-07-22 entry's own SQL-current (276) and Opp-prior (66) exactly, and coverage math is internally consistent with SQL/Opp both being inflated by the same OFFLINE import that inflated MQL (which the 2026-07-22 entry's own coverage/OFFLINE narrative already established) — the 2026-07-22 entry's opp/sql_prior figures for this period appear to have been transposed. This run's totals block uses the re-verified values.",
+      "A prior monthly-digest run for this exact period (2026-06) already completed on 2026-07-22, with its own Slack post (ts 1784723515.885619), run-log entry, and dashboard/overview publish. This run recomputes and re-publishes per the skill's re-run/correction upsert rule for the dashboard files, appends a new (not replacing) run-log entry per the append-only spec, and posts a second Slack message for the same period — flagging this so Kelsey can reconcile/remove the duplicate channel post if not wanted."
     ]
   },
   {
@@ -993,7 +993,7 @@
         "win_rate_dollar_pct": null,
         "win_rate_nb_count_pct": null,
         "by_segment": {},
-        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+        "status": "GATED — omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
       },
       "segment_coverage_pct": 100.0,
       "dealtype_unclassified_count": 0,
@@ -1093,7 +1093,7 @@
         "ctr_pct": 0
       },
       "low_ctr_flags": [],
-      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped (3rd consecutive run with this failure)."
+      "api_status": "unreachable — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped (3rd consecutive run with this failure)."
     },
     "mailchimp": {
       "sends": 0,
@@ -1109,7 +1109,7 @@
         "top_links": []
       },
       "low_ctr_flags": [],
-      "api_status": "ok \u2014 no qualifying Partner Teacher sends (emails_sent>=100) to list 20beb95bf5 in July 2026 window"
+      "api_status": "ok — no qualifying Partner Teacher sends (emails_sent>=100) to list 20beb95bf5 in July 2026 window"
     },
     "ga4": {
       "sessions": 25711,
@@ -1257,7 +1257,7 @@
       "top_movers_up": [],
       "top_movers_down": [],
       "top_performers": [],
-      "api_status": "error \u2014 project 30090954 confirmed valid (OWNER access, tracking enabled) but the tracking campaign's 'targets' list is null (campaigns report returns no configured target/domain for the tracking tool). 3rd consecutive run with this issue \u2014 needs Semrush account-side setup (add a target domain to the Position Tracking campaign). SEO section skipped this run.",
+      "api_status": "error — project 30090954 confirmed valid (OWNER access, tracking enabled) but the tracking campaign's 'targets' list is null (campaigns report returns no configured target/domain for the tracking tool). 3rd consecutive run with this issue — needs Semrush account-side setup (add a target domain to the Position Tracking campaign). SEO section skipped this run.",
       "gsc": {
         "property": "inquired.com",
         "clicks_total": null,
@@ -1268,7 +1268,7 @@
         "avg_position_actual": null,
         "top_queries_by_clicks_top5": [],
         "optimization_targets_top5": [],
-        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+        "api_status": "not integrated — deferred per SKILL.md Step 3f"
       }
     },
     "paid_ads": {
@@ -1278,7 +1278,7 @@
         "clicks": null,
         "ctr_pct": null,
         "top_campaign": "",
-        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not configured in this environment"
+        "api_status": "soft-skipped — GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not configured in this environment"
       },
       "linkedin": {
         "spend": null,
@@ -1286,26 +1286,26 @@
         "clicks": null,
         "ctr_pct": null,
         "top_campaign": "",
-        "api_status": "unreachable \u2014 api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite LINKEDIN_ACCESS_TOKEN + LINKEDIN_AD_ACCOUNT_ID being set. Not a credential issue; section skipped (3rd consecutive run with this failure)."
+        "api_status": "unreachable — api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite LINKEDIN_ACCESS_TOKEN + LINKEDIN_AD_ACCOUNT_ID being set. Not a credential issue; section skipped (3rd consecutive run with this failure)."
       }
     },
     "list_event_detected": false,
     "acknowledged_events": [],
     "data_flags": [
-      "MoM comparisons are versus an inflated June baseline: June's MQL (+137%)/SQL(+312%)/Opp(+326%) were driven by a one-time offline lifecycle import (95% OFFLINE-sourced, no UTM). July's sharp-looking declines (MQL -53%, SQL -59%, Opp -60%) are mostly that import washing back out, compounded by normal Jul-Aug seasonal softening (K-12 summer off-season) \u2014 not a genuine demand collapse. Product-tagged funnel (IJ/Inkwell/WH) softened 25-33% MoM, consistent with seasonal expectations.",
+      "MoM comparisons are versus an inflated June baseline: June's MQL (+137%)/SQL(+312%)/Opp(+326%) were driven by a one-time offline lifecycle import (95% OFFLINE-sourced, no UTM). July's sharp-looking declines (MQL -53%, SQL -59%, Opp -60%) are mostly that import washing back out, compounded by normal Jul-Aug seasonal softening (K-12 summer off-season) — not a genuine demand collapse. Product-tagged funnel (IJ/Inkwell/WH) softened 25-33% MoM, consistent with seasonal expectations.",
       "UTM completeness improved to 7.7% (26/337 new contacts) from June's 2.0%, but remains well below the 30% healthy-gap threshold and far below the 50% healthy target.",
-      "SQL source concentration: 83 of 113 sampled SQL contacts (73%) are OFFLINE-sourced \u2014 attribution visibility into true SQL source remains limited, though less extreme than June's 95%.",
-      "SQL coverage 23.2% and Opp coverage 23.0% (both below the 30% coverage threshold) \u2014 flagged per Step 6. MQL coverage improved to 43.7% (above threshold).",
-      "Win rate depressed by backlog flush: 16 of 24 closed-lost deals (67%) were created >90 days before window start \u2014 same pattern flagged in June (65%); this is a recurring/systemic stale-deal cleanup pattern in the loss data, not a July-specific issue.",
-      "Enterprise segment win rate fell to 50% (2 of 4) on two losses (Rockford Public Schools $75,000, Jefferson County Schools $20,000) \u2014 small sample (base <5), so no emoji/MoM delta applied per the sample-size rule, but worth a follow-up next month.",
-      "GA4 'Webinar signups' (webinar_signup_success event) collapsed to 1 this month (vs 333 in June); three new/unclassified GA4 events appeared this period (webinar_signup_view 345, webinar_click 129, webinar_signup_thank_you 1) that aren't in the SKILL.md event-name mapping \u2014 this looks like a GTM/event-taxonomy change, not a real drop in webinar interest. Needs verification with the web team before trusting the 'Webinar signups' KPI going forward.",
-      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 3rd consecutive run with this failure.",
-      "LinkedIn Ads API unreachable this run \u2014 api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite credentials being set. Not a credential issue; section skipped. 3rd consecutive run with this failure.",
-      "Google Ads data unavailable \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not set in this environment. Soft-skipped per SKILL.md.",
-      "Semrush Position Tracking unavailable \u2014 project 30090954 confirmed valid (OWNER access, tracking enabled) but the tracking campaign has no configured target domain (campaigns report returns null targets). 3rd consecutive run with this issue. Needs Semrush account-side setup, not an API/credential fix \u2014 recommend someone with account access add inquired.com as the tracked domain in the Position Tracking campaign for project 30090954.",
-      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps confirmation of deal-inclusion rules.",
-      "Mailchimp: no qualifying Partner Teacher campaigns (emails_sent>=100) sent to the master audience in the July window \u2014 API reachable, ok, just no sends this month.",
-      "xlsx upload to Slack thread failed \u2014 files.slack.com blocked by sandbox egress policy (403 on CONNECT). Local copy saved at Reporting/monthly-marketing-digest-2026-07.xlsx in growth-marketing repo; posted a one-line follow-up in the Slack thread."
+      "SQL source concentration: 83 of 113 sampled SQL contacts (73%) are OFFLINE-sourced — attribution visibility into true SQL source remains limited, though less extreme than June's 95%.",
+      "SQL coverage 23.2% and Opp coverage 23.0% (both below the 30% coverage threshold) — flagged per Step 6. MQL coverage improved to 43.7% (above threshold).",
+      "Win rate depressed by backlog flush: 16 of 24 closed-lost deals (67%) were created >90 days before window start — same pattern flagged in June (65%); this is a recurring/systemic stale-deal cleanup pattern in the loss data, not a July-specific issue.",
+      "Enterprise segment win rate fell to 50% (2 of 4) on two losses (Rockford Public Schools $75,000, Jefferson County Schools $20,000) — small sample (base <5), so no emoji/MoM delta applied per the sample-size rule, but worth a follow-up next month.",
+      "GA4 'Webinar signups' (webinar_signup_success event) collapsed to 1 this month (vs 333 in June); three new/unclassified GA4 events appeared this period (webinar_signup_view 345, webinar_click 129, webinar_signup_thank_you 1) that aren't in the SKILL.md event-name mapping — this looks like a GTM/event-taxonomy change, not a real drop in webinar interest. Needs verification with the web team before trusting the 'Webinar signups' KPI going forward.",
+      "HubSpot Marketing Email API unreachable this run — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 3rd consecutive run with this failure.",
+      "LinkedIn Ads API unreachable this run — api.linkedin.com blocked by sandbox network egress policy (403 on CONNECT), despite credentials being set. Not a credential issue; section skipped. 3rd consecutive run with this failure.",
+      "Google Ads data unavailable — GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not set in this environment. Soft-skipped per SKILL.md.",
+      "Semrush Position Tracking unavailable — project 30090954 confirmed valid (OWNER access, tracking enabled) but the tracking campaign has no configured target domain (campaigns report returns null targets). 3rd consecutive run with this issue. Needs Semrush account-side setup, not an API/credential fix — recommend someone with account access add inquired.com as the tracked domain in the Position Tracking campaign for project 30090954.",
+      "Cumulative FYTD win rate omitted per SKILL.md — gated pending RevOps confirmation of deal-inclusion rules.",
+      "Mailchimp: no qualifying Partner Teacher campaigns (emails_sent>=100) sent to the master audience in the July window — API reachable, ok, just no sends this month.",
+      "xlsx upload to Slack thread failed — files.slack.com blocked by sandbox egress policy (403 on CONNECT). Local copy saved at Reporting/monthly-marketing-digest-2026-07.xlsx in growth-marketing repo; posted a one-line follow-up in the Slack thread."
     ]
   },
   {
@@ -1476,7 +1476,7 @@
         "win_rate_dollar_pct": null,
         "win_rate_nb_count_pct": null,
         "by_segment": {},
-        "status": "GATED \u2014 omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
+        "status": "GATED — omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md"
       },
       "segment_coverage_pct": 100.0,
       "dealtype_unclassified_count": 0,
@@ -1484,7 +1484,7 @@
       "rfp_excluded_revenue": 0,
       "possible_unflagged_rfp": [],
       "backlog_flush_flag": true,
-      "backlog_flush_detail": "5 of 6 closed-lost deals (83%) were created >90 days before window start \u2014 same recurring pattern flagged in June/July.",
+      "backlog_flush_detail": "5 of 6 closed-lost deals (83%) were created >90 days before window start — same recurring pattern flagged in June/July.",
       "test_deals_excluded": 0
     },
     "pipeline": {
@@ -1576,7 +1576,7 @@
         "ctr_pct": 0
       },
       "low_ctr_flags": [],
-      "api_status": "unreachable \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure."
+      "api_status": "unreachable — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure."
     },
     "mailchimp": {
       "sends": 227342,
@@ -1594,7 +1594,7 @@
         ]
       },
       "low_ctr_flags": [
-        "August 2026 PE Newsletter \u2014 0% click rate on 83,692 sends"
+        "August 2026 PE Newsletter — 0% click rate on 83,692 sends"
       ],
       "api_status": "ok"
     },
@@ -1744,7 +1744,7 @@
       "top_movers_up": [],
       "top_movers_down": [],
       "top_performers": [],
-      "api_status": "error \u2014 project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the Position Tracking campaign's target domain is still not configured (campaigns report returns targets: null). 4th consecutive run with this issue \u2014 needs Semrush account-side setup (add inquired.com as the tracked domain in the Position Tracking campaign for project 30090954), not an API/credential fix.",
+      "api_status": "error — project 30090954 confirmed valid (OWNER access, tracking tool enabled) but the Position Tracking campaign's target domain is still not configured (campaigns report returns targets: null). 4th consecutive run with this issue — needs Semrush account-side setup (add inquired.com as the tracked domain in the Position Tracking campaign for project 30090954), not an API/credential fix.",
       "gsc": {
         "property": "inquired.com",
         "clicks_total": null,
@@ -1755,7 +1755,7 @@
         "avg_position_actual": null,
         "top_queries_by_clicks_top5": [],
         "optimization_targets_top5": [],
-        "api_status": "not integrated \u2014 deferred per SKILL.md Step 3f"
+        "api_status": "not integrated — deferred per SKILL.md Step 3f"
       }
     },
     "paid_ads": {
@@ -1765,7 +1765,7 @@
         "clicks": null,
         "ctr_pct": null,
         "top_campaign": "",
-        "api_status": "soft-skipped \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not configured in this environment"
+        "api_status": "soft-skipped — GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not configured in this environment"
       },
       "linkedin": {
         "spend": 1908.91,
@@ -1773,7 +1773,7 @@
         "clicks": 122,
         "ctr_pct": 0.37,
         "top_campaign": "PS2 | Inside Inkwell | Aug10-Oct31",
-        "api_status": "ok \u2014 FIRST LIVE PULL. api.linkedin.com is now reachable (previously blocked by sandbox egress in 3 prior runs). Required the RESTli struct dateRange syntax (dateRange=(start:(day:D,month:M,year:Y),end:(...))) sent unencoded rather than the dot-notation (dateRange.start.year=...) \u2014 the dot-notation was accepted for param validation but the struct form is what the v202509 adAnalytics finder actually requires. Also requires accounts=List(urn:li:sponsoredAccount:<id>) and campaign names now live under /rest/adAccounts/{id}/adCampaigns/{campaignId}, not the old /rest/adCampaigns/{id}."
+        "api_status": "ok — FIRST LIVE PULL. api.linkedin.com is now reachable (previously blocked by sandbox egress in 3 prior runs). Required the RESTli struct dateRange syntax (dateRange=(start:(day:D,month:M,year:Y),end:(...))) sent unencoded rather than the dot-notation (dateRange.start.year=...) — the dot-notation was accepted for param validation but the struct form is what the v202509 adAnalytics finder actually requires. Also requires accounts=List(urn:li:sponsoredAccount:<id>) and campaign names now live under /rest/adAccounts/{id}/adCampaigns/{campaignId}, not the old /rest/adCampaigns/{id}."
       }
     },
     "list_event_detected": true,
@@ -1794,19 +1794,1021 @@
       }
     ],
     "data_flags": [
-      "LIST EVENT DETECTED: 942 of 1,178 new contacts in August (80%) are OFFLINE-sourced, vs 187 of 337 (55%) in July \u2014 a clear bulk import, not organic growth. This mechanically inflated HIH (+100%), MQL (+78%), and drove the apparent MQL-to-SQL conversion drop (71%\u219245%); SQL (+12.5%) and Opportunities (+9.7%) are the more reliable read on real demand. GF8 MQL jumped 2\u219237 and Inkwell MQL 21\u219267 in the same pattern \u2014 consistent with the import landing disproportionately on those two products. Needs Kelsey's confirmation/acknowledgment (source of the import) before next month's MoM math can exclude it, per the acknowledged_events mechanism.",
-      "UTM completeness fell further to 4.4% (52/1,178 new contacts) from July's 7.7% \u2014 still far below both the 30% gap threshold and 50% healthy target. Persistent, worsening data-hygiene gap.",
-      "SQL coverage 26.2% and Opp coverage 26.6% (both below the 30% threshold) flagged per Step 6; MQL coverage improved to 70.8% and GF8 now clears the \u226510 inclusion threshold for the first time (HIH 17, MQL 37 in August vs 2/2 in July) so it's included in by-product breakouts this run.",
-      "SQL source concentration: 88 of 126 SQL contacts (70%) are OFFLINE-sourced \u2014 attribution visibility into true SQL source remains limited, consistent with prior months.",
-      "Backlog flush: 5 of 6 closed-lost deals (83%) were created >90 days before window start \u2014 same recurring stale-deal-cleanup pattern flagged in June (65%) and July (67%). Systemic, not August-specific.",
-      "GA4 engagement rate fell to 45.4% from July's 72.4% (a >35% relative decline) while sessions rose 41% MoM \u2014 most likely explained by the new Sonar ELA PMax campaign (6,827 sessions, typically lower-intent paid traffic) diluting the average; needs a look but not yet confirmed as a genuine interest decline.",
-      "GA4 'Webinar signups' (webinar_signup_success) stayed collapsed at 1 for a second straight month (vs 333 in June), while webinar_click (398) and webinar_signup_view (184) \u2014 events outside the SKILL.md event-name mapping \u2014 carried real volume. This looks like a persistent GTM/event-taxonomy change from the webinar flow, not declining webinar interest; the 'Webinar signups' KPI should not be trusted until the taxonomy is reconciled with the web team.",
-      "HubSpot Marketing Email API unreachable this run \u2014 api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure.",
-      "LinkedIn Ads API is reachable for the first time this run (see paid_ads.linkedin.api_status for the working request shape) \u2014 a long-pending gap is resolved. First live spend: $1,908.91 / 33,030 impressions / 122 clicks / 0.37% CTR across 2 active campaigns.",
-      "Google Ads data unavailable \u2014 GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not set in this environment. Soft-skipped per SKILL.md.",
-      "Semrush Position Tracking unavailable for a 4th consecutive run \u2014 project 30090954 has no configured target domain in its Position Tracking campaign. This needs someone with Semrush account access to add inquired.com as the tracked domain; it will not resolve itself via API calls.",
-      "Cumulative FYTD win rate omitted per SKILL.md \u2014 gated pending RevOps confirmation of deal-inclusion rules.",
-      "xlsx upload to the Slack thread was not attempted \u2014 SKILL.md's current Output 1 spec calls for a single chat.postMessage with no threaded reply/upload; the xlsx is saved locally at Reporting/monthly-marketing-digest-2026-08.xlsx in the growth-marketing repo per Output 2."
+      "LIST EVENT DETECTED: 942 of 1,178 new contacts in August (80%) are OFFLINE-sourced, vs 187 of 337 (55%) in July — a clear bulk import, not organic growth. This mechanically inflated HIH (+100%), MQL (+78%), and drove the apparent MQL-to-SQL conversion drop (71%→45%); SQL (+12.5%) and Opportunities (+9.7%) are the more reliable read on real demand. GF8 MQL jumped 2→37 and Inkwell MQL 21→67 in the same pattern — consistent with the import landing disproportionately on those two products. Needs Kelsey's confirmation/acknowledgment (source of the import) before next month's MoM math can exclude it, per the acknowledged_events mechanism.",
+      "UTM completeness fell further to 4.4% (52/1,178 new contacts) from July's 7.7% — still far below both the 30% gap threshold and 50% healthy target. Persistent, worsening data-hygiene gap.",
+      "SQL coverage 26.2% and Opp coverage 26.6% (both below the 30% threshold) flagged per Step 6; MQL coverage improved to 70.8% and GF8 now clears the ≥10 inclusion threshold for the first time (HIH 17, MQL 37 in August vs 2/2 in July) so it's included in by-product breakouts this run.",
+      "SQL source concentration: 88 of 126 SQL contacts (70%) are OFFLINE-sourced — attribution visibility into true SQL source remains limited, consistent with prior months.",
+      "Backlog flush: 5 of 6 closed-lost deals (83%) were created >90 days before window start — same recurring stale-deal-cleanup pattern flagged in June (65%) and July (67%). Systemic, not August-specific.",
+      "GA4 engagement rate fell to 45.4% from July's 72.4% (a >35% relative decline) while sessions rose 41% MoM — most likely explained by the new Sonar ELA PMax campaign (6,827 sessions, typically lower-intent paid traffic) diluting the average; needs a look but not yet confirmed as a genuine interest decline.",
+      "GA4 'Webinar signups' (webinar_signup_success) stayed collapsed at 1 for a second straight month (vs 333 in June), while webinar_click (398) and webinar_signup_view (184) — events outside the SKILL.md event-name mapping — carried real volume. This looks like a persistent GTM/event-taxonomy change from the webinar flow, not declining webinar interest; the 'Webinar signups' KPI should not be trusted until the taxonomy is reconciled with the web team.",
+      "HubSpot Marketing Email API unreachable this run — api.hubapi.com blocked by sandbox network egress policy (403 on CONNECT). Not a credential issue; section skipped. 4th consecutive run with this failure.",
+      "LinkedIn Ads API is reachable for the first time this run (see paid_ads.linkedin.api_status for the working request shape) — a long-pending gap is resolved. First live spend: $1,908.91 / 33,030 impressions / 122 clicks / 0.37% CTR across 2 active campaigns.",
+      "Google Ads data unavailable — GOOGLE_ADS_DEVELOPER_TOKEN and GOOGLE_ADS_REFRESH_TOKEN not set in this environment. Soft-skipped per SKILL.md.",
+      "Semrush Position Tracking unavailable for a 4th consecutive run — project 30090954 has no configured target domain in its Position Tracking campaign. This needs someone with Semrush account access to add inquired.com as the tracked domain; it will not resolve itself via API calls.",
+      "Cumulative FYTD win rate omitted per SKILL.md — gated pending RevOps confirmation of deal-inclusion rules.",
+      "xlsx upload to the Slack thread was not attempted — SKILL.md's current Output 1 spec calls for a single chat.postMessage with no threaded reply/upload; the xlsx is saved locally at Reporting/monthly-marketing-digest-2026-08.xlsx in the growth-marketing repo per Output 2."
+    ]
+  },
+  {
+    "run_date": "2026-10-07",
+    "period_label": "2026-09",
+    "window_current": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "window_prior": [
+      "2026-08-01",
+      "2026-08-31"
+    ],
+    "slack_message_ts": "1791375435.014389",
+    "totals": {
+      "hih_current": 110,
+      "hih_prior": 48,
+      "hih_mom_pct": 129.2,
+      "hih_pool_active": 314,
+      "lead_current": 760,
+      "lead_prior": 511,
+      "lead_mom_pct": 48.7,
+      "mql_current": 374,
+      "mql_prior": 281,
+      "mql_mom_pct": 33.1,
+      "sql_current": 77,
+      "sql_prior": 126,
+      "sql_mom_pct": -38.9,
+      "opp_current": 75,
+      "opp_prior": 124,
+      "opp_mom_pct": -39.5,
+      "mql_to_sql_rate_pct": 20.6
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          36,
+          null
+        ],
+        "mql": [
+          127,
+          null
+        ],
+        "sql": [
+          21,
+          null
+        ],
+        "opp": [
+          20,
+          null
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          57,
+          null
+        ],
+        "mql": [
+          175,
+          null
+        ],
+        "sql": [
+          5,
+          null
+        ],
+        "opp": [
+          5,
+          null
+        ]
+      },
+      "wh": {
+        "hih": [
+          10,
+          null
+        ],
+        "mql": [
+          16,
+          null
+        ],
+        "sql": [
+          1,
+          null
+        ],
+        "opp": [
+          1,
+          null
+        ]
+      },
+      "gf8": {
+        "hih": [
+          29,
+          null
+        ],
+        "mql": [
+          29,
+          null
+        ],
+        "sql": [
+          1,
+          null
+        ],
+        "opp": [
+          1,
+          null
+        ]
+      }
+    },
+    "coverage_pct": {
+      "hih": 100,
+      "mql": 84.2,
+      "sql": 36.4,
+      "opp": 36.0
+    },
+    "revenue": {
+      "district_won_count": 9,
+      "district_won_revenue": 13943.4,
+      "school_won_count": 9,
+      "school_won_revenue": 11314.8,
+      "total_won_count": 18,
+      "total_won_revenue": 25258.2,
+      "nb_won_count": 5,
+      "nb_won_revenue": 3278.0,
+      "existing_won_count": 13,
+      "existing_won_revenue": 21980.2,
+      "pilot_count_zero_amount": 9,
+      "paid_deal_count": 9,
+      "avg_paid_deal_size": 2806.47,
+      "closed_lost_count": 24,
+      "closed_lost_revenue": 233651.0,
+      "win_rate_monthly_count_pct": 42.9,
+      "win_rate_monthly_dollar_pct": 9.8,
+      "win_rate_nb_count_pct": 26.3,
+      "by_segment": {
+        "single_small": {
+          "won_count": 11,
+          "lost_count": 14,
+          "won_revenue": 25258.2,
+          "lost_revenue": 30686.0,
+          "win_rate_count_pct": 44.0,
+          "win_rate_dollar_pct": 45.1
+        },
+        "medium": {
+          "won_count": 2,
+          "lost_count": 5,
+          "won_revenue": 0.0,
+          "lost_revenue": 42806.0,
+          "win_rate_count_pct": 28.6,
+          "win_rate_dollar_pct": 0.0
+        },
+        "large": {
+          "won_count": 3,
+          "lost_count": 2,
+          "won_revenue": 0.0,
+          "lost_revenue": 110159.0,
+          "win_rate_count_pct": 60.0,
+          "win_rate_dollar_pct": 0.0
+        },
+        "enterprise": {
+          "won_count": 2,
+          "lost_count": 2,
+          "won_revenue": 0.0,
+          "lost_revenue": 50000.0,
+          "win_rate_count_pct": 50.0,
+          "win_rate_dollar_pct": 0.0
+        },
+        "unmapped": {
+          "won_count": 0,
+          "lost_count": 1,
+          "won_revenue": 0,
+          "lost_revenue": 0.0,
+          "win_rate_count_pct": 0.0,
+          "win_rate_dollar_pct": null
+        }
+      },
+      "cumulative_fytd": {
+        "fiscal_year_start": "2025-10-01",
+        "won_count": null,
+        "lost_count": null,
+        "win_rate_count_pct": null,
+        "win_rate_dollar_pct": null,
+        "win_rate_nb_count_pct": null,
+        "by_segment": {},
+        "status": "GATED - omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md. Cumulative / predicted-to-target view: see RevOps revenue model."
+      },
+      "segment_coverage_pct": 97.6,
+      "dealtype_unclassified_count": 0,
+      "rfp_excluded_count": 0,
+      "rfp_excluded_revenue": 0,
+      "possible_unflagged_rfp": [],
+      "backlog_flush_flag": false,
+      "backlog_flush_detail": "12 of 24 closed-lost deals (50.0%) were created >90 days before window start (before 2026-06-03); exactly 50%, not >50%, so the flag is not tripped (borderline).",
+      "test_deals_excluded": 0
+    },
+    "pipeline": {
+      "district_open_deals": 37,
+      "school_open_deals": 9,
+      "district_open_by_segment": {
+        "unassigned": {
+          "count": 3,
+          "amount": 159000
+        },
+        "single_small": {
+          "count": 17,
+          "amount": 13420
+        },
+        "medium": {
+          "count": 11,
+          "amount": 59798.99
+        },
+        "large": {
+          "count": 4,
+          "amount": 800
+        },
+        "enterprise": {
+          "count": 2,
+          "amount": 1120
+        }
+      },
+      "open_by_pipeline": {
+        "40953415": 37,
+        "41400400": 9,
+        "912820790": 136,
+        "907963407": 5,
+        "42174628": 282
+      },
+      "open_by_pipeline_amount": {
+        "40953415": 234138.99,
+        "41400400": 18078,
+        "912820790": 4427229.83,
+        "907963407": 2250,
+        "42174628": 6028989.3
+      },
+      "open_bucketed": {
+        "district": {
+          "count": 290,
+          "amount": 9804368.29
+        },
+        "school": {
+          "count": 179,
+          "amount": 906317.83
+        }
+      },
+      "note": "district_open_deals/school_open_deals are the legacy District (40953415) and School (41400400) pipelines only, matching prior run-log shape (Aug: 31 / 15). Five-pipeline counts in open_by_pipeline."
+    },
+    "disposition": {
+      "disqualified_current": 960,
+      "disqualified_prior": 410,
+      "entered_nurture_current": 617,
+      "entered_nurture_prior": 252,
+      "lead_object": {
+        "disqualified_current": 157,
+        "disqualified_prior": 97,
+        "entered_nurture_current": 837,
+        "entered_nurture_prior": 349,
+        "method": "hs_date_entered_stage",
+        "divergence_flagged": true
+      }
+    },
+    "breakouts": {
+      "sql_by_source_top5": [
+        [
+          "OFFLINE",
+          32
+        ],
+        [
+          "DIRECT_TRAFFIC",
+          19
+        ],
+        [
+          "EMAIL_MARKETING",
+          16
+        ],
+        [
+          "PAID_SEARCH",
+          4
+        ],
+        [
+          "OTHER_CAMPAIGNS",
+          4
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+          12
+        ],
+        [
+          "43370150-Partner-Newsletters_SY2627",
+          4
+        ],
+        [
+          "43370070-IJ-In-Practice_F26",
+          3
+        ]
+      ],
+      "utm_completeness_pct": 62.2,
+      "top_conversion_forms": [
+        [
+          "Source Material webinar series (ss-webinars)",
+          215
+        ],
+        [
+          "Lit Talk with Dr. Nell K. Duke (ela-webinars)",
+          153
+        ],
+        [
+          "ELA-DL: Inkwell Integrated Instructional Block_F26",
+          77
+        ]
+      ]
+    },
+    "hubspot_marketing_email": {
+      "status": "ok_via_MCP",
+      "note": "direct api.hubapi.com blocked by egress proxy (CONNECT 403: URLError Tunnel connection failed: 403 Forbidden); used HubSpot MCP get_marketing_email_analytics + search_crm_objects. CTR = unique clicks excl. bots / delivered. Emails filtered to PUBLISHED with publish date in Sept.",
+      "n_emails": 26,
+      "delivered": 109169,
+      "unique_opens_excl_bots": 19011,
+      "unique_clicks_excl_bots": 879,
+      "open_rate": 0.17414284274839928,
+      "ctr": 0.008051736298766134,
+      "ctr_incl_bots": 0.010314283358828972,
+      "top_ctr": {
+        "id": 591855352243,
+        "name": "[WE-WEB 1 Recap] Episode 1 Recap",
+        "publish": "2026-09-25",
+        "delivered": 335,
+        "opens": 148,
+        "clicks": 30,
+        "clicks_incl_bots": 32,
+        "open_rate": 0.4417910447761194,
+        "ctr": 0.08955223880597014,
+        "ctr_incl_bots": 0.0955223880597015
+      },
+      "low_ctr_flag": [
+        [
+          "[WE-4] [TRL] Nell Duke Tote Signing",
+          755,
+          0.26
+        ],
+        [
+          "[WE-1] GF8 Product Demo #1 Invite",
+          292,
+          0.68
+        ],
+        [
+          "[WE-TP2] Time Problem Email #2",
+          11488,
+          0.26
+        ],
+        [
+          "[WE-3] Admin Launch",
+          4918,
+          0.63
+        ],
+        [
+          "[WE-TP1] Time Problem Email #1",
+          11633,
+          0.45
+        ],
+        [
+          "[WE-1] Teaser / Announcement (Admin)",
+          4927,
+          0.55
+        ],
+        [
+          "[E-2] Product Demo #2 Invite",
+          568,
+          0.53
+        ],
+        [
+          "[WE-7] Ep1 reminder (Cornelius Minor)",
+          17678,
+          0.4
+        ],
+        [
+          "[CE-1] GF8 Cold List Send 1",
+          153,
+          0.65
+        ],
+        [
+          "[WE-SF-PRIME] SmartFocus Pre-Drop ROI Email",
+          11792,
+          0.19
+        ],
+        [
+          "[WE-2] Ep1 email (Cornelius Minor)",
+          11284,
+          0.67
+        ],
+        [
+          "[NE-AG-1] Chooser by grade",
+          129,
+          0.78
+        ]
+      ],
+      "rows": [
+        {
+          "id": 592812612110,
+          "name": "🎙️ [WE-1] Season announcement_V2",
+          "publish": "2026-09-30",
+          "delivered": 16170,
+          "opens": 2277,
+          "clicks": 230,
+          "clicks_incl_bots": 237,
+          "open_rate": 0.14081632653061224,
+          "ctr": 0.01422387136672851,
+          "ctr_incl_bots": 0.014656771799628942
+        },
+        {
+          "id": 592573117344,
+          "name": "Martin",
+          "publish": "2026-09-28",
+          "delivered": 1,
+          "opens": 0,
+          "clicks": 0,
+          "clicks_incl_bots": 0,
+          "open_rate": 0.0,
+          "ctr": 0.0,
+          "ctr_incl_bots": 0.0
+        },
+        {
+          "id": 592575405171,
+          "name": "[WE-4] [TRL] Nell Duke Tote Signing",
+          "publish": "2026-09-30",
+          "delivered": 755,
+          "opens": 158,
+          "clicks": 2,
+          "clicks_incl_bots": 2,
+          "open_rate": 0.20927152317880796,
+          "ctr": 0.0026490066225165563,
+          "ctr_incl_bots": 0.0026490066225165563
+        },
+        {
+          "id": 591855352243,
+          "name": "[WE-WEB 1 Recap] Episode 1 Recap",
+          "publish": "2026-09-25",
+          "delivered": 335,
+          "opens": 148,
+          "clicks": 30,
+          "clicks_incl_bots": 32,
+          "open_rate": 0.4417910447761194,
+          "ctr": 0.08955223880597014,
+          "ctr_incl_bots": 0.0955223880597015
+        },
+        {
+          "id": 591295577985,
+          "name": "[CA-1] CA Grant Webinar Invite #1",
+          "publish": "2026-09-24",
+          "delivered": 619,
+          "opens": 102,
+          "clicks": 9,
+          "clicks_incl_bots": 9,
+          "open_rate": 0.16478190630048464,
+          "ctr": 0.014539579967689823,
+          "ctr_incl_bots": 0.014539579967689823
+        },
+        {
+          "id": 589895902507,
+          "name": "Chicago Launch Party invite - Nell duke",
+          "publish": "2026-09-22",
+          "delivered": 874,
+          "opens": 231,
+          "clicks": 28,
+          "clicks_incl_bots": 39,
+          "open_rate": 0.2643020594965675,
+          "ctr": 0.032036613272311214,
+          "ctr_incl_bots": 0.04462242562929062
+        },
+        {
+          "id": 588357046919,
+          "name": "Chicago Launch Party invite - Reading League attendees",
+          "publish": "2026-09-16",
+          "delivered": 359,
+          "opens": 95,
+          "clicks": 23,
+          "clicks_incl_bots": 26,
+          "open_rate": 0.2646239554317549,
+          "ctr": 0.06406685236768803,
+          "ctr_incl_bots": 0.07242339832869081
+        },
+        {
+          "id": 587819361823,
+          "name": "[WE-1] GF8 Product Demo #1 Invite",
+          "publish": "2026-09-17",
+          "delivered": 292,
+          "opens": 49,
+          "clicks": 2,
+          "clicks_incl_bots": 6,
+          "open_rate": 0.1678082191780822,
+          "ctr": 0.00684931506849315,
+          "ctr_incl_bots": 0.02054794520547945
+        },
+        {
+          "id": 587819414918,
+          "name": "[WE-TP2] Time Problem Email #2",
+          "publish": "2026-09-28",
+          "delivered": 11488,
+          "opens": 2246,
+          "clicks": 30,
+          "clicks_incl_bots": 40,
+          "open_rate": 0.195508356545961,
+          "ctr": 0.0026114206128133705,
+          "ctr_incl_bots": 0.003481894150417827
+        },
+        {
+          "id": 585812280447,
+          "name": "Chicago Launch Party invite - Version B (Clone)",
+          "publish": "2026-09-08",
+          "delivered": 73,
+          "opens": 19,
+          "clicks": 2,
+          "clicks_incl_bots": 3,
+          "open_rate": 0.2602739726027397,
+          "ctr": 0.0273972602739726,
+          "ctr_incl_bots": 0.0410958904109589
+        },
+        {
+          "id": 584896129059,
+          "name": "[WE-3] Admin Launch",
+          "publish": "2026-09-28",
+          "delivered": 4918,
+          "opens": 1116,
+          "clicks": 31,
+          "clicks_incl_bots": 41,
+          "open_rate": 0.2269215128100854,
+          "ctr": 0.0063033753558357055,
+          "ctr_incl_bots": 0.008336722244814965
+        },
+        {
+          "id": 584975335487,
+          "name": "[WE-TP1] Time Problem Email #1",
+          "publish": "2026-09-18",
+          "delivered": 11633,
+          "opens": 2034,
+          "clicks": 52,
+          "clicks_incl_bots": 76,
+          "open_rate": 0.17484741683142782,
+          "ctr": 0.00447004212155076,
+          "ctr_incl_bots": 0.00653313848534342
+        },
+        {
+          "id": 584951565412,
+          "name": "[WE-1] Teaser / Announcement (Admin)",
+          "publish": "2026-09-22",
+          "delivered": 4927,
+          "opens": 1156,
+          "clicks": 27,
+          "clicks_incl_bots": 28,
+          "open_rate": 0.23462553277856707,
+          "ctr": 0.005480008118530546,
+          "ctr_incl_bots": 0.005682971382179825
+        },
+        {
+          "id": 584939301172,
+          "name": "[E-2] Product Demo #2 Invite",
+          "publish": "2026-09-16",
+          "delivered": 568,
+          "opens": 153,
+          "clicks": 3,
+          "clicks_incl_bots": 4,
+          "open_rate": 0.26936619718309857,
+          "ctr": 0.00528169014084507,
+          "ctr_incl_bots": 0.007042253521126761
+        },
+        {
+          "id": 584911640382,
+          "name": "[WE-7] Ep1 reminder (Cornelius Minor)",
+          "publish": "2026-09-14",
+          "delivered": 17678,
+          "opens": 2139,
+          "clicks": 71,
+          "clicks_incl_bots": 83,
+          "open_rate": 0.12099785043556964,
+          "ctr": 0.004016291435682769,
+          "ctr_incl_bots": 0.0046951012557981675
+        },
+        {
+          "id": 584899570694,
+          "name": "[CE-1] GF8 Cold List Send 1",
+          "publish": "2026-09-11",
+          "delivered": 153,
+          "opens": 11,
+          "clicks": 1,
+          "clicks_incl_bots": 1,
+          "open_rate": 0.0718954248366013,
+          "ctr": 0.006535947712418301,
+          "ctr_incl_bots": 0.006535947712418301
+        },
+        {
+          "id": 584886050962,
+          "name": "[E-6] Inquiry Skills (Admin)",
+          "publish": "2026-09-08",
+          "delivered": 5029,
+          "opens": 1177,
+          "clicks": 99,
+          "clicks_incl_bots": 100,
+          "open_rate": 0.23404255319148937,
+          "ctr": 0.019685822231059854,
+          "ctr_incl_bots": 0.01988466892026248
+        },
+        {
+          "id": 584531272317,
+          "name": "Chicago Launch Party invite",
+          "publish": "2026-09-04",
+          "delivered": 50,
+          "opens": 26,
+          "clicks": 4,
+          "clicks_incl_bots": 4,
+          "open_rate": 0.52,
+          "ctr": 0.08,
+          "ctr_incl_bots": 0.08
+        },
+        {
+          "id": 582659886194,
+          "name": "September, 2026 PE Newsletter V2",
+          "publish": "2026-09-01",
+          "delivered": 4920,
+          "opens": 1062,
+          "clicks": 68,
+          "clicks_incl_bots": 107,
+          "open_rate": 0.21585365853658536,
+          "ctr": 0.013821138211382113,
+          "ctr_incl_bots": 0.021747967479674796
+        },
+        {
+          "id": 581417903800,
+          "name": "[WE-SF-PRIME] SmartFocus Pre-Drop ROI Email",
+          "publish": "2026-09-09",
+          "delivered": 11792,
+          "opens": 1441,
+          "clicks": 22,
+          "clicks_incl_bots": 132,
+          "open_rate": 0.12220149253731344,
+          "ctr": 0.0018656716417910447,
+          "ctr_incl_bots": 0.011194029850746268
+        },
+        {
+          "id": 581404934778,
+          "name": "[WE-2] Ep1 email (Cornelius Minor)",
+          "publish": "2026-09-08",
+          "delivered": 11284,
+          "opens": 2317,
+          "clicks": 76,
+          "clicks_incl_bots": 80,
+          "open_rate": 0.2053349875930521,
+          "ctr": 0.00673520028358738,
+          "ctr_incl_bots": 0.007089684509039348
+        },
+        {
+          "id": 575367758156,
+          "name": "[NE-AG-3] Product landscape",
+          "publish": "2026-09-10",
+          "delivered": 20,
+          "opens": 1,
+          "clicks": 0,
+          "clicks_incl_bots": 0,
+          "open_rate": 0.05,
+          "ctr": 0.0,
+          "ctr_incl_bots": 0.0
+        },
+        {
+          "id": 575367881522,
+          "name": "[NE-AG-2] Chooser by problem",
+          "publish": "2026-09-10",
+          "delivered": 46,
+          "opens": 8,
+          "clicks": 0,
+          "clicks_incl_bots": 1,
+          "open_rate": 0.17391304347826086,
+          "ctr": 0.0,
+          "ctr_incl_bots": 0.021739130434782608
+        },
+        {
+          "id": 575322022658,
+          "name": "[NE-AG-1] Chooser by grade",
+          "publish": "2026-09-10",
+          "delivered": 129,
+          "opens": 25,
+          "clicks": 1,
+          "clicks_incl_bots": 1,
+          "open_rate": 0.1937984496124031,
+          "ctr": 0.007751937984496124,
+          "ctr_incl_bots": 0.007751937984496124
+        },
+        {
+          "id": 570777413963,
+          "name": "[E-4] What Districts Found",
+          "publish": "2026-09-23",
+          "delivered": 4965,
+          "opens": 1004,
+          "clicks": 68,
+          "clicks_incl_bots": 74,
+          "open_rate": 0.20221550855991943,
+          "ctr": 0.013695871097683786,
+          "ctr_incl_bots": 0.014904330312185297
+        },
+        {
+          "id": 570318467080,
+          "name": "[CE-3] What Districts Found",
+          "publish": "2026-09-22",
+          "delivered": 91,
+          "opens": 16,
+          "clicks": 0,
+          "clicks_incl_bots": 0,
+          "open_rate": 0.17582417582417584,
+          "ctr": 0.0,
+          "ctr_incl_bots": 0.0
+        }
+      ],
+      "all_sends_window": {
+        "emails": 75,
+        "delivered": 118370,
+        "open_rate": 0.1816507561037425,
+        "ctr": 0.010120807637070203
+      }
+    },
+    "mailchimp": {
+      "status": "ok",
+      "mc_total_reports": 4,
+      "mc_rows": [
+        {
+          "id": "8f0d02684f",
+          "title": "🚌 [WE-2] Contest Launch (Teacher)",
+          "subject": "The Inquiry Work Contest is open",
+          "sent": 69585,
+          "open": 0.2030775519738379,
+          "ctr": 0.0900052557813595,
+          "unique_clicks": 33859,
+          "send_time": "2026-09-28T13:00:00+00:00"
+        },
+        {
+          "id": "9ac6d94b5c",
+          "title": "🚌 [WE-1] Teaser / Announcement (Teacher)",
+          "subject": "The Inquiry Work Contest is back (with better prizes)",
+          "sent": 73827,
+          "open": 0.3818044391470558,
+          "ctr": 0.059232233963690276,
+          "unique_clicks": 20127,
+          "send_time": "2026-09-22T14:30:00+00:00"
+        },
+        {
+          "id": "8bdc82bd10",
+          "title": "🏫 [E-6] Inquiry Skills (Teacher)",
+          "subject": "The five skills your students are practicing every day",
+          "sent": 74184,
+          "open": 0.2088034163372479,
+          "ctr": 0.05968491213896183,
+          "unique_clicks": 19517,
+          "send_time": "2026-09-08T13:00:00+00:00"
+        },
+        {
+          "id": "8d6f28b19b",
+          "title": "🚌  September, 2026 PE Newsletter",
+          "subject": "The QFT Gets Easier | inquirED September Newsletter",
+          "sent": 74840,
+          "open": 0.3187318141223243,
+          "ctr": 0.2415228601884129,
+          "unique_clicks": 37187,
+          "send_time": "2026-09-01T13:00:00+00:00"
+        }
+      ],
+      "mc_wopen": 0.2792487566150759,
+      "mc_wctr": 0.11332117194531735,
+      "mc_top": "🚌  September, 2026 PE Newsletter",
+      "mc_top_links": [
+        [
+          "https://hub.inquired.com/student/path/1804110/activity/4916155?utm_source=pe-newsletter&utm_medium=email&utm_campaign=43370150-Partner-Newsletters_SY2627&utm_content=PE-Sep26-hs&utm_term=qft_video_2nd",
+          12313
+        ],
+        [
+          "https://www.youtube.com/watch?v=9FhE7BU6huQ&t=400s&utm_source=pe-newsletter&utm_medium=email&utm_campaign=43370150-Partner-Newsletters_SY2627&utm_content=PE-Sep26-hs&utm_term=qft_video_4th",
+          21124
+        ],
+        [
+          "https://rightquestion.org/what-is-the-qft/?utm_source=pe-newsletter&utm_medium=email&utm_campaign=43370150-Partner-Newsletters_SY2627&utm_content=PE-Sep26-hs&utm_term=qft_overview",
+          6292
+        ]
+      ]
+    },
+    "ga4": {
+      "sessions": 40324,
+      "active_users": 27122,
+      "page_views": 49957,
+      "top_pages_top5": [
+        [
+          "/",
+          15704
+        ],
+        [
+          "/careers",
+          4548
+        ],
+        [
+          "/inquiry-based-social-studies/elementary-curriculum",
+          3058
+        ],
+        [
+          "/integrated-ela-curriculum/ppc-k2-curriculum-maps",
+          1831
+        ],
+        [
+          "/about-us",
+          1726
+        ]
+      ],
+      "top_sources_top5": [
+        [
+          "(direct)",
+          17264
+        ],
+        [
+          "google",
+          15126
+        ],
+        [
+          "hs_email",
+          2113
+        ],
+        [
+          "smartbrief",
+          990
+        ],
+        [
+          "bing",
+          780
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "(direct)",
+          17264
+        ],
+        [
+          "(organic)",
+          10132
+        ],
+        [
+          "Sonar | Brand | Search",
+          3637
+        ],
+        [
+          "43367560-Inkwell-K2-Launch_F26",
+          1685
+        ],
+        [
+          "Sonar | ELA PMax | PMax",
+          1611
+        ]
+      ],
+      "sessions_by_content_group": [
+        [
+          "(not set)",
+          33245
+        ],
+        [
+          "Other",
+          8376
+        ],
+        [
+          "Inquiry Journeys",
+          700
+        ],
+        [
+          "Inkwell",
+          508
+        ]
+      ],
+      "content_group_populated": false
+    },
+    "semrush": {
+      "project_id": "30090954",
+      "api_status": "error",
+      "detail": "Direct API: GET /reports/v1/projects/30090954/tracking/?type=tracking_position_organic&action=report&url=inquired.com -> HTTP 400 {\"error\":\"campaign not found\",\"status\":\"error\"}; without type -> 400 code 42 Mandatory parameter 'type' not set. MCP projects campaigns report for 30090954 returns targets:null (no Position Tracking campaign under project); tracking_position_organic / tracking_campaign_dates with campaign_id 30090954 -> 'tracking API error 0: campaign not found'."
+    },
+    "paid_ads": {
+      "google_ads": {
+        "api_status": "skipped",
+        "flag": "Google Ads data unavailable (credentials not configured)"
+      },
+      "linkedin": {
+        "api_status": "ok_with_version_fallback",
+        "note": "LinkedIn-Version 202509 returned HTTP 426 NONEXISTENT_VERSION 'Requested version 20250901 is not active'; re-ran with 202601 (202511 also works).",
+        "spend": 1838.68,
+        "impressions": 23353,
+        "clicks": 93,
+        "ctr_pct": 0.4,
+        "campaigns": [
+          {
+            "urn": "urn:li:sponsoredCampaign:821010583",
+            "spend": 1838.68,
+            "impressions": 23353,
+            "clicks": 93
+          }
+        ],
+        "top_campaign_note": "campaign name not resolved (pivot returns URN only)"
+      }
+    },
+    "seo_top_pages": [
+      {
+        "path": "/",
+        "keywords": 129,
+        "visits": 3478,
+        "type": "Homepage"
+      },
+      {
+        "path": "/post/give-and-inquiry-shout-out",
+        "keywords": 21,
+        "visits": 635,
+        "type": "Blog"
+      },
+      {
+        "path": "/careers",
+        "keywords": 14,
+        "visits": 184,
+        "type": "Page"
+      },
+      {
+        "path": "/inquiry-based-social-studies/elementary-curriculum",
+        "keywords": 67,
+        "visits": 180,
+        "type": "Product"
+      },
+      {
+        "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+        "keywords": 6,
+        "visits": 148,
+        "type": "Blog"
+      },
+      {
+        "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+        "keywords": 43,
+        "visits": 102,
+        "type": "Blog"
+      },
+      {
+        "path": "/inquiry-based-social-studies",
+        "keywords": 48,
+        "visits": 89,
+        "type": "Product"
+      },
+      {
+        "path": "/post/see-think-wonder",
+        "keywords": 22,
+        "visits": 84,
+        "type": "Blog"
+      },
+      {
+        "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
+        "keywords": 19,
+        "visits": 52,
+        "type": "Product"
+      },
+      {
+        "path": "/post/concentric-circles-lesson-activity",
+        "keywords": 6,
+        "visits": 49,
+        "type": "Blog"
+      }
+    ],
+    "ai_visibility": null,
+    "keyword_gap": null,
+    "aeo": {
+      "run_status": "no_permission"
+    },
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Sept 2026 closed-won is $25,258 across 18 wins (9 district / 9 school bucket) vs Aug $1,009,862 (74 wins) on the dashboard five-pipeline basis. Sharp drop is consistent with the Sep-Oct back-to-school phase (few paid closes, pilots start) but is a ~97% fall; HubSpot returned exactly 18 won / 24 lost (total matched), so this is not truncation.",
+      "Prior-month basis mismatch: run log Aug 2026 total_won_revenue = $149,567.86 (34 wins, win rate 85.0% / 86.7%) is the pre-2026-09-16 three-pipeline figure; dashboard months[] Aug = $1,009,861.62 (74 wins, 87.1% / 95.8%) includes Renewal + Account Growth. MoM should use the dashboard figure; run log Aug entry is stale/not comparable (run log has duplicated 2026-06 entry too).",
+      "Renewal pipeline: 7 of 18 wins came from Renewal pipeline ($21,980.20, all of the Existing/Expansion dollars; dealtypes Renewal x6, Upsell x1). First full month with Renewal in scope. Existing/Expansion = 13 wins / $21,980.20 (87% of revenue; 6 legacy-District Add On wins are $0); New Business = 5 wins / $3,278 (3 Pilots, 2 at $0; plus 2 newbusiness: South Hancock $1,638, Lakeville $0).",
+      "10 of 24 losses are in the Renewal pipeline (small renewals, e.g. Deer Isle $4,500, Pine School $3,793, South O'Brien $3,000), an existing-customer churn signal worth RevOps review. 'A.g. Bell Expansion' lost deal has amount $1 and dealtype Renewal.",
+      "Possible dealtype misclassification: 'Lakeville Public School District - Add On' (id 64836371292, legacy District, $0) is dealtype newbusiness though named Add On; it is counted in New Business wins per rule. Confirm with RevOps.",
+      "Test deals excluded: 0 (no dealname matched test patterns; no standalone 'Test' word). RFP: `rfp` returned unset on all 42 closed deals (can't distinguish false from never set); 0 excluded; no dealname contains 'RFP', so no possible-unflagged-RFP.",
+      "Segment coverage: 41 of 42 closed deals (97.6%) have a mapped segment; 1 loss (First Steps Learning Academy, NB, GF8) has segment 'Other' -> unmapped for segment cuts, bucketed District by the non-Single-Site rule. Coverage above 80%.",
+      "Small-N: Large (3 won/2 lost), Enterprise (2/2), Medium (2/5) have <10 deals; segment win rates are directional only. Single/Small is 11 won / 14 lost (44.0% count, 45.1% dollar). Medium/Large/Enterprise won $0 all month (all their wins were $0 add-ons) while losing $42.8K / $110.2K / $50.0K.",
+      "Monthly win rate: 42.9% count / 9.8% dollar overall; NB 26.3% count (5 won / 14 lost) and 1.5% dollar. Dollar rate depressed by Norman Public Schools OK ($110,159 loss, Large) and Shawnee Mission KS ($50,000 loss, Enterprise).",
+      "Backlog-flush check: 12 of 24 losses (50.0%) created >90d before 2026-09-01; exactly at the 50% threshold (rule needs >50%), flag NOT tripped, borderline.",
+      "Losses missing amount: 14 of 24 closed-lost deals have no amount (treated as $0), so lost $ ($233,651) and the dollar win rate are understated.",
+      "Losses missing amount: 14 of 24 closed-lost deals have no amount (treated as $0), so lost $ ($233,651) is understated and the dollar win rate overstated.",
+      "Open by segment (all five pipelines): 9 Unassigned deals ($169K) and 11 'Other' segment deals ($211K) have no mapped segment, bucketed District by the non-Single-Site rule.",
+      "Open by segment (all five pipelines): 10 Unassigned deals ($169,152) and 9 'Other' segment deals ($211,239) have no mapped segment; bucketed District by the non-Single-Site rule.",
+      "Goal cohort win rate (won/(won+lost)): 72,521.91 / (72,521.91 + 1,553,336) = 4.5% dollar; 5 won vs 45 lost deals. Reference year SY25-26 unchanged ($11.66M / $2.14M / 18.4%); discrepancy vs the ~$7.1M Jeanette mentioned remains unresolved.",
+      "Account Growth pipeline has 2 deals with deal_start_year=27-28, $0 combined (still immaterial; not added to goals.json). Renewal has 269 such deals / $6.62M (excluded by design, retention).",
+      "Pipeline-goal product breakdown uses non-exclusive product_s_ membership (rows sum above total); open = not-won minus lost per product. IJ lost $1.52M is 98% of cohort losses.",
+      "Cumulative FYTD win rate GATED and omitted per SKILL.md.",
+      "Revenue by product (non-exclusive): IJ $25,258.20, WH $1,050 (Parkview IJ;WH expansion), Inkwell $0, GF8 $0. Inkwell and GF8 won deals this month: none.",
+      "Scope of this file: revenue + pipeline + goal only; funnel/web/SEO not included.",
+      "Semrush Position Tracking failed (HTTP 400 'campaign not found' for project 30090954; MCP shows no Position Tracking campaign under it). seo and seo_topics not updated; the existing seo_topics snapshot was left as is. Project ID or campaign setup needs checking in Semrush.",
+      "Semrush AI Visibility and Keyword Gap PDFs (Steps 3j/3k) unavailable: no Google Drive or Gmail connector in this cloud session. ai_visibility and keyword_gap are null for Sept 2026; the Gmail label fix for the new Semrush sender was not applied.",
+      "HubSpot AEO (Step 3l) returned a permission error on get_aeo_metrics: 'You need access to additional permissions to perform this action...'. aeo.run_status = no_permission; the connector likely needs a reauth to pick up the AEO scope.",
+      "Google Ads data unavailable (credentials not configured; GOOGLE_ADS_DEVELOPER_TOKEN unset).",
+      "LinkedIn Ads: LinkedIn-Version 202509 returns HTTP 426 NONEXISTENT_VERSION; used 202601 (202511 also works). SKILL.md and REFERENCE.md should be updated. Campaign names not resolved (URN only).",
+      "HubSpot Marketing Email pulled via the HubSpot MCP because direct api.hubapi.com calls are blocked by the egress proxy (CONNECT 403). CTR = unique non-bot clicks / delivered.",
+      "GA4 content_group still not wired: 33,245 of 40,324 sessions are (not set). Sessions by product unavailable.",
+      "HIH 110 is after exclusions (11 higher ed) and includes 36 Other Campaigns contacts (many created Sept 15) plus several likely junk Gmail records with fake company names on TK/Pre-K; confirm with RevOps/Ops. Not auto-excluded.",
+      "UTM completeness 62.2% (176/283 addressable MQLs) is inflated by the same Other Campaigns batch (76 of 76 carry a UTM); the prior months' rate was 24.5%. MQL source rows sum to 385 vs the 374 total, a small grouping overlap.",
+      "Product coverage: SQL 36.4% and Opp 36.0% (above the 30% caveat line); MQL 84.2%; HIH 100%.",
+      "List event detected: Disqualified 960 (Aug 410) and Entered Nurture 617 (Aug 252) in a month with 636 HIH+MQL+SQL+Opp; a bulk SDR cleanup is likely. Not yet acknowledged by Kelsey.",
+      "Disposition cross-check diverges: Contact DQ 960 vs LEAD Stage 7 Disqualified 157 (flagged). Nurture: Contact 617 vs LEAD Stage 6 837 (within tolerance).",
+      "Run log hygiene: the stored Aug 2026 revenue block ($149,567.86, 34 wins) is the pre-2026-09-16 three-pipeline basis; MoM uses the dashboard Aug figure ($1,009,861.62, 74 wins). Prior-month funnel uses dashboard Aug (HIH 48, MQL 281, SQL 126, Opp 124).",
+      "overview.json: the live file's kpis block is {hih_pool, mql_to_sql_pct, closed_won_mtd} (weekly-written), not the 3-tile array in SKILL.md Output 5. Left kpis untouched; only summary and monthly_summary_updated were written.",
+      "Cumulative FYTD win rate omitted (GATED pending RevOps reconciliation)."
     ]
   }
 ]
