@@ -381,6 +381,9 @@ python3 -m pip install --user requests beautifulsoup4
 # ASANA_TOKEN comes from the environment; never echo it
 python3 scripts/sync_asana.py          # dry run — capture N changes
 python3 scripts/sync_asana.py --apply  # apply
+# Campaign Hub health chips: writes campaigns/campaign-status.json, commits and pushes it.
+# The hub shows a stale banner if this file is more than 10 days old, so this step must run weekly.
+python3 scripts/campaign_health.py --apply
 git fetch origin && git log --oneline -2 origin/main
 # If script committed but didn't push:
 git push origin HEAD:main
@@ -465,6 +468,7 @@ CH=$(curl -sS -X POST https://slack.com/api/conversations.open \
 • [✓/✗] Reporting dash deployed → inquired-marketing-dash.netlify.app [SHA]
 • [✓/✗] #marketing-reporting posted → Weekly Marketing Data [ts]
 • [✓/✗] Asana→HTML sync → html-pages [N changes / no drift]
+• [✓/✗] Campaign Hub status → campaign-status.json [N campaigns scored]
 • [✓/✗] Marketing hub deployed → inquired-marketing-hub.netlify.app [SHA or 'no changes']
 ```
 
