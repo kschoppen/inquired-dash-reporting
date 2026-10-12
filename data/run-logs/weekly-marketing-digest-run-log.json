@@ -3022,5 +3022,464 @@
       "closed_won_mtd: $417,346.96 / 1 deal, Oct 1-4 only.",
       "brand_lift (GSC): updated 0/exit, weeks_upserted [2026-09-21, 2026-09-28]. YouTube/Instagram remain null (platform properties, not queryable via API). Newest week provisional (5/7 days settled)."
     ]
+  },
+  {
+    "run_date": "2026-10-12",
+    "period_label": "2026-W41",
+    "window_current": [
+      "2026-10-05",
+      "2026-10-11"
+    ],
+    "window_prior": [
+      "2026-09-28",
+      "2026-10-04"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 32,
+      "hih_prior": 28,
+      "hih_wow_pct": 14.3,
+      "mql_current": 111,
+      "mql_prior": 166,
+      "mql_wow_pct": -33.1,
+      "sql_current": 15,
+      "sql_prior": 52,
+      "sql_wow_pct": -71.2,
+      "opp_current": 16,
+      "opp_prior": 52,
+      "opp_wow_pct": -69.2
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          4,
+          6
+        ],
+        "mql": [
+          42,
+          60
+        ],
+        "sql": [
+          1,
+          5
+        ],
+        "opp": [
+          2,
+          5
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          19,
+          18
+        ],
+        "mql": [
+          61,
+          63
+        ],
+        "sql": [
+          7,
+          5
+        ],
+        "opp": [
+          7,
+          5
+        ]
+      },
+      "wh": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          8,
+          6
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "gf8": {
+        "hih": [
+          9,
+          3
+        ],
+        "mql": [
+          15,
+          9
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          4,
+          8
+        ],
+        "mql": [
+          18,
+          41
+        ],
+        "sql": [
+          2,
+          13
+        ],
+        "opp": [
+          2,
+          13
+        ]
+      },
+      "medium": {
+        "hih": [
+          1,
+          3
+        ],
+        "mql": [
+          15,
+          15
+        ],
+        "sql": [
+          4,
+          2
+        ],
+        "opp": [
+          5,
+          2
+        ]
+      },
+      "large": {
+        "hih": [
+          2,
+          1
+        ],
+        "mql": [
+          6,
+          7
+        ],
+        "sql": [
+          2,
+          0
+        ],
+        "opp": [
+          2,
+          0
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          4,
+          3
+        ],
+        "mql": [
+          19,
+          49
+        ],
+        "sql": [
+          7,
+          38
+        ],
+        "opp": [
+          7,
+          38
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100.0,
+        "mql": 113.5,
+        "sql": 53.3,
+        "opp": 56.2
+      },
+      "segment": {
+        "hih": 34.4,
+        "mql": 52.3,
+        "sql": 100.0,
+        "opp": 100.0
+      }
+    },
+    "disposition": {
+      "disqualified_current": 358,
+      "disqualified_prior": 868,
+      "entered_nurture_current": 194,
+      "entered_nurture_prior": 560,
+      "by_product_current": {
+        "ij": {
+          "disqualified": 49,
+          "entered_nurture": 12
+        },
+        "inkwell": {
+          "disqualified": 57,
+          "entered_nurture": 13
+        },
+        "wh": {
+          "disqualified": 6,
+          "entered_nurture": 0
+        },
+        "gf8": {
+          "disqualified": 15,
+          "entered_nurture": 6
+        }
+      }
+    },
+    "pipeline": {
+      "new_business_open_deals": 138,
+      "account_growth_open_deals": 7,
+      "renewal_open_deals": 282,
+      "district_open_deals": 34,
+      "school_open_deals": 6,
+      "by_product": {
+        "ij": {
+          "count": 387,
+          "amount": 8491747.37
+        },
+        "inkwell": {
+          "count": 18,
+          "amount": 807620
+        },
+        "wh": {
+          "count": 78,
+          "amount": 762462.73
+        },
+        "gf8": {
+          "count": 27,
+          "amount": 978400
+        },
+        "untagged": {
+          "count": 36,
+          "amount": 514875.62
+        }
+      },
+      "by_stage": {
+        "new_business": [
+          {
+            "stage": "Sales Qualified",
+            "count": 28,
+            "amount": 162000
+          },
+          {
+            "stage": "Interest",
+            "count": 102,
+            "amount": 3947992.83
+          },
+          {
+            "stage": "Consideration",
+            "count": 4,
+            "amount": 233437
+          },
+          {
+            "stage": "Conviction",
+            "count": 3,
+            "amount": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0
+          }
+        ],
+        "account_growth": [
+          {
+            "stage": "Sales Qualified",
+            "count": 3,
+            "amount": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 2,
+            "amount": 2250
+          },
+          {
+            "stage": "Consideration",
+            "count": 1,
+            "amount": 240
+          },
+          {
+            "stage": "Conviction",
+            "count": 1,
+            "amount": 750
+          }
+        ],
+        "renewal": [
+          {
+            "stage": "Nurture",
+            "count": 278,
+            "amount": 5983439.19
+          },
+          {
+            "stage": "Engaged",
+            "count": 2,
+            "amount": 44784.11
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 1
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 765
+          }
+        ],
+        "district": [
+          {
+            "stage": "Interest",
+            "count": 23,
+            "amount": 213598.99
+          },
+          {
+            "stage": "Consideration",
+            "count": 4,
+            "amount": 16820
+          },
+          {
+            "stage": "Sales Qualified",
+            "count": 2,
+            "amount": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 3,
+            "amount": 0
+          },
+          {
+            "stage": "Conviction",
+            "count": 1,
+            "amount": 720
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 1,
+            "amount": 0
+          }
+        ],
+        "school": [
+          {
+            "stage": "Interest",
+            "count": 3,
+            "amount": 2500
+          },
+          {
+            "stage": "Consideration",
+            "count": 3,
+            "amount": 4801
+          }
+        ]
+      }
+    },
+    "top_pieces": [
+      {
+        "offer": "Lit Talk with Dr. Nell K. Duke (webinar)",
+        "fills": 768
+      },
+      {
+        "offer": "SS-DL: PD Deck - How Social Studies Boosts Literacy Outcomes",
+        "fills": 45
+      },
+      {
+        "offer": "IJ-DL: In Practice Implementation Brief",
+        "fills": 26
+      },
+      {
+        "offer": "Great First Eight PreK/TK Webinar (CA funding)",
+        "fills": 24
+      },
+      {
+        "offer": "IJ-DL: Scope & Sequence",
+        "fills": 21
+      },
+      {
+        "offer": "Source Material Webinar Series",
+        "fills": 17
+      },
+      {
+        "offer": "ELA-DL: Inkwell The Integrated Instructional Block",
+        "fills": 16
+      },
+      {
+        "offer": "ELA-DL: Inkwell K2 Sample Lesson",
+        "fills": 14
+      },
+      {
+        "offer": "Newsletter signup (website)",
+        "fills": 11
+      },
+      {
+        "offer": "[HIH] Contact Us (website)",
+        "fills": 9
+      }
+    ],
+    "dq_reasons": [
+      {
+        "reason": "Non-Sellable Company",
+        "count": 32
+      },
+      {
+        "reason": "Gmail",
+        "count": 27
+      },
+      {
+        "reason": "University Professor",
+        "count": 11
+      },
+      {
+        "reason": "Bounced/Opted Out",
+        "count": 3
+      },
+      {
+        "reason": "Parent/Student",
+        "count": 1
+      },
+      {
+        "reason": "Spam",
+        "count": 1
+      }
+    ],
+    "nurture_reasons": [
+      {
+        "reason": "Did Not Engage",
+        "count": 167
+      },
+      {
+        "reason": "Timing (>6 months)",
+        "count": 14
+      },
+      {
+        "reason": "Not interested - no reason specified",
+        "count": 8
+      },
+      {
+        "reason": "Teacher - No influence",
+        "count": 3
+      },
+      {
+        "reason": "Current Partner (No Upsell)",
+        "count": 2
+      }
+    ],
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "MQL segment breakdown (GROUP BY) summed to 117 vs the headline MQL total of 111 -- a small reporting-tool discrepancy (SQL and Opp segment breakdowns reconciled exactly to their totals); used as pulled.",
+      "list_event_detected: Disqualified (358) and Nurture (194) are both down sharply from last week's flagged spike (868/560) but still 2.5x+ above their rolling medians (~126/~52) -- second consecutive week flagged, still unconfirmed in acknowledged_events.",
+      "Stage movement (forward/back classification) and moved_deals not computed this run -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
+      "avg8 omitted for top_pieces, dq_reasons and nurture_reasons -- fewer than 3 prior runs carry piece/reason-level history (added 2026-09-25/09-28).",
+      "closed_won_mtd: $417,346.96 across 4 deals (Oct 1-12); 3 of the 4 have $0 recorded amount, so the dollar figure is effectively one deal (Cherry Creek Schools Renewal).",
+      "closed_won_mtd: $417,346.96 / 4 deals, Oct 1-12."
+    ]
   }
 ]

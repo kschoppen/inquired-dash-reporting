@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-10-05",
+  "updated": "2026-10-12",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-10-05",
+    "updated": "2026-10-12",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Sep 28 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (593 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 5 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (487 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -96,8 +96,20 @@
         "period": "2026-09-28",
         "label": "Sep 28",
         "branded": {
-          "clicks": 593,
-          "impressions": 8210
+          "clicks": 610,
+          "impressions": 8368
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-10-05",
+        "label": "Oct 5",
+        "branded": {
+          "clicks": 487,
+          "impressions": 9308
         },
         "youtube": null,
         "instagram": null,
@@ -115,57 +127,57 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 517,
-          "previous": 334
+          "current": 358,
+          "previous": 517
         }
       }
     }
   },
   "pipeline": {
-    "new_business_open": 134,
-    "account_growth_open": 4,
+    "new_business_open": 138,
+    "account_growth_open": 7,
     "renewal_open": 282,
     "district_open": 34,
-    "school_open": 9,
-    "as_of": "2026-10-05",
-    "note": "Point-in-time open-deal snapshot across 5 pipelines. New Business, Account Growth and Renewal are the 3 active pipelines (RevOps, 2026-09-16); District/School are legacy, kept in the data but hidden from the Weekly tab display.",
+    "school_open": 6,
+    "as_of": "2026-10-12",
+    "note": "Point-in-time snapshot of open deals across 5 pipelines (test-deal names excluded). New Business, Account Growth and Renewal are the active pipelines shown on the Weekly tab; District/School are legacy and hidden from display pending RevOps migration confirmation.",
     "by_product": {
       "ij": {
-        "count": 388,
-        "amount": 8458684.37
+        "count": 387,
+        "amount": 8491747.37
       },
       "inkwell": {
-        "count": 14,
-        "amount": 656870
+        "count": 18,
+        "amount": 807620
       },
       "wh": {
-        "count": 80,
-        "amount": 771939.73
+        "count": 78,
+        "amount": 762462.73
       },
       "gf8": {
-        "count": 24,
+        "count": 27,
         "amount": 978400
       },
       "untagged": {
-        "count": 35,
+        "count": 36,
         "amount": 514875.62
       }
     },
     "active_by_product": {
       "ij": {
-        "count": 362,
-        "amount": 8359867.38
+        "count": 365,
+        "amount": 8406307.38
       },
       "inkwell": {
-        "count": 14,
-        "amount": 656870
+        "count": 18,
+        "amount": 807620
       },
       "wh": {
         "count": 77,
         "amount": 759962.73
       },
       "gf8": {
-        "count": 23,
+        "count": 26,
         "amount": 825400
       },
       "untagged": {
@@ -177,18 +189,18 @@
       "new_business": [
         {
           "stage": "Sales Qualified",
-          "count": 25,
+          "count": 28,
           "amount": 162000
         },
         {
           "stage": "Interest",
-          "count": 100,
-          "amount": 3991792.83
+          "count": 102,
+          "amount": 3947992.83
         },
         {
           "stage": "Consideration",
           "count": 4,
-          "amount": 143437
+          "amount": 233437
         },
         {
           "stage": "Conviction",
@@ -199,23 +211,23 @@
           "stage": "Desire",
           "count": 1,
           "amount": 0
-        },
-        {
-          "stage": "Validation/Approval",
-          "count": 1,
-          "amount": 0
         }
       ],
       "account_growth": [
         {
           "stage": "Sales Qualified",
-          "count": 2,
+          "count": 3,
           "amount": 0
         },
         {
           "stage": "Interest",
+          "count": 2,
+          "amount": 2250
+        },
+        {
+          "stage": "Consideration",
           "count": 1,
-          "amount": 1500
+          "amount": 240
         },
         {
           "stage": "Conviction",
@@ -247,19 +259,24 @@
       ],
       "district": [
         {
-          "stage": "Sales Qualified",
-          "count": 1,
-          "amount": 0
-        },
-        {
           "stage": "Interest",
-          "count": 24,
-          "amount": 216098.99
+          "count": 23,
+          "amount": 213598.99
         },
         {
           "stage": "Consideration",
+          "count": 4,
+          "amount": 16820
+        },
+        {
+          "stage": "Sales Qualified",
+          "count": 2,
+          "amount": 0
+        },
+        {
+          "stage": "Desire",
           "count": 3,
-          "amount": 16920
+          "amount": 0
         },
         {
           "stage": "Conviction",
@@ -267,28 +284,28 @@
           "amount": 720
         },
         {
-          "stage": "Desire",
-          "count": 5,
+          "stage": "Validation/Approval",
+          "count": 1,
           "amount": 0
         }
       ],
       "school": [
         {
           "stage": "Interest",
-          "count": 4,
-          "amount": 5000
+          "count": 3,
+          "amount": 2500
         },
         {
           "stage": "Consideration",
-          "count": 5,
-          "amount": 13078
+          "count": 3,
+          "amount": 4801
         }
       ]
     }
   },
   "segment_coverage": {
-    "hih": 53.6,
-    "mql": 67.5,
+    "hih": 34.4,
+    "mql": 52.3,
     "sql": 100.0,
     "opp": 100.0
   },
@@ -301,692 +318,6 @@
     "gf8"
   ],
   "weeks": [
-    {
-      "period": "2026-07-06",
-      "label": "Jul 6",
-      "funnel": {
-        "hih": 10,
-        "mql": 47,
-        "sql": 31,
-        "opp": 32,
-        "hih_excluded": {
-          "internal": 0,
-          "higher_ed": 0,
-          "competitor": 0
-        }
-      },
-      "by_product": {
-        "ij": {
-          "hih": 8,
-          "mql": 17,
-          "sql": 6,
-          "opp": 6
-        },
-        "inkwell": {
-          "hih": 1,
-          "mql": 5,
-          "sql": 1,
-          "opp": 1
-        },
-        "wh": {
-          "hih": 1,
-          "mql": null,
-          "sql": null,
-          "opp": null
-        },
-        "gf8": {
-          "hih": 0,
-          "mql": null,
-          "sql": null,
-          "opp": null
-        }
-      },
-      "products_included": [
-        "ij",
-        "inkwell"
-      ],
-      "by_segment": {
-        "single_small": {
-          "hih": 8,
-          "mql": 26,
-          "sql": 21,
-          "opp": 21
-        },
-        "medium": {
-          "hih": 0,
-          "mql": 4,
-          "sql": 2,
-          "opp": 2
-        },
-        "large": {
-          "hih": 0,
-          "mql": 4,
-          "sql": 4,
-          "opp": 5
-        },
-        "enterprise": {
-          "hih": 0,
-          "mql": 1,
-          "sql": 2,
-          "opp": 2
-        }
-      },
-      "disposition": {
-        "dq": 534,
-        "nurture": 364
-      },
-      "drill": {
-        "hih": [
-          [
-            234820468616,
-            "Single",
-            "Organic"
-          ],
-          [
-            234498554436,
-            "Other",
-            "Paid"
-          ],
-          [
-            234489213100,
-            "Single",
-            "Direct"
-          ],
-          [
-            234371466416,
-            "",
-            "Direct"
-          ],
-          [
-            234333812127,
-            "Other",
-            "Direct"
-          ],
-          [
-            234057176645,
-            "Single",
-            "Organic"
-          ],
-          [
-            233912625291,
-            "",
-            "Organic"
-          ],
-          [
-            233850687383,
-            "Small",
-            "Direct"
-          ],
-          [
-            233720582252,
-            "Single",
-            "Direct"
-          ],
-          [
-            233649764354,
-            "Single",
-            "Paid"
-          ]
-        ],
-        "mql": [
-          [
-            234820468616,
-            "Single",
-            "Organic"
-          ],
-          [
-            234498554436,
-            "Other",
-            "Paid"
-          ],
-          [
-            234489213100,
-            "Single",
-            "Direct"
-          ],
-          [
-            234493219702,
-            "",
-            "Paid"
-          ],
-          [
-            234493817661,
-            "",
-            "Direct"
-          ],
-          [
-            234378874963,
-            "",
-            "Direct"
-          ],
-          [
-            234371466416,
-            "",
-            "Direct"
-          ],
-          [
-            234361010060,
-            "",
-            "Direct"
-          ],
-          [
-            234330373043,
-            "Other",
-            "Direct"
-          ],
-          [
-            234278024851,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278023064,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278015823,
-            "Small",
-            "Offline"
-          ],
-          [
-            234277999996,
-            "Small",
-            "Offline"
-          ],
-          [
-            234278011043,
-            "",
-            "Offline"
-          ],
-          [
-            234083788905,
-            "Small",
-            "Offline"
-          ],
-          [
-            234096277782,
-            "Small",
-            "Offline"
-          ],
-          [
-            234057176645,
-            "Single",
-            "Organic"
-          ],
-          [
-            233912625291,
-            "",
-            "Organic"
-          ],
-          [
-            233858617784,
-            "Medium",
-            "Direct"
-          ],
-          [
-            233850687383,
-            "Small",
-            "Direct"
-          ],
-          [
-            233848720818,
-            "",
-            "Paid"
-          ],
-          [
-            233730990487,
-            "Single",
-            "Direct"
-          ],
-          [
-            233720582252,
-            "Single",
-            "Direct"
-          ],
-          [
-            233700569445,
-            "Single",
-            "Email"
-          ],
-          [
-            233669136280,
-            "Large",
-            "Offline"
-          ],
-          [
-            233649764354,
-            "Single",
-            "Paid"
-          ],
-          [
-            233627379066,
-            "Small",
-            "Direct"
-          ],
-          [
-            233443793446,
-            "",
-            "Email"
-          ],
-          [
-            232737493768,
-            "Single",
-            "Offline"
-          ],
-          [
-            232399535113,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399533905,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399527986,
-            "Single",
-            "Offline"
-          ],
-          [
-            232400327717,
-            "Single",
-            "Offline"
-          ],
-          [
-            230354155104,
-            "Single",
-            "Offline"
-          ],
-          [
-            229708342850,
-            "Large",
-            "Offline"
-          ],
-          [
-            228516650519,
-            "Single",
-            "Offline"
-          ],
-          [
-            228562089077,
-            "Single",
-            "Offline"
-          ],
-          [
-            220516964950,
-            "Large",
-            "Direct"
-          ],
-          [
-            208279145615,
-            "Large",
-            "Offline"
-          ],
-          [
-            193314074932,
-            "Small",
-            "Offline"
-          ],
-          [
-            191181204127,
-            "Enterprise",
-            "Offline"
-          ],
-          [
-            160122369920,
-            "Medium",
-            "Direct"
-          ],
-          [
-            135951224109,
-            "Single",
-            "Offline"
-          ],
-          [
-            30068633094,
-            "Single",
-            "Offline"
-          ],
-          [
-            24056751,
-            "Other",
-            "Direct"
-          ],
-          [
-            22684577,
-            "Medium",
-            "Direct"
-          ],
-          [
-            10626137,
-            "Medium",
-            "Offline"
-          ]
-        ],
-        "sql": [
-          [
-            234278024851,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278023064,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278015823,
-            "Small",
-            "Offline"
-          ],
-          [
-            234277999996,
-            "Small",
-            "Offline"
-          ],
-          [
-            234278011043,
-            "",
-            "Offline"
-          ],
-          [
-            234083788905,
-            "Small",
-            "Offline"
-          ],
-          [
-            234096277782,
-            "Small",
-            "Offline"
-          ],
-          [
-            233858617784,
-            "Medium",
-            "Direct"
-          ],
-          [
-            233720582252,
-            "Single",
-            "Direct"
-          ],
-          [
-            233669136280,
-            "Large",
-            "Offline"
-          ],
-          [
-            232964767876,
-            "Large",
-            "Direct"
-          ],
-          [
-            232737493768,
-            "Single",
-            "Offline"
-          ],
-          [
-            232399535113,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399533905,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399527986,
-            "Single",
-            "Offline"
-          ],
-          [
-            232400327717,
-            "Single",
-            "Offline"
-          ],
-          [
-            230354155104,
-            "Single",
-            "Offline"
-          ],
-          [
-            229708342850,
-            "Large",
-            "Offline"
-          ],
-          [
-            228516650519,
-            "Single",
-            "Offline"
-          ],
-          [
-            228562089077,
-            "Single",
-            "Offline"
-          ],
-          [
-            219941398930,
-            "Single",
-            "Direct"
-          ],
-          [
-            208279145615,
-            "Large",
-            "Offline"
-          ],
-          [
-            193314074932,
-            "Small",
-            "Offline"
-          ],
-          [
-            191181204127,
-            "Enterprise",
-            "Offline"
-          ],
-          [
-            161387212079,
-            "Enterprise",
-            "Email"
-          ],
-          [
-            135951224109,
-            "Single",
-            "Offline"
-          ],
-          [
-            97763732040,
-            "Single",
-            "Direct"
-          ],
-          [
-            30068633094,
-            "Single",
-            "Offline"
-          ],
-          [
-            13245651,
-            "Other",
-            "Direct"
-          ],
-          [
-            10626137,
-            "Medium",
-            "Offline"
-          ],
-          [
-            1742651,
-            "Single",
-            "Email"
-          ]
-        ],
-        "opp": [
-          [
-            234278024851,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278023064,
-            "Single",
-            "Offline"
-          ],
-          [
-            234278015823,
-            "Small",
-            "Offline"
-          ],
-          [
-            234277999996,
-            "Small",
-            "Offline"
-          ],
-          [
-            234278011043,
-            "",
-            "Offline"
-          ],
-          [
-            234083788905,
-            "Small",
-            "Offline"
-          ],
-          [
-            234096277782,
-            "Small",
-            "Offline"
-          ],
-          [
-            233858617784,
-            "Medium",
-            "Direct"
-          ],
-          [
-            233720582252,
-            "Single",
-            "Direct"
-          ],
-          [
-            233669136280,
-            "Large",
-            "Offline"
-          ],
-          [
-            232964767876,
-            "Large",
-            "Direct"
-          ],
-          [
-            232737493768,
-            "Single",
-            "Offline"
-          ],
-          [
-            232399535113,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399533905,
-            "Small",
-            "Offline"
-          ],
-          [
-            232399527986,
-            "Single",
-            "Offline"
-          ],
-          [
-            232400327717,
-            "Single",
-            "Offline"
-          ],
-          [
-            230354155104,
-            "Single",
-            "Offline"
-          ],
-          [
-            229708342850,
-            "Large",
-            "Offline"
-          ],
-          [
-            228516650519,
-            "Single",
-            "Offline"
-          ],
-          [
-            228562089077,
-            "Single",
-            "Offline"
-          ],
-          [
-            219941398930,
-            "Single",
-            "Direct"
-          ],
-          [
-            208279145615,
-            "Large",
-            "Offline"
-          ],
-          [
-            193314074932,
-            "Small",
-            "Offline"
-          ],
-          [
-            191181204127,
-            "Enterprise",
-            "Offline"
-          ],
-          [
-            181968136271,
-            "Single",
-            "Direct"
-          ],
-          [
-            161387212079,
-            "Enterprise",
-            "Email"
-          ],
-          [
-            135951224109,
-            "Single",
-            "Offline"
-          ],
-          [
-            89973170298,
-            "Large",
-            "Offline"
-          ],
-          [
-            30068633094,
-            "Single",
-            "Offline"
-          ],
-          [
-            13245651,
-            "Other",
-            "Direct"
-          ],
-          [
-            10626137,
-            "Medium",
-            "Offline"
-          ],
-          [
-            1742651,
-            "Single",
-            "Email"
-          ]
-        ]
-      },
-      "note": "Offline customer-stage migration (flagged since W25) STILL loading: 22 of 31 SQL and 23 of 32 Opp are OFFLINE customer-stage; ~half of MQL too. Genuine organic down-funnel ~5-6; HIH (10) clean. SQL/Opp WoW not comparable. WH & GF8 below threshold this week."
-    },
     {
       "period": "2026-07-13",
       "label": "Jul 13",
@@ -6848,30 +6179,867 @@
         "top_pieces: new_contacts/to_hih/to_mql sub-metrics not pulled this run (token budget) — fills/type/product only. avg8 omitted (only 1 prior run carries top_pieces history; spec requires 3+).",
         "closed_won_mtd: $417,346.96 across 1 deal, Oct 1-4 close dates (month-to-date is only 4 days old)."
       ]
+    },
+    {
+      "period": "2026-10-05",
+      "label": "Oct 5",
+      "funnel": {
+        "hih": 32,
+        "mql": 111,
+        "sql": 15,
+        "opp": 16
+      },
+      "by_product": {
+        "ij": {
+          "hih": 4,
+          "mql": 42,
+          "sql": 1,
+          "opp": 2
+        },
+        "inkwell": {
+          "hih": 19,
+          "mql": 61,
+          "sql": 7,
+          "opp": 7
+        },
+        "wh": {
+          "hih": 0,
+          "mql": 8,
+          "sql": 0,
+          "opp": 0
+        },
+        "gf8": {
+          "hih": 9,
+          "mql": 15,
+          "sql": 0,
+          "opp": 0
+        },
+        "untagged": {
+          "hih": 0,
+          "mql": 10,
+          "sql": 7,
+          "opp": 7
+        }
+      },
+      "by_segment": {
+        "single_small": {
+          "hih": 4,
+          "mql": 18,
+          "sql": 2,
+          "opp": 2
+        },
+        "medium": {
+          "hih": 1,
+          "mql": 15,
+          "sql": 4,
+          "opp": 5
+        },
+        "large": {
+          "hih": 2,
+          "mql": 6,
+          "sql": 2,
+          "opp": 2
+        },
+        "enterprise": {
+          "hih": 4,
+          "mql": 19,
+          "sql": 7,
+          "opp": 7
+        }
+      },
+      "disposition": {
+        "dq": 358,
+        "nurture": 194,
+        "by_product": {
+          "ij": {
+            "dq": 49,
+            "nurture": 12
+          },
+          "inkwell": {
+            "dq": 57,
+            "nurture": 13
+          },
+          "wh": {
+            "dq": 6,
+            "nurture": 0
+          },
+          "gf8": {
+            "dq": 15,
+            "nurture": 6
+          }
+        },
+        "dq_reasons": [
+          {
+            "reason": "Non-Sellable Company",
+            "count": 32
+          },
+          {
+            "reason": "Gmail",
+            "count": 27
+          },
+          {
+            "reason": "University Professor",
+            "count": 11
+          },
+          {
+            "reason": "Bounced/Opted Out",
+            "count": 3
+          },
+          {
+            "reason": "Parent/Student",
+            "count": 1
+          },
+          {
+            "reason": "Spam",
+            "count": 1
+          }
+        ],
+        "dq_reasons_note": "Lead-level disqualification-reason count (75 LEADs entered '7 - Disqualified' this week) runs far below the contact-level Disqualified total (358) above -- the reason field lives on the LEAD object, this count is not directly comparable to the contact-level DQ flag.",
+        "nurture_reasons": [
+          {
+            "reason": "Did Not Engage",
+            "count": 167
+          },
+          {
+            "reason": "Timing (>6 months)",
+            "count": 14
+          },
+          {
+            "reason": "Not interested - no reason specified",
+            "count": 8
+          },
+          {
+            "reason": "Teacher - No influence",
+            "count": 3
+          },
+          {
+            "reason": "Current Partner (No Upsell)",
+            "count": 2
+          }
+        ]
+      },
+      "top_pieces": [
+        {
+          "offer": "Lit Talk with Dr. Nell K. Duke (webinar)",
+          "type": "Webinar",
+          "product": "Inkwell",
+          "fills": 768,
+          "new_contacts": 597,
+          "to_hih": 0,
+          "to_mql": 8
+        },
+        {
+          "offer": "SS-DL: PD Deck - How Social Studies Boosts Literacy Outcomes",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 45,
+          "new_contacts": 2,
+          "to_hih": 0,
+          "to_mql": 10
+        },
+        {
+          "offer": "IJ-DL: In Practice Implementation Brief",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 26,
+          "new_contacts": 10,
+          "to_hih": 0,
+          "to_mql": 13
+        },
+        {
+          "offer": "Great First Eight PreK/TK Webinar (CA funding)",
+          "type": "Webinar",
+          "product": "Great First 8",
+          "fills": 24,
+          "new_contacts": 19,
+          "to_hih": 0,
+          "to_mql": 0
+        },
+        {
+          "offer": "IJ-DL: Scope & Sequence",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 21,
+          "new_contacts": 13,
+          "to_hih": 1,
+          "to_mql": 7
+        },
+        {
+          "offer": "Source Material Webinar Series",
+          "type": "Webinar",
+          "product": "Inquiry Journeys",
+          "fills": 17,
+          "new_contacts": 10,
+          "to_hih": 0,
+          "to_mql": 3
+        },
+        {
+          "offer": "ELA-DL: Inkwell The Integrated Instructional Block",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 16,
+          "new_contacts": 10,
+          "to_hih": 15,
+          "to_mql": 10
+        },
+        {
+          "offer": "ELA-DL: Inkwell K2 Sample Lesson",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 14,
+          "new_contacts": 10,
+          "to_hih": 2,
+          "to_mql": 13
+        },
+        {
+          "offer": "Newsletter signup (website)",
+          "type": "Form",
+          "product": "—",
+          "fills": 11,
+          "new_contacts": 8,
+          "to_hih": 1,
+          "to_mql": 1
+        },
+        {
+          "offer": "[HIH] Contact Us (website)",
+          "type": "Hand-raise",
+          "product": "—",
+          "fills": 9,
+          "new_contacts": 6,
+          "to_hih": 8,
+          "to_mql": 6
+        }
+      ],
+      "content_touch": {
+        "population": "Contacts who became MQL this week",
+        "total": 111,
+        "unassigned": 11,
+        "rows": [
+          {
+            "piece": "ELA-DL: Inkwell K2 Sample Lesson",
+            "product": "Inkwell",
+            "first": 10,
+            "last": 13
+          },
+          {
+            "piece": "IJ-DL: In Practice Implementation Brief",
+            "product": "Inquiry Journeys",
+            "first": 10,
+            "last": 13
+          },
+          {
+            "piece": "ELA-DL: Inkwell The Integrated Instructional Block",
+            "product": "Inkwell",
+            "first": 4,
+            "last": 10
+          },
+          {
+            "piece": "SS-DL: PD Deck - How Social Studies Boosts Literacy Outcomes",
+            "product": "Inquiry Journeys",
+            "first": 2,
+            "last": 10
+          },
+          {
+            "piece": "Lit Talk with Dr. Nell K. Duke (webinar)",
+            "product": "Inkwell",
+            "first": 19,
+            "last": 8
+          },
+          {
+            "piece": "Contact Sales form (website)",
+            "product": "—",
+            "first": 12,
+            "last": 7
+          },
+          {
+            "piece": "IJ-DL: Scope & Sequence",
+            "product": "Inquiry Journeys",
+            "first": 6,
+            "last": 7
+          },
+          {
+            "piece": "[HIH] Contact Us (website)",
+            "product": "—",
+            "first": 6,
+            "last": 6
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "product": "—",
+            "first": 4,
+            "last": 6
+          },
+          {
+            "piece": "Request a Great First Eight PreK Demo (webinar)",
+            "product": "Great First 8",
+            "first": 3,
+            "last": 5
+          },
+          {
+            "piece": "K-2 ELA Scope & Sequence PPC Lander (Inkwell)",
+            "product": "Inkwell",
+            "first": 5,
+            "last": 4
+          },
+          {
+            "piece": "[HIH] Great First Eight Contact Us (website)",
+            "product": "Great First 8",
+            "first": 3,
+            "last": 4
+          },
+          {
+            "piece": "Request an Inkwell K-2 ELA Demo (webinar)",
+            "product": "Inkwell",
+            "first": 5,
+            "last": 3
+          },
+          {
+            "piece": "Source Material Webinar Series",
+            "product": "Inquiry Journeys",
+            "first": 3,
+            "last": 3
+          },
+          {
+            "piece": "ELA-DL: Inkwell K2 Curriculum Map",
+            "product": "Inkwell",
+            "first": 2,
+            "last": 3
+          },
+          {
+            "piece": "SS Thought Leadership Webinar Series",
+            "product": "Inquiry Journeys",
+            "first": 4,
+            "last": 0
+          },
+          {
+            "piece": "SS-DL: Literacy Practices and Supports Guide",
+            "product": "Inquiry Journeys",
+            "first": 3,
+            "last": 0
+          },
+          {
+            "piece": "SS-DL: Curriculum Review Guide",
+            "product": "Inquiry Journeys",
+            "first": 2,
+            "last": 0
+          }
+        ],
+        "note": "First-touch = first_conversion_event_name, last-touch = recent_conversion_event_name at the moment of MQL. Rows under 2 in both columns are dropped; variant event names for the same asset are grouped into one row."
+      },
+      "hih_existing": {
+        "count": 23,
+        "excluded": {
+          "internal": 0,
+          "higher_ed": 0,
+          "competitor": 0
+        },
+        "by_piece": [
+          {
+            "piece": "ELA-DL: Inkwell The Integrated Instructional Block",
+            "count": 6
+          },
+          {
+            "piece": "Request an Inkwell K-2 ELA Demo (webinar)",
+            "count": 4
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "count": 3
+          },
+          {
+            "piece": "[HIH] Great First Eight Contact Us (website)",
+            "count": 3
+          },
+          {
+            "piece": "[HIH] Contact Us (website)",
+            "count": 3
+          },
+          {
+            "piece": "IJ-DL: Scope & Sequence",
+            "count": 1
+          },
+          {
+            "piece": "Contact Sales form (website)",
+            "count": 1
+          },
+          {
+            "piece": "SS-DL: WH-Scope and Sequence",
+            "count": 1
+          },
+          {
+            "piece": "Request a Great First Eight PreK Demo (webinar)",
+            "count": 1
+          }
+        ],
+        "drill": [
+          [
+            248872068483,
+            "Small",
+            "Inkwell",
+            "Request an Inkwell K-2 ELA Demo (webinar)"
+          ],
+          [
+            248882625326,
+            "",
+            "IJ",
+            "IJ-DL: Scope & Sequence"
+          ],
+          [
+            248900689982,
+            "Medium",
+            "IJ",
+            "Meetings link (sales rep)"
+          ],
+          [
+            245612025195,
+            "Single",
+            "GF8",
+            "[HIH] Great First Eight Contact Us (website)"
+          ],
+          [
+            215791757603,
+            "Single",
+            "Inkwell",
+            "Request an Inkwell K-2 ELA Demo (webinar)"
+          ],
+          [
+            209014302002,
+            "Medium",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            204780329597,
+            "Single",
+            "IJ",
+            "[HIH] Contact Us (website)"
+          ],
+          [
+            181532363045,
+            "Large",
+            "GF8",
+            "[HIH] Great First Eight Contact Us (website)"
+          ],
+          [
+            144414205539,
+            "Medium",
+            "IJ",
+            "Meetings link (sales rep)"
+          ],
+          [
+            141111931723,
+            "Small",
+            "Inkwell",
+            "Request an Inkwell K-2 ELA Demo (webinar)"
+          ],
+          [
+            102835910456,
+            "",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            52271367561,
+            "Single",
+            "Inkwell",
+            "[HIH] Contact Us (website)"
+          ],
+          [
+            24136551,
+            "Other",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            22877951,
+            "Other",
+            "Inkwell",
+            "Request an Inkwell K-2 ELA Demo (webinar)"
+          ],
+          [
+            22786151,
+            "Medium",
+            "WH",
+            "Contact Sales form (website)"
+          ],
+          [
+            20969101,
+            "Enterprise",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            19018001,
+            "Other",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            18317571,
+            "Medium",
+            "Inkwell",
+            "Meetings link (sales rep)"
+          ],
+          [
+            16194451,
+            "Enterprise",
+            "Inkwell",
+            "ELA-DL: Inkwell The Integrated Instructional Block"
+          ],
+          [
+            12493601,
+            "Medium",
+            "IJ",
+            "[HIH] Contact Us (website)"
+          ],
+          [
+            22687664,
+            "",
+            "GF8",
+            "[HIH] Great First Eight Contact Us (website)"
+          ],
+          [
+            10626204,
+            "Small",
+            "WH",
+            "SS-DL: WH-Scope and Sequence"
+          ],
+          [
+            10408634,
+            "Medium",
+            "GF8",
+            "Request a Great First Eight PreK Demo (webinar)"
+          ]
+        ],
+        "note": "Proxy for existing contacts reaching High intent this week: HubSpot stores no date for an intent-tier change, so this uses recent_conversion_date as of a High-tier contact who already existed before this week as an approximation."
+      },
+      "content_engagement": {
+        "as_of": "2026-10-12",
+        "prior_as_of": "2026-10-05",
+        "intent_tier": {
+          "high": 2420,
+          "medium": 1689,
+          "low": 30960
+        },
+        "intent_tier_prior": {
+          "high": 2396,
+          "medium": 1667,
+          "low": 30286
+        },
+        "top_content_tags": [
+          {
+            "tag": "Other Form",
+            "count": 5269,
+            "delta": 887
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence",
+            "count": 1703,
+            "delta": 16
+          },
+          {
+            "tag": "SS-WEB: Thought Leadership Series",
+            "count": 1646,
+            "delta": -24
+          },
+          {
+            "tag": "ELA-WEB: Lit Talk Webinar Registration",
+            "count": 1348,
+            "delta": 790
+          },
+          {
+            "tag": "IJ-DL: Curriculum Review Guide",
+            "count": 1185,
+            "delta": 1
+          },
+          {
+            "tag": "Contact Us",
+            "count": 627,
+            "delta": 8
+          },
+          {
+            "tag": "ELA-WEB: Thought Leadership Series",
+            "count": 444,
+            "delta": -27
+          },
+          {
+            "tag": "IJ-DL: Pacing Guide",
+            "count": 406,
+            "delta": -2
+          },
+          {
+            "tag": "Book a Demo",
+            "count": 390,
+            "delta": 15
+          },
+          {
+            "tag": "IJ-DL: PD Deck-Literacy & SS Outcomes",
+            "count": 359,
+            "delta": 37
+          },
+          {
+            "tag": "SS-WEB: Source Material Webinar Registration",
+            "count": 354,
+            "delta": 0
+          },
+          {
+            "tag": "IW-DL: Fundamentals of Integrating 2-pager",
+            "count": 314,
+            "delta": -13
+          }
+        ]
+      },
+      "read": {
+        "up": "HIH held steady at <b>32</b>, up 14% WoW and roughly in line with the recent trend, with Inkwell driving 19 of them.",
+        "down": "SQL (<b>15</b>) and Opp (<b>16</b>) both came in well below their 8-week averages (~27 each) after last week's unusually high 52/52, a second straight week worth watching for a pipeline-stage data issue.",
+        "watch": "Disqualified (<b>358</b>) and Nurture (<b>194</b>) are both down sharply from last week's flagged spike (868/560) but still running 2.5x+ above their usual medians -- a second consecutive week of elevated list activity, unconfirmed as a data event."
+      },
+      "drill": {
+        "hih": [
+          [
+            254065275231,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253894158916,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            253869005106,
+            "",
+            "Paid",
+            "Inkwell"
+          ],
+          [
+            253827936086,
+            "Single",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253800058443,
+            "Enterprise",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253736430752,
+            "Enterprise",
+            "Organic",
+            "GF8"
+          ],
+          [
+            253727386191,
+            "",
+            "Campaign",
+            "GF8"
+          ],
+          [
+            253651769905,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            253651867906,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253645869324,
+            "",
+            "Email",
+            "GF8"
+          ],
+          [
+            253648254278,
+            "Other",
+            "Direct",
+            "GF8"
+          ],
+          [
+            253634792784,
+            "Enterprise",
+            "Campaign",
+            "GF8"
+          ],
+          [
+            253624997449,
+            "Medium",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253519489445,
+            "Small",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253498882851,
+            "Large",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253493504530,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253500141640,
+            "",
+            "Organic",
+            "Inkwell"
+          ],
+          [
+            253494448542,
+            "",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253493136172,
+            "Small",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253493357922,
+            "Large",
+            "Organic",
+            "Inkwell"
+          ],
+          [
+            253485836419,
+            "",
+            "Referral",
+            "IJ"
+          ],
+          [
+            253483831297,
+            "",
+            "Referral",
+            "Inkwell"
+          ],
+          [
+            253475674203,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            253473350993,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            253466092348,
+            "Other",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253465234586,
+            "",
+            "Organic",
+            "Inkwell"
+          ],
+          [
+            253456833545,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            253439149113,
+            "",
+            "Campaign",
+            "GF8"
+          ],
+          [
+            253439332520,
+            "",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            253330833970,
+            "",
+            "Organic",
+            "Inkwell"
+          ],
+          [
+            253188452423,
+            "",
+            "Organic",
+            "IJ"
+          ],
+          [
+            253124867760,
+            "",
+            "Direct",
+            "Inkwell"
+          ]
+        ],
+        "mql": [],
+        "sql": [],
+        "opp": []
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh",
+        "gf8"
+      ],
+      "yoy": {
+        "period": "2025-10-06",
+        "label": "Oct 6, 2025",
+        "mql": 142,
+        "sql": 74,
+        "opp": 75,
+        "hih": null,
+        "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."
+      },
+      "note": "W41 run 2026-10-12. Second consecutive week of elevated Disqualified/Nurture -- list event flagged again (unconfirmed, not yet in acknowledged_events).",
+      "data_flags": [
+        "MQL segment breakdown (GROUP BY) summed to 117 vs the headline MQL total of 111 -- a small reporting-tool discrepancy (SQL and Opp segment breakdowns reconciled exactly to their totals); used as pulled.",
+        "list_event_detected: Disqualified (358) and Nurture (194) are both down sharply from last week's flagged spike (868/560) but still 2.5x+ above their rolling medians (~126/~52) -- second consecutive week flagged, still unconfirmed in acknowledged_events.",
+        "Stage movement (forward/back classification) and moved_deals not computed this run -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
+        "avg8 omitted for top_pieces, dq_reasons and nurture_reasons -- fewer than 3 prior runs carry piece/reason-level history (added 2026-09-25/09-28).",
+        "closed_won_mtd: $417,346.96 across 4 deals (Oct 1-12); 3 of the 4 have $0 recorded amount, so the dollar figure is effectively one deal (Cherry Creek Schools Renewal)."
+      ]
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-10-05",
+    "as_of": "2026-10-12",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 4012842.83,
-      "lost": 1533336.0,
+      "open": 4163342.83,
+      "lost": 1553336.0,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 414050.0,
+        "open": 418550.0,
         "lost": 10500.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 696497.5,
-        "lost": 359067.0,
+        "open": 692497.5,
+        "lost": 379067.0,
         "won": 0.0
       },
       "large": {
@@ -6880,19 +7048,19 @@
         "won": 69938.91
       },
       "enterprise": {
-        "open": 1406354.0,
+        "open": 1556354.0,
         "lost": 828995.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2529442.83,
-        "lost": 1499336.0,
+        "open": 2679942.83,
+        "lost": 1519336.0,
         "won": 72521.91
       },
       "inkwell": {
-        "open": 551000.0,
+        "open": 701000.0,
         "lost": 0.0,
         "won": 0.0
       },
@@ -6919,13 +7087,13 @@
         "won": 2583.0
       },
       "school": {
-        "open": 0.0,
+        "open": 4300.0,
         "lost": 2000.0,
         "won": 0.0
       },
       "new_business": {
-        "open": 3820292.83,
-        "lost": 209965.0,
+        "open": 3966492.83,
+        "lost": 229965.0,
         "won": 69938.91
       }
     },
@@ -7002,7 +7170,7 @@
         }
       }
     },
-    "note": "Weekly refresh (2026-10-05). No new closed-won this week (still 4 deals / $72,521.91 for SY27-28). Open pipeline grew to $4.01M (+$477K vs 09-28 run) and ~$134K shifted out of lost; by_segment/by_product/by_pipeline reflect the current snapshot (note: by_product counts are multi-tag membership, so they sum above the deal count). reference_year (SY25-26) static, carried forward unchanged.",
+    "note": "Generated = open+lost+won combined across District Sales, School Sales and New Business pipelines for deal_start_year=27-28 (lost counts on purpose; the goal implies a target win rate). Deals with segment Other/blank are excluded from by_segment only.",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
   },
