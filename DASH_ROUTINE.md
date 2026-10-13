@@ -375,19 +375,46 @@ Push failure = soft-fail: record the exact error in the checklist and continue. 
 
 ## PHASE 4: Asana → HTML sync → push html-pages → Netlify
 
+First check whether `ASANA_TOKEN` works (never echo it):
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: Bearer $ASANA_TOKEN" https://app.asana.com/api/1.0/users/me
+```
+
+**200 → token path:**
+
 ```bash
 cd html-pages
 python3 -m pip install --user requests beautifulsoup4
-# ASANA_TOKEN comes from the environment; never echo it
 python3 scripts/sync_asana.py          # dry run — capture N changes
 python3 scripts/sync_asana.py --apply  # apply
 # Campaign Hub health chips: writes campaigns/campaign-status.json, commits and pushes it.
 # The hub shows a stale banner if this file is more than 10 days old, so this step must run weekly.
 python3 scripts/campaign_health.py --apply
 git fetch origin && git log --oneline -2 origin/main
-# If script committed but didn't push:
+# If a script committed but didn't push:
 git push origin HEAD:main
 ```
+
+**Anything else (401 etc.) → MCP path.** `ASANA_TOKEN` was rejected on 2026-10-13, so this
+fallback exists. Both scripts abort on a 401 and write nothing, so a bad token is safe but
+leaves chips stale. Use the Asana MCP instead (needs the Asana connector on this routine);
+the full recipe is `html-pages/scripts/README.md` → "No-token (Asana MCP) mode":
+
+1. Health chips: `python3 scripts/campaign_health.py --list-projects`, save each project's
+   `get_project` + incomplete `get_tasks` as `<DIR>/<gid>.json` (check each file's task count
+   equals `task_counts.num_incomplete_tasks`), then
+   `python3 scripts/campaign_health.py --mcp-dir <DIR> --apply`. **This is the one that must
+   run weekly** (stale banner at 10 days).
+2. Page dates: `python3 scripts/sync_asana.py --list-gids`, `get_task` each gid into one
+   `{gid: {name, due_on, permalink_url}}` JSON, then `python3 scripts/sync_asana.py --tasks-file <file>`
+   (dry run, then `--apply`). About 130 calls. If the connector can't be used, soft-fail this
+   step and say so in the checklist; the chips matter more.
+3. If a script committed but the plain `git push` failed, run `git push origin HEAD:main`.
+
+Either path: report in the Phase 5 checklist **which path ran** and, if MCP, that
+`ASANA_TOKEN` needs rotating. Never mark Campaign Hub status ✓ unless `campaign-status.json`
+was actually rewritten this run.
 
 ASANA_TOKEN is SECRET — never echo into Slack, commits, or logs.
 
