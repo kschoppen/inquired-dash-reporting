@@ -137,12 +137,12 @@ function renderLifecycle(d) {
   const rows = (lc.by_program || []).map((p) => `<tr>
       <td><b>${esc(p.program)}</b></td>
       <td>${p.tracking === "good" ? `<span class="badge badge-good">${esc(p.tracking_label)}</span>` : `<span class="badge badge-flag">${esc(p.tracking_label)}</span>`}</td>
-      <td class="num">${n(p.tagged)}</td><td class="num">${n(p.active)}</td>
+      <td class="num">${n(p.enrolled ?? p.tagged)}</td><td class="num">${n(p.in_progress ?? p.active)}</td>
       <td class="num"><b>${n(p.moved)}</b></td><td class="muted">${esc(p.moved_note)}</td></tr>`).join("");
   const cov = lc.coverage ? `<div class="coverage-banner"><span class="cb-icon">⚠️</span><div class="cb-body"><span class="cb-title">${esc(lc.coverage.title)}</span>${lc.coverage.html}</div></div>` : "";
   html("lc-block", `
     <div class="stat-row">${(lc.tiles || []).map(tile).join("")}</div>
-    <div class="tscroll"><table class="tn"><thead><tr><th>Program</th><th>Contact tracking</th><th class="num">Tagged</th><th class="num">Active</th><th class="num">Moved since launch</th><th>Detail</th></tr></thead>
+    <div class="tscroll"><table class="tn"><thead><tr><th>Program</th><th>Contact tracking</th><th class="num">Enrolled</th><th class="num">In progress</th><th class="num">Moved after enrolling</th><th>Detail</th></tr></thead>
       <tbody>${rows}</tbody></table></div>${cov}`);
 }
 

@@ -748,8 +748,8 @@
     },
     {
      "source": "HubSpot CRM contacts",
-     "what": "Contacts in each nurture track, their lifecycle-stage movement since launch, role split and original source",
-     "how": "Contacts where `nurture_track`, `nurture_track__inkwell`, `nurture_track__great_first_eight` or `nurture_track__agnostic` = `Active`; movement from the v2 stage-entry dates (for example `hs_v2_date_entered_marketingqualifiedlead`); `role` for the role split; `hs_analytics_source` for original source"
+     "what": "Every contact enrolled in each nurture workflow, how many are still in progress, and their lifecycle-stage movement after enrolling, role split and original source",
+     "how": "`query_crm_data` on the ever-enrolled and active contact lists for each workflow (`hs_crm_search.ilsListIds`; list IDs are in the registry), where the lists read workflow status (has been enrolled in, is currently active in). Enrollment date comes from the `nurture_enrollment_date` contact property, set at the top of each workflow and backfilled from the workflow history exports on Oct 14, 2026. Movement uses the v2 stage-entry dates (for example `hs_v2_date_entered_marketingqualifiedlead`); `role` (GROUP BY) for the role split; `hs_analytics_source` (GROUP BY) for original source"
     },
     {
      "source": "Asana (`F26_🌿 Nurture Program` project)",
@@ -764,13 +764,13 @@
      "why": "Email names are inconsistent across seasons, so a text search for \"nurture\" pulls in 170+ mostly retired emails. The `nurture` property is HubSpot's own exact tag for which program an email belongs to."
     },
     {
-     "rule": "\"Since launch\" figures start from the actual launch date",
-     "value": "Aug 18, 2026 (not the planned Aug 3)",
-     "why": "Measuring from the planned date counts pre-launch lifecycle movement as nurture-driven and inflates the headline metric roughly 3x."
+     "rule": "Enrolled counts and movement are measured from each contact's own enrollment",
+     "value": "Enrollment comes from the workflow's status lists and the enrollment date property; the launch date (Aug 18, 2026) is used for the email window only",
+     "why": "Contacts enroll in bulk runs and one at a time from Aug 31 onward, so a single launch date either counts movement that came before a contact enrolled or misses movement that came after. The nurture_track tag cannot be used: it is written only when a contact completes the full workflow, so on Oct 13 it covered 524 contacts against 6,124 enrollments."
     },
     {
      "rule": "Lifecycle movement is the headline metric",
-     "value": "A contact counts as moved when it entered MQL, SQL, Opportunity or Customer on or after the launch date",
+     "value": "A contact counts as moved when it entered MQL, SQL, Opportunity or Customer strictly after the day it enrolled (after 20:05 UTC for the Aug 31 bulk run). Same-day stage entries are not counted, and contacts with no enrollment date are not counted",
      "why": "The page treats lifecycle stage movement as the top metric for the program, ahead of email engagement."
     },
     {
@@ -784,14 +784,14 @@
      "why": "Click-to-open isolates people who opened and then found something worth clicking, a purer read on content quality than open rate."
     },
     {
-     "rule": "Contact tracking is only reported where the population is usable",
-     "value": "Roughly 20+ contacts tagged Active; otherwise the row shows \"Not tracked\" or \"No property\"",
-     "why": "Role, source and lifecycle figures on a near-empty population would not mean anything."
+     "rule": "Programs with no enrolled contacts report zero",
+     "value": "Enrollment is read from workflow status lists, so every program with contacts is tracked, including Great First Eight and Agnostic",
+     "why": "The tag-based population left Great First Eight and Agnostic untracked even though their emails were delivering."
     },
     {
      "rule": "Role split groups",
      "value": "Teacher; Admin / Leadership = School Leader + District Leader + Coach/Specialist; Other / Unassigned = no classified role",
-     "why": "Shows the classroom versus administrator mix of each program's active contacts."
+     "why": "Shows the classroom versus administrator mix of each program's enrolled contacts."
     },
     {
      "rule": "Program flags",
@@ -812,10 +812,10 @@
    "limits": [
     "Workflow enabled or paused state and branch logic are not readable through the API, so the page never states a workflow is on or off; that needs a manual check in HubSpot.",
     "The set of active workflows is only as current as the hand-confirmed registry; HubSpot cannot report which nurture workflows are live.",
-    "Great First Eight and Agnostic show zero contacts tagged in their `nurture_track` properties even though their emails have delivered, so lifecycle, role and source figures cover Inquiry Journeys and Inkwell only.",
-    "World History has no `nurture_track` contact property, so it has no contact-level tracking at all.",
-    "Active-contact counts are contacts currently tagged Active, so contacts who have exited a track are not counted.",
-    "Cross-program overlap can only be checked between Inquiry Journeys and Inkwell, given the tracking gaps above.",
+    "35 contacts enrolled after Oct 13 had no enrollment date when this was last updated, so they are counted as enrolled but cannot be counted as moved until a fresh set of workflow history exports or the workflow step fills the date.",
+    "`Nurture Stage at Enrollment` and `Nurture Enrollment Form` are filled only for contacts who enrolled after the workflow steps went live, so movement cannot yet be split by the stage a contact started at or the content that enrolled it. Many new contacts enter MQL and enroll within hours, so some movement on the enrollment day cannot be ordered and is not counted.",
+    "The enrollment-date property stores a date, not a time, so the only exact enrollment time known is the Aug 31 bulk run (16:05 ET).",
+    "Cross-program overlap (contacts enrolled in more than one workflow) cannot be read from lists; it comes from the workflow history exports and is carried forward between exports.",
     "Most programs have only sent their first few modules, so engagement rates mostly describe early modules.",
     "Enumeration filters must use internal values (for example `Active`, lowercase `role` values) rather than the labels shown in HubSpot; a label filter silently returns zero rows.",
     "If a refresh cannot pull a block, the page keeps last week's values for it and records a `data_flags` entry rather than showing zeros."

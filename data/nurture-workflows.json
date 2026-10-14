@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31",
+  "updated": "2026-10-14",
   "confirmed_by": "Kelsey",
   "note": "The only workflows nurturing this cycle, per Kelsey's confirmation on 2026-08-31. HubSpot's Workflow/Automation objects aren't API-readable, so this list has to be maintained by hand whenever the active set changes. The nurture-dashboard-refresh skill (growth-marketing plugin) asks Kelsey to reconfirm this list on every run and updates it here first if it has changed.",
   "enrollment_lists_source": "https://inquired-marketing-hub.netlify.app/campaigns/nurture-program-f26 (Enrollment Lists table) -- mirrored from html-pages campaigns/nurture-program-f26.html. Re-check that page if list IDs seem stale.",
@@ -11,7 +11,11 @@
       "nurture_property_value": "Fall 2026_GF8 Nurture",
       "product": "Great First 8",
       "enrollment_list_name": "[NURTURE] MKTG Nurture - Great First Eight Enrollment Trigger _SY2627",
-      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10601/filters"
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10601/filters",
+      "ever_enrolled_list_id": 11269,
+      "ever_enrolled_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/11269/filters",
+      "active_list_id": 10588,
+      "active_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10588/filters"
     },
     {
       "flow_id": "1854346100",
@@ -20,7 +24,10 @@
       "nurture_property_value": "Fall 2026_World History Nurture",
       "product": "World History",
       "enrollment_list_name": "[NURTURE] MKTG Nurture - World History Enrollment Trigger _SY2627",
-      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10739/filters"
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10739/filters",
+      "ever_enrolled_list_id": 11270,
+      "ever_enrolled_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/11270/filters",
+      "active_list_id": null
     },
     {
       "flow_id": "1852090643",
@@ -29,7 +36,11 @@
       "nurture_property_value": "Fall 2026_Inquiry Journeys Nurture",
       "product": "Inquiry Journeys",
       "enrollment_list_name": "[NURTURE] MKTG Nurture - Inquiry Journeys Enrollment Trigger _SY2627",
-      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10599/filters"
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10599/filters",
+      "ever_enrolled_list_id": 11267,
+      "ever_enrolled_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/11267/filters",
+      "active_list_id": 10590,
+      "active_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10590/filters"
     },
     {
       "flow_id": "1849158449",
@@ -38,7 +49,11 @@
       "nurture_property_value": "Fall 2026_Inkwell Nurture",
       "product": "Inkwell",
       "enrollment_list_name": "[NURTURE] MKTG Nurture - Inkwell Enrollment Trigger _SY2627",
-      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10597/filters"
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10597/filters",
+      "ever_enrolled_list_id": 11266,
+      "ever_enrolled_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/11266/filters",
+      "active_list_id": 10589,
+      "active_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10589/filters"
     },
     {
       "flow_id": "1854800935",
@@ -47,7 +62,12 @@
       "nurture_property_value": "Fall Agnostic Nurture",
       "product": "inquirED General",
       "enrollment_list_name": "[NURTURE] MKTG Nurture - Agnostic Enrollment Trigger _SY2627",
-      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10603/filters"
+      "enrollment_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10603/filters",
+      "ever_enrolled_list_id": 11268,
+      "ever_enrolled_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/11268/filters",
+      "active_list_id": 10591,
+      "active_list_url": "https://app.hubspot.com/contacts/4451852/objectLists/10591/filters"
     }
-  ]
+  ],
+  "lists_note": "ever_enrolled_list_id is a contact list \"Workflow status has been enrolled in [workflow]\"; active_list_id is \"is currently active in [workflow]\". Both are read with query_crm_data and hs_crm_search.ilsListIds. List 10593 (any product) is the ever-enrolled list across all workflows; list 10585 is the active list across all workflows. World History has no active list yet."
 }
