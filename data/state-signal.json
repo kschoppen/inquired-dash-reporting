@@ -1227,6 +1227,37 @@
       }
     },
     {
+      "state": "MD",
+      "product": "ij",
+      "since": "2025-06",
+      "headline": "Maryland's State Board revised the PreK-5 Social Studies Frameworks in June 2025 (the 2020 standards are on the state's eight-year review cycle); MSDE reviews instructional materials against an HQIM rubric and posts reviewed materials, and districts adopt on their own timelines.",
+      "sources": [
+        {
+          "title": "Maryland Grade 5 Social Studies Framework (revised June 2025) - MSDE",
+          "url": "https://marylandpublicschools.org/about/Documents/DCAA/SocialStudies/Framework/Grade5-A.pdf"
+        },
+        {
+          "title": "Curriculum Update, Oct 2025 - Montgomery County Public Schools (State Board approved the revised frameworks in June 2025)",
+          "url": "https://www.boarddocs.com/mabe/mcpsmd/Board.nsf/files/DMBSW974A1F8/$file/Curriculum%20Update%20251016.pdf"
+        },
+        {
+          "title": "Standards Review and Validation Process (eight-year cycle) - MSDE State Board, June 2025",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0624/Standards-Review-and-Validation-Process-A.pdf"
+        }
+      ],
+      "qualified": 19,
+      "actionable": 13,
+      "starbridge_open_rfps": 4,
+      "priority_score": 57,
+      "priority_tier": "act_now",
+      "priority_breakdown": {
+        "open_rfp": 30,
+        "warm_signal": 0,
+        "policy_recency": 12,
+        "hubspot_footprint": 15
+      }
+    },
+    {
       "state": "CT",
       "product": "inkwell",
       "since": "2025-07",
@@ -1274,33 +1305,6 @@
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 20
-      }
-    },
-    {
-      "state": "MD",
-      "product": "ij",
-      "since": "2024-01",
-      "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
-      "sources": [
-        {
-          "title": "State Board Calls for the Adoption of Science of Reading Statewide - MSDE",
-          "url": "https://news.maryland.gov/msde/board-science-of-reading/"
-        },
-        {
-          "title": "Maryland College and Career Ready Standards in ELA (revised, approved July 2025)",
-          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0729/Maryland-College-and-Career-Ready-Standards-in-English-Language-Arts-A.pdf"
-        }
-      ],
-      "qualified": 19,
-      "actionable": 13,
-      "starbridge_open_rfps": 4,
-      "priority_score": 53,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 30,
-        "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 15
       }
     },
     {
@@ -3791,18 +3795,22 @@
     },
     "MD": {
       "product": "ij",
-      "since": "2024-01",
-      "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
-      "detail": "Requires phonics/fluency/vocabulary/comprehension-based instruction, K-3 universal screeners (new approved-screener list effective SY2025-26), science-of-reading proficiency for educator licensure from July 2025. Districts are actively re-evaluating K-5 ELA curriculum against the new HQIM framework.",
-      "outreach_angle": "Ask whether the district's current K-2 ELA materials have been benchmarked against Maryland's new HQIM rubric; Inkwell is purpose-built for science-of-reading compliance.",
+      "since": "2025-06",
+      "headline": "Maryland's State Board revised the PreK-5 Social Studies Frameworks in June 2025 (the 2020 standards are on the state's eight-year review cycle); MSDE reviews instructional materials against an HQIM rubric and posts reviewed materials, and districts adopt on their own timelines.",
+      "detail": "The revised frameworks cover PreK through Grade 5 and the middle and high school courses. Maryland has no state-adopted textbook list: MSDE posts reviewed materials against its HQIM rubric and each district decides when to adopt.",
+      "outreach_angle": "Ask whether the district's current K-5 social studies materials have been checked against Maryland's June 2025 revised frameworks and the HQIM rubric; Inquiry Journeys has a recommended scope and sequence aligned to the 2020 Maryland standards.",
       "sources": [
         {
-          "title": "State Board Calls for the Adoption of Science of Reading Statewide - MSDE",
-          "url": "https://news.maryland.gov/msde/board-science-of-reading/"
+          "title": "Maryland Grade 5 Social Studies Framework (revised June 2025) - MSDE",
+          "url": "https://marylandpublicschools.org/about/Documents/DCAA/SocialStudies/Framework/Grade5-A.pdf"
         },
         {
-          "title": "Maryland College and Career Ready Standards in ELA (revised, approved July 2025)",
-          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0729/Maryland-College-and-Career-Ready-Standards-in-English-Language-Arts-A.pdf"
+          "title": "Curriculum Update, Oct 2025 - Montgomery County Public Schools (State Board approved the revised frameworks in June 2025)",
+          "url": "https://www.boarddocs.com/mabe/mcpsmd/Board.nsf/files/DMBSW974A1F8/$file/Curriculum%20Update%20251016.pdf"
+        },
+        {
+          "title": "Standards Review and Validation Process (eight-year cycle) - MSDE State Board, June 2025",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0624/Standards-Review-and-Validation-Process-A.pdf"
         }
       ]
     },
@@ -4953,14 +4961,14 @@
       "next_step": "Route Louisiana's sub-55% within-grade alignment in Grades K, 1, 2, 4, and 5 to Product/Curriculum for a closer look at Inkwell's social studies component, and check with Sales whether any individual district has a near-term adoption window given the state's locally-paced, non-mandated materials process."
     },
     "MD": {
-      "product": "inkwell",
+      "product": "ij",
       "verdict": "not_yet",
-      "why": "This card scores Inquiry Journeys' social studies scope and sequence against Maryland's 2020 Social Studies Standards and Frameworks, revised in 2025, so it only reflects the social studies half of Inkwell; there is no independent ELA-specific alignment score here, even though Maryland's ELA standards remain Common Core from 2014. Within-grade alignment is mixed: Kindergarten sits at 51 percent (Minimally Aligns), Grade 3 at 60 percent and Grade 5 at 64 percent (both Partially Aligns), while Grades 1, 2, and 4 run 74-77 percent (Aligns Well). All-units alignment is much stronger, from 85 percent in Grade 5 up to 100 percent in Kindergarten through Grade 2, but the card lists no known Maryland mandates and names no specific near-term adoption window, only an ongoing HQIM materials review process where individual LEAs adopt on their own timelines. Given uneven within-grade scores in three of six grades and the absence of a defined buying window, this reads as not yet a strong fit, and the ELA picture specifically remains unscored.",
+      "why": "Guru scores the Inquiry Journeys scope and sequence against Maryland's 2020 Social Studies Standards and Frameworks, revised in 2025. Within-grade alignment is mixed: Kindergarten sits at 51 percent (Minimally Aligns), Grade 3 at 60 percent and Grade 5 at 64 percent (both Partially Aligns), while Grades 1, 2, and 4 run 74-77 percent (Aligns Well). All-units alignment is much stronger, from 85 percent in Grade 5 up to 100 percent in Kindergarten through Grade 2. The card lists no known Maryland mandates and no state adoption window; MSDE reviews materials against an HQIM rubric and districts adopt on their own timelines. Uneven within-grade scores in three of six grades keep this at not yet on the card alone.",
       "source_label": "Source:",
       "source_title": "Guru, State Information: Maryland",
       "source_url": "https://app.getguru.com/card/T69MzGXc/State-Information-Maryland",
       "source_note": "",
-      "next_step": "Route to Product/Sales Ops to confirm whether a concrete Maryland instructional-materials adoption window exists beyond the HQIM review process, and flag that no ELA-specific alignment score exists for Inkwell before using this card as a buying signal."
+      "next_step": "Inquiry Journeys passed the first Maryland review round (see the field signal above). Confirm with Sales which review that was and what comes next, then decide whether the within-grade gaps in K, 3 and 5 need a response."
     },
     "MA": {
       "product": "inkwell",
@@ -5295,6 +5303,50 @@
       "source_channel": "#rfps",
       "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1791209694893049",
       "posted_at": "2026-10-05",
+      "conflicts_with_product_tag": false
+    },
+    "UT": {
+      "product": "ij",
+      "stage": "submitted",
+      "stage_label": "Submitted",
+      "headline": "inquirED submitted a response to Provo City School District's social studies RFP (released for grades 4-12).",
+      "confirmed_by": "Allie Wheeler",
+      "source_channel": "#rfps",
+      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1791379546767819",
+      "posted_at": "2026-10-07",
+      "conflicts_with_product_tag": false
+    },
+    "OH": {
+      "product": "gf8",
+      "stage": "submitted",
+      "stage_label": "Submitted",
+      "headline": "inquirED submitted the Ohio PK RFP.",
+      "confirmed_by": "Allie Wheeler",
+      "source_channel": "#rfps",
+      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1790730924377689",
+      "posted_at": "2026-09-29",
+      "conflicts_with_product_tag": true
+    },
+    "HI": {
+      "product": "ij",
+      "stage": "approved",
+      "stage_label": "Approved on state list",
+      "headline": "Inquiry Journeys is approved on the Hawaii DOE Social Studies list. The DOE hosts instructional materials exploration sessions Nov 19 and 20, 2026; the plan is to attend virtually, send a recorded demo, and possibly send materials.",
+      "confirmed_by": "Allie Wheeler",
+      "source_channel": "#rfps",
+      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1790258700017309",
+      "posted_at": "2026-09-24",
+      "conflicts_with_product_tag": true
+    },
+    "MI": {
+      "product": "gf8",
+      "stage": "in_progress",
+      "stage_label": "RFP in progress, due Oct 27",
+      "headline": "Warren County (MI) released an early childhood RFP due October 27; the team plans to submit.",
+      "confirmed_by": "Grace Shealy",
+      "source_channel": "#rfps",
+      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1791904096913919",
+      "posted_at": "2026-10-13",
       "conflicts_with_product_tag": false
     }
   }

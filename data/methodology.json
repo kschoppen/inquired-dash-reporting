@@ -436,7 +436,7 @@
     },
     {
      "source": "Slack #rfps (field signal)",
-     "what": "Confirmed procurement-stage updates (submitted, passed first review round, shortlisted, finalist, won, lost, stalled), shown under each state's Guru fit block",
+     "what": "Confirmed procurement-stage updates (submitted, in progress, passed first review round, approved on a state list, shortlisted, finalist, won, lost, stalled), shown under each state's Guru fit block",
      "how": "A person reviews new #rfps messages, confirms each real stage update, then writes it to `field_signal_by_state` with a link to the Slack post. There is no parser, because the channel mixes updates with logistics. A signal whose product differs from the state's tag shows a warning and never changes the tag"
     }
    ],
