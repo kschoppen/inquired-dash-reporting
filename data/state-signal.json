@@ -5326,28 +5326,6 @@
       "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1790730924377689",
       "posted_at": "2026-09-29",
       "conflicts_with_product_tag": true
-    },
-    "HI": {
-      "product": "ij",
-      "stage": "approved",
-      "stage_label": "Approved on state list",
-      "headline": "Inquiry Journeys is approved on the Hawaii DOE Social Studies list. The DOE hosts instructional materials exploration sessions Nov 19 and 20, 2026; the plan is to attend virtually, send a recorded demo, and possibly send materials.",
-      "confirmed_by": "Allie Wheeler",
-      "source_channel": "#rfps",
-      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1790258700017309",
-      "posted_at": "2026-09-24",
-      "conflicts_with_product_tag": true
-    },
-    "MI": {
-      "product": "gf8",
-      "stage": "in_progress",
-      "stage_label": "RFP in progress, due Oct 27",
-      "headline": "Warren County (MI) released an early childhood RFP due October 27; the team plans to submit.",
-      "confirmed_by": "Grace Shealy",
-      "source_channel": "#rfps",
-      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1791904096913919",
-      "posted_at": "2026-10-13",
-      "conflicts_with_product_tag": false
     }
   }
 }
