@@ -21,16 +21,17 @@ Read these three files in full before pulling anything:
 - `data/nurture-programs.json`: last run's output. This is the **schema you must reproduce**: same keys, same shapes. Keep every key, even ones you can't refresh.
 - `nurture-programs.html`: read the `render*` functions once so you know which fields feed which section. Don't edit it.
 
-`launch_date` in the JSON (Aug 18, 2026) is the confirmed start of the Fall 2026 program. Every "since launch" figure is measured from it, never from the planned Aug 3 date.
+`launch_date` in the JSON (Aug 18, 2026) is the confirmed start of the Fall 2026 program, used for the email window and the intro. Lifecycle movement is NOT measured from it: it is measured from each contact's own enrollment date (see PHASE B).
 
 Write the JSON after Phase A, then again after Phase B, so a Phase B failure never costs Phase A's data.
 
 ---
 
-## Two HubSpot traps that fail silently (zero rows, no error)
+## HubSpot traps that fail silently (zero rows, no error)
 
-1. **Enumeration properties filter on the internal value, not the label.** `nurture_track`, `nurture_track__inkwell`, `nurture_track__great_first_eight`, `nurture_track__agnostic` all use internal value `Active` (the label is "Active - Inkwell Nurture" etc.). `role` values are mostly lowercase (`teacher`, `school leader`, `district leader`) but some are capitalized (`Coach/Specialist`, `Parent`, `Other`, `Ed Partner`). Call `get_properties` and read `options[].value` before filtering on any enumeration.
-2. **World History has no `nurture_track__world_history` property.** Re-check with `get_properties` each run. If it now exists, include WH in Phase B and say so in the DM.
+1. **`role` stores internal values, not labels.** Use `teacher`, `school leader`, `district leader`; some are capitalized (`Coach/Specialist`, `Other`). Check with `get_properties` before filtering on any enumeration.
+2. **The `nurture_track*` tag is NOT the enrolled population.** It is written only when a contact completes the full workflow, so it misses nearly everyone in the program (as of Oct 13: 416 Inquiry Journeys and 108 Inkwell contacts carry `Active`, against 6,124 enrollments). Never count enrollment, movement, role or source from it.
+3. **Never use `is none of` tag filters to find exits.** Exits are contacts who completed a workflow or were enrolled and are no longer active in it (mostly removed by a suppression list). Read the lists in the registry instead.
 
 ---
 
@@ -62,16 +63,57 @@ Write the file now (STEP 3's validation, commit and push). Then continue.
 
 ---
 
-## PHASE B: Lifecycle + audience (HubSpot CRM contacts)
+## PHASE B: Enrollment, lifecycle + audience (HubSpot CRM contacts, read through lists)
 
-Population per program = contacts whose `nurture_track*` property for that product = `Active`.
+**Population = contacts ever enrolled in a program's workflow**, not the `nurture_track` tag. Each registry workflow has `ever_enrolled_list_id` (contact list: "Workflow status has been enrolled in [workflow]") and, except World History, `active_list_id` ("is currently active in [workflow]"). Read them with `query_crm_data` and `hs_crm_search.ilsListIds`. The contact property `nurture_enrollment_date` (date picker) is set by a step at the top of each workflow and was backfilled from the workflow history exports on Oct 14, 2026. `nurture_stage_at_enrollment` and `nurture_enrollment_form` fill in only for contacts enrolled after the workflow steps went live.
 
-- `lifecycle.by_program[]`: `tagged` (count of Active), `active` (the same unless you can separate exited contacts), `moved` = contacts in that population whose `lifecyclestage` entered MQL, SQL, Opportunity or Customer on or after `launch_date` (use the v2 stage-entry date properties, e.g. `hs_v2_date_entered_marketingqualifiedlead`). `moved_note` = a short plain breakdown. `tracking` = `good` if the population is usable (roughly 20+ tagged), else `bad` with `tracking_label` "Not tracked" or "No property".
-- `lifecycle.tiles[]`: 4 tiles, headline first: total moved since launch, best program's MQL rate, the biggest gap, customers since launch. Rewrite `lifecycle.note_html` only if the method changed; rewrite `lifecycle.coverage.html` to match this week's coverage.
-- `audience.roles[]` and `audience.sources[]`: for programs with usable tracking, `role` split into Teacher (`cls: "teacher"`), Admin / Leadership (School Leader + District Leader + Coach/Specialist), Other / Unassigned (`cls: "other"`); `hs_analytics_source` for original source. Store counts and `total`; the page computes percentages.
-- `audience.movement.value`: contacts Active or exited in more than one program's nurture track.
+### B1. Counts per program
 
-If a Phase B query fails, keep last week's values for that block and add a `data_flags` entry (see STEP 3). Never zero it out.
+```sql
+SELECT COUNT(*) FROM CONTACT WHERE hs_crm_search.ilsListIds = '<ever_enrolled_list_id>'
+SELECT COUNT(*) FROM CONTACT WHERE hs_crm_search.ilsListIds = '<active_list_id>'
+SELECT COUNT(*) FROM CONTACT WHERE hs_crm_search.ilsListIds = '<ever_enrolled_list_id>' AND nurture_enrollment_date IS NULL
+```
+
+`enrolled` = first count, `in_progress` = second (World History: 0), `no_longer_active` = enrolled minus in_progress (removed by a suppression list, or completed). Third count = contacts with no enrollment date: report it in `lifecycle.coverage.html` and in a `data_flags` entry. List 10585 (any product) should equal the sum of the four `in_progress` counts.
+
+### B2. Movement after enrollment
+
+For each program, run four queries, one per stage, and page with `OFFSET` while 500 rows come back:
+
+```sql
+SELECT hs_object_id, nurture_enrollment_date, lifecyclestage,
+  hs_v2_date_entered_marketingqualifiedlead, hs_v2_date_entered_salesqualifiedlead,
+  hs_v2_date_entered_opportunity, hs_v2_date_entered_customer
+FROM CONTACT WHERE hs_crm_search.ilsListIds = '<ever_enrolled_list_id>'
+  AND <one stage-entry property> >= '2026-08-06' ORDER BY hs_object_id ASC LIMIT 500
+```
+
+Results over the size limit are saved to a file: parse with `python3 -I` (they are JSON, one `content` string per row). Merge rows by `hs_object_id`, then classify each contact once:
+
+- **Moved** = at least one stage entry strictly after the enrollment day (stage timestamp at or after the enrollment date plus one day, UTC). Contacts enrolled in the Aug 31 bulk run (enrollment date 2026-08-31) were enrolled at 16:05 ET, so for them count stage entries after 20:05Z that day.
+- **Same day**: a stage entry on the enrollment day itself that cannot be ordered against the enrollment. Not counted as moved. Report the count in the tile caption.
+- **Before enrollment only**: the contact entered a stage between Aug 6 and enrolling, and nothing after. New contacts are often enrolled because they converted on a piece of content, and some of that content makes them MQL, so reaching MQL is not a nurture result for these contacts.
+- No enrollment date: skip and count in B1.
+
+`lifecycle.by_program[]`: `enrolled`, `in_progress`, `no_longer_active`, `moved` (unique contacts), `moved_note` (MQL versus SQL, Opportunity or Customer-only counts; say if several movers are at one school, which looks like a sales close), `tracking: "good"`, `tracking_label: "By enrollment"`. `lifecycle.tiles[]`: 4 tiles, headline first: total moved after enrollment, total enrolled with in progress and no longer active, the per-program move rates and which cohort dates they come from, and the count who had already entered a stage before enrolling. Cohort age matters: say which bulk dates dominate. Rewrite `lifecycle.coverage.html` to match this week.
+
+Once `nurture_stage_at_enrollment` is filled for most recent enrollees, split movement by it (Lead-stage enrollees: moved to MQL; MQL-stage enrollees: moved to SQL) and add that to the tiles.
+
+### B3. Audience
+
+`audience.roles[]` and `audience.sources[]` come from `GROUP BY` queries on each program's ever-enrolled list (`GROUP BY` works with a list filter):
+
+```sql
+SELECT role, COUNT(*) FROM CONTACT WHERE hs_crm_search.ilsListIds = '<ever_enrolled_list_id>' GROUP BY role
+SELECT hs_analytics_source, COUNT(*) FROM CONTACT WHERE hs_crm_search.ilsListIds = '<ever_enrolled_list_id>' GROUP BY hs_analytics_source
+```
+
+Roles: Teacher (`cls: "teacher"`), Admin / Leadership (School Leader + District Leader + Coach/Specialist), Other / Unassigned (`cls: "other"`, everything else). Store counts and `total`; every group must sum to `total`. Skip programs with 0 enrolled.
+
+`audience.movement.value`: contacts enrolled in more than one workflow. Lists cannot show this, so carry the last value forward and say which history exports it came from, unless fresh History exports from the workflows were supplied.
+
+If a Phase B query fails, keep last week's values for that block and add a `data_flags` entry. Never zero it out.
 
 ---
 
@@ -127,7 +169,7 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_
 
 ```
 🌿 *Nurture Programs refreshed* (<date>)
-• Lifecycle: <N> moved since launch (<per program>)
+• Enrollment: <N> enrolled (<in progress>), <N> moved to a new stage after enrolling (<per program>)
 • Delivered: <N> total, <+N> this week · open <x%> · click <x%>
 • Watch: <the 1-3 flags that matter>
 • Still the same <N> workflows? Reply if the active set changed and I'll update the registry.

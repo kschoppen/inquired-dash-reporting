@@ -1,100 +1,105 @@
 {
  "skill": "nurture-dashboard-refresh",
  "title": "Nurture Programs",
- "updated": "2026-10-13",
+ "updated": "2026-10-14",
  "flows_linked": 5,
  "stale_after_days": 14,
- "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property.",
+ "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property. 2026-10-14: lifecycle and audience re-based on workflow enrollment (ever-enrolled lists per workflow, enrollment date from the Nurture Enrollment Date property) instead of the nurture_track tag, which is written only when a contact completes a workflow. Headline moved from 16 (tag population of 524 contacts, moves counted from Aug 18) to 46 (6,124 enrolled, moves counted after each contact's own enrollment day). Email blocks were not re-pulled and stay at Oct 13. Same-day stage entries are not counted as moved. 35 contacts have no enrollment date yet.",
  "launch_date": "2026-08-18",
  "email_window": {
   "start": "2026-07-30",
   "end": "2026-10-13"
  },
  "source_line": "HubSpot portal 4451852 · CRM contacts + Marketing Email Analytics API",
- "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, nurture-track properties, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Every section on this page was pulled fresh on Oct 13, 2026.</strong> Lifecycle movement is measured from <strong>Aug 18</strong>, the date the program went live per the Asana launch milestone.",
+ "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, workflow enrollment lists, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Enrollment, lifecycle movement and audience were pulled on Oct 14, 2026; email performance on Oct 13, 2026.</strong> Movement is measured from each contact&apos;s own enrollment date. The program went live Aug 18 per the Asana launch milestone, and most contacts enrolled in bulk runs from Aug 31.",
  "lifecycle": {
-  "note_html": "\"Scratch everything else, lifecycle stage movement is the top metric.\" Contacts currently tagged into a Fall 2026 nurture track whose <code>lifecyclestage</code> advanced (entered MQL, SQL, Opportunity, or Customer) on or after <strong>Aug 18</strong>, the launch date. Only Inquiry Journeys and Inkwell have usable contact-level tracking right now, see the coverage note below.",
+  "note_html": "Contacts enrolled in a Fall 2026 nurture workflow whose <code>lifecyclestage</code> advanced (entered MQL, SQL, Opportunity or Customer) <strong>after the day they enrolled</strong>. Enrollment comes from each workflow&apos;s history (an ever-enrolled list per workflow), not from the <code>nurture_track</code> tag, which is written only when a contact completes the full workflow. Stage entries on the enrollment day itself cannot be ordered against the enrollment and are not counted.",
   "tiles": [
    {
-    "value": "16",
+    "value": "46",
     "tone": "accent",
-    "label": "Nurtured contacts reached a new lifecycle stage since the Aug 18 launch",
-    "cap": "14 in Inkwell, 2 in Inquiry Journeys. Eight weeks in, on a population of 524 active contacts across the two programs with usable tracking."
+    "label": "Enrolled contacts moved to a new lifecycle stage after they enrolled",
+    "cap": "38 in Inquiry Journeys and 8 in Inkwell, out of 6,124 enrollments across the four workflows with contacts. Great First Eight and Agnostic have none yet. 40 are MQL entries; the other 6 entered SQL, Opportunity or Customer only. 6 reached Customer (2 in Inquiry Journeys, 4 in Inkwell)."
    },
    {
-    "value": "13%",
+    "value": "6,124",
     "tone": "",
-    "label": "Of active Inkwell nurture contacts have hit MQL since launch",
-    "cap": "14 of 108 active contacts, and the strongest movement signal in the portfolio by a wide margin. Inkwell is about a third of IJ's email volume and is producing 7x its lifecycle movement."
+    "label": "Contacts enrolled across the four workflows",
+    "cap": "5,639 in progress and 485 no longer active (removed by a suppression list or completed). Inquiry Journeys 3,316, Inkwell 1,878, Agnostic 767, Great First Eight 163. World History has none. 93% of Inquiry Journeys enrolled in one bulk run on Aug 31."
    },
    {
-    "value": "2",
+    "value": "1.1%",
     "tone": "flag",
-    "label": "Inquiry Journeys contacts have moved at all, out of 416 active",
-    "cap": "One contact reached MQL, SQL, Opportunity and Customer; a second reached MQL only. IJ carries 71% of all nurture email volume and has produced two lifecycle moves; that gap is still the thing to explain."
+    "label": "Of Inquiry Journeys contacts moved after enrolling, against 0.4% in Inkwell",
+    "cap": "38 of 3,316 in Inquiry Journeys and 8 of 1,878 in Inkwell. 39 of the 46 enrolled in the Aug 31 bulk run, which has had six weeks. Most October enrollees have had under a week, so these rates will rise."
    },
    {
-    "value": "0",
+    "value": "302",
     "tone": "flag",
-    "label": "Became Customers since launch, in Inkwell",
-    "cap": "1 in Inquiry Journeys, one of the two contacts counted in the tile to the left, and 0 in Inkwell. GF8, Agnostic and World History have no usable movement data at all, see Data Coverage."
+    "label": "Enrolled contacts had already entered a lifecycle stage before they enrolled",
+    "cap": "114 in Inquiry Journeys and 188 in Inkwell entered MQL or a later stage between Aug 6 and their enrollment, and another 36 did so on the enrollment day itself. For these contacts the content conversion that made them MQL is likely also what enrolled them, so reaching MQL cannot be counted as a nurture result. MQL to SQL is a cleaner test of the nurture."
    }
   ],
   "by_program": [
    {
     "key": "ij",
     "program": "Inquiry Journeys",
-    "tagged": 416,
-    "active": 416,
-    "moved": 2,
-    "moved_note": "One contact reached MQL, SQL, Opportunity and Customer; a second reached MQL only",
+    "enrolled": 3316,
+    "in_progress": 3072,
+    "no_longer_active": 244,
+    "moved": 38,
+    "moved_note": "38 after the enrollment day: 35 entered MQL, plus 3 whose only new stage was SQL, Opportunity or Customer. 5 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
-    "tracking_label": "Usable"
+    "tracking_label": "By enrollment"
    },
    {
     "key": "inkwell",
     "program": "Inkwell",
-    "tagged": 108,
-    "active": 108,
-    "moved": 14,
-    "moved_note": "14 reached MQL (13%), 0 Customers",
+    "enrolled": 1878,
+    "in_progress": 1697,
+    "no_longer_active": 181,
+    "moved": 8,
+    "moved_note": "8 after the enrollment day: 5 entered MQL and 3 entered Customer only. 4 of the 8 are contacts at the same school who became customers on Aug 31, likely a sales close. 29 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
-    "tracking_label": "Usable"
+    "tracking_label": "By enrollment"
    },
    {
     "key": "gf8",
     "program": "Great First Eight",
-    "tagged": 0,
-    "active": null,
-    "moved": null,
-    "moved_note": "0 tagged out of about 78k despite 405 delivered",
-    "tracking": "bad",
-    "tracking_label": "Not tracked"
+    "enrolled": 163,
+    "in_progress": 118,
+    "no_longer_active": 45,
+    "moved": 0,
+    "moved_note": "No stage entries after the enrollment day. 7 contacts entered a stage before they enrolled.",
+    "tracking": "good",
+    "tracking_label": "By enrollment"
    },
    {
     "key": "agnostic",
     "program": "Agnostic",
-    "tagged": 0,
-    "active": null,
-    "moved": null,
-    "moved_note": "0 tagged despite 469 delivered",
-    "tracking": "bad",
-    "tracking_label": "Not tracked"
+    "enrolled": 767,
+    "in_progress": 752,
+    "no_longer_active": 15,
+    "moved": 0,
+    "moved_note": "No stage entries after the enrollment day. 525 enrolled in the week of Oct 5, so most have had under a week. 1 enrolled contact has no enrollment date yet.",
+    "tracking": "good",
+    "tracking_label": "By enrollment"
    },
    {
     "key": "wh",
     "program": "World History",
-    "tagged": null,
-    "active": null,
-    "moved": null,
-    "moved_note": "No nurture_track property exists",
-    "tracking": "bad",
-    "tracking_label": "No property"
+    "enrolled": 0,
+    "in_progress": 0,
+    "no_longer_active": 0,
+    "moved": 0,
+    "moved_note": "No contacts enrolled and no emails sent. Cause unconfirmed: the enrollment audience may be empty or the workflow may be off.",
+    "tracking": "good",
+    "tracking_label": "By enrollment"
    }
   ],
   "coverage": {
-   "title": "Data coverage, worth checking against Tim's read",
-   "html": "Every metric above comes from four per-product <code>nurture_track</code> contact properties. Two of them are essentially empty: <strong>Great First Eight</strong> has zero contacts tagged (out of about 78k) despite 405 emails already delivered per the email-analytics view below, and <strong>Agnostic</strong> has zero as well, despite 469 delivered. That gap points to the workflow sending mail without writing the nurture-track field back to the contact record, or a different, unmapped property holding that data. <strong>World History</strong> has no contact-level nurture-track property at all. None of this is guesswork on the email side (that data is real and complete); it's specifically the contact-record tracking that's missing for three of the five programs, which is exactly the kind of thing to compare against whatever Tim's exploration turns up."
+   "title": "What is and is not counted",
+   "html": "Enrollment counts come from lists that read each workflow&apos;s status, so every program is covered, including Great First Eight and Agnostic, which the <code>nurture_track</code> tag never captured. Two limits. <strong>35 contacts enrolled after Oct 13</strong> (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no <code>Nurture Enrollment Date</code> yet, so they are counted as enrolled but cannot be counted as moved. <strong>Stage at enrollment and the converting form are not recorded yet</strong>: the three new contact properties fill in only for contacts who enroll from now on, so movement is split by date, not by the stage a contact started at."
   }
  },
  "portfolio": {
@@ -144,7 +149,7 @@
    "unsub_rate": 0.0027,
    "emails_sending": 9,
    "emails_total": 17,
-   "note_html": "Leadership has sent five modules now, four at full volume (1,125, 1,160, 1,079 and 874 delivered) and one still too thin to read (23 on module 5). Classroom has also reached four full-volume modules (1,314, 1,248, 1,178 and 934 delivered); module 5 remains a test send only (2 delivered). Open rate holds in the low-to-high twenties across modules 1 through 4, peaking at 30.8% on Classroom module 3. This program carries 71% of portfolio delivery and has produced two lifecycle stage moves since launch, still the biggest open question on the program."
+   "note_html": "Leadership has sent five modules now, four at full volume (1,125, 1,160, 1,079 and 874 delivered) and one still too thin to read (23 on module 5). Classroom has also reached four full-volume modules (1,314, 1,248, 1,178 and 934 delivered); module 5 remains a test send only (2 delivered). Open rate holds in the low-to-high twenties across modules 1 through 4, peaking at 30.8% on Classroom module 3. This program carries 71% of portfolio delivery and has 3,316 enrolled contacts, of whom 38 moved to a new lifecycle stage after enrolling (1.1%). 93% enrolled in one bulk run on Aug 31, so the cohort is six weeks old and the October enrollees much younger."
   },
   {
    "key": "inkwell",
@@ -162,7 +167,7 @@
    "unsub_rate": 0.0049,
    "emails_sending": 8,
    "emails_total": 16,
-   "note_html": "Still the strongest engagement in the portfolio on open rate (27.1%, best of any program) and the lowest suppression rate by a wide margin (3.8% of delivered, against 20.1% portfolio-wide). Leadership module 4 jumped to the best single open-rate result anywhere this week at 35.4% (74 of 209), narrowly ahead of Leadership module 1's 35.1%. Program-wide unsubscribe sits at 0.49% (14 of 2,850), under the 1% guardrail. Inkwell also accounts for 14 of the 16 lifecycle moves since launch."
+   "note_html": "Still the strongest engagement in the portfolio on open rate (27.1%, best of any program) and the lowest suppression rate by a wide margin (3.8% of delivered, against 20.1% portfolio-wide). Leadership module 4 jumped to the best single open-rate result anywhere this week at 35.4% (74 of 209), narrowly ahead of Leadership module 1's 35.1%. Program-wide unsubscribe sits at 0.49% (14 of 2,850), under the 1% guardrail. Of 1,878 enrolled contacts, 8 moved to a new lifecycle stage after enrolling (0.4%); 188 had already entered MQL before they enrolled."
   },
   {
    "key": "gf8",
@@ -180,7 +185,7 @@
    "unsub_rate": 0.0074,
    "emails_sending": 4,
    "emails_total": 6,
-   "note_html": "Modules 1 through 4 now all have real volume (128, 118, 89 and 66 delivered); modules 5 and 6 show 2 sends each, which are tests. Clicks are 3 across the whole program, so no reliable click read is possible yet. Unsubscribe reads 0.74% (3 of 405), under the 1% guardrail but still thin enough that one or two people move the number. GF8 still has no contact-level nurture tracking, so none of it reaches the lifecycle section above."
+   "note_html": "Modules 1 through 4 now all have real volume (128, 118, 89 and 66 delivered); modules 5 and 6 show 2 sends each, which are tests. Clicks are 3 across the whole program, so no reliable click read is possible yet. Unsubscribe reads 0.74% (3 of 405), under the 1% guardrail but still thin enough that one or two people move the number. 163 contacts are enrolled and none has moved to a new lifecycle stage after enrolling."
   },
   {
    "key": "agnostic",
@@ -216,7 +221,7 @@
    "unsub_rate": null,
    "emails_sending": 0,
    "emails_total": 4,
-   "note_html": "Unchanged across every check since Aug 31. All four World History emails exist and carry the correct nurture property, but none has ever sent. Two possible causes, neither confirmable through the API: the enrollment audience is empty, or the workflow is not switched on. This program also lacks the <code>nurture_track__world_history</code> contact property entirely, re-checked in HubSpot Oct 13, so it has an enrollment list but no active or exited tracking lists and cannot appear in the lifecycle section above."
+   "note_html": "Unchanged across every check since Aug 31. All four World History emails exist and carry the correct nurture property, but none has ever sent. Two possible causes, neither confirmable through the API: the enrollment audience is empty, or the workflow is not switched on. No contacts are enrolled (its ever-enrolled list is empty), so it shows no movement. The <code>nurture_track__world_history</code> property does not exist, but the enrollment and exit lists read workflow status and do not need it."
   }
  ],
  "emails": {
@@ -717,12 +722,78 @@
   ]
  },
  "audience": {
-  "role_note_html": "Split by the contact's <code>Role</code> property, for the two programs with usable contact-level data. \"Admin/Leadership\" groups School Leader, District Leader, and Coach/Specialist; \"Other/Unassigned\" is everyone without a classified role. Both programs look much the same on this cut: roughly half administrators, about a fifth teachers, and the rest unclassified.",
+  "role_note_html": "Split by the contact&apos;s <code>Role</code> property for everyone ever enrolled in each workflow. &quot;Admin/Leadership&quot; groups School Leader, District Leader, and Coach/Specialist; &quot;Other/Unassigned&quot; is everyone without a classified role. Inquiry Journeys and Inkwell are mostly administrators and coaches, Great First Eight is mostly teachers, and Agnostic is almost entirely unclassified.",
   "roles": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "416 active contacts",
-    "total": 416,
+    "n_label": "3,316 enrolled contacts",
+    "total": 3316,
+    "rows": [
+     {
+      "label": "Teacher",
+      "count": 1273,
+      "cls": "teacher"
+     },
+     {
+      "label": "Admin / Leadership",
+      "count": 1562,
+      "cls": ""
+     },
+     {
+      "label": "Other / Unassigned",
+      "count": 481,
+      "cls": "other"
+     }
+    ]
+   },
+   {
+    "program": "Inkwell",
+    "n_label": "1,878 enrolled contacts",
+    "total": 1878,
+    "rows": [
+     {
+      "label": "Teacher",
+      "count": 336,
+      "cls": "teacher"
+     },
+     {
+      "label": "Admin / Leadership",
+      "count": 1045,
+      "cls": ""
+     },
+     {
+      "label": "Other / Unassigned",
+      "count": 497,
+      "cls": "other"
+     }
+    ]
+   },
+   {
+    "program": "Agnostic",
+    "n_label": "767 enrolled contacts",
+    "total": 767,
+    "rows": [
+     {
+      "label": "Teacher",
+      "count": 2,
+      "cls": "teacher"
+     },
+     {
+      "label": "Admin / Leadership",
+      "count": 241,
+      "cls": ""
+     },
+     {
+      "label": "Other / Unassigned",
+      "count": 524,
+      "cls": "other"
+     }
+    ]
+   },
+   {
+    "program": "Great First Eight",
+    "n_label": "163 enrolled contacts",
+    "total": 163,
     "rows": [
      {
       "label": "Teacher",
@@ -731,137 +802,173 @@
      },
      {
       "label": "Admin / Leadership",
-      "count": 219,
+      "count": 64,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 117,
-      "cls": "other"
-     }
-    ]
-   },
-   {
-    "program": "Inkwell",
-    "n_label": "108 active contacts",
-    "total": 108,
-    "rows": [
-     {
-      "label": "Teacher",
-      "count": 22,
-      "cls": "teacher"
-     },
-     {
-      "label": "Admin / Leadership",
-      "count": 54,
-      "cls": ""
-     },
-     {
-      "label": "Other / Unassigned",
-      "count": 32,
+      "count": 19,
       "cls": "other"
      }
     ]
    }
   ],
-  "source_note_html": "Original source (first-touch attribution) for currently-active nurture contacts, IJ and Inkwell.",
+  "source_note_html": "Original source (first-touch attribution) for everyone ever enrolled in each workflow.",
   "sources": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "416 active",
-    "total": 416,
+    "n_label": "3,316 enrolled",
+    "total": 3316,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 138
-     },
-     {
-      "label": "Offline",
-      "count": 103
-     },
-     {
-      "label": "Organic Search",
-      "count": 68
-     },
-     {
-      "label": "Paid Search",
-      "count": 50
+      "count": 894
      },
      {
       "label": "Other Campaigns",
-      "count": 25
+      "count": 684
+     },
+     {
+      "label": "Offline",
+      "count": 576
+     },
+     {
+      "label": "Organic Search",
+      "count": 478
      },
      {
       "label": "Email Marketing",
-      "count": 18
+      "count": 289
      },
      {
-      "label": "Referrals",
-      "count": 7
+      "label": "Paid Search",
+      "count": 238
      },
      {
       "label": "Organic Social",
-      "count": 6
+      "count": 91
+     },
+     {
+      "label": "Referrals",
+      "count": 53
      },
      {
       "label": "AI Referrals",
+      "count": 13
+     }
+    ]
+   },
+   {
+    "program": "Inkwell",
+    "n_label": "1,878 enrolled",
+    "total": 1878,
+    "rows": [
+     {
+      "label": "Email Marketing",
+      "count": 601
+     },
+     {
+      "label": "Organic Social",
+      "count": 375
+     },
+     {
+      "label": "Offline",
+      "count": 341
+     },
+     {
+      "label": "Direct Traffic",
+      "count": 271
+     },
+     {
+      "label": "Other Campaigns",
+      "count": 146
+     },
+     {
+      "label": "Paid Search",
+      "count": 66
+     },
+     {
+      "label": "Organic Search",
+      "count": 61
+     },
+     {
+      "label": "Referrals",
+      "count": 15
+     },
+     {
+      "label": "AI Referrals",
+      "count": 2
+     }
+    ]
+   },
+   {
+    "program": "Agnostic",
+    "n_label": "767 enrolled",
+    "total": 767,
+    "rows": [
+     {
+      "label": "Offline",
+      "count": 759
+     },
+     {
+      "label": "Direct Traffic",
+      "count": 5
+     },
+     {
+      "label": "Email Marketing",
+      "count": 2
+     },
+     {
+      "label": "Organic Social",
       "count": 1
      }
     ]
    },
    {
-    "program": "Inkwell",
-    "n_label": "108 active",
-    "total": 108,
+    "program": "Great First Eight",
+    "n_label": "163 enrolled",
+    "total": 163,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 48
-     },
-     {
-      "label": "Offline",
-      "count": 20
-     },
-     {
-      "label": "Email Marketing",
-      "count": 12
+      "count": 82
      },
      {
       "label": "Organic Search",
-      "count": 8
+      "count": 29
      },
      {
-      "label": "Other Campaigns",
-      "count": 8
-     },
-     {
-      "label": "Organic Social",
-      "count": 5
+      "label": "Offline",
+      "count": 26
      },
      {
       "label": "Paid Search",
-      "count": 3
+      "count": 11
      },
      {
-      "label": "Referrals",
-      "count": 2
+      "label": "Email Marketing",
+      "count": 6
+     },
+     {
+      "label": "Other Campaigns",
+      "count": 6
      },
      {
       "label": "AI Referrals",
-      "count": 2
+      "count": 3
      }
     ]
    }
   ],
   "movement": {
-   "value": 2,
-   "html": "<strong>Contacts tagged active/exited in both Inquiry Journeys and Inkwell nurture</strong> this season, the only cross-program movement the data shows. GF8 and Agnostic can't be checked for overlap given the tracking gap above; World History has no property to check against."
+   "value": 100,
+   "html": "<strong>Contacts enrolled in more than one workflow</strong>, counted from the four workflow history exports on Oct 13 (Inquiry Journeys and Inkwell share 92 of them). Cross-product re-routing is expected, so these contacts appear in more than one program above. This count is carried forward until the next set of history exports."
   }
  },
  "open_items": [
   {
    "level": "red",
-   "html": "<strong>Inquiry Journeys carries 71% of delivery and has produced two lifecycle moves.</strong> 8,956 emails delivered to 416 active contacts, and two contacts account for all of IJ's MQL, SQL, Opportunity and Customer entries since launch. Inkwell, at about a third of IJ's volume, produced 14. This is the biggest open question on the program and it is not an email-performance problem: IJ's open and click rates are healthy."
+   "html": "<strong>Inquiry Journeys carries 71% of delivery and 38 of its 3,316 enrolled contacts (1.1%) moved to a new lifecycle stage after enrolling.</strong> Inkwell moved 8 of 1,878 (0.4%). 93% of Inquiry Journeys enrolled in one bulk run on Aug 31 and 524 Inkwell and Agnostic contacts enrolled in the week of Oct 5, so the cohorts are different ages. This is not an email-performance problem: open and click rates are healthy. The open question is whether the content is moving contacts who were not already MQL."
   },
   {
    "level": "red",
@@ -873,11 +980,11 @@
   },
   {
    "level": "red",
-   "html": "<strong>World History has still never sent an email</strong>, unchanged since Aug 31: 0 delivered across all 4 emails. Either the enrollment audience is empty or the workflow is not live, and neither is readable via API. Separately, the <code>nurture_track__world_history</code> contact property still does not exist (re-checked Oct 13), so WH has an enrollment list but no active or exited tracking lists. That property sits on Tim's build list and blocks WH from ever appearing in the lifecycle section above."
+   "html": "<strong>World History has still never sent an email</strong>, unchanged since Aug 31: 0 delivered across all 4 emails and 0 contacts enrolled. Either the enrollment audience is empty or the workflow is not live, and neither is readable via API. The missing <code>nurture_track__world_history</code> property no longer blocks tracking, because the lists read workflow status."
   },
   {
-   "level": "red",
-   "html": "GF8 and Agnostic still have essentially no contact-level nurture tracking despite actively sending (405 and 469 delivered). Nothing in the lifecycle section can include them. Worth comparing against what Tim's reporting rebuild finds."
+   "level": "amber",
+   "html": "<strong>The new enrollment fields are not live for everyone yet.</strong> 35 contacts enrolled after Oct 13 have no enrollment date, and <code>Nurture Stage at Enrollment</code> and <code>Nurture Enrollment Form</code> are empty for every contact until the workflow steps run. Until then movement is split by date, not by the stage a contact started at, and a fresh set of workflow history exports will fill the 35."
   },
   {
    "level": "red",
@@ -889,7 +996,7 @@
   },
   {
    "level": "grey",
-   "html": "<strong>Query note for the next refresh:</strong> the <code>nurture_track*</code> properties store the internal value <code>Active</code>, while the display label reads \"Active - Inkwell Nurture\" and so on per product. Filtering on the label returns zero rows silently. Filter on <code>Active</code>."
+   "html": "<strong>Query note for the next refresh:</strong> the <code>role</code> property stores internal values (<code>teacher</code>, <code>school leader</code>, <code>district leader</code>) that differ from its display labels, and the <code>nurture_track*</code> tag is written only when a workflow completes, so it is not used for counting. Count enrollment from the ever-enrolled and active lists listed in the workflow registry."
   }
  ],
  "history": [
@@ -948,5 +1055,9 @@
    "open_rate": 0.2617
   }
  ],
- "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates, <code>nurture_track</code> properties) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded), both pulled Oct 13, 2026, scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement measured from Aug 18, 2026, the launch date recorded on the Asana milestone. Email window Jul 30 to Oct 13, 2026. Active-contact counts are contacts currently tagged Active, so contacts who have exited are not counted. Workflow enabled/paused state is not available via API."
+ "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates and the <code>Nurture Enrollment Date</code> property, read through each workflow&apos;s ever-enrolled and active lists, pulled Oct 14, 2026) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded, pulled Oct 13, 2026), scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement is measured from each contact&apos;s own enrollment date (the stage entry must fall after the enrollment day). Email window Jul 30 to Oct 13, 2026. Enrolled counts include contacts who have since been removed or completed. Workflow enabled/paused state is not available via API.",
+ "data_flags": [
+  "Email performance, portfolio and top content blocks were last pulled Oct 13, 2026 and were not re-pulled in this update.",
+  "35 enrolled contacts (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no Nurture Enrollment Date yet, so they are counted as enrolled but not as moved."
+ ]
 }
