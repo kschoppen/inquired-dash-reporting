@@ -15,7 +15,7 @@ const TABS = [
       sources: ["HubSpot CRM (company MQA lifecycle stage + stage dates, mqa_signal, notes_last_contacted, owner)", "Airtable Account Decisions log (stale-MQA decisions)", "Refreshed by the Monday pulse routine (PULSE_ROUTINE.md)"] } },
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
     meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
-      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
+      sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "State adoption calendar (state strategy list, States Sales monthly 2026-10-14)", "Slack #rfps (confirmed procurement-stage updates, reviewed by a person)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
     meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
@@ -1495,8 +1495,8 @@ function renderStateSignal(d) {
     let rows = topStates.filter((s) => product === 'all' || s.product === product);
     if (!rows.length) return '<p class="insight">No state policy signal identified for this product yet.</p>';
     rows = rows.slice().sort((a, b) => sortMode === 'alpha' ? a.state.localeCompare(b.state) : b.actionable - a.actionable);
-    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="5"></td></tr>`).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th><th>Decision</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
+    const body = rows.map((s) => `<tr class="ss-rank" data-state="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right"><strong>${fmtN(s.actionable)}</strong></td><td>${adoptionCellHtml(s.state)}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="6"></td></tr>`).join('');
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Strongest signal</th><th>Qualified</th><th>Actionable</th><th>Next adoption</th><th>Decision</th></tr></thead><tbody id="ssTopBody">${body}</tbody></table>`;
   }
 
   function watchStatesTable(product, sortMode) {
@@ -1506,9 +1506,54 @@ function renderStateSignal(d) {
     const body = rows.map((s) => {
       const rfpBadge = s.starbridge_open_rfps > 0 ? `<span class="ss-rfp-badge">${s.starbridge_open_rfps} open RFP${s.starbridge_open_rfps > 1 ? 's' : ''}</span>` : '<span class="meta-small">—</span>';
       const tierBadge = s.priority_tier ? `<span class="ss-tier-badge ss-tier-${s.priority_tier}">${SS_TIER_LABELS[s.priority_tier] || s.priority_tier}</span>` : '<span class="meta-small">—</span>';
-      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="8"></td></tr>`;
+      return `<tr class="ss-rank ss-watch-row" data-wstate="${s.state}" data-product="${s.product}"><td>${s.state}</td><td>${tierBadge}</td><td>${ssDot(s.product)}</td><td style="text-align:right">${fmtN(s.qualified)}</td><td style="text-align:right">${fmtN(s.actionable)}</td><td style="text-align:right">${rfpBadge}</td><td>${s.since}</td><td>${adoptionCellHtml(s.state)}</td><td class="ss-dec-cell" data-dec-key="${ssDecisionKey(s.state, s.product)}">${decisionBadge(s.state, s.product)}</td></tr><tr class="ss-drawer-row"><td colspan="9"></td></tr>`;
     }).join('');
-    return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th><th>Decision</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+    return `<table class="ss-dash"><thead><tr><th>State</th><th>Priority</th><th>Product</th><th>Qualified</th><th>Actionable</th><th>Starbridge</th><th>Signal since</th><th>Next adoption</th><th>Decision</th></tr></thead><tbody id="ssWatchBody">${body}</tbody></table>`;
+  }
+
+  function adoptionBadgeHtml(a) {
+    if (a.status === 'open') return '<span class="ss-adopt-badge ss-adopt-open">Open market</span>';
+    if (a.status === 'rolling') return '<span class="ss-adopt-badge ss-adopt-rolling">Rolling</span>';
+    return `<span class="ss-adopt-badge ss-adopt-window">${a.next_adoption}</span>`;
+  }
+
+  // Column cell: one badge per product that has adoption info for the state. Never hides a row.
+  function adoptionCellHtml(state) {
+    const a = (d.adoption_by_state || {})[state];
+    if (!a) return '<span class="meta-small">—</span>';
+    return Object.keys(a).map((p) => `<div class="ss-adopt-line">${ssDot(p)} ${adoptionBadgeHtml(a[p])}</div>`).join('');
+  }
+
+  function adoptionHtml(state) {
+    const a = (d.adoption_by_state || {})[state];
+    if (!a) return '';
+    return Object.keys(a).map((p) => {
+      const x = a[p];
+      const rows = [
+        x.ela_list ? `<span><strong>ELA list:</strong> ${x.ela_list}</span>` : '',
+        x.window ? `<span><strong>Adoption window:</strong> ${x.window}</span>` : `<span><strong>Next adoption:</strong> ${x.next_adoption}</span>`,
+        x.next_step ? `<span><strong>Next step / depends on:</strong> ${x.next_step}</span>` : '',
+        x.tam_k12 ? `<span><strong>TAM (K-12):</strong> ${x.tam_k12}</span>` : '',
+        x.partners != null ? `<span><strong>Partners:</strong> ${x.partners}</span>` : ''
+      ].filter(Boolean).join('');
+      return `<div class="ss-adoption"><div class="ss-ad-row"><div class="ss-ad-label">🗓️ State adoption, ${state} x ${SS_LABELS[p] || p}</div>${adoptionBadgeHtml(x)}</div>`
+        + `<div class="ss-ad-grid">${rows}</div>`
+        + `<p class="ss-ad-note">A state adoption is a timing signal, not a reason to drop the state. The signals above still apply.</p>`
+        + `<p class="ss-ad-src">Source: ${x.source}</p></div>`;
+    }).join('');
+  }
+
+  function fieldSignalHtml(state) {
+    const fs = (d.field_signal_by_state || {})[state];
+    if (!fs) return '';
+    const stageClass = fs.stage === 'lost' ? 'lost' : fs.stage === 'stalled' ? 'stalled' : 'forward';
+    const conflict = fs.conflicts_with_product_tag
+      ? `<div class="ss-fs-conflict"><strong>Conflicts with this state's product tag.</strong> This signal is ${SS_LABELS[fs.product] || fs.product}; confirm before changing the tag above.</div>`
+      : '';
+    return `<div class="ss-field-signal"><div class="ss-fs-row"><div class="ss-fs-label">💬 Field signal, ${state} x ${SS_LABELS[fs.product] || fs.product}</div><span class="ss-fs-stage ss-fs-${stageClass}">${fs.stage_label}</span></div>`
+      + `<p>${fs.headline}</p>`
+      + `<p class="ss-fs-meta">Confirmed by ${fs.confirmed_by} &middot; <a href="${fs.source_url}" target="_blank" rel="noopener">${fs.source_channel}, ${fs.posted_at} ↗</a></p>`
+      + conflict + '</div>';
   }
 
   function guruFitHtml(state) {
@@ -1535,6 +1580,8 @@ function renderStateSignal(d) {
         + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
     }
     html += guruFitHtml(s.state);
+    html += fieldSignalHtml(s.state);
+    html += adoptionHtml(s.state);
     const shownBuyers = new Set();
     if (!accts.length) {
       html += '<p class="insight" style="margin:10px 16px">No account-level drill-down pulled for this state.</p>';
@@ -1562,6 +1609,8 @@ function renderStateSignal(d) {
       + `<div class="ss-sc-item">→ ${policy.headline} <span class="ss-sc-src">(since ${policy.since})</span></div>`
       + `<div class="ss-sc-item">Sources: ${srcLinks(policy.sources)}</div></div>`;
     html += guruFitHtml(s.state);
+    html += fieldSignalHtml(s.state);
+    html += adoptionHtml(s.state);
     if (sb && sb.open_rfps_total > 0) {
       html += `<div class="ss-watch-action"><div class="ss-wa-label">Starbridge — ${sb.open_rfps_total} open RFP${sb.open_rfps_total > 1 ? 's' : ''} right now</div>`
         + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
