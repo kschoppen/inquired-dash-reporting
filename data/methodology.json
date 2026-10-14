@@ -428,6 +428,16 @@
      "source": "Account-driven campaign post-mortems (inquirED Fall 2025-2026 Account-Driven Campaign brief)",
      "what": "Past MQA campaigns table: open rate, CTR, deal metrics, and takeaways for Iowa and South Carolina",
      "how": "Entered by hand from each campaign's post-mortem into `past_campaigns`; not touched by the weekly refresh"
+    },
+    {
+     "source": "State adoption calendar (state strategy list shared in the States Sales monthly, 2026-10-14)",
+     "what": "Per state and product: ELA list status, next adoption window, next step, K-12 TAM, and partner count, shown as the Next adoption column and a drawer block. Inkwell only for now (NY, IL, NC, NJ, WA, MA, CO, TN, VA, PA)",
+     "how": "Entered by hand into `adoption_by_state`; not refreshed automatically, and the list is not yet confirmed as the team source of truth. Starbridge does not track state adoptions because they are not RFPs"
+    },
+    {
+     "source": "Slack #rfps (field signal)",
+     "what": "Confirmed procurement-stage updates (submitted, passed first review round, shortlisted, finalist, won, lost, stalled), shown under each state's Guru fit block",
+     "how": "A person reviews new #rfps messages, confirms each real stage update, then writes it to `field_signal_by_state` with a link to the Slack post. There is no parser, because the channel mixes updates with logistics. A signal whose product differs from the state's tag shows a warning and never changes the tag"
     }
    ],
    "score_table": [
@@ -516,6 +526,11 @@
      "rule": "Actioned / Not Interested buttons",
      "value": "Each state + product row has Actioned, Not interested, and Clear buttons plus a notes field, saved to the Airtable Decisions table and shown as a badge in the Decision column for everyone who opens the dashboard",
      "why": "A shared triage log (not per-browser storage). Decisions are a record only: they do not change a state's score, tier, or ranking"
+    },
+    {
+     "rule": "Adoption timing never removes a state",
+     "value": "A state with a closed or distant adoption keeps its row, rank, and score; the Next adoption column and drawer block add timing context only",
+     "why": "A signal is still a signal; the column shows whether the state is open now or waiting on an adoption window"
     }
    ],
    "limits": [

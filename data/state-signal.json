@@ -1278,7 +1278,7 @@
     },
     {
       "state": "MD",
-      "product": "inkwell",
+      "product": "ij",
       "since": "2024-01",
       "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
       "sources": [
@@ -3790,7 +3790,7 @@
       ]
     },
     "MD": {
-      "product": "inkwell",
+      "product": "ij",
       "since": "2024-01",
       "headline": "Maryland's State Board voted January 23, 2024 to mandate Science of Reading-aligned instruction statewide, formalized October 2024, effective SY2024-25; revised MCCRS ELA standards + a new HQIM adoption framework followed in July 2025.",
       "detail": "Requires phonics/fluency/vocabulary/comprehension-based instruction, K-3 universal screeners (new approved-screener list effective SY2025-26), science-of-reading proficiency for educator licensure from July 2025. Districts are actively re-evaluating K-5 ELA curriculum against the new HQIM framework.",
@@ -5161,6 +5161,141 @@
       "source_url": "https://app.getguru.com/cards/TLRAaoEc/Washington-DC-Information-Card",
       "source_note": "",
       "next_step": "Flag to Rachel Strang/Content team to populate DC's Standard Alignment Percentage table and growth correlation document, since the card currently shows no state adoption window to anchor outreach timing."
+    }
+  },
+  "adoption_by_state": {
+    "NY": {
+      "inkwell": {
+        "status": "open",
+        "ela_list": "None (open market)",
+        "next_adoption": "None",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "2.53M",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "IL": {
+      "inkwell": {
+        "status": "open",
+        "ela_list": "None (open market)",
+        "next_adoption": "None",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "1.85M",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "NC": {
+      "inkwell": {
+        "status": "open",
+        "ela_list": "None (open market)",
+        "next_adoption": "None",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "1.54M",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "NJ": {
+      "inkwell": {
+        "status": "open",
+        "ela_list": "None (open market)",
+        "next_adoption": "None",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "1.38M",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "WA": {
+      "inkwell": {
+        "status": "open",
+        "ela_list": "None (open market)",
+        "next_adoption": "None",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "1.09M",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "MA": {
+      "inkwell": {
+        "status": "rolling",
+        "ela_list": "Waiver to deviate",
+        "next_adoption": "Rolling",
+        "window": null,
+        "next_step": null,
+        "tam_k12": "923K",
+        "partners": null,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "CO": {
+      "inkwell": {
+        "status": "window",
+        "ela_list": null,
+        "next_adoption": "~Oct 2027 - Jan 2028",
+        "window": "~Oct 2027 - Jan 2028",
+        "next_step": "UFLI signed + ESSA evidence",
+        "tam_k12": "871K",
+        "partners": 3,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "TN": {
+      "inkwell": {
+        "status": "window",
+        "ela_list": null,
+        "next_adoption": "~Oct 2027 - Feb 2028",
+        "window": "~Oct 2027 - Feb 2028",
+        "next_step": "UFLI signed + full K-2",
+        "tam_k12": "1.01M",
+        "partners": 0,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "VA": {
+      "inkwell": {
+        "status": "window",
+        "ela_list": null,
+        "next_adoption": "~Jan 2028 - Feb 2028",
+        "window": "~Jan 2028 - Feb 2028",
+        "next_step": "UFLI signed + VDOE OKs paired submission",
+        "tam_k12": "1.26M",
+        "partners": 0,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    },
+    "PA": {
+      "inkwell": {
+        "status": "window",
+        "ela_list": null,
+        "next_adoption": "~Jun 2028",
+        "window": "~Jun 2028",
+        "next_step": "EdReports green; we don't have to actually apply",
+        "tam_k12": "1.69M",
+        "partners": 4,
+        "source": "State strategy list (Jeanette Hardy Baum), shared in the States Sales monthly meeting 2026-10-14; not yet confirmed as the team source of truth"
+      }
+    }
+  },
+  "field_signal_by_state": {
+    "MD": {
+      "product": "ij",
+      "stage": "passed_round_1",
+      "stage_label": "Passed first review round",
+      "headline": "Inquiry Journeys passed the first review round in Maryland.",
+      "confirmed_by": "Allie Wheeler",
+      "source_channel": "#rfps",
+      "source_url": "https://inquired.slack.com/archives/CM7FF7TSP/p1791209694893049",
+      "posted_at": "2026-10-05",
+      "conflicts_with_product_tag": false
     }
   }
 }

@@ -689,6 +689,34 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .ss-gf-src { margin-top: 8px !important; font-size: 11px; color: var(--muted); }
 .ss-gf-src a { color: var(--iq-dk-purple); font-weight: 700; }
 
+/* Field signal (Slack #rfps) */
+.ss-field-signal { margin: 10px 10px 12px 20px; background: #F6EEF3; border: 1px solid rgba(74,21,75,.28); border-radius: 8px; padding: 11px 14px 13px; }
+.ss-fs-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 7px; flex-wrap: wrap; }
+.ss-fs-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: #4A154B; }
+.ss-fs-stage { display: inline-block; font-size: 10.5px; font-weight: 900; padding: 2px 9px; border-radius: 10px; white-space: nowrap; text-transform: uppercase; letter-spacing: .02em; }
+.ss-fs-forward { background: rgba(26,127,90,.12); color: var(--up); border: 1px solid rgba(26,127,90,.3); }
+.ss-fs-lost { background: rgba(179,38,30,.12); color: var(--down); border: 1px solid rgba(179,38,30,.3); }
+.ss-fs-stalled { background: rgba(117,117,117,.1); color: var(--muted); border: 1px solid rgba(117,117,117,.25); }
+.ss-field-signal p { margin: 0 0 8px; font-size: 12.5px; color: var(--ink); line-height: 1.55; }
+.ss-field-signal p:last-of-type { margin-bottom: 0; }
+.ss-fs-meta { font-size: 11px; color: #6B5A6B; }
+.ss-fs-meta a { color: #4A154B; font-weight: 700; }
+.ss-fs-conflict { margin-top: 9px; padding: 8px 10px; background: rgba(179,38,30,.08); border: 1px solid rgba(179,38,30,.25); border-radius: 6px; font-size: 11.5px; color: #7A2318; }
+.ss-fs-conflict strong { color: #B3261E; }
+
+/* State adoption timing, State Signal (MQA) */
+.ss-adopt-line { white-space: nowrap; line-height: 1.7; }
+.ss-adopt-badge { display: inline-block; font-size: 10.5px; font-weight: 900; padding: 2px 9px; border-radius: 10px; white-space: nowrap; }
+.ss-adopt-open { color: var(--up); background: rgba(26,127,90,.12); border: 1px solid rgba(26,127,90,.3); }
+.ss-adopt-rolling { color: #5C4F00; background: #FDF6D2; border: 1px solid rgba(197,168,0,.35); }
+.ss-adopt-window { color: var(--iq-dk-purple); background: #EAEEF5; border: 1px solid var(--line); }
+.ss-adoption { margin: 10px 10px 12px 20px; background: #EAEEF5; border: 1px solid var(--line); border-radius: 8px; padding: 11px 14px 13px; }
+.ss-ad-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 7px; flex-wrap: wrap; }
+.ss-ad-label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: var(--iq-dk-purple); }
+.ss-ad-grid { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12.5px; color: var(--ink); line-height: 1.55; }
+.ss-ad-note { margin: 8px 0 0; font-size: 11.5px; color: var(--muted); }
+.ss-ad-src { margin: 4px 0 0; font-size: 11px; color: var(--muted); }
+
 /* Actioned / Not Interested triage — State Signal (MQA) top_states/watch_states rows */
 .ss-dec-badge { display: inline-block; font-size: 10.5px; font-weight: 900; padding: 2px 9px; border-radius: 10px; white-space: nowrap; }
 .ss-dec-badge-actioned { color: var(--up); background: rgba(26,127,90,0.12); border: 1px solid rgba(26,127,90,0.3); }
