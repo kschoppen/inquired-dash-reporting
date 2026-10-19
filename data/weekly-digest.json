@@ -4,9 +4,9 @@
   "updated": "2026-10-12",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-10-12",
+    "updated": "2026-10-19",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 5 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (487 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 12 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (483 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -108,8 +108,20 @@
         "period": "2026-10-05",
         "label": "Oct 5",
         "branded": {
-          "clicks": 487,
-          "impressions": 9308
+          "clicks": 491,
+          "impressions": 9470
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-10-12",
+        "label": "Oct 12",
+        "branded": {
+          "clicks": 483,
+          "impressions": 4125
         },
         "youtube": null,
         "instagram": null,
@@ -127,8 +139,8 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 358,
-          "previous": 517
+          "current": 442,
+          "previous": 358
         }
       }
     }

@@ -31,17 +31,17 @@
     "closed_won_mtd": "$417,347"
   },
   "brand_lift": {
-    "updated": "2026-10-12",
+    "updated": "2026-10-19",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 5 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (487 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 12 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (483 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
         "sub": "Organic clicks on branded queries · inquired.com property",
-        "value": 487,
-        "delta": "-31% WoW 🚨",
-        "delta_dir": "down",
+        "value": 483,
+        "delta": "+23% WoW",
+        "delta_dir": "up",
         "spark": [
           239,
           177,
@@ -51,7 +51,8 @@
           441,
           402,
           610,
-          487
+          491,
+          483
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
