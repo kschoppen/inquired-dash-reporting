@@ -2,7 +2,7 @@
 
 A single Netlify site that hosts month-over-month reporting for every marketing reporting skill, each on its own tab. Slack stays a lightweight "here's the headline → go look" nudge; the dense charts/tables live here.
 
-**Live:** Netlify (password-protected). Deploys on push to `main`.
+**Live:** Netlify, behind Google sign-in (inquired.com accounts only; gate in `netlify/edge-functions/auth-gate.ts`, flow in `netlify/functions/auth.mts`; needs GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SESSION_SECRET in Netlify). Deploys on push to `main`.
 
 ## How it works (data-driven)
 - **Each reporting skill emits a JSON history file** into `/data/` (e.g. `data/monthly-digest.json`). This is the month-over-month store — append a new entry each run.
@@ -36,4 +36,4 @@ Use `null` for metrics not available in a given month — the dashboard renders 
 - _planned:_ Weekly Funnel · Competitor · SEO
 
 ## Local preview
-Open `index.html` in a browser, or `python3 -m http.server` from the repo root (needed so `fetch()` can read `/data`). The site is password-protected on Netlify, so deploys can't be curl-verified — verify locally before pushing.
+Open `index.html` in a browser, or `python3 -m http.server` from the repo root (needed so `fetch()` can read `/data`). The site is behind Google sign-in, so deploys can't be curl-verified — verify locally before pushing (`netlify dev` needs a `.env` with the three sign-in variables).

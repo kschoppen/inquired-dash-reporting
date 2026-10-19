@@ -1,0 +1,11 @@
+{
+  "name": "inquired-dash-reporting",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "jose": "^6.2.12"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^6.0.2"
+  }
+}
