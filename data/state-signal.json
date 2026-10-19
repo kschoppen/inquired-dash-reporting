@@ -1,21 +1,21 @@
 {
   "skill": "state-signal",
   "title": "State Signal (MQA)",
-  "updated": "2026-10-12",
+  "updated": "2026-10-19",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
   "cadence": "Weekly · Mondays (HubSpot numbers + Warm Signals via SIGNALS_ROUTINE.md PHASE A, Mondays 8am ET); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
-    "274 of 1835 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
+    "274 of 1841 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
     "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",
     "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL — none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
     "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs — 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
     "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context — starting points for a rep to personalize, not finished copy.",
-    "Warm Signals refresh (2026-10-12): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped to rows Added to Bridge in the trailing 90 days (>= 2026-07-14) with Status New/Saved -- 2,251 rows scanned in that window (798 GFE, 421 IJ, 1,032 Inkwell), of which 23 clear the Meeting_Score >= 10 quality bar (7 GFE, 6 IJ, 10 Inkwell). The server-side op:added_date filter was not retried this run (confirmed broken on 9/28 and 10/5); worked around the same way by filtering server-side on Status only (sorted by triggeredAt descending), then applying the 90-day cutoff client-side against each row's raw Added-to-Bridge value, stopping once a page crossed the cutoff. The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the ~100 starbridge_ids tracked across this run's 10 top_states, only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as last run."
+    "Warm Signals refresh (2026-10-19): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped to rows Status New/Saved with Added to Bridge in the trailing 90 days (>= 2026-07-21) -- 2,649 rows scanned in that window (821 GFE, 535 IJ, 1,293 Inkwell), of which 29 clear the Meeting_Score >= 10 quality bar (8 GFE, 5 IJ, 16 Inkwell). The server-side op:added_date filter was not retried this run (confirmed broken on 9/28 and 10/5); worked around the same way by filtering server-side on Status only (sorted by triggeredAt descending), then applying the 90-day cutoff client-side against each row's raw Added-to-Bridge value, stopping once a page crossed the cutoff. The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 68 starbridge_ids resolved across this run's 10 top_states (68 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as last run."
   ],
   "national_totals": {
-    "qualified": 1835,
-    "actionable": 1270,
+    "qualified": 1841,
+    "actionable": 1260,
     "unassigned_qualified": 274,
     "unassigned_actionable": 263,
     "states_with_signal": 53,
@@ -1128,6 +1128,281 @@
           "actionable": 4
         }
       ]
+    },
+    {
+      "period": "2026-10-19",
+      "states": [
+        {
+          "state": "AK",
+          "qualified": 7,
+          "actionable": 6
+        },
+        {
+          "state": "AL",
+          "qualified": 10,
+          "actionable": 8
+        },
+        {
+          "state": "AR",
+          "qualified": 7,
+          "actionable": 6
+        },
+        {
+          "state": "AS",
+          "qualified": 1,
+          "actionable": 0
+        },
+        {
+          "state": "AZ",
+          "qualified": 35,
+          "actionable": 29
+        },
+        {
+          "state": "CA",
+          "qualified": 117,
+          "actionable": 94
+        },
+        {
+          "state": "CO",
+          "qualified": 29,
+          "actionable": 19
+        },
+        {
+          "state": "CT",
+          "qualified": 42,
+          "actionable": 33
+        },
+        {
+          "state": "DC",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "DE",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "FL",
+          "qualified": 22,
+          "actionable": 17
+        },
+        {
+          "state": "GA",
+          "qualified": 22,
+          "actionable": 12
+        },
+        {
+          "state": "HI",
+          "qualified": 8,
+          "actionable": 6
+        },
+        {
+          "state": "IA",
+          "qualified": 49,
+          "actionable": 31
+        },
+        {
+          "state": "ID",
+          "qualified": 8,
+          "actionable": 5
+        },
+        {
+          "state": "IL",
+          "qualified": 125,
+          "actionable": 53
+        },
+        {
+          "state": "IN",
+          "qualified": 12,
+          "actionable": 9
+        },
+        {
+          "state": "International",
+          "qualified": 15,
+          "actionable": 12
+        },
+        {
+          "state": "KS",
+          "qualified": 31,
+          "actionable": 18
+        },
+        {
+          "state": "KY",
+          "qualified": 52,
+          "actionable": 48
+        },
+        {
+          "state": "LA",
+          "qualified": 8,
+          "actionable": 5
+        },
+        {
+          "state": "MA",
+          "qualified": 58,
+          "actionable": 35
+        },
+        {
+          "state": "MD",
+          "qualified": 19,
+          "actionable": 13
+        },
+        {
+          "state": "ME",
+          "qualified": 18,
+          "actionable": 12
+        },
+        {
+          "state": "MI",
+          "qualified": 61,
+          "actionable": 29
+        },
+        {
+          "state": "MN",
+          "qualified": 61,
+          "actionable": 40
+        },
+        {
+          "state": "MO",
+          "qualified": 23,
+          "actionable": 21
+        },
+        {
+          "state": "MS",
+          "qualified": 3,
+          "actionable": 2
+        },
+        {
+          "state": "MT",
+          "qualified": 6,
+          "actionable": 6
+        },
+        {
+          "state": "NC",
+          "qualified": 27,
+          "actionable": 17
+        },
+        {
+          "state": "ND",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "NE",
+          "qualified": 11,
+          "actionable": 9
+        },
+        {
+          "state": "NH",
+          "qualified": 10,
+          "actionable": 8
+        },
+        {
+          "state": "NJ",
+          "qualified": 124,
+          "actionable": 39
+        },
+        {
+          "state": "NM",
+          "qualified": 2,
+          "actionable": 2
+        },
+        {
+          "state": "NV",
+          "qualified": 9,
+          "actionable": 5
+        },
+        {
+          "state": "NY",
+          "qualified": 112,
+          "actionable": 73
+        },
+        {
+          "state": "OH",
+          "qualified": 33,
+          "actionable": 25
+        },
+        {
+          "state": "OK",
+          "qualified": 14,
+          "actionable": 10
+        },
+        {
+          "state": "OR",
+          "qualified": 49,
+          "actionable": 26
+        },
+        {
+          "state": "PA",
+          "qualified": 60,
+          "actionable": 38
+        },
+        {
+          "state": "RI",
+          "qualified": 5,
+          "actionable": 5
+        },
+        {
+          "state": "SC",
+          "qualified": 15,
+          "actionable": 11
+        },
+        {
+          "state": "SD",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "TN",
+          "qualified": 19,
+          "actionable": 15
+        },
+        {
+          "state": "TX",
+          "qualified": 47,
+          "actionable": 31
+        },
+        {
+          "state": "UT",
+          "qualified": 9,
+          "actionable": 5
+        },
+        {
+          "state": "Unassigned",
+          "qualified": 274,
+          "actionable": 263
+        },
+        {
+          "state": "VA",
+          "qualified": 29,
+          "actionable": 13
+        },
+        {
+          "state": "VT",
+          "qualified": 6,
+          "actionable": 5
+        },
+        {
+          "state": "WA",
+          "qualified": 51,
+          "actionable": 22
+        },
+        {
+          "state": "WI",
+          "qualified": 64,
+          "actionable": 53
+        },
+        {
+          "state": "WV",
+          "qualified": 4,
+          "actionable": 4
+        },
+        {
+          "state": "WY",
+          "qualified": 2,
+          "actionable": 0
+        }
+      ]
     }
   ],
   "top_states": [
@@ -1135,29 +1410,29 @@
       "rank": 1,
       "state": "CA",
       "qualified": 117,
-      "actionable": 95,
+      "actionable": 94,
       "product": "inkwell"
     },
     {
       "rank": 2,
       "state": "NY",
-      "qualified": 113,
-      "actionable": 72,
+      "qualified": 112,
+      "actionable": 73,
       "product": "ij"
     },
     {
       "rank": 3,
-      "state": "WI",
-      "qualified": 64,
-      "actionable": 54,
-      "product": "inkwell"
+      "state": "IL",
+      "qualified": 125,
+      "actionable": 53,
+      "product": "ij"
     },
     {
       "rank": 4,
-      "state": "IL",
-      "qualified": 123,
-      "actionable": 54,
-      "product": "ij"
+      "state": "WI",
+      "qualified": 64,
+      "actionable": 53,
+      "product": "inkwell"
     },
     {
       "rank": 5,
@@ -1168,37 +1443,37 @@
     },
     {
       "rank": 6,
-      "state": "MA",
-      "qualified": 56,
-      "actionable": 41,
-      "product": "inkwell"
+      "state": "MN",
+      "qualified": 61,
+      "actionable": 40,
+      "product": "ij"
     },
     {
       "rank": 7,
       "state": "NJ",
       "qualified": 124,
-      "actionable": 40,
+      "actionable": 39,
       "product": "inkwell"
     },
     {
       "rank": 8,
-      "state": "MN",
-      "qualified": 63,
-      "actionable": 40,
+      "state": "PA",
+      "qualified": 60,
+      "actionable": 38,
       "product": "ij"
     },
     {
       "rank": 9,
-      "state": "PA",
-      "qualified": 61,
-      "actionable": 38,
-      "product": "ij"
+      "state": "MA",
+      "qualified": 58,
+      "actionable": 35,
+      "product": "inkwell"
     },
     {
       "rank": 10,
       "state": "CT",
       "qualified": 42,
-      "actionable": 34,
+      "actionable": 33,
       "product": "inkwell"
     }
   ],
@@ -1269,7 +1544,7 @@
         }
       ],
       "qualified": 42,
-      "actionable": 34,
+      "actionable": 33,
       "starbridge_open_rfps": 2,
       "priority_score": 56,
       "priority_tier": "act_now",
@@ -1319,7 +1594,7 @@
         }
       ],
       "qualified": 35,
-      "actionable": 26,
+      "actionable": 29,
       "starbridge_open_rfps": 0,
       "priority_score": 50,
       "priority_tier": "watch",
@@ -1411,7 +1686,7 @@
         }
       ],
       "qualified": 29,
-      "actionable": 18,
+      "actionable": 19,
       "starbridge_open_rfps": 1,
       "priority_score": 41,
       "priority_tier": "watch",
@@ -1456,7 +1731,7 @@
           "url": "https://www.uen.org/core/socialstudies/"
         }
       ],
-      "qualified": 8,
+      "qualified": 9,
       "actionable": 5,
       "starbridge_open_rfps": 2,
       "priority_score": 37,
@@ -1479,8 +1754,8 @@
           "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
         }
       ],
-      "qualified": 49,
-      "actionable": 21,
+      "qualified": 51,
+      "actionable": 22,
       "starbridge_open_rfps": 0,
       "priority_score": 36,
       "priority_tier": "watch",
@@ -1538,6 +1813,29 @@
       }
     },
     {
+      "state": "NV",
+      "product": "inkwell",
+      "since": "2025-06",
+      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
+      "sources": [
+        {
+          "title": "SB460 Overview - Nevada Legislature",
+          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
+        }
+      ],
+      "qualified": 9,
+      "actionable": 5,
+      "starbridge_open_rfps": 0,
+      "priority_score": 35,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 18,
+        "policy_recency": 12,
+        "hubspot_footprint": 5
+      }
+    },
+    {
       "state": "IN",
       "product": "ij",
       "since": "2023-06",
@@ -1548,7 +1846,7 @@
           "url": "https://indianacapitalchronicle.com/2023/06/08/indiana-officials-approve-new-streamlined-k-12-education-standards/"
         }
       ],
-      "qualified": 11,
+      "qualified": 12,
       "actionable": 9,
       "starbridge_open_rfps": 0,
       "priority_score": 32,
@@ -1837,7 +2135,7 @@
         }
       ],
       "qualified": 22,
-      "actionable": 16,
+      "actionable": 17,
       "starbridge_open_rfps": 0,
       "priority_score": 19,
       "priority_tier": "low_priority",
@@ -1859,7 +2157,7 @@
           "url": "https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/english-reading-literacy/literacy/virginia-literacy-act"
         }
       ],
-      "qualified": 28,
+      "qualified": 29,
       "actionable": 13,
       "starbridge_open_rfps": 0,
       "priority_score": 19,
@@ -1883,7 +2181,7 @@
         }
       ],
       "qualified": 2,
-      "actionable": 1,
+      "actionable": 0,
       "starbridge_open_rfps": 0,
       "priority_score": 18,
       "priority_tier": "low_priority",
@@ -1892,29 +2190,6 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 2
-      }
-    },
-    {
-      "state": "NV",
-      "product": "inkwell",
-      "since": "2025-06",
-      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
-      "sources": [
-        {
-          "title": "SB460 Overview - Nevada Legislature",
-          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
-        }
-      ],
-      "qualified": 10,
-      "actionable": 5,
-      "starbridge_open_rfps": 0,
-      "priority_score": 17,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 5
       }
     },
     {
@@ -1951,8 +2226,8 @@
           "url": "https://www.ednc.org/2021-04-06-science-reading-bill-nc-north-carolina-instruction-explain-educators-teacherss/"
         }
       ],
-      "qualified": 25,
-      "actionable": 19,
+      "qualified": 27,
+      "actionable": 17,
       "starbridge_open_rfps": 0,
       "priority_score": 16,
       "priority_tier": "low_priority",
@@ -2089,7 +2364,7 @@
           "url": "https://legislature.vermont.gov/assets/Legislative-Reports/edu-act-139-improving-literacy-annual-report-2026.pdf"
         }
       ],
-      "qualified": 7,
+      "qualified": 6,
       "actionable": 5,
       "starbridge_open_rfps": 0,
       "priority_score": 13,
@@ -2125,29 +2400,6 @@
       }
     },
     {
-      "state": "ID",
-      "product": "inkwell",
-      "since": "unknown",
-      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
-      "sources": [
-        {
-          "title": "Idaho Code Title 33, Chapter 18",
-          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
-        }
-      ],
-      "qualified": 8,
-      "actionable": 6,
-      "starbridge_open_rfps": 0,
-      "priority_score": 10,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 0,
-        "hubspot_footprint": 10
-      }
-    },
-    {
       "state": "DC",
       "product": "ij",
       "since": "2023-06",
@@ -2169,10 +2421,45 @@
         "policy_recency": 4,
         "hubspot_footprint": 5
       }
+    },
+    {
+      "state": "ID",
+      "product": "inkwell",
+      "since": "unknown",
+      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "sources": [
+        {
+          "title": "Idaho Code Title 33, Chapter 18",
+          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 5,
+      "starbridge_open_rfps": 0,
+      "priority_score": 5,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 0,
+        "hubspot_footprint": 5
+      }
     }
   ],
   "accounts_by_state": {
     "CA": [
+      {
+        "id": 57099197860,
+        "name": "MAS Sacramento",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-08-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/57099197860",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
       {
         "id": 8408952637,
         "name": "Phillips Brooks School",
@@ -2190,7 +2477,7 @@
         "name": "University Of San Diego",
         "segment": "Other",
         "stage": "Engaged",
-        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
+        "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
         "last_contacted": null,
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6719616953",
@@ -2223,7 +2510,7 @@
       },
       {
         "id": 55218375690,
-        "name": "roavc.com",
+        "name": "Roavc.com",
         "segment": "Single Site",
         "stage": "MQA",
         "signal": "High Intent DL",
@@ -2280,30 +2567,18 @@
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976200299",
         "starbridge_id": "ce61f22f-acde-4cd9-9ab9-42028f7f7e02",
         "warm_signal": false
-      },
-      {
-        "id": 2346507844,
-        "name": "Berkeley Unified School District",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": "Clicked Email or 5+ Clicks; Upcoming Adoption",
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-03-10",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2346507844",
-        "starbridge_id": "cee7c016-92d8-4f7c-bc3b-9c503c01d260",
-        "warm_signal": false
       }
     ],
     "NY": [
       {
-        "id": 55593374999,
-        "name": "Yeshiva Har Torah",
+        "id": 50741061551,
+        "name": "Seymour Dual Language School",
         "segment": "Single Site",
         "stage": "MQA",
-        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-07-01",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/55593374999",
+        "signal": "Clicked Email or 5+ Clicks; Upcoming Adoption",
+        "owner": "Denise Mueller",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/50741061551",
         "starbridge_id": null,
         "warm_signal": false
       },
@@ -2329,7 +2604,15 @@
         "last_contacted": "2026-03-13",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5173275713",
         "starbridge_id": "368f7838-1389-407d-ac67-4be9e132c6d6",
-        "warm_signal": true
+        "warm_signal": {
+          "buyer": "Byram Hills Central School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Board Of Education Board Of Education Meeting",
+          "status": "New",
+          "posted_date": "2026-10-13",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
       },
       {
         "id": 30357262519,
@@ -2392,18 +2675,6 @@
         "warm_signal": false
       },
       {
-        "id": 35219851579,
-        "name": "Excellence Community Schools",
-        "segment": "Medium District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2025-07-02",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/35219851579",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
         "id": 5667671906,
         "name": "Greenwich Central School District",
         "segment": "Small District",
@@ -2413,6 +2684,140 @@
         "last_contacted": "2025-07-14",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5667671906",
         "starbridge_id": "455a7623-8bff-4512-aaa5-bece3bd048ca",
+        "warm_signal": false
+      },
+      {
+        "id": 5667605383,
+        "name": "Chester Union Free School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "DL attended TL Webinar; Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-10",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5667605383",
+        "starbridge_id": "131c26db-f8af-4c0c-970e-8c7ac6b2b548",
+        "warm_signal": false
+      }
+    ],
+    "IL": [
+      {
+        "id": 8976966785,
+        "name": "Hough Street Elementary School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976966785",
+        "starbridge_id": "5ffb2869-6271-4982-91bd-4622c569614e",
+        "warm_signal": false
+      },
+      {
+        "id": 5246857165,
+        "name": "Athens Senior High School",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246857165",
+        "starbridge_id": "29efbc2f-bf60-449f-86ea-650438c9b596",
+        "warm_signal": false
+      },
+      {
+        "id": 53259121982,
+        "name": "St. Germaine Catholic School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/53259121982",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 8976301938,
+        "name": "Tonica Community Consolidated School District 79",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976301938",
+        "starbridge_id": "f25e2c6e-5681-4a35-96f5-e9f1ed4034c0",
+        "warm_signal": false
+      },
+      {
+        "id": 5246865672,
+        "name": "Jsd117",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "High Intent DL; Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-08-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246865672",
+        "starbridge_id": "c01f81b3-082e-4fd0-be40-91a8ef76fcb6",
+        "warm_signal": false
+      },
+      {
+        "id": 19249508745,
+        "name": "Arie Crown Hebrew Day School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249508745",
+        "starbridge_id": "dbff3edb-d6e2-4cec-8f20-2ec0099a3fd2",
+        "warm_signal": false
+      },
+      {
+        "id": 2866973855,
+        "name": "Cahokia School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2026-02-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2866973855",
+        "starbridge_id": "9242cea2-c334-4629-96a1-8dfab8c17d74",
+        "warm_signal": false
+      },
+      {
+        "id": 49184783934,
+        "name": "School of St. Mary",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/49184783934",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 8976940934,
+        "name": "Wolf Ridge Educational Center",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976940934",
+        "starbridge_id": "faa363af-3528-4219-852c-25b6db98e996",
+        "warm_signal": false
+      },
+      {
+        "id": 1088604027,
+        "name": "Riverside District 96",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "DL attended TL Webinar; High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1088604027",
+        "starbridge_id": "8e06eccc-7218-4bb8-81a7-03ca8a646185",
         "warm_signal": false
       }
     ],
@@ -2538,128 +2943,6 @@
         "warm_signal": false
       }
     ],
-    "IL": [
-      {
-        "id": 8976966785,
-        "name": "Hough Street Elementary School",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "Clicked Email or 5+ Clicks; Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": null,
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976966785",
-        "starbridge_id": "5ffb2869-6271-4982-91bd-4622c569614e",
-        "warm_signal": false
-      },
-      {
-        "id": 5246857165,
-        "name": "Athens Senior High School",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-04-14",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246857165",
-        "starbridge_id": "29efbc2f-bf60-449f-86ea-650438c9b596",
-        "warm_signal": false
-      },
-      {
-        "id": 53259121982,
-        "name": "St. Germaine Catholic School",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-04-13",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/53259121982",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 8976301938,
-        "name": "Tonica Community Consolidated School District 79",
-        "segment": "Other",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": null,
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976301938",
-        "starbridge_id": "f25e2c6e-5681-4a35-96f5-e9f1ed4034c0",
-        "warm_signal": false
-      },
-      {
-        "id": 5246865672,
-        "name": "Jsd117",
-        "segment": "Other",
-        "stage": "MQA",
-        "signal": "High Intent DL; Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-08-04",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246865672",
-        "starbridge_id": "c01f81b3-082e-4fd0-be40-91a8ef76fcb6",
-        "warm_signal": false
-      },
-      {
-        "id": 19249508745,
-        "name": "Arie Crown Hebrew Day School",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-03-11",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249508745",
-        "starbridge_id": "dbff3edb-d6e2-4cec-8f20-2ec0099a3fd2",
-        "warm_signal": false
-      },
-      {
-        "id": 2866973855,
-        "name": "Cahokia School District",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": null,
-        "owner": "Anne Matz",
-        "last_contacted": "2026-02-09",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2866973855",
-        "starbridge_id": "9242cea2-c334-4629-96a1-8dfab8c17d74",
-        "warm_signal": false
-      },
-      {
-        "id": 49184783934,
-        "name": "School of St. Mary",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-04-09",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/49184783934",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 8976940934,
-        "name": "Wolf Ridge Educational Center",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-01-17",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976940934",
-        "starbridge_id": "faa363af-3528-4219-852c-25b6db98e996",
-        "warm_signal": false
-      },
-      {
-        "id": 1088604027,
-        "name": "Riverside District 96",
-        "segment": "Other",
-        "stage": "MQA",
-        "signal": "DL attended TL Webinar; High Intent DL",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-01-17",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1088604027",
-        "starbridge_id": "8e06eccc-7218-4bb8-81a7-03ca8a646185",
-        "warm_signal": false
-      }
-    ],
     "KY": [
       {
         "id": 18861876146,
@@ -2690,23 +2973,11 @@
         "name": "Grayson County Schools",
         "segment": "Small District",
         "stage": "MQA",
-        "signal": "High Intent DL; Upcoming Adoption",
+        "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
         "last_contacted": "2026-04-30",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116277",
         "starbridge_id": "083a1429-f512-437c-9dd4-d6f222f1c478",
-        "warm_signal": false
-      },
-      {
-        "id": 16948542598,
-        "name": "Paducah Independent School District",
-        "segment": "Other",
-        "stage": "MQA",
-        "signal": null,
-        "owner": "LJ Grab",
-        "last_contacted": "2026-02-27",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948542598",
-        "starbridge_id": null,
         "warm_signal": false
       },
       {
@@ -2718,6 +2989,18 @@
         "owner": "LJ Grab",
         "last_contacted": null,
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1825827658",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 16948542598,
+        "name": "Paducah Independent School District",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-02-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948542598",
         "starbridge_id": null,
         "warm_signal": false
       },
@@ -2779,250 +3062,6 @@
         "last_contacted": "2025-12-17",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43743763897",
         "starbridge_id": "6c59aadd-c07f-4289-8726-d40cbf1ab420",
-        "warm_signal": false
-      }
-    ],
-    "MA": [
-      {
-        "id": 19155500077,
-        "name": "Lumen School",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-03-01",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19155500077",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 5135111155,
-        "name": "Longmeadow Public Schools",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": "High Intent DL; Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2026-06-29",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111155",
-        "starbridge_id": "b978decc-75bd-4038-9cf8-6724a80bfc30",
-        "warm_signal": false
-      },
-      {
-        "id": 8976345738,
-        "name": "Lowell Community Charter Public School",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-07-06",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976345738",
-        "starbridge_id": "92cebee8-89f3-4e25-9066-69b6e2e12e0b",
-        "warm_signal": false
-      },
-      {
-        "id": 19249583012,
-        "name": "Trinity Catholic Academy Brockton",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-11-17",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249583012",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 5135111168,
-        "name": "Easthampton Public Schools",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-10-28",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111168",
-        "starbridge_id": "426c6400-faf1-4446-98d0-546ad8a8af69",
-        "warm_signal": false
-      },
-      {
-        "id": 5647021593,
-        "name": "Worcester State University",
-        "segment": "Other",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2021-03-18",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5647021593",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 19249591597,
-        "name": "Greater Boston Academy",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-03-04",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249591597",
-        "starbridge_id": "b24f8026-9515-4a03-a6b8-19b4ed2a82e2",
-        "warm_signal": false
-      },
-      {
-        "id": 44417821804,
-        "name": "Norwood Public Schools",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": "High Intent DL; Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2026-05-14",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/44417821804",
-        "starbridge_id": "a935e743-82df-4f6c-98de-1a3020c48ef2",
-        "warm_signal": false
-      },
-      {
-        "id": 8679492943,
-        "name": "Foxborough Public Schools",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": "Clicked Email or 5+ Clicks; DL attended TL Webinar; Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-03-24",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8679492943",
-        "starbridge_id": "47ec124e-ed97-4b37-a256-2f74b2b69d6e",
-        "warm_signal": false
-      },
-      {
-        "id": 5135111176,
-        "name": "Dracut Public School",
-        "segment": "Medium District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2026-05-22",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111176",
-        "starbridge_id": "3683efc1-d080-4d23-8d18-e61033a8f8b6",
-        "warm_signal": false
-      }
-    ],
-    "NJ": [
-      {
-        "id": 4998687829,
-        "name": "North Brunswick Township High School",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "High Intent DL",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-03-31",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4998687829",
-        "starbridge_id": "a45e2926-422e-4eee-ae2c-dbeffdf30861",
-        "warm_signal": false
-      },
-      {
-        "id": 8977322104,
-        "name": "William Allen Iii Middle School",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "DL attended TL Webinar; High Intent DL",
-        "owner": "LJ Grab",
-        "last_contacted": "2023-07-05",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977322104",
-        "starbridge_id": "1858a835-ac50-4c82-91d4-af15ac3fbafa",
-        "warm_signal": false
-      },
-      {
-        "id": 8976026229,
-        "name": "Hampton Borough School District",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-03-27",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976026229",
-        "starbridge_id": "2418449c-5b5d-4727-98ca-46696522ceca",
-        "warm_signal": false
-      },
-      {
-        "id": 8976308801,
-        "name": "White Township School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2020-06-22",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976308801",
-        "starbridge_id": "f578cee0-90ce-43ac-ade1-0aefd980077b",
-        "warm_signal": false
-      },
-      {
-        "id": 8976284555,
-        "name": "Fair Haven Borough School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-01-05",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976284555",
-        "starbridge_id": "ff2b795d-4512-4f95-be19-2c2c0202f6de",
-        "warm_signal": false
-      },
-      {
-        "id": 4996573882,
-        "name": "Rumson-fair Haven Regional High School",
-        "segment": "Medium District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2024-01-09",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996573882",
-        "starbridge_id": "b38d94b0-efe1-42b9-9203-06e6166eb1bd",
-        "warm_signal": false
-      },
-      {
-        "id": 2447937218,
-        "name": "Vineland Public Schools",
-        "segment": "Large District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2025-05-22",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2447937218",
-        "starbridge_id": "036b1398-54a9-4090-9130-bcee57d7a0de",
-        "warm_signal": false
-      },
-      {
-        "id": 4996659586,
-        "name": "Wharton Board Of Education",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-07-24",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996659586",
-        "starbridge_id": "9728a3c9-712c-447d-9882-5f92ba3ef695",
-        "warm_signal": false
-      },
-      {
-        "id": 8976771446,
-        "name": "Warren Township School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-03-25",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976771446",
-        "starbridge_id": "416c300e-e0e8-4ca2-95fe-6d616f6269b4",
-        "warm_signal": false
-      },
-      {
-        "id": 18896512053,
-        "name": "Yavneh Academy",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2024-03-11",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/18896512053",
-        "starbridge_id": null,
         "warm_signal": false
       }
     ],
@@ -3124,15 +3163,15 @@
         "warm_signal": false
       },
       {
-        "id": 8976261523,
-        "name": "Albany Public School District",
-        "segment": "Small District",
+        "id": 1089007222,
+        "name": "Elk River Public School District ISD 728",
+        "segment": "Large District",
         "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-04-23",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976261523",
-        "starbridge_id": "e0f2eec4-da9c-4e94-85fb-465d7d4ff715",
+        "signal": null,
+        "owner": "Anne Matz",
+        "last_contacted": "2025-12-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1089007222",
+        "starbridge_id": "bb1ee9d6-7e16-4ef2-b84c-52a04e5cf323",
         "warm_signal": false
       },
       {
@@ -3145,6 +3184,128 @@
         "last_contacted": null,
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976242221",
         "starbridge_id": "77481a6b-8e6e-48b1-898b-73f7460772fb",
+        "warm_signal": false
+      }
+    ],
+    "NJ": [
+      {
+        "id": 4998687829,
+        "name": "North Brunswick Township High School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-31",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4998687829",
+        "starbridge_id": "a45e2926-422e-4eee-ae2c-dbeffdf30861",
+        "warm_signal": false
+      },
+      {
+        "id": 8977322104,
+        "name": "William Allen Iii Middle School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "DL attended TL Webinar; High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2023-07-05",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977322104",
+        "starbridge_id": "1858a835-ac50-4c82-91d4-af15ac3fbafa",
+        "warm_signal": false
+      },
+      {
+        "id": 8976026229,
+        "name": "Hampton Borough School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976026229",
+        "starbridge_id": "2418449c-5b5d-4727-98ca-46696522ceca",
+        "warm_signal": false
+      },
+      {
+        "id": 8976308801,
+        "name": "White Township School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2020-06-22",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976308801",
+        "starbridge_id": "f578cee0-90ce-43ac-ade1-0aefd980077b",
+        "warm_signal": false
+      },
+      {
+        "id": 8976771446,
+        "name": "Warren Township School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-25",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976771446",
+        "starbridge_id": "416c300e-e0e8-4ca2-95fe-6d616f6269b4",
+        "warm_signal": false
+      },
+      {
+        "id": 18896512053,
+        "name": "Yavneh Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/18896512053",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 4996573882,
+        "name": "Rumson-fair Haven Regional High School",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2024-01-09",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996573882",
+        "starbridge_id": "b38d94b0-efe1-42b9-9203-06e6166eb1bd",
+        "warm_signal": false
+      },
+      {
+        "id": 2447937218,
+        "name": "Vineland Public Schools",
+        "segment": "Large District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-05-22",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2447937218",
+        "starbridge_id": "036b1398-54a9-4090-9130-bcee57d7a0de",
+        "warm_signal": false
+      },
+      {
+        "id": 4996659586,
+        "name": "Wharton Board Of Education",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-07-24",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4996659586",
+        "starbridge_id": "9728a3c9-712c-447d-9882-5f92ba3ef695",
+        "warm_signal": false
+      },
+      {
+        "id": 8977302154,
+        "name": "Orchard Hill Elementary School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-05-02",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977302154",
+        "starbridge_id": "a388ef1b-12d4-4e5a-9d91-0ba06477240c",
         "warm_signal": false
       }
     ],
@@ -3186,6 +3347,18 @@
         "warm_signal": false
       },
       {
+        "id": 42249240066,
+        "name": "Eastern Lebanon County School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-05-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42249240066",
+        "starbridge_id": "a29d001c-fc55-473b-bed2-d7de30bdac17",
+        "warm_signal": false
+      },
+      {
         "id": 42248995908,
         "name": "Bellefonte Area SD",
         "segment": "Medium District",
@@ -3222,27 +3395,15 @@
         "warm_signal": false
       },
       {
-        "id": 8976333466,
-        "name": "Huntingdon Area School District",
-        "segment": "Small District",
+        "id": 8341697080,
+        "name": "Armstrong School District",
+        "segment": "Medium District",
         "stage": "Engaged",
         "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-11-19",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976333466",
-        "starbridge_id": "b8598423-b09e-42f3-aff8-4ebee87409fd",
-        "warm_signal": false
-      },
-      {
-        "id": 4355185179,
-        "name": "Burrell School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "High Intent DL",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-10-30",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4355185179",
-        "starbridge_id": "c3083310-8caf-4803-915d-2187c0c0e77a",
+        "owner": "Anne Matz",
+        "last_contacted": "2026-02-13",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8341697080",
+        "starbridge_id": "4b03e68d-6503-47a3-91fe-e6013b596471",
         "warm_signal": false
       },
       {
@@ -3258,29 +3419,163 @@
         "warm_signal": false
       },
       {
-        "id": 8341697080,
-        "name": "Armstrong School District",
-        "segment": "Medium District",
+        "id": 4355185179,
+        "name": "Burrell School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "High Intent DL",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-10-30",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4355185179",
+        "starbridge_id": "c3083310-8caf-4803-915d-2187c0c0e77a",
+        "warm_signal": false
+      }
+    ],
+    "MA": [
+      {
+        "id": 19155500077,
+        "name": "Lumen School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-01",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19155500077",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 19249583012,
+        "name": "Trinity Catholic Academy Brockton",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-11-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249583012",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 5647021593,
+        "name": "Worcester State University",
+        "segment": "Other",
         "stage": "Engaged",
         "signal": "Upcoming Adoption",
-        "owner": "Anne Matz",
-        "last_contacted": "2026-02-13",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8341697080",
-        "starbridge_id": "4b03e68d-6503-47a3-91fe-e6013b596471",
+        "owner": "LJ Grab",
+        "last_contacted": "2021-03-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5647021593",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 19249591597,
+        "name": "Greater Boston Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249591597",
+        "starbridge_id": "b24f8026-9515-4a03-a6b8-19b4ed2a82e2",
+        "warm_signal": false
+      },
+      {
+        "id": 5135111168,
+        "name": "Easthampton Public Schools",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-10-28",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111168",
+        "starbridge_id": "426c6400-faf1-4446-98d0-546ad8a8af69",
+        "warm_signal": false
+      },
+      {
+        "id": 18506536519,
+        "name": "Betterlesson",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/18506536519",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 25394037306,
+        "name": "St. Theresa Of Avila School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/25394037306",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 2722502757,
+        "name": "Weston, Ma",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-01-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2722502757",
+        "starbridge_id": "601f2dcc-7166-4729-90ed-8ab2327ee853",
+        "warm_signal": false
+      },
+      {
+        "id": 17954215013,
+        "name": "Bancroft School",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-04-24",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/17954215013",
+        "starbridge_id": null,
+        "warm_signal": false
+      },
+      {
+        "id": 15401817362,
+        "name": "Framingham State University",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-05-24",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/15401817362",
+        "starbridge_id": null,
         "warm_signal": false
       }
     ],
     "CT": [
       {
-        "id": 1043098196,
-        "name": "Milford Public Schools",
-        "segment": "Medium District",
+        "id": 8977093190,
+        "name": "Har Bur Middle School",
+        "segment": "Single Site",
         "stage": "MQA",
-        "signal": "2+ DL's w Form Submissions; Clicked Email or 5+ Clicks",
-        "owner": "Anne Matz",
-        "last_contacted": "2026-04-07",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1043098196",
-        "starbridge_id": "2bc081e1-9f3b-4b22-9e2f-4122280d0618",
+        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": null,
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8977093190",
+        "starbridge_id": "b63aff89-73db-4284-be0c-8b5411f630f6",
+        "warm_signal": false
+      },
+      {
+        "id": 2484653701,
+        "name": "Region 10",
+        "segment": "Other",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\"; Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2023-09-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2484653701",
+        "starbridge_id": "b63aff89-73db-4284-be0c-8b5411f630f6",
         "warm_signal": false
       },
       {
@@ -3332,30 +3627,6 @@
         "warm_signal": false
       },
       {
-        "id": 29689839673,
-        "name": "Eagle Hill School",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": null,
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/29689839673",
-        "starbridge_id": null,
-        "warm_signal": false
-      },
-      {
-        "id": 2433919917,
-        "name": "Stonington Schools",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-07-01",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2433919917",
-        "starbridge_id": "2c2ca906-c7e2-46c9-b8c7-1b38c5632647",
-        "warm_signal": false
-      },
-      {
         "id": 43402830728,
         "name": "Meriden Public Schools",
         "segment": "Medium District",
@@ -3368,15 +3639,27 @@
         "warm_signal": false
       },
       {
-        "id": 4889094969,
-        "name": "New Beginnings Family Academy",
-        "segment": "Single Site",
+        "id": 6103434547,
+        "name": "New London Public Schools",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Anne Matz",
+        "last_contacted": "2025-11-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6103434547",
+        "starbridge_id": "78c84f87-457b-414f-8615-9df9157f6798",
+        "warm_signal": false
+      },
+      {
+        "id": 8976229710,
+        "name": "Area Cooperative Educational Services",
+        "segment": "Small District",
         "stage": "Engaged",
         "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
-        "last_contacted": "2025-08-26",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4889094969",
-        "starbridge_id": "958746cd-96b7-4a03-8131-29e76778d1cd",
+        "last_contacted": "2025-10-31",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976229710",
+        "starbridge_id": "41c9d2aa-9d15-499d-bc3e-531440d48db2",
         "warm_signal": false
       },
       {
@@ -3386,7 +3669,7 @@
         "stage": "Engaged",
         "signal": null,
         "owner": "Anne Matz",
-        "last_contacted": "2025-11-17",
+        "last_contacted": "2025-11-27",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/46684729961",
         "starbridge_id": "f23e5122-daaa-4eae-b8ea-53b145874ab5",
         "warm_signal": false
@@ -4482,6 +4765,43 @@
     "For a cold-start watch-state with no existing footprint, plan for a longer ramp — there's no warm relationship to open the door."
   ],
   "warm_signals_by_state": {
+    "NY": {
+      "count": 3,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 2
+      },
+      "top": [
+        {
+          "buyer": "Byram Hills Central School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Board Of Education Board Of Education Meeting",
+          "status": "New",
+          "posted_date": "2026-10-13",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        },
+        {
+          "buyer": "Port Washington Union Free School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Port Washington Board of Education Board Meeting",
+          "status": "New",
+          "posted_date": "2026-09-17",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
+        {
+          "buyer": "Byram Hills Central School District",
+          "product": "gf8",
+          "score": 10,
+          "meeting": "Byram Hills School District Board Goals 2026-2027",
+          "status": "New",
+          "posted_date": "2026-09-15",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
+        }
+      ]
+    },
     "IL": {
       "count": 3,
       "by_product": {
@@ -4512,7 +4832,7 @@
           "buyer": "Oak Park Elementary School District 97",
           "product": "gf8",
           "score": 10,
-          "meeting": "Oak Park Board of Education District 97 Regular Meeting",
+          "meeting": "Oak Park Board Of Education District 97 Regular Meeting",
           "status": "New",
           "posted_date": "2026-08-11",
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
@@ -4520,25 +4840,6 @@
       ]
     },
     "NV": {
-      "count": 1,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 0,
-        "gf8": 1
-      },
-      "top": [
-        {
-          "buyer": "Clark County School District",
-          "product": "gf8",
-          "score": 10,
-          "meeting": "Clark County School Board Regular Board Meeting",
-          "status": "New",
-          "posted_date": "2026-09-10",
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
-        }
-      ]
-    },
-    "NY": {
       "count": 2,
       "by_product": {
         "ij": 0,
@@ -4547,21 +4848,21 @@
       },
       "top": [
         {
-          "buyer": "Port Washington Union Free School District",
+          "buyer": "Washoe County School District",
           "product": "inkwell",
           "score": 10,
-          "meeting": "Port Washington Board of Education Board Meeting",
+          "meeting": "Washoe County School District Board of Trustees Regular Meeting Minutes",
           "status": "New",
-          "posted_date": "2026-09-17",
+          "posted_date": "2026-10-13",
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
         },
         {
-          "buyer": "Byram Hills Central School District",
+          "buyer": "Clark County School District",
           "product": "gf8",
           "score": 10,
-          "meeting": "Byram Hills School District Board Goals 2026-2027",
-          "status": "New",
-          "posted_date": "2026-09-15",
+          "meeting": "Clark County School Board Regular Board Meeting",
+          "status": "Saved",
+          "posted_date": "2026-09-10",
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
         }
       ]
@@ -4569,11 +4870,20 @@
     "CA": {
       "count": 6,
       "by_product": {
-        "ij": 4,
-        "inkwell": 0,
+        "ij": 3,
+        "inkwell": 1,
         "gf8": 2
       },
       "top": [
+        {
+          "buyer": "San Mateo-Foster City School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "San Mateo-Foster City School District Special Meeting",
+          "status": "New",
+          "posted_date": "2026-10-15",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
         {
           "buyer": "Moreno Valley Unified School District",
           "product": "ij",
@@ -4609,14 +4919,24 @@
           "status": "New",
           "posted_date": "2026-06-23",
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
-        },
+        }
+      ]
+    },
+    "OH": {
+      "count": 1,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
         {
-          "buyer": "Pacifica School District",
+          "buyer": "Mentor Exempted Village School District",
           "product": "ij",
           "score": 10,
-          "meeting": "Ocean Shore Elementary School School Plan for Student Achievement 2026-2027",
+          "meeting": "Mentor Exempted Village Board of Education Regular Meeting",
           "status": "New",
-          "posted_date": "2026-06-10",
+          "posted_date": "2026-10-13",
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
         }
       ]
@@ -4640,33 +4960,23 @@
         }
       ]
     },
-    "WA": {
-      "count": 1,
+    "MA": {
+      "count": 3,
       "by_product": {
-        "ij": 1,
-        "inkwell": 0,
+        "ij": 0,
+        "inkwell": 3,
         "gf8": 0
       },
       "top": [
         {
-          "buyer": "Tumwater School District",
-          "product": "ij",
+          "buyer": "Hopkinton Public School District",
+          "product": "inkwell",
           "score": 10,
-          "meeting": "Tumwater School District Board Meeting",
+          "meeting": "School Committee School Committee Meeting",
           "status": "New",
-          "posted_date": "2026-09-24",
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k"
-        }
-      ]
-    },
-    "MA": {
-      "count": 2,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 2,
-        "gf8": 0
-      },
-      "top": [
+          "posted_date": "2026-10-15",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
         {
           "buyer": "Hopkinton Public School District",
           "product": "inkwell",
@@ -4683,6 +4993,118 @@
           "meeting": "School Committee Meeting",
           "status": "New",
           "posted_date": "2026-09-08",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        }
+      ]
+    },
+    "FL": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Columbia County School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Columbia County School Board Regular Meeting",
+          "status": "New",
+          "posted_date": "2026-10-13",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        }
+      ]
+    },
+    "PA": {
+      "count": 5,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 5,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Boyertown Area School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Boyertown Area School Board Education & Student Services Committee Committee Meeting",
+          "status": "New",
+          "posted_date": "2026-10-13",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
+        {
+          "buyer": "Lampeter-Strasburg School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Lampeter-Strasburg School District Academic Committee Meeting Minutes",
+          "status": "New",
+          "posted_date": "2026-10-05",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
+        {
+          "buyer": "Wyomissing Area School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Wyomissing Area School Board Board Meeting",
+          "status": "New",
+          "posted_date": "2026-10-05",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
+        {
+          "buyer": "Mechanicsburg Area School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Mechanicsburg Area School District Work Session",
+          "status": "New",
+          "posted_date": "2026-09-22",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        },
+        {
+          "buyer": "Lampeter-Strasburg School District",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Lampeter-Strasburg School District Academic Committee Meeting Minutes",
+          "status": "New",
+          "posted_date": "2026-09-08",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        }
+      ]
+    },
+    "MN": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Red Wing Public Schools",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Frederick Public Schools Board Regular Meeting",
+          "status": "New",
+          "posted_date": "2026-09-22",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
+        }
+      ]
+    },
+    "TX": {
+      "count": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Raul Yzaguirre Schools For Success",
+          "product": "inkwell",
+          "score": 10,
+          "meeting": "Ryss Early Childhood Academy At Ost Campus Improvement Plan 2026-2027",
+          "status": "New",
+          "posted_date": "2026-10-06",
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
         }
       ]
@@ -4724,88 +5146,23 @@
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
         }
       ]
-    },
-    "PA": {
-      "count": 3,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 3,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Wyomissing Area School District",
-          "product": "inkwell",
-          "score": 10,
-          "meeting": "Wyomissing Area School Board Board Meeting",
-          "status": "New",
-          "posted_date": "2026-10-05",
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
-        },
-        {
-          "buyer": "Mechanicsburg Area School District",
-          "product": "inkwell",
-          "score": 10,
-          "meeting": "Mechanicsburg Area School District Work Session",
-          "status": "New",
-          "posted_date": "2026-09-22",
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
-        },
-        {
-          "buyer": "Lampeter-Strasburg School District",
-          "product": "inkwell",
-          "score": 10,
-          "meeting": "Lampeter-Strasburg School District Academic Committee Meeting Minutes",
-          "status": "New",
-          "posted_date": "2026-09-08",
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
-        }
-      ]
-    },
-    "TX": {
-      "count": 2,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 2,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Raul Yzaguirre Schools For Success",
-          "product": "inkwell",
-          "score": 10,
-          "meeting": "Ryss Early Childhood Academy At Ost Campus Improvement Plan 2026-2027",
-          "status": "New",
-          "posted_date": "2026-10-06",
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
-        },
-        {
-          "buyer": "Schertz-Cibolo-Universal City Independent School District",
-          "product": "inkwell",
-          "score": 10,
-          "meeting": "Schertz-Cibolo-Universal City Independent School District Regular Board Meeting",
-          "status": "New",
-          "posted_date": "2026-09-17",
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k"
-        }
-      ]
     }
   },
-  "warm_signals_90d_total": 23,
+  "warm_signals_90d_total": 29,
   "warm_signals_audit": {
-    "window_start": "2026-07-14",
+    "window_start": "2026-07-21",
     "by_bridge": {
       "gf8": {
-        "rows_scanned": 798,
-        "qualifying": 7
+        "rows_scanned": 821,
+        "qualifying": 8
       },
       "ij": {
-        "rows_scanned": 421,
-        "qualifying": 6
+        "rows_scanned": 535,
+        "qualifying": 5
       },
       "inkwell": {
-        "rows_scanned": 1032,
-        "qualifying": 10
+        "rows_scanned": 1293,
+        "qualifying": 16
       }
     }
   },
