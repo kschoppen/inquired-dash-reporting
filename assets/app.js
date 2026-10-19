@@ -921,13 +921,6 @@ function renderWeekly(d) {
   const bp = last.by_product || {}, bpp = prev.by_product || {}, bs = last.by_segment || {}, bsp = prev.by_segment || {};
   const g = (o, k, s) => o[k] ? o[k][s] : null;
   const tagged = (o, rows, s) => rows.reduce((a, [k]) => a + (g(o, k, s) || 0), 0);
-  const segHihAllZero = RD_SEG.every(([k]) => !g(bs, k, "hih"));
-  const segTbl = RD_SEG.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bs, k, s))}${rdRaw(g(bs, k, s), g(bsp, k, s))}</td>`).join("")}<td>${rate(g(bs, k, "sql"), g(bs, k, "mql")) != null ? rate(g(bs, k, "sql"), g(bs, k, "mql")) + "%" : "—"}</td></tr>`).join("")
-    + `<tr class="untagged"><td>Unassigned</td>${["mql", "sql", "opp"].map((s) => `<td>${fmtN(Math.max(0, (f(last, s) || 0) - tagged(bs, RD_SEG, s)))}</td>`).join("")}<td></td></tr>`;
-  // Untagged comes from the pull when present (MQL/SQL/Opp are multi-tag, so total − Σproducts undercounts it)
-  const prodUntagged = (s) => bp.untagged && bp.untagged[s] != null ? bp.untagged[s] : Math.max(0, (f(last, s) || 0) - tagged(bp, RD_PROD, s));
-  const prodTbl = RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bp, k, s))}${rdRaw(g(bp, k, s), g(bpp, k, s))}</td>`).join("")}</tr>`).join("")
-    + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(prodUntagged(s))}</td>`).join("")}</tr>`;
 
 
   // "Who moved this week": one panel per funnel stage (HIH / MQL / SQL / Opp), same layout each, toggled by chips
@@ -968,6 +961,7 @@ function renderWeekly(d) {
           ${rdBars(whoRows(RD_SEG, bs, bsp, s, false))}
           ${segAllZero ? `<p class="cap">This run didn't record company size for ${label}, so every row shows 0.</p>` : ""}</div>
       </div>
+      ${s === "sql" ? `<p class="cap" style="margin:8px 0 0">MQL→SQL by company size: ${RD_SEG.map(([k, l]) => { const r = rate(g(bs, k, "sql"), g(bs, k, "mql")); return `${l} ${r != null ? r + "%" : "—"}`; }).join(" · ")}</p>` : ""}
       <details class="rd-dz"><summary><span class="dt">${label} contacts this week</span><span class="ds"><b>${fmtN(f(last, s))}</b> contacts · ${drill.length ? (drill.length < (f(last, s) || 0) ? `showing ${drill.length}, open to see each HubSpot record` : "open to see each HubSpot record") : "list not stored this run"}</span></summary>
         <div class="dbody">
           <p class="cap" style="margin-top:0">One row per contact: HubSpot record (access-gated), company size, source, product. No names or emails, because the repo is public.</p>
@@ -1035,23 +1029,13 @@ function renderWeekly(d) {
     <div id="sec-whih">${rdTier(1, "Who moved this week", "HIH, MQLs, SQLs and Opps · pick a stage")}</div>
     <div class="toolbar" style="margin:0 0 10px">${RD_WHO.map(([s, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-who="${s}">${s === "opp" ? "Opp deals" : l} <b>${fmtN(s === "opp" && last.deals_opp ? last.deals_opp.count : f(last, s))}</b></button>`).join("")}</div>
     ${RD_WHO.map(([s, l, def], i) => s === "opp" ? dealsPanel(i) : whoPanel(s, l, def, i)).join("")}
+    ${rdAbout("How these are counted", "HIH counts each contact once, under its primary product (priority Inkwell → IJ → World History → Great First 8). MQL and SQL count a contact toward every product it's tagged with, so product rows can add up to more than the total, and Unassigned is contacts with no product. Opp deals count a deal toward every product on it. Company size is partially populated: Unassigned is contacts without one. Changes show as raw counts because weekly bases are small. Every contact moves SQL to Opportunity to Customer automatically, so contact Opps repeat SQLs; the Opps tab shows deals instead.")}
 
     ${rdTier(2, "Trend", `Last ${w.length} weeks`)}
     <div class="rd-grid g2">
       <div class="rd-card"><div class="eyebrow">Funnel by week</div><div class="chartbox" style="height:230px"><canvas id="wFunnel"></canvas></div><p class="cap">HIH shaded, MQL and SQL as lines.</p></div>
       <div class="rd-card"><div class="eyebrow">MQL→SQL by week</div><div class="chartbox" style="height:230px"><canvas id="wConvRates"></canvas></div><p class="cap">Dashed line = ${base.length}-week average. Within-week stage entries, so read it as direction, not a cohort rate.</p></div>
     </div>
-
-    <div id="sec-wseg">${rdTier(2, "By company size &amp; product", "This week · ↑↓ = change vs last week (hover for last week's number)")}</div>
-    <div class="rd-grid g2">
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By company size</div>${rdCov(`Covers ${fmtN(tagged(bs, RD_SEG, "mql"))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
-        <div class="tscroll"><table class="bd"><thead><tr><th>Segment</th><th>MQL</th><th>SQL</th><th>Opp</th><th>MQL→SQL</th></tr></thead><tbody>${segTbl}</tbody></table></div>
-        <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wSegChart"></canvas></div></div>
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">By product</div>${rdCov(`Covers ${fmtN(Math.min(f(last, "mql") || 0, (f(last, "mql") || 0) - prodUntagged("mql")))} of ${fmtN(f(last, "mql"))} MQLs`)}</div>
-        <div class="tscroll"><table class="bd"><thead><tr><th>Product</th><th>HIH</th><th>MQL</th><th>SQL</th><th>Opp</th></tr></thead><tbody>${prodTbl}</tbody></table></div>
-        <div class="chartbox" style="height:170px;margin-top:10px"><canvas id="wProdChart"></canvas></div></div>
-    </div>
-    ${rdAbout("How these are counted", "HIH counts each contact once, under its primary product (priority Inkwell → IJ → World History → Great First 8). MQL, SQL and Opp count a contact toward every product it's tagged with, so those columns can add up to more than the total. Untagged is contacts with no product. Company size is partially populated: unassigned contacts are excluded from the rows but included in the headline totals. Changes show as raw counts because weekly bases are small.")}
 
     <div id="sec-wtop">${rdTier(2, "Top converting pieces", "Form fills by offer this week", pieces ? "" : rdNeeds())}</div>
     <div class="rd-card">
@@ -1115,7 +1099,6 @@ function renderWeekly(d) {
 
   buildJumpRail([
     { id: "sec-whih", label: "Who moved" },
-    { id: "sec-wseg", label: "Segments" },
     { id: "sec-wtop", label: "Top pieces" },
     { id: "sec-wpipe", label: "Pipeline" },
     { id: "sec-wdisp", label: "Disposition" },
@@ -1142,11 +1125,6 @@ function renderWeekly(d) {
       rdBand(w.length, baseConv) ] },
     options: { maintainAspectRatio: false, layout: { padding: { top: 16 } }, plugins: { legend: { display: false }, rdLabels: { on: true, fmt: (v) => v + "%", hi: [w.length - 1] } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100, grid, ticks: { callback: (v) => v + "%", maxTicksLimit: 5 } } } } });
 
-  const hbar = (id, rows, src) => mkChart(id, { type: "bar", data: { labels: rows.map(([, l]) => l), datasets: [
-      { label: "MQL", data: rows.map(([k]) => g(src, k, "mql") || 0), backgroundColor: IJ },
-      { label: "SQL", data: rows.map(([k]) => g(src, k, "sql") || 0), backgroundColor: PLUM } ] },
-    options: { indexAxis: "y", maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { boxWidth: 10 } } }, scales: { x: { beginAtZero: true, grid, ticks: { maxTicksLimit: 5 } }, y: { grid: { display: false }, ticks: { autoSkip: false } } } } });
-  hbar("wSegChart", RD_SEG, bs); hbar("wProdChart", RD_PROD, bp);
 }
 
 // ---- content performance tab ----
