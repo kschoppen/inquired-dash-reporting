@@ -26,8 +26,8 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2420,
-    "mql_to_sql_pct": 13.5,
+    "hih_pool": 2485,
+    "mql_to_sql_pct": 31.7,
     "closed_won_mtd": "$417,347"
   },
   "brand_lift": {
@@ -91,41 +91,41 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Oct 12",
+      "updated": "2026-10-19",
+      "narrative": "HIH held steady at 35 (+9% WoW, still Inkwell-led at 30 of 35), while MQL eased slightly to 101 (-9% WoW) but stayed comfortably above its 8-week average (~89). The bigger story is lower-funnel: SQL and Opportunities each roughly doubled WoW to 32, clawing back toward their 8-week averages after two unusually soft weeks, though product tagging on those stages stays thin (under 20% coverage) so the mix is hard to read yet. Disqualified (201) and Nurture (124) both eased further off the W40/W41 list-event spike and no longer trip the list-event thresholds, so that anomaly looks to have fully resolved. Closed-won MTD sits at $417,347, almost entirely from one large renewal (Cherry Creek Schools)."
+    },
+    "previous": {
       "week_label": "Week of Oct 5",
       "updated": "2026-10-12",
       "narrative": "Oct 5-11: MQL (111), SQL (15) and Opp (16) all cooled off from last week's unusually high totals, though MQL is still running above its 8-week average (~71) even after the pullback. SQL and Opp fell well under their own 8-week averages (~27 each), a signal worth watching for a second week. HIH held at 32 (+14% WoW), with Inkwell (19) again the biggest driver. Disqualified (358) and Nurture (194) eased from last week's flagged spike (868/560) but are still 2.5x+ above normal levels, a second straight week of elevated list activity, still unconfirmed."
-    },
-    "previous": {
-      "week_label": "Week of Sep 28",
-      "updated": "2026-10-05",
-      "narrative": "Sep 28-Oct 4: a huge week for mid-funnel conversion. MQLs more than doubled to 166 (vs 76 last week), largely on the back of the Nell Duke Lit Talk webinar, which alone logged 462 recent-conversion touches. SQL (52) and Opportunities (52) each roughly tripled WoW, though product tagging on those stages is thin (only 17% carry a product tag) so the mix is hard to read yet. HIH held steady at 28 (+40%), led by Inkwell (18) and IJ (6). Separately, Disqualified (868) and Nurture (560) counts both spiked 6-11x WoW, consistent with a database cleanup sweep rather than a lead-quality drop, flagged for confirmation."
     }
   },
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-10-12",
+    "as_of": "2026-10-19",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 4163342.83,
+      "open": 4328282.83,
       "lost": 1553336.0,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 418550.0,
+        "open": 477050.0,
         "lost": 10500.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 692497.5,
+        "open": 848517.5,
         "lost": 379067.0,
         "won": 0.0
       },
       "large": {
-        "open": 1131989.0,
+        "open": 1077409.0,
         "lost": 334774.0,
         "won": 69938.91
       },
@@ -137,12 +137,12 @@
     },
     "by_product": {
       "ij": {
-        "open": 2679942.83,
+        "open": 2766082.83,
         "lost": 1519336.0,
         "won": 72521.91
       },
       "inkwell": {
-        "open": 701000.0,
+        "open": 752500.0,
         "lost": 0.0,
         "won": 0.0
       },
@@ -152,7 +152,7 @@
         "won": 0.0
       },
       "gf8": {
-        "open": 978400.0,
+        "open": 1057200.0,
         "lost": 34000.0,
         "won": 0.0
       },
@@ -164,7 +164,7 @@
     },
     "by_pipeline": {
       "district": {
-        "open": 192550.0,
+        "open": 39550.0,
         "lost": 1321371.0,
         "won": 2583.0
       },
@@ -174,7 +174,7 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 3966492.83,
+        "open": 4284432.83,
         "lost": 229965.0,
         "won": 69938.91
       }
