@@ -6949,7 +6949,82 @@
         "Stage movement (forward/back classification) and moved_deals not computed this run -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
         "avg8 omitted for top_pieces, dq_reasons and nurture_reasons -- fewer than 3 prior runs carry piece/reason-level history (added 2026-09-25/09-28).",
         "closed_won_mtd: $417,346.96 across 4 deals (Oct 1-12); 3 of the 4 have $0 recorded amount, so the dollar figure is effectively one deal (Cherry Creek Schools Renewal)."
-      ]
+      ],
+      "deals_opp": {
+        "definition": "Deals that entered the Interest stage in New Business or Account Growth during the week (Interest is where the pipeline starts).",
+        "count": 6,
+        "amount": 166750,
+        "by_product": {
+          "ij": 5,
+          "inkwell": 2,
+          "wh": 0,
+          "gf8": 0,
+          "untagged": 0
+        },
+        "by_segment": {
+          "single_small": 3,
+          "medium": 2,
+          "large": 0,
+          "enterprise": 1,
+          "other": 0
+        },
+        "drill": [
+          [
+            65791255215,
+            "Rio School District,CA,26-27 Added TEs",
+            "Account Growth",
+            "Medium",
+            "IJ",
+            0,
+            "Closed Won"
+          ],
+          [
+            65730712920,
+            "Hawaii Doe - Kaua'i Pilot",
+            "New Business",
+            "Single",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            65730693514,
+            "St. Anne's-belfield School,VA,School Year",
+            "Account Growth",
+            "Single",
+            "Inkwell",
+            750,
+            "Interest"
+          ],
+          [
+            65663733923,
+            "Rock Island School District,IL,School Year",
+            "New Business",
+            "Medium",
+            "IJ",
+            16000,
+            "Interest"
+          ],
+          [
+            65428610638,
+            "Kinnikinnick C.C.S.D 131, IL, 27-28",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            65416477293,
+            "Edmonds School District,WA,27-28",
+            "New Business",
+            "Enterprise",
+            "IJ;Inkwell",
+            150000,
+            "Interest"
+          ]
+        ]
+      }
     },
     {
       "period": "2026-10-12",
@@ -8398,7 +8473,235 @@
         "Product coverage for OPP is 18.8%, below the 30% flag threshold.",
         "List-event flag cleared this week: DQ (201) and Nurture (124) counts continue to normalize from the W40/W41 spike (868/560) and no longer trip the list-event thresholds.",
         "Stage movement (forward/back classification) and moved_deals not computed this run, consistent with recent weeks -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to."
-      ]
+      ],
+      "deals_opp": {
+        "definition": "Deals that entered the Interest stage in New Business or Account Growth during the week (Interest is where the pipeline starts).",
+        "count": 23,
+        "amount": 490820,
+        "by_product": {
+          "ij": 19,
+          "inkwell": 1,
+          "wh": 0,
+          "gf8": 4,
+          "untagged": 0
+        },
+        "by_segment": {
+          "single_small": 14,
+          "medium": 4,
+          "large": 2,
+          "enterprise": 0,
+          "other": 3
+        },
+        "drill": [
+          [
+            66138332460,
+            "Preston Hollow Presbyterian School,TX,School Year",
+            "New Business",
+            "Single",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            66138504595,
+            "Bennett School District No. 29J,CO,27-28",
+            "New Business",
+            "Small",
+            "IJ",
+            6500,
+            "Interest"
+          ],
+          [
+            66012462411,
+            "Hawaii Doe - Waiakeawaena Elementary, HI, 2027-28",
+            "New Business",
+            "",
+            "IJ",
+            5000,
+            "Interest"
+          ],
+          [
+            66011961429,
+            "Batavia Public School District 101,IL, Add on",
+            "Account Growth",
+            "Medium",
+            "IJ",
+            0,
+            "Closed Won"
+          ],
+          [
+            65899244937,
+            "Norman Public Schools,OK,27-28 Pilot Expansion",
+            "New Business",
+            "Large",
+            "IJ",
+            102600,
+            "Interest"
+          ],
+          [
+            65899511113,
+            "American Youth Academy, 2027",
+            "New Business",
+            "",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            65718169920,
+            "Grand Blanc Community Schools, MI , 27-28",
+            "New Business",
+            "Medium",
+            "GF8",
+            18800,
+            "Interest"
+          ],
+          [
+            65718100115,
+            "Pattonville R-iii School District,MO,27-28",
+            "New Business",
+            "Medium",
+            "IJ;Inkwell",
+            50000,
+            "Interest"
+          ],
+          [
+            65664415083,
+            "Grand Ledge Public Schools,MI,27-28",
+            "New Business",
+            "Medium",
+            "GF8",
+            51600,
+            "Interest"
+          ],
+          [
+            65267678784,
+            "Provo City School District,UT, RFP, 27-28",
+            "New Business",
+            "Large",
+            "IJ",
+            52820,
+            "Interest"
+          ],
+          [
+            65204523555,
+            "Visions In Education Charter School,CA,27-28",
+            "New Business",
+            "Single",
+            "IJ",
+            7500,
+            "Interest"
+          ],
+          [
+            65027106695,
+            "Ashland Middle School, MA , 2027 -2028",
+            "New Business",
+            "Single",
+            "GF8",
+            10000,
+            "Interest"
+          ],
+          [
+            64489585413,
+            "Brawerman East Elementary School, CA, '26-'27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            64224129557,
+            "Park Elementary School, Pilot '26-'27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            8000,
+            "Interest"
+          ],
+          [
+            64213094786,
+            "Indian Creek Community Unit School District, IL - SS Pilot Expansion",
+            "New Business",
+            "Small",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            64047837450,
+            "Chautauqua Lake Central School District, NY, '26-27 Pilot Expansion",
+            "New Business",
+            "Small",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            63837112337,
+            "Mile High Kids, VA , 2027-2028",
+            "New Business",
+            "Other",
+            "GF8",
+            153000,
+            "Interest"
+          ],
+          [
+            63853180752,
+            "Saint Stephen's Episcopal School, FL , 26-27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            63675263537,
+            "UrbanPromise Wilmington, '26-'27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            63477886483,
+            "Icon of Christ Academy, '26-'27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            63252613740,
+            "New Horizon Islamic School Irvine Pilot ,CA, 26-27 Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            5000,
+            "Interest"
+          ],
+          [
+            61135245388,
+            "Cape Elizabeth School Department, ME - 5th + 6th Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            60803863219,
+            "Martensdale-st Marys Community School District, IA - SS Pilot Expansion",
+            "New Business",
+            "Small",
+            "IJ",
+            2500,
+            "Interest"
+          ]
+        ]
+      }
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",

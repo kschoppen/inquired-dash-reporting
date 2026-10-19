@@ -939,6 +939,24 @@ function renderWeekly(d) {
     if (u > 0) out.push(["Unassigned", u, "#C9CFCD", up]);
     return out;
   };
+  // Opps tab shows deals (entered Interest in New Business / Account Growth), not contacts: every contact walks SQL → Opp automatically, so contact Opps just repeat SQLs
+  const dealsPanel = (i) => {
+    const dl = last.deals_opp, dp = prev.deals_opp || null;
+    if (!dl) return `<div class="rd-who" data-who-body="opp"${i ? " hidden" : ""}><p class="data-empty">Opp deals fill in on the next weekly run.</p></div>`;
+    const prodRows = RD_PROD.map(([k, l, c]) => [l, dl.by_product[k], c, dp ? dp.by_product[k] : null]).sort((a, b) => (b[1] || 0) - (a[1] || 0));
+    if (dl.by_product.untagged > 0) prodRows.push(["Unassigned", dl.by_product.untagged, "#C9CFCD", dp ? dp.by_product.untagged : null]);
+    const segRows = RD_SEG.map(([k, l, c]) => [l, dl.by_segment[k], c, dp ? dp.by_segment[k] : null]);
+    if (dl.by_segment.other > 0) segRows.push(["Unassigned", dl.by_segment.other, "#C9CFCD", dp ? dp.by_segment.other : null]);
+    return `<div class="rd-who" data-who-body="opp"${i ? " hidden" : ""}>
+      <p class="cap" style="margin:0 0 8px"><b>${fmtN(dl.count)}</b> Opp deals this week ${dp ? rdRaw(dl.count, dp.count) : ""} · <b>${fmt$(dl.amount)}</b> · ${dl.definition} A deal tagged with two products counts toward both.</p>
+      <div class="rd-grid g2">
+        <div class="rd-card"><div class="rd-row"><div class="eyebrow">Opp deals by product${dp ? " · vs last week" : ""}</div>${rdCov("Every product on the deal")}</div>${rdBars(prodRows)}</div>
+        <div class="rd-card"><div class="rd-row"><div class="eyebrow">Opp deals by company size${dp ? " · vs last week" : ""}</div></div>${rdBars(segRows)}</div>
+      </div>
+      <details class="rd-dz"><summary><span class="dt">Opp deals this week</span><span class="ds"><b>${fmtN(dl.count)}</b> deals · open to see each HubSpot deal</span></summary>
+        <div class="dbody"><div class="tscroll"><table><thead><tr><th>Deal</th><th>Pipeline</th><th>Company size</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead><tbody>${dl.drill.map((r) => `<tr><td><a class="lnk" href="https://app.hubspot.com/contacts/4451852/record/0-3/${r[0]}" target="_blank" rel="noopener">${escapeHtml(r[1])} ↗</a></td><td>${r[2]}</td><td>${r[3] || '<span class="cap">untagged</span>'}</td><td>${r[4] || "—"}</td><td>${fmt$(r[5])}</td><td>${r[6]}</td></tr>`).join("")}</tbody></table></div></div></details>
+    </div>`;
+  };
   const whoPanel = (s, label, def, i) => {
     const drill = (last.drill && last.drill[s]) || [], isH = s === "hih", segAllZero = RD_SEG.every(([k]) => !g(bs, k, s));
     return `<div class="rd-who" data-who-body="${s}"${i ? " hidden" : ""}>
@@ -1015,8 +1033,8 @@ function renderWeekly(d) {
     </div>
 
     <div id="sec-whih">${rdTier(1, "Who moved this week", "HIH, MQLs, SQLs and Opps · pick a stage")}</div>
-    <div class="toolbar" style="margin:0 0 10px">${RD_WHO.map(([s, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-who="${s}">${l} <b>${fmtN(f(last, s))}</b></button>`).join("")}</div>
-    ${RD_WHO.map(([s, l, def], i) => whoPanel(s, l, def, i)).join("")}
+    <div class="toolbar" style="margin:0 0 10px">${RD_WHO.map(([s, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-who="${s}">${s === "opp" ? "Opp deals" : l} <b>${fmtN(s === "opp" && last.deals_opp ? last.deals_opp.count : f(last, s))}</b></button>`).join("")}</div>
+    ${RD_WHO.map(([s, l, def], i) => s === "opp" ? dealsPanel(i) : whoPanel(s, l, def, i)).join("")}
 
     ${rdTier(2, "Trend", `Last ${w.length} weeks`)}
     <div class="rd-grid g2">
