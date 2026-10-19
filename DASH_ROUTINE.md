@@ -237,8 +237,9 @@ Upsert the just-completed ISO week into `weeks[]`, keyed by `period` (that week'
 - Simple `EQ`-membership counts per product (not mutually exclusive — unlike the funnel `by_product` above), current window only, from the Phase 1 per-product disposition pulls.
 
 `drill` notes (powers the click-into-HubSpot drawer):
-- For each stage, pull up to 60 contacts over the current-week window: properties `hs_object_id`, `segment__company_`, `hs_latest_source`.
-- Emit as compact row `[hs_object_id (int), segment-short, source-short, product-short]`. **NEVER names or emails — the repo is public.**
+- For each stage (`hih`, `mql`, `sql`, `opp`), pull **every** contact over the current-week window, not a first page: properties `hs_object_id`, `segment__company_`, `hs_latest_source`, `product_interest`. Page with the `after` cursor until a page comes back short. A single call with `limit 60` stored only 60 of 101 MQLs on 2026-10-12.
+- **Count check before writing:** `len(drill[stage])` must equal `funnel[stage]`. If it doesn't, keep paging; if the pull still can't finish, store what you have and add a data flag naming the stage and the stored vs total count. The Weekly tab's "Who moved this week" section shows "showing N" when the list is short.
+- Emit as compact row `[hs_object_id (int), segment-short, source-short, product-short]`. `product-short` is the primary product for **every** stage (Inkwell > IJ > WH > GF8 from `product_interest`), not just HIH; the MQL list stored a blank product on all 60 rows on 2026-10-12. **NEVER names or emails — the repo is public.**
 - Always store the list for `hih` (the Weekly tab's HIH contacts drawer reads it). If a stage's pull fails, emit `[]` and add a data flag.
 - Segment short: Single / Small / Medium / Large / Enterprise / Other / ""
 - Source short: Direct / Paid / Organic / Email / Offline / Referral / Social / Campaign (`OTHER_CAMPAIGNS`)

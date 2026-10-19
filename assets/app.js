@@ -237,8 +237,9 @@ function buildJumpRail(sections) {
 }
 
 // ---- digest redesign helpers (Monthly + Weekly) — tiered layout, one comparison per tile, detail in drawers ----
-const RD_PROD = [["ij", "Inquiry Journeys", "#144745"], ["inkwell", "Inkwell (ELA)", "#F99792"], ["wh", "World History", "#5B5A9E"], ["gf8", "Great First 8", "#079DD9"]];
+const RD_PROD = [["ij", "Inquiry Journeys", "#4B7774"], ["inkwell", "Inkwell (ELA)", "#63245F"], ["wh", "World History", "#467C9D"], ["gf8", "Great First 8", "#079DD9"]];
 const RD_SEG = [["single_small", "Single / Small", "#B1E0BB"], ["medium", "Medium", "#4A9FD8"], ["large", "Large", "#5B5A9E"], ["enterprise", "Enterprise", "#144745"]];
+const RD_WHO = [["hih", "HIH", "contacts showing high intent."], ["mql", "MQLs", "contacts who became a Marketing Qualified Lead in the week."], ["sql", "SQLs", "contacts who became Sales Qualified in the week."], ["opp", "Opps", "contacts who reached Opportunity in the week."]];
 const RD_STAGES = ["Sales Qualified", "Interest", "Consideration", "Conviction", "Desire", "Validation / Approval"];
 const RD_PIPES = [["new_business", "New Business"], ["account_growth", "Account Growth"], ["renewal", "Renewal"]];
 const fmtK = (n) => n == null ? "—" : n >= 1e6 ? "$" + (n / 1e6).toFixed(2).replace(/\.00$/, "") + "M" : n >= 1e3 ? "$" + Math.round(n / 1e3) + "K" : "$" + Math.round(n);
@@ -928,8 +929,35 @@ function renderWeekly(d) {
   const prodTbl = RD_PROD.map(([k, l, c]) => `<tr><td><span class="dot" style="background:${c}"></span>${l}</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(g(bp, k, s))}${rdRaw(g(bp, k, s), g(bpp, k, s))}</td>`).join("")}</tr>`).join("")
     + `<tr class="untagged"><td>Untagged</td>${["hih", "mql", "sql", "opp"].map((s) => `<td>${fmtN(prodUntagged(s))}</td>`).join("")}</tr>`;
 
-  // HIH contact drill-down (IDs only; opens the side drawer)
-  const drillHih = (last.drill && last.drill.hih) || [];
+
+  // "Who moved this week": one panel per funnel stage (HIH / MQL / SQL / Opp), same layout each, toggled by chips
+  const unt = (wk, b, rows, s) => b && b.untagged && b.untagged[s] != null ? b.untagged[s] : Math.max(0, (f(wk, s) || 0) - tagged(b || {}, rows, s));
+  const whoRows = (rows, b, bp0, s, sort) => {
+    const out = rows.map(([k, l, c]) => [l, g(b, k, s), c, g(bp0, k, s)]);
+    if (sort) out.sort((a, c) => (c[1] || 0) - (a[1] || 0));
+    const u = unt(last, b, rows, s), up = unt(prev, bp0, rows, s);
+    if (u > 0) out.push(["Unassigned", u, "#C9CFCD", up]);
+    return out;
+  };
+  const whoPanel = (s, label, def, i) => {
+    const drill = (last.drill && last.drill[s]) || [], isH = s === "hih", segAllZero = RD_SEG.every(([k]) => !g(bs, k, s));
+    return `<div class="rd-who" data-who-body="${s}"${i ? " hidden" : ""}>
+      <p class="cap" style="margin:0 0 8px"><b>${fmtN(f(last, s))}</b> ${label} this week ${rdRaw(f(last, s), f(prev, s))} · ${def}${isH && d.hih_exclusions ? ` ${d.hih_exclusions}${last.funnel && last.funnel.hih_excluded ? ` This week: ${["internal", "higher_ed", "competitor"].map((k) => `${last.funnel.hih_excluded[k] || 0} ${{ internal: "inquirED", higher_ed: "higher-ed", competitor: "competitor" }[k]}`).join(", ")} removed.` : ""}` : ""}</p>
+      <div class="rd-grid g2">
+        <div class="rd-card"><div class="rd-row"><div class="eyebrow">${label} by product · vs last week</div>${rdCov(isH ? "Primary product per contact" : "Every product a contact is tagged with")}</div>
+          ${rdBars(whoRows(RD_PROD, bp, bpp, s, true))}</div>
+        <div class="rd-card"><div class="rd-row"><div class="eyebrow">${label} by company size · vs last week</div>${segAllZero ? rdCov("Not captured this run") : ""}</div>
+          ${rdBars(whoRows(RD_SEG, bs, bsp, s, false))}
+          ${segAllZero ? `<p class="cap">This run didn't record company size for ${label}, so every row shows 0.</p>` : ""}</div>
+      </div>
+      <details class="rd-dz"><summary><span class="dt">${label} contacts this week</span><span class="ds"><b>${fmtN(f(last, s))}</b> contacts · ${drill.length ? (drill.length < (f(last, s) || 0) ? `showing ${drill.length}, open to see each HubSpot record` : "open to see each HubSpot record") : "list not stored this run"}</span></summary>
+        <div class="dbody">
+          <p class="cap" style="margin-top:0">One row per contact: HubSpot record (access-gated), company size, source, product. No names or emails, because the repo is public.</p>
+          ${drill.length ? `<div class="tscroll"><table><thead><tr><th>HubSpot record</th><th>Company size</th><th>Source</th><th>Product</th></tr></thead><tbody>${drill.map((r) => `<tr><td><a class="lnk" href="https://app.hubspot.com/contacts/4451852/record/0-1/${r[0]}" target="_blank" rel="noopener">Open contact ↗</a></td><td>${r[1] || '<span class="cap">untagged</span>'}</td><td>${r[2] || "—"}</td><td>${r[3] || "—"}</td></tr>`).join("")}</tbody></table></div>`
+            : `<p class="data-empty">The ${last.label} run didn't store the contact list. It fills in on the next run.</p>`}
+        </div></details>
+    </div>`;
+  };
 
   // top converting pieces
   const pieces = last.top_pieces || null, ce = rdLatestCE(w);
@@ -986,21 +1014,9 @@ function renderWeekly(d) {
       ${rdKpi({ label: "MQL → SQL", value: lastConv != null ? lastConv + "%" : "—", st: convSt[0], stLbl: convSt[1], delta: rdPts(lastConv, baseConv, ""), cmp: baseConv != null ? `avg ${baseConv}%` : "", yoy: lyConv != null ? `${rdPts(lastConv, lyConv, "YoY")} <span class="cmp">LY ${lyConv}%</span>` : `<span class="rd-cov">No YoY data</span>`, spark: "rdW_conv" })}
     </div>
 
-    <div id="sec-whih">${rdTier(1, "HIH this week", "Who's showing high intent", d.hih_list_url ? `<a class="hih-hs-link" style="margin:0 0 0 auto" href="${d.hih_list_url}" target="_blank" rel="noopener">View HIH list in HubSpot ↗</a>` : "")}</div>
-    ${d.hih_exclusions ? `<p class="cap" style="margin:0 0 8px">${d.hih_exclusions}${last.funnel && last.funnel.hih_excluded ? ` This week: ${["internal", "higher_ed", "competitor"].map((k) => `${last.funnel.hih_excluded[k] || 0} ${{ internal: "inquirED", higher_ed: "higher-ed", competitor: "competitor" }[k]}`).join(", ")} removed.` : ""}</p>` : ""}
-    <div class="rd-grid g2">
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by product · vs last week</div>${rdCov("Primary product per contact")}</div>
-        ${rdBars(RD_PROD.map(([k, l, c]) => [l, g(bp, k, "hih"), c, g(bpp, k, "hih")]).sort((a, b) => (b[1] || 0) - (a[1] || 0)))}</div>
-      <div class="rd-card"><div class="rd-row"><div class="eyebrow">HIH by company size · vs last week</div>${segHihAllZero ? rdCov("Not captured this run") : ""}</div>
-        ${rdBars(RD_SEG.map(([k, l, c]) => [l, g(bs, k, "hih"), c, g(bsp, k, "hih")]))}
-        ${segHihAllZero ? `<p class="cap">This run didn't record company size for HIH, so every row shows 0.</p>` : ""}</div>
-    </div>
-    <details class="rd-dz" id="rdHihDrill"><summary><span class="dt">HIH contacts this week</span><span class="ds"><b>${fmtN(f(last, "hih"))}</b> contacts · ${drillHih.length ? "open to see each HubSpot record" : "list not stored this run"}</span></summary>
-      <div class="dbody">
-        <p class="cap" style="margin-top:0">One row per contact: HubSpot record (access-gated), company size, source, product. No names or emails, because the repo is public.</p>
-        ${drillHih.length ? `<div class="tscroll"><table><thead><tr><th>HubSpot record</th><th>Company size</th><th>Source</th><th>Product</th></tr></thead><tbody>${drillHih.map((r) => `<tr><td><a class="lnk" href="https://app.hubspot.com/contacts/4451852/record/0-1/${r[0]}" target="_blank" rel="noopener">Open contact ↗</a></td><td>${r[1] || '<span class="cap">untagged</span>'}</td><td>${r[2] || "—"}</td><td>${r[3] || "—"}</td></tr>`).join("")}</tbody></table></div>`
-          : `<p class="data-empty">The ${last.label} run didn't store the contact list. It fills in on the next run.</p>`}
-      </div></details>
+    <div id="sec-whih">${rdTier(1, "Who moved this week", "HIH, MQLs, SQLs and Opps · pick a stage")}</div>
+    <div class="toolbar" style="margin:0 0 10px">${RD_WHO.map(([s, l], i) => `<button class="chip ${i === 0 ? "on" : ""}" data-who="${s}">${l} <b>${fmtN(f(last, s))}</b></button>`).join("")}</div>
+    ${RD_WHO.map(([s, l, def], i) => whoPanel(s, l, def, i)).join("")}
 
     ${rdTier(2, "Trend", `Last ${w.length} weeks`)}
     <div class="rd-grid g2">
@@ -1070,13 +1086,17 @@ function renderWeekly(d) {
     </div>`;
 
   const toM = document.getElementById("rdToMonthly"); if (toM) toM.onclick = (e) => { e.preventDefault(); switchToTab("monthly"); };
+  document.querySelectorAll(".chip[data-who]").forEach((b) => b.onclick = () => {
+    document.querySelectorAll(".chip[data-who]").forEach((x) => x.classList.toggle("on", x === b));
+    document.querySelectorAll("[data-who-body]").forEach((el) => { el.hidden = el.dataset.whoBody !== b.dataset.who; });
+  });
   document.querySelectorAll(".chip[data-pipe]").forEach((b) => b.onclick = () => {
     document.querySelectorAll(".chip[data-pipe]").forEach((x) => x.classList.toggle("on", x === b));
     document.querySelectorAll("[data-pipe-body]").forEach((el) => { el.hidden = el.dataset.pipeBody !== b.dataset.pipe; });
   });
 
   buildJumpRail([
-    { id: "sec-whih", label: "HIH" },
+    { id: "sec-whih", label: "Who moved" },
     { id: "sec-wseg", label: "Segments" },
     { id: "sec-wtop", label: "Top pieces" },
     { id: "sec-wpipe", label: "Pipeline" },
@@ -1295,7 +1315,7 @@ function renderAccountPulse() {
 // ---- State Signal (MQA) tab ----
 const SS_FIPS = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY"};
 const SS_LABELS = {ij:"Inquiry Journeys", inkwell:"Inkwell", gf8:"Great First 8"};
-const SS_COLORS = {ij:"#144745", inkwell:"#5B5A9E", gf8:"#F99792"};
+const SS_COLORS = {ij:"#4B7774", inkwell:"#63245F", gf8:"#079DD9", wh:"#467C9D"};
 const SS_TIER_LABELS = {act_now:"High", watch:"Medium", low_priority:"Low"};
 const SS_TIER_MAP_OPACITY = {act_now:0.9, watch:0.45, low_priority:0.18};
 let SS_TOPO_CACHE = null;
