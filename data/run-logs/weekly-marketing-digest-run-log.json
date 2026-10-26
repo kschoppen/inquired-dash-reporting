@@ -4394,7 +4394,7 @@
       "YoY comparison (same ISO week, Oct 20-26 2025) shows MQL 331, SQL 306, Opp 305 -- all several times this week's totals. Pulled as specified with no adjustment; flagging because the gap is large enough to be worth a sanity check against last year's list/import activity before trusting the YoY tiles at face value.",
       "Stage movement (forward/back classification) and moved_deals not computed this run, consistent with recent weeks -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
       "Product coverage and segment coverage are both >=30% on every stage this week (previous week's SQL/Opp coverage flag has cleared).",
-      "A duplicate Weekly Marketing Data Dash Slack post landed in #marketing-reporting this run (ts 1793011149.892939, ~69s after the canonical post at 1793011080.903819) -- apparently from redundant parallel execution during this run. slack_message_ts here points to the first/canonical post. The duplicate message was not deleted (no permission to call chat.delete in this session) and should be manually removed if desired."
+      "A prior run attempt logged a possible duplicate Slack post (ts 1793011149.892939) alongside the canonical post (1793011080.903819), from overlapping parallel execution during this run. Verified directly against the Slack API afterward: only the canonical message (1793011080.903819) actually exists in #marketing-reporting -- the second ts was never a real post (likely a failed/retried send whose result was misread). No cleanup needed; correcting the record here."
     ]
   }
 ]
