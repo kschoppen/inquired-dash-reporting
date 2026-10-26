@@ -3957,7 +3957,7 @@
       "2026-10-12",
       "2026-10-18"
     ],
-    "slack_message_ts": "1793011149.892939",
+    "slack_message_ts": "1793011080.903819",
     "totals": {
       "hih_current": 23,
       "hih_prior": 35,
@@ -4393,7 +4393,8 @@
       "Possible list event detected: Disqualified (219) + Nurture (143) = 362, just over 2x this week's funnel total (174, threshold 348). Borderline trigger (~4% over) rather than a sharp spike -- DQ/Nurture WoW moves (+9.0%/+15.3%) and none of HIH/MQL/SQL/Opp/DQ/Nurture exceed 2.5x their rolling 8-week median. Flagged here for confirmation; not yet in acknowledged_events.",
       "YoY comparison (same ISO week, Oct 20-26 2025) shows MQL 331, SQL 306, Opp 305 -- all several times this week's totals. Pulled as specified with no adjustment; flagging because the gap is large enough to be worth a sanity check against last year's list/import activity before trusting the YoY tiles at face value.",
       "Stage movement (forward/back classification) and moved_deals not computed this run, consistent with recent weeks -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
-      "Product coverage and segment coverage are both >=30% on every stage this week (previous week's SQL/Opp coverage flag has cleared)."
+      "Product coverage and segment coverage are both >=30% on every stage this week (previous week's SQL/Opp coverage flag has cleared).",
+      "A duplicate Weekly Marketing Data Dash Slack post landed in #marketing-reporting this run (ts 1793011149.892939, ~69s after the canonical post at 1793011080.903819) -- apparently from redundant parallel execution during this run. slack_message_ts here points to the first/canonical post. The duplicate message was not deleted (no permission to call chat.delete in this session) and should be manually removed if desired."
     ]
   }
 ]
