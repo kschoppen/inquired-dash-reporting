@@ -3945,5 +3945,455 @@
       "List-event flag cleared this week: DQ (201) and Nurture (124) counts continue to normalize from the W40/W41 spike (868/560) and no longer trip the list-event thresholds.",
       "Stage movement (forward/back classification) and moved_deals not computed this run, consistent with recent weeks -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to."
     ]
+  },
+  {
+    "run_date": "2026-10-26",
+    "period_label": "2026-W43",
+    "window_current": [
+      "2026-10-19",
+      "2026-10-25"
+    ],
+    "window_prior": [
+      "2026-10-12",
+      "2026-10-18"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 23,
+      "hih_prior": 35,
+      "hih_wow_pct": -34.3,
+      "mql_current": 104,
+      "mql_prior": 101,
+      "mql_wow_pct": 3.0,
+      "sql_current": 24,
+      "sql_prior": 32,
+      "sql_wow_pct": -25.0,
+      "opp_current": 23,
+      "opp_prior": 32,
+      "opp_wow_pct": -28.1
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          12,
+          2
+        ],
+        "mql": [
+          25,
+          14
+        ],
+        "sql": [
+          1,
+          3
+        ],
+        "opp": [
+          1,
+          3
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          8,
+          30
+        ],
+        "mql": [
+          50,
+          55
+        ],
+        "sql": [
+          2,
+          3
+        ],
+        "opp": [
+          2,
+          3
+        ]
+      },
+      "wh": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          7,
+          5
+        ],
+        "sql": [
+          3,
+          0
+        ],
+        "opp": [
+          3,
+          0
+        ]
+      },
+      "gf8": {
+        "hih": [
+          2,
+          3
+        ],
+        "mql": [
+          6,
+          5
+        ],
+        "sql": [
+          3,
+          0
+        ],
+        "opp": [
+          2,
+          0
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          6,
+          9
+        ],
+        "mql": [
+          30,
+          16
+        ],
+        "sql": [
+          7,
+          6
+        ],
+        "opp": [
+          7,
+          6
+        ]
+      },
+      "medium": {
+        "hih": [
+          2,
+          9
+        ],
+        "mql": [
+          18,
+          18
+        ],
+        "sql": [
+          3,
+          3
+        ],
+        "opp": [
+          3,
+          3
+        ]
+      },
+      "large": {
+        "hih": [
+          2,
+          2
+        ],
+        "mql": [
+          3,
+          5
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          4,
+          2
+        ],
+        "mql": [
+          22,
+          20
+        ],
+        "sql": [
+          13,
+          14
+        ],
+        "opp": [
+          13,
+          14
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 100.0,
+        "mql": 84.6,
+        "sql": 37.5,
+        "opp": 34.8
+      },
+      "segment": {
+        "hih": 60.9,
+        "mql": 70.2,
+        "sql": 95.8,
+        "opp": 100.0
+      }
+    },
+    "disposition": {
+      "disqualified_current": 219,
+      "disqualified_prior": 201,
+      "entered_nurture_current": 143,
+      "entered_nurture_prior": 124,
+      "by_product_current": {
+        "ij": {
+          "disqualified": 43,
+          "entered_nurture": 24
+        },
+        "inkwell": {
+          "disqualified": 65,
+          "entered_nurture": 28
+        },
+        "wh": {
+          "disqualified": 0,
+          "entered_nurture": 0
+        },
+        "gf8": {
+          "disqualified": 6,
+          "entered_nurture": 1
+        }
+      }
+    },
+    "pipeline": {
+      "new_business_open_deals": 157,
+      "account_growth_open_deals": 10,
+      "renewal_open_deals": 284,
+      "district_open_deals": 11,
+      "school_open_deals": 5,
+      "by_product": {
+        "ij": {
+          "count": 406,
+          "amount": 8603301.88
+        },
+        "inkwell": {
+          "count": 22,
+          "amount": 929120
+        },
+        "wh": {
+          "count": 79,
+          "amount": 765962.73
+        },
+        "gf8": {
+          "count": 19,
+          "amount": 1174800
+        },
+        "untagged": {
+          "count": 22,
+          "amount": 514875.62
+        }
+      },
+      "by_stage": {
+        "new_business": [
+          {
+            "stage": "Sales Qualified",
+            "count": 18,
+            "amount": 140000.0
+          },
+          {
+            "stage": "Interest",
+            "count": 121,
+            "amount": 4014045.33
+          },
+          {
+            "stage": "Consideration",
+            "count": 11,
+            "amount": 615337.0
+          },
+          {
+            "stage": "Conviction",
+            "count": 3,
+            "amount": 120.0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0.0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 3,
+            "amount": 3500.0
+          }
+        ],
+        "account_growth": [
+          {
+            "stage": "Sales Qualified",
+            "count": 4,
+            "amount": 0.0
+          },
+          {
+            "stage": "Interest",
+            "count": 6,
+            "amount": 146500.0
+          }
+        ],
+        "renewal": [
+          {
+            "stage": "Nurture",
+            "count": 281,
+            "amount": 5998425.19
+          },
+          {
+            "stage": "Engaged",
+            "count": 2,
+            "amount": 44784.11
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 1.0
+          }
+        ],
+        "district": [
+          {
+            "stage": "Sales Qualified",
+            "count": 3,
+            "amount": 0.0
+          },
+          {
+            "stage": "Interest",
+            "count": 1,
+            "amount": 0.0
+          },
+          {
+            "stage": "Consideration",
+            "count": 5,
+            "amount": 16820.0
+          },
+          {
+            "stage": "Conviction",
+            "count": 1,
+            "amount": 720.0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0.0
+          }
+        ],
+        "school": [
+          {
+            "stage": "Consideration",
+            "count": 2,
+            "amount": 4301.0
+          },
+          {
+            "stage": "Interest",
+            "count": 3,
+            "amount": 2500.0
+          }
+        ]
+      }
+    },
+    "top_pieces": [
+      {
+        "offer": "Lit Talk with Dr. Nell K. Duke (webinar)",
+        "fills": 29
+      },
+      {
+        "offer": "IJ-DL: Scope & Sequence",
+        "fills": 24
+      },
+      {
+        "offer": "Source Material Webinar Series",
+        "fills": 16
+      },
+      {
+        "offer": "Subscribe to Lit Talk Webinar Series (website)",
+        "fills": 13
+      },
+      {
+        "offer": "ELA-DL: Inkwell The Integrated Instructional Block",
+        "fills": 11
+      },
+      {
+        "offer": "ELA-DL: Inkwell K2 Sample Lesson",
+        "fills": 10
+      },
+      {
+        "offer": "SS-DL: WH-Scope and Sequence",
+        "fills": 9
+      },
+      {
+        "offer": "ELA-DL: Inkwell K2 Curriculum Map",
+        "fills": 8
+      },
+      {
+        "offer": "Contact Sales form (website)",
+        "fills": 6
+      },
+      {
+        "offer": "Contact Sales form (website) — SS landing",
+        "fills": 5
+      }
+    ],
+    "dq_reasons": [
+      {
+        "reason": "Gmail",
+        "count": 13
+      },
+      {
+        "reason": "University Professor",
+        "count": 8
+      },
+      {
+        "reason": "Non-Sellable Company",
+        "count": 7
+      },
+      {
+        "reason": "Bounced/Opted Out",
+        "count": 4
+      },
+      {
+        "reason": "Parent/Student",
+        "count": 2
+      },
+      {
+        "reason": "No longer at school/district",
+        "count": 1
+      }
+    ],
+    "nurture_reasons": [
+      {
+        "reason": "Did Not Engage",
+        "count": 101
+      },
+      {
+        "reason": "Not interested - no reason specified",
+        "count": 21
+      },
+      {
+        "reason": "Timing (>6 months)",
+        "count": 9
+      },
+      {
+        "reason": "Teacher - No influence",
+        "count": 9
+      },
+      {
+        "reason": "Open Opportunity",
+        "count": 1
+      },
+      {
+        "reason": "Current Partner (No Upsell)",
+        "count": 1
+      },
+      {
+        "reason": "No Budget",
+        "count": 1
+      }
+    ],
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Possible list event detected: Disqualified (219) + Nurture (143) = 362, just over 2x this week's funnel total (174, threshold 348). Borderline trigger (~4% over) rather than a sharp spike -- DQ/Nurture WoW moves (+9.0%/+15.3%) and none of HIH/MQL/SQL/Opp/DQ/Nurture exceed 2.5x their rolling 8-week median. Flagged here for confirmation; not yet in acknowledged_events.",
+      "YoY comparison (same ISO week, Oct 20-26 2025) shows MQL 331, SQL 306, Opp 305 -- all several times this week's totals. Pulled as specified with no adjustment; flagging because the gap is large enough to be worth a sanity check against last year's list/import activity before trusting the YoY tiles at face value.",
+      "Stage movement (forward/back classification) and moved_deals not computed this run, consistent with recent weeks -- pipeline.by_stage (point-in-time open-deal counts) is complete and is what the tab falls back to.",
+      "Product coverage and segment coverage are both >=30% on every stage this week (previous week's SQL/Opp coverage flag has cleared)."
+    ]
   }
 ]

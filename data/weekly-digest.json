@@ -1,12 +1,12 @@
 {
   "skill": "weekly-marketing-digest",
   "title": "Weekly Digest",
-  "updated": "2026-10-19",
+  "updated": "2026-10-26",
   "notes": "Weekly funnel velocity by ISO week (MQL/SQL/Opp by stage-entry date; HIH by create date). Last 10 complete weeks; the in-progress current week is excluded until it closes. Breakdowns: by product (primary product per contact) and by account segment, plus lead disposition and an open-pipeline snapshot.",
   "brand_lift": {
-    "updated": "2026-10-19",
+    "updated": "2026-10-26",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 12 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (483 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. Branded search covers branded queries on the inquired.com property. YouTube and Instagram are Search Console platform properties: they exist in the Search Console UI but are not returned by the Search Analytics API, so those two channels cannot be filled automatically and stay blank. LinkedIn has no GSC connector at all: it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 19 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (322 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "series": [
       {
         "period": "2026-08-10",
@@ -120,8 +120,20 @@
         "period": "2026-10-12",
         "label": "Oct 12",
         "branded": {
-          "clicks": 483,
-          "impressions": 4125
+          "clicks": 498,
+          "impressions": 4231
+        },
+        "youtube": null,
+        "instagram": null,
+        "settled_days": 7,
+        "provisional": false
+      },
+      {
+        "period": "2026-10-19",
+        "label": "Oct 19",
+        "branded": {
+          "clicks": 322,
+          "impressions": 3679
         },
         "youtube": null,
         "instagram": null,
@@ -139,61 +151,61 @@
       "window": "first 5 days of each week",
       "channels": {
         "branded": {
-          "current": 442,
-          "previous": 358
+          "current": 295,
+          "previous": 442
         }
       }
     }
   },
   "pipeline": {
-    "new_business_open": 163,
-    "account_growth_open": 9,
-    "renewal_open": 283,
-    "district_open": 15,
-    "school_open": 6,
-    "as_of": "2026-10-19",
+    "new_business_open": 157,
+    "account_growth_open": 10,
+    "renewal_open": 284,
+    "district_open": 11,
+    "school_open": 5,
+    "as_of": "2026-10-26",
     "note": "District/School pipelines are legacy, kept for history but hidden on the Weekly tab per RevOps (2026-09-16); active pipelines are New Business, Account Growth, Renewal.",
     "by_product": {
       "ij": {
-        "count": 403,
-        "amount": 8667647.37
+        "count": 406,
+        "amount": 8603301.88
       },
       "inkwell": {
-        "count": 20,
-        "amount": 858370.0
+        "count": 22,
+        "amount": 929120
       },
       "wh": {
-        "count": 78,
-        "amount": 762462.73
+        "count": 79,
+        "amount": 765962.73
       },
       "gf8": {
-        "count": 27,
-        "amount": 1057200.0
+        "count": 19,
+        "amount": 1174800
       },
       "untagged": {
-        "count": 26,
+        "count": 22,
         "amount": 514875.62
       }
     },
     "active_by_product": {
       "ij": {
-        "count": 382,
-        "amount": 8592207.38
+        "count": 391,
+        "amount": 8578960.88
       },
       "inkwell": {
-        "count": 20,
-        "amount": 858370.0
+        "count": 21,
+        "amount": 929120
       },
       "wh": {
-        "count": 77,
-        "amount": 759962.73
+        "count": 78,
+        "amount": 763462.73
       },
       "gf8": {
-        "count": 27,
-        "amount": 1057200.0
+        "count": 19,
+        "amount": 1174800
       },
       "untagged": {
-        "count": 26,
+        "count": 19,
         "amount": 514875.62
       }
     },
@@ -201,57 +213,52 @@
       "new_business": [
         {
           "stage": "Sales Qualified",
-          "count": 32,
-          "amount": 162000.0
+          "count": 18,
+          "amount": 140000.0
         },
         {
           "stage": "Interest",
-          "count": 123,
-          "amount": 4445932.83
+          "count": 121,
+          "amount": 4014045.33
         },
         {
           "stage": "Consideration",
-          "count": 4,
-          "amount": 153437.0
+          "count": 11,
+          "amount": 615337.0
         },
         {
           "stage": "Conviction",
           "count": 3,
-          "amount": 0.0
+          "amount": 120.0
         },
         {
           "stage": "Desire",
           "count": 1,
           "amount": 0.0
+        },
+        {
+          "stage": "Validation/Approval",
+          "count": 3,
+          "amount": 3500.0
         }
       ],
       "account_growth": [
         {
           "stage": "Sales Qualified",
-          "count": 6,
+          "count": 4,
           "amount": 0.0
         },
         {
           "stage": "Interest",
-          "count": 2,
-          "amount": 2250.0
-        },
-        {
-          "stage": "Validation/Approval",
-          "count": 1,
-          "amount": 0.0
+          "count": 6,
+          "amount": 146500.0
         }
       ],
       "renewal": [
         {
-          "stage": "Desire",
-          "count": 1,
-          "amount": 1.0
-        },
-        {
           "stage": "Nurture",
-          "count": 279,
-          "amount": 5983439.19
+          "count": 281,
+          "amount": 5998425.19
         },
         {
           "stage": "Engaged",
@@ -259,25 +266,25 @@
           "amount": 44784.11
         },
         {
-          "stage": "Unknown(1284175711)",
+          "stage": "Desire",
           "count": 1,
-          "amount": 765.0
+          "amount": 1.0
         }
       ],
       "district": [
         {
           "stage": "Sales Qualified",
-          "count": 2,
+          "count": 3,
           "amount": 0.0
         },
         {
           "stage": "Interest",
-          "count": 4,
-          "amount": 50598.99
+          "count": 1,
+          "amount": 0.0
         },
         {
           "stage": "Consideration",
-          "count": 4,
+          "count": 5,
           "amount": 16820.0
         },
         {
@@ -287,34 +294,29 @@
         },
         {
           "stage": "Desire",
-          "count": 3,
-          "amount": 0.0
-        },
-        {
-          "stage": "Validation/Approval",
           "count": 1,
           "amount": 0.0
         }
       ],
       "school": [
         {
+          "stage": "Consideration",
+          "count": 2,
+          "amount": 4301.0
+        },
+        {
           "stage": "Interest",
           "count": 3,
           "amount": 2500.0
-        },
-        {
-          "stage": "Consideration",
-          "count": 3,
-          "amount": 4801.0
         }
       ]
     }
   },
   "segment_coverage": {
-    "hih": 62.9,
-    "mql": 58.4,
-    "sql": 75.0,
-    "opp": 75.0
+    "hih": 60.9,
+    "mql": 70.2,
+    "sql": 95.8,
+    "opp": 100.0
   },
   "product_caveat": "Product coverage W38: HIH 102% (multi-value overlap), MQL 9%, SQL 12%, Opp 12% -- SQL and Opp below 30% flag threshold.",
   "segment_caveat": "segment__company_ is single-select and clean, but partially populated (coverage shown per stage). 'Single/Small' = Single Site + Small District combined for display. SQL/Opp segment sub-sums slightly exceed totals (SQL: 14 vs 13, Opp: 13 vs 12) due to possible segment overlap.",
@@ -325,586 +327,6 @@
     "gf8"
   ],
   "weeks": [
-    {
-      "period": "2026-07-20",
-      "label": "Jul 20",
-      "funnel": {
-        "hih": 5,
-        "mql": 40,
-        "sql": 27,
-        "opp": 27,
-        "hih_excluded": {
-          "internal": 0,
-          "higher_ed": 0,
-          "competitor": 0
-        }
-      },
-      "by_product": {
-        "ij": {
-          "hih": 4,
-          "mql": 10,
-          "sql": 4,
-          "opp": 4
-        },
-        "inkwell": {
-          "hih": 0,
-          "mql": 7,
-          "sql": 0,
-          "opp": 0
-        },
-        "wh": {
-          "hih": 1,
-          "mql": null,
-          "sql": null,
-          "opp": null
-        },
-        "gf8": {
-          "hih": 0,
-          "mql": null,
-          "sql": null,
-          "opp": null
-        }
-      },
-      "products_included": [
-        "ij",
-        "inkwell"
-      ],
-      "by_segment": {
-        "single_small": {
-          "hih": 2,
-          "mql": 27,
-          "sql": 22,
-          "opp": 22
-        },
-        "medium": {
-          "hih": 0,
-          "mql": 1,
-          "sql": 1,
-          "opp": 1
-        },
-        "large": {
-          "hih": 0,
-          "mql": 0,
-          "sql": 0,
-          "opp": 0
-        },
-        "enterprise": {
-          "hih": 1,
-          "mql": 1,
-          "sql": 0,
-          "opp": 0
-        }
-      },
-      "disposition": {
-        "dq": 100,
-        "nurture": 47
-      },
-      "drill": {
-        "hih": [
-          [
-            237771022241,
-            "Single",
-            "Direct"
-          ],
-          [
-            236923836291,
-            "",
-            "Direct"
-          ],
-          [
-            236923154263,
-            "Single",
-            "Direct"
-          ],
-          [
-            236545762816,
-            "Enterprise",
-            "Direct"
-          ],
-          [
-            236308536906,
-            "",
-            "Direct"
-          ]
-        ],
-        "mql": [
-          [
-            237771022241,
-            "Single",
-            "Direct"
-          ],
-          [
-            237662821420,
-            "Medium",
-            "Direct"
-          ],
-          [
-            237385511937,
-            "",
-            "Paid"
-          ],
-          [
-            237265082922,
-            "",
-            "Direct"
-          ],
-          [
-            237226797897,
-            "",
-            "Paid"
-          ],
-          [
-            237223782960,
-            "Small",
-            "Offline"
-          ],
-          [
-            237223772771,
-            "Small",
-            "Offline"
-          ],
-          [
-            237200142181,
-            "Small",
-            "Offline"
-          ],
-          [
-            236866131229,
-            "Single",
-            "Offline"
-          ],
-          [
-            237161415757,
-            "Single",
-            "Offline"
-          ],
-          [
-            236803201950,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866120347,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866304348,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866303598,
-            "Single",
-            "Offline"
-          ],
-          [
-            237005732770,
-            "Single",
-            "Direct"
-          ],
-          [
-            236866234752,
-            "Small",
-            "Offline"
-          ],
-          [
-            236803091048,
-            "Small",
-            "Offline"
-          ],
-          [
-            236925609110,
-            "Small",
-            "Paid"
-          ],
-          [
-            236923836291,
-            "",
-            "Direct"
-          ],
-          [
-            236923154263,
-            "Single",
-            "Direct"
-          ],
-          [
-            236912820048,
-            "",
-            "Paid"
-          ],
-          [
-            236862066716,
-            "",
-            "Direct"
-          ],
-          [
-            236698868588,
-            "Single",
-            "Offline"
-          ],
-          [
-            236698741296,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802850592,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802657718,
-            "Single",
-            "Offline"
-          ],
-          [
-            236705231463,
-            "Single",
-            "Offline"
-          ],
-          [
-            236545762816,
-            "Enterprise",
-            "Direct"
-          ],
-          [
-            236512093062,
-            "",
-            "Paid"
-          ],
-          [
-            236459543565,
-            "Single",
-            "Offline"
-          ],
-          [
-            236411229310,
-            "",
-            "Direct"
-          ],
-          [
-            236330835805,
-            "",
-            "Paid"
-          ],
-          [
-            236308536906,
-            "",
-            "Direct"
-          ],
-          [
-            235983285020,
-            "Single",
-            "Direct"
-          ],
-          [
-            235673209622,
-            "",
-            "Offline"
-          ],
-          [
-            235731722420,
-            "Single",
-            "Offline"
-          ],
-          [
-            235207947387,
-            "Small",
-            "Offline"
-          ],
-          [
-            232976948883,
-            "Single",
-            "Offline"
-          ],
-          [
-            135644140598,
-            "Small",
-            "Offline"
-          ],
-          [
-            94757640310,
-            "Small",
-            "Direct"
-          ]
-        ],
-        "sql": [
-          [
-            237223782960,
-            "Small",
-            "Offline"
-          ],
-          [
-            237223772771,
-            "Small",
-            "Offline"
-          ],
-          [
-            237200142181,
-            "Small",
-            "Offline"
-          ],
-          [
-            236866131229,
-            "Single",
-            "Offline"
-          ],
-          [
-            237161415757,
-            "Single",
-            "Offline"
-          ],
-          [
-            236803201950,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866120347,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866304348,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866303598,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866234752,
-            "Small",
-            "Offline"
-          ],
-          [
-            236803091048,
-            "Small",
-            "Offline"
-          ],
-          [
-            236698868588,
-            "Single",
-            "Offline"
-          ],
-          [
-            236698741296,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802850592,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802657718,
-            "Single",
-            "Offline"
-          ],
-          [
-            236705231463,
-            "Single",
-            "Offline"
-          ],
-          [
-            236459543565,
-            "Single",
-            "Offline"
-          ],
-          [
-            236411229310,
-            "",
-            "Direct"
-          ],
-          [
-            235673209622,
-            "",
-            "Offline"
-          ],
-          [
-            235731722420,
-            "Single",
-            "Offline"
-          ],
-          [
-            235704482620,
-            "Medium",
-            "Direct"
-          ],
-          [
-            235207947387,
-            "Small",
-            "Offline"
-          ],
-          [
-            232976948883,
-            "Single",
-            "Offline"
-          ],
-          [
-            230343517339,
-            "Single",
-            "Direct"
-          ],
-          [
-            230341827463,
-            "",
-            "Direct"
-          ],
-          [
-            149360326425,
-            "",
-            "Organic"
-          ],
-          [
-            135644140598,
-            "Small",
-            "Offline"
-          ]
-        ],
-        "opp": [
-          [
-            237223782960,
-            "Small",
-            "Offline"
-          ],
-          [
-            237223772771,
-            "Small",
-            "Offline"
-          ],
-          [
-            237200142181,
-            "Small",
-            "Offline"
-          ],
-          [
-            236866131229,
-            "Single",
-            "Offline"
-          ],
-          [
-            237161415757,
-            "Single",
-            "Offline"
-          ],
-          [
-            236803201950,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866120347,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866304348,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866303598,
-            "Single",
-            "Offline"
-          ],
-          [
-            236866234752,
-            "Small",
-            "Offline"
-          ],
-          [
-            236803091048,
-            "Small",
-            "Offline"
-          ],
-          [
-            236698868588,
-            "Single",
-            "Offline"
-          ],
-          [
-            236698741296,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802850592,
-            "Small",
-            "Offline"
-          ],
-          [
-            236802657718,
-            "Single",
-            "Offline"
-          ],
-          [
-            236705231463,
-            "Single",
-            "Offline"
-          ],
-          [
-            236459543565,
-            "Single",
-            "Offline"
-          ],
-          [
-            236411229310,
-            "",
-            "Direct"
-          ],
-          [
-            235673209622,
-            "",
-            "Offline"
-          ],
-          [
-            235731722420,
-            "Single",
-            "Offline"
-          ],
-          [
-            235704482620,
-            "Medium",
-            "Direct"
-          ],
-          [
-            235207947387,
-            "Small",
-            "Offline"
-          ],
-          [
-            232976948883,
-            "Single",
-            "Offline"
-          ],
-          [
-            230343517339,
-            "Single",
-            "Direct"
-          ],
-          [
-            230341827463,
-            "",
-            "Direct"
-          ],
-          [
-            149360326425,
-            "",
-            "Organic"
-          ],
-          [
-            135644140598,
-            "Small",
-            "Offline"
-          ]
-        ]
-      }
-    },
     {
       "period": "2026-07-27",
       "label": "Jul 27",
@@ -8702,47 +8124,2110 @@
           ]
         ]
       }
+    },
+    {
+      "period": "2026-10-19",
+      "label": "Oct 19",
+      "funnel": {
+        "hih": 23,
+        "mql": 104,
+        "sql": 24,
+        "opp": 23
+      },
+      "funnel_hih_excluded": {
+        "internal": 0,
+        "higher_ed": 2,
+        "competitor": 0
+      },
+      "yoy": {
+        "period": "2025-10-20",
+        "label": "Oct 20, 2025",
+        "mql": 331,
+        "sql": 306,
+        "opp": 305,
+        "hih": null,
+        "hih_note": "No HIH YoY: HIH uses the current intent tier, so a year-old cohort has had 12 months to reach High and isn't comparable."
+      },
+      "by_product": {
+        "ij": {
+          "hih": 12,
+          "mql": 23,
+          "sql": 1,
+          "opp": 1
+        },
+        "inkwell": {
+          "hih": 8,
+          "mql": 50,
+          "sql": 2,
+          "opp": 2
+        },
+        "wh": {
+          "hih": 1,
+          "mql": 5,
+          "sql": 2,
+          "opp": 2
+        },
+        "gf8": {
+          "hih": 2,
+          "mql": 5,
+          "sql": 2,
+          "opp": 1
+        },
+        "untagged": {
+          "hih": 0,
+          "mql": 21,
+          "sql": 17,
+          "opp": 17
+        }
+      },
+      "products_included": [
+        "ij",
+        "inkwell",
+        "wh",
+        "gf8"
+      ],
+      "by_segment": {
+        "single_small": {
+          "mql": 30,
+          "sql": 7,
+          "opp": 7,
+          "hih": 6
+        },
+        "medium": {
+          "mql": 18,
+          "sql": 3,
+          "opp": 3,
+          "hih": 2
+        },
+        "large": {
+          "mql": 3,
+          "sql": 0,
+          "opp": 0,
+          "hih": 2
+        },
+        "enterprise": {
+          "mql": 22,
+          "sql": 13,
+          "opp": 13,
+          "hih": 4
+        }
+      },
+      "disposition": {
+        "dq": 219,
+        "nurture": 143,
+        "by_product": {
+          "ij": {
+            "dq": 43,
+            "nurture": 24
+          },
+          "inkwell": {
+            "dq": 65,
+            "nurture": 28
+          },
+          "wh": {
+            "dq": 0,
+            "nurture": 0
+          },
+          "gf8": {
+            "dq": 6,
+            "nurture": 1
+          }
+        },
+        "dq_reasons": [
+          {
+            "reason": "Gmail",
+            "count": 13,
+            "avg8": 20.7
+          },
+          {
+            "reason": "University Professor",
+            "count": 8,
+            "avg8": 7.8
+          },
+          {
+            "reason": "Non-Sellable Company",
+            "count": 7,
+            "avg8": 17.8
+          },
+          {
+            "reason": "Bounced/Opted Out",
+            "count": 4,
+            "avg8": 3.8
+          },
+          {
+            "reason": "Parent/Student",
+            "count": 2,
+            "avg8": 1.3
+          },
+          {
+            "reason": "No longer at school/district",
+            "count": 1
+          }
+        ],
+        "nurture_reasons": [
+          {
+            "reason": "Did Not Engage",
+            "count": 101,
+            "avg8": 200.0
+          },
+          {
+            "reason": "Not interested - no reason specified",
+            "count": 21,
+            "avg8": 16.0
+          },
+          {
+            "reason": "Timing (>6 months)",
+            "count": 9,
+            "avg8": 7.7
+          },
+          {
+            "reason": "Teacher - No influence",
+            "count": 9,
+            "avg8": 6.7
+          },
+          {
+            "reason": "Open Opportunity",
+            "count": 1
+          },
+          {
+            "reason": "Current Partner (No Upsell)",
+            "count": 1
+          },
+          {
+            "reason": "No Budget",
+            "count": 1
+          }
+        ],
+        "dq_reasons_note": "LEAD-level disqualification entries (35) run well below the contact-level DQ count (219) for the week of Oct 19 -- the LEAD object only tracks leads that formally entered the Disqualified stage, while hs_latest_disqualified_lead_date fires on contacts disqualified by other paths too."
+      },
+      "top_pieces": [
+        {
+          "offer": "Lit Talk with Dr. Nell K. Duke (webinar)",
+          "type": "Webinar",
+          "product": "Inkwell",
+          "fills": 29,
+          "avg8": 458.7,
+          "new_contacts": 18,
+          "to_hih": 0,
+          "to_mql": 1
+        },
+        {
+          "offer": "IJ-DL: Scope & Sequence",
+          "type": "Download",
+          "product": "Inquiry Journeys",
+          "fills": 24,
+          "avg8": 21.0,
+          "new_contacts": 13,
+          "to_hih": 1,
+          "to_mql": 8
+        },
+        {
+          "offer": "Source Material Webinar Series",
+          "type": "Webinar",
+          "product": "Inquiry Journeys",
+          "fills": 16,
+          "avg8": 30.3,
+          "new_contacts": 7,
+          "to_hih": 1,
+          "to_mql": 0
+        },
+        {
+          "offer": "Subscribe to Lit Talk Webinar Series (website)",
+          "type": "Form",
+          "product": "Inkwell",
+          "fills": 13,
+          "new_contacts": 0,
+          "to_hih": 2,
+          "to_mql": 0
+        },
+        {
+          "offer": "ELA-DL: Inkwell The Integrated Instructional Block",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 11,
+          "avg8": 21.7,
+          "new_contacts": 3,
+          "to_hih": 11,
+          "to_mql": 6
+        },
+        {
+          "offer": "ELA-DL: Inkwell K2 Sample Lesson",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 10,
+          "avg8": 14.7,
+          "new_contacts": 6,
+          "to_hih": 0,
+          "to_mql": 7
+        },
+        {
+          "offer": "SS-DL: WH-Scope and Sequence",
+          "type": "Download",
+          "product": "World History",
+          "fills": 9,
+          "new_contacts": 6,
+          "to_hih": 0,
+          "to_mql": 4
+        },
+        {
+          "offer": "ELA-DL: Inkwell K2 Curriculum Map",
+          "type": "Download",
+          "product": "Inkwell",
+          "fills": 8,
+          "new_contacts": 2,
+          "to_hih": 1,
+          "to_mql": 2
+        },
+        {
+          "offer": "Contact Sales form (website)",
+          "type": "Hand-raise",
+          "product": "—",
+          "fills": 6,
+          "new_contacts": 4,
+          "to_hih": 6,
+          "to_mql": 4
+        },
+        {
+          "offer": "Contact Sales form (website) — SS landing",
+          "type": "Hand-raise",
+          "product": "Inquiry Journeys",
+          "fills": 5,
+          "new_contacts": 3,
+          "to_hih": 5,
+          "to_mql": 4
+        }
+      ],
+      "content_touch": {
+        "population": "Contacts who became MQL this week",
+        "total": 104,
+        "unassigned": 43,
+        "rows": [
+          {
+            "piece": "IJ-DL: Scope & Sequence",
+            "product": "Inquiry Journeys",
+            "first": 11,
+            "last": 8
+          },
+          {
+            "piece": "ELA-DL: Inkwell K2 Sample Lesson",
+            "product": "Inkwell",
+            "first": 8,
+            "last": 8
+          },
+          {
+            "piece": "ELA-DL: Inkwell K2 Curriculum Map",
+            "product": "Inkwell",
+            "first": 4,
+            "last": 2
+          },
+          {
+            "piece": "Contact Sales form (website)",
+            "product": "—",
+            "first": 11,
+            "last": 12
+          },
+          {
+            "piece": "ELA-DL: Inkwell The Integrated Instructional Block",
+            "product": "Inkwell",
+            "first": 3,
+            "last": 6
+          },
+          {
+            "piece": "Great First Eight Contact Us (website)",
+            "product": "Great First 8",
+            "first": 4,
+            "last": 4
+          },
+          {
+            "piece": "ELA-DL: Inkwell PPC Lander",
+            "product": "Inkwell",
+            "first": 2,
+            "last": 2
+          },
+          {
+            "piece": "Inkwell Early Adopter form",
+            "product": "Inkwell",
+            "first": 2,
+            "last": 3
+          },
+          {
+            "piece": "Lit Talk with Dr. Nell K. Duke (webinar)",
+            "product": "Inkwell",
+            "first": 2,
+            "last": 1
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "product": "—",
+            "first": 1,
+            "last": 3
+          },
+          {
+            "piece": "SS-DL: WH-Scope and Sequence",
+            "product": "World History",
+            "first": 0,
+            "last": 4
+          },
+          {
+            "piece": "[HIH] IJ-Pilot Interest (website)",
+            "product": "Inquiry Journeys",
+            "first": 1,
+            "last": 2
+          },
+          {
+            "piece": "Contact Us (website)",
+            "product": "—",
+            "first": 1,
+            "last": 1
+          },
+          {
+            "piece": "ELA-DL: Inkwell ROI Infographic",
+            "product": "Inkwell",
+            "first": 1,
+            "last": 1
+          },
+          {
+            "piece": "Newsletter signup (website)",
+            "product": "—",
+            "first": 2,
+            "last": 2
+          }
+        ],
+        "note": "First/last touch content for contacts who entered MQL this week. 'Unassigned' = no tracked first/last conversion event on file."
+      },
+      "hih_existing": {
+        "count": 25,
+        "excluded": {
+          "internal": 3,
+          "higher_ed": 2,
+          "competitor": 0
+        },
+        "by_piece": [
+          {
+            "piece": "Contact Sales form (website)",
+            "count": 6
+          },
+          {
+            "piece": "ELA-DL: Inkwell The Integrated Instructional Block",
+            "count": 6
+          },
+          {
+            "piece": "Meetings link (sales rep)",
+            "count": 3
+          },
+          {
+            "piece": "Subscribe to Lit Talk Webinar Series (website)",
+            "count": 2
+          },
+          {
+            "piece": "Inkwell K-2 ELA Demo Request",
+            "count": 2
+          },
+          {
+            "piece": "Inquiry Journeys Demo Request",
+            "count": 2
+          },
+          {
+            "piece": "[HIH] IJ-Pilot Interest (website)",
+            "count": 1
+          },
+          {
+            "piece": "Great First Eight Contact Us (website)",
+            "count": 1
+          },
+          {
+            "piece": "Contact Us (website)",
+            "count": 1
+          },
+          {
+            "piece": "ELA-DL: Inkwell K2 Curriculum Map",
+            "count": 1
+          }
+        ],
+        "drill": [
+          [
+            255809063263,
+            "Single",
+            "Inkwell",
+            "Meetings link"
+          ],
+          [
+            255541761864,
+            "Medium",
+            "IJ",
+            "[HIH] IJ-Pilot Interest"
+          ],
+          [
+            255265135749,
+            "",
+            "Inkwell",
+            "Meetings link"
+          ],
+          [
+            252210874532,
+            "Small",
+            "Inkwell",
+            "Lit Talk subscribe"
+          ],
+          [
+            241396836358,
+            "",
+            "Inkwell",
+            "Inkwell Demo Request"
+          ],
+          [
+            218256744840,
+            "Small",
+            "GF8",
+            "GF8 contact us"
+          ],
+          [
+            214415564876,
+            "Small",
+            "IJ",
+            "Contact Sales form"
+          ],
+          [
+            214103157274,
+            "",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            190903359838,
+            "",
+            "IJ",
+            "Contact Sales form"
+          ],
+          [
+            171938545811,
+            "",
+            "IJ",
+            "Contact Sales form"
+          ],
+          [
+            144414205539,
+            "Medium",
+            "IJ",
+            "IJ Demo Request"
+          ],
+          [
+            144339055984,
+            "Other",
+            "Inkwell",
+            "Inkwell Demo Request"
+          ],
+          [
+            120306781773,
+            "Single",
+            "Inkwell",
+            "Contact Sales form"
+          ],
+          [
+            105316014898,
+            "",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            89973170298,
+            "Large",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            71177387440,
+            "Enterprise",
+            "Inkwell",
+            "Lit Talk subscribe"
+          ],
+          [
+            71093319480,
+            "Other",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            9254294049,
+            "Medium",
+            "IJ",
+            "Meetings link"
+          ],
+          [
+            24140251,
+            "Single",
+            "IJ",
+            "IJ Demo Request"
+          ],
+          [
+            23647601,
+            "Small",
+            "IJ",
+            "Contact Us"
+          ],
+          [
+            18132051,
+            "Small",
+            "IJ",
+            "Contact Sales form"
+          ],
+          [
+            11623251,
+            "Small",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            10712851,
+            "Large",
+            "Inkwell",
+            "ELA-DL K2 Curriculum Map"
+          ],
+          [
+            9784151,
+            "Other",
+            "Inkwell",
+            "ELA-DL Integrated Instructional Block"
+          ],
+          [
+            423901,
+            "Single",
+            "IJ",
+            "Contact Sales form"
+          ]
+        ],
+        "note": "HIH contacts who already existed in the CRM (createdate before this window) and converted again this week. HubSpot stores no date for an intent-tier change, so this is a proxy for existing-contact HIH activity, not a guarantee the tier changed this week."
+      },
+      "content_engagement": {
+        "as_of": "2026-10-26",
+        "prior_as_of": "2026-10-19",
+        "intent_tier": {
+          "high": 2525,
+          "medium": 1770,
+          "low": 31144
+        },
+        "intent_tier_prior": {
+          "high": 2485,
+          "medium": 1726,
+          "low": 31127
+        },
+        "top_content_tags": [
+          {
+            "tag": "Other Form",
+            "count": 5657,
+            "delta": 119
+          },
+          {
+            "tag": "IJ-DL: Scope & Sequence",
+            "count": 1755,
+            "delta": 30
+          },
+          {
+            "tag": "SS-WEB: Thought Leadership Series",
+            "count": 1641,
+            "delta": 0
+          },
+          {
+            "tag": "ELA-WEB: Lit Talk Webinar Registration",
+            "count": 1513,
+            "delta": 25
+          },
+          {
+            "tag": "IJ-DL: Curriculum Review Guide",
+            "count": 1186,
+            "delta": 2
+          },
+          {
+            "tag": "Contact Us",
+            "count": 631,
+            "delta": 2
+          },
+          {
+            "tag": "ELA-WEB: Thought Leadership Series",
+            "count": 437,
+            "delta": -2
+          },
+          {
+            "tag": "SS-WEB: Source Material Webinar Registration",
+            "count": 423,
+            "delta": 14
+          },
+          {
+            "tag": "Book a Demo",
+            "count": 415,
+            "delta": 17
+          },
+          {
+            "tag": "IJ-DL: Pacing Guide",
+            "count": 405,
+            "delta": 0
+          },
+          {
+            "tag": "IJ-DL: PD Deck-Literacy & SS Outcomes",
+            "count": 362,
+            "delta": 1
+          },
+          {
+            "tag": "Newsletter Sign Up",
+            "count": 333,
+            "delta": 10
+          }
+        ]
+      },
+      "deals_opp": {
+        "definition": "Deals that entered the Interest stage in New Business or Account Growth during the week (Interest is where the pipeline starts).",
+        "count": 37,
+        "amount": 548920.0,
+        "by_product": {
+          "ij": 31,
+          "inkwell": 4,
+          "wh": 2,
+          "gf8": 2,
+          "untagged": 0
+        },
+        "by_segment": {
+          "single_small": 19,
+          "medium": 14,
+          "large": 4,
+          "enterprise": 0,
+          "other": 0
+        },
+        "drill": [
+          [
+            66637150587,
+            "St. Matthew's Parish School,CA,School Year",
+            "New Business",
+            "Single",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            66544689753,
+            "Black Pine Circle School,CA,School Year",
+            "New Business",
+            "Single",
+            "IJ;WH",
+            0,
+            "Interest"
+          ],
+          [
+            66544439329,
+            "Iron County C-4,MO,27-28",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            66440422708,
+            "Kapolei Elementary, HI, '27-'28",
+            "New Business",
+            "Single",
+            "IJ",
+            5000,
+            "Interest"
+          ],
+          [
+            66475913238,
+            "Rockton School District 140,IL,School Year",
+            "New Business",
+            "Small",
+            "IJ",
+            5000,
+            "Interest"
+          ],
+          [
+            66467699302,
+            "Coburg Charter, OR, '27-'28",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            66475889981,
+            "Maple Dale-indian Hill School District,WI,School Year",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            66475766197,
+            "Fox Point-bayside Schools, WI, 27-28",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            66452461625,
+            "District 106, IL - SS Pilot Expansion",
+            "New Business",
+            "Small",
+            "IJ",
+            9000,
+            "Interest"
+          ],
+          [
+            66277482115,
+            "Abington School District,PA,27-28 - WH",
+            "New Business",
+            "Medium",
+            "IJ",
+            5000,
+            "Interest"
+          ],
+          [
+            66278161701,
+            "Iowa City Community School District,IA, 27-28 IW pilot",
+            "Account Growth",
+            "Large",
+            "Inkwell",
+            50000,
+            "Interest"
+          ],
+          [
+            66138486677,
+            "Elizabethtown Independent Schools,KY,2026",
+            "New Business",
+            "Small",
+            "IJ",
+            120,
+            "Interest"
+          ],
+          [
+            66020839342,
+            "Lake Mills Elementary School,WI,27-28",
+            "Account Growth",
+            "Single",
+            "Inkwell",
+            750,
+            "Interest"
+          ],
+          [
+            66020830811,
+            "East Irondequoit Central School District, NY, 27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            23000,
+            "Interest"
+          ],
+          [
+            65739883660,
+            "Owatonna Public Schools,MN,27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            20000,
+            "Interest"
+          ],
+          [
+            65754221086,
+            "Stoughton Area School District, WI  Pilot Expansion",
+            "New Business",
+            "Medium",
+            "IJ",
+            25000,
+            "Interest"
+          ],
+          [
+            65664347782,
+            "RSU 57, ME, 27-28",
+            "New Business",
+            "Medium",
+            "Inkwell",
+            10000,
+            "Interest"
+          ],
+          [
+            65428579156,
+            "New Roads School, CA, 2026-27",
+            "Account Growth",
+            "Single",
+            "Inkwell",
+            0,
+            "Closed Won"
+          ],
+          [
+            65354919717,
+            "North Penn School District,PA,27-28",
+            "New Business",
+            "Large",
+            "IJ",
+            90000,
+            "Interest"
+          ],
+          [
+            65308730906,
+            "Bethany Christian Schools,IN,27-28",
+            "New Business",
+            "Single",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            65266518132,
+            "School District 62,IL,27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            10000,
+            "Interest"
+          ],
+          [
+            65264881967,
+            "Nha Schools, CO , 28-29",
+            "Account Growth",
+            "Single",
+            "GF8",
+            85000,
+            "Interest"
+          ],
+          [
+            65077070987,
+            "Mulvane Unified School District 263,KS,27-28",
+            "New Business",
+            "Small",
+            "IJ",
+            2500,
+            "Interest"
+          ],
+          [
+            65164367153,
+            "Open Window School, WA - SS Pilot Expansion",
+            "New Business",
+            "Single",
+            "IJ",
+            3000,
+            "Interest"
+          ],
+          [
+            65162288418,
+            "Monticello School District,MN,27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            25000,
+            "Interest"
+          ],
+          [
+            65027333168,
+            "Louisville Public Schools,NE,2027-2028",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Interest"
+          ],
+          [
+            64877328933,
+            "Mequon-Thiensville School District,WI,27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            24000,
+            "Interest"
+          ],
+          [
+            64410981479,
+            "Northern York County School District,PA,27-28",
+            "New Business",
+            "Medium",
+            "IJ",
+            10000,
+            "Interest"
+          ],
+          [
+            64342025473,
+            "Wauwatosa School District, SS - WH Pilot Expansion",
+            "New Business",
+            "Medium",
+            "IJ;WH",
+            5000,
+            "Interest"
+          ],
+          [
+            64313723743,
+            "Woodburn School District, OR - SS Pilot Expansion",
+            "New Business",
+            "Medium",
+            "IJ",
+            45000,
+            "Interest"
+          ],
+          [
+            64215298896,
+            "Norwalk Public Schools, CT - IJ Pilot Expansion",
+            "New Business",
+            "Large",
+            "IJ",
+            20000,
+            "Interest"
+          ],
+          [
+            62115382842,
+            "Oshkosh Area School District, WI - IJ",
+            "New Business",
+            "Medium",
+            "IJ",
+            10000,
+            "Interest"
+          ],
+          [
+            60842365542,
+            "Sheldon Community School District, IA - 3-6 Pilot Expansion",
+            "New Business",
+            "Small",
+            "IJ",
+            3500,
+            "Interest"
+          ],
+          [
+            60239724345,
+            "Cambridge-Isanti PSD, MN - SS",
+            "New Business",
+            "Medium",
+            "IJ",
+            39550,
+            "Interest"
+          ],
+          [
+            59087053490,
+            "Rahway Public School District, NJ - IJ",
+            "New Business",
+            "Medium",
+            "IJ",
+            10000,
+            "Interest"
+          ],
+          [
+            58905773370,
+            "District 106, IL - SS",
+            "New Business",
+            "Small",
+            "IJ",
+            0,
+            "Closed Won"
+          ],
+          [
+            58208236196,
+            "Iowa City Community School District, IW- GF8",
+            "Account Growth",
+            "Large",
+            "GF8",
+            8500,
+            "Interest"
+          ]
+        ]
+      },
+      "read": {
+        "up": "MQL held at <b>104</b>, about 10% above the 8-week average of 94, with Inkwell driving roughly half of this week's qualified leads.",
+        "down": "HIH fell to <b>23</b>, about 15% below the 8-week average of 27, as last week's Lit Talk webinar surge normalized.",
+        "watch": "SQL and Opp landed at <b>24</b> and <b>23</b>, both close to their 8-week averages but down sharply week over week on a small, enterprise-weighted sample."
+      },
+      "drill": {
+        "hih": [
+          [
+            257528819032,
+            "",
+            "Paid",
+            "IJ"
+          ],
+          [
+            257466982470,
+            "Medium",
+            "Paid",
+            "IJ"
+          ],
+          [
+            257349048707,
+            "Small",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257349037695,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257222522134,
+            "Other",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257189901736,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256930773068,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256941257315,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256913528993,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            256835282102,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256774934929,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256774875685,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256665011831,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256662545217,
+            "Large",
+            "Organic",
+            "WH"
+          ],
+          [
+            256556418210,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            256549283369,
+            "Large",
+            "Organic",
+            "GF8"
+          ],
+          [
+            256432902321,
+            "",
+            "Paid",
+            "IJ"
+          ],
+          [
+            256352047767,
+            "Small",
+            "Direct",
+            "GF8"
+          ],
+          [
+            256341043743,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256309739342,
+            "Small",
+            "Paid",
+            "Inkwell"
+          ],
+          [
+            256206230537,
+            "Enterprise",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256015090258,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256001956957,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ]
+        ],
+        "mql": [
+          [
+            257755549715,
+            "Enterprise",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            257728915269,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257717243917,
+            "Single",
+            "Direct",
+            "WH"
+          ],
+          [
+            257665829790,
+            "",
+            "Paid",
+            "Inkwell"
+          ],
+          [
+            257528819032,
+            "",
+            "Paid",
+            "IJ"
+          ],
+          [
+            257466982470,
+            "Medium",
+            "Paid",
+            "IJ"
+          ],
+          [
+            257441717902,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257392931900,
+            "Medium",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257406002944,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257374376481,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257349048707,
+            "Small",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257349037695,
+            "Small",
+            "Referral",
+            "IJ"
+          ],
+          [
+            257219326467,
+            "Medium",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257222522134,
+            "Other",
+            "Organic",
+            "IJ"
+          ],
+          [
+            257189901736,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            257147081351,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            257093867885,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            257007046035,
+            "Single",
+            "Organic",
+            "IJ"
+          ],
+          [
+            256930773068,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256941257315,
+            "",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256913528993,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            256907321630,
+            "Medium",
+            "Paid",
+            "WH"
+          ],
+          [
+            256893374549,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256835282102,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256774934929,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256774875685,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256772039050,
+            "Single",
+            "Direct",
+            "WH"
+          ],
+          [
+            256759327002,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256672010801,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681309984,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681527092,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682434390,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681510436,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671333535,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256672944407,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682225028,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671589039,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256692551023,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256573160317,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256665011831,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256653571111,
+            "Other",
+            "Organic",
+            "GF8"
+          ],
+          [
+            256662545217,
+            "Large",
+            "Organic",
+            "WH"
+          ],
+          [
+            256639541828,
+            "Single",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256635782055,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256556418210,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            256549283369,
+            "Large",
+            "Organic",
+            "GF8"
+          ],
+          [
+            256474214412,
+            "Small",
+            "Offline",
+            ""
+          ],
+          [
+            256475646893,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            256432902321,
+            "",
+            "Paid",
+            "IJ"
+          ],
+          [
+            256373478987,
+            "",
+            "Paid",
+            "Inkwell"
+          ],
+          [
+            256352047767,
+            "Small",
+            "Direct",
+            "GF8"
+          ],
+          [
+            256337373344,
+            "Single",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256196802577,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256188803183,
+            "Single",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256170773805,
+            "Other",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256200297078,
+            "Single",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256189826706,
+            "Small",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256185576787,
+            "Enterprise",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256187371146,
+            "Medium",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256198567521,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256178644565,
+            "Other",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256324526241,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256196972320,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256191370832,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256190894715,
+            "Single",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256199335532,
+            "Small",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256309739342,
+            "Small",
+            "Paid",
+            "Inkwell"
+          ],
+          [
+            256152438198,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            256304063342,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256304035442,
+            "Enterprise",
+            "Email",
+            ""
+          ],
+          [
+            256305460118,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256206230537,
+            "Enterprise",
+            "Direct",
+            "IJ"
+          ],
+          [
+            256170809207,
+            "Medium",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256191710317,
+            "Medium",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256147580068,
+            "Small",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256185914467,
+            "",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256171429033,
+            "Medium",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256148963721,
+            "Enterprise",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256187218974,
+            "Single",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256186379523,
+            "Small",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256170345364,
+            "Small",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256134154926,
+            "Single",
+            "Offline",
+            "Inkwell"
+          ],
+          [
+            256015090258,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            256001956957,
+            "Enterprise",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            255541761864,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            255228017667,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            253263328864,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            253263328865,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            253263156247,
+            "",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            253443138099,
+            "",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            251940493209,
+            "Medium",
+            "Direct",
+            ""
+          ],
+          [
+            251884606315,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            244526615190,
+            "Enterprise",
+            "Email",
+            "IJ"
+          ],
+          [
+            218256744840,
+            "Small",
+            "Direct",
+            "GF8"
+          ],
+          [
+            214415564876,
+            "Small",
+            "Direct",
+            "IJ"
+          ],
+          [
+            214103157274,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            209868766832,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            203679234615,
+            "Large",
+            "Direct",
+            "Inkwell"
+          ],
+          [
+            180997788008,
+            "Medium",
+            "Organic",
+            "WH"
+          ],
+          [
+            160068252812,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            148871017040,
+            "Medium",
+            "Direct",
+            "IJ"
+          ],
+          [
+            105316014898,
+            "",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            71093319480,
+            "Other",
+            "Campaign",
+            "Inkwell"
+          ],
+          [
+            1675351,
+            "Enterprise",
+            "Campaign",
+            "Inkwell"
+          ]
+        ],
+        "sql": [
+          [
+            257755549715,
+            "Enterprise",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            257147081351,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            256907321630,
+            "Medium",
+            "Paid",
+            "WH"
+          ],
+          [
+            256772039050,
+            "Single",
+            "Direct",
+            "WH"
+          ],
+          [
+            256672010801,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681309984,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681527092,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682434390,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681510436,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671333535,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256672944407,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682225028,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671589039,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256692551023,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256573160317,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256474214412,
+            "Small",
+            "Offline",
+            ""
+          ],
+          [
+            256475646893,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            256152438198,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            256304035442,
+            "Enterprise",
+            "Email",
+            ""
+          ],
+          [
+            255228017667,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            246329177628,
+            "Single",
+            "Organic",
+            "GF8"
+          ],
+          [
+            209868766832,
+            "",
+            "Direct",
+            "GF8"
+          ],
+          [
+            149275951238,
+            "Single",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            24210151,
+            "Single",
+            "Direct",
+            "IJ"
+          ]
+        ],
+        "opp": [
+          [
+            257755549715,
+            "Enterprise",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            257147081351,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            256907321630,
+            "Medium",
+            "Paid",
+            "WH"
+          ],
+          [
+            256772039050,
+            "Single",
+            "Direct",
+            "WH"
+          ],
+          [
+            256672010801,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681309984,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681527092,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682434390,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256681510436,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671333535,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256672944407,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256682225028,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256671589039,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256692551023,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256573160317,
+            "Enterprise",
+            "Offline",
+            ""
+          ],
+          [
+            256474214412,
+            "Small",
+            "Offline",
+            ""
+          ],
+          [
+            256475646893,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            256152438198,
+            "Single",
+            "Offline",
+            ""
+          ],
+          [
+            256304035442,
+            "Enterprise",
+            "Email",
+            ""
+          ],
+          [
+            255228017667,
+            "Medium",
+            "Offline",
+            ""
+          ],
+          [
+            246329177628,
+            "Single",
+            "Organic",
+            "GF8"
+          ],
+          [
+            149275951238,
+            "Single",
+            "Email",
+            "Inkwell"
+          ],
+          [
+            24210151,
+            "Single",
+            "Direct",
+            "IJ"
+          ]
+        ]
+      }
     }
   ],
   "drill_note": "Latest-week drill-down stores only HubSpot record ID + segment + source (no names/emails) — repo is public. Each row links to the access-gated HubSpot record.",
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-10-19",
+    "as_of": "2026-10-26",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 4328282.83,
-      "lost": 1553336.0,
+      "open": 3998245.33,
+      "lost": 2069973.5,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 477050.0,
-        "lost": 10500.0,
+        "open": 446350.0,
+        "lost": 29000.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 848517.5,
-        "lost": 379067.0,
+        "open": 842374.0,
+        "lost": 637510.5,
         "won": 0.0
       },
       "large": {
-        "open": 1077409.0,
-        "lost": 334774.0,
+        "open": 1075215.0,
+        "lost": 557468.0,
         "won": 69938.91
       },
       "enterprise": {
-        "open": 1556354.0,
-        "lost": 828995.0,
+        "open": 1539354.0,
+        "lost": 845995.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2766082.83,
-        "lost": 1519336.0,
+        "open": 2688945.33,
+        "lost": 1971473.5,
         "won": 72521.91
       },
       "inkwell": {
@@ -8752,12 +10237,12 @@
       },
       "wh": {
         "open": 9250.0,
-        "lost": 0.0,
+        "lost": 5000.0,
         "won": 0.0
       },
       "gf8": {
-        "open": 1057200.0,
-        "lost": 34000.0,
+        "open": 809300.0,
+        "lost": 93500.0,
         "won": 0.0
       },
       "untagged": {
@@ -8768,7 +10253,7 @@
     },
     "by_pipeline": {
       "district": {
-        "open": 39550.0,
+        "open": 0.0,
         "lost": 1321371.0,
         "won": 2583.0
       },
@@ -8778,8 +10263,8 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 4284432.83,
-        "lost": 229965.0,
+        "open": 3993945.33,
+        "lost": 746602.5,
         "won": 69938.91
       }
     },
