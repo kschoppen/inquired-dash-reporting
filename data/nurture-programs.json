@@ -1,85 +1,85 @@
 {
  "skill": "nurture-dashboard-refresh",
  "title": "Nurture Programs",
- "updated": "2026-10-20",
+ "updated": "2026-10-27",
  "flows_linked": 5,
  "stale_after_days": 14,
- "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property. 2026-10-14: lifecycle and audience re-based on workflow enrollment (ever-enrolled lists per workflow, enrollment date from the Nurture Enrollment Date property) instead of the nurture_track tag, which is written only when a contact completes a workflow. Headline moved from 16 (tag population of 524 contacts, moves counted from Aug 18) to 46 (6,124 enrolled, moves counted after each contact's own enrollment day). Email blocks were not re-pulled and stay at Oct 13. Same-day stage entries are not counted as moved. 35 contacts have no enrollment date yet. 2026-10-20: full refresh, every section re-pulled. Enrollment grew to 6,415 (from 6,124), with 47 contacts now moved to a new lifecycle stage after enrolling (37 Inquiry Journeys, 10 Inkwell). Inkwell crossed its fifth full-volume module on both tracks and Agnostic's sixth email (module 6) sent at real volume for the first time, so every registered Agnostic email has now sent. Agnostic's suppression problem worsened again, now 186% of delivered (up from 142%). World History remains at zero sends.",
+ "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property. 2026-10-14: lifecycle and audience re-based on workflow enrollment (ever-enrolled lists per workflow, enrollment date from the Nurture Enrollment Date property) instead of the nurture_track tag, which is written only when a contact completes a workflow. Headline moved from 16 (tag population of 524 contacts, moves counted from Aug 18) to 46 (6,124 enrolled, moves counted after each contact's own enrollment day). Email blocks were not re-pulled and stay at Oct 13. Same-day stage entries are not counted as moved. 35 contacts have no enrollment date yet. 2026-10-20: full refresh, every section re-pulled. Enrollment grew to 6,415 (from 6,124), with 47 contacts now moved to a new lifecycle stage after enrolling (37 Inquiry Journeys, 10 Inkwell). Inkwell crossed its fifth full-volume module on both tracks and Agnostic's sixth email (module 6) sent at real volume for the first time, so every registered Agnostic email has now sent. Agnostic's suppression problem worsened again, now 186% of delivered (up from 142%). World History remains at zero sends. 2026-10-27: full refresh, every section re-pulled. Enrollment grew to 6,516 (from 6,415), with 53 contacts now moved to a new lifecycle stage after enrolling (40 Inquiry Journeys, 13 Inkwell), up from 47. Inkwell drove most of this week's delivery growth (+565), and its Leadership module 5 became the strongest single open-rate email in the portfolio. Inquiry Journeys Leadership module 6 crossed the 20-delivered test threshold (23 delivered) but is still too thin to read. Agnostic's suppression problem worsened again, now 206% of delivered (up from 186%). World History remains at zero sends.",
  "launch_date": "2026-08-18",
  "email_window": {
   "start": "2026-07-30",
-  "end": "2026-10-20"
+  "end": "2026-10-27"
  },
- "source_line": "HubSpot portal 4451852 \u00b7 CRM contacts + Marketing Email Analytics API",
- "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, workflow enrollment lists, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Enrollment, lifecycle movement, audience and email performance were all pulled on Oct 20, 2026.</strong> Movement is measured from each contact&apos;s own enrollment date. The program went live Aug 18 per the Asana launch milestone, and most contacts enrolled in bulk runs from Aug 31.",
+ "source_line": "HubSpot portal 4451852 · CRM contacts + Marketing Email Analytics API",
+ "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, workflow enrollment lists, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Enrollment, lifecycle movement, audience and email performance were all pulled on Oct 27, 2026.</strong> Movement is measured from each contact&apos;s own enrollment date. The program went live Aug 18 per the Asana launch milestone, and most contacts enrolled in bulk runs from Aug 31.",
  "lifecycle": {
   "note_html": "Contacts enrolled in a Fall 2026 nurture workflow whose <code>lifecyclestage</code> advanced (entered MQL, SQL, Opportunity or Customer) <strong>after the day they enrolled</strong>. Enrollment comes from each workflow&apos;s history (an ever-enrolled list per workflow), not from the <code>nurture_track</code> tag, which is written only when a contact completes the full workflow. Stage entries on the enrollment day itself cannot be ordered against the enrollment and are not counted.",
   "tiles": [
    {
-    "value": "47",
+    "value": "53",
     "tone": "accent",
     "label": "Enrolled contacts moved to a new lifecycle stage after they enrolled",
-    "cap": "37 in Inquiry Journeys and 10 in Inkwell, out of 6,415 enrollments across the four workflows with contacts. Great First Eight and Agnostic have none yet. 41 are MQL entries; the other 6 entered SQL, Opportunity or Customer only. 6 reached Customer (2 in Inquiry Journeys, 4 in Inkwell, all at the same school)."
+    "cap": "40 in Inquiry Journeys and 13 in Inkwell, out of 6,516 enrollments across the four workflows with contacts. Great First Eight and Agnostic have none yet. 47 are MQL entries; the other 6 entered SQL, Opportunity or Customer only. 6 reached Customer (2 in Inquiry Journeys, 4 in Inkwell, all at the same school)."
    },
    {
-    "value": "6,415",
+    "value": "6,516",
     "tone": "",
     "label": "Contacts enrolled across the four workflows",
-    "cap": "5,838 in progress and 577 no longer active (removed by a suppression list or completed). Inquiry Journeys 3,350, Inkwell 1,986, Agnostic 914, Great First Eight 165. World History has none. The large majority of Inquiry Journeys enrolled in one bulk run on Aug 31."
+    "cap": "5,907 in progress and 609 no longer active (removed by a suppression list or completed). Inquiry Journeys 3,379, Inkwell 2,033, Agnostic 935, Great First Eight 169. World History has none. The large majority of Inquiry Journeys enrolled in one bulk run on Aug 31."
    },
    {
-    "value": "1.1%",
+    "value": "1.2%",
     "tone": "flag",
-    "label": "Of Inquiry Journeys contacts moved after enrolling, against 0.5% in Inkwell",
-    "cap": "37 of 3,350 in Inquiry Journeys and 10 of 1,986 in Inkwell. Most of the Aug 31 bulk run has now had eight weeks. Most October enrollees have had under a month, so these rates will keep rising."
+    "label": "Of Inquiry Journeys contacts moved after enrolling, against 0.6% in Inkwell",
+    "cap": "40 of 3,379 in Inquiry Journeys and 13 of 2,033 in Inkwell. Most of the Aug 31 bulk run has now had eight weeks. Most October enrollees have had under a month, so these rates will keep rising."
    },
    {
-    "value": "366",
+    "value": "399",
     "tone": "flag",
     "label": "Enrolled contacts had already entered a lifecycle stage before they enrolled",
-    "cap": "128 in Inquiry Journeys and 229 in Inkwell entered MQL or a later stage between Aug 6 and their enrollment, plus 8 in Great First Eight and 1 in Agnostic. Another 52 did so on the enrollment day itself. For these contacts the content conversion that made them MQL is likely also what enrolled them, so reaching MQL cannot be counted as a nurture result. MQL to SQL is a cleaner test of the nurture."
+    "cap": "140 in Inquiry Journeys and 250 in Inkwell entered MQL or a later stage between Aug 6 and their enrollment, plus 8 in Great First Eight and 1 in Agnostic. Another 55 did so on the enrollment day itself. For these contacts the content conversion that made them MQL is likely also what enrolled them, so reaching MQL cannot be counted as a nurture result. MQL to SQL is a cleaner test of the nurture."
    }
   ],
   "by_program": [
    {
     "key": "ij",
     "program": "Inquiry Journeys",
-    "enrolled": 3350,
-    "in_progress": 3096,
-    "no_longer_active": 254,
-    "moved": 37,
-    "moved_note": "37 after the enrollment day: 35 entered MQL, plus 2 whose only new stage was SQL or Customer. 2 reached Customer. 5 enrolled contacts have no enrollment date yet.",
+    "enrolled": 3379,
+    "in_progress": 3107,
+    "no_longer_active": 272,
+    "moved": 40,
+    "moved_note": "40 after the enrollment day: 37 entered MQL, plus 3 whose only new stage was SQL, Opportunity or Customer. 2 reached Customer. 5 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "inkwell",
     "program": "Inkwell",
-    "enrolled": 1986,
-    "in_progress": 1780,
-    "no_longer_active": 206,
-    "moved": 10,
-    "moved_note": "10 after the enrollment day: 6 entered MQL and 4 entered Customer only. All 4 of the Customer-only moves are contacts at the same school who became customers on Aug 31, likely a sales close. 29 enrolled contacts have no enrollment date yet.",
+    "enrolled": 2033,
+    "in_progress": 1816,
+    "no_longer_active": 217,
+    "moved": 13,
+    "moved_note": "13 after the enrollment day: 10 entered MQL and 3 entered Customer only. 4 total reached Customer, all contacts at the same school who became customers on Aug 31, likely a sales close. 29 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "gf8",
     "program": "Great First Eight",
-    "enrolled": 165,
-    "in_progress": 117,
-    "no_longer_active": 48,
+    "enrolled": 169,
+    "in_progress": 119,
+    "no_longer_active": 50,
     "moved": 0,
-    "moved_note": "No stage entries after the enrollment day. 9 contacts entered a stage before they enrolled.",
+    "moved_note": "No stage entries after the enrollment day. 8 contacts entered a stage before they enrolled, and 1 did so on the enrollment day itself.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "agnostic",
     "program": "Agnostic",
-    "enrolled": 914,
-    "in_progress": 845,
-    "no_longer_active": 69,
+    "enrolled": 935,
+    "in_progress": 865,
+    "no_longer_active": 70,
     "moved": 0,
     "moved_note": "No stage entries after the enrollment day. 1 contact entered a stage before they enrolled. 1 enrolled contact has no enrollment date yet.",
     "tracking": "good",
@@ -103,19 +103,19 @@
   }
  },
  "portfolio": {
-  "note_html": "Nine weeks after the Aug 18 launch, delivery has jumped again since the Oct 13 check (12,680 to 15,996), driven mainly by Inquiry Journeys and Inkwell both crossing a fifth full-volume module. Agnostic's suppression problem has worsened again: the program now suppresses 186% of what it delivers, up from 142% last week, with module 1 alone suppressing more than 3x its own delivery. That is worth checking before reading anything else into Agnostic's numbers.",
+  "note_html": "Ten weeks after the Aug 18 launch, delivery has grown again since the Oct 20 check (15,996 to 16,766), driven mainly by Inkwell, which added 565 delivered this week while its Leadership and Classroom modules continue to mature. Agnostic's suppression problem has worsened again: the program now suppresses 206% of what it delivers, up from 186% last week, with module 1 alone suppressing more than 3x its own delivery. That is worth checking before reading anything else into Agnostic's numbers.",
   "tiles": [
    {
-    "value": "15,996",
+    "value": "16,766",
     "tone": "",
-    "label": "Total delivered across the portfolio, up from 12,680 on Oct 13",
-    "cap": "IJ 10,724 &middot; Inkwell 4,181 &middot; GF8 472 &middot; Agnostic 619 &middot; World History 0. Inquiry Journeys alone is 67% of all delivery."
+    "label": "Total delivered across the portfolio, up from 15,996 on Oct 20",
+    "cap": "IJ 10,871 &middot; Inkwell 4,746 &middot; GF8 482 &middot; Agnostic 667 &middot; World History 0. Inquiry Journeys alone is 65% of all delivery."
    },
    {
-    "value": "26.7%",
+    "value": "27.3%",
     "tone": "accent",
     "label": "Unique open rate portfolio-wide, bots excluded",
-    "cap": "4,272 unique opens on 15,996 delivered. By program: Inquiry Journeys 27.1%, Inkwell 26.8%, GF8 22.2%, Agnostic 22.0%. Click rate is 1.6% and unsubscribe 0.03%, inside the under-1% guardrail."
+    "cap": "4,580 unique opens on 16,766 delivered. By program: Inkwell 27.8%, Inquiry Journeys 27.7%, GF8 22.4%, Agnostic 21.7%. Click rate is 1.7% and unsubscribe 0.3%, inside the under-1% guardrail."
    },
    {
     "value": "32 / 49",
@@ -124,10 +124,10 @@
     "cap": "17 of the 49 registered emails have no real volume yet: all 4 World History emails, modules 6 through 8 across Inquiry Journeys and Inkwell (both tracks, including a duplicate module 7 record in Inquiry Journeys), and Great First Eight's module 6. The ones showing 1 or 2 sends are test sends, not audience delivery."
    },
    {
-    "value": "186%",
+    "value": "206%",
     "tone": "flag",
     "label": "Agnostic suppression rate against delivered, the worst in the portfolio",
-    "cap": "1,151 suppressed against 619 delivered program wide. Module 1 alone suppresses more than 3x what it delivers, 671 suppressed against 217 delivered. Worth checking that track's suppression lists and frequency caps immediately. The cause is not confirmable through the API."
+    "cap": "1,373 suppressed against 667 delivered program wide. Module 1 alone suppresses more than 3x what it delivers, 691 suppressed against 222 delivered. Worth checking that track's suppression lists and frequency caps immediately. The cause is not confirmable through the API."
    }
   ]
  },
@@ -142,14 +142,14 @@
     "tone": "good"
    },
    "status_label": "Active this fall",
-   "delivered": 10724,
-   "suppressed": 2441,
-   "open_rate": 0.2714,
-   "click_rate": 0.0165,
-   "unsub_rate": 0.0029,
+   "delivered": 10871,
+   "suppressed": 2469,
+   "open_rate": 0.2769,
+   "click_rate": 0.0175,
+   "unsub_rate": 0.0031,
    "emails_sending": 11,
    "emails_total": 17,
-   "note_html": "Leadership has sent six modules now, five at full volume (1,138, 1,164, 1,095, 880 and 809 delivered) and module 6 just beginning (20 delivered, too thin to read). Classroom has reached five full-volume modules (1,327, 1,264, 1,188, 941 and 883 delivered), module 5 crossing into real volume for the first time this week. Open rate holds in the low twenties to low thirties across modules 1 through 5, peaking at 31.1% on Classroom module 4. This program carries 67% of portfolio delivery and has 3,350 enrolled contacts, of whom 37 moved to a new lifecycle stage after enrolling (1.1%). The large majority enrolled in one bulk run on Aug 31, so that cohort is about eight weeks old and the October enrollees much younger."
+   "note_html": "Leadership has sent six modules now, five at full volume (1,147, 1,179, 1,122, 886 and 819 delivered) and module 6 crossing into the 20-delivered test threshold for the first time this week (23 delivered, still too thin to read). Classroom has reached five full-volume modules (1,340, 1,293, 1,208, 947 and 886 delivered). Open rate holds in the low twenties to low thirties across modules 1 through 5, peaking at 33.1% on Classroom module 5. This program carries 65% of portfolio delivery and has 3,379 enrolled contacts, of whom 40 moved to a new lifecycle stage after enrolling (1.2%). The large majority enrolled in one bulk run on Aug 31, so that cohort is now about eight weeks old and the October enrollees much younger."
   },
   {
    "key": "inkwell",
@@ -160,14 +160,14 @@
     "tone": "good"
    },
    "status_label": "Active this fall",
-   "delivered": 4181,
-   "suppressed": 160,
-   "open_rate": 0.2679,
-   "click_rate": 0.0163,
-   "unsub_rate": 0.0041,
+   "delivered": 4746,
+   "suppressed": 168,
+   "open_rate": 0.2775,
+   "click_rate": 0.0173,
+   "unsub_rate": 0.0044,
    "emails_sending": 10,
    "emails_total": 16,
-   "note_html": "Still the lowest suppression rate in the portfolio by a wide margin (3.8% of delivered, against 24.1% portfolio wide) and open rate stays among the best (26.8%, just behind Inquiry Journeys this week). Classroom and Leadership both reached a fifth full-volume module this week (94 and 175 delivered). Leadership module 1 remains the strongest single open-rate result in the portfolio at 35.6% (309 of 869), narrowly ahead of Leadership module 4's 35.0%. Program-wide unsubscribe sits at 0.41% (17 of 4,181), under the 1% guardrail. Of 1,986 enrolled contacts, 10 moved to a new lifecycle stage after enrolling (0.5%); 4 of those 10 are contacts at the same school who became customers on Aug 31, likely a sales close."
+   "note_html": "Still the lowest suppression rate in the portfolio by a wide margin (3.5% of delivered, against 24.5% portfolio wide) and open rate edges ahead of Inquiry Journeys this week (27.8% against 27.7%). Leadership module 5, now at full volume (184 delivered), has become the strongest single open-rate result in the portfolio at 37.0% (68 of 184), narrowly ahead of Leadership module 1's 36.3% (333 of 918). Program-wide unsubscribe sits at 0.44% (21 of 4,746), under the 1% guardrail. Of 2,033 enrolled contacts, 13 moved to a new lifecycle stage after enrolling (0.6%); 4 of those are contacts at the same school who became customers on Aug 31, likely a sales close."
   },
   {
    "key": "gf8",
@@ -178,14 +178,14 @@
     "tone": "watch"
    },
    "status_label": "Active this fall",
-   "delivered": 472,
-   "suppressed": 100,
-   "open_rate": 0.2225,
-   "click_rate": 0.0064,
-   "unsub_rate": 0.0064,
+   "delivered": 482,
+   "suppressed": 101,
+   "open_rate": 0.2241,
+   "click_rate": 0.0083,
+   "unsub_rate": 0.0062,
    "emails_sending": 5,
    "emails_total": 6,
-   "note_html": "Modules 1 through 5 now all have real volume (130, 121, 93, 67 and 59 delivered); module 6 shows 2 sends, which is a test. Clicks remain thin across the program (3 total), so no reliable click read is possible yet. Unsubscribe reads 0.64% (3 of 472), under the 1% guardrail but still thin enough that one or two people move the number. 165 contacts are enrolled and none has moved to a new lifecycle stage after enrolling."
+   "note_html": "Modules 1 through 5 now all have real volume (134, 123, 93, 69 and 61 delivered); module 6 shows 2 sends, which is a test. Clicks remain thin across the program (4 total), so no reliable click read is possible yet. Unsubscribe reads 0.62% (3 of 482), under the 1% guardrail but still thin enough that one or two people move the number. 169 contacts are enrolled and none has moved to a new lifecycle stage after enrolling."
   },
   {
    "key": "agnostic",
@@ -196,14 +196,14 @@
     "tone": "watch"
    },
    "status_label": "Active this fall",
-   "delivered": 619,
-   "suppressed": 1151,
-   "open_rate": 0.2197,
-   "click_rate": 0.0032,
+   "delivered": 667,
+   "suppressed": 1373,
+   "open_rate": 0.2174,
+   "click_rate": 0.0045,
    "unsub_rate": 0.0,
    "emails_sending": 6,
    "emails_total": 6,
-   "note_html": "Suppression is now dominant across the whole program: 1,151 suppressed against 619 delivered program wide, suppressing 186% of what it delivers, up from 142% last week. Module 1 alone suppresses 671 against just 217 delivered, more than 3x its own delivery. Open rate is 22.0% program wide; module 6, sending at real volume for the first time this week, is the strongest performer at 33.3% (9 of 27), though its volume is still thin. Every registered Agnostic email has now sent at real volume. Worth checking the suppression lists and frequency caps on this track immediately; the cause is not confirmable from the API."
+   "note_html": "Suppression is now dominant across the whole program: 1,373 suppressed against 667 delivered program wide, suppressing 206% of what it delivers, up from 186% last week. Module 1 alone suppresses 691 against just 222 delivered, more than 3x its own delivery. Open rate is 21.7% program wide; module 6, now at 27 delivered, is the strongest performer at 33.3% (9 of 27), though its volume is still thin. Every registered Agnostic email has sent at real volume for a second week. Worth checking the suppression lists and frequency caps on this track immediately; the cause is not confirmable from the API."
   },
   {
    "key": "wh",
@@ -227,19 +227,19 @@
  "emails": {
   "note_html": "Click-to-open rate (clicks &divide; opens, excluding bots) directly from HubSpot's marketing-email analytics, a purer read on content quality than open rate, since it isolates people who opened and then found something worth clicking. Listed: emails with real volume (20+ delivered as of the last pull); everything thinner is too early to rank. CT = Classroom Track (teacher-facing), LT = Leadership Track (admin-facing).",
   "min_delivered": 20,
-  "callout_html": "<strong>Inkwell's Classroom Track emails continue to convert opens to clicks better than its Leadership Track</strong> (7.6% average CTOR across five CT emails vs. 3.8% across five LT emails, a gap that has narrowed further to about 2.0x as modules 4 and 5 add volume on both tracks). Inquiry Journeys shows a smaller gap (6.4% CT vs. 5.2% LT, excluding module 6's still-thin 20 sends), narrower than last week as module 5 matures on both tracks.",
+  "callout_html": "<strong>Inkwell's Classroom Track emails continue to convert opens to clicks better than its Leadership Track</strong> (7.9% average CTOR across five CT emails vs. 3.7% across five LT emails, about 2.1x). Inquiry Journeys shows a smaller gap (6.4% CT vs. 4.9% LT, excluding modules 6 and 7's still-thin volume), about 1.3x.",
   "rows": [
    {
     "program": "ij",
     "code": "NE-IJ-CT-1",
     "subject": "When social studies keeps getting pushed to the end of the day",
     "url": "https://app.hubspot.com/email/4451852/details/575828855855/performance",
-    "delivered": 1327,
-    "opened": 360,
-    "open_rate": 0.2713,
-    "clicks": 32,
+    "delivered": 1340,
+    "opened": 365,
+    "open_rate": 0.2724,
+    "clicks": 33,
     "unsubs": 5,
-    "ctor": 0.0889,
+    "ctor": 0.0904,
     "track": "CT"
    },
    {
@@ -247,12 +247,12 @@
     "code": "NE-IJ-CT-2",
     "subject": "What your students are building in social studies shows up in reading",
     "url": "https://app.hubspot.com/email/4451852/details/575828298664/performance",
-    "delivered": 1264,
-    "opened": 272,
-    "open_rate": 0.2152,
+    "delivered": 1293,
+    "opened": 284,
+    "open_rate": 0.2196,
     "clicks": 29,
     "unsubs": 7,
-    "ctor": 0.1066,
+    "ctor": 0.1021,
     "track": "CT"
    },
    {
@@ -260,12 +260,12 @@
     "code": "NE-IJ-CT-3",
     "subject": "What the compelling question is actually for",
     "url": "https://app.hubspot.com/email/4451852/details/575828238256/performance",
-    "delivered": 1188,
-    "opened": 368,
-    "open_rate": 0.3098,
+    "delivered": 1208,
+    "opened": 373,
+    "open_rate": 0.3088,
     "clicks": 27,
     "unsubs": 1,
-    "ctor": 0.0734,
+    "ctor": 0.0724,
     "track": "CT"
    },
    {
@@ -273,9 +273,9 @@
     "code": "NE-IJ-CT-4",
     "subject": "The part of teaching inquiry that takes practice",
     "url": "https://app.hubspot.com/email/4451852/details/575368270978/performance",
-    "delivered": 941,
+    "delivered": 947,
     "opened": 293,
-    "open_rate": 0.3114,
+    "open_rate": 0.3094,
     "clicks": 5,
     "unsubs": 1,
     "ctor": 0.0171,
@@ -286,12 +286,12 @@
     "code": "NE-IJ-CT-5",
     "subject": "Why staying with the same content for weeks makes a difference",
     "url": "https://app.hubspot.com/email/4451852/details/575828857370/performance",
-    "delivered": 883,
-    "opened": 271,
-    "open_rate": 0.3069,
-    "clicks": 9,
+    "delivered": 886,
+    "opened": 293,
+    "open_rate": 0.3307,
+    "clicks": 11,
     "unsubs": 2,
-    "ctor": 0.0332,
+    "ctor": 0.0375,
     "track": "CT"
    },
    {
@@ -299,12 +299,12 @@
     "code": "NE-IJ-LT-1",
     "subject": "K-5 social studies time: what nine districts found",
     "url": "https://app.hubspot.com/email/4451852/details/575352992950/performance",
-    "delivered": 1138,
-    "opened": 325,
-    "open_rate": 0.2856,
+    "delivered": 1147,
+    "opened": 326,
+    "open_rate": 0.2842,
     "clicks": 29,
     "unsubs": 5,
-    "ctor": 0.0892,
+    "ctor": 0.089,
     "track": "LT"
    },
    {
@@ -312,12 +312,12 @@
     "code": "NE-IJ-LT-2",
     "subject": "Social studies time and reading gains: what the research found",
     "url": "https://app.hubspot.com/email/4451852/details/575261181258/performance",
-    "delivered": 1164,
-    "opened": 260,
-    "open_rate": 0.2234,
+    "delivered": 1179,
+    "opened": 266,
+    "open_rate": 0.2256,
     "clicks": 32,
-    "unsubs": 4,
-    "ctor": 0.1231,
+    "unsubs": 5,
+    "ctor": 0.1203,
     "track": "LT"
    },
    {
@@ -325,12 +325,12 @@
     "code": "NE-IJ-LT-3",
     "subject": "What changes when a unit starts with a question students want to answer",
     "url": "https://app.hubspot.com/email/4451852/details/575367773522/performance",
-    "delivered": 1095,
-    "opened": 288,
-    "open_rate": 0.263,
-    "clicks": 8,
+    "delivered": 1122,
+    "opened": 301,
+    "open_rate": 0.2683,
+    "clicks": 9,
     "unsubs": 3,
-    "ctor": 0.0278,
+    "ctor": 0.0299,
     "track": "LT"
    },
    {
@@ -338,12 +338,12 @@
     "code": "NE-IJ-LT-4",
     "subject": "\"The people doing the talking are doing the thinking\": inquiry in Eastern Carver County Schools",
     "url": "https://app.hubspot.com/email/4451852/details/575367958942/performance",
-    "delivered": 880,
-    "opened": 232,
-    "open_rate": 0.2636,
-    "clicks": 3,
+    "delivered": 886,
+    "opened": 237,
+    "open_rate": 0.2675,
+    "clicks": 4,
     "unsubs": 2,
-    "ctor": 0.0129,
+    "ctor": 0.0169,
     "track": "LT"
    },
    {
@@ -351,12 +351,12 @@
     "code": "NE-IJ-LT-5",
     "subject": "What assessment looks like across an inquiry unit",
     "url": "https://app.hubspot.com/email/4451852/details/575368065074/performance",
-    "delivered": 809,
-    "opened": 237,
-    "open_rate": 0.293,
-    "clicks": 2,
-    "unsubs": 1,
-    "ctor": 0.0084,
+    "delivered": 819,
+    "opened": 266,
+    "open_rate": 0.3248,
+    "clicks": 10,
+    "unsubs": 3,
+    "ctor": 0.0376,
     "track": "LT"
    },
    {
@@ -364,9 +364,9 @@
     "code": "NE-IJ-LT-6",
     "subject": "K-5 social studies and your Portrait of a Graduate goals",
     "url": "https://app.hubspot.com/email/4451852/details/575261182997/performance",
-    "delivered": 20,
+    "delivered": 23,
     "opened": 4,
-    "open_rate": 0.2,
+    "open_rate": 0.1739,
     "clicks": 0,
     "unsubs": 0,
     "ctor": 0.0,
@@ -377,12 +377,12 @@
     "code": "NE-IW-CT-1",
     "subject": "When social studies keeps getting pushed out of the K-2 day",
     "url": "https://app.hubspot.com/email/4451852/details/574629478506/performance",
-    "delivered": 916,
-    "opened": 165,
-    "open_rate": 0.1801,
-    "clicks": 20,
-    "unsubs": 4,
-    "ctor": 0.1212,
+    "delivered": 928,
+    "opened": 169,
+    "open_rate": 0.1821,
+    "clicks": 21,
+    "unsubs": 5,
+    "ctor": 0.1243,
     "track": "CT"
    },
    {
@@ -390,12 +390,12 @@
     "code": "NE-IW-CT-2",
     "subject": "What your students are learning in social studies shows up in reading",
     "url": "https://app.hubspot.com/email/4451852/details/575261028635/performance",
-    "delivered": 708,
-    "opened": 162,
-    "open_rate": 0.2288,
-    "clicks": 10,
-    "unsubs": 2,
-    "ctor": 0.0617,
+    "delivered": 873,
+    "opened": 202,
+    "open_rate": 0.2314,
+    "clicks": 17,
+    "unsubs": 3,
+    "ctor": 0.0842,
     "track": "CT"
    },
    {
@@ -403,12 +403,12 @@
     "code": "NE-IW-CT-3",
     "subject": "How Inkwell lessons are designed to work for K-2 students and teachers",
     "url": "https://app.hubspot.com/email/4451852/details/575291043248/performance",
-    "delivered": 145,
-    "opened": 29,
-    "open_rate": 0.2,
+    "delivered": 203,
+    "opened": 41,
+    "open_rate": 0.202,
     "clicks": 3,
     "unsubs": 0,
-    "ctor": 0.1034,
+    "ctor": 0.0732,
     "track": "CT"
    },
    {
@@ -416,12 +416,12 @@
     "code": "NE-IW-CT-4",
     "subject": "The reading comprehension case for social studies in K-2",
     "url": "https://app.hubspot.com/email/4451852/details/575321516951/performance",
-    "delivered": 111,
-    "opened": 25,
-    "open_rate": 0.2252,
-    "clicks": 1,
+    "delivered": 128,
+    "opened": 34,
+    "open_rate": 0.2656,
+    "clicks": 2,
     "unsubs": 1,
-    "ctor": 0.04,
+    "ctor": 0.0588,
     "track": "CT"
    },
    {
@@ -429,9 +429,9 @@
     "code": "NE-IW-CT-5",
     "subject": "Every lesson should make the next one more meaningful.",
     "url": "https://app.hubspot.com/email/4451852/details/575261034116/performance",
-    "delivered": 94,
+    "delivered": 97,
     "opened": 19,
-    "open_rate": 0.2021,
+    "open_rate": 0.1959,
     "clicks": 1,
     "unsubs": 0,
     "ctor": 0.0526,
@@ -442,12 +442,12 @@
     "code": "NE-IW-LT-1",
     "subject": "What \"integrated ELA and social studies\" actually means in practice",
     "url": "https://app.hubspot.com/email/4451852/details/575258277299/performance",
-    "delivered": 869,
-    "opened": 309,
-    "open_rate": 0.3556,
-    "clicks": 17,
-    "unsubs": 8,
-    "ctor": 0.055,
+    "delivered": 918,
+    "opened": 333,
+    "open_rate": 0.3627,
+    "clicks": 18,
+    "unsubs": 9,
+    "ctor": 0.0541,
     "track": "LT"
    },
    {
@@ -455,12 +455,12 @@
     "code": "NE-IW-LT-2",
     "subject": "What it actually takes to improve ELA comprehension in K-2",
     "url": "https://app.hubspot.com/email/4451852/details/575261008716/performance",
-    "delivered": 682,
-    "opened": 200,
-    "open_rate": 0.2933,
-    "clicks": 10,
+    "delivered": 835,
+    "opened": 264,
+    "open_rate": 0.3162,
+    "clicks": 13,
     "unsubs": 1,
-    "ctor": 0.05,
+    "ctor": 0.0492,
     "track": "LT"
    },
    {
@@ -468,12 +468,12 @@
     "code": "NE-IW-LT3",
     "subject": "There's more to teach in K-2 than the school day has room for",
     "url": "https://app.hubspot.com/email/4451852/details/575260997768/performance",
-    "delivered": 262,
-    "opened": 73,
-    "open_rate": 0.2786,
+    "delivered": 336,
+    "opened": 102,
+    "open_rate": 0.3036,
     "clicks": 3,
-    "unsubs": 1,
-    "ctor": 0.0411,
+    "unsubs": 2,
+    "ctor": 0.0294,
     "track": "LT"
    },
    {
@@ -481,12 +481,12 @@
     "code": "NE-IW-LT-4",
     "subject": "The cognitive load problem: what one integrated block changes for K-2 teachers",
     "url": "https://app.hubspot.com/email/4451852/details/574629465905/performance",
-    "delivered": 217,
-    "opened": 76,
-    "open_rate": 0.3502,
+    "delivered": 239,
+    "opened": 82,
+    "open_rate": 0.3431,
     "clicks": 2,
     "unsubs": 0,
-    "ctor": 0.0263,
+    "ctor": 0.0244,
     "track": "LT"
    },
    {
@@ -494,12 +494,12 @@
     "code": "NE-IW-LT-5",
     "subject": "What sustained investigation produces that topic-based programs can't",
     "url": "https://app.hubspot.com/email/4451852/details/574629466436/performance",
-    "delivered": 175,
-    "opened": 61,
-    "open_rate": 0.3486,
-    "clicks": 1,
+    "delivered": 184,
+    "opened": 68,
+    "open_rate": 0.3696,
+    "clicks": 2,
     "unsubs": 0,
-    "ctor": 0.0164,
+    "ctor": 0.0294,
     "track": "LT"
    },
    {
@@ -507,12 +507,12 @@
     "code": "NE-GF8-LT-1",
     "subject": "The difference between a real Pre-K curriculum and a box of activities",
     "url": "https://app.hubspot.com/email/4451852/details/575849181295/performance",
-    "delivered": 130,
-    "opened": 31,
-    "open_rate": 0.2385,
+    "delivered": 134,
+    "opened": 32,
+    "open_rate": 0.2388,
     "clicks": 1,
     "unsubs": 3,
-    "ctor": 0.0323,
+    "ctor": 0.0313,
     "track": "LT"
    },
    {
@@ -520,9 +520,9 @@
     "code": "NE-GF8-LT-2",
     "subject": "What the research says about integrating academic and social-emotional development in Pre-K",
     "url": "https://app.hubspot.com/email/4451852/details/575828240529/performance",
-    "delivered": 121,
+    "delivered": 123,
     "opened": 24,
-    "open_rate": 0.1983,
+    "open_rate": 0.1951,
     "clicks": 1,
     "unsubs": 0,
     "ctor": 0.0417,
@@ -546,9 +546,9 @@
     "code": "NE-GF8-LT-4",
     "subject": "How Great First Eight aligns to your state's Pre-K standards",
     "url": "https://app.hubspot.com/email/4451852/details/575828301927/performance",
-    "delivered": 67,
+    "delivered": 69,
     "opened": 14,
-    "open_rate": 0.209,
+    "open_rate": 0.2029,
     "clicks": 1,
     "unsubs": 0,
     "ctor": 0.0714,
@@ -559,12 +559,12 @@
     "code": "NE-GF8-LT-5",
     "subject": "What one Pre-K program saw in its first year with Great First Eight",
     "url": "https://app.hubspot.com/email/4451852/details/575828859741/performance",
-    "delivered": 59,
-    "opened": 13,
-    "open_rate": 0.2203,
-    "clicks": 0,
+    "delivered": 61,
+    "opened": 15,
+    "open_rate": 0.2459,
+    "clicks": 1,
     "unsubs": 0,
-    "ctor": 0.0,
+    "ctor": 0.0667,
     "track": "LT"
    },
    {
@@ -572,45 +572,46 @@
     "code": "NE-AG-1",
     "subject": "Which inquirED curriculum fits?",
     "url": "https://app.hubspot.com/email/4451852/details/575322022658/performance",
-    "delivered": 217,
-    "opened": 47,
-    "open_rate": 0.2166,
+    "delivered": 222,
+    "opened": 48,
+    "open_rate": 0.2162,
     "clicks": 1,
     "unsubs": 0,
-    "ctor": 0.0213
+    "ctor": 0.0208
    },
    {
     "program": "agnostic",
     "code": "NE-AG-2",
     "subject": "What problem are you trying to solve? That determines which curriculum fits.",
     "url": "https://app.hubspot.com/email/4451852/details/575367881522/performance",
-    "delivered": 163,
-    "opened": 31,
-    "open_rate": 0.1902,
-    "clicks": 0,
+    "delivered": 186,
+    "opened": 36,
+    "open_rate": 0.1935,
+    "clicks": 1,
     "unsubs": 0,
-    "ctor": 0.0
+    "ctor": 0.0278,
+    "track": null
    },
    {
     "program": "agnostic",
     "code": "NE-AG-3",
     "subject": "A quick look at what inquirED makes and who it's for",
     "url": "https://app.hubspot.com/email/4451852/details/575367758156/performance",
-    "delivered": 112,
-    "opened": 26,
-    "open_rate": 0.2321,
+    "delivered": 119,
+    "opened": 27,
+    "open_rate": 0.2269,
     "clicks": 1,
     "unsubs": 0,
-    "ctor": 0.0385
+    "ctor": 0.037
    },
    {
     "program": "agnostic",
     "code": "NE-AG-4",
     "subject": "What happens when the same design philosophy runs from Pre-K through fifth grade",
     "url": "https://app.hubspot.com/email/4451852/details/575367944040/performance",
-    "delivered": 70,
-    "opened": 16,
-    "open_rate": 0.2286,
+    "delivered": 81,
+    "opened": 17,
+    "open_rate": 0.2099,
     "clicks": 0,
     "unsubs": 0,
     "ctor": 0.0
@@ -620,9 +621,9 @@
     "code": "NE-AG-5",
     "subject": "Dr. Nell K. Duke: A new webinar series on literacy research",
     "url": "https://app.hubspot.com/email/4451852/details/575261229137/performance",
-    "delivered": 30,
-    "opened": 7,
-    "open_rate": 0.2333,
+    "delivered": 32,
+    "opened": 8,
+    "open_rate": 0.25,
     "clicks": 0,
     "unsubs": 0,
     "ctor": 0.0
@@ -642,7 +643,7 @@
   ]
  },
  "top_content": {
-  "as_of_label": "Oct 20, 2026",
+  "as_of_label": "Oct 27, 2026",
   "note_html": "Best email per metric, per program. Bars are scaled per metric type (opened, clicked, exit each on their own scale) so they compare fairly against each other, not against raw percent. Only emails with at least 20 delivered are eligible, which excludes the 1 and 2 send test records that would otherwise show impossible rates like 100% open on a single send. Click \"Details\" on any tile for the preview text.",
   "caps": {
    "opened": 0.36,
@@ -659,27 +660,27 @@
     "metrics": [
      {
       "type": "opened",
-      "rate": 0.3114,
+      "rate": 0.3307,
       "n": 293,
-      "of": 941,
-      "subject": "The part of teaching inquiry that takes practice",
-      "url": "https://app.hubspot.com/email/4451852/details/575368270978/performance",
-      "preview": "Instructional coach Kathy Olson named it well: the people doing the talking are doing the thinking."
+      "of": 886,
+      "subject": "Why staying with the same content for weeks makes a difference",
+      "url": "https://app.hubspot.com/email/4451852/details/575828857370/performance",
+      "preview": "Each unit is six to ten weeks. That length is part of what makes learning stick."
      },
      {
       "type": "clicked",
-      "rate": 0.0275,
+      "rate": 0.0271,
       "n": 32,
-      "of": 1164,
+      "of": 1179,
       "subject": "Social studies time and reading gains: what the research found",
       "url": "https://app.hubspot.com/email/4451852/details/575261181258/performance",
       "preview": "Fordham researchers found more social studies time was linked to fifth-grade reading gains."
      },
      {
       "type": "exit",
-      "rate": 0.0055,
+      "rate": 0.0054,
       "n": 7,
-      "of": 1264,
+      "of": 1293,
       "subject": "What your students are building in social studies shows up in reading",
       "url": "https://app.hubspot.com/email/4451852/details/575828298664/performance",
       "preview": "Teachers in our nine district cohort started noticing it in their reading groups."
@@ -695,28 +696,30 @@
     "metrics": [
      {
       "type": "opened",
-      "rate": 0.3556,
-      "n": 309,
-      "of": 869,
-      "subject": "What \"integrated ELA and social studies\" actually means in practice",
-      "url": "https://app.hubspot.com/email/4451852/details/575258277299/performance",
-      "preview": "In Inkwell, students build literacy skills through inquiry, beginning in Kindergarten."
+      "rate": 0.3696,
+      "n": 68,
+      "of": 184,
+      "subject": "What sustained investigation produces that topic-based programs can't",
+      "url": "https://app.hubspot.com/email/4451852/details/574629466436/performance",
+      "preview": "Every text should make the next text easier to understand."
      },
      {
       "type": "clicked",
-      "rate": 0.0218,
-      "n": 20,
-      "of": 916,
+      "rate": 0.0226,
+      "n": 21,
+      "of": 928,
       "subject": "When social studies keeps getting pushed out of the K-2 day",
       "url": "https://app.hubspot.com/email/4451852/details/574629478506/performance",
       "preview": "Social studies tends to go first when the schedule fills up. Most K-2 teachers who've been there know why."
      },
      {
       "type": "exit",
-      "rate": 0.0092,
-      "n": 8,
-      "of": 869,
-      "same_as": "Opened"
+      "rate": 0.0098,
+      "n": 9,
+      "of": 918,
+      "subject": "What \"integrated ELA and social studies\" actually means in practice",
+      "url": "https://app.hubspot.com/email/4451852/details/575258277299/performance",
+      "preview": "In Inkwell, students build literacy skills through inquiry, beginning in Kindergarten."
      }
     ]
    },
@@ -738,18 +741,18 @@
      },
      {
       "type": "clicked",
-      "rate": 0.0149,
+      "rate": 0.0164,
       "n": 1,
-      "of": 67,
-      "subject": "How Great First Eight aligns to your state's Pre-K standards",
-      "url": "https://app.hubspot.com/email/4451852/details/575828301927/performance",
-      "preview": "Great First Eight maps to state standards at the outcome level, not just the domain level, so you can see the alignment where it counts."
+      "of": 61,
+      "subject": "What one Pre-K program saw in its first year with Great First Eight",
+      "url": "https://app.hubspot.com/email/4451852/details/575828859741/performance",
+      "preview": "Median DRDP scores up a full developmental category across every domain. Here is how curriculum quality shows up in results."
      },
      {
       "type": "exit",
-      "rate": 0.0231,
+      "rate": 0.0224,
       "n": 3,
-      "of": 130,
+      "of": 134,
       "subject": "The difference between a real Pre-K curriculum and a box of activities",
       "url": "https://app.hubspot.com/email/4451852/details/575849181295/performance",
       "preview": "In Great First Eight Pre-K/TK, joy and rigor are designed to work together."
@@ -774,9 +777,9 @@
      },
      {
       "type": "clicked",
-      "rate": 0.0089,
+      "rate": 0.0084,
       "n": 1,
-      "of": 112,
+      "of": 119,
       "subject": "A quick look at what inquirED makes and who it's for",
       "url": "https://app.hubspot.com/email/4451852/details/575367758156/performance",
       "preview": "Three curricula, three grade bands, one design philosophy built around structured inquiry and knowledge-building."
@@ -803,52 +806,52 @@
   "roles": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "3,350 enrolled contacts",
-    "total": 3350,
+    "n_label": "3,379 enrolled contacts",
+    "total": 3379,
     "rows": [
      {
       "label": "Teacher",
-      "count": 1283,
+      "count": 1294,
       "cls": "teacher"
      },
      {
       "label": "Admin / Leadership",
-      "count": 1576,
+      "count": 1589,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 491,
+      "count": 496,
       "cls": "other"
      }
     ]
    },
    {
     "program": "Inkwell",
-    "n_label": "1,986 enrolled contacts",
-    "total": 1986,
+    "n_label": "2,033 enrolled contacts",
+    "total": 2033,
     "rows": [
      {
       "label": "Teacher",
-      "count": 352,
+      "count": 364,
       "cls": "teacher"
      },
      {
       "label": "Admin / Leadership",
-      "count": 1098,
+      "count": 1117,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 536,
+      "count": 552,
       "cls": "other"
      }
     ]
    },
    {
     "program": "Agnostic",
-    "n_label": "914 enrolled contacts",
-    "total": 914,
+    "n_label": "935 enrolled contacts",
+    "total": 935,
     "rows": [
      {
       "label": "Teacher",
@@ -857,7 +860,7 @@
      },
      {
       "label": "Admin / Leadership",
-      "count": 387,
+      "count": 408,
       "cls": ""
      },
      {
@@ -869,12 +872,12 @@
    },
    {
     "program": "Great First Eight",
-    "n_label": "165 enrolled contacts",
-    "total": 165,
+    "n_label": "169 enrolled contacts",
+    "total": 169,
     "rows": [
      {
       "label": "Teacher",
-      "count": 81,
+      "count": 85,
       "cls": "teacher"
      },
      {
@@ -894,12 +897,12 @@
   "sources": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "3,350 enrolled",
-    "total": 3350,
+    "n_label": "3,379 enrolled",
+    "total": 3379,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 906
+      "count": 926
      },
      {
       "label": "Other Campaigns",
@@ -907,7 +910,7 @@
      },
      {
       "label": "Offline",
-      "count": 595
+      "count": 604
      },
      {
       "label": "Organic Search",
@@ -937,40 +940,40 @@
    },
    {
     "program": "Inkwell",
-    "n_label": "1,986 enrolled",
-    "total": 1986,
+    "n_label": "2,033 enrolled",
+    "total": 2033,
     "rows": [
      {
       "label": "Email Marketing",
-      "count": 612
+      "count": 622
      },
      {
       "label": "Organic Social",
-      "count": 387
+      "count": 390
      },
      {
       "label": "Offline",
-      "count": 374
+      "count": 381
      },
      {
       "label": "Direct Traffic",
-      "count": 294
+      "count": 309
      },
      {
       "label": "Other Campaigns",
-      "count": 166
+      "count": 172
      },
      {
       "label": "Paid Search",
-      "count": 68
+      "count": 72
      },
      {
       "label": "Organic Search",
-      "count": 67
+      "count": 68
      },
      {
       "label": "Referrals",
-      "count": 16
+      "count": 17
      },
      {
       "label": "AI Referrals",
@@ -980,12 +983,12 @@
    },
    {
     "program": "Agnostic",
-    "n_label": "914 enrolled",
-    "total": 914,
+    "n_label": "935 enrolled",
+    "total": 935,
     "rows": [
      {
       "label": "Offline",
-      "count": 902
+      "count": 923
      },
      {
       "label": "Direct Traffic",
@@ -1003,12 +1006,12 @@
    },
    {
     "program": "Great First Eight",
-    "n_label": "165 enrolled",
-    "total": 165,
+    "n_label": "169 enrolled",
+    "total": 169,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 84
+      "count": 87
      },
      {
       "label": "Organic Search",
@@ -1016,7 +1019,7 @@
      },
      {
       "label": "Offline",
-      "count": 26
+      "count": 27
      },
      {
       "label": "Paid Search",
@@ -1039,21 +1042,21 @@
   ],
   "movement": {
    "value": 100,
-   "html": "<strong>Contacts enrolled in more than one workflow</strong>, counted from the four workflow history exports on Oct 13 (Inquiry Journeys and Inkwell share 92 of them). Cross-product re-routing is expected, so these contacts appear in more than one program above. This count is carried forward until the next set of history exports."
+   "html": "<strong>Contacts enrolled in more than one workflow</strong>, counted from the four workflow history exports on Oct 13 (Inquiry Journeys and Inkwell share 92 of them). Cross-product re-routing is expected, so these contacts appear in more than one program above. This count is carried forward until a fresh set of history exports is supplied."
   }
  },
  "open_items": [
   {
    "level": "red",
-   "html": "<strong>Inquiry Journeys carries 67% of delivery and 37 of its 3,350 enrolled contacts (1.1%) moved to a new lifecycle stage after enrolling.</strong> Inkwell moved 10 of 1,986 (0.5%), 4 of those at the same school on Aug 31, likely a sales close rather than a nurture result. This is not an email-performance problem: open and click rates are healthy. The open question is whether the content is moving contacts who were not already MQL."
+   "html": "<strong>Inquiry Journeys carries 65% of delivery and 40 of its 3,379 enrolled contacts (1.2%) moved to a new lifecycle stage after enrolling.</strong> Inkwell moved 13 of 2,033 (0.6%), 4 of those at the same school, likely a sales close rather than a nurture result. This is not an email-performance problem: open and click rates are healthy. The open question is whether the content is moving contacts who were not already MQL."
   },
   {
    "level": "red",
-   "html": "<strong>Agnostic now suppresses significantly more than it delivers, and the gap is widening.</strong> Program wide, 1,151 suppressed against 619 delivered (186%, against 24% portfolio-wide), up from 142% last week. Module 1 alone suppresses more than 3x what it sends (671 suppressed, 217 delivered). Worth checking that track's suppression lists and frequency caps immediately. The cause cannot be confirmed through the API."
+   "html": "<strong>Agnostic now suppresses more than twice what it delivers, and the gap is widening.</strong> Program wide, 1,373 suppressed against 667 delivered (206%, against 24.5% portfolio-wide), up from 186% last week. Module 1 alone suppresses more than 3x what it sends (691 suppressed, 222 delivered). Worth checking that track's suppression lists and frequency caps immediately. The cause cannot be confirmed through the API."
   },
   {
    "level": "red",
-   "html": "<strong>Module 5 crossed into real send volume this week across Inquiry Journeys and Inkwell, and Agnostic's module 6 sent at real volume for the first time.</strong> Inquiry Journeys Classroom module 5 (883 delivered) and Inkwell Classroom and Leadership module 5 (94 and 175 delivered) all moved past the 20-delivered test threshold, and Agnostic module 6 (27 delivered) means every registered Agnostic email has now sent. Inquiry Journeys Leadership module 6 just started (20 delivered, still too thin to read). Modules 6 through 8 in Inquiry Journeys and Inkwell otherwise remain mostly unsent. Ten weeks post launch on a spaced cadence, more volume is still coming in, but most of the portfolio's history is still early modules."
+   "html": "<strong>Inkwell drove most of this week's delivery growth, and its Leadership module 5 is now the portfolio's top open-rate email.</strong> Inkwell added 565 delivered this week (4,181 to 4,746); Leadership module 5 reached full volume (184 delivered) at a 37.0% open rate, the strongest single result in the portfolio. Inquiry Journeys Leadership module 6 crossed the 20-delivered test threshold (23 delivered) but is still too thin to read. Modules 6 through 8 in Inquiry Journeys and Inkwell, and Great First Eight's module 6, remain mostly unsent. Ten weeks post launch on a spaced cadence, more volume is still coming in, but most of the portfolio's history is still early modules."
   },
   {
    "level": "red",
@@ -1065,7 +1068,7 @@
   },
   {
    "level": "red",
-   "html": "<strong>Tim's reporting-structure rebuild is still open and is now the binding constraint.</strong> It was due Aug 17 and is nine weeks overdue in Asana as of Oct 20. This page is a workaround built from raw API pulls; the Tier 1/2/3 reporting it is standing in for is what the Dec 18 program end and Jan 11 postmortem are supposed to read from."
+   "html": "<strong>Tim's reporting-structure rebuild is still open and is now the binding constraint.</strong> It was due Aug 17 and is ten weeks overdue in Asana as of Oct 27. This page is a workaround built from raw API pulls; the Tier 1/2/3 reporting it is standing in for is what the Dec 18 program end and Jan 11 postmortem are supposed to read from."
   },
   {
    "level": "red",
@@ -1148,9 +1151,27 @@
     "wh": null
    },
    "open_rate": 0.2671
+  },
+  {
+   "date": "2026-10-27",
+   "delivered": {
+    "ij": 10871,
+    "inkwell": 4746,
+    "gf8": 482,
+    "agnostic": 667,
+    "wh": 0
+   },
+   "moved": {
+    "ij": 40,
+    "inkwell": 13,
+    "gf8": null,
+    "agnostic": null,
+    "wh": null
+   },
+   "open_rate": 0.2732
   }
  ],
- "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates and the <code>Nurture Enrollment Date</code> property, read through each workflow&apos;s ever-enrolled and active lists, pulled Oct 20, 2026) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded, pulled Oct 20, 2026), scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement is measured from each contact&apos;s own enrollment date (the stage entry must fall after the enrollment day). Email window Jul 30 to Oct 20, 2026. Enrolled counts include contacts who have since been removed or completed. Workflow enabled/paused state is not available via API.",
+ "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates and the <code>Nurture Enrollment Date</code> property, read through each workflow&apos;s ever-enrolled and active lists, pulled Oct 27, 2026) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded, pulled Oct 27, 2026), scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement is measured from each contact&apos;s own enrollment date (the stage entry must fall after the enrollment day). Email window Jul 30 to Oct 27, 2026. Enrolled counts include contacts who have since been removed or completed. Workflow enabled/paused state is not available via API.",
  "data_flags": [
   "35 enrolled contacts (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no Nurture Enrollment Date yet, so they are counted as enrolled but not as moved."
  ]
