@@ -445,7 +445,7 @@
      "ingredient": "Open RFP right now",
      "max": 30,
      "tiers": "0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30",
-     "source": "Starbridge RFP bridges (ELA/IJ/GF8), live via `listBridgeRows`, Status New or Saved only"
+     "source": "Starbridge RFP bridges (ELA/IJ/GF8), live via `listBridgeRows`, Status New or Saved only. Counted for the entry's own product only (from `starbridge_by_state[state].by_product`), so a state's Inkwell RFPs do not score an Inquiry Journeys entry"
     },
     {
      "ingredient": "Starbridge signal for upcoming adoption",

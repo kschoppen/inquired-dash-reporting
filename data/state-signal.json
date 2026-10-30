@@ -24,9 +24,9 @@
   "ai_summary": {
     "state": "TX",
     "product": "ij",
-    "headline": "TX has 12 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (62/100) of any watch-list state right now.",
-    "starbridge_open_rfps": 12,
-    "note": "Picked automatically: highest priority_score (62/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
+    "headline": "TX has 3 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (56/100) of any watch-list state right now.",
+    "starbridge_open_rfps": 3,
+    "note": "Picked automatically: highest priority_score (56/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
   },
   "history": [
     {
@@ -1767,14 +1767,15 @@
       "qualified": 47,
       "actionable": 31,
       "starbridge_open_rfps": 12,
-      "priority_score": 62,
+      "priority_score": 56,
       "priority_tier": "act_now",
       "priority_breakdown": {
-        "open_rfp": 30,
+        "open_rfp": 24,
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 3
     },
     {
       "state": "MD",
@@ -1798,14 +1799,15 @@
       "qualified": 19,
       "actionable": 13,
       "starbridge_open_rfps": 4,
-      "priority_score": 57,
-      "priority_tier": "act_now",
+      "priority_score": 51,
+      "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 30,
+        "open_rfp": 24,
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 2
     },
     {
       "state": "CT",
@@ -1821,41 +1823,15 @@
       "qualified": 42,
       "actionable": 33,
       "starbridge_open_rfps": 2,
-      "priority_score": 56,
-      "priority_tier": "act_now",
+      "priority_score": 50,
+      "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 24,
+        "open_rfp": 18,
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 20
-      }
-    },
-    {
-      "state": "MO",
-      "product": "inkwell",
-      "since": "2025-07",
-      "headline": "Missouri Gov. Kehoe signed omnibus bill SB 68 on July 9, 2025 (effective Aug 28, 2025), making phonics the mandatory primary word-reading strategy statewide and barring three-cueing.",
-      "sources": [
-        {
-          "title": "Governor Signs Wide-Ranging Education Legislation - Missouri DESE",
-          "url": "https://dese.mo.gov/communications/governor-signs-wide-ranging-education-legislation-giving-additional-tools-missouri-schools"
-        },
-        {
-          "title": "Evidence-Based Reading Instructional Materials (EBRIP) Guidance 2025 - Missouri DESE",
-          "url": "https://dese.mo.gov/media/pdf/evidence-based-reading-instructional-materials-ebrip-guidance-2025"
-        }
-      ],
-      "qualified": 23,
-      "actionable": 21,
-      "starbridge_open_rfps": 2,
-      "priority_score": 56,
-      "priority_tier": "act_now",
-      "priority_breakdown": {
-        "open_rfp": 24,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "AZ",
@@ -1878,53 +1854,8 @@
         "warm_signal": 18,
         "policy_recency": 12,
         "hubspot_footprint": 20
-      }
-    },
-    {
-      "state": "MS",
-      "product": "ij",
-      "since": "2025-08",
-      "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
-      "sources": [
-        {
-          "title": "MS Instructional Materials Matter - Social Studies Adopted Materials",
-          "url": "https://msinstructionalmaterials.org/adopted-materials/social-studies-adopted-materials/"
-        }
-      ],
-      "qualified": 3,
-      "actionable": 2,
-      "starbridge_open_rfps": 4,
-      "priority_score": 44,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 30,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 2
-      }
-    },
-    {
-      "state": "GA",
-      "product": "inkwell",
-      "since": "2023-03",
-      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
-      "sources": [
-        {
-          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
-          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
-        }
-      ],
-      "qualified": 22,
-      "actionable": 12,
-      "starbridge_open_rfps": 3,
-      "priority_score": 43,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 24,
-        "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "OH",
@@ -1947,7 +1878,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "CO",
@@ -1970,30 +1902,8 @@
         "warm_signal": 0,
         "policy_recency": 8,
         "hubspot_footprint": 15
-      }
-    },
-    {
-      "state": "SC",
-      "product": "inkwell",
-      "since": "2024-12",
-      "headline": "South Carolina's Act 114 (amending the Read to Succeed Act) requires K-5 reading instruction aligned to the science of reading, bans the three-cueing method, and adds reading screening three times a year; the 2024-25 State Reading Plan implementing it was published December 2024.",
-      "sources": [
-        {
-          "title": "SC Dept. of Education - 2024-25 State Reading Plan (Act 114)",
-          "url": "https://ed.sc.gov/instruction/early-learning-and-literacy/read-to-succeed/reading-plans-state-district-and-school/2024-2025-sc-state-reading-plan/"
-        }
-      ],
-      "qualified": 15,
-      "actionable": 11,
-      "starbridge_open_rfps": 1,
-      "priority_score": 40,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "NC",
@@ -2016,30 +1926,32 @@
         "warm_signal": 24,
         "policy_recency": 1,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
-      "state": "UT",
-      "product": "ij",
-      "since": "2024-08",
-      "headline": "Utah adopted new K-6 Social Studies standards effective the 2024-25 school year.",
+      "state": "GA",
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
       "sources": [
         {
-          "title": "Utah State Board of Education - Social Studies Core",
-          "url": "https://www.uen.org/core/socialstudies/"
+          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
+          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
         }
       ],
-      "qualified": 9,
-      "actionable": 5,
-      "starbridge_open_rfps": 2,
+      "qualified": 22,
+      "actionable": 12,
+      "starbridge_open_rfps": 3,
       "priority_score": 37,
       "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 24,
+        "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 5
-      }
+        "policy_recency": 4,
+        "hubspot_footprint": 15
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "WA",
@@ -2062,7 +1974,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "IA",
@@ -2085,7 +1998,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "NH",
@@ -2108,7 +2022,60 @@
         "warm_signal": 18,
         "policy_recency": 8,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "MO",
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Missouri Gov. Kehoe signed omnibus bill SB 68 on July 9, 2025 (effective Aug 28, 2025), making phonics the mandatory primary word-reading strategy statewide and barring three-cueing.",
+      "sources": [
+        {
+          "title": "Governor Signs Wide-Ranging Education Legislation - Missouri DESE",
+          "url": "https://dese.mo.gov/communications/governor-signs-wide-ranging-education-legislation-giving-additional-tools-missouri-schools"
+        },
+        {
+          "title": "Evidence-Based Reading Instructional Materials (EBRIP) Guidance 2025 - Missouri DESE",
+          "url": "https://dese.mo.gov/media/pdf/evidence-based-reading-instructional-materials-ebrip-guidance-2025"
+        }
+      ],
+      "qualified": 23,
+      "actionable": 21,
+      "starbridge_open_rfps": 2,
+      "priority_score": 32,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 12,
+        "hubspot_footprint": 20
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "MS",
+      "product": "ij",
+      "since": "2025-08",
+      "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
+      "sources": [
+        {
+          "title": "MS Instructional Materials Matter - Social Studies Adopted Materials",
+          "url": "https://msinstructionalmaterials.org/adopted-materials/social-studies-adopted-materials/"
+        }
+      ],
+      "qualified": 3,
+      "actionable": 2,
+      "starbridge_open_rfps": 4,
+      "priority_score": 32,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 18,
+        "warm_signal": 0,
+        "policy_recency": 12,
+        "hubspot_footprint": 2
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "IN",
@@ -2131,7 +2098,8 @@
         "warm_signal": 18,
         "policy_recency": 4,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "RI",
@@ -2154,7 +2122,8 @@
         "warm_signal": 0,
         "policy_recency": 1,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 2
     },
     {
       "state": "OR",
@@ -2181,7 +2150,8 @@
         "warm_signal": 0,
         "policy_recency": 8,
         "hubspot_footprint": 20
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "WV",
@@ -2204,7 +2174,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "OK",
@@ -2227,7 +2198,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "MT",
@@ -2250,7 +2222,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "LA",
@@ -2273,7 +2246,8 @@
         "warm_signal": 0,
         "policy_recency": 20,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "DE",
@@ -2300,7 +2274,8 @@
         "warm_signal": 0,
         "policy_recency": 20,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "KS",
@@ -2327,7 +2302,32 @@
         "warm_signal": 0,
         "policy_recency": 8,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "SC",
+      "product": "inkwell",
+      "since": "2024-12",
+      "headline": "South Carolina's Act 114 (amending the Read to Succeed Act) requires K-5 reading instruction aligned to the science of reading, bans the three-cueing method, and adds reading screening three times a year; the 2024-25 State Reading Plan implementing it was published December 2024.",
+      "sources": [
+        {
+          "title": "SC Dept. of Education - 2024-25 State Reading Plan (Act 114)",
+          "url": "https://ed.sc.gov/instruction/early-learning-and-literacy/read-to-succeed/reading-plans-state-district-and-school/2024-2025-sc-state-reading-plan/"
+        }
+      ],
+      "qualified": 15,
+      "actionable": 11,
+      "starbridge_open_rfps": 1,
+      "priority_score": 22,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 12,
+        "hubspot_footprint": 10
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "AL",
@@ -2350,7 +2350,8 @@
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "NE",
@@ -2373,7 +2374,8 @@
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "ND",
@@ -2396,7 +2398,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "FL",
@@ -2419,7 +2422,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "VA",
@@ -2442,7 +2446,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "WY",
@@ -2465,7 +2470,8 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 2
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "NV",
@@ -2488,7 +2494,8 @@
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "SD",
@@ -2511,7 +2518,8 @@
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "TN",
@@ -2534,7 +2542,8 @@
         "warm_signal": 0,
         "policy_recency": 1,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "ME",
@@ -2557,7 +2566,8 @@
         "warm_signal": 0,
         "policy_recency": 0,
         "hubspot_footprint": 15
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "HI",
@@ -2580,7 +2590,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "AK",
@@ -2603,7 +2614,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "AR",
@@ -2626,7 +2638,32 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 10
-      }
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "UT",
+      "product": "ij",
+      "since": "2024-08",
+      "headline": "Utah adopted new K-6 Social Studies standards effective the 2024-25 school year.",
+      "sources": [
+        {
+          "title": "Utah State Board of Education - Social Studies Core",
+          "url": "https://www.uen.org/core/socialstudies/"
+        }
+      ],
+      "qualified": 9,
+      "actionable": 5,
+      "starbridge_open_rfps": 2,
+      "priority_score": 13,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 8,
+        "hubspot_footprint": 5
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "VT",
@@ -2649,7 +2686,8 @@
         "warm_signal": 0,
         "policy_recency": 8,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "NM",
@@ -2672,7 +2710,8 @@
         "warm_signal": 0,
         "policy_recency": 8,
         "hubspot_footprint": 2
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "DC",
@@ -2695,7 +2734,8 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "ID",
@@ -2718,7 +2758,8 @@
         "warm_signal": 0,
         "policy_recency": 0,
         "hubspot_footprint": 5
-      }
+      },
+      "starbridge_open_rfps_product": 0
     }
   ],
   "accounts_by_state": {

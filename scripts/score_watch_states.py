@@ -4,7 +4,10 @@ shortlist for Marketing/Sales, instead of a flat 41-state list.
 
 Combines four signals already present on each watch_states entry (or
 computed from warm_signals_by_state):
-  - starbridge_open_rfps: a district actively shopping right now (RFP live)
+  - Open RFPs for this state AND this watch entry's product, read from
+    starbridge_by_state[state].by_product[product] (the entry's own
+    starbridge_open_rfps is the all-products state total and is no longer
+    scored): a district actively shopping right now (RFP live)
   - warm_signals_by_state[state].by_product[product]: a live Starbridge
     Warm Signals board-meeting hit for this state+product (Meeting_Score>=10,
     Status New/Saved) -- a district planning an upcoming adoption, distinct
@@ -38,6 +41,15 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "state-signal.json
 
 ACT_NOW_MIN = 56
 WATCH_MIN = 32
+
+
+def open_rfps_for_product(d: dict, state: str, product: str) -> int:
+    """Open RFPs for one state AND one product. Uses starbridge_by_state's
+    by_product split, not the watch entry's all-products
+    starbridge_open_rfps total (a Texas Inquiry Journeys entry would
+    otherwise earn full RFP points for Inkwell and Great First Eight RFPs).
+    A state with no starbridge_by_state entry has no open RFPs."""
+    return d.get("starbridge_by_state", {}).get(state, {}).get("by_product", {}).get(product, 0)
 
 
 def months_ago(since: str, today: date) -> int | None:
@@ -122,7 +134,7 @@ def build_ai_summary(top: dict, warm_n: int) -> dict:
     as "undefined" everywhere, which is the exact bug this function exists
     to stop from recurring. Always the current #1 by priority_score, never
     a hand-picked or hardcoded state."""
-    rfps = top.get("starbridge_open_rfps", 0)
+    rfps = top.get("starbridge_open_rfps_product", 0)
     prod_label = PRODUCT_LABELS.get(top["product"], top["product"])
     signal_bits = []
     if rfps > 0:
@@ -155,9 +167,10 @@ def main():
     warm_by_state = d.get("warm_signals_by_state", {})
 
     for w in d["watch_states"]:
+        w["starbridge_open_rfps_product"] = open_rfps_for_product(d, w["state"], w["product"])
         ma = months_ago(w["since"], today)
         warm_n = warm_by_state.get(w["state"], {}).get("by_product", {}).get(w["product"], 0)
-        rfp_pts = rfp_score(w.get("starbridge_open_rfps", 0))
+        rfp_pts = rfp_score(w["starbridge_open_rfps_product"])
         warm_pts = warm_signal_score(warm_n)
         recency_pts = recency_score(ma)
         footprint_pts = footprint_score(w["actionable"])
