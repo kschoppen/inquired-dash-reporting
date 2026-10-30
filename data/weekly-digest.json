@@ -164,7 +164,7 @@
     "district_open": 11,
     "school_open": 5,
     "as_of": "2026-10-26",
-    "note": "District/School pipelines are legacy, kept for history but hidden on the Weekly tab per RevOps (2026-09-16); active pipelines are New Business, Account Growth, Renewal.",
+    "note": "District/School pipelines are legacy, kept for history but hidden on the Weekly tab per RevOps (2026-09-16); active pipelines are New Business, Account Growth, Renewal. Stage movement counts the deals now in each stage that entered it Oct 19-25 (read Oct 30). 24 New Business deals closed lost, mostly Oct 19, all Interest since Jul 31: the table lists the 9 largest of 24 (60-row cap). Stages 1386756102 (New Business) and 1378710648 (Account Growth) are assumed to be Closed Won.",
     "by_product": {
       "ij": {
         "count": 406,
@@ -310,7 +310,668 @@
           "amount": 2500.0
         }
       ]
-    }
+    },
+    "active": {
+      "new_business": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 18,
+            "amount": 140000.0,
+            "entered": 6,
+            "forward": 6,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 121,
+            "amount": 4014045.33,
+            "entered": 24,
+            "forward": 24,
+            "back": 0
+          },
+          {
+            "stage": "Consideration",
+            "count": 11,
+            "amount": 615337.0,
+            "entered": 7,
+            "forward": 7,
+            "back": 0
+          },
+          {
+            "stage": "Conviction",
+            "count": 3,
+            "amount": 120.0,
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 0.0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 3,
+            "amount": 3500.0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Closed Won",
+            "entered": 4,
+            "forward": 4,
+            "back": 0
+          },
+          {
+            "stage": "Closed Lost",
+            "entered": 24,
+            "forward": 0,
+            "back": 24
+          }
+        ]
+      },
+      "account_growth": {
+        "stages": [
+          {
+            "stage": "Sales Qualified",
+            "count": 4,
+            "amount": 0.0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Interest",
+            "count": 6,
+            "amount": 146500.0,
+            "entered": 4,
+            "forward": 4,
+            "back": 0
+          },
+          {
+            "stage": "Closed Won",
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          }
+        ]
+      },
+      "renewal": {
+        "stages": [
+          {
+            "stage": "Nurture",
+            "count": 281,
+            "amount": 5998425.19,
+            "entered": 3,
+            "forward": 3,
+            "back": 0
+          },
+          {
+            "stage": "Engaged",
+            "count": 2,
+            "amount": 44784.11,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Desire",
+            "count": 1,
+            "amount": 1.0,
+            "entered": 0,
+            "forward": 0,
+            "back": 0
+          },
+          {
+            "stage": "Closed Won",
+            "entered": 1,
+            "forward": 1,
+            "back": 0
+          }
+        ]
+      }
+    },
+    "moved_deals": [
+      {
+        "name": "Cranbrook Educational Community,MI,27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66663861601",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 7050,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Bellevue Christian School,WA,27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66663862417",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 7171,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Mid-south Gifted Academy, TN, Inquiry Journeys, World History, 27-28 Renewal",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66495124482",
+        "pipeline": "Renewal",
+        "from": null,
+        "to": "Nurture",
+        "amount": 765,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Mid-south Gifted Academy,TN,School Year Expansion 5,6",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64175139366",
+        "pipeline": "Renewal",
+        "from": "Desire",
+        "to": "Closed Won",
+        "amount": 765,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Iowa City Community School District,IA, 27-28 IW pilot",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66278161701",
+        "pipeline": "Account Growth",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 50000,
+        "segment": "Large"
+      },
+      {
+        "name": "Lake Mills Elementary School,WI,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66020839342",
+        "pipeline": "Account Growth",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 750,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Nha Schools, CO , 28-29",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65264881967",
+        "pipeline": "Account Growth",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 85000,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Iowa City Community School District, IW- GF8",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58208236196",
+        "pipeline": "Account Growth",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 8500,
+        "segment": "Large"
+      },
+      {
+        "name": "New Roads School, CA, 2026-27",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65428579156",
+        "pipeline": "Account Growth",
+        "from": "Interest",
+        "to": "Closed Won",
+        "amount": 0,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Hawaii Baptist Academy,HI,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66667063939",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified"
+      },
+      {
+        "name": "Prairie Land Regional Division No. 25,Alberta,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66544070515",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified"
+      },
+      {
+        "name": "Jackson Township School District,NJ,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66440429351",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "segment": "Medium"
+      },
+      {
+        "name": "Delwood Elementary,IA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66475779729",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "segment": "Single Site"
+      },
+      {
+        "name": "First Lutheran School, CA - IJ + GF8 Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66399059778",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "segment": "Single Site"
+      },
+      {
+        "name": "Manhattan School District 114, IL - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58906081433",
+        "pipeline": "New Business",
+        "from": null,
+        "to": "Sales Qualified",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Iron County C-4,MO,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66544439329",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 0,
+        "segment": "Small"
+      },
+      {
+        "name": "Kapolei Elementary, HI, '27-'28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66440422708",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 5000,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Rockton School District 140,IL,School Year",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66475913238",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 5000,
+        "segment": "Small"
+      },
+      {
+        "name": "Coburg Charter, OR, '27-'28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66467699302",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 2500,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Maple Dale-indian Hill School District,WI,School Year",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66475889981",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 0,
+        "segment": "Small"
+      },
+      {
+        "name": "Fox Point-bayside Schools, WI, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66475766197",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 0,
+        "segment": "Small"
+      },
+      {
+        "name": "District 106, IL - SS Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66452461625",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 9000,
+        "segment": "Small"
+      },
+      {
+        "name": "Abington School District,PA,27-28 - WH",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66277482115",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 5000,
+        "segment": "Medium"
+      },
+      {
+        "name": "East Irondequoit Central School District, NY, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66020830811",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 23000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Owatonna Public Schools,MN,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65739883660",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 20000,
+        "segment": "Medium"
+      },
+      {
+        "name": "RSU 57, ME, 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65664347782",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "North Penn School District,PA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65354919717",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 90000,
+        "segment": "Large"
+      },
+      {
+        "name": "Bethany Christian Schools,IN,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65308730906",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 2500,
+        "segment": "Single Site"
+      },
+      {
+        "name": "School District 62,IL,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65266518132",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Mulvane Unified School District 263,KS,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65077070987",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 2500,
+        "segment": "Small"
+      },
+      {
+        "name": "Open Window School, WA - SS Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65164367153",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 3000,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Monticello School District,MN,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65162288418",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 25000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Louisville Public Schools,NE,2027-2028",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027333168",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 0,
+        "segment": "Small"
+      },
+      {
+        "name": "Mequon-Thiensville School District,WI,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64877328933",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 24000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Northern York County School District,PA,27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64410981479",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Oshkosh Area School District, WI - IJ",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/62115382842",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Sheldon Community School District, IA - 3-6 Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60842365542",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 3500,
+        "segment": "Small"
+      },
+      {
+        "name": "Cambridge-Isanti PSD, MN - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60239724345",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 39550,
+        "segment": "Medium"
+      },
+      {
+        "name": "Rahway Public School District, NJ - IJ",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/59087053490",
+        "pipeline": "New Business",
+        "from": "Sales Qualified",
+        "to": "Interest",
+        "amount": 10000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Stoughton Area School District, WI  Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65754221086",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 25000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Warren Consolidated Schools, MI , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64922979252",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 142000,
+        "segment": "Large"
+      },
+      {
+        "name": "Cambridge Public Schools, MA , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64519453321",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 166800,
+        "segment": "Medium"
+      },
+      {
+        "name": "Wauwatosa School District, SS - WH Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64342025473",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 5000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Woodburn School District, OR - SS Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64313723743",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 45000,
+        "segment": "Medium"
+      },
+      {
+        "name": "New Bedford Public Schools, MA , 27-28",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64287760953",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 216400,
+        "segment": "Large"
+      },
+      {
+        "name": "Norwalk Public Schools, CT - IJ Pilot Expansion",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64215298896",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Consideration",
+        "amount": 20000,
+        "segment": "Large"
+      },
+      {
+        "name": "Elizabethtown Independent Schools,KY,2026",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66138486677",
+        "pipeline": "New Business",
+        "from": "Consideration",
+        "to": "Conviction",
+        "amount": 120,
+        "segment": "Small"
+      },
+      {
+        "name": "St. Matthew's Parish School,CA,26-27",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66637150587",
+        "pipeline": "New Business",
+        "from": "Validation/Approval",
+        "to": "Closed Won",
+        "amount": 0,
+        "segment": "Single Site"
+      },
+      {
+        "name": "Black Pine Circle School,CA,School Year",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66544689753",
+        "pipeline": "New Business",
+        "from": "Validation/Approval",
+        "to": "Closed Won",
+        "amount": 0,
+        "segment": "Single Site"
+      },
+      {
+        "name": "First Lutheran School, CA - IJ + GF8",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61763857802",
+        "pipeline": "New Business",
+        "from": "Validation/Approval",
+        "to": "Closed Won",
+        "amount": 0,
+        "segment": "Single Site"
+      },
+      {
+        "name": "District 106, IL - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58905773370",
+        "pipeline": "New Business",
+        "from": "Validation/Approval",
+        "to": "Closed Won",
+        "amount": 0,
+        "segment": "Small"
+      },
+      {
+        "name": "Joliet Public Schools District 86",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/35676672769",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 114000,
+        "segment": "Large"
+      },
+      {
+        "name": "Minnetonka Public Schools, MN - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/56443166240",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 83194,
+        "segment": "Large"
+      },
+      {
+        "name": "David Douglas School District, OR - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/38149672008",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 56123,
+        "segment": "Medium"
+      },
+      {
+        "name": "Lower Dauphin School District, PA - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/46167467852",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 45000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Wallingford-swarthmore School District, PA - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/51628081036",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 32764,
+        "segment": "Medium"
+      },
+      {
+        "name": "Richfield Public School District, MN - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/43739672944",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 32229,
+        "segment": "Medium"
+      },
+      {
+        "name": "East Brunswick Township School District, NJ - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/53260577204",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 20000,
+        "segment": "Medium"
+      },
+      {
+        "name": "Cinnaminson Township Public Schools, NJ - SS",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60327832112",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 11827.5,
+        "segment": "Medium"
+      },
+      {
+        "name": "Methacton School District - IJ",
+        "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60841883406",
+        "pipeline": "New Business",
+        "from": "Interest",
+        "to": "Closed Lost",
+        "amount": 10000,
+        "segment": "Small"
+      }
+    ]
   },
   "segment_coverage": {
     "hih": 60.9,
