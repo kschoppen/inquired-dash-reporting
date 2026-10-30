@@ -100,13 +100,31 @@ not personal contact names, are fine in this public repo).
 - Leave `policy_context`, `outreach_templates`, `watch_states` alone — not
   wired yet (see the tab's own "What this tab doesn't do yet" section). Do
   not fabricate policy citations here.
+- **Entries written by `account-driven-researcher`.** Between monthly policy
+  passes, the `account-driven-researcher` skill (inquired-marketing plugin)
+  may write a Verified signal with a dated official source into
+  `policy_context[state]` and the matching `watch_states` entry, on the
+  user's OK. Such an entry carries `updated_by: "account-driven-researcher"`
+  and a `verified: YYYY-MM-DD` date. This weekly routine leaves
+  `policy_context` alone (above) and must keep both fields whenever it
+  rewrites the file. The monthly policy pass is not part of this routine: it
+  lives in the `state-signal-refresh` skill (`kschoppen/growth-marketing`,
+  Step 2) and must follow the same keep rule. It keeps such an entry, with
+  its `updated_by` and `verified` fields on both `policy_context` and the
+  `watch_states` mirror, unless it finds a newer dated official source for
+  the same state. Because `policy_context` holds one product per state, that
+  newer source can be for a different product; when the product would
+  change, show Kelsey both entries before replacing. Rerun
+  `scripts/score_watch_states.py` after such a write (Step 5).
 
 ### Step 5 — recompute watch-state priority tiers
 
 `watch_states` entries carry a `priority_score` (0-100) and `priority_tier`
 (`act_now` / `watch` / `low_priority`) that tier the list for Marketing/Sales
 instead of a flat 41-state dump. Whenever a watch state's `actionable`,
-`since`, or `starbridge_open_rfps` changes, rerun:
+`since`, or `starbridge_open_rfps` changes, including after an
+`account-driven-researcher` write to `policy_context`/`watch_states` (Step 4),
+rerun:
 
 ```
 python3 scripts/score_watch_states.py
