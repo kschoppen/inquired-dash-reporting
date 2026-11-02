@@ -1,20 +1,20 @@
 {
- "updated": "2026-10-26",
+ "updated": "2026-11-02",
  "stale_after_days": 8,
  "universe": "Medium, Large and Enterprise districts (HubSpot company Segment)",
  "source_line": "HubSpot portal 4451852 · company records",
  "backfill_date": "2025-11-17",
  "tiles": {
-  "mqa_total": 107,
-  "engaged_total": 518,
+  "mqa_total": 109,
+  "engaged_total": 517,
   "opportunity_total": 69,
   "new_mqa_7d": 2,
-  "new_engaged_7d": 2,
-  "new_opp_7d": 1,
-  "mqa_cold_60d": 29,
+  "new_engaged_7d": 1,
+  "new_opp_7d": 0,
+  "mqa_cold_60d": 28,
   "stale_mqa": 80,
-  "pass_to_sales": 27,
-  "starbridge_accounts": 1,
+  "pass_to_sales": 29,
+  "starbridge_accounts": 3,
   "warmed_share": {
    "pct": 0.516,
    "warmed": 48,
@@ -86,11 +86,46 @@
    "mqa_cold_60d": 29,
    "stale_mqa": 80,
    "warmed_share": 0.516
+  },
+  {
+   "date": "2026-11-02",
+   "mqa_total": 109,
+   "engaged_total": 517,
+   "opportunity_total": 69,
+   "new_mqa_7d": 2,
+   "new_engaged_7d": 1,
+   "new_opp_7d": 0,
+   "mqa_cold_60d": 28,
+   "stale_mqa": 80,
+   "warmed_share": 0.516
   }
  ],
  "pass_to_sales": {
   "window_days": 120,
   "rows": [
+   {
+    "id": "8976314154",
+    "name": "Frederick County Public Schools",
+    "segment": "Large",
+    "state": "VA",
+    "owner": "Anne Matz",
+    "signals": [
+     "Clicked email / 5+ clicks",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-10-07",
+    "first_mqa_date": "2026-10-07",
+    "days_mqa": 26,
+    "last_contacted": "2025-10-23",
+    "days_since_contact": 375,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314154",
+    "score": 88,
+    "breakdown": {
+     "signal": 43,
+     "recency": 30,
+     "contact": 15
+    }
+   },
    {
     "id": "1111536423",
     "name": "St. Vrain Valley Schools",
@@ -104,9 +139,9 @@
     ],
     "recent_mqa_date": "2026-10-06",
     "first_mqa_date": "2026-10-06",
-    "days_mqa": 20,
+    "days_mqa": 27,
     "last_contacted": "2026-09-14",
-    "days_since_contact": 42,
+    "days_since_contact": 49,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1111536423",
     "score": 88,
     "breakdown": {
@@ -116,50 +151,49 @@
     }
    },
    {
-    "id": "8976314154",
-    "name": "Frederick County Public Schools",
-    "segment": "Large",
-    "state": "VA",
-    "owner": "Anne Matz",
+    "id": "8976041592",
+    "name": "Cheney School District",
+    "segment": "Medium",
+    "state": "WA",
+    "owner": "Gianna Miller",
     "signals": [
-     "Clicked email / 5+ clicks",
-     "Upcoming Adoption"
+     "2+ DL form fills",
+     "Yes, Reviewing"
     ],
-    "recent_mqa_date": "2026-10-07",
-    "first_mqa_date": "2026-10-07",
-    "days_mqa": 19,
-    "last_contacted": "2025-10-23",
-    "days_since_contact": 368,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314154",
-    "score": 85,
+    "recent_mqa_date": "2026-10-30",
+    "first_mqa_date": "2026-10-30",
+    "days_mqa": 3,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976041592",
+    "score": 80,
     "breakdown": {
-     "signal": 40,
+     "signal": 50,
      "recency": 30,
-     "contact": 15
+     "contact": 0
     }
    },
    {
-    "id": "4060524376",
-    "name": "Montgomery County Public Schools",
-    "segment": "Enterprise",
-    "state": "MD",
-    "owner": "Jason Long",
+    "id": "3857800724",
+    "name": "Rutherford School District",
+    "segment": "Medium",
+    "state": "NJ",
+    "owner": "Anne Matz",
     "signals": [
      "2+ DL form fills",
-     "Yes, Reviewing",
-     "Upcoming Adoption"
+     "High Intent DL"
     ],
-    "recent_mqa_date": "2026-09-05",
-    "first_mqa_date": "2026-09-05",
-    "days_mqa": 51,
-    "last_contacted": "2026-09-21",
-    "days_since_contact": 35,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4060524376",
-    "score": 83,
+    "recent_mqa_date": "2026-10-29",
+    "first_mqa_date": "2026-10-29",
+    "days_mqa": 4,
+    "last_contacted": "2026-10-27",
+    "days_since_contact": 6,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3857800724",
+    "score": 80,
     "breakdown": {
      "signal": 50,
-     "recency": 25,
-     "contact": 8
+     "recency": 30,
+     "contact": 0
     }
    },
    {
@@ -174,9 +208,9 @@
     ],
     "recent_mqa_date": "2026-10-22",
     "first_mqa_date": "2026-10-22",
-    "days_mqa": 4,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 11,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/48256069971",
     "score": 80,
     "breakdown": {
@@ -193,13 +227,14 @@
     "owner": "Gianna Miller",
     "signals": [
      "2+ DL form fills",
+     "High Intent DL",
      "Yes, Reviewing"
     ],
     "recent_mqa_date": "2026-10-16",
     "first_mqa_date": "2026-10-16",
-    "days_mqa": 10,
-    "last_contacted": "2026-10-07",
-    "days_since_contact": 19,
+    "days_mqa": 17,
+    "last_contacted": "2026-10-26",
+    "days_since_contact": 7,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2967224857",
     "score": 80,
     "breakdown": {
@@ -220,9 +255,9 @@
     ],
     "recent_mqa_date": "2026-10-09",
     "first_mqa_date": "2026-10-09",
-    "days_mqa": 17,
+    "days_mqa": 24,
     "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
+    "days_since_contact": 11,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8341670453",
     "score": 80,
     "breakdown": {
@@ -243,10 +278,32 @@
     ],
     "recent_mqa_date": "2026-10-08",
     "first_mqa_date": "2026-10-08",
-    "days_mqa": 18,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 25,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1043098196",
+    "score": 80,
+    "breakdown": {
+     "signal": 50,
+     "recency": 30,
+     "contact": 0
+    }
+   },
+   {
+    "id": "2620757060",
+    "name": "Katy Independent School District",
+    "segment": "Enterprise",
+    "state": "TX",
+    "owner": "Jason Long",
+    "signals": [
+     "2+ DL form fills"
+    ],
+    "recent_mqa_date": "2026-10-07",
+    "first_mqa_date": "2026-10-07",
+    "days_mqa": 26,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2620757060",
     "score": 80,
     "breakdown": {
      "signal": 50,
@@ -266,59 +323,14 @@
     ],
     "recent_mqa_date": "2026-10-07",
     "first_mqa_date": "2026-10-07",
-    "days_mqa": 19,
+    "days_mqa": 26,
     "last_contacted": "2026-10-06",
-    "days_since_contact": 20,
+    "days_since_contact": 27,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976103084",
     "score": 80,
     "breakdown": {
      "signal": 50,
      "recency": 30,
-     "contact": 0
-    }
-   },
-   {
-    "id": "2620757060",
-    "name": "Katy Independent School District",
-    "segment": "Enterprise",
-    "state": "TX",
-    "owner": "Jason Long",
-    "signals": [
-     "2+ DL form fills"
-    ],
-    "recent_mqa_date": "2026-10-07",
-    "first_mqa_date": "2026-10-07",
-    "days_mqa": 19,
-    "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2620757060",
-    "score": 80,
-    "breakdown": {
-     "signal": 50,
-     "recency": 30,
-     "contact": 0
-    }
-   },
-   {
-    "id": "16948527530",
-    "name": "Portsmouth City Public Schools",
-    "segment": "Large",
-    "state": "VA",
-    "owner": "Anne Matz",
-    "signals": [
-     "2+ DL form fills",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-09-25",
-    "first_mqa_date": "2026-09-25",
-    "days_mqa": 31,
-    "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948527530",
-    "score": 75,
-    "breakdown": {
-     "signal": 50,
-     "recency": 25,
      "contact": 0
     }
    },
@@ -334,15 +346,39 @@
     ],
     "recent_mqa_date": "2026-09-14",
     "first_mqa_date": "2026-09-14",
-    "days_mqa": 42,
+    "days_mqa": 49,
     "last_contacted": "2026-09-14",
-    "days_since_contact": 42,
+    "days_since_contact": 49,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4821446791",
-    "score": 73,
+    "score": 76,
     "breakdown": {
-     "signal": 40,
+     "signal": 43,
      "recency": 25,
      "contact": 8
+    }
+   },
+   {
+    "id": "4060524376",
+    "name": "Montgomery County Public Schools",
+    "segment": "Enterprise",
+    "state": "MD",
+    "owner": "Jason Long",
+    "signals": [
+     "2+ DL form fills",
+     "Yes, Reviewing",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-09-05",
+    "first_mqa_date": "2026-09-05",
+    "days_mqa": 58,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4060524376",
+    "score": 75,
+    "breakdown": {
+     "signal": 50,
+     "recency": 25,
+     "contact": 0
     }
    },
    {
@@ -357,15 +393,38 @@
     ],
     "recent_mqa_date": "2026-10-17",
     "first_mqa_date": "2026-10-17",
-    "days_mqa": 9,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 16,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246856966",
-    "score": 70,
+    "score": 73,
     "breakdown": {
-     "signal": 40,
+     "signal": 43,
      "recency": 30,
      "contact": 0
+    }
+   },
+   {
+    "id": "1399085013",
+    "name": "Germantown Municipal School District",
+    "segment": "Medium",
+    "state": "TN",
+    "owner": "Anne Matz",
+    "signals": [
+     "Yes, Reviewing",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-08-05",
+    "first_mqa_date": "2026-08-05",
+    "days_mqa": 89,
+    "last_contacted": "2026-08-28",
+    "days_since_contact": 66,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1399085013",
+    "score": 73,
+    "breakdown": {
+     "signal": 43,
+     "recency": 15,
+     "contact": 15
     }
    },
    {
@@ -380,14 +439,37 @@
     ],
     "recent_mqa_date": "2026-09-30",
     "first_mqa_date": "2026-09-30",
-    "days_mqa": 26,
+    "days_mqa": 33,
     "last_contacted": "2026-10-06",
-    "days_since_contact": 20,
+    "days_since_contact": 27,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8342075753",
-    "score": 70,
+    "score": 68,
     "breakdown": {
-     "signal": 40,
-     "recency": 30,
+     "signal": 43,
+     "recency": 25,
+     "contact": 0
+    }
+   },
+   {
+    "id": "8976072987",
+    "name": "Corvallis School District 509J",
+    "segment": "Medium",
+    "state": "OR",
+    "owner": "Anne Matz",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-09-17",
+    "first_mqa_date": "2026-09-17",
+    "days_mqa": 46,
+    "last_contacted": "2026-10-05",
+    "days_since_contact": 28,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976072987",
+    "score": 68,
+    "breakdown": {
+     "signal": 43,
+     "recency": 25,
      "contact": 0
     }
    },
@@ -403,38 +485,15 @@
     ],
     "recent_mqa_date": "2026-09-21",
     "first_mqa_date": "2026-09-21",
-    "days_mqa": 35,
+    "days_mqa": 42,
     "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
+    "days_since_contact": 38,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976058552",
     "score": 66,
     "breakdown": {
      "signal": 33,
      "recency": 25,
      "contact": 8
-    }
-   },
-   {
-    "id": "8976072987",
-    "name": "Corvallis School District 509J",
-    "segment": "Medium",
-    "state": "OR",
-    "owner": "Anne Matz",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-09-17",
-    "first_mqa_date": "2026-09-17",
-    "days_mqa": 39,
-    "last_contacted": "2026-10-05",
-    "days_since_contact": 21,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976072987",
-    "score": 65,
-    "breakdown": {
-     "signal": 40,
-     "recency": 25,
-     "contact": 0
     }
    },
    {
@@ -450,10 +509,31 @@
     ],
     "recent_mqa_date": "2026-07-29",
     "first_mqa_date": "2026-07-29",
-    "days_mqa": 89,
-    "last_contacted": "2026-10-13",
-    "days_since_contact": 13,
+    "days_mqa": 96,
+    "last_contacted": "2026-10-26",
+    "days_since_contact": 7,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976084771",
+    "starbridge": {
+     "warm": [],
+     "rfp": [
+      {
+       "type": "rfp",
+       "product": "inkwell",
+       "due": "2026-11-19",
+       "title": "RFI 202610-01: K-12 Social Studies Instructional Materials",
+       "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span.",
+       "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf"
+      },
+      {
+       "type": "rfp",
+       "product": "ij",
+       "due": "2026-11-19",
+       "title": "RFI 202610-01: K-12 Social Studies Instructional Materials",
+       "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span.",
+       "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf"
+      }
+     ]
+    },
     "score": 65,
     "breakdown": {
      "signal": 50,
@@ -473,9 +553,9 @@
     ],
     "recent_mqa_date": "2026-10-23",
     "first_mqa_date": "2026-10-23",
-    "days_mqa": 3,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 10,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/48510675461",
     "score": 63,
     "breakdown": {
@@ -485,26 +565,25 @@
     }
    },
    {
-    "id": "1399085013",
-    "name": "Germantown Municipal School District",
-    "segment": "Medium",
-    "state": "TN",
+    "id": "16948527530",
+    "name": "Portsmouth City Public Schools",
+    "segment": "Large",
+    "state": "VA",
     "owner": "Anne Matz",
     "signals": [
-     "Yes, Reviewing",
      "Upcoming Adoption"
     ],
-    "recent_mqa_date": "2026-08-05",
-    "first_mqa_date": "2026-08-05",
-    "days_mqa": 82,
-    "last_contacted": "2026-08-28",
-    "days_since_contact": 59,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1399085013",
+    "recent_mqa_date": "2026-09-25",
+    "first_mqa_date": "2026-09-25",
+    "days_mqa": 38,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/16948527530",
     "score": 63,
     "breakdown": {
-     "signal": 40,
-     "recency": 15,
-     "contact": 8
+     "signal": 38,
+     "recency": 25,
+     "contact": 0
     }
    },
    {
@@ -519,13 +598,13 @@
     ],
     "recent_mqa_date": "2026-10-13",
     "first_mqa_date": "2026-10-13",
-    "days_mqa": 13,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 20,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975973804",
-    "score": 57,
+    "score": 60,
     "breakdown": {
-     "signal": 27,
+     "signal": 30,
      "recency": 30,
      "contact": 0
     }
@@ -542,13 +621,13 @@
     ],
     "recent_mqa_date": "2026-07-31",
     "first_mqa_date": "2026-07-31",
-    "days_mqa": 87,
+    "days_mqa": 94,
     "last_contacted": "2026-10-05",
-    "days_since_contact": 21,
+    "days_since_contact": 28,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1030942973",
-    "score": 55,
+    "score": 58,
     "breakdown": {
-     "signal": 40,
+     "signal": 43,
      "recency": 15,
      "contact": 0
     }
@@ -564,13 +643,13 @@
     ],
     "recent_mqa_date": "2026-07-31",
     "first_mqa_date": "2026-07-31",
-    "days_mqa": 87,
+    "days_mqa": 94,
     "last_contacted": "2026-05-13",
-    "days_since_contact": 166,
+    "days_since_contact": 173,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976260676",
-    "score": 52,
+    "score": 55,
     "breakdown": {
-     "signal": 22,
+     "signal": 25,
      "recency": 15,
      "contact": 15
     }
@@ -586,13 +665,13 @@
     ],
     "recent_mqa_date": "2026-07-31",
     "first_mqa_date": "2026-07-31",
-    "days_mqa": 87,
-    "last_contacted": "2026-10-19",
-    "days_since_contact": 7,
+    "days_mqa": 94,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976313860",
-    "score": 50,
+    "score": 53,
     "breakdown": {
-     "signal": 35,
+     "signal": 38,
      "recency": 15,
      "contact": 0
     }
@@ -609,13 +688,13 @@
     ],
     "recent_mqa_date": "2026-07-29",
     "first_mqa_date": "2026-07-29",
-    "days_mqa": 89,
+    "days_mqa": 96,
     "last_contacted": "2026-09-08",
-    "days_since_contact": 48,
+    "days_since_contact": 55,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/36417239419",
-    "score": 50,
+    "score": 53,
     "breakdown": {
-     "signal": 27,
+     "signal": 30,
      "recency": 15,
      "contact": 8
     }
@@ -631,13 +710,13 @@
     ],
     "recent_mqa_date": "2026-08-16",
     "first_mqa_date": "2026-08-16",
-    "days_mqa": 71,
+    "days_mqa": 78,
     "last_contacted": "2026-09-08",
-    "days_since_contact": 48,
+    "days_since_contact": 55,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5942781624",
-    "score": 44,
+    "score": 46,
     "breakdown": {
-     "signal": 21,
+     "signal": 23,
      "recency": 15,
      "contact": 8
     }
@@ -653,13 +732,13 @@
     ],
     "recent_mqa_date": "2026-08-13",
     "first_mqa_date": "2026-08-13",
-    "days_mqa": 74,
+    "days_mqa": 81,
     "last_contacted": "2026-10-14",
-    "days_since_contact": 12,
+    "days_since_contact": 19,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8342101924",
-    "score": 36,
+    "score": 38,
     "breakdown": {
-     "signal": 21,
+     "signal": 23,
      "recency": 15,
      "contact": 0
     }
@@ -673,9 +752,9 @@
     "signals": [],
     "recent_mqa_date": "2026-08-26",
     "first_mqa_date": "2026-08-26",
-    "days_mqa": 61,
+    "days_mqa": 68,
     "last_contacted": "2026-04-09",
-    "days_since_contact": 200,
+    "days_since_contact": 207,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/950338433",
     "score": 35,
     "breakdown": {
@@ -693,9 +772,9 @@
     "signals": [],
     "recent_mqa_date": "2026-08-26",
     "first_mqa_date": "2026-08-26",
-    "days_mqa": 61,
+    "days_mqa": 68,
     "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
+    "days_since_contact": 17,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/952062871",
     "score": 20,
     "breakdown": {
@@ -710,20 +789,20 @@
     {
      "signal": "2+ DL form fills",
      "points": 50,
-     "rate": 0.346,
-     "mqa": 26,
+     "rate": 0.32,
+     "mqa": 25,
      "small_sample": false
     },
     {
      "signal": "DL attended webinar",
-     "points": 38,
+     "points": 41,
      "rate": 0.263,
      "mqa": 19,
      "small_sample": false
     },
     {
      "signal": "Upcoming Adoption",
-     "points": 35,
+     "points": 38,
      "rate": 0.245,
      "mqa": 159,
      "small_sample": false
@@ -731,22 +810,22 @@
     {
      "signal": "Yes, Reviewing",
      "points": 28,
-     "rate": 0.192,
-     "mqa": 26,
+     "rate": 0.179,
+     "mqa": 28,
      "small_sample": false
     },
     {
      "signal": "High Intent DL",
-     "points": 22,
-     "rate": 0.153,
-     "mqa": 72,
+     "points": 25,
+     "rate": 0.16,
+     "mqa": 75,
      "small_sample": false
     },
     {
      "signal": "Clicked email / 5+ clicks",
-     "points": 21,
-     "rate": 0.145,
-     "mqa": 55,
+     "points": 23,
+     "rate": 0.148,
+     "mqa": 54,
      "small_sample": false
     },
     {
@@ -754,13 +833,6 @@
      "points": 20,
      "rate": 0.25,
      "mqa": 4,
-     "small_sample": true
-    },
-    {
-     "signal": "5+ New Teacher Contacts",
-     "points": 20,
-     "rate": 0.0,
-     "mqa": 1,
      "small_sample": true
     }
    ],
@@ -805,9 +877,9 @@
   }
  },
  "impact": {
-  "ever_mqa": 281,
+  "ever_mqa": 283,
   "ever_opp": 63,
-  "ever_rate": 0.224,
+  "ever_rate": 0.223,
   "cohorts": [
    {
     "quarter": "Q4 2025",
@@ -839,9 +911,9 @@
    },
    {
     "quarter": "Q4 2026",
-    "mqa": 13,
+    "mqa": 15,
     "opp": 3,
-    "rate": 0.231,
+    "rate": 0.2,
     "includes_backfill": false
    }
   ],
@@ -849,9 +921,9 @@
    {
     "signal": "2+ DL form fills",
     "raw": "2+ DL's w Form Submissions",
-    "mqa": 26,
-    "opp": 9,
-    "rate": 0.346,
+    "mqa": 25,
+    "opp": 8,
+    "rate": 0.32,
     "small_sample": false,
     "points": 50
    },
@@ -862,7 +934,7 @@
     "opp": 5,
     "rate": 0.263,
     "small_sample": false,
-    "points": 38
+    "points": 41
    },
    {
     "signal": "Upcoming Adoption",
@@ -871,43 +943,43 @@
     "opp": 39,
     "rate": 0.245,
     "small_sample": false,
-    "points": 35
+    "points": 38
    },
    {
     "signal": "No signal recorded",
     "raw": "No signal recorded",
-    "mqa": 50,
-    "opp": 11,
-    "rate": 0.22,
+    "mqa": 52,
+    "opp": 12,
+    "rate": 0.231,
     "small_sample": false,
     "points": 10
    },
    {
     "signal": "Yes, Reviewing",
     "raw": "Marked \"Yes, Reviewing\"",
-    "mqa": 26,
+    "mqa": 28,
     "opp": 5,
-    "rate": 0.192,
+    "rate": 0.179,
     "small_sample": false,
     "points": 28
    },
    {
     "signal": "High Intent DL",
     "raw": "High Intent DL",
-    "mqa": 72,
-    "opp": 11,
-    "rate": 0.153,
+    "mqa": 75,
+    "opp": 12,
+    "rate": 0.16,
     "small_sample": false,
-    "points": 22
+    "points": 25
    },
    {
     "signal": "Clicked email / 5+ clicks",
     "raw": "Clicked Email or 5+ Clicks",
-    "mqa": 55,
+    "mqa": 54,
     "opp": 8,
-    "rate": 0.145,
+    "rate": 0.148,
     "small_sample": false,
-    "points": 21
+    "points": 23
    },
    {
     "signal": "2+ Leads Created Last 90 days",
@@ -915,15 +987,6 @@
     "mqa": 4,
     "opp": 1,
     "rate": 0.25,
-    "small_sample": true,
-    "points": 20
-   },
-   {
-    "signal": "5+ New Teacher Contacts",
-    "raw": "5+ New Teacher Contacts",
-    "mqa": 1,
-    "opp": 0,
-    "rate": 0.0,
     "small_sample": true,
     "points": 20
    }
@@ -954,59 +1017,37 @@
  },
  "moved": [
   {
-   "id": "8976073057",
-   "name": "Westford Public Schools",
+   "id": "8976041592",
+   "name": "Cheney School District",
    "segment": "Medium",
-   "state": "MA",
-   "owner": "Anne Matz",
-   "move": "New Opportunity",
-   "date": "2026-10-20",
-   "signal": "",
-   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976073057"
-  },
-  {
-   "id": "48510675461",
-   "name": "Montgomery Township School District",
-   "segment": "Medium",
-   "state": "NJ",
-   "owner": "Anne Matz",
+   "state": "WA",
+   "owner": "Gianna Miller",
    "move": "New MQA",
-   "date": "2026-10-23",
-   "signal": "High Intent DL, Yes, Reviewing",
-   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/48510675461"
-  },
-  {
-   "id": "48256069971",
-   "name": "Jackson Township School District",
-   "segment": "Medium",
-   "state": "NJ",
-   "owner": "Anne Matz",
-   "move": "New MQA",
-   "date": "2026-10-22",
+   "date": "2026-10-30",
    "signal": "2+ DL form fills, Yes, Reviewing",
-   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/48256069971"
+   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976041592"
   },
   {
-   "id": "2598919584",
-   "name": "San Leandro Unified School District",
+   "id": "3857800724",
+   "name": "Rutherford School District",
    "segment": "Medium",
-   "state": "CA",
-   "owner": "Gianna Miller",
-   "move": "New Engaged",
-   "date": "2026-10-23",
-   "signal": "Yes, Reviewing",
-   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2598919584"
+   "state": "NJ",
+   "owner": "Anne Matz",
+   "move": "New MQA",
+   "date": "2026-10-29",
+   "signal": "2+ DL form fills, High Intent DL",
+   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3857800724"
   },
   {
-   "id": "8976097637",
-   "name": "Hutchinson Public School District",
+   "id": "5788413812",
+   "name": "Snowflake.k12.az.us",
    "segment": "Medium",
-   "state": "MN",
+   "state": "AZ",
    "owner": "Gianna Miller",
    "move": "New Engaged",
-   "date": "2026-10-21",
-   "signal": "Upcoming Adoption",
-   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976097637"
+   "date": "2026-10-30",
+   "signal": "High Intent DL",
+   "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5788413812"
   }
  ],
  "stale": {
@@ -1027,97 +1068,10 @@
     ],
     "recent_mqa_date": "2025-11-17",
     "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3206708915",
-    "backfill": true
-   },
-   {
-    "id": "44417821804",
-    "name": "Norwood Public Schools",
-    "segment": "Medium",
-    "state": "MA",
-    "owner": "Anne Matz",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2025-11-17",
-    "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-21",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-28",
     "days_since_contact": 5,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/44417821804",
-    "backfill": true
-   },
-   {
-    "id": "43314007566",
-    "name": "Monroe Public Schools",
-    "segment": "Medium",
-    "state": "CT",
-    "owner": "Anne Matz",
-    "signals": [],
-    "recent_mqa_date": "2025-11-17",
-    "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-12",
-    "days_since_contact": 14,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43314007566",
-    "backfill": true
-   },
-   {
-    "id": "1108148703",
-    "name": "Houston County School District",
-    "segment": "Enterprise",
-    "state": "GA",
-    "owner": "Jason Long",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2025-11-17",
-    "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1108148703",
-    "backfill": true
-   },
-   {
-    "id": "5788416437",
-    "name": "RSU 57",
-    "segment": "Medium",
-    "state": "ME",
-    "owner": "Anne Matz",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2025-11-17",
-    "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5788416437",
-    "backfill": true
-   },
-   {
-    "id": "6062804098",
-    "name": "Centennial School District",
-    "segment": "Medium",
-    "state": "PA",
-    "owner": "Gianna Miller",
-    "signals": [
-     "Clicked email / 5+ clicks",
-     "DL attended webinar"
-    ],
-    "recent_mqa_date": "2025-11-17",
-    "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6062804098",
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3206708915",
     "backfill": true
    },
    {
@@ -1132,10 +1086,97 @@
     ],
     "recent_mqa_date": "2025-11-17",
     "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
+    "days_mqa": 350,
     "last_contacted": "2025-10-01",
-    "days_since_contact": 390,
+    "days_since_contact": 397,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975995514",
+    "backfill": true
+   },
+   {
+    "id": "43314007566",
+    "name": "Monroe Public Schools",
+    "segment": "Medium",
+    "state": "CT",
+    "owner": "Anne Matz",
+    "signals": [],
+    "recent_mqa_date": "2025-11-17",
+    "first_mqa_date": "2025-11-17",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-12",
+    "days_since_contact": 21,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43314007566",
+    "backfill": true
+   },
+   {
+    "id": "6062804098",
+    "name": "Centennial School District",
+    "segment": "Medium",
+    "state": "PA",
+    "owner": "Gianna Miller",
+    "signals": [
+     "Clicked email / 5+ clicks",
+     "DL attended webinar"
+    ],
+    "recent_mqa_date": "2025-11-17",
+    "first_mqa_date": "2025-11-17",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-23",
+    "days_since_contact": 10,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6062804098",
+    "backfill": true
+   },
+   {
+    "id": "1108148703",
+    "name": "Houston County School District",
+    "segment": "Enterprise",
+    "state": "GA",
+    "owner": "Jason Long",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2025-11-17",
+    "first_mqa_date": "2025-11-17",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1108148703",
+    "backfill": true
+   },
+   {
+    "id": "44417821804",
+    "name": "Norwood Public Schools",
+    "segment": "Medium",
+    "state": "MA",
+    "owner": "Anne Matz",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2025-11-17",
+    "first_mqa_date": "2025-11-17",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/44417821804",
+    "backfill": true
+   },
+   {
+    "id": "5788416437",
+    "name": "RSU 57",
+    "segment": "Medium",
+    "state": "ME",
+    "owner": "Anne Matz",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2025-11-17",
+    "first_mqa_date": "2025-11-17",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5788416437",
     "backfill": true
    },
    {
@@ -1152,8 +1193,8 @@
     ],
     "recent_mqa_date": "2025-11-17",
     "first_mqa_date": "2025-11-17",
-    "days_mqa": 343,
-    "last_contacted": "2026-10-23",
+    "days_mqa": 350,
+    "last_contacted": "2026-10-30",
     "days_since_contact": 3,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3315606253",
     "backfill": true
@@ -1171,9 +1212,9 @@
     ],
     "recent_mqa_date": "2025-11-20",
     "first_mqa_date": "2025-11-20",
-    "days_mqa": 340,
-    "last_contacted": "2026-10-21",
-    "days_since_contact": 5,
+    "days_mqa": 347,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/30902104873"
    },
    {
@@ -1188,10 +1229,24 @@
     ],
     "recent_mqa_date": "2025-12-02",
     "first_mqa_date": "2025-12-02",
-    "days_mqa": 328,
+    "days_mqa": 335,
     "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
+    "days_since_contact": 17,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976271911"
+   },
+   {
+    "id": "1000966386",
+    "name": "New Brunswick Public Schools",
+    "segment": "Medium",
+    "state": "NJ",
+    "owner": "Anne Matz",
+    "signals": [],
+    "recent_mqa_date": "2025-12-03",
+    "first_mqa_date": "2025-12-03",
+    "days_mqa": 334,
+    "last_contacted": "2026-10-21",
+    "days_since_contact": 12,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1000966386"
    },
    {
     "id": "42350036875",
@@ -1204,9 +1259,9 @@
     ],
     "recent_mqa_date": "2025-12-03",
     "first_mqa_date": "2025-12-03",
-    "days_mqa": 327,
-    "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
+    "days_mqa": 334,
+    "last_contacted": "2026-10-27",
+    "days_since_contact": 6,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42350036875"
    },
    {
@@ -1221,24 +1276,10 @@
     ],
     "recent_mqa_date": "2025-12-03",
     "first_mqa_date": "2025-12-03",
-    "days_mqa": 327,
-    "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/920587935"
-   },
-   {
-    "id": "1000966386",
-    "name": "New Brunswick Public Schools",
-    "segment": "Medium",
-    "state": "NJ",
-    "owner": "Anne Matz",
-    "signals": [],
-    "recent_mqa_date": "2025-12-03",
-    "first_mqa_date": "2025-12-03",
-    "days_mqa": 327,
-    "last_contacted": "2026-10-21",
+    "days_mqa": 334,
+    "last_contacted": "2026-10-28",
     "days_since_contact": 5,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1000966386"
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/920587935"
    },
    {
     "id": "8976798800",
@@ -1252,9 +1293,9 @@
     ],
     "recent_mqa_date": "2025-12-03",
     "first_mqa_date": "2025-12-03",
-    "days_mqa": 327,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 334,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976798800"
    },
    {
@@ -1268,27 +1309,10 @@
     ],
     "recent_mqa_date": "2025-12-03",
     "first_mqa_date": "2025-12-03",
-    "days_mqa": 327,
-    "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
+    "days_mqa": 334,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3973256288"
-   },
-   {
-    "id": "8976014135",
-    "name": "Hopkins Public Schools",
-    "segment": "Medium",
-    "state": "MN",
-    "owner": "Gianna Miller",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2025-12-09",
-    "first_mqa_date": "2025-12-09",
-    "days_mqa": 321,
-    "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976014135"
    },
    {
     "id": "8976190089",
@@ -1301,9 +1325,9 @@
     ],
     "recent_mqa_date": "2025-12-09",
     "first_mqa_date": "2025-12-09",
-    "days_mqa": 321,
+    "days_mqa": 328,
     "last_contacted": "2026-02-11",
-    "days_since_contact": 257,
+    "days_since_contact": 264,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976190089"
    },
    {
@@ -1317,9 +1341,9 @@
     ],
     "recent_mqa_date": "2025-12-09",
     "first_mqa_date": "2025-12-09",
-    "days_mqa": 321,
+    "days_mqa": 328,
     "last_contacted": "2026-01-20",
-    "days_since_contact": 279,
+    "days_since_contact": 286,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976285261"
    },
    {
@@ -1333,10 +1357,27 @@
     ],
     "recent_mqa_date": "2025-12-09",
     "first_mqa_date": "2025-12-09",
-    "days_mqa": 321,
+    "days_mqa": 328,
     "last_contacted": "2026-03-20",
-    "days_since_contact": 220,
+    "days_since_contact": 227,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/33131390873"
+   },
+   {
+    "id": "8976014135",
+    "name": "Hopkins Public Schools",
+    "segment": "Medium",
+    "state": "MN",
+    "owner": "Gianna Miller",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2025-12-09",
+    "first_mqa_date": "2025-12-09",
+    "days_mqa": 328,
+    "last_contacted": "2026-10-16",
+    "days_since_contact": 17,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976014135"
    },
    {
     "id": "5246856971",
@@ -1350,26 +1391,10 @@
     ],
     "recent_mqa_date": "2025-12-11",
     "first_mqa_date": "2025-12-11",
-    "days_mqa": 319,
+    "days_mqa": 326,
     "last_contacted": "2026-05-27",
-    "days_since_contact": 152,
+    "days_since_contact": 159,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246856971"
-   },
-   {
-    "id": "8976290481",
-    "name": "Russell Independent Schools",
-    "segment": "Medium",
-    "state": "KY",
-    "owner": "Gianna Miller",
-    "signals": [
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-01-06",
-    "first_mqa_date": "2026-01-06",
-    "days_mqa": 293,
-    "last_contacted": "2026-01-12",
-    "days_since_contact": 287,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976290481"
    },
    {
     "id": "8976260754",
@@ -1384,10 +1409,26 @@
     ],
     "recent_mqa_date": "2026-01-06",
     "first_mqa_date": "2026-01-06",
-    "days_mqa": 293,
+    "days_mqa": 300,
     "last_contacted": "2026-05-06",
-    "days_since_contact": 173,
+    "days_since_contact": 180,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976260754"
+   },
+   {
+    "id": "8976290481",
+    "name": "Russell Independent Schools",
+    "segment": "Medium",
+    "state": "KY",
+    "owner": "Gianna Miller",
+    "signals": [
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-01-06",
+    "first_mqa_date": "2026-01-06",
+    "days_mqa": 300,
+    "last_contacted": "2026-01-12",
+    "days_since_contact": 294,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976290481"
    },
    {
     "id": "5246869609",
@@ -1402,9 +1443,9 @@
     ],
     "recent_mqa_date": "2026-01-07",
     "first_mqa_date": "2026-01-07",
-    "days_mqa": 292,
-    "last_contacted": "2026-10-13",
-    "days_since_contact": 13,
+    "days_mqa": 299,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246869609"
    },
    {
@@ -1419,9 +1460,9 @@
     ],
     "recent_mqa_date": "2026-01-09",
     "first_mqa_date": "2026-01-09",
-    "days_mqa": 290,
+    "days_mqa": 297,
     "last_contacted": "2026-09-08",
-    "days_since_contact": 48,
+    "days_since_contact": 55,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/40865257367"
    },
    {
@@ -1435,9 +1476,9 @@
     ],
     "recent_mqa_date": "2026-01-14",
     "first_mqa_date": "2026-01-14",
-    "days_mqa": 285,
+    "days_mqa": 292,
     "last_contacted": "2026-09-24",
-    "days_since_contact": 32,
+    "days_since_contact": 39,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5384874399"
    },
    {
@@ -1451,9 +1492,9 @@
     ],
     "recent_mqa_date": "2026-01-15",
     "first_mqa_date": "2026-01-15",
-    "days_mqa": 284,
+    "days_mqa": 291,
     "last_contacted": "2026-09-17",
-    "days_since_contact": 39,
+    "days_since_contact": 46,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5788398745"
    },
    {
@@ -1468,9 +1509,9 @@
     ],
     "recent_mqa_date": "2026-01-17",
     "first_mqa_date": "2026-01-17",
-    "days_mqa": 282,
+    "days_mqa": 289,
     "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
+    "days_since_contact": 38,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6103450996"
    },
    {
@@ -1482,9 +1523,9 @@
     "signals": [],
     "recent_mqa_date": "2026-01-22",
     "first_mqa_date": "2026-01-22",
-    "days_mqa": 277,
+    "days_mqa": 284,
     "last_contacted": "2026-02-09",
-    "days_since_contact": 259,
+    "days_since_contact": 266,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2866973855"
    },
    {
@@ -1496,9 +1537,9 @@
     "signals": [],
     "recent_mqa_date": "2026-01-23",
     "first_mqa_date": "2026-01-23",
-    "days_mqa": 276,
+    "days_mqa": 283,
     "last_contacted": "2026-10-19",
-    "days_since_contact": 7,
+    "days_since_contact": 14,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4027963703"
    },
    {
@@ -1512,9 +1553,9 @@
     ],
     "recent_mqa_date": "2026-01-28",
     "first_mqa_date": "2026-01-28",
-    "days_mqa": 271,
+    "days_mqa": 278,
     "last_contacted": "2022-01-25",
-    "days_since_contact": 1735,
+    "days_since_contact": 1742,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135116364"
    },
    {
@@ -1529,24 +1570,10 @@
     ],
     "recent_mqa_date": "2026-01-29",
     "first_mqa_date": "2026-01-29",
-    "days_mqa": 270,
+    "days_mqa": 277,
     "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
+    "days_since_contact": 11,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/43141981096"
-   },
-   {
-    "id": "5660604937",
-    "name": "Weber School District",
-    "segment": "Enterprise",
-    "state": "UT",
-    "owner": "Jason Long",
-    "signals": [],
-    "recent_mqa_date": "2026-02-05",
-    "first_mqa_date": "2026-02-05",
-    "days_mqa": 263,
-    "last_contacted": "2026-10-20",
-    "days_since_contact": 6,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5660604937"
    },
    {
     "id": "3012787756",
@@ -1557,10 +1584,24 @@
     "signals": [],
     "recent_mqa_date": "2026-02-05",
     "first_mqa_date": "2026-02-05",
-    "days_mqa": 263,
-    "last_contacted": "2026-03-11",
-    "days_since_contact": 229,
+    "days_mqa": 270,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3012787756"
+   },
+   {
+    "id": "5660604937",
+    "name": "Weber School District",
+    "segment": "Enterprise",
+    "state": "UT",
+    "owner": "Jason Long",
+    "signals": [],
+    "recent_mqa_date": "2026-02-05",
+    "first_mqa_date": "2026-02-05",
+    "days_mqa": 270,
+    "last_contacted": "2026-10-20",
+    "days_since_contact": 13,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5660604937"
    },
    {
     "id": "6010621870",
@@ -1573,26 +1614,10 @@
     ],
     "recent_mqa_date": "2026-02-06",
     "first_mqa_date": "2026-02-06",
-    "days_mqa": 262,
+    "days_mqa": 269,
     "last_contacted": "2024-01-09",
-    "days_since_contact": 1021,
+    "days_since_contact": 1028,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/6010621870"
-   },
-   {
-    "id": "5384874398",
-    "name": "Auburn Washburn USD 437",
-    "segment": "Medium",
-    "state": "KS",
-    "owner": "Gianna Miller",
-    "signals": [
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-02-10",
-    "first_mqa_date": "2026-02-10",
-    "days_mqa": 258,
-    "last_contacted": "2026-10-20",
-    "days_since_contact": 6,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5384874398"
    },
    {
     "id": "5135944785",
@@ -1605,10 +1630,26 @@
     ],
     "recent_mqa_date": "2026-02-10",
     "first_mqa_date": "2026-02-10",
-    "days_mqa": 258,
-    "last_contacted": "2026-10-21",
-    "days_since_contact": 5,
+    "days_mqa": 265,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135944785"
+   },
+   {
+    "id": "5384874398",
+    "name": "Auburn Washburn USD 437",
+    "segment": "Medium",
+    "state": "KS",
+    "owner": "Gianna Miller",
+    "signals": [
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-02-10",
+    "first_mqa_date": "2026-02-10",
+    "days_mqa": 265,
+    "last_contacted": "2026-10-20",
+    "days_since_contact": 13,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5384874398"
    },
    {
     "id": "2346507844",
@@ -1622,9 +1663,9 @@
     ],
     "recent_mqa_date": "2026-02-12",
     "first_mqa_date": "2026-02-12",
-    "days_mqa": 256,
+    "days_mqa": 263,
     "last_contacted": "2026-03-10",
-    "days_since_contact": 230,
+    "days_since_contact": 237,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2346507844",
     "starbridge": {
      "warm": [
@@ -1651,14 +1692,14 @@
     ],
     "recent_mqa_date": "2026-02-14",
     "first_mqa_date": "2026-02-14",
-    "days_mqa": 254,
+    "days_mqa": 261,
     "last_contacted": "2026-10-08",
-    "days_since_contact": 18,
+    "days_since_contact": 25,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8162393117"
    },
    {
-    "id": "2549743846",
-    "name": "Lombard SD 44",
+    "id": "8976096911",
+    "name": "Lake Villa CCSD 41",
     "segment": "Medium",
     "state": "IL",
     "owner": "Anne Matz",
@@ -1668,10 +1709,10 @@
     ],
     "recent_mqa_date": "2026-02-18",
     "first_mqa_date": "2026-02-18",
-    "days_mqa": 250,
-    "last_contacted": "2026-08-26",
-    "days_since_contact": 61,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2549743846"
+    "days_mqa": 257,
+    "last_contacted": "2026-08-21",
+    "days_since_contact": 73,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976096911"
    },
    {
     "id": "4271165010",
@@ -1686,27 +1727,10 @@
     ],
     "recent_mqa_date": "2026-02-18",
     "first_mqa_date": "2026-02-18",
-    "days_mqa": 250,
+    "days_mqa": 257,
     "last_contacted": "2026-08-21",
-    "days_since_contact": 66,
+    "days_since_contact": 73,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4271165010"
-   },
-   {
-    "id": "8976096911",
-    "name": "Lake Villa CCSD 41",
-    "segment": "Medium",
-    "state": "IL",
-    "owner": "Anne Matz",
-    "signals": [
-     "High Intent DL",
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-02-18",
-    "first_mqa_date": "2026-02-18",
-    "days_mqa": 250,
-    "last_contacted": "2026-08-21",
-    "days_since_contact": 66,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976096911"
    },
    {
     "id": "8976236430",
@@ -1720,10 +1744,27 @@
     ],
     "recent_mqa_date": "2026-02-18",
     "first_mqa_date": "2026-02-18",
-    "days_mqa": 250,
+    "days_mqa": 257,
     "last_contacted": "2026-08-24",
-    "days_since_contact": 63,
+    "days_since_contact": 70,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976236430"
+   },
+   {
+    "id": "2549743846",
+    "name": "Lombard SD 44",
+    "segment": "Medium",
+    "state": "IL",
+    "owner": "Anne Matz",
+    "signals": [
+     "High Intent DL",
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-02-18",
+    "first_mqa_date": "2026-02-18",
+    "days_mqa": 257,
+    "last_contacted": "2026-08-26",
+    "days_since_contact": 68,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2549743846"
    },
    {
     "id": "8976247654",
@@ -1737,9 +1778,9 @@
     ],
     "recent_mqa_date": "2026-02-19",
     "first_mqa_date": "2026-02-19",
-    "days_mqa": 249,
+    "days_mqa": 256,
     "last_contacted": "2026-09-23",
-    "days_since_contact": 33,
+    "days_since_contact": 40,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976247654"
    },
    {
@@ -1755,9 +1796,9 @@
     ],
     "recent_mqa_date": "2026-02-19",
     "first_mqa_date": "2026-02-19",
-    "days_mqa": 249,
+    "days_mqa": 256,
     "last_contacted": "2026-10-21",
-    "days_since_contact": 5,
+    "days_since_contact": 12,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2023866003"
    },
    {
@@ -1771,10 +1812,23 @@
     ],
     "recent_mqa_date": "2026-02-24",
     "first_mqa_date": "2026-02-24",
-    "days_mqa": 244,
-    "last_contacted": "2026-10-08",
-    "days_since_contact": 18,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314443"
+    "days_mqa": 251,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976314443",
+    "starbridge": {
+     "warm": [],
+     "rfp": [
+      {
+       "type": "rfp",
+       "product": "inkwell",
+       "due": "2029-03-13",
+       "title": "2027-101B (INSTRUCTIONAL MATERIALS)",
+       "summary": "Under RFP 2027-101, Humble ISD seeks to establish a pool of suppliers for instructional supplies, materials, and equipment supporting educational programs across district schools and facilities. The solicitation seeks competitive pricing, discounts, and customer-service benefits, with eligible examples including advanced-placement, arts and creative, bilingual, career and technical education, classroom, curriculum-support, lab, robotics, testing, teaching-aid, and vocational materials. Proposals are reviewed and awarded on a rolling basis, with responses accepted through March 13, 2029 at 4:00 p.m. CT, and the proposal term running through July 13, 2029.",
+       "url": "https://humbleisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=1389"
+      }
+     ]
+    }
    },
    {
     "id": "4689373657",
@@ -1787,10 +1841,26 @@
     ],
     "recent_mqa_date": "2026-02-27",
     "first_mqa_date": "2026-02-27",
-    "days_mqa": 241,
+    "days_mqa": 248,
     "last_contacted": "2026-03-02",
-    "days_since_contact": 238,
+    "days_since_contact": 245,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4689373657"
+   },
+   {
+    "id": "5135931896",
+    "name": "Pontiac Schools",
+    "segment": "Medium",
+    "state": "MI",
+    "owner": "Anne Matz",
+    "signals": [
+     "Clicked email / 5+ clicks"
+    ],
+    "recent_mqa_date": "2026-03-02",
+    "first_mqa_date": "2026-03-02",
+    "days_mqa": 245,
+    "last_contacted": "2026-09-25",
+    "days_since_contact": 38,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135931896"
    },
    {
     "id": "5667579041",
@@ -1804,70 +1874,10 @@
     ],
     "recent_mqa_date": "2026-03-02",
     "first_mqa_date": "2026-03-02",
-    "days_mqa": 238,
-    "last_contacted": "2026-10-21",
-    "days_since_contact": 5,
+    "days_mqa": 245,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5667579041"
-   },
-   {
-    "id": "5135931896",
-    "name": "Pontiac Schools",
-    "segment": "Medium",
-    "state": "MI",
-    "owner": "Anne Matz",
-    "signals": [
-     "Clicked email / 5+ clicks"
-    ],
-    "recent_mqa_date": "2026-03-02",
-    "first_mqa_date": "2026-03-02",
-    "days_mqa": 238,
-    "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135931896"
-   },
-   {
-    "id": "1019427314",
-    "name": "Anne Arundel County Public Schools",
-    "segment": "Enterprise",
-    "state": "MD",
-    "owner": "Jason Long",
-    "signals": [],
-    "recent_mqa_date": "2026-03-04",
-    "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
-    "last_contacted": "2026-10-21",
-    "days_since_contact": 5,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1019427314"
-   },
-   {
-    "id": "3007829880",
-    "name": "O'fallon School District",
-    "segment": "Medium",
-    "state": "IL",
-    "owner": "Anne Matz",
-    "signals": [
-     "Clicked email / 5+ clicks"
-    ],
-    "recent_mqa_date": "2026-03-04",
-    "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
-    "last_contacted": "2026-08-26",
-    "days_since_contact": 61,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3007829880"
-   },
-   {
-    "id": "4511862017",
-    "name": "Valley View School District",
-    "segment": "Large",
-    "state": "IL",
-    "owner": "Anne Matz",
-    "signals": [],
-    "recent_mqa_date": "2026-03-04",
-    "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
-    "last_contacted": "2026-08-31",
-    "days_since_contact": 56,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4511862017"
    },
    {
     "id": "8457899020",
@@ -1880,26 +1890,10 @@
     ],
     "recent_mqa_date": "2026-03-04",
     "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
+    "days_mqa": 243,
     "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
+    "days_since_contact": 38,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8457899020"
-   },
-   {
-    "id": "5175351976",
-    "name": "Centennial School District 12",
-    "segment": "Medium",
-    "state": "MN",
-    "owner": "Gianna Miller",
-    "signals": [
-     "High Intent DL"
-    ],
-    "recent_mqa_date": "2026-03-04",
-    "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
-    "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5175351976"
    },
    {
     "id": "8975961624",
@@ -1913,10 +1907,42 @@
     ],
     "recent_mqa_date": "2026-03-04",
     "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
+    "days_mqa": 243,
     "last_contacted": "2025-09-05",
-    "days_since_contact": 416,
+    "days_since_contact": 423,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975961624"
+   },
+   {
+    "id": "5175351976",
+    "name": "Centennial School District 12",
+    "segment": "Medium",
+    "state": "MN",
+    "owner": "Gianna Miller",
+    "signals": [
+     "High Intent DL"
+    ],
+    "recent_mqa_date": "2026-03-04",
+    "first_mqa_date": "2026-03-04",
+    "days_mqa": 243,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5175351976"
+   },
+   {
+    "id": "40788701796",
+    "name": "Austin Public School District",
+    "segment": "Medium",
+    "state": "MN",
+    "owner": "Gianna Miller",
+    "signals": [
+     "High Intent DL"
+    ],
+    "recent_mqa_date": "2026-03-04",
+    "first_mqa_date": "2026-03-04",
+    "days_mqa": 243,
+    "last_contacted": "2026-09-25",
+    "days_since_contact": 38,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/40788701796"
    },
    {
     "id": "5868535411",
@@ -1930,26 +1956,54 @@
     ],
     "recent_mqa_date": "2026-03-04",
     "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
+    "days_mqa": 243,
     "last_contacted": "2026-09-18",
-    "days_since_contact": 38,
+    "days_since_contact": 45,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5868535411"
    },
    {
-    "id": "40788701796",
-    "name": "Austin Public School District",
+    "id": "4511862017",
+    "name": "Valley View School District",
+    "segment": "Large",
+    "state": "IL",
+    "owner": "Anne Matz",
+    "signals": [],
+    "recent_mqa_date": "2026-03-04",
+    "first_mqa_date": "2026-03-04",
+    "days_mqa": 243,
+    "last_contacted": "2026-08-31",
+    "days_since_contact": 63,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4511862017"
+   },
+   {
+    "id": "3007829880",
+    "name": "O'fallon School District",
     "segment": "Medium",
-    "state": "MN",
-    "owner": "Gianna Miller",
+    "state": "IL",
+    "owner": "Anne Matz",
     "signals": [
-     "High Intent DL"
+     "Clicked email / 5+ clicks"
     ],
     "recent_mqa_date": "2026-03-04",
     "first_mqa_date": "2026-03-04",
-    "days_mqa": 236,
-    "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/40788701796"
+    "days_mqa": 243,
+    "last_contacted": "2026-08-26",
+    "days_since_contact": 68,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3007829880"
+   },
+   {
+    "id": "1019427314",
+    "name": "Anne Arundel County Public Schools",
+    "segment": "Enterprise",
+    "state": "MD",
+    "owner": "Jason Long",
+    "signals": [],
+    "recent_mqa_date": "2026-03-04",
+    "first_mqa_date": "2026-03-04",
+    "days_mqa": 243,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1019427314"
    },
    {
     "id": "44444375560",
@@ -1962,9 +2016,9 @@
     ],
     "recent_mqa_date": "2026-03-06",
     "first_mqa_date": "2026-03-06",
-    "days_mqa": 234,
+    "days_mqa": 241,
     "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_since_contact": 10,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/44444375560"
    },
    {
@@ -1978,9 +2032,9 @@
     ],
     "recent_mqa_date": "2026-03-10",
     "first_mqa_date": "2026-03-10",
-    "days_mqa": 230,
+    "days_mqa": 237,
     "last_contacted": "2024-01-10",
-    "days_since_contact": 1020,
+    "days_since_contact": 1027,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976241038"
    },
    {
@@ -1989,12 +2043,14 @@
     "segment": "Medium",
     "state": "AZ",
     "owner": "Gianna Miller",
-    "signals": [],
+    "signals": [
+     "High Intent DL"
+    ],
     "recent_mqa_date": "2026-03-14",
     "first_mqa_date": "2026-03-14",
-    "days_mqa": 226,
-    "last_contacted": "2026-08-21",
-    "days_since_contact": 66,
+    "days_mqa": 233,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5788388012"
    },
    {
@@ -2006,9 +2062,9 @@
     "signals": [],
     "recent_mqa_date": "2026-03-19",
     "first_mqa_date": "2026-03-19",
-    "days_mqa": 221,
+    "days_mqa": 228,
     "last_contacted": "2026-10-06",
-    "days_since_contact": 20,
+    "days_since_contact": 27,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8975995146"
    },
    {
@@ -2022,10 +2078,26 @@
     ],
     "recent_mqa_date": "2026-03-31",
     "first_mqa_date": "2026-03-31",
-    "days_mqa": 209,
+    "days_mqa": 216,
     "last_contacted": "2026-09-30",
-    "days_since_contact": 26,
+    "days_since_contact": 33,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3306720912"
+   },
+   {
+    "id": "8976230166",
+    "name": "Spring Hill Unified School District 230",
+    "segment": "Medium",
+    "state": "KS",
+    "owner": "Gianna Miller",
+    "signals": [
+     "Upcoming Adoption"
+    ],
+    "recent_mqa_date": "2026-04-01",
+    "first_mqa_date": "2026-04-01",
+    "days_mqa": 215,
+    "last_contacted": "2026-08-10",
+    "days_since_contact": 84,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976230166"
    },
    {
     "id": "1000850779",
@@ -2039,42 +2111,10 @@
     ],
     "recent_mqa_date": "2026-04-01",
     "first_mqa_date": "2026-04-01",
-    "days_mqa": 208,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
+    "days_mqa": 215,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1000850779"
-   },
-   {
-    "id": "8976230166",
-    "name": "Spring Hill Unified School District 230",
-    "segment": "Medium",
-    "state": "KS",
-    "owner": "Gianna Miller",
-    "signals": [
-     "Upcoming Adoption"
-    ],
-    "recent_mqa_date": "2026-04-01",
-    "first_mqa_date": "2026-04-01",
-    "days_mqa": 208,
-    "last_contacted": "2026-08-10",
-    "days_since_contact": 77,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976230166"
-   },
-   {
-    "id": "2548975319",
-    "name": "Livingston Public Schools",
-    "segment": "Medium",
-    "state": "NJ",
-    "owner": "Anne Matz",
-    "signals": [
-     "Clicked email / 5+ clicks"
-    ],
-    "recent_mqa_date": "2026-04-08",
-    "first_mqa_date": "2026-04-08",
-    "days_mqa": 201,
-    "last_contacted": "2026-10-23",
-    "days_since_contact": 3,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2548975319"
    },
    {
     "id": "8976025215",
@@ -2087,10 +2127,26 @@
     ],
     "recent_mqa_date": "2026-04-08",
     "first_mqa_date": "2026-04-08",
-    "days_mqa": 201,
+    "days_mqa": 208,
     "last_contacted": "2026-09-28",
-    "days_since_contact": 28,
+    "days_since_contact": 35,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976025215"
+   },
+   {
+    "id": "2548975319",
+    "name": "Livingston Public Schools",
+    "segment": "Medium",
+    "state": "NJ",
+    "owner": "Anne Matz",
+    "signals": [
+     "Clicked email / 5+ clicks"
+    ],
+    "recent_mqa_date": "2026-04-08",
+    "first_mqa_date": "2026-04-08",
+    "days_mqa": 208,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2548975319"
    },
    {
     "id": "3358988108",
@@ -2104,9 +2160,9 @@
     ],
     "recent_mqa_date": "2026-04-13",
     "first_mqa_date": "2026-04-13",
-    "days_mqa": 196,
+    "days_mqa": 203,
     "last_contacted": "2026-09-08",
-    "days_since_contact": 48,
+    "days_since_contact": 55,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3358988108"
    },
    {
@@ -2118,8 +2174,8 @@
     "signals": [],
     "recent_mqa_date": "2026-04-23",
     "first_mqa_date": "2026-04-23",
-    "days_mqa": 186,
-    "last_contacted": "2026-10-23",
+    "days_mqa": 193,
+    "last_contacted": "2026-10-30",
     "days_since_contact": 3,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976043054"
    },
@@ -2135,26 +2191,10 @@
     ],
     "recent_mqa_date": "2026-04-29",
     "first_mqa_date": "2026-04-29",
-    "days_mqa": 180,
-    "last_contacted": "2026-10-22",
-    "days_since_contact": 4,
+    "days_mqa": 187,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/46730942847"
-   },
-   {
-    "id": "2690412663",
-    "name": "School District Of River Falls",
-    "segment": "Medium",
-    "state": "WI",
-    "owner": "Gianna Miller",
-    "signals": [
-     "High Intent DL"
-    ],
-    "recent_mqa_date": "2026-04-30",
-    "first_mqa_date": "2026-04-30",
-    "days_mqa": 179,
-    "last_contacted": "2026-08-04",
-    "days_since_contact": 83,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2690412663"
    },
    {
     "id": "42249813600",
@@ -2163,15 +2203,28 @@
     "state": "NJ",
     "owner": "Anne Matz",
     "signals": [
-     "Clicked email / 5+ clicks",
      "High Intent DL"
     ],
     "recent_mqa_date": "2026-04-30",
     "first_mqa_date": "2026-04-30",
-    "days_mqa": 179,
-    "last_contacted": "2026-10-22",
+    "days_mqa": 186,
+    "last_contacted": "2026-10-29",
     "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/42249813600"
+   },
+   {
+    "id": "2690412663",
+    "name": "School District Of River Falls",
+    "segment": "Medium",
+    "state": "WI",
+    "owner": "Gianna Miller",
+    "signals": [],
+    "recent_mqa_date": "2026-04-30",
+    "first_mqa_date": "2026-04-30",
+    "days_mqa": 186,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/2690412663"
    },
    {
     "id": "8162359634",
@@ -2185,9 +2238,9 @@
     ],
     "recent_mqa_date": "2026-05-06",
     "first_mqa_date": "2026-05-06",
-    "days_mqa": 173,
+    "days_mqa": 180,
     "last_contacted": "2026-10-06",
-    "days_since_contact": 20,
+    "days_since_contact": 27,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8162359634"
    },
    {
@@ -2202,26 +2255,10 @@
     ],
     "recent_mqa_date": "2026-05-06",
     "first_mqa_date": "2026-05-06",
-    "days_mqa": 173,
+    "days_mqa": 180,
     "last_contacted": "2026-07-10",
-    "days_since_contact": 108,
+    "days_since_contact": 115,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4804322156"
-   },
-   {
-    "id": "5246875001",
-    "name": "Oregon School District",
-    "segment": "Medium",
-    "state": "WI",
-    "owner": "Gianna Miller",
-    "signals": [
-     "High Intent DL"
-    ],
-    "recent_mqa_date": "2026-05-12",
-    "first_mqa_date": "2026-05-12",
-    "days_mqa": 167,
-    "last_contacted": "2026-05-26",
-    "days_since_contact": 153,
-    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246875001"
    },
    {
     "id": "4994703998",
@@ -2235,10 +2272,26 @@
     ],
     "recent_mqa_date": "2026-05-12",
     "first_mqa_date": "2026-05-12",
-    "days_mqa": 167,
+    "days_mqa": 174,
     "last_contacted": "2026-05-29",
-    "days_since_contact": 150,
+    "days_since_contact": 157,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4994703998"
+   },
+   {
+    "id": "5246875001",
+    "name": "Oregon School District",
+    "segment": "Medium",
+    "state": "WI",
+    "owner": "Gianna Miller",
+    "signals": [
+     "High Intent DL"
+    ],
+    "recent_mqa_date": "2026-05-12",
+    "first_mqa_date": "2026-05-12",
+    "days_mqa": 174,
+    "last_contacted": "2026-05-26",
+    "days_since_contact": 160,
+    "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246875001"
    },
    {
     "id": "52817606156",
@@ -2252,9 +2305,9 @@
     ],
     "recent_mqa_date": "2026-05-21",
     "first_mqa_date": "2026-05-21",
-    "days_mqa": 158,
+    "days_mqa": 165,
     "last_contacted": "2026-10-19",
-    "days_since_contact": 7,
+    "days_since_contact": 14,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/52817606156"
    },
    {
@@ -2266,9 +2319,9 @@
     "signals": [],
     "recent_mqa_date": "2026-05-28",
     "first_mqa_date": "2026-05-28",
-    "days_mqa": 151,
-    "last_contacted": "2026-09-25",
-    "days_since_contact": 31,
+    "days_mqa": 158,
+    "last_contacted": "2026-10-30",
+    "days_since_contact": 3,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5898025504"
    },
    {
@@ -2282,9 +2335,9 @@
     ],
     "recent_mqa_date": "2026-05-29",
     "first_mqa_date": "2026-05-29",
-    "days_mqa": 150,
-    "last_contacted": "2026-10-20",
-    "days_since_contact": 6,
+    "days_mqa": 157,
+    "last_contacted": "2026-10-28",
+    "days_since_contact": 5,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1084227890"
    },
    {
@@ -2299,9 +2352,9 @@
     ],
     "recent_mqa_date": "2026-06-02",
     "first_mqa_date": "2026-06-02",
-    "days_mqa": 146,
-    "last_contacted": "2026-10-20",
-    "days_since_contact": 6,
+    "days_mqa": 153,
+    "last_contacted": "2026-10-29",
+    "days_since_contact": 4,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5135111155"
    },
    {
@@ -2315,9 +2368,9 @@
     ],
     "recent_mqa_date": "2026-06-02",
     "first_mqa_date": "2026-06-02",
-    "days_mqa": 146,
+    "days_mqa": 153,
     "last_contacted": "2026-10-07",
-    "days_since_contact": 19,
+    "days_since_contact": 26,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976321034"
    },
    {
@@ -2332,9 +2385,9 @@
     ],
     "recent_mqa_date": "2026-06-23",
     "first_mqa_date": "2026-06-23",
-    "days_mqa": 125,
-    "last_contacted": "2026-10-16",
-    "days_since_contact": 10,
+    "days_mqa": 132,
+    "last_contacted": "2026-10-27",
+    "days_since_contact": 6,
     "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976084363"
    }
   ]
@@ -2345,11 +2398,11 @@
    "warm": true
   },
   "warm_min_score": 10,
-  "accounts_with_signal": 1
+  "accounts_with_signal": 3
  },
  "decisions_snapshot": {
   "entries": 0,
-  "as_of": "2026-10-26"
+  "as_of": "2026-11-02"
  },
  "unknown_owner_ids": []
 }
