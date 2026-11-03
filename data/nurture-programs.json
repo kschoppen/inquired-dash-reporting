@@ -1,87 +1,87 @@
 {
  "skill": "nurture-dashboard-refresh",
  "title": "Nurture Programs",
- "updated": "2026-10-27",
+ "updated": "2026-11-03",
  "flows_linked": 5,
  "stale_after_days": 14,
- "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property. 2026-10-14: lifecycle and audience re-based on workflow enrollment (ever-enrolled lists per workflow, enrollment date from the Nurture Enrollment Date property) instead of the nurture_track tag, which is written only when a contact completes a workflow. Headline moved from 16 (tag population of 524 contacts, moves counted from Aug 18) to 46 (6,124 enrolled, moves counted after each contact's own enrollment day). Email blocks were not re-pulled and stay at Oct 13. Same-day stage entries are not counted as moved. 35 contacts have no enrollment date yet. 2026-10-20: full refresh, every section re-pulled. Enrollment grew to 6,415 (from 6,124), with 47 contacts now moved to a new lifecycle stage after enrolling (37 Inquiry Journeys, 10 Inkwell). Inkwell crossed its fifth full-volume module on both tracks and Agnostic's sixth email (module 6) sent at real volume for the first time, so every registered Agnostic email has now sent. Agnostic's suppression problem worsened again, now 186% of delivered (up from 142%). World History remains at zero sends. 2026-10-27: full refresh, every section re-pulled. Enrollment grew to 6,516 (from 6,415), with 53 contacts now moved to a new lifecycle stage after enrolling (40 Inquiry Journeys, 13 Inkwell), up from 47. Inkwell drove most of this week's delivery growth (+565), and its Leadership module 5 became the strongest single open-rate email in the portfolio. Inquiry Journeys Leadership module 6 crossed the 20-delivered test threshold (23 delivered) but is still too thin to read. Agnostic's suppression problem worsened again, now 206% of delivered (up from 186%). World History remains at zero sends.",
+ "note": "2026-09-22: full refresh, every section re-pulled. Lifecycle movement measured from Aug 18, the launch date per the Asana milestone. Email window Jul 30 to Sep 22. Key open items: World History still zero sends, Agnostic suppresses 75% of delivered, IJ carries 78% of volume with 1 lifecycle move, nothing has sent past module 2 in any program. 2026-09-28: page moved to a data-driven render from this file (same numbers, no re-pull). 2026-09-29: full refresh, every section re-pulled. Nothing has sent past module 3 in Inquiry Journeys or Inkwell, module 4 in Agnostic; Agnostic suppression down to 45% of delivered; Inquiry Journeys lifecycle moves up to 2; Inkwell and GF8 unsubscribe rates back under the 1% guardrail. 2026-10-06: full refresh, every section re-pulled. Agnostic's suppression rate jumped sharply, now exceeding delivered program-wide (465 suppressed against 358 delivered), driven by module 1 alone (372 suppressed, 164 delivered). Inquiry Journeys Leadership reached module 5 and Agnostic reached module 5, both at real volume for the first time. Inkwell's top click and exit email shifted to Classroom module 2. 2026-10-13: full refresh, every section re-pulled. Module 4 crossed into real send volume for the first time across Inquiry Journeys, Inkwell and Great First Eight, pushing portfolio delivery from 9,478 to 12,680 in a week. Agnostic's suppression problem worsened again, now 142% of delivered (up from 130%), with module 1 alone suppressing more than 3x its own delivery. Lifecycle movement is unchanged: still 2 in Inquiry Journeys and 14 in Inkwell since the Aug 18 launch. World History remains at zero sends and still has no nurture_track__world_history property. 2026-10-14: lifecycle and audience re-based on workflow enrollment (ever-enrolled lists per workflow, enrollment date from the Nurture Enrollment Date property) instead of the nurture_track tag, which is written only when a contact completes a workflow. Headline moved from 16 (tag population of 524 contacts, moves counted from Aug 18) to 46 (6,124 enrolled, moves counted after each contact's own enrollment day). Email blocks were not re-pulled and stay at Oct 13. Same-day stage entries are not counted as moved. 35 contacts have no enrollment date yet. 2026-10-20: full refresh, every section re-pulled. Enrollment grew to 6,415 (from 6,124), with 47 contacts now moved to a new lifecycle stage after enrolling (37 Inquiry Journeys, 10 Inkwell). Inkwell crossed its fifth full-volume module on both tracks and Agnostic's sixth email (module 6) sent at real volume for the first time, so every registered Agnostic email has now sent. Agnostic's suppression problem worsened again, now 186% of delivered (up from 142%). World History remains at zero sends. 2026-10-27: full refresh, every section re-pulled. Enrollment grew to 6,516 (from 6,415), with 53 contacts now moved to a new lifecycle stage after enrolling (40 Inquiry Journeys, 13 Inkwell), up from 47. Inkwell drove most of this week's delivery growth (+565), and its Leadership module 5 became the strongest single open-rate email in the portfolio. Inquiry Journeys Leadership module 6 crossed the 20-delivered test threshold (23 delivered) but is still too thin to read. Agnostic's suppression problem worsened again, now 206% of delivered (up from 186%). World History remains at zero sends. 2026-11-03: full refresh, every section re-pulled. Enrollment grew to 6,921 (from 6,516), with 62 contacts now moved to a new lifecycle stage after enrolling (42 Inquiry Journeys, 19 Inkwell and, for the first time, 1 Great First Eight), up from 53. Great First Eight's module 6 crossed into real volume for the first time, so every registered Great First Eight email has now sent at least once at real volume; Inkwell's Classroom module 3 and Leadership module 6 also crossed into real volume, driving most of this week's delivery growth. Agnostic's suppression problem worsened again, now 254% of delivered, up from 206%. World History remains at zero sends.",
  "launch_date": "2026-08-18",
  "email_window": {
   "start": "2026-07-30",
   "end": "2026-11-03"
  },
  "source_line": "HubSpot portal 4451852 \u00b7 CRM contacts + Marketing Email Analytics API",
- "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, workflow enrollment lists, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Enrollment, lifecycle movement, audience and email performance were all pulled on Oct 27, 2026.</strong> Movement is measured from each contact&apos;s own enrollment date. The program went live Aug 18 per the Asana launch milestone, and most contacts enrolled in bulk runs from Aug 31.",
+ "intro_html": "Built directly from HubSpot's CRM API and marketing-email analytics, contact-level lifecycle stages, workflow enrollment lists, and per-email send data, as an independent read alongside Tim's own workflow-reporting build. <strong>Enrollment, lifecycle movement, audience and email performance were all pulled on Nov 3, 2026.</strong> Movement is measured from each contact&apos;s own enrollment date. The program went live Aug 18 per the Asana launch milestone, and most contacts enrolled in bulk runs from Aug 31.",
  "lifecycle": {
-  "note_html": "Contacts enrolled in a Fall 2026 nurture workflow whose <code>lifecyclestage</code> advanced (entered MQL, SQL, Opportunity or Customer) <strong>after the day they enrolled</strong>. Enrollment comes from each workflow&apos;s history (an ever-enrolled list per workflow), not from the <code>nurture_track</code> tag, which is written only when a contact completes the full workflow. Stage entries on the enrollment day itself cannot be ordered against the enrollment and are not counted.",
+  "note_html": "Contacts enrolled in a Fall 2026 nurture workflow whose <code>lifecyclestage</code> advanced (entered MQL, SQL, Opportunity or Customer) <strong>after the day they enrolled</strong>. Enrollment comes from each workflow's history (an ever-enrolled list per workflow), not from the <code>nurture_track</code> tag, which is written only when a contact completes the full workflow. Stage entries on the enrollment day itself cannot be ordered against the enrollment and are not counted.",
   "tiles": [
    {
-    "value": "53",
+    "value": "62",
     "tone": "accent",
     "label": "Enrolled contacts moved to a new lifecycle stage after they enrolled",
-    "cap": "40 in Inquiry Journeys and 13 in Inkwell, out of 6,516 enrollments across the four workflows with contacts. Great First Eight and Agnostic have none yet. 47 are MQL entries; the other 6 entered SQL, Opportunity or Customer only. 6 reached Customer (2 in Inquiry Journeys, 4 in Inkwell, all at the same school)."
+    "cap": "42 in Inquiry Journeys, 19 in Inkwell and 1 in Great First Eight, out of 6,921 enrollments across the four workflows with contacts. Agnostic has none yet. 56 are MQL entries; the other 6 entered SQL, Opportunity or Customer only. 8 reached Customer: 4 in Inkwell at the same school (likely a sales close) and 4 in Inquiry Journeys at four different schools."
    },
    {
-    "value": "6,516",
+    "value": "6,921",
     "tone": "",
     "label": "Contacts enrolled across the four workflows",
-    "cap": "5,907 in progress and 609 no longer active (removed by a suppression list or completed). Inquiry Journeys 3,379, Inkwell 2,033, Agnostic 935, Great First Eight 169. World History has none. The large majority of Inquiry Journeys enrolled in one bulk run on Aug 31."
+    "cap": "6,184 in progress and 737 no longer active (removed by a suppression list or completed). Inquiry Journeys 3,396, Inkwell 2,090, Agnostic 1,264, Great First Eight 171. World History has none. The large majority of Inquiry Journeys enrolled in one bulk run on Aug 31."
    },
    {
     "value": "1.2%",
     "tone": "flag",
-    "label": "Of Inquiry Journeys contacts moved after enrolling, against 0.6% in Inkwell",
-    "cap": "40 of 3,379 in Inquiry Journeys and 13 of 2,033 in Inkwell. Most of the Aug 31 bulk run has now had eight weeks. Most October enrollees have had under a month, so these rates will keep rising."
+    "label": "Of Inquiry Journeys contacts moved after enrolling, against 0.9% in Inkwell",
+    "cap": "42 of 3,396 in Inquiry Journeys, 19 of 2,090 in Inkwell and 1 of 171 in Great First Eight. Most of the Aug 31 bulk run has now had nine weeks. Most October enrollees have had under a month, so these rates will keep rising."
    },
    {
-    "value": "399",
+    "value": "430",
     "tone": "flag",
     "label": "Enrolled contacts had already entered a lifecycle stage before they enrolled",
-    "cap": "140 in Inquiry Journeys and 250 in Inkwell entered MQL or a later stage between Aug 6 and their enrollment, plus 8 in Great First Eight and 1 in Agnostic. Another 55 did so on the enrollment day itself. For these contacts the content conversion that made them MQL is likely also what enrolled them, so reaching MQL cannot be counted as a nurture result. MQL to SQL is a cleaner test of the nurture."
+    "cap": "142 in Inquiry Journeys and 278 in Inkwell entered MQL or a later stage between Aug 6 and their enrollment, plus 8 in Great First Eight and 2 in Agnostic. Another 67 did so on the enrollment day itself. For these contacts the content conversion that made them MQL is likely also what enrolled them, so reaching MQL cannot be counted as a nurture result. MQL to SQL is a cleaner test of the nurture."
    }
   ],
   "by_program": [
    {
     "key": "ij",
     "program": "Inquiry Journeys",
-    "enrolled": 3379,
-    "in_progress": 3107,
-    "no_longer_active": 272,
-    "moved": 40,
-    "moved_note": "40 after the enrollment day: 37 entered MQL, plus 3 whose only new stage was SQL, Opportunity or Customer. 2 reached Customer. 5 enrolled contacts have no enrollment date yet.",
+    "enrolled": 3396,
+    "in_progress": 3109,
+    "no_longer_active": 287,
+    "moved": 42,
+    "moved_note": "42 after the enrollment day: 39 entered MQL, plus 3 whose only new stage was SQL, Opportunity or Customer. 4 reached Customer, at four different schools. 4 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "inkwell",
     "program": "Inkwell",
-    "enrolled": 2033,
-    "in_progress": 1816,
-    "no_longer_active": 217,
-    "moved": 13,
-    "moved_note": "13 after the enrollment day: 10 entered MQL and 3 entered Customer only. 4 total reached Customer, all contacts at the same school who became customers on Aug 31, likely a sales close. 29 enrolled contacts have no enrollment date yet.",
+    "enrolled": 2090,
+    "in_progress": 1862,
+    "no_longer_active": 228,
+    "moved": 19,
+    "moved_note": "19 after the enrollment day: 16 entered MQL and 3 entered Customer only. 4 total reached Customer, all contacts at the same school who became customers on Aug 31, likely a sales close. 29 enrolled contacts have no enrollment date yet.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "gf8",
     "program": "Great First Eight",
-    "enrolled": 169,
-    "in_progress": 119,
-    "no_longer_active": 50,
-    "moved": 0,
-    "moved_note": "No stage entries after the enrollment day. 8 contacts entered a stage before they enrolled, and 1 did so on the enrollment day itself.",
+    "enrolled": 171,
+    "in_progress": 20,
+    "no_longer_active": 151,
+    "moved": 1,
+    "moved_note": "1 after the enrollment day: entered MQL. 8 contacts entered a stage before they enrolled, and 1 did so on the enrollment day itself.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
    {
     "key": "agnostic",
     "program": "Agnostic",
-    "enrolled": 935,
-    "in_progress": 865,
-    "no_longer_active": 70,
+    "enrolled": 1264,
+    "in_progress": 1193,
+    "no_longer_active": 71,
     "moved": 0,
-    "moved_note": "No stage entries after the enrollment day. 1 contact entered a stage before they enrolled. 1 enrolled contact has no enrollment date yet.",
+    "moved_note": "No stage entries after the enrollment day. 2 contacts entered a stage before they enrolled. 1 enrolled contact has no enrollment date yet.",
     "tracking": "good",
     "tracking_label": "By enrollment"
    },
@@ -99,7 +99,7 @@
   ],
   "coverage": {
    "title": "What is and is not counted",
-   "html": "Enrollment counts come from lists that read each workflow&apos;s status, so every program is covered, including Great First Eight and Agnostic, which the <code>nurture_track</code> tag never captured. Two limits. <strong>35 contacts</strong> (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no <code>Nurture Enrollment Date</code> yet, so they are counted as enrolled but cannot be counted as moved. <strong>Stage at enrollment and the converting form are not recorded yet</strong>: the three new contact properties fill in only for contacts who enroll from now on, so movement is split by date, not by the stage a contact started at."
+   "html": "Enrollment counts come from lists that read each workflow's status, so every program is covered, including Great First Eight and Agnostic, which the <code>nurture_track</code> tag never captured. Two limits. <strong>34 contacts</strong> (Inquiry Journeys 4, Inkwell 29, Agnostic 1) have no <code>Nurture Enrollment Date</code> yet, so they are counted as enrolled but cannot be counted as moved. <strong>Stage at enrollment and the converting form are not recorded yet</strong>: the three new contact properties fill in only for contacts who enroll from now on, so movement is split by date, not by the stage a contact started at."
   }
  },
  "portfolio": {
@@ -149,7 +149,7 @@
    "unsub_rate": 0.0028,
    "emails_sending": 13,
    "emails_total": 17,
-   "note_html": "Classroom has reached six full-volume modules (1,349, 1,305, 1,233, 957, 894 and 879 delivered) and Leadership has done the same (1,151, 1,193, 1,132, 904, 824 and 800 delivered), with Leadership module 7 crossing the 20-delivered test threshold for the first time this week (20 delivered, still too thin to read). Open rate holds in the low twenties to high thirties across modules, peaking at 36.8% on Classroom module 6. This program carries 63% of portfolio delivery and has 3,379 enrolled contacts, of whom 40 moved to a new lifecycle stage after enrolling (1.2%). The large majority enrolled in one bulk run on Aug 31, so that cohort is now about nine weeks old and the October enrollees much younger."
+   "note_html": "Classroom has reached six full-volume modules (1,349, 1,305, 1,233, 957, 894 and 879 delivered) and Leadership has done the same (1,151, 1,193, 1,132, 904, 824 and 800 delivered), with Leadership module 7 crossing the 20-delivered test threshold for the first time this week (20 delivered, still too thin to read). Open rate holds in the low twenties to high thirties across modules, peaking at 36.8% on Classroom module 6. This program carries 63% of portfolio delivery and has 3,396 enrolled contacts, of whom 42 moved to a new lifecycle stage after enrolling (1.2%). The large majority enrolled in one bulk run on Aug 31, so that cohort is now about nine weeks old and the October enrollees much younger."
   },
   {
    "key": "inkwell",
@@ -167,7 +167,7 @@
    "unsub_rate": 0.0044,
    "emails_sending": 12,
    "emails_total": 16,
-   "note_html": "Still the lowest suppression rate in the portfolio by a wide margin (3.8% of delivered, against 28.8% portfolio wide) and open rate edges ahead of Inquiry Journeys's Leadership track this week. Classroom module 3 and Leadership module 6 both jumped into full volume (765 and 180 delivered). Leadership module 5 remains the strongest single open-rate result in the portfolio at 36.8% (74 of 201), narrowly ahead of Leadership module 1's 36.4% (344 of 946). Program-wide unsubscribe sits at 0.44% (27 of 6,139), under the 1% guardrail. Of 2,033 enrolled contacts, 13 moved to a new lifecycle stage after enrolling (0.6%); 4 of those are contacts at the same school who became customers on Aug 31, likely a sales close."
+   "note_html": "Still the lowest suppression rate in the portfolio by a wide margin (3.8% of delivered, against 28.8% portfolio wide) and open rate edges ahead of Inquiry Journeys's Leadership track this week. Classroom module 3 and Leadership module 6 both jumped into full volume (765 and 180 delivered). Leadership module 5 remains the strongest single open-rate result in the portfolio at 36.8% (74 of 201), narrowly ahead of Leadership module 1's 36.4% (344 of 946). Program-wide unsubscribe sits at 0.44% (27 of 6,139), under the 1% guardrail. Of 2,090 enrolled contacts, 19 moved to a new lifecycle stage after enrolling (0.9%); 4 of those are contacts at the same school who became customers on Aug 31, likely a sales close."
   },
   {
    "key": "gf8",
@@ -185,7 +185,7 @@
    "unsub_rate": 0.0146,
    "emails_sending": 6,
    "emails_total": 6,
-   "note_html": "Every registered Great First Eight email has now sent at real volume for the first time: module 6 crossed the 20-delivered threshold this week (57 delivered). Clicks remain thin across the program (5 total), so no reliable click read is possible yet. Unsubscribe has climbed to 1.46% (8 of 548), over the 1% guardrail, though the sample is thin enough that a handful of people move the number; module 1 alone carries 4 of the 8. 169 contacts are enrolled and none has moved to a new lifecycle stage after enrolling."
+   "note_html": "Every registered Great First Eight email has now sent at real volume for the first time: module 6 crossed the 20-delivered threshold this week (57 delivered). Clicks remain thin across the program (5 total), so no reliable click read is possible yet. Unsubscribe has climbed to 1.46% (8 of 548), over the 1% guardrail, though the sample is thin enough that a handful of people move the number; module 1 alone carries 4 of the 8. 171 contacts are enrolled; 1 moved to a new lifecycle stage after enrolling this week, the first for this program."
   },
   {
    "key": "agnostic",
@@ -872,52 +872,52 @@
   "roles": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "3,379 enrolled contacts",
-    "total": 3379,
+    "n_label": "3,396 enrolled contacts",
+    "total": 3396,
     "rows": [
      {
       "label": "Teacher",
-      "count": 1294,
+      "count": 1298,
       "cls": "teacher"
      },
      {
       "label": "Admin / Leadership",
-      "count": 1589,
+      "count": 1600,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 496,
+      "count": 498,
       "cls": "other"
      }
     ]
    },
    {
     "program": "Inkwell",
-    "n_label": "2,033 enrolled contacts",
-    "total": 2033,
+    "n_label": "2,090 enrolled contacts",
+    "total": 2090,
     "rows": [
      {
       "label": "Teacher",
-      "count": 364,
+      "count": 380,
       "cls": "teacher"
      },
      {
       "label": "Admin / Leadership",
-      "count": 1117,
+      "count": 1141,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 552,
+      "count": 569,
       "cls": "other"
      }
     ]
    },
    {
     "program": "Agnostic",
-    "n_label": "935 enrolled contacts",
-    "total": 935,
+    "n_label": "1,264 enrolled contacts",
+    "total": 1264,
     "rows": [
      {
       "label": "Teacher",
@@ -926,24 +926,24 @@
      },
      {
       "label": "Admin / Leadership",
-      "count": 408,
+      "count": 720,
       "cls": ""
      },
      {
       "label": "Other / Unassigned",
-      "count": 525,
+      "count": 542,
       "cls": "other"
      }
     ]
    },
    {
     "program": "Great First Eight",
-    "n_label": "169 enrolled contacts",
-    "total": 169,
+    "n_label": "171 enrolled contacts",
+    "total": 171,
     "rows": [
      {
       "label": "Teacher",
-      "count": 85,
+      "count": 86,
       "cls": "teacher"
      },
      {
@@ -953,7 +953,7 @@
      },
      {
       "label": "Other / Unassigned",
-      "count": 19,
+      "count": 20,
       "cls": "other"
      }
     ]
@@ -963,20 +963,20 @@
   "sources": [
    {
     "program": "Inquiry Journeys",
-    "n_label": "3,379 enrolled",
-    "total": 3379,
+    "n_label": "3,396 enrolled",
+    "total": 3396,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 926
+      "count": 939
      },
      {
       "label": "Other Campaigns",
-      "count": 684
+      "count": 685
      },
      {
       "label": "Offline",
-      "count": 604
+      "count": 607
      },
      {
       "label": "Organic Search",
@@ -1006,36 +1006,36 @@
    },
    {
     "program": "Inkwell",
-    "n_label": "2,033 enrolled",
-    "total": 2033,
+    "n_label": "2,090 enrolled",
+    "total": 2090,
     "rows": [
      {
       "label": "Email Marketing",
-      "count": 622
-     },
-     {
-      "label": "Organic Social",
-      "count": 390
+      "count": 631
      },
      {
       "label": "Offline",
-      "count": 381
+      "count": 394
+     },
+     {
+      "label": "Organic Social",
+      "count": 393
      },
      {
       "label": "Direct Traffic",
-      "count": 309
+      "count": 332
      },
      {
       "label": "Other Campaigns",
-      "count": 172
+      "count": 175
      },
      {
       "label": "Paid Search",
-      "count": 72
+      "count": 77
      },
      {
       "label": "Organic Search",
-      "count": 68
+      "count": 69
      },
      {
       "label": "Referrals",
@@ -1049,35 +1049,51 @@
    },
    {
     "program": "Agnostic",
-    "n_label": "935 enrolled",
-    "total": 935,
+    "n_label": "1,264 enrolled",
+    "total": 1264,
     "rows": [
      {
       "label": "Offline",
-      "count": 923
+      "count": 1224
      },
      {
       "label": "Direct Traffic",
-      "count": 9
+      "count": 28
      },
      {
       "label": "Email Marketing",
+      "count": 4
+     },
+     {
+      "label": "Organic Search",
+      "count": 3
+     },
+     {
+      "label": "Other Campaigns",
       "count": 2
      },
      {
+      "label": "Paid Search",
+      "count": 1
+     },
+     {
       "label": "Organic Social",
+      "count": 1
+     },
+     {
+      "label": "Referrals",
       "count": 1
      }
     ]
    },
    {
     "program": "Great First Eight",
-    "n_label": "169 enrolled",
-    "total": 169,
+    "n_label": "171 enrolled",
+    "total": 171,
     "rows": [
      {
       "label": "Direct Traffic",
-      "count": 87
+      "count": 88
      },
      {
       "label": "Organic Search",
@@ -1085,7 +1101,7 @@
      },
      {
       "label": "Offline",
-      "count": 27
+      "count": 28
      },
      {
       "label": "Paid Search",
@@ -1114,15 +1130,15 @@
  "open_items": [
   {
    "level": "red",
-   "html": "<strong>Inquiry Journeys carries 65% of delivery and 40 of its 3,379 enrolled contacts (1.2%) moved to a new lifecycle stage after enrolling.</strong> Inkwell moved 13 of 2,033 (0.6%), 4 of those at the same school, likely a sales close rather than a nurture result. This is not an email-performance problem: open and click rates are healthy. The open question is whether the content is moving contacts who were not already MQL."
+   "html": "<strong>Inquiry Journeys carries 63% of delivery and 42 of its 3,396 enrolled contacts (1.2%) moved to a new lifecycle stage after enrolling.</strong> Inkwell moved 19 of 2,090 (0.9%), 4 of those at the same school, likely a sales close rather than a nurture result. This is not an email-performance problem: open and click rates are healthy. The open question is whether the content is moving contacts who were not already MQL."
   },
   {
    "level": "red",
-   "html": "<strong>Agnostic now suppresses more than twice what it delivers, and the gap is widening.</strong> Program wide, 1,373 suppressed against 667 delivered (206%, against 24.5% portfolio-wide), up from 186% last week. Module 1 alone suppresses more than 3x what it sends (691 suppressed, 222 delivered). Worth checking that track's suppression lists and frequency caps immediately. The cause cannot be confirmed through the API."
+   "html": "<strong>Agnostic now suppresses more than two and a half times what it delivers, and the gap is widening.</strong> Program wide, 2,252 suppressed against 888 delivered (254%, against 28.8% portfolio-wide), up from 206% last week. Module 1 alone suppresses nearly 3x what it sends (898 suppressed, 312 delivered). Worth checking that track's suppression lists and frequency caps immediately. The cause cannot be confirmed through the API."
   },
   {
    "level": "red",
-   "html": "<strong>Inkwell drove most of this week's delivery growth, and its Leadership module 5 is now the portfolio's top open-rate email.</strong> Inkwell added 565 delivered this week (4,181 to 4,746); Leadership module 5 reached full volume (184 delivered) at a 37.0% open rate, the strongest single result in the portfolio. Inquiry Journeys Leadership module 6 crossed the 20-delivered test threshold (23 delivered) but is still too thin to read. Modules 6 through 8 in Inquiry Journeys and Inkwell, and Great First Eight's module 6, remain mostly unsent. Ten weeks post launch on a spaced cadence, more volume is still coming in, but most of the portfolio's history is still early modules."
+   "html": "<strong>Great First Eight's module 6 and Inkwell's Classroom module 3 and Leadership module 6 all crossed into real volume this week</strong>, pushing portfolio delivery from 16,766 to 20,231. Every registered Great First Eight email has now sent at real volume at least once. Inquiry Journeys Leadership module 7 crossed the 20-delivered test threshold (20 delivered) but is still far too thin to read."
   },
   {
    "level": "red",
@@ -1130,11 +1146,11 @@
   },
   {
    "level": "amber",
-   "html": "<strong>The new enrollment fields are not live for everyone yet.</strong> 35 contacts (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no enrollment date, and <code>Nurture Stage at Enrollment</code> and <code>Nurture Enrollment Form</code> are empty for every contact until the workflow steps run. Until then movement is split by date, not by the stage a contact started at, and a fresh set of workflow history exports will fill these in."
+   "html": "<strong>The new enrollment fields are not live for everyone yet.</strong> 34 contacts (Inquiry Journeys 4, Inkwell 29, Agnostic 1) have no enrollment date, and <code>Nurture Stage at Enrollment</code> and <code>Nurture Enrollment Form</code> are empty for every contact until the workflow steps run. Until then movement is split by date, not by the stage a contact started at, and a fresh set of workflow history exports will fill these in."
   },
   {
    "level": "red",
-   "html": "<strong>Tim's reporting-structure rebuild is still open and is now the binding constraint.</strong> It was due Aug 17 and is ten weeks overdue in Asana as of Oct 27. This page is a workaround built from raw API pulls; the Tier 1/2/3 reporting it is standing in for is what the Dec 18 program end and Jan 11 postmortem are supposed to read from."
+   "html": "<strong>Tim's reporting-structure rebuild is still open and is now the binding constraint.</strong> It was due Aug 17 and is eleven weeks overdue in Asana as of Nov 3. This page is a workaround built from raw API pulls; the Tier 1/2/3 reporting it is standing in for is what the Dec 18 program end and Jan 11 postmortem are supposed to read from."
   },
   {
    "level": "red",
@@ -1235,10 +1251,28 @@
     "wh": null
    },
    "open_rate": 0.2732
+  },
+  {
+   "date": "2026-11-03",
+   "delivered": {
+    "ij": 12656,
+    "inkwell": 6139,
+    "gf8": 548,
+    "agnostic": 888,
+    "wh": 0
+   },
+   "moved": {
+    "ij": 42,
+    "inkwell": 19,
+    "gf8": 1,
+    "agnostic": 0,
+    "wh": null
+   },
+   "open_rate": 0.2764
   }
  ],
- "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates and the <code>Nurture Enrollment Date</code> property, read through each workflow&apos;s ever-enrolled and active lists, pulled Oct 27, 2026) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded, pulled Oct 27, 2026), scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement is measured from each contact&apos;s own enrollment date (the stage entry must fall after the enrollment day). Email window Jul 30 to Oct 27, 2026. Enrolled counts include contacts who have since been removed or completed. Workflow enabled/paused state is not available via API.",
+ "footnote_html": "Source: HubSpot portal 4451852. CRM contact query API (<code>lifecyclestage</code> v2 stage-entry dates and the <code>Nurture Enrollment Date</code> property, read through each workflow&apos;s ever-enrolled and active lists, pulled Nov 3, 2026) and Marketing Email Analytics API (OVERVIEW, per-email, bots excluded, pulled Nov 3, 2026), scoped to the 5 confirmed Fall 2026 nurture programs via the <code>nurture</code> property on MARKETING_EMAIL. Lifecycle movement is measured from each contact&apos;s own enrollment date (the stage entry must fall after the enrollment day). Email window Jul 30 to Nov 3, 2026. Enrolled counts include contacts who have since been removed or completed. Workflow enabled/paused state is not available via API.",
  "data_flags": [
-  "35 enrolled contacts (Inquiry Journeys 5, Inkwell 29, Agnostic 1) have no Nurture Enrollment Date yet, so they are counted as enrolled but not as moved."
+  "34 enrolled contacts (Inquiry Journeys 4, Inkwell 29, Agnostic 1) have no Nurture Enrollment Date yet, so they are counted as enrolled but not as moved."
  ]
 }
