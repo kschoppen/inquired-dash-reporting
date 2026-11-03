@@ -13,8 +13,6 @@ Secrets come from the environment: `MAILCHIMP_API_KEY`, and the Slack bot token 
 ## STEP 0: Setup
 
 ```bash
-git config --global user.email k.schoppen@inquired.com
-git config --global user.name 'Teacher Nurture (cloud routine)'
 curl -fsS -m 10 --retry 3 https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a/start || true
 ```
 
@@ -43,7 +41,7 @@ Open `data/teacher-nurture-snapshot.json` and `data/teacher-nurture.json`. Compa
 ```bash
 git checkout main && git pull --rebase origin main
 git add data/teacher-nurture-snapshot.json
-git commit -m "Teacher Nurture snapshot <YYYY-MM-DD>"
+git -c user.email=k.schoppen@inquired.com -c user.name='Teacher Nurture (cloud routine)' commit -m "Teacher Nurture snapshot <YYYY-MM-DD>"
 git push origin main
 git ls-remote origin main
 ```
