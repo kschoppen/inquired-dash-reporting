@@ -12,6 +12,16 @@
     "inquired-marketing@inquired-marketing-marketplace": true
   },
   "permissions": {
-    "allow": ["Bash(python3 scripts/teacher_nurture_snapshot.py)"]
+    "allow": [
+      "Bash(python3 scripts/teacher_nurture_snapshot.py)",
+      "Bash(git checkout main)",
+      "Bash(git pull --rebase origin main)",
+      "Bash(git add data/teacher-nurture-snapshot.json)",
+      "Bash(git -c user.email=k.schoppen@inquired.com * commit *)",
+      "Bash(git push origin main)",
+      "Bash(git ls-remote origin main)",
+      "Bash(curl -fsS -m 10 --retry 3 https://hc-ping.com/*)",
+      "Bash(curl -sS -X POST https://slack.com/api/chat.postMessage *)"
+    ]
   }
 }
