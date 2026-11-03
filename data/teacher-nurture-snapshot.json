@@ -1,50 +1,50 @@
 {
  "ok": true,
  "source": "snapshot",
- "updated": "2026-10-27",
- "fetched_at": "2026-10-27T11:39:24+00:00",
+ "updated": "2026-11-03",
+ "fetched_at": "2026-11-03T21:26:47+00:00",
  "stale_after_days": 8,
  "phases": {
   "awareness": {
-   "count": 32,
+   "count": 23,
    "segment_id": 40199920,
-   "cached_count": 32,
+   "cached_count": 23,
    "cached_as_of": "2026-09-24T17:48:02+00:00"
   },
   "discovery": {
-   "count": 14141,
+   "count": 14535,
    "segment_id": 40199921,
-   "cached_count": 14380,
+   "cached_count": 14793,
    "cached_as_of": "2026-09-24T17:48:04+00:00"
   },
   "adopt": {
-   "count": 1089,
+   "count": 929,
    "segment_id": 40199922,
-   "cached_count": 1103,
+   "cached_count": 941,
    "cached_as_of": "2026-09-24T17:48:06+00:00"
   },
   "sustained": {
-   "count": 2643,
+   "count": 2499,
    "segment_id": 40199923,
-   "cached_count": 2663,
+   "cached_count": 2516,
    "cached_as_of": "2026-09-24T17:48:08+00:00"
   },
   "holding": {
-   "count": 2578,
+   "count": 2619,
    "segment_id": 40199924,
-   "cached_count": 2620,
+   "cached_count": 2665,
    "cached_as_of": "2026-09-24T17:48:10+00:00"
   },
   "eligible": {
-   "count": 69863,
+   "count": 71701,
    "segment_id": 40199919,
-   "cached_count": 71156,
+   "cached_count": 73068,
    "cached_as_of": "2026-09-24T17:47:59+00:00"
   },
   "active_users": {
-   "count": 3806,
+   "count": 3503,
    "segment_id": 40199925,
-   "cached_count": 3842,
+   "cached_count": 3534,
    "cached_as_of": "2026-09-24T17:48:11+00:00"
   }
  },
@@ -126,11 +126,11 @@
    "web_id": 10349292,
    "type": "automation-email",
    "status": "sending",
-   "sent": 12143,
-   "opens": 3086,
-   "open_rate": 0.2574670448857,
+   "sent": 12144,
+   "opens": 3088,
+   "open_rate": 0.25761241344790187,
    "clicks": 1209,
-   "click_rate": 0.10086767895878525,
+   "click_rate": 0.10085926420288646,
    "unsubs": 10,
    "bounces": 157
   },
@@ -141,11 +141,11 @@
    "web_id": 10349294,
    "type": "automation-email",
    "status": "sending",
-   "sent": 5725,
-   "opens": 1677,
-   "open_rate": 0.2942105263157895,
+   "sent": 5726,
+   "opens": 1678,
+   "open_rate": 0.29433432731099807,
    "clicks": 531,
-   "click_rate": 0.0931578947368421,
+   "click_rate": 0.09314155411331346,
    "unsubs": 11,
    "bounces": 25
   },
@@ -157,8 +157,8 @@
    "type": "automation-email",
    "status": "sending",
    "sent": 6290,
-   "opens": 2095,
-   "open_rate": 0.3344508301404853,
+   "opens": 2096,
+   "open_rate": 0.334610472541507,
    "clicks": 725,
    "click_rate": 0.11574074074074074,
    "unsubs": 6,
@@ -171,11 +171,11 @@
    "web_id": 10349298,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1544,
+   "sent": 1545,
    "opens": 389,
-   "open_rate": 0.25210628645495786,
+   "open_rate": 0.25194300518134716,
    "clicks": 117,
-   "click_rate": 0.07582631237848347,
+   "click_rate": 0.07577720207253887,
    "unsubs": 0,
    "bounces": 1
   },
@@ -186,11 +186,11 @@
    "web_id": 10349299,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1426,
+   "sent": 1427,
    "opens": 450,
-   "open_rate": 0.3155680224403927,
+   "open_rate": 0.3153468815697267,
    "clicks": 161,
-   "click_rate": 0.11290322580645161,
+   "click_rate": 0.11282410651716888,
    "unsubs": 0,
    "bounces": 0
   },
@@ -231,11 +231,11 @@
    "web_id": 10349302,
    "type": "automation-email",
    "status": "sending",
-   "sent": 2470,
-   "opens": 539,
-   "open_rate": 0.21857258718572586,
+   "sent": 2471,
+   "opens": 542,
+   "open_rate": 0.21970004053506284,
    "clicks": 231,
-   "click_rate": 0.09367396593673966,
+   "click_rate": 0.09363599513579246,
    "unsubs": 2,
    "bounces": 4
   },
@@ -246,7 +246,7 @@
    "web_id": 10349303,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1,
+   "sent": 2,
    "opens": 0,
    "open_rate": 0,
    "clicks": 0,
@@ -287,11 +287,11 @@
    "web_id": 10349306,
    "type": "automation-email",
    "status": "sending",
-   "sent": 574,
+   "sent": 575,
    "opens": 84,
-   "open_rate": 0.14762741652021089,
+   "open_rate": 0.14736842105263157,
    "clicks": 11,
-   "click_rate": 0.019332161687170474,
+   "click_rate": 0.01929824561403509,
    "unsubs": 1,
    "bounces": 5
   },
@@ -302,11 +302,13 @@
    "web_id": 10349307,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 466,
+   "opens": 74,
+   "open_rate": 0.15879828326180256,
+   "clicks": 15,
+   "click_rate": 0.032188841201716736,
+   "unsubs": 1,
+   "bounces": 0
   },
   {
    "code": "T9-3-5",
@@ -315,11 +317,11 @@
    "web_id": 10349309,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1587,
+   "sent": 1588,
    "opens": 372,
-   "open_rate": 0.23455233291298866,
+   "open_rate": 0.23440453686200377,
    "clicks": 106,
-   "click_rate": 0.06683480453972257,
+   "click_rate": 0.06679269061121614,
    "unsubs": 0,
    "bounces": 1
   },
@@ -330,11 +332,11 @@
    "web_id": 10349310,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1464,
+   "sent": 1465,
    "opens": 428,
-   "open_rate": 0.2923497267759563,
+   "open_rate": 0.29215017064846416,
    "clicks": 143,
-   "click_rate": 0.0976775956284153,
+   "click_rate": 0.09761092150170649,
    "unsubs": 0,
    "bounces": 0
   },
@@ -346,8 +348,8 @@
    "type": "automation-email",
    "status": "sending",
    "sent": 1572,
-   "opens": 228,
-   "open_rate": 0.14522292993630573,
+   "opens": 229,
+   "open_rate": 0.14585987261146496,
    "clicks": 89,
    "click_rate": 0.056687898089171976,
    "unsubs": 0,
@@ -360,11 +362,13 @@
    "web_id": 10349312,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1358,
+   "opens": 237,
+   "open_rate": 0.1746499631540162,
+   "clicks": 76,
+   "click_rate": 0.05600589535740604,
+   "unsubs": 0,
+   "bounces": 1
   },
   {
    "code": "T12",
@@ -601,6 +605,19 @@
     "active_users": 3806
    },
    "sent_total": 37772
+  },
+  {
+   "date": "2026-11-03",
+   "phases": {
+    "awareness": 23,
+    "discovery": 14535,
+    "adopt": 929,
+    "sustained": 2499,
+    "holding": 2619,
+    "eligible": 71701,
+    "active_users": 3503
+   },
+   "sent_total": 39605
   }
  ]
 }
