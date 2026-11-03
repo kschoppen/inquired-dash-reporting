@@ -11,8 +11,6 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ## STEP 0: Setup
 
 ```bash
-git config --global user.email k.schoppen@inquired.com
-git config --global user.name 'Nurture Update (cloud routine)'
 curl -fsS -m 10 --retry 3 https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d/start || true
 ```
 
@@ -149,7 +147,7 @@ Fix anything that fails, then scan every string (nested too) for `—` or `–` 
 ```bash
 git checkout main && git pull --rebase origin main
 git add data/nurture-programs.json
-git commit -m "Nurture refresh <YYYY-MM-DD>: <one-line headline>"
+git -c user.email=k.schoppen@inquired.com -c user.name='Nurture Update (cloud routine)' commit -m "Nurture refresh <YYYY-MM-DD>: <one-line headline>"
 git push origin main
 ```
 
