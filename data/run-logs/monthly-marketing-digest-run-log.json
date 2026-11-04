@@ -2810,5 +2810,473 @@
       "overview.json: the live file's kpis block is {hih_pool, mql_to_sql_pct, closed_won_mtd} (weekly-written), not the 3-tile array in SKILL.md Output 5. Left kpis untouched; only summary and monthly_summary_updated were written.",
       "Cumulative FYTD win rate omitted (GATED pending RevOps reconciliation)."
     ]
+  },
+  {
+    "run_date": "2026-11-04",
+    "period_label": "2026-10",
+    "window_current": [
+      "2026-10-01",
+      "2026-10-31"
+    ],
+    "window_prior": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "slack_message_ts": "1793794457.509339",
+    "totals": {
+      "hih_current": 119,
+      "hih_prior": 110,
+      "hih_mom_pct": 8.2,
+      "hih_pool_active": 439,
+      "lead_current": 2035,
+      "lead_prior": 760,
+      "lead_mom_pct": 167.8,
+      "mql_current": 477,
+      "mql_prior": 374,
+      "mql_mom_pct": 27.5,
+      "sql_current": 131,
+      "sql_prior": 77,
+      "sql_mom_pct": 70.1,
+      "opp_current": 127,
+      "opp_prior": 75,
+      "opp_mom_pct": 69.3,
+      "mql_to_sql_rate_pct": 27.5
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          35,
+          36
+        ],
+        "mql": [
+          96,
+          127
+        ],
+        "sql": [
+          7,
+          21
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          71,
+          57
+        ],
+        "mql": [
+          240,
+          175
+        ],
+        "sql": [
+          18,
+          5
+        ]
+      },
+      "wh": {
+        "hih": [
+          19,
+          10
+        ],
+        "mql": [
+          29,
+          16
+        ],
+        "sql": [
+          3,
+          1
+        ]
+      },
+      "gf8": {
+        "hih": [
+          25,
+          29
+        ],
+        "mql": [
+          42,
+          29
+        ],
+        "sql": [
+          7,
+          1
+        ]
+      }
+    },
+    "coverage_pct": {
+      "hih": 98.3,
+      "mql": 77.1,
+      "sql": 26.7
+    },
+    "revenue": {
+      "district_won_count": 11,
+      "district_won_revenue": 419846.96,
+      "school_won_count": 7,
+      "school_won_revenue": 4035,
+      "total_won_count": 18,
+      "total_won_revenue": 423881.96,
+      "nb_won_count": 10,
+      "nb_won_revenue": 5770,
+      "existing_won_count": 8,
+      "existing_won_revenue": 418111.96,
+      "pilot_count_zero_amount": 14,
+      "paid_deal_count": 4,
+      "avg_paid_deal_size": 105970.49,
+      "closed_lost_count": 40,
+      "closed_lost_revenue": 718834.5,
+      "win_rate_monthly_count_pct": 31.0,
+      "win_rate_monthly_dollar_pct": 37.1,
+      "win_rate_nb_count_pct": 21.7,
+      "by_segment": {
+        "single_small": {
+          "won_count": 9,
+          "lost_count": 10,
+          "won_revenue": 6535,
+          "lost_revenue": 40697,
+          "win_rate_count_pct": 47.4,
+          "win_rate_dollar_pct": 13.8
+        },
+        "medium": {
+          "won_count": 6,
+          "lost_count": 20,
+          "won_revenue": 0,
+          "lost_revenue": 288443.5,
+          "win_rate_count_pct": 23.1,
+          "win_rate_dollar_pct": 0.0
+        },
+        "large": {
+          "won_count": 2,
+          "lost_count": 6,
+          "won_revenue": 0,
+          "lost_revenue": 222694,
+          "win_rate_count_pct": 25.0,
+          "win_rate_dollar_pct": 0.0
+        },
+        "enterprise": {
+          "won_count": 1,
+          "lost_count": 4,
+          "won_revenue": 417346.96,
+          "lost_revenue": 167000,
+          "win_rate_count_pct": 20.0,
+          "win_rate_dollar_pct": 71.4
+        },
+        "unmapped": {
+          "won_count": 0,
+          "lost_count": 0,
+          "won_revenue": 0,
+          "lost_revenue": 0,
+          "win_rate_count_pct": null,
+          "win_rate_dollar_pct": null
+        }
+      },
+      "cumulative_fytd": {
+        "fiscal_year_start": "2025-10-01",
+        "status": "GATED - omitted pending RevOps deal-inclusion-rule reconciliation per SKILL.md. Cumulative / predicted-to-target view: see RevOps revenue model."
+      },
+      "segment_coverage_pct": 100.0,
+      "dealtype_unclassified_count": 1,
+      "rfp_excluded_count": 0,
+      "rfp_excluded_revenue": 0,
+      "possible_unflagged_rfp": [],
+      "backlog_flush_flag": true,
+      "backlog_flush_detail": "35 of 40 closed-lost deals (87.5%) created >90 days before window start (before 2026-07-03); 26 of 40 stamped 2026-10-19.",
+      "test_deals_excluded": 0
+    },
+    "pipeline": {
+      "district_open_deals": 7,
+      "school_open_deals": 3,
+      "new_business_open_deals": 166,
+      "account_growth_open_deals": 12,
+      "renewal_open_deals": 288
+    },
+    "disposition": {
+      "disqualified_current": 2042,
+      "disqualified_prior": 960,
+      "entered_nurture_current": 1102,
+      "entered_nurture_prior": 617,
+      "lead_object": {
+        "disqualified_current": 203,
+        "disqualified_prior": 157,
+        "entered_nurture_current": 1987,
+        "entered_nurture_prior": 837,
+        "method": "hs_v2_date_entered_stage",
+        "divergence_flagged": true
+      }
+    },
+    "breakouts": {
+      "sql_by_source_top5": [
+        [
+          "OFFLINE",
+          90
+        ],
+        [
+          "DIRECT_TRAFFIC",
+          17
+        ],
+        [
+          "EMAIL_MARKETING",
+          15
+        ],
+        [
+          "ORGANIC_SEARCH",
+          4
+        ],
+        [
+          "SOCIAL_MEDIA",
+          3
+        ]
+      ],
+      "top_campaigns_top5": [
+        [
+          "50070281-Webinars:ELA-TL_Lit-Talk-with-Nell-Duke_SY2627",
+          10
+        ],
+        [
+          "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+          4
+        ],
+        [
+          "43370150-Partner-Newsletters_SY2627",
+          3
+        ]
+      ],
+      "utm_completeness_pct": 58.6,
+      "top_conversion_forms": [
+        [
+          "Lit Talk with Dr. Nell K. Duke (ela-webinars)",
+          1238
+        ],
+        [
+          "Source Material webinar series (ss-webinars)",
+          105
+        ],
+        [
+          "Inquiry Journeys Scope & Sequence (ss-dl)",
+          84
+        ]
+      ]
+    },
+    "hubspot_marketing_email": {
+      "sends": 26,
+      "delivered": 81952,
+      "open_rate_pct": 19.2,
+      "ctr_pct": 0.91,
+      "top_performer": {
+        "id": "223120126616",
+        "name": "[PILOT] Source Material takeaways (coded template test)",
+        "sent": 325,
+        "open_rate_pct": 40.615,
+        "ctr_pct": 12.923
+      },
+      "low_ctr_flags": [
+        {
+          "id": "221631228678",
+          "name": "🎱 [CE-2] GF8 Cold List Send 2 — re-push S&S",
+          "sent": 198,
+          "ctr_pct": 0.0
+        },
+        {
+          "id": "221175039349",
+          "name": "🪏 [E-5.4] What Districts Found — Iowa",
+          "sent": 105,
+          "ctr_pct": 0.0
+        },
+        {
+          "id": "221082322501",
+          "name": "🚌 [WE-7] Last Call (Admin)",
+          "sent": 4639,
+          "ctr_pct": 0.518
+        },
+        {
+          "id": "221055521453",
+          "name": "🎱 [WE-3] GF8 Product Demo #2 Invite",
+          "sent": 243,
+          "ctr_pct": 0.413
+        },
+        {
+          "id": "223797426460",
+          "name": "🌐 [WE-8] Ep2 save-the-date: multilingual learners (Christina Nelson)",
+          "sent": 16816,
+          "ctr_pct": 0.584
+        },
+        {
+          "id": "221405561966",
+          "name": "🪶 [WE-8] Webinar #1 Reminder",
+          "sent": 10760,
+          "ctr_pct": 0.093
+        },
+        {
+          "id": "222735615259",
+          "name": "🎱 [CA-3] CA Grant Webinar Invite #3 / Last Chance",
+          "sent": 593,
+          "ctr_pct": 0.337
+        },
+        {
+          "id": "221082322023",
+          "name": "🚌 [WE-6] Admin Midway",
+          "sent": 4492,
+          "ctr_pct": 0.513
+        },
+        {
+          "id": "221075506508",
+          "name": "🪶 [WE-6] Webinar #1 Invite",
+          "sent": 10853,
+          "ctr_pct": 0.166
+        },
+        {
+          "id": "221068577600",
+          "name": "🚌 [WE-4] Featured Submission Spotlight (Admin)",
+          "sent": 4547,
+          "ctr_pct": 0.859
+        },
+        {
+          "id": "221616960016",
+          "name": "🪏 [E-5.3] What Districts Found — California",
+          "sent": 266,
+          "ctr_pct": 0.752
+        },
+        {
+          "id": "221631227805",
+          "name": "🪏 [E-5.6] What Districts Found — Connecticut",
+          "sent": 106,
+          "ctr_pct": 0.943
+        },
+        {
+          "id": "223682235167",
+          "name": "🎙️ [WE-2] Webinar 1 invite — Instructional Time",
+          "sent": 14231,
+          "ctr_pct": 0.661
+        },
+        {
+          "id": "223145506439",
+          "name": "🚌 October, 2026 PE Newsletter (responsive rebuild)",
+          "sent": 4601,
+          "ctr_pct": 0.895
+        },
+        {
+          "id": "221631297958",
+          "name": "🎱 [WE-2] GF8 Product Demo #1 Reminder",
+          "sent": 287,
+          "ctr_pct": 0.699
+        }
+      ]
+    },
+    "mailchimp": null,
+    "ga4": {
+      "sessions": 41400,
+      "active_users": 28331,
+      "page_views": 55070,
+      "content_group_populated": true
+    },
+    "semrush": {
+      "project_id": "30090954",
+      "tracked_keywords_total": 154,
+      "keywords_in_top_10": 41,
+      "avg_position": 8.0,
+      "api_status": "ok (via Semrush MCP)",
+      "gsc": {
+        "api_status": "deferred"
+      }
+    },
+    "paid_ads": {
+      "google_ads": {
+        "api_status": "skipped: GOOGLE_ADS_DEVELOPER_TOKEN unset"
+      },
+      "linkedin": {
+        "api_status": "error: LINKEDIN_AD_ACCOUNT_ID invalid"
+      }
+    },
+    "seo_top_pages": [
+      {
+        "path": "/",
+        "keywords": 130,
+        "visits": 3638,
+        "type": "Homepage"
+      },
+      {
+        "path": "/post/give-and-inquiry-shout-out",
+        "keywords": 21,
+        "visits": 287,
+        "type": "Blog"
+      },
+      {
+        "path": "/inquiry-based-social-studies/elementary-curriculum",
+        "keywords": 64,
+        "visits": 194,
+        "type": "Product"
+      },
+      {
+        "path": "/careers",
+        "keywords": 10,
+        "visits": 179,
+        "type": "Page"
+      },
+      {
+        "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+        "keywords": 7,
+        "visits": 148,
+        "type": "Blog"
+      },
+      {
+        "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+        "keywords": 39,
+        "visits": 95,
+        "type": "Blog"
+      },
+      {
+        "path": "/inquiry-based-social-studies",
+        "keywords": 44,
+        "visits": 72,
+        "type": "Product"
+      },
+      {
+        "path": "/post/see-think-wonder",
+        "keywords": 21,
+        "visits": 68,
+        "type": "Blog"
+      },
+      {
+        "path": "/post/inquiry-journeys-and-the-c3-framework",
+        "keywords": 30,
+        "visits": 50,
+        "type": "Blog"
+      },
+      {
+        "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
+        "keywords": 18,
+        "visits": 47,
+        "type": "Product"
+      }
+    ],
+    "ai_visibility": null,
+    "keyword_gap": null,
+    "aeo": {
+      "run_status": "no_permission"
+    },
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "Google Ads data unavailable (GOOGLE_ADS_DEVELOPER_TOKEN not set in routine env).",
+      "LinkedIn Ads data unavailable: LINKEDIN_AD_ACCOUNT_ID is not a numeric sponsored-account ID (value looks like an app/client ID), so adAnalytics rejects the accounts parameter. Fix the env var; the token may also need regenerating (LinkedIn-Version 202509 is no longer active, 202602+ works).",
+      "Semrush AI Visibility and Keyword Gap PDFs not read: no Google Drive connector available in this routine session. ai_visibility and keyword_gap set to null.",
+      "HubSpot AEO still returns a permissions error; aeo.run_status = no_permission.",
+      "Semrush Position Tracking pulled via the Semrush MCP (campaign 30090954_4991061, 154 keywords, snapshot 2026-10-31). The legacy REST tracking endpoint returns error 42. Movers not reported: the 30-day diff field shows ~90+ jumps for newly ranked keywords, and September's run stored no per-keyword positions.",
+      "Lead count 2,035 vs 760 in September: 1,238 contacts converted on the Lit Talk webinar (ela-webinars). Not an import.",
+      "HIH (119) is after exclusions: 7 higher-ed dropped (company name matches university/college, no K-12 segment). 'University Charter School' (K-12 charter, segment unset) was dropped by the literal rule and is probably a false positive (HIH would be 120).",
+      "HIH by product tallied from the filtered list (membership). 2 contacts have no product tag.",
+      "Product - Marketing Signal coverage: MQL 77.1% (368/477), SQL 26.7% (35/131, below 30%: treat SQL by product as directional).",
+      "SQL by source: 69% Offline (90 of 131).",
+      "UTM completeness 58.6% (164/280 addressable MQLs); target 30%.",
+      "Closed-lost backlog flush: 35 of 40 losses (87.5%) were created before 2026-07-03, and 26 of 40 were stamped 2026-10-19. Monthly win rate (31.0% count, 37.1% dollar) is distorted by a stale-deal clean-up.",
+      "Win rate dollar % is dominated by one $417,347 Cherry Creek renewal (Renewal Pipeline); New Business win rate is 21.7% by count, 0.8% by dollar.",
+      "One closed-lost deal (Alameda Unified School District CQL, Account Growth pipeline) has no dealtype: unclassified.",
+      "No test deals, no rfp=true deals, and no deals with 'RFP' in the name in the won or lost lists.",
+      "Closed-lost deal amounts: 3 of 40 had no amount set (treated as $0).",
+      "Disposition list event: Disqualified 2,042 (960 in Sept) and Nurture 1,102 (617) exceed the heuristic (DQ+Nurture 3,144 > 2x funnel 1,708). Contact vs LEAD object diverge (DQ 2,042 vs 203; Nurture 1,102 vs 1,987). Not in acknowledged_events; needs Kelsey to confirm.",
+      "Pipeline goal: SY27-28 open $3.60M, lost $2.25M (up from $1.55M, consistent with the Oct 19 clean-up), won $72.5K; generated $5.92M (59.2%). District Sales and School Sales open pipeline is now $0 for the 27-28 cohort. The Inkwell open figure dropped from $701K to $217.5K and NB open from $3.95M to $3.60M since 2026-10-07.",
+      "Reference-year (SY25-26) discrepancy vs the ~$7.1M Jeanette cited remains unresolved.",
+      "HIH 90-day active pool (list 10586) = 439 as a 2026-11-04 snapshot, not an Oct 31 count.",
+      "HubSpot marketing email: aggregate openratio field (34.6%) disagrees with opens/delivered (19.2%); run log uses counters.",
+      "overview.json: skill schema describes kpis as a list, but the live file carries a weekly-owned dict (hih_pool, mql_to_sql_pct, closed_won_mtd). Left untouched; only summary, monthly_summary_updated and updated were written.",
+      "Last October (2025-10) backfill shows SQL 497 and Opp 499 against MQL 682, which looks like a lifecycle import, so down-funnel YoY is not a clean comparison and the read block uses MoM for SQL.",
+      "Possible mismatch: Cumulative FYTD win rate stays gated pending RevOps reconciliation."
+    ]
   }
 ]

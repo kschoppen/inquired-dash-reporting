@@ -1,7 +1,7 @@
 {
   "skill": "monthly-marketing-digest",
   "title": "Monthly Digest",
-  "updated": "2026-10-07",
+  "updated": "2026-11-04",
   "fiscal_year_start_month": 10,
   "brand_lift": {
     "updated": null,
@@ -3299,147 +3299,650 @@
         "down": "SQLs fell to <b>77</b> (120 last September) and MQL to SQL conversion to <b>20.6%</b> (39.3% last year). Closed-won was <b>$25.3K</b>, about flat on last September ($27.4K).",
         "watch": "SY27-28 closed-won is at <b>3.6%</b> of the $2M goal, and pipeline generated is <b>57.7%</b> of the $10M goal. 66% of September's SQLs came from Offline and Direct sources."
       }
+    },
+    {
+      "period": "2026-10",
+      "label": "Oct 2026",
+      "funnel": {
+        "hih": 119,
+        "lead": 2035,
+        "mql": 477,
+        "sql": 131,
+        "opp": 127,
+        "hih_pool_active": 439,
+        "hih_excluded": {
+          "internal": 0,
+          "higher_ed": 7,
+          "competitor": 0
+        }
+      },
+      "revenue": {
+        "district_won": 419846.96,
+        "school_won": 4035,
+        "total_won": 423881.96,
+        "nb_won": 5770,
+        "existing_won": 418111.96,
+        "wins": 18,
+        "win_rate_count_pct": 31.0,
+        "win_rate_dollar_pct": 37.1,
+        "by_segment": {
+          "single_small": {
+            "won": 9,
+            "lost": 10
+          },
+          "medium": {
+            "won": 6,
+            "lost": 20
+          },
+          "large": {
+            "won": 2,
+            "lost": 6
+          },
+          "enterprise": {
+            "won": 1,
+            "lost": 4
+          }
+        }
+      },
+      "web": {
+        "sessions": 41400,
+        "users": 28331,
+        "views": 55070,
+        "yoy": {
+          "sessions": 35976,
+          "users": 22925,
+          "views": 55655
+        },
+        "engaged_pct": 38.1,
+        "channels": [
+          [
+            "Organic Search",
+            10988
+          ],
+          [
+            "Direct",
+            17650
+          ],
+          [
+            "Paid Search",
+            4594
+          ],
+          [
+            "Email",
+            3387
+          ],
+          [
+            "Referral",
+            961
+          ],
+          [
+            "Organic Social",
+            1336
+          ],
+          [
+            "Other",
+            3382
+          ]
+        ],
+        "conversions": [
+          [
+            "Form thank-you",
+            2296
+          ],
+          [
+            "Resource downloads",
+            702
+          ],
+          [
+            "Webinar signups",
+            0
+          ],
+          [
+            "Contact sales",
+            83
+          ],
+          [
+            "Curriculum guide",
+            0
+          ]
+        ],
+        "top_conversion_pages": [
+          {
+            "path": "/thank-you/lit-talk",
+            "completions": 1592,
+            "type": "download"
+          },
+          {
+            "path": "/inquiry-based-social-studies/elementary-curriculum",
+            "completions": 217,
+            "type": "resource"
+          },
+          {
+            "path": "/integrated-ela-curriculum/elementary-curriculum",
+            "completions": 195,
+            "type": "resource"
+          },
+          {
+            "path": "/thank-you/source-material",
+            "completions": 176,
+            "type": "download"
+          },
+          {
+            "path": "/",
+            "completions": 83,
+            "type": "resource"
+          },
+          {
+            "path": "/contact-thank-you",
+            "completions": 83,
+            "type": "hand-raise"
+          },
+          {
+            "path": "/thank-you/inkwell-lesson-sample",
+            "completions": 81,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-the-integrated-instructional-block",
+            "completions": 77,
+            "type": "download"
+          },
+          {
+            "path": "/submit/inquiry-week-thank-you",
+            "completions": 59,
+            "type": "download"
+          },
+          {
+            "path": "/thank-you/inkwell-demo",
+            "completions": 52,
+            "type": "hand-raise"
+          }
+        ]
+      },
+      "seo": {
+        "tracked": 154,
+        "top10": 41,
+        "avg_position": 8.0,
+        "ranked": 53
+      },
+      "seo_top_pages": [
+        {
+          "path": "/",
+          "keywords": 130,
+          "visits": 3638,
+          "type": "Homepage"
+        },
+        {
+          "path": "/post/give-and-inquiry-shout-out",
+          "keywords": 21,
+          "visits": 287,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum",
+          "keywords": 64,
+          "visits": 194,
+          "type": "Product"
+        },
+        {
+          "path": "/careers",
+          "keywords": 10,
+          "visits": 179,
+          "type": "Page"
+        },
+        {
+          "path": "/post/how-sfusd-brought-inquiry-based-social-studies-to-life",
+          "keywords": 7,
+          "visits": 148,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/hexagonal-thinking-mapping-a-dynamic-strategy-for-deeper-learning",
+          "keywords": 39,
+          "visits": 95,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies",
+          "keywords": 44,
+          "visits": 72,
+          "type": "Product"
+        },
+        {
+          "path": "/post/see-think-wonder",
+          "keywords": 21,
+          "visits": 68,
+          "type": "Blog"
+        },
+        {
+          "path": "/post/inquiry-journeys-and-the-c3-framework",
+          "keywords": 30,
+          "visits": 50,
+          "type": "Blog"
+        },
+        {
+          "path": "/inquiry-based-social-studies/elementary-curriculum/massachusetts",
+          "keywords": 18,
+          "visits": 47,
+          "type": "Product"
+        }
+      ],
+      "by_product": {
+        "ij": {
+          "hih": 35,
+          "mql": 96,
+          "sql": 7
+        },
+        "inkwell": {
+          "hih": 71,
+          "mql": 240,
+          "sql": 18
+        },
+        "wh": {
+          "hih": 19,
+          "mql": 29,
+          "sql": 3
+        },
+        "gf8": {
+          "hih": 25,
+          "mql": 42,
+          "sql": 7
+        }
+      },
+      "rev_by_product": {
+        "ij": 420611.96,
+        "inkwell": 0,
+        "wh": 6535.0,
+        "gf8": 0,
+        "note": "product_s_ multi-select, directional; won't sum to totals"
+      },
+      "quality": {
+        "mql_to_sql_pct": 27.5,
+        "utm_completeness_pct": 58.6,
+        "utm_completeness_n": 164,
+        "utm_completeness_denom": 280,
+        "sql_by_source": [
+          [
+            "OFFLINE",
+            90
+          ],
+          [
+            "DIRECT_TRAFFIC",
+            17
+          ],
+          [
+            "EMAIL_MARKETING",
+            15
+          ],
+          [
+            "ORGANIC_SEARCH",
+            4
+          ],
+          [
+            "SOCIAL_MEDIA",
+            3
+          ]
+        ],
+        "top_utm_campaigns": [
+          [
+            "50070281-Webinars:ELA-TL_Lit-Talk-with-Nell-Duke_SY2627",
+            10
+          ],
+          [
+            "50070288-Webinars:SS-TL_Source-Material-with-NCSS_SY2627",
+            4
+          ],
+          [
+            "43370150-Partner-Newsletters_SY2627",
+            3
+          ]
+        ],
+        "top_conversion_forms": [
+          [
+            "Lit Talk with Dr. Nell K. Duke (ela-webinars)",
+            1238
+          ],
+          [
+            "Source Material webinar series (ss-webinars)",
+            105
+          ],
+          [
+            "Inquiry Journeys Scope & Sequence (ss-dl)",
+            84
+          ]
+        ]
+      },
+      "disposition": {
+        "dq": 2042,
+        "nurture": 1102,
+        "lead_object": {
+          "dq": 203,
+          "nurture": 1987,
+          "divergence_flagged": true
+        }
+      },
+      "hih_by_source": [
+        [
+          "Direct Traffic",
+          50
+        ],
+        [
+          "Other Campaigns",
+          25
+        ],
+        [
+          "Organic Search",
+          15
+        ],
+        [
+          "Email Marketing",
+          11
+        ],
+        [
+          "Paid Search",
+          9
+        ],
+        [
+          "Referrals",
+          5
+        ],
+        [
+          "Organic Social",
+          2
+        ],
+        [
+          "AI Referrals",
+          2
+        ]
+      ],
+      "deals": [
+        {
+          "name": "Cherry Creek Schools Renewal (SY 26-27)",
+          "segment": "Enterprise",
+          "pipeline": "District",
+          "type": "Renewal",
+          "amount": 417346.96,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/46388754694"
+        },
+        {
+          "name": "Denver Language School,CO, 2026-2027",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 3270,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64576886434"
+        },
+        {
+          "name": "Union School, CT - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "newbusiness",
+          "amount": 2500,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/60275567947"
+        },
+        {
+          "name": "Mid-south Gifted Academy,TN,School Year Expansion 5,6",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Renewal",
+          "amount": 765,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64175139366"
+        },
+        {
+          "name": "St. Matthew's Parish School,CA,26-27",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66637150587"
+        },
+        {
+          "name": "Black Pine Circle School,CA,School Year",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66544689753"
+        },
+        {
+          "name": "Batavia Public School District 101,IL, Add on",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/66011961429"
+        },
+        {
+          "name": "Rio School District,CA,26-27 Added TEs",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65791255215"
+        },
+        {
+          "name": "Batavia Public School District 101,IL - Add Ons",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65717975370"
+        },
+        {
+          "name": "New Roads School, CA, 2026-27",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65428579156"
+        },
+        {
+          "name": "Batavia Public School District 101,IL - Add On",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65354923881"
+        },
+        {
+          "name": "St. Theresa Catholic,IA,27-28",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "newbusiness",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65308796685"
+        },
+        {
+          "name": "Lakeville Public School District - Add Ons",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/65027341722"
+        },
+        {
+          "name": "Mcminnville School District 40 - Add Ons",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Add On",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64931914553"
+        },
+        {
+          "name": "Norman Public Schools,OK,27-28",
+          "segment": "Large",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/64877227078"
+        },
+        {
+          "name": "Stoughton Area School District, WI",
+          "segment": "Medium",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/63222905707"
+        },
+        {
+          "name": "First Lutheran School, CA - IJ + GF8",
+          "segment": "Single/Small",
+          "pipeline": "School",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/61763857802"
+        },
+        {
+          "name": "District 106, IL - SS",
+          "segment": "Single/Small",
+          "pipeline": "District",
+          "type": "Pilot",
+          "amount": 0,
+          "url": "https://app.hubspot.com/contacts/4451852/record/0-3/58905773370"
+        }
+      ],
+      "ai_visibility": null,
+      "keyword_gap": null,
+      "aeo": {
+        "run_status": "no_permission"
+      },
+      "funnel_note": "October's Lead count (2,035) includes 1,238 Lit Talk webinar registrations, and 26 of the 40 closed-lost deals were stamped on Oct 19 in what looks like a deal clean-up, so win rate is the weaker read this month. Disqualified contacts (2,042) and Nurture entries (1,102) are both well above September and may be a list clean-up, not yet confirmed.",
+      "read": {
+        "up": "Web sessions hit <b>41.4K</b>, up 15% on last October. MQLs rose 28% MoM to <b>477</b> and MQL to SQL conversion improved to <b>27.5%</b> (20.6% in September), led by the Lit Talk webinar.",
+        "down": "New business closed-won was only <b>$5.8K</b> and 26 of the 40 closed-lost deals were stamped on Oct 19, so the <b>31%</b> win rate reflects a clean-up. <b>69%</b> of SQLs came from Offline sources.",
+        "watch": "Closed-won of <b>$424K</b> is 98% one Cherry Creek renewal. SY27-28 pipeline generated stands at <b>59.2%</b> of the $10M goal and closed-won at <b>3.6%</b> of $2M."
+      }
     }
   ],
   "seo_topics": [
     {
-      "topic": "Brand",
-      "tracked": 24,
-      "ranked": 17,
-      "top10": 17,
-      "avg_position": 1.1,
+      "topic": "Social Studies (IJ)",
+      "tracked": 29,
+      "ranked": 22,
+      "top10": 15,
+      "avg_position": 12.1,
       "keywords": [
         {
-          "kw": "inquired",
+          "kw": "hqim social studies",
           "pos": 1,
-          "vol": 60500
+          "vol": 260
         },
         {
-          "kw": "inquiry journeys",
+          "kw": "inquiry based learning social studies",
           "pos": 1,
-          "vol": 110
+          "vol": 140
         },
         {
-          "kw": "inquired curriculum",
+          "kw": "inquiry based social studies",
           "pos": 1,
-          "vol": 110
+          "vol": 140
         },
         {
-          "kw": "inquired social studies",
-          "pos": 1,
-          "vol": 30
-        },
-        {
-          "kw": "inquired ed",
-          "pos": 1,
-          "vol": 20
-        },
-        {
-          "kw": "inkwell ela",
+          "kw": "social studies hqim",
           "pos": 1,
           "vol": 0
         },
         {
-          "kw": "inquired prek",
-          "pos": 1,
+          "kw": "social studies curriculum demo",
+          "pos": 2,
           "vol": 0
         },
         {
-          "kw": "inquired early childhood",
-          "pos": 1,
+          "kw": "elementary schedule social studies",
+          "pos": 3,
+          "vol": 0
+        },
+        {
+          "kw": "fitting social studies in elementary schedule",
+          "pos": 4,
+          "vol": 0
+        },
+        {
+          "kw": "when to teach social studies elementary",
+          "pos": 5,
+          "vol": 0
+        },
+        {
+          "kw": "k-5 social studies pilot",
+          "pos": 6,
+          "vol": 0
+        },
+        {
+          "kw": "social studies high quality instructional materials",
+          "pos": 6,
           "vol": 0
         }
       ]
     },
     {
-      "topic": "Social Studies (IJ)",
-      "tracked": 29,
-      "ranked": 15,
-      "top10": 10,
-      "avg_position": 7.7,
+      "topic": "Other / generic",
+      "tracked": 32,
+      "ranked": 4,
+      "top10": 3,
+      "avg_position": 4.0,
       "keywords": [
         {
-          "kw": "inquiry based social studies",
+          "kw": "ink well curriculum",
           "pos": 1,
-          "vol": 110
+          "vol": 0
         },
         {
-          "kw": "inquiry based learning social studies",
+          "kw": "inquire ed curriculum",
           "pos": 1,
-          "vol": 110
-        },
-        {
-          "kw": "best elementary social studies curriculum",
-          "pos": 5,
           "vol": 10
         },
         {
-          "kw": "k-5 social studies pilot",
-          "pos": 5,
-          "vol": 0
-        },
-        {
-          "kw": "elementary social studies curriculum",
-          "pos": 6,
-          "vol": 320
-        },
-        {
-          "kw": "k-2 social studies curriculum",
-          "pos": 9,
-          "vol": 0
-        },
-        {
-          "kw": "hqim social studies",
-          "pos": 11,
-          "vol": 0
-        },
-        {
-          "kw": "california social studies curriculum",
-          "pos": 11,
+          "kw": "great first 8",
+          "pos": 2,
           "vol": 40
+        },
+        {
+          "kw": "inquiry curriculum",
+          "pos": 12,
+          "vol": 70
         }
       ]
     },
     {
       "topic": "ELA (Inkwell)",
-      "tracked": 47,
-      "ranked": 3,
+      "tracked": 49,
+      "ranked": 7,
       "top10": 3,
-      "avg_position": 6.7,
+      "avg_position": 15.7,
       "keywords": [
         {
-          "kw": "ela and social studies integration",
-          "pos": 6,
+          "kw": "integrated ela and social studies curriculum",
+          "pos": 1,
+          "vol": 0
+        },
+        {
+          "kw": "k-2 ela curriculum demo",
+          "pos": 1,
           "vol": 0
         },
         {
           "kw": "integrated reading and social studies",
-          "pos": 7,
+          "pos": 3,
           "vol": 0
         },
         {
-          "kw": "integrated ela and social studies curriculum",
-          "pos": 7,
+          "kw": "social studies literacy outcomes",
+          "pos": 14,
           "vol": 0
         },
         {
-          "kw": "integrated literacy curriculum",
-          "pos": null,
-          "vol": 10
-        },
-        {
-          "kw": "second grade ela curriculum",
-          "pos": null,
+          "kw": "ela and social studies integration",
+          "pos": 16,
           "vol": 0
         },
         {
-          "kw": "amplify ela alternative",
-          "pos": null,
+          "kw": "ela hqim k-2",
+          "pos": 31,
           "vol": 0
         },
         {
-          "kw": "comprehensive k-2 ela",
-          "pos": null,
+          "kw": "primary sources elementary ela",
+          "pos": 44,
           "vol": 0
         }
       ]
@@ -3450,74 +3953,63 @@
       "ranked": 0,
       "top10": 0,
       "avg_position": null,
-      "keywords": [
-        {
-          "kw": "preschool curriculum",
-          "pos": null,
-          "vol": 6600
-        },
-        {
-          "kw": "prek curriculum",
-          "pos": null,
-          "vol": 2400
-        },
-        {
-          "kw": "early childhood curriculum",
-          "pos": null,
-          "vol": 1900
-        },
-        {
-          "kw": "early childhood education curriculum",
-          "pos": null,
-          "vol": 880
-        },
-        {
-          "kw": "transitional kindergarten curriculum",
-          "pos": null,
-          "vol": 140
-        },
-        {
-          "kw": "best prek curriculum",
-          "pos": null,
-          "vol": 90
-        }
-      ]
+      "keywords": []
     },
     {
-      "topic": "Other / generic",
-      "tracked": 32,
-      "ranked": 3,
-      "top10": 3,
-      "avg_position": 4.3,
+      "topic": "Brand",
+      "tracked": 24,
+      "ranked": 20,
+      "top10": 20,
+      "avg_position": 1.6,
       "keywords": [
         {
-          "kw": "inquire ed curriculum",
+          "kw": "great first eight demo",
           "pos": 1,
           "vol": 0
         },
         {
-          "kw": "inquiry curriculum",
-          "pos": 2,
-          "vol": 110
-        },
-        {
-          "kw": "ink well curriculum",
-          "pos": 10,
+          "kw": "inkwell curriculum",
+          "pos": 1,
           "vol": 0
         },
         {
-          "kw": "ckla alternative",
-          "pos": null,
+          "kw": "inkwell inquired",
+          "pos": 1,
+          "vol": 10
+        },
+        {
+          "kw": "inkwell k-2 ela",
+          "pos": 1,
           "vol": 0
         },
         {
-          "kw": "el education alternative",
-          "pos": null,
+          "kw": "inquired",
+          "pos": 1,
+          "vol": 6600
+        },
+        {
+          "kw": "inquired company",
+          "pos": 1,
+          "vol": 30
+        },
+        {
+          "kw": "inquired curriculum",
+          "pos": 1,
+          "vol": 50
+        },
+        {
+          "kw": "inquired early childhood",
+          "pos": 1,
           "vol": 0
         },
         {
-          "kw": "studies weekly alternative",
-          "pos": null,
+          "kw": "inquired ed",
+          "pos": 1,
+          "vol": 20
+        },
+        {
+          "kw": "inquired ela",
+          "pos": 1,
           "vol": 0
         }
       ]
@@ -3525,7 +4017,6 @@
   ],
   "web_trend": {
     "labels": [
-      "Oct",
       "Nov",
       "Dec",
       "Jan",
@@ -3536,10 +4027,10 @@
       "Jun",
       "Jul",
       "Aug",
-      "Sep"
+      "Sep",
+      "Oct"
     ],
     "current": [
-      35976,
       21037,
       14977,
       19498,
@@ -3550,10 +4041,10 @@
       28599,
       25711,
       36236,
-      40324
+      40324,
+      41400
     ],
     "prior": [
-      25022,
       17754,
       13312,
       17552,
@@ -3564,73 +4055,74 @@
       9508,
       7962,
       11372,
-      26003
+      26003,
+      35976
     ],
-    "current_total": 324598,
-    "prior_total": 200378,
-    "yoy_pct": 62.0
+    "current_total": 330022,
+    "prior_total": 211332,
+    "yoy_pct": 56.2
   },
   "web_note": "GA4 channel grouping is GA4's own session attribution (referrer + Google Ads gclid + any UTMs) — independent of HubSpot lead-source UTMs. Sonar's custom 'AI Tool' channel (183) is carved from what GA4 default-groups as Referral/Unassigned; we show GA4's default groups.",
   "pipeline_goal": {
     "school_year": "SY27-28",
     "field_value": "27-28",
-    "as_of": "2026-10-07",
+    "as_of": "2026-11-04",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 4142842.83,
-      "lost": 1553336.0,
+      "open": 3597445.33,
+      "lost": 2247773.5,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 414050.0,
-        "lost": 10500.0,
+        "open": 376950,
+        "lost": 40800,
         "won": 2583.0
       },
       "medium": {
-        "open": 676497.5,
-        "lost": 379067.0,
+        "open": 1273774.0,
+        "lost": 637510.5,
         "won": 0.0
       },
       "large": {
-        "open": 1131989.0,
-        "lost": 334774.0,
+        "open": 927415.0,
+        "lost": 673468.0,
         "won": 69938.91
       },
       "enterprise": {
-        "open": 1556354.0,
-        "lost": 828995.0,
+        "open": 924354.0,
+        "lost": 895995.0,
         "won": 0.0
       },
       "unmapped": {
-        "open": 363952.33,
+        "open": 94952.33,
         "lost": 0.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2659442.83,
-        "lost": 1519336.0,
+        "open": 2721145.33,
+        "lost": 2149273.5,
         "won": 72521.91
       },
       "inkwell": {
-        "open": 701000.0,
+        "open": 217500.0,
         "lost": 0.0,
         "won": 0.0
       },
       "wh": {
         "open": 9250.0,
-        "lost": 0.0,
+        "lost": 5000.0,
         "won": 0.0
       },
       "gf8": {
-        "open": 978400.0,
-        "lost": 34000.0,
+        "open": 866300.0,
+        "lost": 93500.0,
         "won": 0.0
       },
       "untagged": {
@@ -3641,18 +4133,18 @@
     },
     "by_pipeline": {
       "district": {
-        "open": 192550.0,
+        "open": 0.0,
         "lost": 1321371.0,
         "won": 2583.0
       },
       "school": {
         "open": 0.0,
-        "lost": 2000.0,
+        "lost": 6300.0,
         "won": 0.0
       },
       "new_business": {
-        "open": 3950292.83,
-        "lost": 229965.0,
+        "open": 3597445.33,
+        "lost": 920102.5,
         "won": 69938.91
       }
     },

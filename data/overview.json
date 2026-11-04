@@ -1,26 +1,26 @@
 {
   "skill": "overview-command-center",
   "title": "Overview",
-  "updated": "2026-10-07",
-  "monthly_summary_updated": "2026-10-07",
+  "updated": "2026-11-04",
+  "monthly_summary_updated": "2026-11-04",
   "summary": {
-    "headline": "September was a webinar-driven lead month, but SQLs fell 39% from August and 36% from last September.",
-    "body": "Web sessions reached 40.3K (+55% YoY) and MQLs rose to 374, led by the Source Material and Lit Talk webinars. MQL to SQL conversion dropped to 20.6% from 44.8%, and SQLs (77) and Opportunities (75) both fell about 39% MoM, which is below the seasonal norm for the back-to-school ramp. HIH reached 110, though 36 came from one Other Campaigns batch. Closed-won was $25.3K, about flat on last September, and MQA accounts stand at 99.",
+    "headline": "October was a webinar month: Lead count more than doubled and SQLs rebounded, but closed-won was mostly one renewal.",
+    "body": "Lead count reached 2,035 (760 in September), with 1,238 from the Lit Talk webinar, and MQLs rose 28% to 477. SQLs came back to 131 (77 in September) and MQL to SQL conversion improved to 27.5% from 20.6%, though 69% of SQLs came from Offline sources. Closed-won was $424K, 98% of it one Cherry Creek renewal, and 26 of 40 closed-lost deals were stamped on Oct 19, so the 31% win rate reflects a clean-up. MQA accounts stand at 109.",
     "signals": [
       {
-        "label": "Web sessions +55% YoY",
+        "label": "Lead count +168% MoM on Lit Talk",
         "dir": "up"
       },
       {
-        "label": "MQLs +23% YoY on webinars",
+        "label": "MQL to SQL up to 27.5%",
         "dir": "up"
       },
       {
-        "label": "SQLs down 39% MoM",
-        "dir": "down"
+        "label": "69% of SQLs from Offline sources",
+        "dir": "watch"
       },
       {
-        "label": "MQL to SQL at 20.6%",
+        "label": "Win rate distorted by Oct 19 clean-up",
         "dir": "watch"
       }
     ]
@@ -33,12 +33,12 @@
   "brand_lift": {
     "updated": "2026-11-02",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Oct 26 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (400 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 26 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (400 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
+        "sub": "Organic clicks on branded queries · inquired.com property",
         "value": 400,
         "delta": "+18% WoW",
         "delta_dir": "up",
