@@ -130,7 +130,7 @@ Only ever commit those three files. On a rebase conflict in one of them, take yo
 
 ## STEP 5: Slack DM to Kelsey
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN` from the environment (`conversations.open`, then `chat.postMessage`). Never echo tokens. Numbers come from the script's JSON line and `data/account-pulse.json`.
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN` from the environment (`conversations.open`, then `chat.postMessage`). Never echo tokens. Numbers come from the script's JSON line and `data/account-pulse.json`.
 
 ```
 📇 *Account Pulse refreshed* (<date>)

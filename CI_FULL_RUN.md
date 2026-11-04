@@ -192,7 +192,7 @@ Push failure = hard fail (the run's only deliverable is the page). Go to STEP 8 
 
 ## STEP 7: DM Kelsey
 
-One DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN`. Never
+One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN`. Never
 echo tokens.
 
 ```bash

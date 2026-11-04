@@ -466,7 +466,7 @@ Capture `ts` from the response — store in run log as `slack_message_ts`.
 
 ## STEP 6: DM Kelsey
 
-Send ONE DM to Kelsey (user ID `U06QR3G0CCA`) as the Clawrence bot using `$CLAWRENCE_BOT_TOKEN`. Never echo tokens.
+Send ONE DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN`. Never echo tokens.
 
 Open DM channel:
 ```bash
