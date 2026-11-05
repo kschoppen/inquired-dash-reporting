@@ -10,5 +10,5 @@ The monthly-digest SKILL.md lives outside this repo; no repo script calls Linked
 ## Google Ads (needs all of)
 `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CLIENT_ID`, `GOOGLE_ADS_CLIENT_SECRET`, `GOOGLE_ADS_REFRESH_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` (10 digits), and `GOOGLE_ADS_LOGIN_CUSTOMER_ID` if reached via a manager account. Missing as of 2026-11-05: developer token, refresh token, customer ID, login customer ID.
 
-## AEO (HubSpot `get_aeo_metrics`)
-Run log error: "You need access to additional permissions to perform this action..." -> `aeo.run_status = no_permission`. Cause is the HubSpot connector's user/scope lacking AEO access, not repo code. Separately, `data/aeo-audit.json` comes from the MKT1 `mkt1_aeo_audit` local task, a different path.
+## AEO (HubSpot `get_aeo_metrics`) - DECISION: not depended on
+Kelsey cannot grant the HubSpot AEO permission (confirmed 2026-11-05: `get_aeo_metrics` still returns "You need access to additional permissions..."; her only seat is sales-enterprise). The monthly digest should not call it or treat it as a gap: skip the HubSpot AEO step and leave `aeo` as `{"run_status": "skipped_by_decision"}`. The Semrush AI Visibility PDFs and `data/aeo-audit.json` (MKT1 `mkt1_aeo_audit` local task, last updated 2026-09-29) are separate paths. The digest SKILL.md lives outside this repo and still needs its Step 3l removed or marked optional.
