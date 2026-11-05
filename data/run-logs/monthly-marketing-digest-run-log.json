@@ -3180,7 +3180,22 @@
         "api_status": "skipped: GOOGLE_ADS_DEVELOPER_TOKEN unset"
       },
       "linkedin": {
-        "api_status": "error: LINKEDIN_AD_ACCOUNT_ID invalid"
+        "api_status": "ok (backfilled 2026-11-05, read-only, LinkedIn-Version 202602, account 508696656 only)",
+        "account_id": "508696656",
+        "spend": 2552.04,
+        "impressions": 30471,
+        "clicks": 144,
+        "ctr_pct": 0.5,
+        "campaigns": [
+          {
+            "urn": "urn:li:sponsoredCampaign:821010583",
+            "spend": 2552.04,
+            "impressions": 30471,
+            "clicks": 144
+          }
+        ],
+        "prior_month_spend": 1838.68,
+        "note": "Account 514583150 intentionally excluded (Oct spend $173.76, 11 clicks, 4,340 impressions; no active campaigns, 2 in PENDING_DELETION)."
       }
     },
     "seo_top_pages": [
@@ -3254,7 +3269,6 @@
     "acknowledged_events": [],
     "data_flags": [
       "Google Ads data unavailable (GOOGLE_ADS_DEVELOPER_TOKEN not set in routine env).",
-      "LinkedIn Ads data unavailable: LINKEDIN_AD_ACCOUNT_ID is not a numeric sponsored-account ID (value looks like an app/client ID), so adAnalytics rejects the accounts parameter. Fix the env var; the token may also need regenerating (LinkedIn-Version 202509 is no longer active, 202602+ works).",
       "Semrush AI Visibility and Keyword Gap PDFs not read: no Google Drive connector available in this routine session. ai_visibility and keyword_gap set to null.",
       "HubSpot AEO still returns a permissions error; aeo.run_status = no_permission.",
       "Semrush Position Tracking pulled via the Semrush MCP (campaign 30090954_4991061, 154 keywords, snapshot 2026-10-31). The legacy REST tracking endpoint returns error 42. Movers not reported: the 30-day diff field shows ~90+ jumps for newly ranked keywords, and September's run stored no per-keyword positions.",
@@ -3276,7 +3290,8 @@
       "HubSpot marketing email: aggregate openratio field (34.6%) disagrees with opens/delivered (19.2%); run log uses counters.",
       "overview.json: skill schema describes kpis as a list, but the live file carries a weekly-owned dict (hih_pool, mql_to_sql_pct, closed_won_mtd). Left untouched; only summary, monthly_summary_updated and updated were written.",
       "Last October (2025-10) backfill shows SQL 497 and Opp 499 against MQL 682, which looks like a lifecycle import, so down-funnel YoY is not a clean comparison and the read block uses MoM for SQL.",
-      "Possible mismatch: Cumulative FYTD win rate stays gated pending RevOps reconciliation."
+      "Possible mismatch: Cumulative FYTD win rate stays gated pending RevOps reconciliation.",
+      "LinkedIn Ads backfilled 2026-11-05 via read-only API for account 508696656 only (Oct spend $2,552.04 vs Sept $1,838.68). The routine's LINKEDIN_AD_ACCOUNT_ID env var must still be changed to 508696656 for future runs."
     ]
   }
 ]
