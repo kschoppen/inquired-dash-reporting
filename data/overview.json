@@ -26,22 +26,22 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2544,
-    "mql_to_sql_pct": 19.5,
-    "closed_won_mtd": "$0"
+    "hih_pool": 2546,
+    "mql_to_sql_pct": 21.5,
+    "closed_won_mtd": "$134"
   },
   "brand_lift": {
-    "updated": "2026-11-02",
+    "updated": "2026-11-09",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Oct 26 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (400 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Nov 2 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (305 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries · inquired.com property",
-        "value": 400,
-        "delta": "+18% WoW",
-        "delta_dir": "up",
+        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
+        "value": 305,
+        "delta": "-28% WoW \ud83d\udea8",
+        "delta_dir": "down",
         "spark": [
           239,
           177,
@@ -54,7 +54,8 @@
           491,
           498,
           323,
-          400
+          401,
+          305
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -93,58 +94,58 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Nov 2",
+      "updated": "2026-11-09",
+      "narrative": "The funnel cooled further this week: MQL fell to 65 (down 25% week over week and about 37% below the 8-week average), with SQL and Opportunity at 14 and 13, each roughly 40-45% below their recent norms, while HIH ticked up slightly to 15, with Inkwell still driving 7 of those 15. Disqualified and Nurture activity eased back to 258 and 81 -- both below their own 8-week medians -- but against this week's thinner funnel that ratio still tripped the list-event check, flagged in the run log rather than treated as a real list cleanup. Pipeline stayed active with 21 deals entering Interest across New Business and Account Growth (about $214.5K), and November's closed-won total sits at just $134 across 5 deals this early in the month."
+    },
+    "previous": {
       "week_label": "Week of Oct 26",
       "updated": "2026-11-02",
       "narrative": "This week's funnel came in soft across every core stage: MQL fell to 87 (down 16% week over week and 13% below the 8-week average), while SQL and Opportunity dropped to 17 and 13, each 30 to 50% under their recent norms. The bigger story is on the disposition side: Disqualified contacts jumped to 892 and Nurture entries to 429, both more than double last week's totals and well past the threshold for a possible list event, flagged in the run log for Kelsey to confirm rather than re-pull. Inkwell still drove the majority of this week's MQLs (52 of 87), and pipeline activity stayed active with 11 deals entering Interest across New Business and Account Growth, but the headline this week is the disposition spike rather than funnel momentum."
-    },
-    "previous": {
-      "week_label": "Week of Oct 19",
-      "updated": "2026-10-26",
-      "narrative": "This week's funnel came back down to earth after last week's Lit Talk webinar and a bulk enterprise contact import inflated HIH, SQL and Opportunity. MQL held essentially flat at 104, with Inkwell still contributing about half of new MQLs, and every core metric landed close to its 8-week average rather than signaling a real slowdown. Disqualifications and nurture entries both ticked up again, tripping a borderline list-event check worth a second look even though it is not yet a confirmed spike. Closed-won for October stands at roughly $418K across 7 deals, with Great First 8 picking up two new wins this week."
     }
   },
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-11-02",
+    "as_of": "2026-11-09",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 3630245.33,
-      "lost": 2119973.5,
+      "open": 3839445.33,
+      "lost": 2247773.5,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 351250.0,
-        "lost": 29000.0,
+        "open": 379450.0,
+        "lost": 40800.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 1216274.0,
+        "open": 1306774.0,
         "lost": 637510.5,
         "won": 0.0
       },
       "large": {
-        "open": 1043415.0,
-        "lost": 557468.0,
+        "open": 927415.0,
+        "lost": 673468.0,
         "won": 69938.91
       },
       "enterprise": {
-        "open": 924354.0,
+        "open": 1124354.0,
         "lost": 895995.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2753945.33,
-        "lost": 2021473.5,
+        "open": 2963145.33,
+        "lost": 2149273.5,
         "won": 72521.91
       },
       "inkwell": {
-        "open": 212500.0,
+        "open": 222500.0,
         "lost": 0.0,
         "won": 0.0
       },
@@ -171,13 +172,13 @@
         "won": 2583.0
       },
       "school": {
-        "open": 4300.0,
-        "lost": 2000.0,
+        "open": 0.0,
+        "lost": 6300.0,
         "won": 0.0
       },
       "new_business": {
-        "open": 3625945.33,
-        "lost": 796602.5,
+        "open": 3839445.33,
+        "lost": 920102.5,
         "won": 69938.91
       }
     },
@@ -254,7 +255,7 @@
         }
       }
     },
-    "note": "Generated = open+lost+won combined across District Sales, School Sales and New Business pipelines for deal_start_year=27-28 (lost counts on purpose; the goal implies a target win rate). Deals with segment Other/blank are excluded from by_segment only.",
+    "note": "Generated = open+lost+won combined across District, School and New Business pipelines (lost deals count on purpose, the goal implies a target win rate). Renewal and Account Growth are excluded (not new-growth pipelines).",
     "hubspot_list_url": "https://app.hubspot.com/contacts/4451852/objects/0-3/views/69121201/list",
     "field_value": "27-28"
   }
