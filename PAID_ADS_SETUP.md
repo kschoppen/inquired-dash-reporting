@@ -7,8 +7,8 @@ The monthly-digest SKILL.md lives outside this repo; no repo script calls Linked
 - Send `LinkedIn-Version: 202602` or later (202509 returns HTTP 426).
 - Env vars live in the routine/environment settings, not the repo.
 
-## Google Ads (needs all of)
-`GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CLIENT_ID`, `GOOGLE_ADS_CLIENT_SECRET`, `GOOGLE_ADS_REFRESH_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` (10 digits), and `GOOGLE_ADS_LOGIN_CUSTOMER_ID` if reached via a manager account. Missing as of 2026-11-05: developer token, refresh token, customer ID, login customer ID.
+## Google Ads
+Developer token is NO LONGER required (Google API Center banner, 2026); API access level is managed per Google Cloud project (the project that owns `GOOGLE_ADS_CLIENT_ID`). Needs: `GOOGLE_ADS_CLIENT_ID`, `GOOGLE_ADS_CLIENT_SECRET`, `GOOGLE_ADS_REFRESH_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` (10 digits), and `GOOGLE_ADS_LOGIN_CUSTOMER_ID` only if reached through a manager account. Missing as of 2026-11-10 check: refresh token, customer ID, login customer ID. Open question: the Cloud project's access level (Test accounts only vs. production) must be confirmed in Cloud Console -> Google Ads API.
 
 ## AEO (HubSpot `get_aeo_metrics`) - DECISION: not depended on
 Kelsey cannot grant the HubSpot AEO permission (confirmed 2026-11-05: `get_aeo_metrics` still returns "You need access to additional permissions..."; her only seat is sales-enterprise). The monthly digest should not call it or treat it as a gap: skip the HubSpot AEO step and leave `aeo` as `{"run_status": "skipped_by_decision"}`. The Semrush AI Visibility PDFs and `data/aeo-audit.json` (MKT1 `mkt1_aeo_audit` local task, last updated 2026-09-29) are separate paths. The digest SKILL.md lives outside this repo and still needs its Step 3l removed or marked optional.

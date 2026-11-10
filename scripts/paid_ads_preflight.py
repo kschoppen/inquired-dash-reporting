@@ -9,7 +9,6 @@ import os, re, sys
 
 LI_VERSION_MIN = "202602"  # 202509 returns HTTP 426 NONEXISTENT_VERSION
 GOOGLE_VARS = {
-    "GOOGLE_ADS_DEVELOPER_TOKEN": "API Center of the Google Ads MANAGER account (ads.google.com/aw/apicenter)",
     "GOOGLE_ADS_CLIENT_ID": "Google Cloud OAuth client ID",
     "GOOGLE_ADS_CLIENT_SECRET": "Google Cloud OAuth client secret",
     "GOOGLE_ADS_REFRESH_TOKEN": "OAuth refresh token for a user with access to the account",
@@ -30,6 +29,9 @@ def linkedin():
 
 def google():
     errs = [f"{k} is not set ({why})." for k, why in GOOGLE_VARS.items() if not os.environ.get(k)]
+    if not os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN"):
+        print("note: GOOGLE_ADS_DEVELOPER_TOKEN not set -- no longer required (Google retired developer tokens in 2026; "
+              "API access level now belongs to the Google Cloud project that owns GOOGLE_ADS_CLIENT_ID). Send the header only if set.")
     c = os.environ.get("GOOGLE_ADS_CUSTOMER_ID")
     if c and not re.fullmatch(r"\d{10}", c):
         errs.append("GOOGLE_ADS_CUSTOMER_ID must be 10 digits, no dashes.")
