@@ -32,13 +32,18 @@ def google():
     if not os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN"):
         print("note: GOOGLE_ADS_DEVELOPER_TOKEN not set -- no longer required (Google retired developer tokens in 2026; "
               "API access level now belongs to the Google Cloud project that owns GOOGLE_ADS_CLIENT_ID). Send the header only if set.")
-    c = os.environ.get("GOOGLE_ADS_CUSTOMER_ID")
-    if c and not re.fullmatch(r"\d{10}", c):
-        errs.append("GOOGLE_ADS_CUSTOMER_ID must be 10 digits, no dashes.")
-    l = os.environ.get("GOOGLE_ADS_LOGIN_CUSTOMER_ID")
-    if l and not re.fullmatch(r"\d{10}", l):
-        errs.append("GOOGLE_ADS_LOGIN_CUSTOMER_ID must be 10 digits, no dashes.")
-    if not l:
+    # Google shows IDs as 123-456-7890; the API wants digits only. Strip dashes in code
+    # (re.sub(r"\D", "", v)) rather than failing; only fail if it still is not 10 digits.
+    for k in ("GOOGLE_ADS_CUSTOMER_ID", "GOOGLE_ADS_LOGIN_CUSTOMER_ID"):
+        v = os.environ.get(k)
+        if not v:
+            continue
+        digits = re.sub(r"\D", "", v)
+        if not re.fullmatch(r"\d{10}", digits):
+            errs.append(f"{k} must be 10 digits (dashes allowed, stripped before the API call).")
+        elif digits != v:
+            print(f"note: {k} contains dashes/other characters; strip them (re.sub(r'\\D', '', v)) before the API call.")
+    if not os.environ.get("GOOGLE_ADS_LOGIN_CUSTOMER_ID"):
         print("note: GOOGLE_ADS_LOGIN_CUSTOMER_ID not set -- required only if the account is reached through a manager (MCC) account.")
     return errs
 
