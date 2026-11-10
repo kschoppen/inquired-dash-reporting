@@ -3177,7 +3177,87 @@
     },
     "paid_ads": {
       "google_ads": {
-        "api_status": "skipped: GOOGLE_ADS_DEVELOPER_TOKEN unset"
+        "api_status": "ok (backfilled 2026-11-10, read-only GAQL, API v23, campaign-level, 2026-10-01 to 2026-10-31)",
+        "account_id": "***-***-3652",
+        "currency": "USD",
+        "spend": 2840.85,
+        "impressions": 19785,
+        "clicks": 3536,
+        "ctr_pct": 17.9,
+        "conversions": 98.45,
+        "campaigns": [
+          {
+            "id": "23903221163",
+            "name": "Sonar | ELA PMax | PMax",
+            "status": "ENABLED",
+            "spend": 837.78,
+            "impressions": 5608,
+            "clicks": 341,
+            "ctr_pct": 6.1,
+            "conversions": 17.0
+          },
+          {
+            "id": "23782404945",
+            "name": "Sonar | Evaluation ELA | Search",
+            "status": "ENABLED",
+            "spend": 704.21,
+            "impressions": 2886,
+            "clicks": 212,
+            "ctr_pct": 7.3,
+            "conversions": 9.08
+          },
+          {
+            "id": "23792329867",
+            "name": "Sonar | Conversion ELA | Search",
+            "status": "ENABLED",
+            "spend": 517.07,
+            "impressions": 731,
+            "clicks": 41,
+            "ctr_pct": 5.6,
+            "conversions": 1.0
+          },
+          {
+            "id": "23714994613",
+            "name": "Sonar | Brand | Search",
+            "status": "ENABLED",
+            "spend": 270.48,
+            "impressions": 6592,
+            "clicks": 2686,
+            "ctr_pct": 40.7,
+            "conversions": 63.58
+          },
+          {
+            "id": "23715003253",
+            "name": "Sonar | Evaluation Social Studies | Search",
+            "status": "ENABLED",
+            "spend": 184.98,
+            "impressions": 713,
+            "clicks": 45,
+            "ctr_pct": 6.3,
+            "conversions": 3.39
+          },
+          {
+            "id": "23715115162",
+            "name": "Sonar | Conversion Social Studies | Search",
+            "status": "ENABLED",
+            "spend": 171.13,
+            "impressions": 521,
+            "clicks": 41,
+            "ctr_pct": 7.9,
+            "conversions": 4.4
+          },
+          {
+            "id": "23907663334",
+            "name": "Sonar | Social Studies | PMax",
+            "status": "ENABLED",
+            "spend": 155.2,
+            "impressions": 2734,
+            "clicks": 170,
+            "ctr_pct": 6.2,
+            "conversions": 0.0
+          }
+        ],
+        "note": "20 paused/removed campaigns had no Oct activity and are omitted. Conversions are Google's default 'conversions' metric (all conversion actions marked primary). Blended CTR is inflated by the brand search campaign (2,686 of 3,536 clicks). No prior_month_spend yet (Sept run skipped Google Ads)."
       },
       "linkedin": {
         "api_status": "ok (backfilled 2026-11-05, read-only, LinkedIn-Version 202602, account 508696656 only)",
@@ -3268,7 +3348,6 @@
     "list_event_detected": true,
     "acknowledged_events": [],
     "data_flags": [
-      "Google Ads data unavailable (GOOGLE_ADS_DEVELOPER_TOKEN not set in routine env).",
       "Semrush AI Visibility and Keyword Gap PDFs not read: no Google Drive connector available in this routine session. ai_visibility and keyword_gap set to null.",
       "HubSpot AEO still returns a permissions error; aeo.run_status = no_permission.",
       "Semrush Position Tracking pulled via the Semrush MCP (campaign 30090954_4991061, 154 keywords, snapshot 2026-10-31). The legacy REST tracking endpoint returns error 42. Movers not reported: the 30-day diff field shows ~90+ jumps for newly ranked keywords, and September's run stored no per-keyword positions.",
