@@ -11,11 +11,13 @@ This routine owns the **Account Pulse (MQA)** tab. It writes exactly three files
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app. HubSpot portal `4451852`. Universe: companies with `segment` in Medium District, Large District, Enterprise District.
 
-There is no Healthchecks check for this routine (the Healthchecks plan is full). The page shows "Data is N days old" once the JSON is more than 8 days old, and the DM in STEP 5 is the run receipt.
+Healthchecks check "Account Pulse (Mon)" (cron 7:30 Mondays, America/New_York, 3 hours grace; added 2026-11-11): start ping in STEP 0, finish ping in STEP 6. The page also shows "Data is N days old" once the JSON is more than 8 days old, and the DM in STEP 5 is the run receipt.
 
 ---
 
 ## STEP 0: Setup
+
+Start ping first: `curl -fsS -m 10 --retry 3 https://hc-ping.com/1fbae32b-1a10-4016-94b9-24fae3b671b6/start || true`
 
 ```bash
 git config --global user.email k.schoppen@inquired.com
@@ -144,3 +146,9 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_
 ```
 
 Follow-ups = rows in `pass_to_sales.rows` or `stale.rows` with a `followup` field. No em or en dashes in the message. On a failed run, send the same header with `❌` and the step that failed instead of the bullets.
+
+---
+
+## STEP 6: Finish ping
+
+Every step passed (pulls, build, push, and the DM returned `"ok":true`): `curl -fsS -m 10 --retry 3 https://hc-ping.com/1fbae32b-1a10-4016-94b9-24fae3b671b6 || true`. A failed run (the `❌` DM, or any ✗ on the HubSpot pulls or the push): send `.../1fbae32b-1a10-4016-94b9-24fae3b671b6/fail` instead. A ✗ on Starbridge or the decision log alone still counts as success (they are context only). Never ping success on a partial run.
