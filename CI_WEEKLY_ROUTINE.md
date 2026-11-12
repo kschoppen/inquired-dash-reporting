@@ -114,6 +114,8 @@ After pushing, sanity-check the page script: `node -e "const s=require('fs').rea
 
 ## STEP 3: DM Kelsey (checklist only)
 
+**Where it goes (Kelsey, 2026-11-12: Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post it to #kelsey-command-center instead of a DM: `chat.postMessage` with `"channel":"C0BUPSZHGF2"` (no `conversations.open`). DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). Either post returning `"ok":true` counts as the DM for the Healthchecks step.
+
 One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN` (`conversations.open`, then `chat.postMessage`; never echo tokens):
 
 ```
