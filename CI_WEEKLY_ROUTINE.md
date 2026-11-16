@@ -46,6 +46,8 @@ Update `competitive-intel.html` in `inquired-dash-reporting` — DRAWER JS objec
 
 Pull fresh organic keyword data from SEMrush for each of these 10 domains. Get top 6–8 non-branded organic keywords they rank for, plus any paid keywords they bid on. Skip keywords that are just the company or product name.
 
+**SEMrush unavailable (units balance zero, access blocked, or every call erroring):** do not retry past the first domain. Leave the existing `keywords` objects untouched, mark the keywords line ✗ in the Step 3 message with the reason, and continue. This is a skipped step, not a failed run (see Step 4).
+
 Domains:
 `amplify.com`, `greatminds.org`, `imaginelearning.com`, `mheducation.com`, `hmhco.com`,
 `teachtci.com`, `teachingstrategies.com`, `savvas.com`, `benchmarkeducation.com`, `highscope.org`
@@ -126,11 +128,13 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_
 • [✓/✗] Deployed → inquired-marketing-dash.netlify.app [SHA]
 ```
 
+If Part B was skipped for a SEMrush outage, post to #kelsey-command-center only if everything else is ✓ — except that on the first Monday it happens, DM Kelsey once so the top-up gets noticed. Say "Semrush units exhausted" plainly.
+
 ## STEP 4: Healthchecks final ping
 
 Healthchecks check "Reporting – weekly competitive intel" (cron `0 9 * * 1` America/New_York, 3h grace).
 
-- **Success** (both parts written, pushed, script check passed): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c`
-- **Any failure:** `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/fail`
+- **Success** (Part A done; Part B written, or skipped only because SEMrush was unavailable; pushed or nothing to push; script check passed): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c`
+- **Any other failure** (searches broken, write or push failed, script check failed, Part B failed for a reason other than SEMrush access): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/fail`
 
-Never ping success on a partial run.
+Never ping success on a partial run, except the SEMrush-unavailable skip above. That one is a known external limit, not a routine fault.
