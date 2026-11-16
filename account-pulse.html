@@ -203,7 +203,7 @@ function wireChips(containerId, rerender) {
 function contactCell(r) {
   if (r.days_since_contact == null) return `<span class="cold">Never</span>`;
   const cls = r.days_since_contact > 60 ? "cold" : "";
-  return `<span class="${cls}">${n(r.days_since_contact)} days ago</span><small class="muted">${shortDate(r.last_contacted)}</small>`;
+  return `<span class="${cls}">${n(r.days_since_contact)} days ago</span><small class="muted" style="display:block">${shortDate(r.last_contacted)}</small>`;
 }
 const acct = (r) => `<td class="acct"><a href="${esc(r.hs_url)}" target="_blank" rel="noopener">${esc(r.name)} ↗</a><small>${esc(r.segment)} · ${stateLink(r.state)} · ${esc(r.owner)}</small></td>`;
 const PROD = { ij: "IJ", inkwell: "Inkwell", gf8: "GF8" };
