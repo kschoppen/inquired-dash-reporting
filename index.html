@@ -32,14 +32,14 @@
     <span class="topbar-fresh" id="topbar-fresh"></span>
   </header>
   <nav class="rail" id="sidebar" aria-label="Reports">
-    <!-- The mark and the three-way switch are the GTM hub's (marketing-hub src/components/Sidebar.astro); keep the two in step. -->
+    <!-- Home (the mark and the name, one link), then the three places. The GTM hub's rail has the same top
+         (marketing-hub src/components/Sidebar.astro); keep the two in step. Links, not a toggle, because they navigate. -->
     <div class="rail-top">
-      <a class="rail-mark" href="https://inquired-gtm-hub.netlify.app/" aria-label="GTM Hub home" title="GTM Hub home">iE</a>
-      <span class="rail-name">Reporting Dash</span>
-      <nav class="rail-switch" aria-label="GTM Hub">
+      <a class="rail-home" href="./" title="Reporting Dash home"><span class="rail-mark" aria-hidden="true">iE</span><span class="rail-name">Reporting Dash</span></a>
+      <nav class="rail-places" aria-label="GTM Hub">
         <a href="https://inquired-gtm-hub.netlify.app/marketing/">Marketing</a>
         <a href="https://inquired-gtm-hub.netlify.app/sales/">Sales and PE</a>
-        <a href="./" class="on" aria-current="true" title="Reporting home">Reporting</a>
+        <a href="./" class="on" aria-current="true">Reporting</a>
       </nav>
     </div>
     <div class="rail-grp">

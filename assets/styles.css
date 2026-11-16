@@ -85,15 +85,15 @@ a:hover { color: var(--green-900); }
   background: var(--green-800); color: #fff; display: flex; flex-direction: column;
   padding: 16px; gap: 18px; overflow-y: auto;
 }
-.rail-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 10px; }
-.rail-mark { text-decoration: none; }
-a.rail-mark:hover { color: var(--green-900); filter: brightness(1.05); }
-/* The hub switch: Marketing and Sales and PE go to the GTM hub; Reporting is this site. */
-.rail-switch { flex: 1 0 100%; min-width: 0; display: flex; gap: 2px; padding: 3px; border-radius: 8px; background: rgba(255,255,255,0.1); }
-.rail-switch a { flex: 1; display: grid; place-items: center; min-height: 30px; padding: 0 4px; border-radius: var(--radius-sm); color: rgba(255,255,255,0.8); font-size: var(--text-xs); font-weight: 700; text-align: center; text-decoration: none; white-space: nowrap; }
-.rail-switch a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.rail-switch a.on { background: var(--green-200); color: var(--green-900); font-weight: 900; }
-.rail-switch a.on:hover { filter: brightness(1.05); }
+.rail-top { display: grid; gap: 10px; }
+.rail-home { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; border-radius: var(--radius-sm); }
+.rail-home:hover { color: #fff; }
+.rail-home:hover .rail-mark { filter: brightness(1.05); }
+/* The three places: Marketing and Sales and PE go to the GTM hub; Reporting is this site. */
+.rail-places { display: flex; flex-wrap: wrap; gap: 0 12px; padding: 0 4px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.rail-places a { display: inline-flex; align-items: center; min-height: 32px; margin-bottom: -1px; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.75); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.rail-places a:hover { color: #fff; }
+.rail-places a.on { color: #fff; font-weight: 900; border-bottom-color: var(--green-200); }
 .rail-mark { flex: none; width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--green-200); color: var(--green-900); display: grid; place-items: center; font-weight: 900; font-size: 14px; }
 .rail-name { font-size: 15px; font-weight: 900; }
 .rail-grp { display: grid; gap: 6px; }
@@ -160,7 +160,7 @@ body.tab-static .foot { display: none; }
   .rail-btn { display: none; }
   .rail { transform: translateX(-100%); width: min(84vw, 300px); }
   .rail.open { transform: none; }
-  .rail-switch a { min-height: 40px; font-size: 13px; }
+  .rail-places a { min-height: 40px; }
   .rail-mark { width: 40px; height: 40px; }
   html.rail-off .rail { visibility: visible; transition: transform .2s ease; }
   html.rail-off .rail.open { transform: none; }

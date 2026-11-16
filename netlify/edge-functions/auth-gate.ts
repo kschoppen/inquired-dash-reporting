@@ -13,7 +13,7 @@ interface Context { next(): Promise<Response> }
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
 const noAccess = (email: string) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>No access | inquirED Reporting Dash</title>
 <style>body{font:16px/1.55 Lato,system-ui,sans-serif;color:#17201f;background:#f6f8f7;margin:0;display:grid;place-items:center;min-height:100vh;padding:16px}main{max-width:440px;background:#fff;border:1px solid #e3e8e6;border-radius:14px;padding:24px}h1{font-size:22px;line-height:1.25;margin:0 0 8px}p{margin:0 0 12px}a{color:#1d5f5c;font-weight:700}</style></head>
-<body><main><h1>You don't have access to the Reporting Dash</h1><p>You're signed in as ${esc(email)}. The dash is open to a short list of people. Ask Kelsey if you need it.</p><p><a href="/api/auth/logout">Sign out</a></p></main></body></html>`;
+<body><main><h1>You don't have access to the Reporting Dash</h1><p>You're signed in as ${esc(email)}. The dash is open to a short list of people. Ask Kelsey if you need it.</p><p><a href="https://inquired-gtm-hub.netlify.app/">Back to the GTM Hub</a></p><p><a href="/api/auth/logout">Sign out</a></p></main></body></html>`;
 
 export default async (req: Request, context: Context) => {
   const url = new URL(req.url);
