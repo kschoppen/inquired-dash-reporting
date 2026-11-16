@@ -2,7 +2,7 @@
   "updated": "2026-10-14",
   "confirmed_by": "Kelsey",
   "note": "The only workflows nurturing this cycle, per Kelsey's confirmation on 2026-08-31. HubSpot's Workflow/Automation objects aren't API-readable, so this list has to be maintained by hand whenever the active set changes. The nurture-dashboard-refresh skill (growth-marketing plugin) asks Kelsey to reconfirm this list on every run and updates it here first if it has changed.",
-  "enrollment_lists_source": "https://inquired-marketing-hub.netlify.app/campaigns/nurture-program-f26 (Enrollment Lists table) -- mirrored from html-pages campaigns/nurture-program-f26.html. Re-check that page if list IDs seem stale.",
+  "enrollment_lists_source": "This file. The list IDs were first taken from the Enrollment Lists table on the nurture-program-f26 page of the old html-pages site, which was taken down on 2026-11-16. If list IDs seem stale, confirm them with Kelsey in HubSpot.",
   "workflows": [
     {
       "flow_id": "1854413985",
