@@ -7,6 +7,15 @@
  * To add or remove someone: edit the list, commit, push to main.
  */
 export const ALLOWED: string[] = [
+  'k.schoppen@inquired.com',   // Kelsey Schoppen (owner)
+  'e.schimke@inquired.com',    // Elise Schimke
+  'e.maki@inquired.com',       // Elizabeth Maki
+  'm.andrews@inquired.com',    // Martin Andrews
+  'j.baum@inquired.com',       // Jeanette Hardy Baum
+  'm.lee@inquired.com',        // Meagan Lee
+  'o.page@inquired.com',       // Olivia Page
+  't.israel@inquired.com',     // Tim Israel
+  's.elangovan@inquired.com',  // Shanti Elangovan
 ];
 
 const list = new Set(ALLOWED.map((e) => e.trim().toLowerCase()).filter(Boolean));
