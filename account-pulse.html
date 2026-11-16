@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Account Pulse · inquirED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/nurture.css">
 <style>
   .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: -0.5rem 0 1rem; font-size: 0.75rem; }
-  .chips .lbl { text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: var(--ink-light); font-size: 0.66rem; margin-right: 0.2rem; }
+  .chips .lbl { text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: var(--ink-light); font-size: 0.75rem; margin-right: 0.2rem; }
   .chip { font: inherit; font-size: 0.75rem; border: 1px solid var(--border); background: #fff; color: var(--ink-mid); padding: 0.2rem 0.65rem; border-radius: 24px; cursor: pointer; }
   .chip.on { background: #144745; color: #fff; border-color: #144745; }
   .chip:focus-visible, .dbtn:focus-visible { outline: 2px solid #144745; outline-offset: 2px; }
@@ -15,34 +18,34 @@
   .score-bar { display: flex; height: 6px; width: 90px; border-radius: 3px; overflow: hidden; background: #EEE; margin-top: 0.25rem; }
   .score-bar i { display: block; height: 100%; }
   .sb-sig { background: #144745; } .sb-rec { background: #5B5A9E; } .sb-con { background: #F99792; }
-  .legend-inline { font-size: 0.72rem; color: var(--ink-light); display: flex; gap: 0.9rem; flex-wrap: wrap; margin: -0.5rem 0 0.9rem; }
+  .legend-inline { font-size: 0.75rem; color: var(--ink-light); display: flex; gap: 0.9rem; flex-wrap: wrap; margin: -0.5rem 0 0.9rem; }
   .legend-inline i { display: inline-block; width: 10px; height: 6px; border-radius: 2px; margin-right: 0.3rem; vertical-align: middle; }
-  .sig { display: inline-block; font-size: 0.68rem; background: var(--lb); color: var(--ink-mid); padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.1rem 0.2rem 0.1rem 0; }
-  .acct small { display: block; color: var(--ink-light); font-weight: 400; font-size: 0.72rem; }
+  .sig { display: inline-block; font-size: 0.75rem; background: var(--lb); color: var(--ink-mid); padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.1rem 0.2rem 0.1rem 0; }
+  .acct small { display: block; color: var(--ink-light); font-weight: 400; font-size: 0.75rem; }
   .cold { color: #C0392B; font-weight: 700; }
   .origin-bar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; margin: 0.25rem 0 0.5rem; border: 1px solid var(--border); }
-  .origin-bar div { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; }
+  .origin-bar div { display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; }
   .o-mqa { background: #144745; } .o-eng { background: #5B5A9E; } .o-none { background: #9A9A9A; } .o-amb { background: #CECECE; color: #515151 !important; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .decider { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; margin: -0.5rem 0 1rem; flex-wrap: wrap; }
   .decider input { font: inherit; font-size: 0.8rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; width: 12rem; }
   .dbtns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-  .dbtn { font: inherit; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--border); background: #fff; padding: 0.2rem 0.55rem; border-radius: 6px; cursor: pointer; color: var(--ink-mid); }
+  .dbtn { font: inherit; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border); background: #fff; padding: 0.2rem 0.55rem; border-radius: 6px; cursor: pointer; color: var(--ink-mid); }
   .dbtn:hover { border-color: #144745; color: #144745; }
   .dbtn[disabled] { opacity: 0.5; cursor: wait; }
   .dnote { font: inherit; font-size: 0.75rem; width: 100%; margin-top: 0.35rem; padding: 0.25rem 0.45rem; border: 1px solid var(--border); border-radius: 6px; }
-  .dec { font-size: 0.72rem; margin-bottom: 0.3rem; }
+  .dec { font-size: 0.75rem; margin-bottom: 0.3rem; }
   .dec-Demote { background: #F99792; color: #6B0000; } .dec-Recycle { background: #F7EC89; color: #5A4A00; } .dec-Escalate { background: #B1E0BB; color: #144745; }
-  .followup { display: block; font-size: 0.72rem; color: #C0392B; font-weight: 700; margin-top: 0.2rem; }
-  .hist { font-size: 0.72rem; color: var(--ink-mid); margin-top: 0.3rem; }
+  .followup { display: block; font-size: 0.75rem; color: #C0392B; font-weight: 700; margin-top: 0.2rem; }
+  .hist { font-size: 0.75rem; color: var(--ink-mid); margin-top: 0.3rem; }
   .hist summary { cursor: pointer; color: var(--mp); font-weight: 700; }
   .hist li { margin: 0.15rem 0 0 1rem; }
-  .dmsg { font-size: 0.72rem; margin-top: 0.25rem; }
+  .dmsg { font-size: 0.75rem; margin-top: 0.25rem; }
   .dmsg.bad { color: #C0392B; } .dmsg.ok { color: #144745; }
-  .sb { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.15rem 0.2rem 0.1rem 0; }
+  .sb { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 10px; margin: 0.15rem 0.2rem 0.1rem 0; }
   .sb-rfp { background: #DAD0FF; color: #1C2660; } .sb-warm { background: #E4FBCE; color: #144745; }
   a.sb { text-decoration: none; } a.sb:hover { text-decoration: underline; }
-  .src { font-size: 0.72rem; color: var(--ink-light); margin: -1.75rem 0 2.5rem; }
+  .src { font-size: 0.75rem; color: var(--ink-light); margin: -1.75rem 0 2.5rem; }
   .chart-box { position: relative; height: 240px; margin-bottom: 1rem; }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
 </style>

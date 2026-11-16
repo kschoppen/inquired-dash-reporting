@@ -212,16 +212,22 @@ function renderOverview(d) {
   });
 }
 
-// ---- jump rail (section quick-nav, built by the caller after #view is rendered) ----
+// ---- section links (built by the caller after #view is rendered) ----
+// They sit under the active tab in the left rail, the way the GTM hub nests a group's pages.
+function clearJumpRail() { document.querySelectorAll("#tabs-btns .rail-sub").forEach((x) => x.remove()); }
 function buildJumpRail(sections) {
-  const rail = document.getElementById("jump-rail");
-  if (!rail || !sections || !sections.length) return;
-  rail.innerHTML = sections.map((s) => `<button data-jump="${s.id}">${s.label}</button>`).join("");
-  rail.hidden = false;
+  clearJumpRail();
+  const active = document.querySelector("#tabs-btns button.active");
+  if (!active || !sections || !sections.length) return;
+  const rail = document.createElement("div");
+  rail.className = "rail-sub";
+  rail.innerHTML = sections.map((s) => `<button type="button" data-jump="${s.id}">${s.label}</button>`).join("");
+  active.after(rail);
   rail.querySelectorAll("button").forEach((b) => {
     b.onclick = () => {
       const el = document.getElementById(b.dataset.jump);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setMenu(false);
     };
   });
   const targets = sections.map((s) => document.getElementById(s.id)).filter(Boolean);
@@ -1300,12 +1306,31 @@ function renderPipelineStructure(ps) {
   </div>`;
 }
 
+// ---- iframed reports ----
+// These pages are whole documents (account-pulse.html and the rest). They fill the screen under the top bar and
+// scroll on their own, so the shell puts the page header (eyebrow, title, description) inside them, at the top of
+// their .main, styled by .dash-head in their own CSS. Opened on their own they keep their own header instead.
+function embedReport(tabId, src, title) {
+  const tab = TABS.find((t) => t.id === tabId);
+  const view = document.getElementById("view");
+  view.innerHTML = `<iframe class="report-frame" src="${src}" title="${title}"></iframe>`;
+  view.firstChild.addEventListener("load", (e) => {
+    try {
+      const doc = e.target.contentDocument, main = doc.querySelector(".main");
+      if (!main || doc.querySelector(".dash-head")) return;
+      const head = doc.createElement("div");
+      head.className = "dash-head";
+      head.innerHTML = `<div class="dh-eyebrow">Reporting Dash</div><h1></h1><p></p>`;
+      head.querySelector("h1").textContent = tab.label;
+      head.querySelector("p").textContent = (tab.meta && tab.meta.desc) || "";
+      main.prepend(head);
+    } catch (err) { /* the page still works without the header */ }
+  });
+}
+
 // ---- Account Pulse (MQA) tab ---- data-driven page, see account-pulse.html
 function renderAccountPulse() {
-  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
-  const view = document.getElementById("view");
-  view.style.cssText = "padding:0;max-width:none;margin:0;";
-  view.innerHTML = `<iframe src="account-pulse.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Account Pulse (MQA)"></iframe>`;
+  embedReport("pulse", "account-pulse.html", "Account Pulse (MQA)");
 }
 
 // ---- State Signal (MQA) tab ----
@@ -1821,24 +1846,15 @@ function renderStateSignal(d) {
 }
 
 function renderCompetitiveIntel() {
-  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
-  const view = document.getElementById("view");
-  view.style.cssText = "padding:0;max-width:none;margin:0;";
-  view.innerHTML = `<iframe src="competitive-intel.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Competitive Intel Dashboard"></iframe>`;
+  embedReport("competitive", "competitive-intel.html", "Competitive Intel Dashboard");
 }
 
 function renderTeacherNurture() {
-  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
-  const view = document.getElementById("view");
-  view.style.cssText = "padding:0;max-width:none;margin:0;";
-  view.innerHTML = `<iframe src="teacher-nurture.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Teacher Nurture"></iframe>`;
+  embedReport("teacher-nurture", "teacher-nurture.html", "Teacher Nurture");
 }
 
 function renderNurturePrograms() {
-  const upEl = document.getElementById("updated"); if (upEl) upEl.textContent = "";
-  const view = document.getElementById("view");
-  view.style.cssText = "padding:0;max-width:none;margin:0;";
-  view.innerHTML = `<iframe src="nurture-programs.html" style="width:100%;height:calc(100vh - 110px);border:none;display:block;" title="Nurture Programs"></iframe>`;
+  embedReport("nurture", "nurture-programs.html", "Nurture Programs");
 }
 
 // Parse a run date. Every data file stamps `updated` as YYYY-MM-DD; anything
@@ -1868,21 +1884,21 @@ function nextRunLabel(cadence, lastRun) {
   return null; // use hardcoded meta.next for non-weekly tabs
 }
 
+// The page header (eyebrow, title, description) and the top bar's title and freshness line.
+// Iframed tabs fill the screen under the top bar, so they get the top bar only.
 function renderTabMeta(tab, lastRun, nextOverride) {
   const el = document.getElementById("tab-meta");
-  if (!tab.meta) { el.hidden = true; } else {
-    const { desc, cadence, next } = tab.meta;
-    const computedNext = nextOverride || nextRunLabel(cadence, lastRun) || next;
-    el.hidden = false;
-    const lastRunFormatted = formatRunDate(lastRun);
-    el.innerHTML = `
-      <div class="tab-meta-name">${tab.label}</div>
-      <div class="tab-meta-desc">${desc}</div>
-      <div class="tab-meta-item"><div class="tab-meta-label">Cadence</div><div class="tab-meta-value">${cadence}</div></div>
-      <div class="tab-meta-item"><div class="tab-meta-label">Last Run</div><div class="tab-meta-value">${lastRunFormatted}</div></div>
-      <div class="tab-meta-item"><div class="tab-meta-label">Next</div><div class="tab-meta-value">${computedNext}</div></div>`;
-  }
+  const fresh = document.getElementById("topbar-fresh");
+  document.getElementById("topbar-title").textContent = tab.label;
+  document.title = `${tab.label} | inquirED Reporting Dash`;
   renderTabSourcesFooter(tab);
+  if (!tab.meta) { el.hidden = true; fresh.innerHTML = ""; return; }
+  const { desc, cadence, next } = tab.meta;
+  const computedNext = nextOverride || nextRunLabel(cadence, lastRun) || next;
+  const lastRunFormatted = formatRunDate(lastRun);
+  fresh.innerHTML = `<span>Cadence <b>${cadence}</b></span><span>Last run <b>${lastRunFormatted}</b></span><span>Next <b>${computedNext}</b></span>`;
+  el.hidden = !!tab.static;
+  el.innerHTML = `<div class="page-head-in"><p class="eyebrow">Reporting Dash</p><h1>${tab.label}</h1><p class="page-desc">${desc}</p></div>`;
 }
 
 // Bottom-of-tab "Data methodology and sources" section (assets/methodology.js + data/methodology.json).
@@ -1898,8 +1914,8 @@ function renderTabSourcesFooter(tab) {
 async function loadTab(tab) {
   charts.forEach((c) => c.destroy()); charts.length = 0; PRODUCT = "all"; closeDrawer();
   document.getElementById("view").style.cssText = "";
-  const rail = document.getElementById("jump-rail");
-  if (rail) { rail.hidden = true; rail.innerHTML = ""; }
+  clearJumpRail();
+  document.body.classList.toggle("tab-static", !!tab.static);
   if (tab.static) {
     // Static tabs render their own HTML, but their freshness stamp still comes
     // from a data file so this banner can never drift from the page it frames.
@@ -1929,13 +1945,46 @@ function switchToTab(id) {
   const btn = document.querySelector(`.tabs-btns button[data-tabid="${id}"]`);
   if (btn) btn.click();
 }
+// The rail on phones (a drawer behind the menu button) and on wide screens (folds away), as on the GTM hub.
+function setMenu(open) {
+  const bar = document.getElementById("sidebar"), scrim = document.getElementById("scrim"), btn = document.getElementById("menu-btn");
+  bar.classList.toggle("open", open);
+  scrim.hidden = !open;
+  btn.setAttribute("aria-expanded", String(open));
+}
+function initRail() {
+  const bar = document.getElementById("sidebar");
+  document.getElementById("menu-btn").onclick = () => setMenu(!bar.classList.contains("open"));
+  document.getElementById("scrim").onclick = () => setMenu(false);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+  const rail = document.getElementById("rail-btn");
+  const show = () => {
+    const off = document.documentElement.classList.contains("rail-off");
+    rail.setAttribute("aria-expanded", String(!off));
+    rail.title = off ? "Show the menu" : "Hide the menu";
+    document.getElementById("rail-btn-label").textContent = rail.title;
+  };
+  rail.onclick = () => {
+    const off = document.documentElement.classList.toggle("rail-off");
+    try { localStorage.setItem("dash-rail", off ? "off" : "on"); } catch (e) {}
+    show();
+  };
+  show();
+}
 function init() {
+  initRail();
   const nav = document.getElementById("tabs-btns");
   TABS.forEach((tab, i) => {
     const b = document.createElement("button"); b.textContent = tab.label;
+    b.type = "button";
     b.setAttribute("data-tabid", tab.id);
-    if (i === 0) b.classList.add("active");
-    b.onclick = () => { document.querySelectorAll(".tabs-btns button").forEach((x) => x.classList.remove("active")); b.classList.add("active"); loadTab(tab); };
+    if (i === 0) { b.classList.add("active"); b.setAttribute("aria-current", "page"); }
+    b.onclick = () => {
+      document.querySelectorAll("#tabs-btns > button").forEach((x) => { x.classList.remove("active"); x.removeAttribute("aria-current"); });
+      b.classList.add("active"); b.setAttribute("aria-current", "page");
+      setMenu(false); window.scrollTo(0, 0);
+      loadTab(tab);
+    };
     nav.appendChild(b);
   });
   if (TABS.length) loadTab(TABS[0]);

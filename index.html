@@ -15,16 +15,43 @@
   <script src="assets/topojson-client.min.js"></script>
 </head>
 <body>
-  <nav class="tabs" id="tabs">
-    <div class="brand-main">inquir<span>ED</span>&nbsp;Reporting</div>
-    <div class="tabs-btns" id="tabs-btns"></div>
-    <div class="header-right">
-      <span class="header-badge">Internal</span>
+  <script>
+    // The left rail folds away on wide screens, like the GTM hub's; the choice is remembered per browser. Set before paint, so no flash.
+    try { if (localStorage.getItem("dash-rail") === "off") document.documentElement.classList.add("rail-off"); } catch (e) {}
+  </script>
+  <a class="skip-link" href="#view">Skip to content</a>
+  <header class="topbar">
+    <button class="rail-btn" type="button" id="rail-btn" aria-controls="sidebar">
+      <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 3.5v13" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span class="sr-only" id="rail-btn-label">Hide the menu</span>
+    </button>
+    <button class="menu-btn" type="button" id="menu-btn" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <span class="topbar-title" id="topbar-title">Reporting Dash</span>
+    <span class="topbar-fresh" id="topbar-fresh"></span>
+  </header>
+  <nav class="rail" id="sidebar" aria-label="Reports">
+    <div class="rail-top">
+      <span class="rail-mark" aria-hidden="true">iE</span>
+      <span class="rail-name">Reporting Dash</span>
     </div>
+    <div class="rail-grp">
+      <p class="rail-eyebrow">Reports</p>
+      <div class="tabs-btns" id="tabs-btns"></div>
+    </div>
+    <div class="rail-grp">
+      <p class="rail-eyebrow">GTM Hub</p>
+      <div class="rail-links">
+        <a href="https://inquired-gtm-hub.netlify.app/marketing/" target="_blank" rel="noopener">Marketing Hub <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://inquired-gtm-hub.netlify.app/sales/" target="_blank" rel="noopener">Sales and PE Hub <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="rail-foot"><span class="header-badge">Internal</span></div>
   </nav>
-  <div id="tab-meta" class="tab-meta" hidden></div>
+  <div class="rail-scrim" id="scrim" hidden></div>
+  <div id="tab-meta" class="page-head" hidden></div>
   <main id="view"><div class="loading">Loading…</div></main>
-  <aside id="jump-rail" class="jump-rail" hidden></aside>
   <div id="tab-sources-footer" class="tab-sources-footer" hidden></div>
   <footer class="foot">
     Internal reporting dashboard · managed in <a href="https://github.com/kschoppen/inquired-dash-reporting" target="_blank" rel="noopener">kschoppen/inquired-dash-reporting</a> · Netlify auto-deploys on push to main

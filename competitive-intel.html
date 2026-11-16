@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Competitive Intel · inquirED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   /* ── inquirED Brand Tokens ── */
   :root {
@@ -17,45 +20,45 @@
     --yellow:     #F7EC89;
     --pink:       #F99792;
     --lb:         #EAEEF5;   /* Light Blue */
-    --beige:      #F6EFE7;   /* Light Beige */
+    --beige:      #eef3f1;   /* Light Beige */
     /* Greyscale */
-    --grey-300:   #CECECE;
-    --grey-600:   #757575;
-    --grey-700:   #515151;
-    --black:      #000000;
+    --grey-300:   #cdd5d2;
+    --grey-600:   #66736f;
+    --grey-700:   #3a4745;
+    --black:      #17201f;
     /* Semantic aliases used in components */
-    --paper:      #FFFFFF;
-    --paper-mid:  var(--beige);
+    --paper:      #f6f8f7;
+    --paper-mid:  #ffffff;
     --paper-deep: var(--lg);
     --ink:        var(--dg);
-    --ink-mid:    var(--grey-700);
-    --ink-light:  var(--grey-600);
+    --ink-mid:    #3a4745;
+    --ink-light:  #66736f;
     --accent:     var(--dg);
     --accent-bg:  var(--lg);
     --blue:       var(--mp);
     --blue-bg:    var(--lp);
     --green:      var(--dg);
     --green-bg:   var(--mg);
-    --border:     var(--grey-300);
-    --border-mid: #BEBEBE;
+    --border:     #e3e8e6;
+    --border-mid: #cdd5d2;
     --shadow:     rgba(20, 71, 69, 0.08);
   }
   /* Force light mode always — this is an internal dashboard */
   :root[data-theme="light"], :root[data-theme="dark"], :root {
-    --paper:      #FFFFFF;
-    --paper-mid:  #F6EFE7;
+    --paper:      #f6f8f7;
+    --paper-mid:  #ffffff;
     --paper-deep: #E4FBCE;
     --ink:        #144745;
-    --ink-mid:    #515151;
-    --ink-light:  #757575;
+    --ink-mid:    #3a4745;
+    --ink-light:  #66736f;
     --accent:     #144745;
     --accent-bg:  #E4FBCE;
     --blue:       #5B5A9E;
     --blue-bg:    #DAD0FF;
     --green:      #144745;
     --green-bg:   #B1E0BB;
-    --border:     #CECECE;
-    --border-mid: #BEBEBE;
+    --border:     #e3e8e6;
+    --border-mid: #cdd5d2;
     --shadow:     rgba(20, 71, 69, 0.08);
     --dg:         #144745;
     --mp:         #5B5A9E;
@@ -64,7 +67,7 @@
 
   /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 15px; }
+  html { font-size: 16px; }
   body {
     background: var(--paper);
     color: var(--black);
@@ -113,7 +116,7 @@
     flex: 1;
   }
   .header-label {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: rgba(177, 224, 187, 0.6);
@@ -140,7 +143,7 @@
     color: #144745;
     border: none;
     padding: 0.35rem 1rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -150,7 +153,7 @@
   }
   .btn-run:hover { background: #E4FBCE; }
   .cadence-pill {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     background: rgba(177,224,187,0.15);
     border: 1px solid rgba(177,224,187,0.3);
     color: rgba(177,224,187,0.85);
@@ -163,10 +166,17 @@
 
   /* ── Layout ── */
   .main {
-    max-width: 1300px;
+    max-width: 1168px;
     margin: 0 auto;
-    padding: 2rem 2rem 4rem;
+    padding: 24px 24px 64px;
   }
+  /* The page header the reporting dash adds when this page is embedded (assets/app.js, embedReport): the GTM hub's eyebrow, title and description. */
+  .dash-head { margin: 8px 0 20px; }
+  .dash-head .dh-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #66736f; }
+  .dash-head h1 { margin: 2px 0 4px; font-size: 2.125rem; font-weight: 900; letter-spacing: -0.01em; line-height: 1.25; color: #17201f; }
+  .dash-head p { max-width: 80ch; font-size: 1.125rem; line-height: 1.55; color: #66736f; }
+  @media (max-width: 900px) { .dash-head h1 { font-size: 1.625rem; } }
+
 
   /* ── Freshness strip ── */
   .freshness-strip {
@@ -175,7 +185,7 @@
     flex-wrap: wrap;
     gap: 0.6rem;
     margin: -0.75rem 0 1.25rem;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--ink-mid);
     font-variant-numeric: tabular-nums;
   }
@@ -193,7 +203,7 @@
   .fr-pill {
     padding: 0.1rem 0.5rem;
     border-radius: 24px;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -207,7 +217,7 @@
   .bf-lens.active { background: #144745; color: #fff; border-color: #144745; }
   .bf-summary { font-size: 0.9rem; line-height: 1.55; color: #333; margin: 0 0 1rem; max-width: 70rem; }
   .bf-meta { font-size: 0.75rem; color: #515151; margin-bottom: 0.9rem; }
-  .bf-sub { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #144745; margin: 1.1rem 0 0.4rem; }
+  .bf-sub { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #144745; margin: 1.1rem 0 0.4rem; }
   .bf-note { font-size: 0.82rem; color: #515151; margin: 0 0 0.5rem; max-width: 70rem; }
   .bf-empty { font-size: 0.85rem; color: #515151; border: 1px dashed var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 2rem; }
   .bf-wrap { margin-bottom: 2rem; }
@@ -215,16 +225,8 @@
 
   /* ── Eyebrow / Section label ── */
   .section-eyebrow {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #144745;
-    background: rgba(20, 71, 69, 0.08);
-    padding: 0.25rem 0.75rem;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 1.25rem;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #66736f; display: block; margin-bottom: 1.25rem;
   }
 
   /* ── Stat row ── */
@@ -247,7 +249,7 @@
     font-size: 2.4rem;
     font-weight: 900;
     line-height: 1;
-    color: #144745;
+    color: #17201f;
     font-variant-numeric: tabular-nums;
   }
   .stat-number.accent { color: #5B5A9E; }
@@ -258,7 +260,7 @@
     line-height: 1.35;
   }
   .stat-delta {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     color: var(--ink-light);
     margin-top: 0.1rem;
   }
@@ -335,7 +337,7 @@
     flex-wrap: wrap;
   }
   .badge {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     padding: 0.15rem 0.5rem;
@@ -386,7 +388,7 @@
     margin-top: auto;
   }
   .signal-date {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ink-light);
@@ -420,7 +422,7 @@
   .matrix-table th {
     padding: 0.7rem 1rem;
     text-align: left;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #B1E0BB;
@@ -475,7 +477,7 @@
     box-shadow: 0 2px 6px var(--shadow);
   }
   .opp-number {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -500,7 +502,7 @@
   }
   .opp-tag {
     align-self: flex-start;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     padding: 0.2rem 0.6rem;
@@ -518,7 +520,7 @@
     margin: 1.75rem 0 1rem;
   }
   .comp-subcat-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -580,14 +582,14 @@
     letter-spacing: -0.01em;
   }
   .psh-grades {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ink-light);
     font-weight: 700;
   }
   .psh-label {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ink-light);
@@ -638,7 +640,7 @@
   }
   .methods-intro-item {}
   .methods-intro-label {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ink-light);
@@ -686,7 +688,7 @@
   .tool-group-header {
     background: #144745;
     padding: 0.65rem 1rem;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: #B1E0BB;
@@ -705,7 +707,7 @@
   .tool-name { font-size: 0.85rem; font-weight: 700; color: #144745; margin-bottom: 0.15rem; }
   .tool-desc { font-size: 0.75rem; color: #515151; line-height: 1.5; }
   .tool-badge {
-    font-size: 0.58rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.07em;
     padding: 0.15rem 0.5rem;
@@ -738,7 +740,7 @@
     box-shadow: 0 2px 5px var(--shadow);
   }
   .arch-step-label {
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ink-light);
@@ -750,7 +752,7 @@
     color: #144745;
   }
   .arch-step-body { font-size: 0.78rem; color: #515151; line-height: 1.5; }
-  .arch-step-tools { font-size: 0.72rem; color: #5B5A9E; margin-top: 0.25rem; font-weight: 700; }
+  .arch-step-tools { font-size: 0.75rem; color: #5B5A9E; margin-top: 0.25rem; font-weight: 700; }
 
   .signal-source-grid {
     display: grid;
@@ -778,7 +780,7 @@
     color: #144745;
   }
   .signal-priority {
-    font-size: 0.58rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.07em;
     padding: 0.18rem 0.5rem;
@@ -798,12 +800,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--ink-light);
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  .dash-footer a { color: #5B5A9E; font-size: 0.72rem; }
+  .dash-footer a { color: #5B5A9E; font-size: 0.75rem; }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
@@ -824,9 +826,9 @@
 
   /* ── AI Overview Section ── */
   .overview-section {
-    background: var(--paper-deep);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
+    background: var(--paper-mid);
+    border: 1px solid var(--border);
+    border-radius: 14px;
     padding: 1.5rem 1.75rem;
     margin-bottom: 1.75rem;
   }
@@ -838,7 +840,7 @@
     flex-wrap: wrap;
   }
   .overview-eyebrow {
-    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.08em; color: var(--dg);
     background: rgba(20, 71, 69, 0.1);
     padding: 0.2rem 0.65rem; border-radius: 10px;
@@ -878,7 +880,7 @@
     padding: 1rem 1.25rem;
   }
   .pressure-panel-title {
-    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.07em; color: var(--ink-light); margin-bottom: 0.75rem;
   }
   .pressure-row {
@@ -890,7 +892,7 @@
   .pressure-product { font-weight: 700; color: var(--dg); }
   .pressure-sub { font-size: 0.75rem; color: var(--ink-light); font-weight: 400; margin-left: 0.4rem; }
   .pressure-badge {
-    font-size: 0.72rem; font-weight: 700; border-radius: 8px;
+    font-size: 0.75rem; font-weight: 700; border-radius: 8px;
     padding: 0.15rem 0.6rem; white-space: nowrap;
   }
   .pressure-badge.high { background: #F99792; color: #6B0000; }
@@ -905,7 +907,7 @@
     padding: 1rem 1.25rem;
   }
   .signal-panel-title {
-    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.07em; color: var(--ink-light); margin-bottom: 0.75rem;
   }
   .signal-item {
@@ -967,7 +969,7 @@
   .churn-meta { font-size: 0.75rem; color: var(--ink-light); }
   .churn-arr { font-weight: 700; color: var(--black); white-space: nowrap; }
   .churn-segment-pill {
-    font-size: 0.68rem; font-weight: 700; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 700; border-radius: 6px;
     padding: 0.1rem 0.45rem; white-space: nowrap;
   }
   .seg-enterprise { background: var(--dp); color: #fff; }
@@ -1016,7 +1018,7 @@
   @media (max-width: 700px) { .drawer-grid { grid-template-columns: 1fr; } }
   .drawer-col { display: flex; flex-direction: column; gap: 0.5rem; }
   .drawer-section-label {
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.08em; color: var(--ink-light);
     border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; margin-bottom: 0.5rem;
   }
@@ -1041,9 +1043,9 @@
   .drawer-signals { display: flex; flex-direction: column; gap: 0.5rem; }
   .drawer-keywords { display: flex; flex-direction: column; gap: 0.35rem; }
   .dr-kw-group { display: flex; flex-direction: column; gap: 0.25rem; }
-  .dr-kw-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); }
+  .dr-kw-label { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); }
   .dr-kw-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-  .dr-kw-chip { font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; white-space: nowrap; line-height: 1.6; }
+  .dr-kw-chip { font-size: 0.75rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; white-space: nowrap; line-height: 1.6; }
   .dr-kw-chip.paid { background: #FDE4BA; color: #7A4200; }
   .dr-kw-chip.organic { background: var(--lg); color: var(--dg); }
   .dr-signal-item {

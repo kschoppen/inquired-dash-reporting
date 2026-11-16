@@ -5,22 +5,22 @@
 (function () {
   const CSS = `
   .mth { margin: 28px 0 8px; font-family: inherit; }
-  .mth-hdr { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #144745; font-weight: 900; border-left: 3px solid #5B5A9E; padding-left: 8px; margin: 0 0 10px; }
-  .mth-panel { background: #fff; border: 1px solid #E3E6E5; border-radius: 12px; padding: 16px; }
-  .mth-owner { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; color: #515151; margin-bottom: 10px; }
+  .mth-hdr { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #66736f; font-weight: 700; margin: 0 0 10px; }
+  .mth-panel { background: #fff; border: 1px solid #e3e8e6; border-radius: 14px; padding: 20px; }
+  .mth-owner { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: #3a4745; margin-bottom: 10px; }
   .mth-owner b { color: #144745; }
-  .mth-owner code, .mth code { font-size: 11.5px; background: #F3F5F4; padding: 0 4px; border-radius: 4px; }
-  .mth-intro { font-size: 13px; line-height: 1.55; color: #1f2a29; margin: 0 0 14px; max-width: 95ch; }
-  .mth-sub { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #757575; font-weight: 700; margin: 16px 0 6px; }
+  .mth-owner code, .mth code { font-size: 12px; background: #eceff0; padding: 0 4px; border-radius: 4px; }
+  .mth-intro { font-size: 14px; line-height: 1.55; color: #17201f; margin: 0 0 14px; max-width: 95ch; }
+  .mth-sub { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #66736f; font-weight: 700; margin: 16px 0 6px; }
   .mth-scroll { overflow-x: auto; }
-  table.mth-t { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .mth table.mth-t th { text-align: left; color: #757575; font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: .3px; padding: 7px 9px; border-bottom: 1px solid #E3E6E5; }
-  .mth table.mth-t td { padding: 8px 9px; border-bottom: 1px solid #EEF0EF; vertical-align: top; line-height: 1.45; text-align: left; font-weight: 400; color: #1f2a29; }
+  table.mth-t { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .mth table.mth-t th { text-align: left; color: #66736f; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; padding: 7px 9px; border-bottom: 1px solid #e3e8e6; }
+  .mth table.mth-t td { padding: 8px 9px; border-bottom: 1px solid #e3e8e6; vertical-align: top; line-height: 1.45; text-align: left; font-weight: 400; color: #17201f; }
   .mth table.mth-t td:first-child { font-weight: 700; color: #144745; min-width: 9rem; }
   .mth table.mth-t td.num { text-align: right; white-space: nowrap; }
-  .mth-limits { margin: 0; padding-left: 18px; font-size: 12.5px; line-height: 1.5; color: #515151; }
+  .mth-limits { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.5; color: #3a4745; }
   .mth-limits li { margin: 3px 0; }
-  .mth-err { font-size: 12px; color: #757575; }`;
+  .mth-err { font-size: 12px; color: #66736f; }`;
 
   let cache = null;
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

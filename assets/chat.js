@@ -16,9 +16,10 @@
   /* ── Styles ── */
   var s = document.createElement('style');
   s.textContent = [
-    '#iq-cb{position:fixed;bottom:24px;right:24px;z-index:9100;width:52px;height:52px;border-radius:50%;background:#B1E0BB;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.22);transition:background .15s,transform .15s;}',
-    '#iq-cb:hover{background:#9ED4A9;transform:scale(1.06);}',
-    '#iq-cp{position:fixed;bottom:88px;right:24px;z-index:9100;width:360px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;font-family:"Lato",sans-serif;transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;transition:transform .2s ease,opacity .2s ease;max-height:520px;}',
+    /* The same pill as the GTM hub's Ask Claude button. */
+    '#iq-cb{position:fixed;bottom:16px;right:16px;z-index:9100;height:44px;padding:0 18px;border-radius:999px;background:#144745;color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font:900 15px "Lato",sans-serif;box-shadow:0 4px 16px rgba(14,51,50,.28);transition:background .15s;}',
+    '#iq-cb:hover{background:#0e3332;}',
+    '#iq-cp{position:fixed;bottom:72px;right:16px;z-index:9100;width:360px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.22);display:flex;flex-direction:column;overflow:hidden;font-family:"Lato",sans-serif;transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;transition:transform .2s ease,opacity .2s ease;max-height:520px;}',
     '#iq-cp.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}',
     '#iq-ch{background:#144745;color:#fff;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}',
     '#iq-ch-l{display:flex;align-items:center;gap:9px;}',
@@ -51,7 +52,7 @@
   var btn = document.createElement('button');
   btn.id = 'iq-cb';
   btn.setAttribute('aria-label', 'Open Dash assistant');
-  btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#144745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Ask Dash</span>';
 
   var panel = document.createElement('div');
   panel.id = 'iq-cp';
