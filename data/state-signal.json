@@ -1,25 +1,26 @@
 {
   "skill": "state-signal",
   "title": "State Signal (MQA)",
-  "updated": "2026-11-11",
+  "updated": "2026-11-16",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
   "cadence": "Weekly · Mondays (HubSpot numbers + Warm Signals via SIGNALS_ROUTINE.md PHASE A, Mondays 8am ET); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
-    "285 of 1918 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
+    "285 of 1916 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
     "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",
     "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL — none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
     "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs — 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
     "Draft outreach emails on the account drill-down are TEMPLATES generated from each account's real HubSpot signal + the state's real policy context — starting points for a rep to personalize, not finished copy.",
     "Warm Signals refresh (2026-10-26): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and sorted by triggeredAt descending, with the 90-day cutoff (>= 2026-07-28) applied client-side against each row's Added-to-Bridge value since the server-side op:added_date filter remains broken (confirmed again this run) -- 2958 rows scanned in that window (843 GFE, 605 IJ, 1510 Inkwell), of which 32 clear the Meeting_Score >= 10 quality bar (8 GFE, 7 IJ, 17 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 70 starbridge_ids resolved across this run's 10 top_states (70 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as last run.",
     "Warm Signals refresh (2026-11-09): SKIPPED this run — Starbridge requires an OAuth authorization this unattended session could not start. warm_signals_by_state, warm_signals_90d_total (32), warm_signals_audit, and each account's warm_signal field are left at last week's values. Needs a session with Starbridge authorized to retry.",
-    "Warm Signals refresh (2026-11-11): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-13) applied via a triggeredAt server-side filter (the op:added_date filter remains broken, confirmed again this run) -- 2942 rows scanned in that window (818 GFE, 668 IJ, 1456 Inkwell), of which 33 clear the Meeting_Score >= 10 quality bar (10 GFE, 8 IJ, 15 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (72 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last completed run (2026-10-26)."
+    "Warm Signals refresh (2026-11-11): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-13) applied via a triggeredAt server-side filter (the op:added_date filter remains broken, confirmed again this run) -- 2942 rows scanned in that window (818 GFE, 668 IJ, 1456 Inkwell), of which 33 clear the Meeting_Score >= 10 quality bar (10 GFE, 8 IJ, 15 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (72 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last completed run (2026-10-26).",
+    "Warm Signals refresh (2026-11-16): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-18) applied via a triggeredAt server-side filter (the op:added_date filter was not retried this run; triggeredAt worked) -- 2956 rows scanned in that window (779 GFE, 682 IJ, 1495 Inkwell), of which 35 clear the Meeting_Score >= 10 quality bar (9 GFE, 9 IJ, 17 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (71 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last several completed runs."
   ],
   "national_totals": {
-    "qualified": 1918,
-    "actionable": 1296,
+    "qualified": 1916,
+    "actionable": 1302,
     "unassigned_qualified": 285,
-    "unassigned_actionable": 272,
+    "unassigned_actionable": 273,
     "states_with_signal": 52,
     "watch_states": 41
   },
@@ -2505,6 +2506,281 @@
           "actionable": 7
         }
       ]
+    },
+    {
+      "period": "2026-11-16",
+      "states": [
+        {
+          "state": "AK",
+          "qualified": 7,
+          "actionable": 7
+        },
+        {
+          "state": "AL",
+          "qualified": 10,
+          "actionable": 7
+        },
+        {
+          "state": "AR",
+          "qualified": 8,
+          "actionable": 6
+        },
+        {
+          "state": "AS",
+          "qualified": 1,
+          "actionable": 0
+        },
+        {
+          "state": "AZ",
+          "qualified": 39,
+          "actionable": 27
+        },
+        {
+          "state": "CA",
+          "qualified": 119,
+          "actionable": 86
+        },
+        {
+          "state": "CO",
+          "qualified": 27,
+          "actionable": 21
+        },
+        {
+          "state": "CT",
+          "qualified": 42,
+          "actionable": 29
+        },
+        {
+          "state": "DC",
+          "qualified": 5,
+          "actionable": 4
+        },
+        {
+          "state": "DE",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "FL",
+          "qualified": 23,
+          "actionable": 16
+        },
+        {
+          "state": "GA",
+          "qualified": 24,
+          "actionable": 11
+        },
+        {
+          "state": "HI",
+          "qualified": 8,
+          "actionable": 4
+        },
+        {
+          "state": "IA",
+          "qualified": 46,
+          "actionable": 37
+        },
+        {
+          "state": "ID",
+          "qualified": 8,
+          "actionable": 4
+        },
+        {
+          "state": "IL",
+          "qualified": 134,
+          "actionable": 94
+        },
+        {
+          "state": "IN",
+          "qualified": 12,
+          "actionable": 9
+        },
+        {
+          "state": "International",
+          "qualified": 18,
+          "actionable": 16
+        },
+        {
+          "state": "KS",
+          "qualified": 31,
+          "actionable": 19
+        },
+        {
+          "state": "KY",
+          "qualified": 53,
+          "actionable": 49
+        },
+        {
+          "state": "LA",
+          "qualified": 9,
+          "actionable": 7
+        },
+        {
+          "state": "MA",
+          "qualified": 68,
+          "actionable": 36
+        },
+        {
+          "state": "MD",
+          "qualified": 21,
+          "actionable": 12
+        },
+        {
+          "state": "ME",
+          "qualified": 19,
+          "actionable": 11
+        },
+        {
+          "state": "MI",
+          "qualified": 60,
+          "actionable": 23
+        },
+        {
+          "state": "MN",
+          "qualified": 60,
+          "actionable": 34
+        },
+        {
+          "state": "MO",
+          "qualified": 27,
+          "actionable": 24
+        },
+        {
+          "state": "MS",
+          "qualified": 3,
+          "actionable": 2
+        },
+        {
+          "state": "MT",
+          "qualified": 6,
+          "actionable": 6
+        },
+        {
+          "state": "NC",
+          "qualified": 27,
+          "actionable": 16
+        },
+        {
+          "state": "ND",
+          "qualified": 5,
+          "actionable": 3
+        },
+        {
+          "state": "NE",
+          "qualified": 11,
+          "actionable": 9
+        },
+        {
+          "state": "NH",
+          "qualified": 12,
+          "actionable": 10
+        },
+        {
+          "state": "NJ",
+          "qualified": 128,
+          "actionable": 40
+        },
+        {
+          "state": "NM",
+          "qualified": 3,
+          "actionable": 3
+        },
+        {
+          "state": "NV",
+          "qualified": 12,
+          "actionable": 9
+        },
+        {
+          "state": "NY",
+          "qualified": 118,
+          "actionable": 75
+        },
+        {
+          "state": "OH",
+          "qualified": 37,
+          "actionable": 26
+        },
+        {
+          "state": "OK",
+          "qualified": 14,
+          "actionable": 11
+        },
+        {
+          "state": "OR",
+          "qualified": 49,
+          "actionable": 25
+        },
+        {
+          "state": "PA",
+          "qualified": 64,
+          "actionable": 39
+        },
+        {
+          "state": "RI",
+          "qualified": 5,
+          "actionable": 5
+        },
+        {
+          "state": "SC",
+          "qualified": 14,
+          "actionable": 9
+        },
+        {
+          "state": "SD",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "TN",
+          "qualified": 18,
+          "actionable": 15
+        },
+        {
+          "state": "TX",
+          "qualified": 50,
+          "actionable": 29
+        },
+        {
+          "state": "UT",
+          "qualified": 9,
+          "actionable": 4
+        },
+        {
+          "state": "Unassigned",
+          "qualified": 285,
+          "actionable": 273
+        },
+        {
+          "state": "VA",
+          "qualified": 28,
+          "actionable": 14
+        },
+        {
+          "state": "VT",
+          "qualified": 6,
+          "actionable": 5
+        },
+        {
+          "state": "WA",
+          "qualified": 52,
+          "actionable": 21
+        },
+        {
+          "state": "WI",
+          "qualified": 67,
+          "actionable": 52
+        },
+        {
+          "state": "WV",
+          "qualified": 4,
+          "actionable": 2
+        },
+        {
+          "state": "WY",
+          "qualified": 2,
+          "actionable": 0
+        }
+      ]
     }
   ],
   "top_states": [
@@ -2517,20 +2793,20 @@
     {
       "rank": 2,
       "state": "CA",
-      "qualified": 120,
-      "actionable": 85
+      "qualified": 119,
+      "actionable": 86
     },
     {
       "rank": 3,
       "state": "NY",
-      "qualified": 117,
+      "qualified": 118,
       "actionable": 75
     },
     {
       "rank": 4,
       "state": "WI",
-      "qualified": 66,
-      "actionable": 50
+      "qualified": 67,
+      "actionable": 52
     },
     {
       "rank": 5,
@@ -2541,8 +2817,8 @@
     {
       "rank": 6,
       "state": "NJ",
-      "qualified": 129,
-      "actionable": 42
+      "qualified": 128,
+      "actionable": 40
     },
     {
       "rank": 7,
@@ -2553,20 +2829,20 @@
     {
       "rank": 8,
       "state": "IA",
-      "qualified": 47,
-      "actionable": 38
+      "qualified": 46,
+      "actionable": 37
     },
     {
       "rank": 9,
       "state": "MA",
-      "qualified": 67,
-      "actionable": 35
+      "qualified": 68,
+      "actionable": 36
     },
     {
       "rank": 10,
       "state": "MN",
       "qualified": 60,
-      "actionable": 35
+      "actionable": 34
     }
   ],
   "watch_states": [
@@ -3676,7 +3952,7 @@
         "name": "Athens Senior High School",
         "segment": "Small District",
         "stage": "MQA",
-        "signal": "Upcoming Adoption",
+        "signal": null,
         "owner": "LJ Grab",
         "last_contacted": "2026-04-14",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246857165"
@@ -3725,7 +4001,7 @@
       },
       {
         "id": 55218375690,
-        "name": null,
+        "name": "Roavc.com",
         "segment": "Single Site",
         "stage": "MQA",
         "signal": "High Intent DL",
@@ -3825,12 +4101,11 @@
         "last_contacted": "2026-03-13",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5173275713",
         "warm_signal": {
-          "meeting": "Board Of Education Board Of Education Meeting",
+          "buyer": "Byram Hills Central School District",
           "posted_date": "2026-10-13",
           "product": "gf8",
           "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
-          "status": "New"
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k"
         }
       },
       {
@@ -3904,6 +4179,16 @@
         "owner": "LJ Grab",
         "last_contacted": "2022-01-21",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246868545"
+      },
+      {
+        "id": 4821446791,
+        "name": "Wqi",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-09-14",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4821446791"
       },
       {
         "id": 8976278100,
@@ -3984,16 +4269,6 @@
         "owner": "LJ Grab",
         "last_contacted": "2026-04-08",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/29142851177"
-      },
-      {
-        "id": 5246861646,
-        "name": "Muskego-norway School District",
-        "segment": "Medium District",
-        "stage": "Engaged",
-        "signal": null,
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-05-27",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246861646"
       }
     ],
     "KY": [
@@ -4100,16 +4375,6 @@
     ],
     "NJ": [
       {
-        "id": 8976284933,
-        "name": "North Star Academy Charter School Of Newark",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "2+ DL's w Form Submissions;Marked \"Yes, Reviewing\"",
-        "owner": "LJ Grab",
-        "last_contacted": null,
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976284933"
-      },
-      {
         "id": 46663965043,
         "name": "Old Bridge Township Public Schools",
         "segment": "Medium District",
@@ -4198,6 +4463,16 @@
         "owner": "LJ Grab",
         "last_contacted": "2026-03-25",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976771446"
+      },
+      {
+        "id": 18896512053,
+        "name": "Yavneh Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2024-03-11",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/18896512053"
       }
     ],
     "PA": [
@@ -4518,16 +4793,6 @@
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/54308489996"
       },
       {
-        "id": 8976097637,
-        "name": "Hutchinson Public School District",
-        "segment": "Medium District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-07-09",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976097637"
-      },
-      {
         "id": 53113498746,
         "name": "St. Anne's School",
         "segment": "Single Site",
@@ -4606,6 +4871,16 @@
         "owner": "LJ Grab",
         "last_contacted": "2026-06-12",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976265600"
+      },
+      {
+        "id": 8976273162,
+        "name": "Blooming Prairie Public School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-09-17",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976273162"
       }
     ]
   },
@@ -5745,13 +6020,22 @@
       ]
     },
     "MA": {
-      "count": 5,
+      "count": 6,
       "by_product": {
         "gf8": 1,
         "ij": 0,
-        "inkwell": 4
+        "inkwell": 5
       },
       "top": [
+        {
+          "buyer": "Haverhill Public Schools",
+          "meeting": "Haverhill Public Schools Superintendent Goals 2026-2029",
+          "posted_date": "2026-11-09",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        },
         {
           "buyer": "Hopkinton Public School District",
           "meeting": "School Committee School Committee Meeting",
@@ -5787,26 +6071,26 @@
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
-        },
-        {
-          "buyer": "Chelmsford Public Schools",
-          "meeting": "School Committee Meeting",
-          "posted_date": "2026-09-08",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
         }
       ]
     },
     "IL": {
-      "count": 3,
+      "count": 4,
       "by_product": {
         "gf8": 3,
         "ij": 0,
-        "inkwell": 0
+        "inkwell": 1
       },
       "top": [
+        {
+          "buyer": "Community Consolidated School District 59",
+          "meeting": "Board of Education School District 59 Board of Education Meeting",
+          "posted_date": "2026-11-10",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        },
         {
           "buyer": "Oak Park Elementary School District 97",
           "meeting": "Oak Park Board of Education District 97 Regular Meeting",
@@ -5856,9 +6140,9 @@
       ]
     },
     "CA": {
-      "count": 5,
+      "count": 4,
       "by_product": {
-        "gf8": 2,
+        "gf8": 1,
         "ij": 3,
         "inkwell": 0
       },
@@ -5870,15 +6154,6 @@
           "product": "ij",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Cypress School District",
-          "meeting": "Cypress School District Local Control and Accountability Plan 2026-2027",
-          "posted_date": "2026-08-07",
-          "product": "gf8",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
         },
         {
@@ -5903,6 +6178,34 @@
           "buyer": "Carlsbad Unified School District",
           "meeting": "Carlsbad Unified School District Local Control and Accountability Plan 2026-2027",
           "posted_date": "2026-06-01",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "OH": {
+      "count": 2,
+      "by_product": {
+        "gf8": 0,
+        "ij": 2,
+        "inkwell": 0
+      },
+      "top": [
+        {
+          "buyer": "Lakewood City School District",
+          "meeting": "Lakewood City Schools Board of Education Board of Education Meeting",
+          "posted_date": "2026-11-09",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Mentor Exempted Village School District",
+          "meeting": "Mentor Exempted Village Board of Education Regular Meeting",
+          "posted_date": "2026-10-13",
           "product": "ij",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
@@ -5977,25 +6280,6 @@
         {
           "buyer": "Washougal School District 112-6",
           "meeting": "Washougal School Board School Board Meeting",
-          "posted_date": "2026-10-13",
-          "product": "ij",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "OH": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 1,
-        "inkwell": 0
-      },
-      "top": [
-        {
-          "buyer": "Mentor Exempted Village School District",
-          "meeting": "Mentor Exempted Village Board of Education Regular Meeting",
           "posted_date": "2026-10-13",
           "product": "ij",
           "score": 10,
@@ -6156,21 +6440,21 @@
       ]
     }
   },
-  "warm_signals_90d_total": 33,
+  "warm_signals_90d_total": 35,
   "warm_signals_audit": {
-    "window_start": "2026-08-13",
+    "window_start": "2026-08-18",
     "by_bridge": {
       "gf8": {
-        "rows_scanned": 818,
-        "qualifying": 10
+        "rows_scanned": 779,
+        "qualifying": 9
       },
       "ij": {
-        "rows_scanned": 668,
-        "qualifying": 8
+        "rows_scanned": 682,
+        "qualifying": 9
       },
       "inkwell": {
-        "rows_scanned": 1456,
-        "qualifying": 15
+        "rows_scanned": 1495,
+        "qualifying": 17
       }
     }
   },
