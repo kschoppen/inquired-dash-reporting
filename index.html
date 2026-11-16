@@ -32,20 +32,19 @@
     <span class="topbar-fresh" id="topbar-fresh"></span>
   </header>
   <nav class="rail" id="sidebar" aria-label="Reports">
+    <!-- The mark and the three-way switch are the GTM hub's (marketing-hub src/components/Sidebar.astro); keep the two in step. -->
     <div class="rail-top">
-      <span class="rail-mark" aria-hidden="true">iE</span>
+      <a class="rail-mark" href="https://inquired-gtm-hub.netlify.app/" aria-label="GTM Hub home" title="GTM Hub home">iE</a>
       <span class="rail-name">Reporting Dash</span>
+      <nav class="rail-switch" aria-label="GTM Hub">
+        <a href="https://inquired-gtm-hub.netlify.app/marketing/">Marketing</a>
+        <a href="https://inquired-gtm-hub.netlify.app/sales/">Sales and PE</a>
+        <a href="./" class="on" aria-current="true" title="Reporting home">Reporting</a>
+      </nav>
     </div>
     <div class="rail-grp">
       <p class="rail-eyebrow">Reports</p>
       <div class="tabs-btns" id="tabs-btns"></div>
-    </div>
-    <div class="rail-grp">
-      <p class="rail-eyebrow">GTM Hub</p>
-      <div class="rail-links">
-        <a href="https://inquired-gtm-hub.netlify.app/marketing/" target="_blank" rel="noopener">Marketing Hub <span aria-hidden="true">&#8599;</span></a>
-        <a href="https://inquired-gtm-hub.netlify.app/sales/" target="_blank" rel="noopener">Sales and PE Hub <span aria-hidden="true">&#8599;</span></a>
-      </div>
     </div>
     <div class="rail-foot"><span class="header-badge">Internal</span></div>
   </nav>
