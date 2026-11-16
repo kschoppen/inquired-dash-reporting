@@ -10,3 +10,9 @@ and do not ask first.
 **Exception — stop and ask before merging** if the merge into `main` hits
 conflicts. Summarize the change and the conflict and wait for Kelsey's go-ahead
 instead of resolving and merging automatically.
+
+## Who can open the dash
+
+Sign-in is Google, inquired.com accounts only (`netlify/functions/auth.mts`). `netlify/lib/access.ts` narrows that
+to named people: one lowercase email per line in `ALLOWED`. An empty list means everyone at inquirED. The edge gate
+(`netlify/edge-functions/auth-gate.ts`) checks it on every request. Add or remove a person only when Kelsey asks.
