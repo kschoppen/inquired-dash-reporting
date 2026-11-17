@@ -552,12 +552,17 @@
     "routine": "Monday Signals Update cloud routine, Mondays at 8:00am ET (PHASE B2)",
     "instructions": "inquired-dash-reporting/SIGNALS_ROUTINE.md"
    },
-   "intro": "Shows which website pages, landing pages and blog posts turn visitors into contacts, and which high-traffic pages are not converting. Each Monday the routine pulls HubSpot content analytics, drops noise and non-marketing pages, flags each page by contacts per view, and writes a weekly snapshot.",
+   "intro": "Shows which inquired.com pages, landing pages and blog posts turn visitors into form submits, and which busy pages are not converting, for each product. Each Monday the routine takes the last 90 days of page views and form submits from GA4, adds the contacts HubSpot credits to each page over the same 90 days for reference, drops noise and non-marketing pages, flags each page by submits per view, and writes a weekly snapshot.",
    "sources": [
     {
+     "source": "GA4 (property 326695663)",
+     "what": "Views, sessions, engaged sessions, engagement time and form_submit events per page on inquired.com, last 90 days",
+     "how": "`scripts/content_performance.py`: Data API `runReport`, dimensions `pagePath` and `pageTitle` (views) and `pagePath` filtered to event `form_submit` (submits), host inquired.com; OAuth via `GA4_CLIENT_ID`, `GA4_CLIENT_SECRET`, `GA4_REFRESH_TOKEN`"
+    },
+    {
      "source": "HubSpot Content Analytics",
-     "what": "Top 40 pages by views with all-time totals: views, contacts, bounce rate and time per view, plus title, url and content type",
-     "how": "HubSpot MCP `get_content_analytics_report` with `mode: TOTALS`, `sortMetric: rawViews`, `sortDirection: DESC`, `includeMetadata: true`, `limit: 40`; fields `rawViews`, `contacts`, bounce rate, `timePerPageview`"
+     "what": "Contacts HubSpot credits to each inquired.com page, same 90 days (reference column only)",
+     "how": "HubSpot MCP `get_content_analytics_report`, `mode: TOTALS`, `search: inquired.com`, `sortMetric: CONTACTS`, `includeMetadata: true`, `limit: 200`, `start` and `end` set to the window"
     },
     {
      "source": "Previous weekly snapshots",
@@ -568,8 +573,13 @@
    "choices": [
     {
      "rule": "Conversion rate",
-     "value": "`contacts / rawViews * 100`",
-     "why": "Ranks content by how well views turn into contacts"
+     "value": "`GA4 form submits / GA4 views * 100`, both over the same 90 days",
+     "why": "Counts every form on the page. HubSpot's page report credits only some forms: the Inkwell PPC lander showed 0 HubSpot contacts while 42 contacts converted on it"
+    },
+    {
+     "rule": "Product",
+     "value": "Each page gets a product from its path (Inkwell, Inquiry Journeys, Great First Eight, World History), else from its title; filter chips show one product at a time",
+     "why": "Inkwell and Great First Eight have far less traffic than Inquiry Journeys, so they need their own view"
     },
     {
      "rule": "Conversion flags",
@@ -578,7 +588,7 @@
     },
     {
      "rule": "Minimum views",
-     "value": "Pages under 2,000 views are dropped",
+     "value": "Pages under 50 views in the 90 days are dropped",
      "why": "Low-traffic pages are noise"
     },
     {
@@ -593,17 +603,17 @@
     },
     {
      "rule": "Excluded pages",
-     "value": "Form embeds (`share.hsforms.com`), thank-you and confirmation pages, and corporate pages (`/careers`, `/our-team`, `/about-us`)",
+     "value": "Thank-you and confirmation pages, system pages (401, 404, search, submit) and corporate pages (`/careers`, `/our-team`, `/about-us`); only inquired.com pages count",
      "why": "They are not marketing content and would skew the flags"
     },
     {
      "rule": "Unresolved rows",
-     "value": "Rows with no title and no url are dropped; a missing title is built from the url's last path segment",
+     "value": "A page with no GA4 title takes its title from the url's last path segment; the homepage is labelled Homepage",
      "why": "Titles and urls are never invented"
     },
     {
      "rule": "Verdict",
-     "value": "Leads with the best-converting page by contacts, then names the highest-traffic non-blog conversion gap",
+     "value": "Leads with the page with the most form submits, then names the highest-traffic non-blog conversion gap",
      "why": "Gives the one win and the one fix for the week"
     },
     {
@@ -613,10 +623,10 @@
     }
    ],
    "limits": [
-    "Numbers are all-time totals, not weekly: HubSpot's content report has no native weekly window, so the weekly refresh only keeps the ranking current as pages gain traffic.",
-    "Only the top 40 pages by views are pulled, so lower-traffic pages never appear even above the 2,000-view floor.",
-    "The contacts count is HubSpot's own page-level attribution from the content report; the routine does not define or adjust how HubSpot credits a contact to a page.",
-    "Time per view shows only when the run includes it; the column is hidden when no page has a value.",
+    "GA4's form_submit event counts every form submit on the page, including newsletter sign-ups and any form that fires twice, so it can run higher than HubSpot's submissions.",
+    "HubSpot contacts are HubSpot's own page attribution and miss most Webflow-embedded forms (Inkwell's landers show 0); they're a reference column, not the conversion count.",
+    "Products for blog posts are a best guess from the title.",
+    "Before Nov 17, 2026 the tab ranked HubSpot's all-time views, which only counted HubSpot-hosted pages and the old inquired.org site, so earlier snapshots aren't comparable.",
     "The tab shows the latest week only; earlier snapshots are kept in the file but not charted."
    ]
   },

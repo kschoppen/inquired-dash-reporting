@@ -17,7 +17,7 @@ const TABS = [
     meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
       sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "State adoption calendar (state strategy list, States Sales monthly 2026-10-14)", "Slack #rfps (confirmed procurement-stage updates, reviewed by a person)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
   { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
-    meta: { desc: "Pages, blog posts, and landing pages ranked by view-to-contact conversion. Surfaces high-traffic content converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
+    meta: { desc: "inquired.com pages, blog posts, and landing pages by product, ranked by form submits per view over the last 90 days. Surfaces busy pages converting under 0.5%.", cadence: "Weekly · Mondays", next: "Sep 15, 2026",
       sources: ["HubSpot Content Analytics"] } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
@@ -1145,8 +1145,18 @@ function renderContentPerformance(d) {
     return;
   }
   const last = weeks[weeks.length - 1];
-  const pages = last.pages || [];
+  // Product filter (Kelsey, 2026-11-17): Inkwell and Great First Eight have far less traffic than Inquiry
+  // Journeys, so each product can be read on its own. Older weeks have no product field and show no chips.
+  const PRODUCTS = ["Inkwell", "Inquiry Journeys", "Great First Eight", "World History", "inquirED General"];
+  const allPages = last.pages || [];
+  const hasProduct = allPages.some((p) => p.product);
+  const prod = hasProduct ? (window.__cpProduct || "") : "";
+  const pages = prod ? allPages.filter((p) => p.product === prod) : allPages;
   const t = last.totals || {};
+  const chips = hasProduct ? `<div class="cp-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px">${["", ...PRODUCTS].filter((x) => !x || allPages.some((p) => p.product === x)).map((x) => {
+    const n = x ? allPages.filter((p) => p.product === x).length : allPages.length;
+    return `<button type="button" class="chip${x === prod ? " on" : ""}" data-cp-product="${x}">${x || "All products"} <span>${n}</span></button>`;
+  }).join("")}</div>` : "";
   const FLAG_LABEL = { gap: "Conversion gap", watch: "Watch", healthy: "Healthy" };
   const FLAG_CLASS = { gap: "cc-thr-red", watch: "cc-thr-amber", healthy: "cc-thr-green" };
   const TYPE_LABEL = { landing_page: "Landing page", blog_post: "Blog post", site_page: "Site page" };
@@ -1156,7 +1166,10 @@ function renderContentPerformance(d) {
   const isBlog = (p) => p.content_type === "blog_post";
   const hasTime = pages.some((p) => p.time_per_view_sec != null);
   const fmtSec = (v) => v == null ? "—" : v >= 60 ? `${Math.floor(v / 60)}m ${Math.round(v % 60)}s` : `${Math.round(v)}s`;
-  const top = pages.filter((p) => !isBlog(p) && p.flag === "healthy").sort((a, b) => b.contacts - a.contacts);
+  // Conversion is GA4 form submits per view since 2026-11-17 (form_submits); older weeks only have contacts.
+  const subs = (p) => p.form_submits ?? p.contacts;
+  const hasSubs = pages.some((p) => p.form_submits != null);
+  const top = pages.filter((p) => !isBlog(p) && p.flag === "healthy").sort((a, b) => subs(b) - subs(a));
   const watch = pages.filter((p) => !isBlog(p) && p.flag === "watch").sort((a, b) => b.raw_views - a.raw_views);
   const blogs = pages.filter(isBlog).sort((a, b) => b.raw_views - a.raw_views);
   const gaps = pages.filter((p) => !isBlog(p) && p.flag === "gap").sort((a, b) => b.raw_views - a.raw_views);
@@ -1165,38 +1178,42 @@ function renderContentPerformance(d) {
           <tr>
             <td>${link(p)}</td>
             <td>${TYPE_LABEL[p.content_type] || p.content_type}</td>
+            ${hasProduct ? `<td>${p.product || ""}</td>` : ""}
             <td>${fmtN(p.raw_views)}</td>
+            ${hasSubs ? `<td>${fmtN(p.form_submits)}</td>` : ""}
             <td>${fmtN(p.contacts)}</td>
             <td><span class="${FLAG_CLASS[p.flag]}">${p.conversion_rate_pct.toFixed(2)}%</span></td>
             <td>${p.bounce_rate_pct.toFixed(0)}%</td>
           </tr>`).join("");
   const convTable = (rows, empty) => rows.length
     ? `<div class="panel" style="padding:0;overflow:auto"><table class="bd">
-        <thead><tr><th>Page</th><th>Type</th><th>Views</th><th>Contacts</th><th>Conversion</th><th>Bounce</th></tr></thead>
+        <thead><tr><th>Page</th><th>Type</th>${hasProduct ? "<th>Product</th>" : ""}<th>Views</th>${hasSubs ? "<th>Form submits</th><th>HubSpot contacts</th>" : "<th>Contacts</th>"}<th>Conversion</th><th>Bounce</th></tr></thead>
         <tbody>${convRows(rows)}</tbody></table></div>`
     : `<p class="cap">${empty}</p>`;
   const blogTable = blogs.length
     ? `<div class="panel" style="padding:0;overflow:auto"><table class="bd">
-        <thead><tr><th>Post</th><th>Views</th><th>Engaged (100 − bounce)</th>${hasTime ? "<th>Time per view</th>" : ""}<th>Contacts</th></tr></thead>
+        <thead><tr><th>Post</th>${hasProduct ? "<th>Product</th>" : ""}<th>Views</th><th>Engaged (100 − bounce)</th>${hasTime ? "<th>Time per view</th>" : ""}<th>${hasSubs ? "Form submits" : "Contacts"}</th></tr></thead>
         <tbody>${blogs.map((p) => `
           <tr>
             <td>${link(p)}</td>
+            ${hasProduct ? `<td>${p.product || ""}</td>` : ""}
             <td>${fmtN(p.raw_views)}</td>
             <td>${(100 - p.bounce_rate_pct).toFixed(0)}%</td>
             ${hasTime ? `<td>${fmtSec(p.time_per_view_sec)}</td>` : ""}
-            <td>${fmtN(p.contacts)}</td>
+            <td>${fmtN(subs(p))}</td>
           </tr>`).join("")}</tbody></table></div>`
     : `<p class="cap">No blog posts above the view threshold this run.</p>`;
 
   document.getElementById("view").innerHTML = `
     ${last.verdict ? note("<strong>Verdict:</strong> " + last.verdict) : ""}
+    ${chips}
     <div class="cards">
-      ${card("Top converters", fmtN(top.length), "", "2%+ of views become contacts")}
+      ${card("Top converters", fmtN(top.length), "", hasSubs ? "2%+ of views submit a form" : "2%+ of views become contacts")}
       ${card("Watch", fmtN(watch.length), "", "0.5 to 2% conversion")}
       ${card("Blog posts", fmtN(blogs.length), "", "judged on reach + engagement")}
       ${card("Conversion gaps", fmtN(gaps.length), "", "site + landing pages under 0.5%")}
     </div>
-    <div class="section-label">Top converters · most contacts first · ${last.label}</div>
+    <div class="section-label">Top converters · most ${hasSubs ? "form submits" : "contacts"} first · ${last.label}</div>
     ${convTable(top, "No pages at 2%+ conversion this run.")}
     <div class="section-label">Watch · 0.5 to 2% conversion</div>
     ${convTable(watch, "Nothing in the watch band this run.")}
@@ -1206,12 +1223,17 @@ function renderContentPerformance(d) {
     <div class="section-label">Conversion gaps · highest traffic first</div>
     ${convTable(gaps, "No conversion gaps this run.")}
     <div class="cc-threshold">
-      <strong>Thresholds (contacts / views):</strong>
+      <strong>Thresholds (${hasSubs ? "form submits" : "contacts"} / views):</strong>
       <span class="cc-thr-red">Gap under 0.5%</span> ·
       <span class="cc-thr-amber">Watch 0.5-2%</span> ·
       <span class="cc-thr-green">Healthy 2%+</span>.
       Pages under ${fmtN(d.min_views_threshold)} views excluded as noise. ${d.excluded_note || ""}
+      ${last.window ? `<br>Window: ${last.window.start} to ${last.window.end}. Source: ${last.source || ""}.` : ""}
     </div>`;
+  document.querySelectorAll("[data-cp-product]").forEach((b) => b.addEventListener("click", () => {
+    window.__cpProduct = b.dataset.cpProduct;
+    renderContentPerformance(d);
+  }));
 }
 
 // ---- definitions tab ----

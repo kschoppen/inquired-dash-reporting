@@ -189,52 +189,39 @@ The weekly competitor news + SEMrush keyword refresh runs in its own Monday 9am 
 
 ---
 
-## PHASE B2: Content performance (HubSpot content analytics)
+## PHASE B2: Content performance (GA4 views and form submits + HubSpot contacts, last 90 days)
 
-Powers the **Content Performance** tab — ranks pages, blog posts, and landing pages by
-view to contact conversion, so the tab surfaces high-traffic content with no working CTA.
+Powers the **Content Performance** tab: inquired.com pages, landing pages and blog posts flagged by
+form submits per view (GA4), with a product on every page so Inkwell and Great First Eight can be read on
+their own. Changed 2026-11-17: the tab used to rank HubSpot's all-time views, which only HubSpot-hosted
+pages and the old inquired.org site have.
 
-**Pull:** HubSpot MCP `get_content_analytics_report`, `mode: "TOTALS"`, `sortMetric:
-"rawViews"`, `sortDirection: "DESC"`, `includeMetadata: true`, `limit: 40`. All-time
-totals (this report has no native weekly window) — the tab still refreshes weekly so the
-ranking stays current as pages accrue traffic.
+**Window:** the 90 days ending yesterday (`START` = today minus 90 days, `END` = yesterday, `YYYY-MM-DD`).
 
-**Exclude before ranking (do not include these rows at all):**
-- Any `contentId`/`url` under `share.hsforms.com` (form embeds, not content)
-- Thank-you / confirmation pages (title contains "Thank You" or "TY_", or url contains
-  "thank-you")
-- Non-marketing corporate pages: `/careers`, `/our-team`, `/about-us`
+**1. HubSpot contacts.** HubSpot MCP `get_content_analytics_report` with `mode: "TOTALS"`,
+`search: "inquired.com"`, `sortMetric: "CONTACTS"`, `sortDirection: "DESC"`, `includeMetadata: true`,
+`limit: 200`, `start: START`, `end: END`. Save the whole response, unchanged, to
+`/tmp/hubspot-content.json`.
 
-**Never fabricate a title or url.** If HubSpot returns a row with no `title` and no
-`url` (an unresolved contentId), drop that row rather than invent one — this bit Claude
-on the first build (a placeholder url was almost shipped for one row). If a row's
-`title` is missing but it has a `url`, derive a readable title from the url's last path
-segment (title-case, dashes to spaces) rather than leaving the raw slug or contentId.
+**2. Build.** Run:
 
-**Threshold:** drop rows with `rawViews` under 2,000 (noise). For everything else,
-compute `conversion_rate_pct = contacts / rawViews * 100` and flag:
-- `gap` — under 0.5%
-- `watch` — 0.5% to 2%
-- `healthy` — 2%+
-
-Sort ascending by `conversion_rate_pct` (the tab re-sorts into its own sections, so order here doesn't matter much). `time_per_view_sec` = the row's `timePerPageview` metric, rounded. The tab shows it for blog posts, which are judged on engagement (views, non-bounce share, time per view) because they aren't expected to convert on the page. Keep flagging blog rows by the same thresholds in the JSON, but `totals.gap_count` counts **non-blog** gaps only.
-
-**Write `data/content-performance.json`:** upsert this run into `weeks[]`, keyed by
-`period` (this run's date, `YYYY-MM-DD`), replace if present else append, cap at 8
-entries (oldest dropped first). Full entry shape:
-
-```json
-{ "period": "YYYY-MM-DD", "label": "Mon D, YYYY",
-  "totals": { "pages_tracked": N, "gap_count": N, "watch_count": N, "healthy_count": N },
-  "verdict": "1-2 sentence headline: lead with the best-converting page (most contacts), then name the highest-traffic non-blog conversion gap. Blog posts are judged on reach, never called a conversion gap. No emoji, no em dash",
-  "pages": [ { "contentId": "...", "title": "...", "url": "...",
-    "content_type": "landing_page|blog_post|site_page", "raw_views": N, "contacts": N,
-    "conversion_rate_pct": N, "bounce_rate_pct": N, "time_per_view_sec": N, "flag": "gap|watch|healthy" }, … ] }
+```bash
+python3 scripts/content_performance.py /tmp/hubspot-content.json
 ```
 
-Also refresh top-level `updated` (run date) and `min_views_threshold` (leave at 2000
-unless traffic volume has changed enough to warrant revisiting). Preserve
-`excluded_note`. This tab's JSON is pushed in PHASE C.
+It pulls GA4 views and `form_submit` events for the same window (needs `GA4_CLIENT_ID`, `GA4_CLIENT_SECRET`, `GA4_REFRESH_TOKEN`),
+joins HubSpot's contacts by page path (a reference column; HubSpot misses most Webflow-embedded forms), drops noise (under 50 views; thank-you, system and corporate
+pages), flags each page (gap under 0.5%, watch 0.5 to 2%, healthy 2%+), adds the product and writes the
+week into `data/content-performance.json` (upsert by date, 8 kept). Exit `2` means the GA4 credentials
+aren't in the environment: the file is untouched; report it ✗ with "GA4 credentials not set". Exit `1`:
+untouched; report the error line. Never hand-write numbers into the file.
+
+**3. Verdict.** The script writes a plain verdict. You may rewrite `weeks[-1].verdict` in 1 to 2
+sentences: lead with the page with the most form submits, then the busiest non-blog page that
+rarely converts; blog posts are judged on reach, never called a conversion gap. No emoji, no em or en
+dashes. Change nothing else in the file.
+
+This tab's JSON is pushed in PHASE C.
 
 ---
 
