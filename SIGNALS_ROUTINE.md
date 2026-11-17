@@ -2,7 +2,7 @@
 
 Run UNATTENDED every Monday at 8am ET, after the Dash routine (6am, `DASH_ROUTINE.md`). Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
-Split out of `DASH_ROUTINE.md` on 2026-09-28 because one session couldn't hold the funnel digest plus these three refreshes. The 9/28 run lost funnel breakdowns to context compaction. This routine owns the **State Signal (MQA)** and **Content Performance** tabs. (Competitive Intel moved to `CI_WEEKLY_ROUTINE.md` the same day, after the first test run still hit a context compaction.) It never touches `weekly-digest.json`, `overview.json`, or the weekly run log (the Dash routine owns those), and it posts nothing to channels.
+Split out of `DASH_ROUTINE.md` on 2026-09-28 because one session couldn't hold the funnel digest plus these three refreshes. The 9/28 run lost funnel breakdowns to context compaction. This routine owns the **State Signal (MQA)** tab (Content Performance moved to the GTM hub on 2026-11-17). (Competitive Intel moved to `CI_WEEKLY_ROUTINE.md` the same day, after the first test run still hit a context compaction.) It never touches `weekly-digest.json`, `overview.json`, or the weekly run log (the Dash routine owns those), and it posts nothing to channels.
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app
 
@@ -189,48 +189,17 @@ The weekly competitor news + SEMrush keyword refresh runs in its own Monday 9am 
 
 ---
 
-## PHASE B2: Content performance (GA4 views and form submits + HubSpot contacts, last 90 days)
+## PHASE B2: retired 2026-11-17
 
-Powers the **Content Performance** tab: inquired.com pages, landing pages and blog posts flagged by
-form submits per view (GA4), with a product on every page so Inkwell and Great First Eight can be read on
-their own. Changed 2026-11-17: the tab used to rank HubSpot's all-time views, which only HubSpot-hosted
-pages and the old inquired.org site have.
-
-**Window:** the 90 days ending yesterday (`START` = today minus 90 days, `END` = yesterday, `YYYY-MM-DD`).
-
-**1. HubSpot contacts.** HubSpot MCP `get_content_analytics_report` with `mode: "TOTALS"`,
-`search: "inquired.com"`, `sortMetric: "CONTACTS"`, `sortDirection: "DESC"`, `includeMetadata: true`,
-`limit: 200`, `start: START`, `end: END`. Save the whole response, unchanged, to
-`/tmp/hubspot-content.json`.
-
-**2. Build.** Run:
-
-```bash
-python3 scripts/content_performance.py /tmp/hubspot-content.json
-```
-
-It pulls GA4 views and `form_submit` events for the same window (needs `GA4_CLIENT_ID`, `GA4_CLIENT_SECRET`, `GA4_REFRESH_TOKEN`),
-joins HubSpot's contacts by page path (a reference column; HubSpot misses most Webflow-embedded forms), drops noise (under 50 views; thank-you, system and corporate
-pages), flags each page (gap under 0.5%, watch 0.5 to 2%, healthy 2%+), adds the product and writes the
-week into `data/content-performance.json` (upsert by date, 8 kept). Exit `2` means the GA4 credentials
-aren't in the environment: the file is untouched; report it ✗ with "GA4 credentials not set". Exit `1`:
-untouched; report the error line. Never hand-write numbers into the file.
-
-**3. Verdict.** The script writes a plain verdict. You may rewrite `weeks[-1].verdict` in 1 to 2
-sentences: lead with the page with the most form submits, then the busiest non-blog page that
-rarely converts; blog posts are judged on reach, never called a conversion gap. No emoji, no em or en
-dashes. Change nothing else in the file.
-
-This tab's JSON is pushed in PHASE C.
-
----
+Content Performance moved to the GTM hub (Marketing ops, Performance), which reads the marketing-ops repo's page
+metrics (refreshed Mondays by marketing-ops' Page metrics Action). This routine no longer pulls or writes it.
 
 ## PHASE C: Push
 
 ```bash
 cd inquired-dash-reporting
 git pull --rebase origin main
-git add data/state-signal.json data/content-performance.json
+git add data/state-signal.json
 git commit -m "Weekly signals update — $(date +%Y-%m-%d)"
 git push origin HEAD:main
 git fetch origin && git log --oneline -2 origin/main
@@ -250,7 +219,6 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_
 *🛰️ Signals update — [Mon D]*
 • [✓/✗] State Signal (MQA) → data/state-signal.json [top state + actionable count, N states]
 • [✓/✗] Warm Signals → data/state-signal.json [N matched accounts]
-• [✓/✗] Content performance → data/content-performance.json [N pages, N gaps]
 • [✓/✗] Deployed → inquired-marketing-dash.netlify.app [SHA]
 ```
 

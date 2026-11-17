@@ -30,7 +30,7 @@ Use `null` for metrics not available in a given month — the dashboard renders 
 
 ## Tabs
 - **Monthly Funnel & Revenue** — `monthly-marketing-digest` (live)
-- **Content Performance** — inquired.com pages, blog posts and landing pages by product, ranked by form submits per view (GA4, last 90 days) with HubSpot contacts for reference; refreshed every Monday by the Signals routine (`scripts/content_performance.py`)
+- **Content Performance**: moved to the GTM hub on 2026-11-17 (Marketing ops, Performance); the tab links there
 - **State Signal (MQA)** — MQA/Engaged accounts ranked by state, surfacing which states have the most actionable warm accounts (no sales contact in 60+ days); refreshed Mondays via `SIGNALS_ROUTINE.md` PHASE A, owned by the `state-signal-refresh` skill (live). Policy context + tailored outreach templates not yet built — see the tab's own caveats.
 - **Account Pulse (MQA)** — `account-pulse.html`, rendered from `data/account-pulse.json`: Pass to Sales ranking, marketing's down-funnel impact, moves this week, stale MQAs with Demote / Recycle / Escalate decisions (Airtable "Account Decisions" log via `netlify/functions/*-account-decision*.js`), 12-week trend. Refreshed Mondays 7:30am ET via `PULSE_ROUTINE.md` + `scripts/build_account_pulse.py` (live)
 - _planned:_ Weekly Funnel · Competitor · SEO
