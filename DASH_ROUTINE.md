@@ -1,5 +1,7 @@
 # Monday Dash Update — Routine Instructions
 
+Healthchecks: the ping URL is `${HC_DASH_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Run UNATTENDED every Monday at 6am ET. Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
 Repos in workspace:
@@ -10,7 +12,7 @@ Repos in workspace:
 ## STEP 0: Healthchecks start
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/185dbee2-de71-4115-9ef3-dfa94ba44a3c/start || true
+curl -fsS -m 10 --retry 3 ${HC_DASH_URL}/start || true
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'Dash Update (cloud routine)'
 ```
@@ -475,8 +477,8 @@ Use ✓ for success, ✗ for failure. If a step failed, say why in brackets.
 ## STEP 7: Healthchecks final ping
 
 - **Success** (Phases 1+3 pushed AND channel post ok:true AND the DM or #kelsey-command-center post ok:true):
-  `curl -fsS -m 10 --retry 3 https://hc-ping.com/185dbee2-de71-4115-9ef3-dfa94ba44a3c`
+  `curl -fsS -m 10 --retry 3 ${HC_DASH_URL}`
 - **Any failure:**
-  `curl -fsS -m 10 --retry 3 https://hc-ping.com/185dbee2-de71-4115-9ef3-dfa94ba44a3c/fail`
+  `curl -fsS -m 10 --retry 3 ${HC_DASH_URL}/fail`
 
 Never ping success on a partial run.

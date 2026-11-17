@@ -1,5 +1,7 @@
 # Competitive Intel Full Run — Routine Instructions
 
+Healthchecks: the ping URL is `${HC_CI_FULL_RUN_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Runs UNATTENDED on the 10th of every odd month (Jan, Mar, May, Jul, Sep, Nov) at 14:00 UTC
 (10am EDT / 9am EST). Cloud routine `trig_01RJHYmJgqxWDud9KueHManw`.
 Complete ALL steps in order. NEVER ask questions. NEVER fabricate data — an unknown stays
@@ -21,7 +23,7 @@ inquirED products: **Inkwell** (K–2 integrated ELA + SS; structured inquiry + 
 ## STEP 0: Healthchecks start + git identity
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/430e85bb-7d4f-48bd-b539-a7431d9be837/start || true
+curl -fsS -m 10 --retry 3 ${HC_CI_FULL_RUN_URL}/start || true
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'CI Full Run (cloud routine)'
 TODAY=$(TZ=America/Detroit date +%F)
@@ -227,8 +229,8 @@ After `chat.postMessage` returns `ok:true`, print exactly `<<<CI_DM_OK ts=<ts>>>
 ## STEP 8: Healthchecks final ping
 
 - **Success** (push landed on `origin/main` AND DM `ok:true`):
-  `curl -fsS -m 10 --retry 3 https://hc-ping.com/430e85bb-7d4f-48bd-b539-a7431d9be837`
+  `curl -fsS -m 10 --retry 3 ${HC_CI_FULL_RUN_URL}`
 - **Anything else:**
-  `curl -fsS -m 10 --retry 3 https://hc-ping.com/430e85bb-7d4f-48bd-b539-a7431d9be837/fail`
+  `curl -fsS -m 10 --retry 3 ${HC_CI_FULL_RUN_URL}/fail`
 
 Never ping success on a partial run.

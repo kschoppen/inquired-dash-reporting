@@ -1,5 +1,7 @@
 # Monday Competitive Intel (weekly) — Routine Instructions
 
+Healthchecks: the ping URL is `${HC_CI_WEEKLY_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Run UNATTENDED every Monday at 9am ET, after the Dash (6am) and Signals (8am) routines. Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
 Split out of `SIGNALS_ROUTINE.md` on 2026-09-28 so each Monday routine fits in one session. This routine owns only the weekly refresh of `competitive-intel.html` (competitor `signals` + `keywords` in the DRAWER object) and `updated` in `data/competitive-intel.json`. The bi-monthly full run (`CI_FULL_RUN.md`, its own routine) owns everything else on that page.
@@ -13,7 +15,7 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ```bash
 git config --global user.email k.schoppen@inquired.com
 git config --global user.name 'CI Weekly (cloud routine)'
-curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/start || true
+curl -fsS -m 10 --retry 3 ${HC_CI_WEEKLY_URL}/start || true
 ```
 
 Write `competitive-intel.html` after Part A, then again after Part B, so a Part B failure never loses Part A's signals.
@@ -134,7 +136,7 @@ If Part B was skipped for a SEMrush outage, post to #kelsey-command-center only 
 
 Healthchecks check "Reporting – weekly competitive intel" (cron `0 9 * * 1` America/New_York, 3h grace).
 
-- **Success** (Part A done; Part B written, or skipped only because SEMrush was unavailable; pushed or nothing to push; script check passed): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c`
-- **Any other failure** (searches broken, write or push failed, script check failed, Part B failed for a reason other than SEMrush access): `curl -fsS -m 10 --retry 3 https://hc-ping.com/7728ae78-073b-43b6-a15c-c1119fa75b4c/fail`
+- **Success** (Part A done; Part B written, or skipped only because SEMrush was unavailable; pushed or nothing to push; script check passed): `curl -fsS -m 10 --retry 3 ${HC_CI_WEEKLY_URL}`
+- **Any other failure** (searches broken, write or push failed, script check failed, Part B failed for a reason other than SEMrush access): `curl -fsS -m 10 --retry 3 ${HC_CI_WEEKLY_URL}/fail`
 
 Never ping success on a partial run, except the SEMrush-unavailable skip above. That one is a known external limit, not a routine fault.

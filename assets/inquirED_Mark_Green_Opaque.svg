@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Derived from inquirED_Mark_Green.svg. Identical geometry, with the shovel
+     filled white instead of knocked out, so the mark stays readable on video
+     footage, photography, and any non-white ground. Use the knockout original
+     on white or on a flat brand tint; use this one over anything else.
+     The rect matches the outer subpath of the original: inset 2.09, r 64.56. -->
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 1584">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #144745;
+      }
+      .cls-bg {
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  <rect class="cls-bg" x="2.09" y="2.09" width="1579.82" height="1579.82" rx="64.56" ry="64.56"/>
+  <path class="cls-1" d="M1517.34,2.09H66.66C31,2.09,2.09,31,2.09,66.66v1450.69c0,35.66,28.91,64.56,64.56,64.56h1450.69c35.66,0,64.56-28.91,64.56-64.56V66.66c0-35.66-28.91-64.56-64.56-64.56ZM1075.4,1181.92l-102.28,159.36c-9.39,16.28-27.08,27.96-43.23,32.42-16.15,4.46-37.38,2.94-53.79-6.54l-168.92-86.58c-8.21-4.74-16.42-9.48-19.89-22.43l-48.57-181.28c-5.2-19.42,2.54-42.31,28.44-49.25l123.01-32.96-159.6-595.63c-1.95-7.28-2.86-10.16-9.94-11.21-20.78-3.1-41.92-5.52-65.21-10.28-14.68-3-22.89-7.74-26.36-20.69l-17.35-64.74c-3.47-12.95,9.48-16.42,15.95-18.15l200.7-53.78c6.47-1.74,19.42-5.2,22.89,7.74,4.82,17.97,12.53,46.75,17.35,64.74,3.47,12.95-1.27,21.16-12.48,31.1-11.3,10.02-30.82,26.85-51.33,41.51-5.82,4.16-4.74,8.21-3,14.68l159.6,595.63,123.01-32.96c25.9-6.94,44.05,9.01,49.25,28.44l48.57,181.28c3.47,12.95-1.27,21.16-6.82,29.58Z"/>
+</svg>
