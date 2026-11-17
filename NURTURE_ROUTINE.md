@@ -1,5 +1,7 @@
 # Tuesday Nurture Update — Routine Instructions
 
+Healthchecks: the ping URL is `${HC_NURTURE_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Run UNATTENDED every Tuesday at 7am ET. Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
 This routine owns the **Nurture Programs** tab: it rewrites `data/nurture-programs.json` and nothing else on the page. `nurture-programs.html` renders every number and note from that file (joined with `data/nurture-workflows.json`), so **never edit the HTML**. It never touches the Teacher Nurture tab (its own Tuesday 7:30am routine, TEACHER_NURTURE_ROUTINE.md, writes the snapshot it reads) or any file another routine owns.
@@ -11,7 +13,7 @@ Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-da
 ## STEP 0: Setup
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d/start || true
+curl -fsS -m 10 --retry 3 ${HC_NURTURE_URL}/start || true
 ```
 
 Read these three files in full before pulling anything:
@@ -186,7 +188,7 @@ No em or en dashes in the message.
 Success = JSON pushed to `main` AND the DM returned `ok:true`:
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d || true
+curl -fsS -m 10 --retry 3 ${HC_NURTURE_URL} || true
 ```
 
-On a handled failure (push failed, or both phases failed): `https://hc-ping.com/a65c75b3-5ab3-4eed-862f-77192d4efe5d/fail`. Never ping success on a partial run where nothing was pushed.
+On a handled failure (push failed, or both phases failed): `${HC_NURTURE_URL}/fail`. Never ping success on a partial run where nothing was pushed.

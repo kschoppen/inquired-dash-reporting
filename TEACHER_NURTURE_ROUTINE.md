@@ -1,5 +1,7 @@
 # Tuesday Teacher Nurture Snapshot: Routine Instructions
 
+Healthchecks: the ping URL is `${HC_TEACHER_NURTURE_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Run UNATTENDED every Tuesday at 7:30am ET, after the Nurture Programs routine (7am). Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/New_York for all dates.
 
 This routine owns `data/teacher-nurture-snapshot.json`, which the **Teacher Nurture** tab renders (it only falls back to the live Netlify function when the snapshot is missing). It never edits the HTML, the registry (`data/teacher-nurture.json`) or any other file.
@@ -13,7 +15,7 @@ Secrets come from the environment: `MAILCHIMP_API_KEY`, and the Slack bot token 
 ## STEP 0: Setup
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a/start || true
+curl -fsS -m 10 --retry 3 ${HC_TEACHER_NURTURE_URL}/start || true
 ```
 
 
@@ -78,7 +80,7 @@ No row 6+ days older yet: skip the week-over-week numbers and say it's the basel
 Success = snapshot pushed to `main` AND the DM returned `"ok":true`:
 
 ```bash
-curl -fsS -m 10 --retry 3 https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a || true
+curl -fsS -m 10 --retry 3 ${HC_TEACHER_NURTURE_URL} || true
 ```
 
-On a handled failure: `https://hc-ping.com/780ab29d-5ce8-4632-af44-f0738169fa1a/fail`. Never ping success when nothing was pushed.
+On a handled failure: `${HC_TEACHER_NURTURE_URL}/fail`. Never ping success when nothing was pushed.

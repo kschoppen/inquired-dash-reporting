@@ -1,5 +1,7 @@
 # Monday Account Pulse Update — Routine Instructions
 
+Healthchecks: the ping URL is `${HC_PULSE_URL}`, a cloud environment variable (Marketing Automation). Use it only inside the curl pings below and never print it. If it is empty, skip the pings and say so in the run's report.
+
 Run UNATTENDED every Monday at 7:30am ET. Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/New_York for all dates.
 
 This routine owns the **Account Pulse (MQA)** tab. It writes exactly three files and nothing else:
@@ -17,7 +19,7 @@ Healthchecks check "Account Pulse (Mon)" (cron 7:30 Mondays, America/New_York, 3
 
 ## STEP 0: Setup
 
-Start ping first: `curl -fsS -m 10 --retry 3 https://hc-ping.com/1fbae32b-1a10-4016-94b9-24fae3b671b6/start || true`
+Start ping first: `curl -fsS -m 10 --retry 3 ${HC_PULSE_URL}/start || true`
 
 ```bash
 git config --global user.email k.schoppen@inquired.com
@@ -153,4 +155,4 @@ Follow-ups = rows in `pass_to_sales.rows` or `stale.rows` with a `followup` fiel
 
 ## STEP 6: Finish ping
 
-Every step passed (pulls, build, push, and the DM returned `"ok":true`): `curl -fsS -m 10 --retry 3 https://hc-ping.com/1fbae32b-1a10-4016-94b9-24fae3b671b6 || true`. A failed run (the `❌` DM, or any ✗ on the HubSpot pulls or the push): send `.../1fbae32b-1a10-4016-94b9-24fae3b671b6/fail` instead. A ✗ on Starbridge or the decision log alone still counts as success (they are context only). Never ping success on a partial run.
+Every step passed (pulls, build, push, and the DM returned `"ok":true`): `curl -fsS -m 10 --retry 3 ${HC_PULSE_URL} || true`. A failed run (the `❌` DM, or any ✗ on the HubSpot pulls or the push): send `${HC_PULSE_URL}/fail` instead. A ✗ on Starbridge or the decision log alone still counts as success (they are context only). Never ping success on a partial run.
