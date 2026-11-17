@@ -546,6 +546,21 @@
     "If the Airtable connection is unavailable, Decision badges stay blank; the rest of the tab still works."
    ]
   },
+  "content": {
+   "built_by": {
+    "skill": "content-performance-refresh",
+    "routine": "Monday Signals Update cloud routine, Mondays at 8:00am ET (PHASE B2)",
+    "instructions": "inquired-dash-reporting/SIGNALS_ROUTINE.md"
+   },
+   "intro": "Shows how inquired.com content performs week to week, by product and content type: 90-day views, form submits, engagement and search clicks, and the pages that moved most since last week. The numbers come from the marketing-ops repo, the same source as the GTM hub's Performance page, so the two always agree; the hub lists every page.",
+   "sources": [
+    {
+     "source": "marketing-ops performance-history.json",
+     "what": "One 90-day snapshot a week of every live page's views, form submits, sessions, engaged sessions and search clicks",
+     "how": "Written by marketing-ops' Page metrics Action (Mondays 11:47 UTC) from GA4 (property 326695663) and Search Console; copied in by `scripts/content_from_ops.py`"
+    }
+   ]
+  },
   "competitive": {
    "built_by": {
     "skill": "competitive-intel",

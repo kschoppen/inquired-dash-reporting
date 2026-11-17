@@ -2,7 +2,7 @@
 
 Run UNATTENDED every Monday at 8am ET, after the Dash routine (6am, `DASH_ROUTINE.md`). Complete ALL steps in order. NEVER ask questions. NEVER fabricate data. America/Detroit for all dates.
 
-Split out of `DASH_ROUTINE.md` on 2026-09-28 because one session couldn't hold the funnel digest plus these three refreshes. The 9/28 run lost funnel breakdowns to context compaction. This routine owns the **State Signal (MQA)** tab (Content Performance moved to the GTM hub on 2026-11-17). (Competitive Intel moved to `CI_WEEKLY_ROUTINE.md` the same day, after the first test run still hit a context compaction.) It never touches `weekly-digest.json`, `overview.json`, or the weekly run log (the Dash routine owns those), and it posts nothing to channels.
+Split out of `DASH_ROUTINE.md` on 2026-09-28 because one session couldn't hold the funnel digest plus these three refreshes. The 9/28 run lost funnel breakdowns to context compaction. This routine owns the **State Signal (MQA)** and **Content Performance** tabs (Content Performance has read marketing-ops since 2026-11-17). (Competitive Intel moved to `CI_WEEKLY_ROUTINE.md` the same day, after the first test run still hit a context compaction.) It never touches `weekly-digest.json`, `overview.json`, or the weekly run log (the Dash routine owns those), and it posts nothing to channels.
 
 Repo in workspace: `kschoppen/inquired-dash-reporting` → inquired-marketing-dash.netlify.app
 
@@ -189,17 +189,34 @@ The weekly competitor news + SEMrush keyword refresh runs in its own Monday 9am 
 
 ---
 
-## PHASE B2: retired 2026-11-17
+## PHASE B2: Content performance (from marketing-ops, no API calls)
 
-Content Performance moved to the GTM hub (Marketing ops, Performance), which reads the marketing-ops repo's page
-metrics (refreshed Mondays by marketing-ops' Page metrics Action). This routine no longer pulls or writes it.
+Powers the **Content Performance** tab: the week-by-week trend of inquired.com content by product and content type.
+Since 2026-11-17 the numbers come from the `InquirED-com/marketing-ops` repo, the same source as the GTM hub's
+Performance page: its Page metrics Action (Mondays 11:47 UTC, before this routine) writes `performance-history.json`.
+This phase only copies it in. Never call GA4 or HubSpot for this tab, and never recompute the numbers.
+
+1. Get the file:
+   ```bash
+   rm -rf /tmp/mops && git clone --quiet --depth 1 https://github.com/InquirED-com/marketing-ops.git /tmp/mops
+   ```
+   If the clone is refused, call the `add_repo` tool (owner `InquirED-com`, repo `marketing-ops`, access `read`) and
+   run the clone again. If it's still refused, skip to the DM: mark this line ✗ "marketing-ops not reachable", and the
+   tab keeps last week's data.
+2. Copy it in:
+   ```bash
+   python3 scripts/content_from_ops.py /tmp/mops/performance-history.json
+   ```
+   Exit 2 means the file is missing or empty: mark ✗ with the message and keep last week's data.
+3. Read the script's line (`N week(s), latest YYYY-MM-DD, N pages`) for the DM. If the latest date is older than 7
+   days, say so in the DM line: marketing-ops' Page metrics Action didn't run this week.
 
 ## PHASE C: Push
 
 ```bash
 cd inquired-dash-reporting
 git pull --rebase origin main
-git add data/state-signal.json
+git add data/state-signal.json data/content-performance.json
 git commit -m "Weekly signals update — $(date +%Y-%m-%d)"
 git push origin HEAD:main
 git fetch origin && git log --oneline -2 origin/main
@@ -218,6 +235,7 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_
 ```
 *🛰️ Signals update — [Mon D]*
 • [✓/✗] State Signal (MQA) → data/state-signal.json [top state + actionable count, N states]
+• [✓/✗] Content performance → data/content-performance.json [N weeks, latest YYYY-MM-DD, from marketing-ops]
 • [✓/✗] Warm Signals → data/state-signal.json [N matched accounts]
 • [✓/✗] Deployed → inquired-marketing-dash.netlify.app [SHA]
 ```

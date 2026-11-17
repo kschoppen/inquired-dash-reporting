@@ -883,3 +883,8 @@ details.ss-drill[open] summary:before { content: "▾ "; }
 .rd .funnel-panel { margin-bottom: 0; }
 
 .rd-touch { display: inline-block; width: 70px; height: 8px; background: var(--line); border-radius: 4px; margin-right: 8px; vertical-align: middle; overflow: hidden; } .rd-touch i { display: block; height: 100%; background: var(--iq-green); }
+
+/* Content Performance tab: right-aligned numbers (2026-11-17) */
+table td.num, table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.cp-tbl tbody tr:last-child td { font-weight: 400; }
+table.cp-tbl tr.cp-sec td { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }

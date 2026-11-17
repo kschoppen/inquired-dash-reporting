@@ -16,9 +16,9 @@ const TABS = [
   { id: "state-signal", label: "State Signal (MQA)", data: "data/state-signal.json",     render: renderStateSignal,
     meta: { desc: "MQA/Engaged accounts ranked by state, cross-referenced with real, cited state curriculum/literacy policy signals (all 50 states + DC), live Starbridge RFP data, and real account-driven campaign history.", cadence: "Weekly · Mondays", next: "Sep 22, 2026",
       sources: ["HubSpot CRM (company records — mqa_lifecycle_stage, notes_last_contacted, state_st, starbridge_id)", "State DOE / legislature sites (policy citations, via WebSearch)", "Starbridge (live RFP / buyer-intelligence Bridges)", "Starbridge (Warm Signals bridges — GFE/IJ/Inkwell, live)", "State adoption calendar (state strategy list, States Sales monthly 2026-10-14)", "Slack #rfps (confirmed procurement-stage updates, reviewed by a person)", "inquirED Fall 2025-2026 Account-Driven Campaign brief + post-mortems"] } },
-  { id: "content",    label: "Content Performance", static: true,                        render: renderContentMoved,
-    meta: { desc: "Moved to the GTM hub: Marketing ops, Performance (Content view). One source for page numbers, refreshed every Monday.", cadence: "Weekly · Mondays (on the hub)", next: "",
-      sources: ["marketing-ops page metrics: GA4, Search Console, Semrush"] } },
+  { id: "content",    label: "Content Performance", data: "data/content-performance.json", render: renderContentPerformance,
+    meta: { desc: "How inquired.com content performs week to week, by product and content type: 90-day views, form submits, engagement and search clicks, with the pages that moved most. The same marketing-ops numbers as the GTM hub's Performance page, which has every page.", cadence: "Weekly · Mondays", next: "",
+      sources: ["marketing-ops performance-history.json (GA4 views, form submits and engagement; Search Console clicks), written by its Page metrics Action"] } },
   { id: "competitive", label: "Competitive Intel",  static: true,                        render: renderCompetitiveIntel,
     metaFile: "data/competitive-intel.json",
     meta: { desc: "Competitive landscape scan across Inkwell (ELA), Inquiry Journeys (SS), and GF8 (PreK) — K–5 scope.", cadence: "Bi-monthly", next: "Sep 2026",
@@ -1134,17 +1134,89 @@ function renderWeekly(d) {
 }
 
 // ---- content performance tab ----
-// Content Performance moved to the GTM hub on 2026-11-17 (Kelsey): the hub's Marketing ops > Performance page shows
-// the same numbers from the marketing-ops repo, so the dash no longer keeps its own copy (it drifted from the hub's).
+// ---- Content Performance tab (Kelsey, 2026-11-17) ----
+// Reads marketing-ops' performance-history.json (copied in by SIGNALS_ROUTINE.md PHASE B2): one 90-day snapshot a week.
+// The dash shows the trend and what moved; the GTM hub's Marketing ops > Performance page has every page, from the
+// same numbers. Content types match the hub's (src/pages/marketing/ops/performance.astro TYPE): keep them in step.
 const HUB_PERFORMANCE = "https://inquired-gtm-hub.netlify.app/marketing/ops/performance/";
-function renderContentMoved() {
+const CP_TYPE = { "Webinars": "Webinars", "HV Landers": "Landing pages and downloads", "Blog post": "Blog posts", "SS Pillar Page": "Pillar pages", "ELA Pillar Page": "Pillar pages", "Product Page": "Product pages", "State page": "State pages", "Resource/Blog Library": "Resource library" };
+const CP_PRODUCTS = ["Inkwell", "Inquiry Journeys", "Great First Eight", "World History", "inquirED General"];
+const cpType = (p) => CP_TYPE[p.category] || "Other pages";
+const cpSum = (pages) => pages.reduce((t, p) => ({ views: t.views + p.views, submits: t.submits + (p.submits || 0), sessions: t.sessions + (p.sessions || 0), engaged: t.engaged + (p.engaged || 0), clicks: t.clicks + (p.clicks || 0) }), { views: 0, submits: 0, sessions: 0, engaged: 0, clicks: 0 });
+const cpPct = (a, b) => (b ? `${((a / b) * 100).toFixed(1)}%` : "—");
+const cpDelta = (now, before, money = false) => {
+  if (before == null) return "";
+  const d = now - before;
+  if (!d) return `<span class="muted">no change</span>`;
+  const pct = before ? ` (${d > 0 ? "+" : ""}${((d / before) * 100).toFixed(0)}%)` : "";
+  return `<span style="color:${d > 0 ? "#2E7D32" : "#C62828"}">${d > 0 ? "+" : ""}${fmtN(d)}${pct}</span> vs last week`;
+};
+function renderContentPerformance(d) {
   charts.forEach((c) => c.destroy()); charts.length = 0;
-  document.getElementById("view").innerHTML = `
-    <div class="panel"><h3>Content Performance is on the GTM hub now</h3>
-      <p>Which content works best, by type and product, and every page's views, form submits, engagement and search clicks
-      over the last 90 days. It reads the same marketing-ops numbers as the rest of the hub, refreshed every Monday.</p>
-      <p><a class="btn" href="${HUB_PERFORMANCE}" target="_blank" rel="noopener noreferrer">Open Performance on the hub</a></p>
-    </div>`;
+  const weeks = (d.weeks || []).filter((w) => (w.pages || []).length);
+  const view = document.getElementById("view");
+  if (!weeks.length) {
+    view.innerHTML = `<div class="panel"><h3>Content Performance: awaiting first run</h3><p class="insight">This tab fills in on the next Monday refresh. Every page is on the <a href="${HUB_PERFORMANCE}" target="_blank" rel="noopener">hub's Performance page</a>.</p></div>`;
+    return;
+  }
+  const product = window.__cpProduct || "";
+  const pick = (w) => (w.pages || []).filter((p) => !product || p.product === product);
+  const last = weeks[weeks.length - 1], prev = weeks.length > 1 ? weeks[weeks.length - 2] : null;
+  const now = cpSum(pick(last)), before = prev ? cpSum(pick(prev)) : null;
+
+  // By content type, this week, with last week's views for the change.
+  const types = [...new Set(pick(last).map(cpType))].map((t) => {
+    const n = cpSum(pick(last).filter((p) => cpType(p) === t));
+    const b = prev ? cpSum(pick(prev).filter((p) => cpType(p) === t)) : null;
+    return { t, n, b, count: pick(last).filter((p) => cpType(p) === t).length };
+  }).sort((a, b) => b.n.views - a.n.views);
+
+  // Movers: the pages whose 90-day views or form submits changed most since last week.
+  const before1 = new Map((prev ? pick(prev) : []).map((p) => [p.slug, p]));
+  const moved = pick(last).filter((p) => before1.has(p.slug)).map((p) => ({ p, dv: p.views - before1.get(p.slug).views, ds: (p.submits || 0) - (before1.get(p.slug).submits || 0) }));
+  const up = moved.filter((m) => m.dv > 0).sort((a, b) => b.dv - a.dv).slice(0, 5);
+  const down = moved.filter((m) => m.dv < 0).sort((a, b) => a.dv - b.dv).slice(0, 5);
+  const best = pick(last).filter((p) => p.views >= 100 && p.submits > 0).sort((a, b) => b.submits / b.views - a.submits / a.views)[0];
+  const verdict = [
+    before ? `90-day views are ${now.views >= before.views ? "up" : "down"} ${fmtN(Math.abs(now.views - before.views))} and form submits ${now.submits >= before.submits ? "up" : "down"} ${fmtN(Math.abs(now.submits - before.submits))} since last week.` : `First week of history: changes show from next Monday.`,
+    best ? `${best.name} converts best (${cpPct(best.submits, best.views)} of ${fmtN(best.views)} views).` : "",
+    up[0] ? `Biggest gain: ${up[0].p.name} (+${fmtN(up[0].dv)} views).` : "",
+  ].filter(Boolean).join(" ");
+  const link = (p) => `<a href="https://inquired.com${p.slug === "/" ? "" : p.slug}" target="_blank" rel="noopener">${p.name}</a>`;
+  const moverRows = (list) => list.length ? list.map((m) => `<tr><td>${link(m.p)}</td><td>${cpType(m.p)}</td><td class="num">${m.dv > 0 ? "+" : ""}${fmtN(m.dv)}</td><td class="num">${m.ds > 0 ? "+" : ""}${fmtN(m.ds)}</td></tr>`).join("") : `<tr><td colspan="4" class="muted">None yet.</td></tr>`;
+
+  view.innerHTML = `
+    <div class="toolbar" role="group" aria-label="Product"><span class="tlabel">Product</span>
+      ${["", ...CP_PRODUCTS].map((pr) => `<button type="button" class="chip${pr === product ? " on" : ""}" data-cp-product="${pr}">${pr || "All products"}</button>`).join("")}
+    </div>
+    <div class="panel insight"><strong>Verdict:</strong> ${verdict}</div>
+    <div class="cards">
+      ${card("Views (90 days)", fmtN(now.views), before ? cpDelta(now.views, before.views) : "")}
+      ${card("Form submits (90 days)", fmtN(now.submits), before ? cpDelta(now.submits, before.submits) : "", `${cpPct(now.submits, now.views)} of views`)}
+      ${card("Engagement", cpPct(now.engaged, now.sessions), "", "Visits of 10s+, 2+ pages, or a conversion")}
+      ${card("Search clicks (90 days)", fmtN(now.clicks), before ? cpDelta(now.clicks, before.clicks) : "")}
+    </div>
+    <div class="panel"><h3>90-day totals, week by week</h3><canvas id="cpTrend" height="110"></canvas>
+      ${weeks.length < 2 ? `<p class="muted">The line starts with the week of ${last.as_of}; it grows one point every Monday.</p>` : ""}</div>
+    <div class="panel"><h3>By content type</h3>
+      <table class="cp-tbl"><thead><tr><th>Type</th><th class="num">Pages</th><th class="num">Views</th><th class="num">Change</th><th class="num">Form submits</th><th class="num">Submit rate</th><th class="num">Engagement</th></tr></thead>
+      <tbody>${types.map((r) => `<tr><td>${r.t}</td><td class="num">${r.count}</td><td class="num">${fmtN(r.n.views)}</td><td class="num">${r.b ? cpDelta(r.n.views, r.b.views).replace(" vs last week", "") : ""}</td><td class="num">${fmtN(r.n.submits)}</td><td class="num">${cpPct(r.n.submits, r.n.views)}</td><td class="num">${cpPct(r.n.engaged, r.n.sessions)}</td></tr>`).join("")}</tbody></table></div>
+    <div class="panel"><h3>Biggest movers since last week</h3>
+      ${prev ? `<table class="cp-tbl"><thead><tr><th>Page</th><th>Type</th><th class="num">Views</th><th class="num">Form submits</th></tr></thead>
+        <tbody><tr class="cp-sec"><td colspan="4">Up</td></tr>${moverRows(up)}<tr class="cp-sec"><td colspan="4">Down</td></tr>${moverRows(down)}</tbody></table>`
+        : `<p class="muted">Movers show from next Monday, once there are two weeks to compare.</p>`}</div>
+    <div class="cc-threshold">Each number covers the 90 days ending ${last.as_of}, so a week's change is the newest week in minus the oldest week out.
+      Form submits count every form on a page (GA4). Every page, with issues and edits, is on the <a href="${HUB_PERFORMANCE}" target="_blank" rel="noopener">GTM hub's Performance page</a>.</div>`;
+
+  const series = weeks.map((w) => cpSum(pick(w)));
+  mkChart("cpTrend", { type: "line", data: { labels: weeks.map((w) => w.as_of), datasets: [
+    { label: "Views (90 days)", data: series.map((x) => x.views), borderColor: "#144745", backgroundColor: "#144745", yAxisID: "y", tension: 0.2 },
+    { label: "Form submits (90 days)", data: series.map((x) => x.submits), borderColor: "#5B5A9E", backgroundColor: "#5B5A9E", yAxisID: "y1", tension: 0.2 },
+  ] }, options: { plugins: { legend: { position: "bottom" } }, scales: { y: { beginAtZero: true, title: { display: true, text: "Views" } }, y1: { beginAtZero: true, position: "right", grid: { drawOnChartArea: false }, title: { display: true, text: "Form submits" } } } } });
+  document.querySelectorAll("[data-cp-product]").forEach((b) => b.addEventListener("click", () => {
+    window.__cpProduct = b.dataset.cpProduct;
+    renderContentPerformance(d);
+  }));
 }
 
 // ---- definitions tab ----
