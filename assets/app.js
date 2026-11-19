@@ -1634,7 +1634,8 @@ function renderStateSignal(d) {
     } else {
       html += accts.map((a) => {
         const em = draftEmail(a, policy, s.product);
-        const warmBadge = a.warm_signal ? '<span class="ss-warm-badge">🔥 warm signal</span>' : '';
+        const warmBadge = (a.warm_signal ? '<span class="ss-warm-badge">🔥 warm signal</span>' : '')
+          + (a.warm_reached_out ? `<span class="ss-warm-badge" title="Source: Starbridge Warm Signals bridges, Status column, ${a.warm_reached_out} board-meeting signal${a.warm_reached_out > 1 ? 's' : ''} at Meeting Score 10 or higher">Reached out (call or email attempted)</span>` : '');
         if (a.warm_signal) shownBuyers.add(a.warm_signal.buyer);
         return `<details class="ss-drill"><summary>${a.name} — ${a.stage}, ${a.last_contacted ? 'no contact since ' + a.last_contacted : 'never contacted'}${warmBadge}</summary>`
           + `<div class="ss-contact-row">${hsLink(a.hs_url, 'HubSpot record')}<span class="ss-cwhy">${(a.segment || '—')} · ${a.owner} · ${a.signal || '(no signal recorded)'}</span></div>`
@@ -1659,6 +1660,7 @@ function renderStateSignal(d) {
     html += adoptionHtml(s.state);
     if (sb && sb.open_rfps_total > 0) {
       html += `<div class="ss-watch-action"><div class="ss-wa-label">Starbridge — ${sb.open_rfps_total} open RFP${sb.open_rfps_total > 1 ? 's' : ''} right now</div>`
+        + (sb.status ? `<div class="ss-warm-cite">Open: ${sb.status.open} · Reached out (call or email attempted): ${sb.status.reached_out} · Dismissed: ${sb.status.dismissed}. Source: Starbridge RFP bridges (ELA RFPs, GF8 RFPs, IJ RFPs), Status column, pulled ${sb.status.pulled}.</div>` : '')
         + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
         + '</div>';
     }

@@ -402,7 +402,7 @@
     {
      "source": "Starbridge RFP bridges (ELA RFPs, GF8 RFPs, IJ RFPs)",
      "what": "Open RFPs per state and product (`starbridge_open_rfps`), with the top 3 per state by Match Score shown in the watch-state drawer",
-     "how": "Starbridge `listBridges` to confirm IDs, then `listBridgeRows` filtered to `Status` New or Saved; aggregated by `Buyer State Code` into `starbridge_by_state`"
+     "how": "Starbridge `listBridges` to confirm IDs, then `listBridgeRows` filtered to `Status` New or Saved; aggregated by `Buyer State Code` into `starbridge_by_state`. The same pull counts every row's `Status` per state: Open (New + Saved), Reached out (Actioned) and Dismissed (Not Interested), shown only as context under an open RFP"
     },
     {
      "source": "Starbridge Warm Signals bridges ([MASTER] Warm Signals GFE, IJ, Inkwell > 1.5k)",
@@ -451,7 +451,7 @@
      "ingredient": "Starbridge signal for upcoming adoption",
      "max": 30,
      "tiers": "0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30",
-     "source": "Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via `listBridgeRows`. Counted only if Meeting Score ≥10 and Status is New or Saved; anything scored lower or marked Not Interested is dropped before it reaches this table"
+     "source": "Starbridge Warm Signals bridges (GFE/IJ/Inkwell), live via `listBridgeRows`. Counted only if Meeting Score ≥10 and Status is New or Saved; anything scored lower or marked Not Interested is dropped before it reaches this table. An account with a qualifying row marked Actioned shows a Reached out flag; the flag never changes a score or rank"
     },
     {
      "ingredient": "Policy news recency",
@@ -542,6 +542,7 @@
     "Few tracked accounts carry a `starbridge_id` that matches a qualifying Warm Signal, so most Warm Signals show at the state level for districts not yet cross-checked against full HubSpot records.",
     "Draft outreach emails in the account drawers are templates built from the account's HubSpot signal and the state's policy context, meant as starting points for a rep to personalize.",
     "The Past MQA campaigns table only includes campaigns with a real post-mortem; a campaign that ran without one (Kentucky, September 2025) is absent.",
+    "Reached out is Starbridge's Actioned status, set by a person on the bridge. It marks a signal someone acted on in Starbridge, not a logged call or email in HubSpot, and it does not remove an account from the list.",
     "No personal contact data from Starbridge or HubSpot appears on this tab; only institutional district and school names.",
     "If the Airtable connection is unavailable, Decision badges stay blank; the rest of the tab still works."
    ]

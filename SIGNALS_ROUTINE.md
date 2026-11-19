@@ -168,7 +168,13 @@ on the dashboard, same no-PII convention as the rest of this tab.
 already pulled in Step 3 above (`search_crm_objects`, `hs_object_id IN [...]`), then check which
 UUIDs appear as a qualifying row's `buyerId` (`listBridgeRows` filtered `buyerId Any [...]` per
 bridge, batched — never one call per account). Write the highest-scoring match onto that account
-as `warm_signal`.
+as `warm_signal`. Run this lookup with no `Status` filter and read each row's `Status`:
+`warm_signal` still comes only from `New`/`Saved` rows with `Meeting_Score >= 10`, and an account
+that also has rows at `Meeting_Score >= 10` with `Status` = `Actioned` gets `warm_reached_out: N`.
+Flag only: it never removes an account or changes a rank, and `Not Interested` rows are not
+counted per account. Keep this in sync with the `state-signal-refresh` skill's Step 3.
+The state-level `starbridge_by_state[state].status` counts (New + Saved / Actioned / Not
+Interested) come from the RFP pull in that skill's Step 2; this weekly run leaves them as they are.
 
 **Write:** `warm_signals_by_state[state]` (top 3-5 by score, sparse — only states with a real
 qualifying row, same convention as `starbridge_by_state`), `accounts_by_state[state][].warm_signal`
