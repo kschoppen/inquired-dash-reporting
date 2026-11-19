@@ -5684,11 +5684,11 @@
       }
     },
     "MA": {
-      "open_rfps_total": 5,
+      "open_rfps_total": 4,
       "by_product": {
         "ij": 2,
         "inkwell": 1,
-        "gf8": 4
+        "gf8": 3
       },
       "top": [
         {
@@ -5706,17 +5706,6 @@
         },
         {
           "buyer": "Massachusetts Department of Elementary and Secondary Education",
-          "product": "gf8",
-          "products": [
-            "gf8"
-          ],
-          "due": "2027-08-31",
-          "score": 4,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-23-1026-DOE02-DOE01-77790&external=true&parentUrl=close",
-          "summary": "To determine the extent to which various sets of curricular materials meet Massachusetts expectations for teaching and learning, DESE will be convening panels of educators to review available evidence"
-        },
-        {
-          "buyer": "Massachusetts Department of Elementary and Secondary Education",
           "product": "ij",
           "products": [
             "ij"
@@ -5725,11 +5714,22 @@
           "score": 3,
           "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135434&external=true",
           "summary": "DESE is seeking one or more vendors to provide professional learning and data collection/reporting to Massachusetts educators on standards-aligned Comprehensive Health and Physical Education (CHPE), D"
+        },
+        {
+          "buyer": "Massachusetts Board of Library Commissioners",
+          "product": "gf8",
+          "products": [
+            "gf8"
+          ],
+          "due": "2026-12-18",
+          "score": 3,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-27-1007-1007C-1007L-133436&external=true&parentUrl=close",
+          "summary": "Statewide encyclopedias, education, & early learning databases."
         }
       ],
       "status": {
-        "open": 5,
-        "reached_out": 1,
+        "open": 4,
+        "reached_out": 2,
         "dismissed": 14,
         "past_due": 6,
         "pulled": "2026-11-19"
