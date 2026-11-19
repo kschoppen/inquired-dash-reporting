@@ -402,7 +402,7 @@
     {
      "source": "Starbridge RFP bridges (ELA RFPs, GF8 RFPs, IJ RFPs)",
      "what": "Open RFPs per state and product (`starbridge_open_rfps`), with the top 3 per state by Match Score shown in the watch-state drawer",
-     "how": "Starbridge `listBridges` to confirm IDs, then `listBridgeRows` filtered to `Status` New or Saved, then dropping rows whose Due Date is before the pull date; aggregated by `Buyer State Code` into `starbridge_by_state`. The same pull counts every row's `Status` per state: Open (New or Saved, not past due), Reached out (Actioned) and Dismissed (Not Interested), shown only as context under an open RFP"
+     "how": "Starbridge `listBridges` to confirm IDs, then `listBridgeRows` filtered to `Status` New or Saved, then dropping rows whose Due Date is before the pull date; aggregated by `Buyer State Code` into `starbridge_by_state`. Each RFP counts once even when it sits in several bridges (matched on the RFP id, and on buyer + link + due date for the same posting entered twice). The same pull counts every row's `Status` per state: Open (New or Saved, not past due), Reached out (Actioned) and Dismissed (Not Interested), shown only as context under an open RFP"
     },
     {
      "source": "Starbridge Warm Signals bridges ([MASTER] Warm Signals GFE, IJ, Inkwell > 1.5k)",
@@ -445,7 +445,7 @@
      "ingredient": "Open RFP right now",
      "max": 30,
      "tiers": "0 → 0 · 1 → 18 · 2-3 → 24 · 4+ → 30",
-     "source": "Starbridge RFP bridges (ELA/IJ/GF8), live via `listBridgeRows`, Status New or Saved only, and only if the Due Date is today or later. Counted for the entry's own product only (from `starbridge_by_state[state].by_product`), so a state's Inkwell RFPs do not score an Inquiry Journeys entry"
+     "source": "Starbridge RFP bridges (ELA/IJ/GF8), live via `listBridgeRows`, Status New or Saved only, and only if the Due Date is today or later. Each RFP counts once per product, even if it sits in several bridges. Counted for the entry's own product only (from `starbridge_by_state[state].by_product`), so a state's Inkwell RFPs do not score an Inquiry Journeys entry"
     },
     {
      "ingredient": "Starbridge signal for upcoming adoption",

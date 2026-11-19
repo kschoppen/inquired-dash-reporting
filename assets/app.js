@@ -1661,7 +1661,7 @@ function renderStateSignal(d) {
     if (sb && sb.open_rfps_total > 0) {
       html += `<div class="ss-watch-action"><div class="ss-wa-label">Starbridge — ${sb.open_rfps_total} open RFP${sb.open_rfps_total > 1 ? 's' : ''} right now</div>`
         + (sb.status ? `<div class="ss-warm-cite">Open: ${sb.status.open} · Reached out (call or email attempted): ${sb.status.reached_out} · Dismissed: ${sb.status.dismissed}. Source: Starbridge RFP bridges (ELA RFPs, GF8 RFPs, IJ RFPs), Status column, pulled ${sb.status.pulled}.</div>` : '')
-        + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${SS_LABELS[r.product] || r.product}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
+        + sb.top.map((r) => `<p style="margin:4px 0;font-size:12.5px"><strong>${r.buyer || 'Unnamed buyer'}</strong> (${(r.products || [r.product]).map((p) => SS_LABELS[p] || p).join(', ')}, match ${r.score}/5, due ${r.due || 'n/a'}) — ${r.summary || ''} ${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">source ↗</a>` : ''}</p>`).join('')
         + '</div>';
     }
     html += warmStateBlockHtml(s.state, new Set());

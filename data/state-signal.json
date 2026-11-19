@@ -2859,7 +2859,7 @@
       ],
       "qualified": 48,
       "actionable": 28,
-      "starbridge_open_rfps": 51,
+      "starbridge_open_rfps": 28,
       "priority_score": 62,
       "priority_tier": "act_now",
       "priority_breakdown": {
@@ -2883,7 +2883,7 @@
       ],
       "qualified": 50,
       "actionable": 20,
-      "starbridge_open_rfps": 3,
+      "starbridge_open_rfps": 1,
       "priority_score": 54,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -2907,7 +2907,7 @@
       ],
       "qualified": 42,
       "actionable": 31,
-      "starbridge_open_rfps": 2,
+      "starbridge_open_rfps": 1,
       "priority_score": 50,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -2959,7 +2959,7 @@
       ],
       "qualified": 4,
       "actionable": 3,
-      "starbridge_open_rfps": 3,
+      "starbridge_open_rfps": 2,
       "priority_score": 49,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -3111,7 +3111,7 @@
       ],
       "qualified": 5,
       "actionable": 5,
-      "starbridge_open_rfps": 9,
+      "starbridge_open_rfps": 7,
       "priority_score": 36,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -3211,7 +3211,7 @@
       ],
       "qualified": 6,
       "actionable": 4,
-      "starbridge_open_rfps": 3,
+      "starbridge_open_rfps": 1,
       "priority_score": 31,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3235,7 +3235,7 @@
       ],
       "qualified": 8,
       "actionable": 5,
-      "starbridge_open_rfps": 5,
+      "starbridge_open_rfps": 2,
       "priority_score": 29,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3315,7 +3315,7 @@
       ],
       "qualified": 2,
       "actionable": 2,
-      "starbridge_open_rfps": 2,
+      "starbridge_open_rfps": 1,
       "priority_score": 28,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3459,7 +3459,7 @@
       ],
       "qualified": 10,
       "actionable": 7,
-      "starbridge_open_rfps": 4,
+      "starbridge_open_rfps": 3,
       "priority_score": 22,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3843,7 +3843,7 @@
       ],
       "qualified": 4,
       "actionable": 3,
-      "starbridge_open_rfps": 6,
+      "starbridge_open_rfps": 3,
       "priority_score": 9,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -5433,7 +5433,7 @@
   },
   "starbridge_by_state": {
     "CA": {
-      "open_rfps_total": 5,
+      "open_rfps_total": 4,
       "by_product": {
         "ij": 2,
         "inkwell": 1,
@@ -5443,38 +5443,48 @@
         {
           "buyer": "Alum Rock Union School District",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-12-04",
           "score": 5,
           "url": "https://www.arusd.org/fs/resource-manager/view/ef13ea2e-7e06-4c20-b7f2-bb43a99afcc1",
           "summary": "NOTICE IS HEREBY GIVEN that the Alum Rock Union Elementary School District (\"District\") is seeking proposals from qualified and experienced Expanded Learning Partners to deliver focused, standards-ali"
         },
         {
-          "buyer": "Alum Rock Union School District",
-          "product": "gf8",
-          "due": "2026-12-04",
-          "score": 5,
-          "url": "https://www.arusd.org/fs/resource-manager/view/ef13ea2e-7e06-4c20-b7f2-bb43a99afcc1",
-          "summary": "The Alum Rock Union Elementary School District is procuring Expanded Learning Partners to deliver focused, standards-aligned academic instruction for its Summer Scholars Program, targeting mathematics"
-        },
-        {
           "buyer": "Bakersfield City School District",
           "product": "ij",
+          "products": [
+            "ij"
+          ],
           "due": "2026-12-04",
           "score": 5,
           "url": "https://vendors.planetbids.com/portal/84745/bo/bo-detail/148001",
           "summary": "The Bakersfield City School District (“District”) is issuing this Request for Statements of Qualification and Proposals (RFQP) to solicit Statements of Qualifications from experienced and qualified ve"
+        },
+        {
+          "buyer": "Madera Unified School District",
+          "product": "gf8",
+          "products": [
+            "gf8"
+          ],
+          "due": "2026-11-20",
+          "score": 3,
+          "url": "https://www.maderausd.org/bid/rfq-no-110626-expanded-learning-enrichment-services",
+          "summary": "This RFQ seeks to prequalify vendors to deliver out-of-school-time enrichment programs. Programs may focus on Adventure, Career Discovery, Creative Arts, Sports and Fitness, or STEM. They must integra"
         }
       ],
       "status": {
-        "open": 5,
+        "open": 4,
         "reached_out": 0,
-        "dismissed": 41,
-        "past_due": 7,
+        "dismissed": 36,
+        "past_due": 4,
         "pulled": "2026-11-19"
       }
     },
     "DC": {
-      "open_rfps_total": 6,
+      "open_rfps_total": 3,
       "by_product": {
         "ij": 0,
         "inkwell": 3,
@@ -5484,6 +5494,10 @@
         {
           "buyer": "Kipp Dc Pcs",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-11-30",
           "score": 5,
           "url": "https://kippdc.quickbase.com/up/bjhewtd2d/g/rnt/ecg/va/FINAL_KIPP%20DC%20RFP_Role-Differentiated%20Structured%20Literacy%20Training%20Development%20and%20Delivery%20for%20Educators_261113.pdf",
@@ -5491,25 +5505,33 @@
         },
         {
           "buyer": "Kipp Dc Pcs",
-          "product": "gf8",
-          "due": "2026-11-30",
-          "score": 5,
-          "url": "https://kippdc.quickbase.com/up/bjhewtd2d/g/rnt/ecg/va/FINAL_KIPP%20DC%20RFP_Role-Differentiated%20Structured%20Literacy%20Training%20Development%20and%20Delivery%20for%20Educators_261113.pdf",
-          "summary": "KIPP DC is seeking a qualified partner to develop and deliver role-differentiated, research-based structured literacy training modules for educators across K-12 grade bands. The selected partner will "
-        },
-        {
-          "buyer": "Kipp Dc Pcs",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-12-04",
           "score": 5,
           "url": "https://dcregs.dc.gov/Common/NoticeDetail.aspx?NoticeId=N147208",
           "summary": "KIPP DC is soliciting proposals from qualified vendors for an English Language Arts Book Supplier. The RFP can be found on KIPP DC's procurement webpage. Questions must be addressed to phuong.trinh@ki"
+        },
+        {
+          "buyer": "Kipp Dc Pcs",
+          "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://kippdc.quickbase.com/up/bjhewtd2d/g/rnu/ecg/va/FINAL%20COMBINED_KIPP%20DC%20RFP_English%20Language%20Arts%20Book%20Supplier_261113.pdf",
+          "summary": "KIPP DC is soliciting proposals from qualified vendors for an English Language Arts Book Supplier. The RFP document indicates that proposals must be uploaded to KIPP DC's procurement webpage by Decemb"
         }
       ],
       "status": {
-        "open": 6,
+        "open": 3,
         "reached_out": 0,
-        "dismissed": 12,
+        "dismissed": 9,
         "past_due": 1,
         "pulled": "2026-11-19"
       }
@@ -5525,6 +5547,9 @@
         {
           "buyer": "Flint Community School District",
           "product": "inkwell",
+          "products": [
+            "inkwell"
+          ],
           "due": "2026-11-23",
           "score": 4,
           "url": "https://aptg.co/NCDHQk",
@@ -5533,6 +5558,9 @@
         {
           "buyer": "Wayne Regional Educational Service Agency",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2027-03-03",
           "score": 3,
           "url": "https://drive.google.com/file/d/1ULmWrXmVabdO7dnnLzJZUbGel9wCMTUj/view?usp=sharing",
@@ -5541,14 +5569,14 @@
       ],
       "status": {
         "open": 2,
-        "reached_out": 3,
-        "dismissed": 6,
-        "past_due": 3,
+        "reached_out": 1,
+        "dismissed": 5,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
     "TX": {
-      "open_rfps_total": 51,
+      "open_rfps_total": 28,
       "by_product": {
         "ij": 15,
         "inkwell": 17,
@@ -5556,40 +5584,53 @@
       },
       "top": [
         {
+          "buyer": "Goose Creek Consolidated Independent School District",
+          "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://gccisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=293",
+          "summary": "Goose Creek CISD is requesting proposals for contracted services and related products. This is an ongoing RFP solicitation with a term ending in 2029. Online submission is preferred, but sealed hard-c"
+        },
+        {
           "buyer": "Abilene Independent School District",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "ij"
+          ],
           "due": "2026-12-04",
           "score": 5,
           "url": "https://abileneisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=172",
           "summary": "The Abilene Independent School District is soliciting proposals for Professional Development/Contracted Services (Non-Instructional Related) - Consultants, Presenters, Trainers and Other Related Servi"
         },
         {
-          "buyer": "Goose Creek Consolidated Independent School District",
-          "product": "gf8",
-          "due": "2026-12-04",
-          "score": 5,
-          "url": "https://gccisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=293",
-          "summary": "Goose Creek CISD is requesting proposals for contracted services and related products. This is an ongoing RFP solicitation with a term ending in 2029. Online submission is preferred, but sealed hard-c"
-        },
-        {
-          "buyer": "Goose Creek Consolidated Independent School District",
+          "buyer": "Abilene Independent School District",
           "product": "ij",
+          "products": [
+            "inkwell",
+            "ij"
+          ],
           "due": "2026-12-04",
           "score": 5,
-          "url": "https://gccisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=293",
-          "summary": "Goose Creek CISD is requesting proposals for contracted services and related products. This is an ongoing RFP solicitation with a term ending in 2029. Online submission is preferred, but sealed hard-c"
+          "url": "https://abileneisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=167",
+          "summary": "The Abilene Independent School District is soliciting proposals for Professional Development/Contracted Services (Instructional Related) - Consultants, Presenters, Trainers and Other Related Services "
         }
       ],
       "status": {
-        "open": 51,
+        "open": 28,
         "reached_out": 0,
-        "dismissed": 196,
-        "past_due": 23,
+        "dismissed": 108,
+        "past_due": 11,
         "pulled": "2026-11-19"
       }
     },
     "NY": {
-      "open_rfps_total": 19,
+      "open_rfps_total": 8,
       "by_product": {
         "ij": 4,
         "inkwell": 7,
@@ -5599,14 +5640,11 @@
         {
           "buyer": "Mohonasen Central School District",
           "product": "inkwell",
-          "due": "2026-11-20",
-          "score": 5,
-          "url": "https://www.mohonasen.org/universal-pre-k-program-bids/",
-          "summary": "Universal pre-kindergarten (UPK) program. Program scope: the selected collaborator or collaborators will operate a full-day universal pre-kindergarten instructional program serving eligible 4-year-old"
-        },
-        {
-          "buyer": "Mohonasen Central School District",
-          "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-11-20",
           "score": 5,
           "url": "https://www.mohonasen.org/universal-pre-k-program-bids/",
@@ -5615,39 +5653,52 @@
         {
           "buyer": "Chappaqua Central School District",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-12-04",
           "score": 5,
           "url": "https://www.bidnetdirect.com/new-york/chappaquaschools/solicitations/CCSD-RFP-2026-08-Universal-Pre-Kindergarten-Program/0000442837",
           "summary": "Chappaqua Central School District is soliciting proposals under RFP #2026-08 for its Universal Pre-Kindergarten Program. The public notice lists a publication date of November 6, 2026, and a closing d"
+        },
+        {
+          "buyer": "Bedford Central School District",
+          "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
+          "due": "2026-12-07",
+          "score": 5,
+          "url": "https://www.bcsdny.org/fs/resource-manager/view/24cf4ce5-47e1-4502-b5f4-da59c3d2acc5",
+          "summary": "The Bedford Central School District is soliciting Proposals for Pre-Kindergarten services from approved licensed and/or registered Pre-Kindergarten providers. Request for Proposal documents will be av"
         }
       ],
       "status": {
-        "open": 19,
+        "open": 8,
         "reached_out": 0,
-        "dismissed": 40,
-        "past_due": 19,
+        "dismissed": 31,
+        "past_due": 13,
         "pulled": "2026-11-19"
       }
     },
     "MA": {
-      "open_rfps_total": 10,
+      "open_rfps_total": 5,
       "by_product": {
-        "ij": 3,
-        "inkwell": 2,
-        "gf8": 5
+        "ij": 2,
+        "inkwell": 1,
+        "gf8": 4
       },
       "top": [
         {
           "buyer": "Massachusetts Department of Elementary and Secondary Education",
           "product": "inkwell",
-          "due": "2026-12-21",
-          "score": 5,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
-          "summary": "DESE seeks a vendor or pair of vendors to support the curriculum development and professional learning for a new K-3 curriculum, which will be offered for free to Massachusetts educators. The curricul"
-        },
-        {
-          "buyer": "Massachusetts Department of Elementary and Secondary Education",
-          "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-12-21",
           "score": 5,
           "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
@@ -5656,17 +5707,31 @@
         {
           "buyer": "Massachusetts Department of Elementary and Secondary Education",
           "product": "gf8",
-          "due": "2026-12-21",
-          "score": 5,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
-          "summary": "DESE seeks a vendor or pair of vendors to support the curriculum development and professional learning for a new K-3 curriculum, which will be offered for free to Massachusetts educators. The curricul"
+          "products": [
+            "gf8"
+          ],
+          "due": "2027-08-31",
+          "score": 4,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-23-1026-DOE02-DOE01-77790&external=true&parentUrl=close",
+          "summary": "To determine the extent to which various sets of curricular materials meet Massachusetts expectations for teaching and learning, DESE will be convening panels of educators to review available evidence"
+        },
+        {
+          "buyer": "Massachusetts Department of Elementary and Secondary Education",
+          "product": "ij",
+          "products": [
+            "ij"
+          ],
+          "due": "2026-12-01",
+          "score": 3,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135434&external=true",
+          "summary": "DESE is seeking one or more vendors to provide professional learning and data collection/reporting to Massachusetts educators on standards-aligned Comprehensive Health and Physical Education (CHPE), D"
         }
       ],
       "status": {
-        "open": 10,
-        "reached_out": 3,
-        "dismissed": 18,
-        "past_due": 9,
+        "open": 5,
+        "reached_out": 1,
+        "dismissed": 14,
+        "past_due": 6,
         "pulled": "2026-11-19"
       }
     },
@@ -5681,6 +5746,9 @@
         {
           "buyer": "Fulton County School District",
           "product": "inkwell",
+          "products": [
+            "inkwell"
+          ],
           "due": "2026-12-10",
           "score": 3,
           "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-55101-NONST-2027-000000205&sourceSystemType=gpr20",
@@ -5690,13 +5758,13 @@
       "status": {
         "open": 1,
         "reached_out": 0,
-        "dismissed": 4,
-        "past_due": 5,
+        "dismissed": 3,
+        "past_due": 4,
         "pulled": "2026-11-19"
       }
     },
     "RI": {
-      "open_rfps_total": 9,
+      "open_rfps_total": 7,
       "by_product": {
         "ij": 3,
         "inkwell": 4,
@@ -5706,14 +5774,10 @@
         {
           "buyer": "Rhode Island Department of Education",
           "product": "inkwell",
-          "due": "2028-02-29",
-          "score": 5,
-          "url": "https://webprocure.proactiscloud.com/MainBidBoard/solicitation_document.pdf?ac=2&bidid=146530&bidoid=120002&oid=120002",
-          "summary": "Seeks qualified providers to deliver literacy and dyslexia endorsement and professional learning services for inclusion on Rhode Island’s Master Price Agreement provider list."
-        },
-        {
-          "buyer": "Rhode Island Department of Education",
-          "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2028-02-29",
           "score": 5,
           "url": "https://webprocure.proactiscloud.com/MainBidBoard/solicitation_document.pdf?ac=2&bidid=146530&bidoid=120002&oid=120002",
@@ -5722,22 +5786,36 @@
         {
           "buyer": "Rhode Island Department of Education",
           "product": "inkwell",
+          "products": [
+            "inkwell"
+          ],
           "due": "2028-12-29",
           "score": 5,
           "url": "https://ridop.ri.gov/vendors/bidding-opportunities",
           "summary": "The Rhode Island Department of Education (RIDE) is soliciting proposals to provide high-quality K–12 core and/or supplemental social studies curriculum materials and accompanying professional learning"
+        },
+        {
+          "buyer": "State of Rhode Island",
+          "product": "ij",
+          "products": [
+            "ij"
+          ],
+          "due": "2028-12-29",
+          "score": 5,
+          "url": "https://webprocure.proactiscloud.com/wp-web-public/en/#/bidboard/bid/143225?pagenumber=1&customerid=46&oid=120002&shorBy=r",
+          "summary": "K–12 social studies core or supplemental curriculum materials and/or professional learning services."
         }
       ],
       "status": {
-        "open": 9,
+        "open": 7,
         "reached_out": 0,
-        "dismissed": 4,
-        "past_due": 2,
+        "dismissed": 1,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
     "ID": {
-      "open_rfps_total": 5,
+      "open_rfps_total": 2,
       "by_product": {
         "ij": 1,
         "inkwell": 2,
@@ -5747,38 +5825,39 @@
         {
           "buyer": "Idaho State Department of Education",
           "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-12-18",
           "score": 5,
           "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
           "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
         },
         {
-          "buyer": "Idaho State Department of Education",
-          "product": "gf8",
-          "due": "2026-12-18",
+          "buyer": "Idaho State Board of Education",
+          "product": "inkwell",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
+          "due": "2099-12-31",
           "score": 5,
-          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
-          "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
-        },
-        {
-          "buyer": "Idaho State Department of Education",
-          "product": "ij",
-          "due": "2026-12-18",
-          "score": 5,
-          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
-          "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
+          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/08/Literacy-Intervention-RFP.pdf",
+          "summary": "Soliciting proposals for literacy intervention tools for students in kindergarten through grade 3."
         }
       ],
       "status": {
-        "open": 5,
+        "open": 2,
         "reached_out": 0,
         "dismissed": 1,
-        "past_due": 2,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
     "WI": {
-      "open_rfps_total": 3,
+      "open_rfps_total": 1,
       "by_product": {
         "ij": 1,
         "inkwell": 1,
@@ -5788,22 +5867,11 @@
         {
           "buyer": "Hudson School District",
           "product": "inkwell",
-          "due": "2026-12-15",
-          "score": 5,
-          "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
-          "summary": "A comprehensive Four-Year-Old Kindergarten (4K) instructional resource for the Hudson School District."
-        },
-        {
-          "buyer": "Hudson School District",
-          "product": "gf8",
-          "due": "2026-12-15",
-          "score": 5,
-          "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
-          "summary": "A comprehensive Four-Year-Old Kindergarten (4K) instructional resource for the Hudson School District."
-        },
-        {
-          "buyer": "Hudson School District",
-          "product": "ij",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-12-15",
           "score": 5,
           "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
@@ -5811,15 +5879,15 @@
         }
       ],
       "status": {
-        "open": 3,
+        "open": 1,
         "reached_out": 0,
-        "dismissed": 3,
+        "dismissed": 2,
         "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
     "CT": {
-      "open_rfps_total": 2,
+      "open_rfps_total": 1,
       "by_product": {
         "ij": 0,
         "inkwell": 1,
@@ -5829,14 +5897,10 @@
         {
           "buyer": "East Hartford Public Schools",
           "product": "inkwell",
-          "due": "2026-12-11",
-          "score": 5,
-          "url": "https://www.easthartford.org/departments/purchasing/bids_request_for_proposals",
-          "summary": "East Hartford Public Schools seeks proposals for a comprehensive, research-based core literacy program for students in grades K–5. The program must align with the Science of Reading and Connecticut’s "
-        },
-        {
-          "buyer": "East Hartford Public Schools",
-          "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-12-11",
           "score": 5,
           "url": "https://www.easthartford.org/departments/purchasing/bids_request_for_proposals",
@@ -5844,10 +5908,10 @@
         }
       ],
       "status": {
-        "open": 2,
-        "reached_out": 2,
-        "dismissed": 5,
-        "past_due": 2,
+        "open": 1,
+        "reached_out": 1,
+        "dismissed": 4,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
@@ -5862,6 +5926,9 @@
         {
           "buyer": "North Carolina Division of Child Development and Early Education",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-01",
           "score": 5,
           "url": "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/R/RFA_004-DCDEE-2026_Child_Care_Academies_11.1.26.pdf?ver=TtGUI8jDnzjNz5sbpBrPcA%253d%253d",
@@ -5871,13 +5938,13 @@
       "status": {
         "open": 1,
         "reached_out": 1,
-        "dismissed": 15,
-        "past_due": 1,
+        "dismissed": 10,
+        "past_due": 0,
         "pulled": "2026-11-19"
       }
     },
     "AL": {
-      "open_rfps_total": 4,
+      "open_rfps_total": 3,
       "by_product": {
         "ij": 0,
         "inkwell": 1,
@@ -5887,6 +5954,9 @@
         {
           "buyer": "Jasper City School District",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-01",
           "score": 4,
           "url": "https://www.jasper.k12.al.us/fs/resource-manager/view/ac79063e-ebd5-4ec3-9905-fe6e039f341c",
@@ -5895,6 +5965,10 @@
         {
           "buyer": "Dallas County School District",
           "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2027-01-01",
           "score": 4,
           "url": "https://www.dallask12.org/fs/resource-manager/view/919a7162-9b80-4203-986d-6c40b458c4a5",
@@ -5903,6 +5977,9 @@
         {
           "buyer": "Birmingham City School District",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-01",
           "score": 3,
           "url": "https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4669/Bcs/0fdfcaf1-ddbe-4317-ac4a-c8171c5ca32a/BCS_Charter_RFP_Superintendent_Approval_Final.pdf?disposition=inline",
@@ -5910,7 +5987,7 @@
         }
       ],
       "status": {
-        "open": 4,
+        "open": 3,
         "reached_out": 0,
         "dismissed": 4,
         "past_due": 0,
@@ -5928,6 +6005,9 @@
         {
           "buyer": "Jones County School District",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-01",
           "score": 5,
           "url": "https://drive.google.com/file/d/1ECAkohtadDIQ1tWp5BFH8vx4aChTBAJz/view?usp=drive_link",
@@ -5937,8 +6017,8 @@
       "status": {
         "open": 1,
         "reached_out": 0,
-        "dismissed": 66,
-        "past_due": 9,
+        "dismissed": 42,
+        "past_due": 4,
         "pulled": "2026-11-19"
       }
     },
@@ -5953,13 +6033,13 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 13,
+        "dismissed": 8,
         "past_due": 3,
         "pulled": "2026-11-19"
       }
     },
     "WA": {
-      "open_rfps_total": 3,
+      "open_rfps_total": 1,
       "by_product": {
         "ij": 1,
         "inkwell": 1,
@@ -5969,22 +6049,11 @@
         {
           "buyer": "Olympia School District 111",
           "product": "inkwell",
-          "due": "2026-11-19",
-          "score": 5,
-          "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
-          "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span."
-        },
-        {
-          "buyer": "Olympia School District 111",
-          "product": "gf8",
-          "due": "2026-11-19",
-          "score": 5,
-          "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
-          "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span."
-        },
-        {
-          "buyer": "Olympia School District 111",
-          "product": "ij",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-11-19",
           "score": 5,
           "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
@@ -5992,7 +6061,7 @@
         }
       ],
       "status": {
-        "open": 3,
+        "open": 1,
         "reached_out": 0,
         "dismissed": 1,
         "past_due": 1,
@@ -6010,13 +6079,13 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 20,
-        "past_due": 2,
+        "dismissed": 15,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
     "NM": {
-      "open_rfps_total": 2,
+      "open_rfps_total": 1,
       "by_product": {
         "ij": 0,
         "inkwell": 1,
@@ -6026,14 +6095,10 @@
         {
           "buyer": "Regional Education Cooperative #9",
           "product": "inkwell",
-          "due": "2026-11-20",
-          "score": 3,
-          "url": "",
-          "summary": "Seeks proposals for the development, administration, scoring, and reporting of a culturally and linguistically responsive assessment suite in grades kindergarten through 3rd with related training and "
-        },
-        {
-          "buyer": "Regional Education Cooperative #9",
-          "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-11-20",
           "score": 3,
           "url": "",
@@ -6041,10 +6106,10 @@
         }
       ],
       "status": {
-        "open": 2,
+        "open": 1,
         "reached_out": 0,
-        "dismissed": 11,
-        "past_due": 5,
+        "dismissed": 8,
+        "past_due": 2,
         "pulled": "2026-11-19"
       }
     },
@@ -6060,12 +6125,12 @@
         "open": 0,
         "reached_out": 0,
         "dismissed": 1,
-        "past_due": 4,
+        "past_due": 2,
         "pulled": "2026-11-19"
       }
     },
     "DE": {
-      "open_rfps_total": 3,
+      "open_rfps_total": 2,
       "by_product": {
         "ij": 0,
         "inkwell": 1,
@@ -6075,6 +6140,10 @@
         {
           "buyer": "Delaware Department of Education",
           "product": "gf8",
+          "products": [
+            "inkwell",
+            "gf8"
+          ],
           "due": "2026-11-19",
           "score": 4,
           "url": "https://bids.doe.k12.de.us/#viewproposal?propID=511",
@@ -6083,24 +6152,19 @@
         {
           "buyer": "Delaware Department of Education",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-10",
           "score": 4,
           "url": "https://bids.doe.k12.de.us/#viewproposal?propID=513",
           "summary": "Applications for this competitive grant process to begin or enhance academically advanced gifted and talented programming that provides rigorous learning opportunities for students demonstrating excep"
-        },
-        {
-          "buyer": "Delaware Department of Education",
-          "product": "inkwell",
-          "due": "2026-11-19",
-          "score": 3,
-          "url": "https://bids.doe.k12.de.us/#viewproposal?propID=511",
-          "summary": "Outside school time programs. Awarded OST programs are expected to be implemented within the school and must provide opportunities for students to arrive at school one (1) hour before the regular scho"
         }
       ],
       "status": {
-        "open": 3,
+        "open": 2,
         "reached_out": 0,
-        "dismissed": 4,
+        "dismissed": 3,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6116,8 +6180,8 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 6,
-        "past_due": 2,
+        "dismissed": 5,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
@@ -6132,8 +6196,8 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 36,
-        "past_due": 11,
+        "dismissed": 26,
+        "past_due": 5,
         "pulled": "2026-11-19"
       }
     },
@@ -6148,6 +6212,9 @@
         {
           "buyer": "Chesapeake Bay Trust",
           "product": "ij",
+          "products": [
+            "ij"
+          ],
           "due": "2026-12-10",
           "score": 4,
           "url": "",
@@ -6156,6 +6223,9 @@
         {
           "buyer": "St. Mary's County Public Schools",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-04",
           "score": 3,
           "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/96394",
@@ -6165,13 +6235,13 @@
       "status": {
         "open": 2,
         "reached_out": 0,
-        "dismissed": 12,
-        "past_due": 6,
+        "dismissed": 9,
+        "past_due": 4,
         "pulled": "2026-11-19"
       }
     },
     "VT": {
-      "open_rfps_total": 3,
+      "open_rfps_total": 1,
       "by_product": {
         "ij": 1,
         "inkwell": 1,
@@ -6181,22 +6251,11 @@
         {
           "buyer": "Vermont Agency of Education",
           "product": "inkwell",
-          "due": "2026-11-20",
-          "score": 5,
-          "url": "",
-          "summary": "Seeking to establish contracts with one or more companies that can provide comprehensive strategic planning, implementation design,\r\nand operational support for the implementation of the AOE’s Academi"
-        },
-        {
-          "buyer": "Vermont Agency of Education",
-          "product": "gf8",
-          "due": "2026-11-20",
-          "score": 5,
-          "url": "",
-          "summary": "Seeking to establish contracts with one or more companies that can provide comprehensive strategic planning, implementation design,\r\nand operational support for the implementation of the AOE’s Academi"
-        },
-        {
-          "buyer": "Vermont Agency of Education",
-          "product": "ij",
+          "products": [
+            "inkwell",
+            "gf8",
+            "ij"
+          ],
           "due": "2026-11-20",
           "score": 5,
           "url": "",
@@ -6204,7 +6263,7 @@
         }
       ],
       "status": {
-        "open": 3,
+        "open": 1,
         "reached_out": 0,
         "dismissed": 0,
         "past_due": 1,
@@ -6222,6 +6281,9 @@
         {
           "buyer": "Catalina Foothills School District",
           "product": "gf8",
+          "products": [
+            "gf8"
+          ],
           "due": "2026-12-03",
           "score": 3,
           "url": "https://communityschools.cfsd16.org/",
@@ -6231,7 +6293,7 @@
       "status": {
         "open": 1,
         "reached_out": 0,
-        "dismissed": 5,
+        "dismissed": 3,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6247,6 +6309,9 @@
         {
           "buyer": "Department of Defense Education Activity (DODEA)",
           "product": "ij",
+          "products": [
+            "ij"
+          ],
           "due": "2027-10-16",
           "score": 5,
           "url": "https://sam.gov/workspace/contract/opp/f2c6f7f85c6544ce8b425accd4d3cbd6/view",
@@ -6256,8 +6321,8 @@
       "status": {
         "open": 1,
         "reached_out": 1,
-        "dismissed": 7,
-        "past_due": 3,
+        "dismissed": 3,
+        "past_due": 2,
         "pulled": "2026-11-19"
       }
     },
@@ -6271,9 +6336,9 @@
       "top": [],
       "status": {
         "open": 0,
-        "reached_out": 2,
-        "dismissed": 12,
-        "past_due": 6,
+        "reached_out": 1,
+        "dismissed": 10,
+        "past_due": 2,
         "pulled": "2026-11-19"
       }
     },
@@ -6287,9 +6352,9 @@
       "top": [],
       "status": {
         "open": 0,
-        "reached_out": 3,
-        "dismissed": 8,
-        "past_due": 3,
+        "reached_out": 2,
+        "dismissed": 5,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
@@ -6320,8 +6385,8 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 6,
-        "past_due": 2,
+        "dismissed": 5,
+        "past_due": 1,
         "pulled": "2026-11-19"
       }
     },
@@ -6336,6 +6401,9 @@
         {
           "buyer": "Early Learning Coalition of Duval",
           "product": "ij",
+          "products": [
+            "ij"
+          ],
           "due": "2026-11-30",
           "score": 3,
           "url": "https://www.elcduval.org/wp-content/uploads/2026/11/Grant-Details-Revised-1.pdf",
@@ -6345,7 +6413,7 @@
       "status": {
         "open": 1,
         "reached_out": 0,
-        "dismissed": 10,
+        "dismissed": 7,
         "past_due": 1,
         "pulled": "2026-11-19"
       }
@@ -6360,9 +6428,9 @@
       "top": [],
       "status": {
         "open": 0,
-        "reached_out": 2,
+        "reached_out": 1,
         "dismissed": 3,
-        "past_due": 1,
+        "past_due": 0,
         "pulled": "2026-11-19"
       }
     },
@@ -6393,7 +6461,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 7,
+        "dismissed": 6,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6409,7 +6477,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 2,
+        "dismissed": 1,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6425,7 +6493,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 2,
+        "dismissed": 1,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6441,7 +6509,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 7,
+        "dismissed": 4,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6457,7 +6525,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 7,
+        "dismissed": 4,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
@@ -6473,7 +6541,7 @@
       "status": {
         "open": 0,
         "reached_out": 0,
-        "dismissed": 2,
+        "dismissed": 1,
         "past_due": 0,
         "pulled": "2026-11-19"
       }
