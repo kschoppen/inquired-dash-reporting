@@ -27,9 +27,9 @@
   "ai_summary": {
     "state": "TX",
     "product": "ij",
-    "headline": "TX has 3 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (56/100) of any watch-list state right now.",
-    "starbridge_open_rfps": 3,
-    "note": "Picked automatically: highest priority_score (56/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
+    "headline": "TX has 15 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (62/100) of any watch-list state right now.",
+    "starbridge_open_rfps": 15,
+    "note": "Picked automatically: highest priority_score (62/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
   },
   "history": [
     {
@@ -2859,48 +2859,40 @@
       ],
       "qualified": 48,
       "actionable": 28,
-      "starbridge_open_rfps": 12,
-      "priority_score": 56,
+      "starbridge_open_rfps": 51,
+      "priority_score": 62,
       "priority_tier": "act_now",
       "priority_breakdown": {
-        "open_rfp": 24,
+        "open_rfp": 30,
         "warm_signal": 0,
         "policy_recency": 12,
         "hubspot_footprint": 20
       },
-      "starbridge_open_rfps_product": 3
+      "starbridge_open_rfps_product": 15
     },
     {
-      "state": "MD",
-      "product": "ij",
-      "since": "2025-06",
-      "headline": "Maryland's State Board revised the PreK-5 Social Studies Frameworks in June 2025 (the 2020 standards are on the state's eight-year review cycle); MSDE reviews instructional materials against an HQIM rubric and posts reviewed materials, and districts adopt on their own timelines.",
+      "state": "WA",
+      "product": "inkwell",
+      "since": "2026-03",
+      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
       "sources": [
         {
-          "title": "Maryland Grade 5 Social Studies Framework (revised June 2025) - MSDE",
-          "url": "https://marylandpublicschools.org/about/Documents/DCAA/SocialStudies/Framework/Grade5-A.pdf"
-        },
-        {
-          "title": "Curriculum Update, Oct 2025 - Montgomery County Public Schools (State Board approved the revised frameworks in June 2025)",
-          "url": "https://www.boarddocs.com/mabe/mcpsmd/Board.nsf/files/DMBSW974A1F8/$file/Curriculum%20Update%20251016.pdf"
-        },
-        {
-          "title": "Standards Review and Validation Process (eight-year cycle) - MSDE State Board, June 2025",
-          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0624/Standards-Review-and-Validation-Process-A.pdf"
+          "title": "HB 1295 Bill Summary - Washington State Legislature",
+          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
         }
       ],
-      "qualified": 21,
-      "actionable": 12,
-      "starbridge_open_rfps": 4,
-      "priority_score": 51,
+      "qualified": 50,
+      "actionable": 20,
+      "starbridge_open_rfps": 3,
+      "priority_score": 54,
       "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 24,
+        "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 15
+        "policy_recency": 16,
+        "hubspot_footprint": 20
       },
-      "starbridge_open_rfps_product": 2
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "CT",
@@ -2939,7 +2931,7 @@
       ],
       "qualified": 36,
       "actionable": 26,
-      "starbridge_open_rfps": 0,
+      "starbridge_open_rfps": 1,
       "priority_score": 50,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -2951,49 +2943,61 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "OH",
-      "product": "inkwell",
-      "since": "2023",
-      "headline": "Ohio's 2023 House Bill 33 required every district adopt a state-approved, science-of-reading-aligned core ELA curriculum for PreK-5 by SY2024-25, backed by $168M, and banned three-cueing.",
+      "state": "DE",
+      "product": "gf8",
+      "since": "2026-06",
+      "headline": "Gov. Meyer signed Delaware's FY2027 budget June 30, 2026, raising early-childhood (Purchase of Care) investment to $107.3M (from $76.3M FY26), plus $8M one-time for pre-K expansion, part of a stated 40%-by-2028 public pre-K enrollment goal.",
       "sources": [
         {
-          "title": "Updated list of approved core curriculum - Ohio Dept of Education and Workforce",
-          "url": "https://education.ohio.gov/Media/Ed-Connection/March-4-2024/Updated-list-of-approved-core-curriculum-and-instr?feed=NewsletterRSS"
+          "title": "Gov. Meyer Signs FY2027 Budget - State of Delaware News",
+          "url": "https://news.delaware.gov/2026/06/30/gov-meyer-signs-fy2027-budget-investing-in-education-affordability-and-opportunity/"
+        },
+        {
+          "title": "Delaware announces Early Literacy Plan - State of Delaware News",
+          "url": "https://news.delaware.gov/2025/10/10/delaware-announces-early-literacy-plan-to-strengthen-classroom-instruction/"
         }
       ],
-      "qualified": 33,
-      "actionable": 25,
-      "starbridge_open_rfps": 1,
-      "priority_score": 42,
+      "qualified": 4,
+      "actionable": 3,
+      "starbridge_open_rfps": 3,
+      "priority_score": 49,
       "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 18,
+        "open_rfp": 24,
         "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 20
+        "policy_recency": 20,
+        "hubspot_footprint": 5
       },
-      "starbridge_open_rfps_product": 1
+      "starbridge_open_rfps_product": 2
     },
     {
-      "state": "CO",
-      "product": "inkwell",
-      "since": "2024-07",
-      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
+      "state": "MD",
+      "product": "ij",
+      "since": "2025-06",
+      "headline": "Maryland's State Board revised the PreK-5 Social Studies Frameworks in June 2025 (the 2020 standards are on the state's eight-year review cycle); MSDE reviews instructional materials against an HQIM rubric and posts reviewed materials, and districts adopt on their own timelines.",
       "sources": [
         {
-          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
-          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
+          "title": "Maryland Grade 5 Social Studies Framework (revised June 2025) - MSDE",
+          "url": "https://marylandpublicschools.org/about/Documents/DCAA/SocialStudies/Framework/Grade5-A.pdf"
+        },
+        {
+          "title": "Curriculum Update, Oct 2025 - Montgomery County Public Schools (State Board approved the revised frameworks in June 2025)",
+          "url": "https://www.boarddocs.com/mabe/mcpsmd/Board.nsf/files/DMBSW974A1F8/$file/Curriculum%20Update%20251016.pdf"
+        },
+        {
+          "title": "Standards Review and Validation Process (eight-year cycle) - MSDE State Board, June 2025",
+          "url": "https://www.marylandpublicschools.org/stateboard/Documents/2025/0624/Standards-Review-and-Validation-Process-A.pdf"
         }
       ],
-      "qualified": 28,
-      "actionable": 19,
-      "starbridge_open_rfps": 1,
-      "priority_score": 41,
+      "qualified": 21,
+      "actionable": 12,
+      "starbridge_open_rfps": 2,
+      "priority_score": 45,
       "priority_tier": "watch",
       "priority_breakdown": {
         "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 8,
+        "policy_recency": 12,
         "hubspot_footprint": 15
       },
       "starbridge_open_rfps_product": 1
@@ -3011,7 +3015,7 @@
       ],
       "qualified": 27,
       "actionable": 16,
-      "starbridge_open_rfps": 0,
+      "starbridge_open_rfps": 1,
       "priority_score": 40,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -3023,28 +3027,28 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "WA",
-      "product": "inkwell",
-      "since": "2026-03",
-      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
+      "state": "FL",
+      "product": "ij",
+      "since": "2023-07",
+      "headline": "Florida's State Board approved updated B.E.S.T. Standards for Social Studies in 2023, expanding civics content, full implementation from SY2023-24; next state materials adoption cycle is 2027-2028.",
       "sources": [
         {
-          "title": "HB 1295 Bill Summary - Washington State Legislature",
-          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
+          "title": "Florida's State Academic Standards - Social Studies, 2023",
+          "url": "https://www.fldoe.org/core/fileparse.php/20578/urlt/5-3.pdf"
         }
       ],
-      "qualified": 50,
-      "actionable": 20,
-      "starbridge_open_rfps": 0,
-      "priority_score": 36,
+      "qualified": 22,
+      "actionable": 16,
+      "starbridge_open_rfps": 1,
+      "priority_score": 37,
       "priority_tier": "watch",
       "priority_breakdown": {
-        "open_rfp": 0,
+        "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 16,
-        "hubspot_footprint": 20
+        "policy_recency": 4,
+        "hubspot_footprint": 15
       },
-      "starbridge_open_rfps_product": 0
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "IA",
@@ -3095,6 +3099,30 @@
       "starbridge_open_rfps_product": 0
     },
     {
+      "state": "RI",
+      "product": "inkwell",
+      "since": "2019-07",
+      "headline": "Rhode Island's Right to Read Act (2019) hit implementation deadlines 2023-2024 requiring educator-prep programs prove Science of Reading/Structured Literacy training; revised K-12 social studies standards endorsed Feb 2023.",
+      "sources": [
+        {
+          "title": "The Rhode Island Right to Read Act - RIDE",
+          "url": "https://ride.ri.gov/instruction-assessment/literacy/rhode-island-right-read-act"
+        }
+      ],
+      "qualified": 5,
+      "actionable": 5,
+      "starbridge_open_rfps": 9,
+      "priority_score": 36,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 30,
+        "warm_signal": 0,
+        "policy_recency": 1,
+        "hubspot_footprint": 5
+      },
+      "starbridge_open_rfps_product": 4
+    },
+    {
       "state": "GA",
       "product": "inkwell",
       "since": "2023-03",
@@ -3107,7 +3135,7 @@
       ],
       "qualified": 22,
       "actionable": 10,
-      "starbridge_open_rfps": 3,
+      "starbridge_open_rfps": 1,
       "priority_score": 32,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -3135,7 +3163,7 @@
       ],
       "qualified": 25,
       "actionable": 21,
-      "starbridge_open_rfps": 2,
+      "starbridge_open_rfps": 0,
       "priority_score": 32,
       "priority_tier": "watch",
       "priority_breakdown": {
@@ -3145,30 +3173,6 @@
         "hubspot_footprint": 20
       },
       "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "MS",
-      "product": "ij",
-      "since": "2025-08",
-      "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
-      "sources": [
-        {
-          "title": "MS Instructional Materials Matter - Social Studies Adopted Materials",
-          "url": "https://msinstructionalmaterials.org/adopted-materials/social-studies-adopted-materials/"
-        }
-      ],
-      "qualified": 3,
-      "actionable": 2,
-      "starbridge_open_rfps": 4,
-      "priority_score": 32,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 2
-      },
-      "starbridge_open_rfps_product": 1
     },
     {
       "state": "IN",
@@ -3195,25 +3199,49 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "RI",
+      "state": "VT",
       "product": "inkwell",
-      "since": "2019-07",
-      "headline": "Rhode Island's Right to Read Act (2019) hit implementation deadlines 2023-2024 requiring educator-prep programs prove Science of Reading/Structured Literacy training; revised K-12 social studies standards endorsed Feb 2023.",
+      "since": "2024-05",
+      "headline": "Vermont's Act 139 (May 2024) created the state's first dyslexia-screening requirement + universal K-3 reading screening; Act 72 (June 2025) extended supplemental reading instruction requirements to grades K-12.",
       "sources": [
         {
-          "title": "The Rhode Island Right to Read Act - RIDE",
-          "url": "https://ride.ri.gov/instruction-assessment/literacy/rhode-island-right-read-act"
+          "title": "Act 139 of 2024 Annual Report",
+          "url": "https://legislature.vermont.gov/assets/Legislative-Reports/edu-act-139-improving-literacy-annual-report-2026.pdf"
         }
       ],
-      "qualified": 5,
-      "actionable": 5,
+      "qualified": 6,
+      "actionable": 4,
       "starbridge_open_rfps": 3,
-      "priority_score": 30,
+      "priority_score": 31,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 18,
+        "warm_signal": 0,
+        "policy_recency": 8,
+        "hubspot_footprint": 5
+      },
+      "starbridge_open_rfps_product": 1
+    },
+    {
+      "state": "ID",
+      "product": "inkwell",
+      "since": "unknown",
+      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "sources": [
+        {
+          "title": "Idaho Code Title 33, Chapter 18",
+          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 5,
+      "starbridge_open_rfps": 5,
+      "priority_score": 29,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 24,
         "warm_signal": 0,
-        "policy_recency": 1,
+        "policy_recency": 0,
         "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 2
@@ -3275,26 +3303,26 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "WV",
+      "state": "NM",
       "product": "inkwell",
-      "since": "2023",
-      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
+      "since": "2024-02",
+      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
       "sources": [
         {
-          "title": "Third Grade Success Act - West Virginia Department of Education",
-          "url": "https://wvde.us/third-grade-success-act/"
+          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
+          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
         }
       ],
-      "qualified": 4,
-      "actionable": 3,
-      "starbridge_open_rfps": 1,
-      "priority_score": 27,
+      "qualified": 2,
+      "actionable": 2,
+      "starbridge_open_rfps": 2,
+      "priority_score": 28,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 5
+        "policy_recency": 8,
+        "hubspot_footprint": 2
       },
       "starbridge_open_rfps_product": 1
     },
@@ -3347,30 +3375,50 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "DE",
-      "product": "gf8",
-      "since": "2026-06",
-      "headline": "Gov. Meyer signed Delaware's FY2027 budget June 30, 2026, raising early-childhood (Purchase of Care) investment to $107.3M (from $76.3M FY26), plus $8M one-time for pre-K expansion, part of a stated 40%-by-2028 public pre-K enrollment goal.",
+      "state": "OH",
+      "product": "inkwell",
+      "since": "2023",
+      "headline": "Ohio's 2023 House Bill 33 required every district adopt a state-approved, science-of-reading-aligned core ELA curriculum for PreK-5 by SY2024-25, backed by $168M, and banned three-cueing.",
       "sources": [
         {
-          "title": "Gov. Meyer Signs FY2027 Budget - State of Delaware News",
-          "url": "https://news.delaware.gov/2026/06/30/gov-meyer-signs-fy2027-budget-investing-in-education-affordability-and-opportunity/"
-        },
-        {
-          "title": "Delaware announces Early Literacy Plan - State of Delaware News",
-          "url": "https://news.delaware.gov/2025/10/10/delaware-announces-early-literacy-plan-to-strengthen-classroom-instruction/"
+          "title": "Updated list of approved core curriculum - Ohio Dept of Education and Workforce",
+          "url": "https://education.ohio.gov/Media/Ed-Connection/March-4-2024/Updated-list-of-approved-core-curriculum-and-instr?feed=NewsletterRSS"
         }
       ],
-      "qualified": 4,
-      "actionable": 3,
+      "qualified": 33,
+      "actionable": 25,
       "starbridge_open_rfps": 0,
-      "priority_score": 25,
+      "priority_score": 24,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 0,
         "warm_signal": 0,
-        "policy_recency": 20,
-        "hubspot_footprint": 5
+        "policy_recency": 4,
+        "hubspot_footprint": 20
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "CO",
+      "product": "inkwell",
+      "since": "2024-07",
+      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
+      "sources": [
+        {
+          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
+          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
+        }
+      ],
+      "qualified": 28,
+      "actionable": 19,
+      "starbridge_open_rfps": 0,
+      "priority_score": 23,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 8,
+        "hubspot_footprint": 15
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3387,7 +3435,7 @@
       ],
       "qualified": 14,
       "actionable": 9,
-      "starbridge_open_rfps": 1,
+      "starbridge_open_rfps": 0,
       "priority_score": 22,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3411,7 +3459,7 @@
       ],
       "qualified": 10,
       "actionable": 7,
-      "starbridge_open_rfps": 0,
+      "starbridge_open_rfps": 4,
       "priority_score": 22,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3495,30 +3543,6 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "FL",
-      "product": "ij",
-      "since": "2023-07",
-      "headline": "Florida's State Board approved updated B.E.S.T. Standards for Social Studies in 2023, expanding civics content, full implementation from SY2023-24; next state materials adoption cycle is 2027-2028.",
-      "sources": [
-        {
-          "title": "Florida's State Academic Standards - Social Studies, 2023",
-          "url": "https://www.fldoe.org/core/fileparse.php/20578/urlt/5-3.pdf"
-        }
-      ],
-      "qualified": 22,
-      "actionable": 16,
-      "starbridge_open_rfps": 0,
-      "priority_score": 19,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 15
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
       "state": "VA",
       "product": "inkwell",
       "since": "2022-01",
@@ -3531,7 +3555,7 @@
       ],
       "qualified": 28,
       "actionable": 13,
-      "starbridge_open_rfps": 0,
+      "starbridge_open_rfps": 1,
       "priority_score": 19,
       "priority_tier": "low_priority",
       "priority_breakdown": {
@@ -3639,6 +3663,30 @@
       "starbridge_open_rfps_product": 0
     },
     {
+      "state": "MS",
+      "product": "ij",
+      "since": "2025-08",
+      "headline": "Mississippi newly adopted social studies instructional materials for the 2025-26 school year.",
+      "sources": [
+        {
+          "title": "MS Instructional Materials Matter - Social Studies Adopted Materials",
+          "url": "https://msinstructionalmaterials.org/adopted-materials/social-studies-adopted-materials/"
+        }
+      ],
+      "qualified": 3,
+      "actionable": 2,
+      "starbridge_open_rfps": 1,
+      "priority_score": 14,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 12,
+        "hubspot_footprint": 2
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
       "state": "AK",
       "product": "inkwell",
       "since": "2022-06",
@@ -3674,30 +3722,6 @@
         }
       ],
       "qualified": 9,
-      "actionable": 4,
-      "starbridge_open_rfps": 2,
-      "priority_score": 13,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 5
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "VT",
-      "product": "inkwell",
-      "since": "2024-05",
-      "headline": "Vermont's Act 139 (May 2024) created the state's first dyslexia-screening requirement + universal K-3 reading screening; Act 72 (June 2025) extended supplemental reading instruction requirements to grades K-12.",
-      "sources": [
-        {
-          "title": "Act 139 of 2024 Annual Report",
-          "url": "https://legislature.vermont.gov/assets/Legislative-Reports/edu-act-139-improving-literacy-annual-report-2026.pdf"
-        }
-      ],
-      "qualified": 6,
       "actionable": 4,
       "starbridge_open_rfps": 0,
       "priority_score": 13,
@@ -3735,26 +3759,26 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "NM",
+      "state": "WV",
       "product": "inkwell",
-      "since": "2024-02",
-      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
+      "since": "2023",
+      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
       "sources": [
         {
-          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
-          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
+          "title": "Third Grade Success Act - West Virginia Department of Education",
+          "url": "https://wvde.us/third-grade-success-act/"
         }
       ],
-      "qualified": 2,
-      "actionable": 2,
+      "qualified": 4,
+      "actionable": 3,
       "starbridge_open_rfps": 0,
-      "priority_score": 10,
+      "priority_score": 9,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 0,
         "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 2
+        "policy_recency": 4,
+        "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3819,37 +3843,13 @@
       ],
       "qualified": 4,
       "actionable": 3,
-      "starbridge_open_rfps": 0,
+      "starbridge_open_rfps": 6,
       "priority_score": 9,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 0,
         "warm_signal": 0,
         "policy_recency": 4,
-        "hubspot_footprint": 5
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "ID",
-      "product": "inkwell",
-      "since": "unknown",
-      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
-      "sources": [
-        {
-          "title": "Idaho Code Title 33, Chapter 18",
-          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
-        }
-      ],
-      "qualified": 8,
-      "actionable": 5,
-      "starbridge_open_rfps": 0,
-      "priority_score": 5,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 0,
         "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 0
@@ -5433,178 +5433,88 @@
   },
   "starbridge_by_state": {
     "CA": {
-      "open_rfps_total": 3,
+      "open_rfps_total": 5,
       "by_product": {
-        "ij": 0,
+        "ij": 2,
         "inkwell": 1,
         "gf8": 2
       },
       "top": [
         {
-          "buyer": "Morongo Unified School District",
+          "buyer": "Alum Rock Union School District",
           "product": "inkwell",
-          "due": "2026-09-23",
-          "score": 3,
-          "url": "https://www.morongousd.com/page/contractors",
-          "summary": "Turnkey Expanded Learning Spring Academy TK-6, curriculum+materials, Spring 2027."
-        },
-        {
-          "buyer": "Snowline Joint Unified School District",
-          "product": "gf8",
-          "due": "2026-09-20",
-          "score": 3,
-          "url": "",
-          "summary": "Provide safe, engaging, inclusive, and high-interest programming that supports student development, student engagement, social-emotional learning, physical wellness, creativity, and positive school co"
-        },
-        {
-          "buyer": "Fremont Unified School District",
-          "product": "gf8",
-          "due": "2026-03-27",
-          "score": 1,
-          "url": "",
-          "summary": "Expanded school day service providers are needed on 29 elementary school sites to serve tk to 5th grade children attending FUSD elementary schools, and glankler early learning center. "
-        }
-      ]
-    },
-    "CO": {
-      "open_rfps_total": 1,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 1,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Colorado Department of Early Childhood",
-          "product": "inkwell",
-          "due": "2026-07-24",
-          "score": 3,
-          "url": "https://www.bidnetdirect.com/colorado/solicitations/open-bids/BD2701-Early-Childhood-Education-HQIM-Curriculum/0000429155",
-          "summary": "HQIM curriculum for 3-4yo early childhood ed."
-        }
-      ]
-    },
-    "WV": {
-      "open_rfps_total": 1,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 1,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Cabell County School District",
-          "product": "inkwell",
-          "due": "2026-09-18",
-          "score": 3,
-          "url": "",
-          "summary": "English language learning software, reading components + language proficiency."
-        }
-      ]
-    },
-    "RI": {
-      "open_rfps_total": 3,
-      "by_product": {
-        "ij": 1,
-        "inkwell": 2,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Rhode Island Department of Education",
-          "product": "inkwell",
-          "due": "2028-12-29",
+          "due": "2026-12-04",
           "score": 5,
-          "url": "https://ridop.ri.gov/vendors/bidding-opportunities",
-          "summary": "MPA 636: K-12 core/supplemental social studies curriculum + PL, C3 Framework."
+          "url": "https://www.arusd.org/fs/resource-manager/view/ef13ea2e-7e06-4c20-b7f2-bb43a99afcc1",
+          "summary": "NOTICE IS HEREBY GIVEN that the Alum Rock Union Elementary School District (\"District\") is seeking proposals from qualified and experienced Expanded Learning Partners to deliver focused, standards-ali"
         },
         {
-          "buyer": "Rhode Island Department of Education",
+          "buyer": "Alum Rock Union School District",
+          "product": "gf8",
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://www.arusd.org/fs/resource-manager/view/ef13ea2e-7e06-4c20-b7f2-bb43a99afcc1",
+          "summary": "The Alum Rock Union Elementary School District is procuring Expanded Learning Partners to deliver focused, standards-aligned academic instruction for its Summer Scholars Program, targeting mathematics"
+        },
+        {
+          "buyer": "Bakersfield City School District",
           "product": "ij",
-          "due": "2028-12-29",
+          "due": "2026-12-04",
           "score": 5,
-          "url": "",
-          "summary": "MPA 636: K-12 social studies curriculum + PL, C3 Framework, LEAs must align by SY26-27."
-        },
-        {
-          "buyer": "Rhode Island Department of Education",
-          "product": "inkwell",
-          "due": "2028-11-30",
-          "score": 3,
-          "url": "https://webprocure.proactiscloud.com/wp-web-public/en/#/bidboard/bid/143004",
-          "summary": "MPA 581: curriculum-based PL for PreK-12 educators."
+          "url": "https://vendors.planetbids.com/portal/84745/bo/bo-detail/148001",
+          "summary": "The Bakersfield City School District (“District”) is issuing this Request for Statements of Qualification and Proposals (RFQP) to solicit Statements of Qualifications from experienced and qualified ve"
         }
-      ]
+      ],
+      "status": {
+        "open": 5,
+        "reached_out": 0,
+        "dismissed": 41,
+        "past_due": 7,
+        "pulled": "2026-11-19"
+      }
     },
-    "NJ": {
-      "open_rfps_total": 3,
+    "DC": {
+      "open_rfps_total": 6,
       "by_product": {
         "ij": 0,
-        "inkwell": 2,
-        "gf8": 1
+        "inkwell": 3,
+        "gf8": 3
       },
       "top": [
         {
-          "buyer": "Pennsauken Public Schools",
+          "buyer": "Kipp Dc Pcs",
           "product": "inkwell",
-          "due": "2026-08-19",
-          "score": 4,
-          "url": "",
-          "summary": "Structured Literacy Program RFP."
+          "due": "2026-11-30",
+          "score": 5,
+          "url": "https://kippdc.quickbase.com/up/bjhewtd2d/g/rnt/ecg/va/FINAL_KIPP%20DC%20RFP_Role-Differentiated%20Structured%20Literacy%20Training%20Development%20and%20Delivery%20for%20Educators_261113.pdf",
+          "summary": "KIPP DC is soliciting proposals from qualified vendors for Role-Differentiated Structured Literacy Training Development and Delivery for Educators. The RFP can be found on KIPP DC's website at [KIPP D"
         },
         {
-          "buyer": "Pennsauken Public Schools",
+          "buyer": "Kipp Dc Pcs",
           "product": "gf8",
-          "due": "2026-08-19",
-          "score": 4,
-          "url": "",
-          "summary": "Structured literacy program. "
-        },
-        {
-          "buyer": "Franklin Township Public Schools",
-          "product": "inkwell",
-          "due": "2026-09-16",
-          "score": 3,
-          "url": "https://securebids.com/o/ftboe/RFP2027-17",
-          "summary": "Online ELA foundational-skills tutorials, grades 1-5."
-        }
-      ]
-    },
-    "TX": {
-      "open_rfps_total": 12,
-      "by_product": {
-        "ij": 3,
-        "inkwell": 5,
-        "gf8": 4
-      },
-      "top": [
-        {
-          "buyer": "Region 10 Education Service Center",
-          "product": "inkwell",
-          "due": "2026-09-25",
+          "due": "2026-11-30",
           "score": 5,
-          "url": "https://region10.bonfirehub.com/opportunities/251910",
-          "summary": "Instructional materials & software via EdTech Exchange co-op."
+          "url": "https://kippdc.quickbase.com/up/bjhewtd2d/g/rnt/ecg/va/FINAL_KIPP%20DC%20RFP_Role-Differentiated%20Structured%20Literacy%20Training%20Development%20and%20Delivery%20for%20Educators_261113.pdf",
+          "summary": "KIPP DC is seeking a qualified partner to develop and deliver role-differentiated, research-based structured literacy training modules for educators across K-12 grade bands. The selected partner will "
         },
         {
-          "buyer": "Katy Independent School District",
+          "buyer": "Kipp Dc Pcs",
           "product": "inkwell",
-          "due": "2026-10-16",
+          "due": "2026-12-04",
           "score": 5,
-          "url": "https://procurement.opengov.com/portal/katyisd/projects/296193",
-          "summary": "Districtwide staff development, literacy + social studies among subjects, ~95k students."
-        },
-        {
-          "buyer": "Wylie Independent School District",
-          "product": "ij",
-          "due": "2027-06-03",
-          "score": 4,
-          "url": "https://wylieisd.ionwave.net/PublicDetail.aspx?bidID=328",
-          "summary": "Pre-qualified vendor pool, instructional supplies/software, 5yr term."
+          "url": "https://dcregs.dc.gov/Common/NoticeDetail.aspx?NoticeId=N147208",
+          "summary": "KIPP DC is soliciting proposals from qualified vendors for an English Language Arts Book Supplier. The RFP can be found on KIPP DC's procurement webpage. Questions must be addressed to phuong.trinh@ki"
         }
-      ]
+      ],
+      "status": {
+        "open": 6,
+        "reached_out": 0,
+        "dismissed": 12,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
     },
-    "UT": {
+    "MI": {
       "open_rfps_total": 2,
       "by_product": {
         "ij": 0,
@@ -5613,24 +5523,154 @@
       },
       "top": [
         {
-          "buyer": "Sevier School District",
+          "buyer": "Flint Community School District",
           "product": "inkwell",
-          "due": "2026-10-01",
-          "score": 5,
-          "url": "https://utah.bonfirehub.com/portal/?tab=openOpportunities",
-          "summary": "K-5 ELA core curriculum, science-of-reading aligned, 2027-28 implementation, 5yr contract."
+          "due": "2026-11-23",
+          "score": 4,
+          "url": "https://aptg.co/NCDHQk",
+          "summary": "Independent PreK–12 English language arts and mathematics instructional audit across all Flint Community Schools."
         },
         {
-          "buyer": "Sevier School District",
+          "buyer": "Wayne Regional Educational Service Agency",
           "product": "gf8",
-          "due": "2026-10-01",
-          "score": 4,
-          "url": "https://utah.bonfirehub.com/portal/?tab=openOpportunities",
-          "summary": "Sevier School District is soliciting a comprehensive, research-based kindergarten-through-grade 5 English Language Arts core curriculum aligned with Utah standards and evidence-based literacy practice"
+          "due": "2027-03-03",
+          "score": 3,
+          "url": "https://drive.google.com/file/d/1ULmWrXmVabdO7dnnLzJZUbGel9wCMTUj/view?usp=sharing",
+          "summary": "Application for providers seeking to deliver GSRP services during the 2027–2028 school year."
         }
-      ]
+      ],
+      "status": {
+        "open": 2,
+        "reached_out": 3,
+        "dismissed": 6,
+        "past_due": 3,
+        "pulled": "2026-11-19"
+      }
     },
-    "OH": {
+    "TX": {
+      "open_rfps_total": 51,
+      "by_product": {
+        "ij": 15,
+        "inkwell": 17,
+        "gf8": 19
+      },
+      "top": [
+        {
+          "buyer": "Abilene Independent School District",
+          "product": "inkwell",
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://abileneisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=172",
+          "summary": "The Abilene Independent School District is soliciting proposals for Professional Development/Contracted Services (Non-Instructional Related) - Consultants, Presenters, Trainers and Other Related Servi"
+        },
+        {
+          "buyer": "Goose Creek Consolidated Independent School District",
+          "product": "gf8",
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://gccisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=293",
+          "summary": "Goose Creek CISD is requesting proposals for contracted services and related products. This is an ongoing RFP solicitation with a term ending in 2029. Online submission is preferred, but sealed hard-c"
+        },
+        {
+          "buyer": "Goose Creek Consolidated Independent School District",
+          "product": "ij",
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://gccisd.ionwave.net/PublicDetail.aspx?SourceType=1&bidID=293",
+          "summary": "Goose Creek CISD is requesting proposals for contracted services and related products. This is an ongoing RFP solicitation with a term ending in 2029. Online submission is preferred, but sealed hard-c"
+        }
+      ],
+      "status": {
+        "open": 51,
+        "reached_out": 0,
+        "dismissed": 196,
+        "past_due": 23,
+        "pulled": "2026-11-19"
+      }
+    },
+    "NY": {
+      "open_rfps_total": 19,
+      "by_product": {
+        "ij": 4,
+        "inkwell": 7,
+        "gf8": 8
+      },
+      "top": [
+        {
+          "buyer": "Mohonasen Central School District",
+          "product": "inkwell",
+          "due": "2026-11-20",
+          "score": 5,
+          "url": "https://www.mohonasen.org/universal-pre-k-program-bids/",
+          "summary": "Universal pre-kindergarten (UPK) program. Program scope: the selected collaborator or collaborators will operate a full-day universal pre-kindergarten instructional program serving eligible 4-year-old"
+        },
+        {
+          "buyer": "Mohonasen Central School District",
+          "product": "gf8",
+          "due": "2026-11-20",
+          "score": 5,
+          "url": "https://www.mohonasen.org/universal-pre-k-program-bids/",
+          "summary": "Universal pre-kindergarten (UPK) program. Program scope: the selected collaborator or collaborators will operate a full-day universal pre-kindergarten instructional program serving eligible 4-year-old"
+        },
+        {
+          "buyer": "Chappaqua Central School District",
+          "product": "inkwell",
+          "due": "2026-12-04",
+          "score": 5,
+          "url": "https://www.bidnetdirect.com/new-york/chappaquaschools/solicitations/CCSD-RFP-2026-08-Universal-Pre-Kindergarten-Program/0000442837",
+          "summary": "Chappaqua Central School District is soliciting proposals under RFP #2026-08 for its Universal Pre-Kindergarten Program. The public notice lists a publication date of November 6, 2026, and a closing d"
+        }
+      ],
+      "status": {
+        "open": 19,
+        "reached_out": 0,
+        "dismissed": 40,
+        "past_due": 19,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MA": {
+      "open_rfps_total": 10,
+      "by_product": {
+        "ij": 3,
+        "inkwell": 2,
+        "gf8": 5
+      },
+      "top": [
+        {
+          "buyer": "Massachusetts Department of Elementary and Secondary Education",
+          "product": "inkwell",
+          "due": "2026-12-21",
+          "score": 5,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
+          "summary": "DESE seeks a vendor or pair of vendors to support the curriculum development and professional learning for a new K-3 curriculum, which will be offered for free to Massachusetts educators. The curricul"
+        },
+        {
+          "buyer": "Massachusetts Department of Elementary and Secondary Education",
+          "product": "inkwell",
+          "due": "2026-12-21",
+          "score": 5,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
+          "summary": "DESE seeks a vendor or pair of vendors to support the curriculum development and professional learning for a new K-3 curriculum, which will be offered for free to Massachusetts educators. The curricul"
+        },
+        {
+          "buyer": "Massachusetts Department of Elementary and Secondary Education",
+          "product": "gf8",
+          "due": "2026-12-21",
+          "score": 5,
+          "url": "https://www.commbuys.com/bso/external/bidDetail.sda?docId=BD-27-1026-DOE02-DOE01-135338&external=true",
+          "summary": "DESE seeks a vendor or pair of vendors to support the curriculum development and professional learning for a new K-3 curriculum, which will be offered for free to Massachusetts educators. The curricul"
+        }
+      ],
+      "status": {
+        "open": 10,
+        "reached_out": 3,
+        "dismissed": 18,
+        "past_due": 9,
+        "pulled": "2026-11-19"
+      }
+    },
+    "GA": {
       "open_rfps_total": 1,
       "by_product": {
         "ij": 0,
@@ -5639,48 +5679,144 @@
       },
       "top": [
         {
-          "buyer": "Ohio Department of Education & Workforce",
+          "buyer": "Fulton County School District",
           "product": "inkwell",
-          "due": "2026-09-01",
+          "due": "2026-12-10",
           "score": 3,
-          "url": "http://education.ohio.gov/.../Reading-Intervention-Vendor-Guidance-and-RFA-2026-2027.pdf",
-          "summary": "Approved list: PreK-12 evidence-based reading intervention programs, science of reading, 3-cueing banned."
+          "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-55101-NONST-2027-000000205&sourceSystemType=gpr20",
+          "summary": "Fulton County Schools (FCS) invites you to submit a proposal furnishing any and all goods and/or services required for Adapted Curriculum."
         }
-      ]
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 0,
+        "dismissed": 4,
+        "past_due": 5,
+        "pulled": "2026-11-19"
+      }
     },
-    "GA": {
-      "open_rfps_total": 3,
+    "RI": {
+      "open_rfps_total": 9,
       "by_product": {
-        "ij": 2,
-        "inkwell": 1,
-        "gf8": 0
+        "ij": 3,
+        "inkwell": 4,
+        "gf8": 2
       },
       "top": [
         {
-          "buyer": "DeKalb County School District",
-          "product": "ij",
-          "due": "2026-03-12",
-          "score": 5,
-          "url": "https://dekalbschoolsga.ionwave.net/PublicDetail.aspx?bidID=1145",
-          "summary": "K-12 social studies instructional resources, C3-aligned, ~93k students."
-        },
-        {
-          "buyer": "Newton County School District",
-          "product": "ij",
-          "due": "2026-09-04",
-          "score": 5,
-          "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-70710-NONST-2027-000000038",
-          "summary": "K-12 Social Studies textbook adoption RFI."
-        },
-        {
-          "buyer": "Newton County School District",
+          "buyer": "Rhode Island Department of Education",
           "product": "inkwell",
-          "due": "2026-09-04",
-          "score": 4,
-          "url": "https://ssl.doas.state.ga.us/gpr/eventDetails?eSourceNumber=PE-70710-NONST-2027-000000038",
-          "summary": "K-12 Social Studies textbook adoption RFI, GA Standards of Excellence."
+          "due": "2028-02-29",
+          "score": 5,
+          "url": "https://webprocure.proactiscloud.com/MainBidBoard/solicitation_document.pdf?ac=2&bidid=146530&bidoid=120002&oid=120002",
+          "summary": "Seeks qualified providers to deliver literacy and dyslexia endorsement and professional learning services for inclusion on Rhode Island’s Master Price Agreement provider list."
+        },
+        {
+          "buyer": "Rhode Island Department of Education",
+          "product": "gf8",
+          "due": "2028-02-29",
+          "score": 5,
+          "url": "https://webprocure.proactiscloud.com/MainBidBoard/solicitation_document.pdf?ac=2&bidid=146530&bidoid=120002&oid=120002",
+          "summary": "Seeks qualified providers to deliver literacy and dyslexia endorsement and professional learning services for inclusion on Rhode Island’s Master Price Agreement provider list."
+        },
+        {
+          "buyer": "Rhode Island Department of Education",
+          "product": "inkwell",
+          "due": "2028-12-29",
+          "score": 5,
+          "url": "https://ridop.ri.gov/vendors/bidding-opportunities",
+          "summary": "The Rhode Island Department of Education (RIDE) is soliciting proposals to provide high-quality K–12 core and/or supplemental social studies curriculum materials and accompanying professional learning"
         }
-      ]
+      ],
+      "status": {
+        "open": 9,
+        "reached_out": 0,
+        "dismissed": 4,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
+    },
+    "ID": {
+      "open_rfps_total": 5,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 2,
+        "gf8": 2
+      },
+      "top": [
+        {
+          "buyer": "Idaho State Department of Education",
+          "product": "inkwell",
+          "due": "2026-12-18",
+          "score": 5,
+          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
+          "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
+        },
+        {
+          "buyer": "Idaho State Department of Education",
+          "product": "gf8",
+          "due": "2026-12-18",
+          "score": 5,
+          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
+          "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
+        },
+        {
+          "buyer": "Idaho State Department of Education",
+          "product": "ij",
+          "due": "2026-12-18",
+          "score": 5,
+          "url": "https://www.sde.idaho.gov/wp-content/uploads/2026/10/2027-Call-For-Submission.pdf",
+          "summary": "Solicitation for K-12 Social Studies and CTE curricular materials for Idaho’s FY2027 adoption review."
+        }
+      ],
+      "status": {
+        "open": 5,
+        "reached_out": 0,
+        "dismissed": 1,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
+    },
+    "WI": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Hudson School District",
+          "product": "inkwell",
+          "due": "2026-12-15",
+          "score": 5,
+          "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
+          "summary": "A comprehensive Four-Year-Old Kindergarten (4K) instructional resource for the Hudson School District."
+        },
+        {
+          "buyer": "Hudson School District",
+          "product": "gf8",
+          "due": "2026-12-15",
+          "score": 5,
+          "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
+          "summary": "A comprehensive Four-Year-Old Kindergarten (4K) instructional resource for the Hudson School District."
+        },
+        {
+          "buyer": "Hudson School District",
+          "product": "ij",
+          "due": "2026-12-15",
+          "score": 5,
+          "url": "https://www.hudsonraiders.org/fs/resource-manager/view/d96a1cb0-51f4-4917-bb58-6b89e00c6734",
+          "summary": "A comprehensive Four-Year-Old Kindergarten (4K) instructional resource for the Hudson School District."
+        }
+      ],
+      "status": {
+        "open": 3,
+        "reached_out": 0,
+        "dismissed": 3,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
     },
     "CT": {
       "open_rfps_total": 2,
@@ -5691,224 +5827,391 @@
       },
       "top": [
         {
-          "buyer": "Stamford Public Schools",
+          "buyer": "East Hartford Public Schools",
           "product": "inkwell",
-          "due": "2026-04-29",
+          "due": "2026-12-11",
           "score": 5,
-          "url": "",
-          "summary": "Comprehensive K-5 curriculum for EL development & multilingual learners."
+          "url": "https://www.easthartford.org/departments/purchasing/bids_request_for_proposals",
+          "summary": "East Hartford Public Schools seeks proposals for a comprehensive, research-based core literacy program for students in grades K–5. The program must align with the Science of Reading and Connecticut’s "
         },
         {
-          "buyer": "Connecticut Department of Education",
+          "buyer": "East Hartford Public Schools",
           "product": "gf8",
-          "due": "2026-06-17",
-          "score": 4,
-          "url": "https://portal.ct.gov/DAS/CTSource/BidBoard",
-          "summary": "The Connecticut State Department of Education is seeking information from interested parties to provide instructional resources and supplemental materials for the K-12 State Model Curriculum. The requ"
+          "due": "2026-12-11",
+          "score": 5,
+          "url": "https://www.easthartford.org/departments/purchasing/bids_request_for_proposals",
+          "summary": "East Hartford Public Schools seeks proposals for a comprehensive, research-based core literacy program for students in grades K–5. The program must align with the Science of Reading and Connecticut’s "
         }
-      ]
+      ],
+      "status": {
+        "open": 2,
+        "reached_out": 2,
+        "dismissed": 5,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
     },
-    "MD": {
+    "NC": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "North Carolina Division of Child Development and Early Education",
+          "product": "gf8",
+          "due": "2026-12-01",
+          "score": 5,
+          "url": "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/R/RFA_004-DCDEE-2026_Child_Care_Academies_11.1.26.pdf?ver=TtGUI8jDnzjNz5sbpBrPcA%253d%253d",
+          "summary": "Funding for eligible North Carolina community colleges and UNC system universities to administer Child Care Academies providing early childhood workforce training."
+        }
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 1,
+        "dismissed": 15,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
+    },
+    "AL": {
       "open_rfps_total": 4,
       "by_product": {
-        "ij": 2,
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 3
+      },
+      "top": [
+        {
+          "buyer": "Jasper City School District",
+          "product": "gf8",
+          "due": "2026-12-01",
+          "score": 4,
+          "url": "https://www.jasper.k12.al.us/fs/resource-manager/view/ac79063e-ebd5-4ec3-9905-fe6e039f341c",
+          "summary": "Solicits proposals from applicants seeking to establish and operate public charter schools in the Jasper City Schools district."
+        },
+        {
+          "buyer": "Dallas County School District",
+          "product": "gf8",
+          "due": "2027-01-01",
+          "score": 4,
+          "url": "https://www.dallask12.org/fs/resource-manager/view/919a7162-9b80-4203-986d-6c40b458c4a5",
+          "summary": "Solicits proposals from qualified nonprofit applicant groups to establish start-up public charter schools within the Dallas County School System."
+        },
+        {
+          "buyer": "Birmingham City School District",
+          "product": "gf8",
+          "due": "2026-12-01",
+          "score": 3,
+          "url": "https://files-backend.assets.thrillshare.com/documents/asset/uploaded_file/4669/Bcs/0fdfcaf1-ddbe-4317-ac4a-c8171c5ca32a/BCS_Charter_RFP_Superintendent_Approval_Final.pdf?disposition=inline",
+          "summary": "Solicits applications for start-up public charter schools proposing to open in Birmingham City Schools in the 2028-2029 school year."
+        }
+      ],
+      "status": {
+        "open": 4,
+        "reached_out": 0,
+        "dismissed": 4,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MS": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Jones County School District",
+          "product": "gf8",
+          "due": "2026-12-01",
+          "score": 5,
+          "url": "https://drive.google.com/file/d/1ECAkohtadDIQ1tWp5BFH8vx4aChTBAJz/view?usp=drive_link",
+          "summary": "In-person, on-campus professional development, coaching, and instructional support in ELA, math, and special education."
+        }
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 0,
+        "dismissed": 66,
+        "past_due": 9,
+        "pulled": "2026-11-19"
+      }
+    },
+    "WV": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 13,
+        "past_due": 3,
+        "pulled": "2026-11-19"
+      }
+    },
+    "WA": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 1,
         "inkwell": 1,
         "gf8": 1
       },
       "top": [
         {
-          "buyer": "Baltimore County Public Schools",
-          "product": "ij",
-          "due": "2026-03-20",
-          "score": 5,
-          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/88780",
-          "summary": "Source-based Social Studies instructional materials RFI, grades 3-12."
-        },
-        {
-          "buyer": "Maryland Department of Education",
+          "buyer": "Olympia School District 111",
           "product": "inkwell",
-          "due": "2026-09-15",
-          "score": 4,
-          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/94344",
-          "summary": "Early Childhood Curriculum Review RFI, 95% ELA/Math alignment required."
+          "due": "2026-11-19",
+          "score": 5,
+          "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
+          "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span."
         },
         {
-          "buyer": "Maryland Department of Education",
-          "product": "ij",
-          "due": "2026-09-15",
-          "score": 3,
-          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/94344",
-          "summary": "Early Childhood Curriculum Review RFI."
-        }
-      ]
-    },
-    "MS": {
-      "open_rfps_total": 4,
-      "by_product": {
-        "ij": 1,
-        "inkwell": 0,
-        "gf8": 3
-      },
-      "top": [
-        {
-          "buyer": "Harrison County School District",
+          "buyer": "Olympia School District 111",
           "product": "gf8",
-          "due": "2026-08-05",
-          "score": 4,
-          "url": "https://www.centralauctionhouse.com/rfp70769019-page.html",
-          "summary": "Harrison County School District is soliciting bids for an online literature curriculum and associated assessment tools for K–12 students under solicitation 26.27-10. The scope includes digital curricu"
+          "due": "2026-11-19",
+          "score": 5,
+          "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
+          "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span."
         },
         {
-          "buyer": "Harrison County School District",
+          "buyer": "Olympia School District 111",
           "product": "ij",
-          "due": "2026-08-05",
-          "score": 3,
-          "url": "https://www.centralauctionhouse.com/rfp70769019-page.html",
-          "summary": "Online literature curriculum + assessment, K-12."
-        },
-        {
-          "buyer": "Newton Municipal School District",
-          "product": "gf8",
-          "due": "2026-05-28",
-          "score": 3,
-          "url": "https://www.centralauctionhouse.com/rfp89502801-request-for-quotations-for-web-based-services-for-newton-municipal-school-district-for-the-2026-27-school-year-.html",
-          "summary": "Newton Municipal School District is soliciting quotes for cloud-based/web instructional licenses for the 2026–27 school year that cover core academics, special education, English learners, and mental-"
+          "due": "2026-11-19",
+          "score": 5,
+          "url": "https://files.smartsites.parentsquare.com/10525/osd_request_for_information_k-12_social_studies_acc.pdf",
+          "summary": "Requests sample instructional materials and pricing for K-12 social studies curricula aligned with Washington State standards; submissions may cover any portion of the grade span."
         }
-      ]
-    },
-    "MA": {
-      "open_rfps_total": 5,
-      "by_product": {
-        "ij": 1,
-        "inkwell": 0,
-        "gf8": 4
-      },
-      "top": [
-        {
-          "buyer": "Massachusetts Department of Elementary and Secondary Education",
-          "product": "gf8",
-          "due": "2027-08-31",
-          "score": 4,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-23-1026-DOE02-DOE01-77790&external=true&parentUrl=close",
-          "summary": "To determine the extent to which various sets of curricular materials meet Massachusetts expectations for teaching and learning, DESE will be convening panels of educators to review available evidence"
-        },
-        {
-          "buyer": "Massachusetts Dept of Elementary & Secondary Education",
-          "product": "ij",
-          "due": "2026-05-22",
-          "score": 3,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-26-1026-DOE02-DOE01-129076",
-          "summary": "Free digital integrated K-3 curriculum incl. social studies, field testing 2027-28."
-        },
-        {
-          "buyer": "Massachusetts Board of Library Commissioners",
-          "product": "gf8",
-          "due": "2026-12-18",
-          "score": 3,
-          "url": "https://www.commbuys.com/bso/external/bidDetail.sdo?docId=BD-27-1007-1007C-1007L-133436&external=true&parentUrl=close",
-          "summary": "The Board of Library Commissioners is soliciting proposals from publishers, value-added resellers, and authorized third-party vendors for online encyclopedias, early learning resources, and educationa"
-        }
-      ]
-    },
-    "MO": {
-      "open_rfps_total": 2,
-      "by_product": {
-        "ij": 2,
-        "inkwell": 0,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "Ferguson-Florissant School District R-2",
-          "product": "ij",
-          "due": "2026-04-24",
-          "score": 4,
-          "url": "",
-          "summary": "K-5 social studies curriculum pilot, MO learning standards."
-        },
-        {
-          "buyer": "Missouri Office of Administration",
-          "product": "ij",
-          "due": "2026-07-07",
-          "score": 3,
-          "url": "https://purch.oa.mo.gov/contractcompass/MC260297001",
-          "summary": "Statewide Qualified Vendor List, books/publications/materials."
-        }
-      ]
-    },
-    "PA": {
-      "open_rfps_total": 1,
-      "by_product": {
-        "ij": 1,
-        "inkwell": 0,
-        "gf8": 0
-      },
-      "top": [
-        {
-          "buyer": "New Kensington Arnold School District",
-          "product": "ij",
-          "due": "2026-05-22",
-          "score": 4,
-          "url": "https://4.files.edl.io/6a4a/04/14/26/123253-4cc9ba35-9eb2-40db-953f-0cbf4c62adab.pdf",
-          "summary": "K-12 Social Studies, inquiry-based, print+digital, PA Academic Standards."
-        }
-      ]
-    },
-    "NY": {
-      "open_rfps_total": 1,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 0,
-        "gf8": 1
-      },
-      "top": [
-        {
-          "buyer": "Delaware Academy Central School District",
-          "product": "gf8",
-          "due": "2026-09-25",
-          "score": 4,
-          "url": "",
-          "summary": "Provision of universal pre kindergarten."
-        }
-      ]
-    },
-    "MN": {
-      "open_rfps_total": 1,
-      "by_product": {
-        "ij": 0,
-        "inkwell": 0,
-        "gf8": 1
-      },
-      "top": [
-        {
-          "buyer": "Minnesota Department of Education",
-          "product": "gf8",
-          "due": "2026-09-28",
-          "score": 4,
-          "url": "",
-          "summary": "Seeking proposals from qualified responders to develop coherent guidance and aligned COMPASS (Collaborative Minnesota Partnerships to Advance Student Success) professional learning to support effectiv"
-        }
-      ]
+      ],
+      "status": {
+        "open": 3,
+        "reached_out": 0,
+        "dismissed": 1,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
     },
     "SC": {
-      "open_rfps_total": 1,
+      "open_rfps_total": 0,
       "by_product": {
         "ij": 0,
         "inkwell": 0,
-        "gf8": 1
+        "gf8": 0
       },
-      "top": [
-        {
-          "buyer": "Florence School District 1",
-          "product": "gf8",
-          "due": "2026-07-30",
-          "score": 4,
-          "url": "https://fsd1.bonfirehub.com/opportunities/245556",
-          "summary": "Online educational resource for approx. 10,000 elementary, middle, and/or high school students that may have the ability to create animation-based curricular content that engages students, supports ed"
-        }
-      ]
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 20,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
     },
-    "WI": {
+    "NM": {
+      "open_rfps_total": 2,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Regional Education Cooperative #9",
+          "product": "inkwell",
+          "due": "2026-11-20",
+          "score": 3,
+          "url": "",
+          "summary": "Seeks proposals for the development, administration, scoring, and reporting of a culturally and linguistically responsive assessment suite in grades kindergarten through 3rd with related training and "
+        },
+        {
+          "buyer": "Regional Education Cooperative #9",
+          "product": "gf8",
+          "due": "2026-11-20",
+          "score": 3,
+          "url": "",
+          "summary": "Seeks proposals for the development, administration, scoring, and reporting of a culturally and linguistically responsive assessment suite in grades kindergarten through 3rd with related training and "
+        }
+      ],
+      "status": {
+        "open": 2,
+        "reached_out": 0,
+        "dismissed": 11,
+        "past_due": 5,
+        "pulled": "2026-11-19"
+      }
+    },
+    "AK": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 1,
+        "past_due": 4,
+        "pulled": "2026-11-19"
+      }
+    },
+    "DE": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 1,
+        "gf8": 2
+      },
+      "top": [
+        {
+          "buyer": "Delaware Department of Education",
+          "product": "gf8",
+          "due": "2026-11-19",
+          "score": 4,
+          "url": "https://bids.doe.k12.de.us/#viewproposal?propID=511",
+          "summary": "Outside school time programs. Awarded OST programs are expected to be implemented within the school and must provide opportunities for students to arrive at school one (1) hour before the regular scho"
+        },
+        {
+          "buyer": "Delaware Department of Education",
+          "product": "gf8",
+          "due": "2026-12-10",
+          "score": 4,
+          "url": "https://bids.doe.k12.de.us/#viewproposal?propID=513",
+          "summary": "Applications for this competitive grant process to begin or enhance academically advanced gifted and talented programming that provides rigorous learning opportunities for students demonstrating excep"
+        },
+        {
+          "buyer": "Delaware Department of Education",
+          "product": "inkwell",
+          "due": "2026-11-19",
+          "score": 3,
+          "url": "https://bids.doe.k12.de.us/#viewproposal?propID=511",
+          "summary": "Outside school time programs. Awarded OST programs are expected to be implemented within the school and must provide opportunities for students to arrive at school one (1) hour before the regular scho"
+        }
+      ],
+      "status": {
+        "open": 3,
+        "reached_out": 0,
+        "dismissed": 4,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "TN": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 6,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
+    },
+    "NJ": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 36,
+        "past_due": 11,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MD": {
+      "open_rfps_total": 2,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Chesapeake Bay Trust",
+          "product": "ij",
+          "due": "2026-12-10",
+          "score": 4,
+          "url": "",
+          "summary": "The Trust has made available $290,000 for this grant program in Fiscal Year 2026. Individual applications may be submitted for amounts detailed below. Track 1 Meaningful Watershed Educational Experien"
+        },
+        {
+          "buyer": "St. Mary's County Public Schools",
+          "product": "gf8",
+          "due": "2026-12-04",
+          "score": 3,
+          "url": "https://emma.maryland.gov/page.aspx/en/bpm/process_manage_extranet/96394",
+          "summary": "The Board of Education of St. Mary’s County, on behalf of St. Mary’s County Public Schools, is seeking qualified consultants for school-improvement consulting and professional learning. The work serve"
+        }
+      ],
+      "status": {
+        "open": 2,
+        "reached_out": 0,
+        "dismissed": 12,
+        "past_due": 6,
+        "pulled": "2026-11-19"
+      }
+    },
+    "VT": {
+      "open_rfps_total": 3,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 1,
+        "gf8": 1
+      },
+      "top": [
+        {
+          "buyer": "Vermont Agency of Education",
+          "product": "inkwell",
+          "due": "2026-11-20",
+          "score": 5,
+          "url": "",
+          "summary": "Seeking to establish contracts with one or more companies that can provide comprehensive strategic planning, implementation design,\r\nand operational support for the implementation of the AOE’s Academi"
+        },
+        {
+          "buyer": "Vermont Agency of Education",
+          "product": "gf8",
+          "due": "2026-11-20",
+          "score": 5,
+          "url": "",
+          "summary": "Seeking to establish contracts with one or more companies that can provide comprehensive strategic planning, implementation design,\r\nand operational support for the implementation of the AOE’s Academi"
+        },
+        {
+          "buyer": "Vermont Agency of Education",
+          "product": "ij",
+          "due": "2026-11-20",
+          "score": 5,
+          "url": "",
+          "summary": "Seeking to establish contracts with one or more companies that can provide comprehensive strategic planning, implementation design,\r\nand operational support for the implementation of the AOE’s Academi"
+        }
+      ],
+      "status": {
+        "open": 3,
+        "reached_out": 0,
+        "dismissed": 0,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
+    },
+    "AZ": {
       "open_rfps_total": 1,
       "by_product": {
         "ij": 0,
@@ -5917,14 +6220,343 @@
       },
       "top": [
         {
-          "buyer": "Racine Unified School District",
+          "buyer": "Catalina Foothills School District",
           "product": "gf8",
-          "due": "2026-02-09",
+          "due": "2026-12-03",
           "score": 3,
-          "url": "https://www.demandstar.com/app/limited/bids/518140/details",
-          "summary": "Racine Unified School District is soliciting proposals for an Early Learning Curriculum that aligns with state and national standards, includes comprehensive materials and teacher training, and provid"
+          "url": "https://communityschools.cfsd16.org/",
+          "summary": "Seeking wide variety of individuals/firms to support a host of targeted student enrichment programs services."
         }
-      ]
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 0,
+        "dismissed": 5,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "VA": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Department of Defense Education Activity (DODEA)",
+          "product": "ij",
+          "due": "2027-10-16",
+          "score": 5,
+          "url": "https://sam.gov/workspace/contract/opp/f2c6f7f85c6544ce8b425accd4d3cbd6/view",
+          "summary": "Core Resources: Provide a systematic, explicit, research-based best practices solution that is aligned to the CCRS-L for grades K-5 and that possesses the following features: 1) Literacy Foundations a"
+        }
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 1,
+        "dismissed": 7,
+        "past_due": 3,
+        "pulled": "2026-11-19"
+      }
+    },
+    "UT": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 2,
+        "dismissed": 12,
+        "past_due": 6,
+        "pulled": "2026-11-19"
+      }
+    },
+    "CO": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 3,
+        "dismissed": 8,
+        "past_due": 3,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MN": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 3,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
+    },
+    "PA": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 6,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
+    },
+    "FL": {
+      "open_rfps_total": 1,
+      "by_product": {
+        "ij": 1,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [
+        {
+          "buyer": "Early Learning Coalition of Duval",
+          "product": "ij",
+          "due": "2026-11-30",
+          "score": 3,
+          "url": "https://www.elcduval.org/wp-content/uploads/2026/11/Grant-Details-Revised-1.pdf",
+          "summary": "Grant funding for eligible childcare centers and family childcare homes to purchase early-literacy classroom materials and resources and provide required staff training stipends."
+        }
+      ],
+      "status": {
+        "open": 1,
+        "reached_out": 0,
+        "dismissed": 10,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
+    },
+    "OH": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 2,
+        "dismissed": 3,
+        "past_due": 1,
+        "pulled": "2026-11-19"
+      }
+    },
+    "LA": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 2,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "OR": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 7,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "NH": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 2,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "KY": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 2,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "NE": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 7,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "IL": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 7,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "NV": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 2,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MT": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 1,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "IN": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 3,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "MO": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 5,
+        "past_due": 2,
+        "pulled": "2026-11-19"
+      }
+    },
+    "IA": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 5,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
+    },
+    "OK": {
+      "open_rfps_total": 0,
+      "by_product": {
+        "ij": 0,
+        "inkwell": 0,
+        "gf8": 0
+      },
+      "top": [],
+      "status": {
+        "open": 0,
+        "reached_out": 0,
+        "dismissed": 2,
+        "past_due": 0,
+        "pulled": "2026-11-19"
+      }
     }
   },
   "past_campaigns": [
