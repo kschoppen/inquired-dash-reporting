@@ -118,7 +118,7 @@ After pushing, sanity-check the page script: `node -e "const s=require('fs').rea
 
 ## STEP 3: DM Kelsey (checklist only)
 
-**Where it goes (Kelsey, 2026-11-12: Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post it to #kelsey-command-center instead of a DM: `chat.postMessage` with `"channel":"C0BUPSZHGF2"` (no `conversations.open`). DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). Either post returning `"ok":true` counts as the DM for the Healthchecks step.
+**Where it goes (Kelsey, 2026-11-19: #kelsey-command-center is retired; Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post nothing; the Healthchecks success ping is the all-clear. DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). A DM returning `"ok":true` counts as the DM for the Healthchecks step, and a clean run with nothing to send counts as delivered.
 
 One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN` (`conversations.open`, then `chat.postMessage`; never echo tokens):
 
@@ -130,7 +130,7 @@ One DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_
 • [✓/✗] Deployed → inquired-marketing-dash.netlify.app [SHA]
 ```
 
-If Part B was skipped for a SEMrush outage, post to #kelsey-command-center only if everything else is ✓ — except that on the first Monday it happens, DM Kelsey once so the top-up gets noticed. Say "Semrush units exhausted" plainly.
+If Part B was skipped for a SEMrush outage, stay silent if everything else is ✓, except that on the first Monday it happens, DM Kelsey once so the top-up gets noticed. Say "Semrush units exhausted" plainly.
 
 ## STEP 4: Healthchecks final ping
 

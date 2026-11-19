@@ -52,7 +52,7 @@ Only ever commit `data/teacher-nurture-snapshot.json`. On a rebase conflict in t
 
 ## STEP 4: Slack DM to Kelsey
 
-**Where it goes (Kelsey, 2026-11-12: Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post it to #kelsey-command-center instead of a DM: `chat.postMessage` with `"channel":"C0BUPSZHGF2"` (no `conversations.open`). DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). Watch flags alone don't make it a DM. Either post returning `"ok":true` counts as the DM for the Healthchecks step.
+**Where it goes (Kelsey, 2026-11-19: #kelsey-command-center is retired; Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post nothing; the Healthchecks success ping is the all-clear. DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). Watch flags alone don't make it a DM. A DM returning `"ok":true` counts as the DM for the Healthchecks step, and a clean run with nothing to send counts as delivered.
 
 One DM to Kelsey (`U06QR3G0CCA`) with the Web API, as the bot, never the Slack MCP:
 

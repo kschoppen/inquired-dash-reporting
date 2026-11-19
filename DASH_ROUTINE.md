@@ -430,7 +430,7 @@ Capture `ts` from the response — store in run log as `slack_message_ts`.
 
 ## STEP 6: DM Kelsey
 
-**Where it goes (Kelsey, 2026-11-12: Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post it to #kelsey-command-center instead of a DM: `chat.postMessage` with `"channel":"C0BUPSZHGF2"` (no `conversations.open`). DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). The narrative already goes to #marketing-reporting in Phase 5, so a clean week is never a DM. A ✓ whose bracket note asks her to fix something (for example a token that returns 401) counts as needing her. Either post returning `"ok":true` counts as the DM for the Healthchecks step.
+**Where it goes (Kelsey, 2026-11-19: #kelsey-command-center is retired; Eddie DMs her only when she's needed).** If every item is ✓ and the message asks nothing of her, post nothing; the Healthchecks success ping is the all-clear. DM her as described here only when something is ✗, the run failed, or she has to fix or decide something (an expired token to renew, a question only she can answer). The narrative already goes to #marketing-reporting in Phase 5, so a clean week is never a DM. A ✓ whose bracket note asks her to fix something (for example a token that returns 401) counts as needing her. A DM returning `"ok":true` counts as the DM for the Healthchecks step, and a clean run with nothing to send counts as delivered.
 
 Send ONE DM to Kelsey (user ID `U06QR3G0CCA`) as the Eddie bot using `$CLAWRENCE_BOT_TOKEN`. Never echo tokens.
 
@@ -476,7 +476,7 @@ Use ✓ for success, ✗ for failure. If a step failed, say why in brackets.
 
 ## STEP 7: Healthchecks final ping
 
-- **Success** (Phases 1+3 pushed AND channel post ok:true AND the DM or #kelsey-command-center post ok:true):
+- **Success** (Phases 1+3 pushed AND channel post ok:true AND, if a DM was needed, the DM ok:true):
   `curl -fsS -m 10 --retry 3 ${HC_DASH_URL}`
 - **Any failure:**
   `curl -fsS -m 10 --retry 3 ${HC_DASH_URL}/fail`
