@@ -140,7 +140,11 @@
   "open_items": [
     {
       "level": "amber",
-      "text": "Confirm in Mailchimp that all six flows are live. The dash can't read on/off state."
+      "text": "Mailchimp shows a banner that a plan downgrade couldn't finish because of account conflicts. Check that it doesn't affect sending or audience limits."
+    },
+    {
+      "level": "grey",
+      "text": "Mailchimp lists every flow as Active since Oct 20, though the first email went out Oct 2. Confirm whether the flows were paused and restarted or rebuilt on Oct 20."
     },
     {
       "level": "grey",
@@ -218,7 +222,8 @@
     "fixed": [
       "T13 (both): the pacing link now opens for anyone with the link (Nov 20).",
       "T23 and H3: replies go to learn@inquired.com, which Kelsey manages (confirmed Nov 20).",
-      "T21 and H2: \"free to join\" confirmed accurate and kept (Nov 20)."
+      "T21 and H2: \"free to join\" confirmed accurate and kept (Nov 20).",
+      "All six flows confirmed Active in Mailchimp (Nov 20)."
     ]
   }
 }
