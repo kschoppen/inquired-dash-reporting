@@ -38,6 +38,8 @@
   <p class="section-note">Inquiry Journeys teachers in Medium, Large and Enterprise districts, by the Phase Status and Activation Substate Gainsight syncs into Mailchimp. The goal of the program is to move teachers left to right.</p>
   <div id="phase-block"><div class="loading">Pulling teacher counts from Mailchimp…</div></div>
 
+  <div id="checkin-block"></div>
+
   <div class="section-eyebrow">Flows</div>
   <p class="section-note" id="flow-note">Six Mailchimp automation flows. Each card links to the flow in Mailchimp.</p>
   <div class="flow-grid" id="flow-grid"></div>
@@ -71,6 +73,7 @@ async function load() {
   renderFlows(reg, {}, null, true);
   renderEmails(reg, {}, null, true);
   renderOpen(reg, null);
+  renderCheckin(reg);
   // Weekly snapshot first (written by TEACHER_NURTURE_ROUTINE.md); live function only as a fallback.
   let live = null, liveErr = null;
   try {
@@ -186,6 +189,23 @@ function renderEmails(reg, byCode, live, pending) {
     return head + body;
   }).join("");
   document.getElementById("email-block").innerHTML = `<table class="tn"><thead><tr><th>Email</th><th>Subject</th><th class="num">Sent</th><th class="num">Open rate</th><th class="num">Click rate</th><th class="num">Unsubs</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderCheckin(reg) {
+  const c = reg.checkin, el = document.getElementById("checkin-block");
+  if (!c) { el.innerHTML = ""; return; }
+  const ul = (a) => `<ul class="open-items">${a.map((t) => `<li><span class="oi-text">${esc(t)}</span></li>`).join("")}</ul>`;
+  const h = (t) => `<h3 style="font-size:1rem;margin:1.5rem 0 .5rem">${esc(t)}</h3>`;
+  const rows = c.fixes.map((f) => `<tr><td><b>${esc(f.code)}</b></td><td>${esc(f.issue)}</td><td>${esc(f.fix)}</td><td>${esc(f.owner)}</td></tr>`).join("");
+  el.innerHTML = `<div class="section-eyebrow">Check-in, ${esc(new Date(c.date + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric" }))}</div>
+    <p class="section-note"><b>${esc(c.bottom_line)}</b></p>
+    ${h("What's working")}${ul(c.working)}
+    ${h(c.fixes_title)}<table class="tn"><thead><tr><th>Email</th><th>Issue</th><th>Fix</th><th>Owner</th></tr></thead><tbody>${rows}</tbody></table>
+    ${h(c.annoy_title)}${ul(c.annoy)}
+    ${h(c.gaps_title)}${ul(c.gaps)}
+    ${h(c.scale_title)}${ul(c.scale)}
+    ${h(c.next_title)}${ul(c.next)}
+    ${h("How to read the numbers")}${ul(c.caveats)}`;
 }
 
 function renderOpen(reg, live) {

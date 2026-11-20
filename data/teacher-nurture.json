@@ -1,7 +1,7 @@
 {
   "skill": "teacher-nurture-refresh",
   "title": "Teacher Nurture",
-  "updated": "2026-10-07",
+  "updated": "2026-11-20",
   "stale_after_days": 14,
   "platform": "Mailchimp",
   "audience_id": "20beb95bf5",
@@ -139,8 +139,101 @@
   ],
   "open_items": [
     {
+      "level": "amber",
+      "text": "Confirm in Mailchimp that all six flows are live. The dash can't read on/off state."
+    },
+    {
       "level": "grey",
-      "text": "Several copy-doc 'verify before ship' flags remain open (T4 quote transcription, T12 Inquiry Challenge Statement naming, T19 gift link, T21 and H2 'free to join')."
+      "text": "Decide whether to propose a 10% holdout on Discovery and Adopt to RevOps."
     }
-  ]
+  ],
+  "checkin": {
+    "date": "2026-11-20",
+    "bottom_line": "Nothing shows the program is failing, and nothing yet shows it works. The copy mostly holds up and no email needs a rewrite. The risks are a few links and details to fix before the next sends, targeting that uses grade band and first name only, and measurement: with no holdout group, the page can't show that emails move teachers between phases.",
+    "working": [
+      "Scope is clear. \"In the program\" means claimed and oriented teachers in Medium, Large and Enterprise districts. Rostered teachers are pre-marketing and owned by the partner experience team.",
+      "The copy follows the program's rules: one button per email, K–2 and 3–5 versions where it matters, and a plain voice that leads with the teacher's judgment.",
+      "Flows start from Gainsight phase changes, so each teacher gets emails that match where they are."
+    ],
+    "fixes_title": "Fix before more sends",
+    "fixes": [
+      {
+        "code": "T13 (both)",
+        "level": "red",
+        "issue": "The pacing link is a Google Slides /edit URL, so teachers who aren't signed in see a request-access page. The Adopt flow started T12 on Nov 16–17, so T13 sends next.",
+        "fix": "Share the file as view-only to anyone with the link, or use a published or /preview link. Update it in Mailchimp.",
+        "owner": "Kelsey"
+      },
+      {
+        "code": "T23, H3",
+        "level": "amber",
+        "issue": "Both ask teachers to reply, and the reply-to inbox isn't confirmed as monitored.",
+        "fix": "Name the inbox that reads replies, or swap in a form link.",
+        "owner": "Kelsey"
+      },
+      {
+        "code": "T21, H2",
+        "level": "amber",
+        "issue": "\"Free to join\" isn't verified. H3 leaves it out.",
+        "fix": "Confirm it, or cut it from both.",
+        "owner": "Kelsey"
+      },
+      {
+        "code": "T19",
+        "level": "amber",
+        "issue": "The digital-background link isn't confirmed, and its gallery tracking ID differs from the others.",
+        "fix": "Open the link, confirm the destination, and align the tracking ID.",
+        "owner": "Kelsey"
+      },
+      {
+        "code": "T4",
+        "level": "amber",
+        "issue": "The quote is auto-transcribed and has no attribution. T4 was the biggest send (12,141 on Oct 2).",
+        "fix": "Check the transcription and add attribution before new teachers enter Discovery.",
+        "owner": "Marketing"
+      },
+      {
+        "code": "T2 (K–2, 3–5)",
+        "level": "grey",
+        "issue": "The tracking ID is a placeholder.",
+        "fix": "Replace it with the real ID.",
+        "owner": "Marketing"
+      },
+      {
+        "code": "T12",
+        "level": "grey",
+        "issue": "The open flag looks stale. The copy changelog shows the lesson names were verified on 8/20.",
+        "fix": "Confirm and close the flag.",
+        "owner": "Marketing"
+      }
+    ],
+    "annoy_title": "Where teachers could get annoyed",
+    "annoy": [
+      "T3 can tell a teacher on a normal schedule that they're behind. Confirm the pacing field is wired up, or pause T3 for districts on alternating schedules.",
+      "T4 to T7 are written as \"a few days after\" the last email. If the real waits are short, a teacher could get four emails in about a week. Check the waits in Mailchimp.",
+      "T16 links a course whose outcome reads as coach-facing, which may not fit a classroom teacher.",
+      "H2 to H3 is fine."
+    ],
+    "gaps_title": "Bigger gaps",
+    "gaps": [
+      "Personalization is first name and grade band only. No email knows where a teacher is in their unit.",
+      "Gainsight flags count activity since 7/1/2026, so a returning teacher can look new and enter an early flow.",
+      "There is no holdout group, so the page can show movement between phases but not whether the emails caused it."
+    ],
+    "scale_title": "Scaling to Inkwell and Great First Eight",
+    "scale": [
+      "The structure carries over: phase segments, Gainsight-triggered flows, this registry and the weekly snapshot.",
+      "Each program needs its own copy and its own registry file. The Inquiry Journeys copy doesn't transfer.",
+      "Reporting can then roll up by program on this page, with the same scorecard for each."
+    ],
+    "next_title": "Proposed next",
+    "next": [
+      "Extend the Tuesday snapshot routine to check each email's expected versus actual sends, flat flows, unsubscribes over 1% and bounces. It adds no new scheduled function.",
+      "Propose a 10% holdout on Discovery and Adopt to RevOps, so phase movement can be compared against teachers who got no emails."
+    ],
+    "caveats": [
+      "Mailchimp opens and clicks are inflated by link scanners and Apple Mail's privacy feature. Judge the program by Gainsight phase movement, not by clicks.",
+      "The Mailchimp connection reads analytics only. It can't show whether each of the six flows is live or paused, so that needs a manual check in Mailchimp."
+    ]
+  }
 }
