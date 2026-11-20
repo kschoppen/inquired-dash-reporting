@@ -145,10 +145,6 @@
     {
       "level": "grey",
       "text": "Mailchimp lists every flow as Active since Oct 20, though the first email went out Oct 2. Confirm whether the flows were paused and restarted or rebuilt on Oct 20."
-    },
-    {
-      "level": "grey",
-      "text": "Decide whether to propose a 10% holdout on Discovery and Adopt to RevOps."
     }
   ],
   "checkin": {
@@ -201,7 +197,7 @@
     "gaps": [
       "Personalization is first name and grade band only. No email knows where a teacher is in their unit.",
       "Gainsight flags count activity since 7/1/2026, so a returning teacher can look new and enter an early flow.",
-      "There is no holdout group, so the page can show movement between phases but not whether the emails caused it."
+      "There is no comparison group, so the page shows movement between phases but can't show whether the emails caused it. Phase movement is read as direction, not proof."
     ],
     "scale_title": "Scaling to Inkwell and Great First Eight",
     "scale": [
@@ -211,8 +207,7 @@
     ],
     "next_title": "Proposed next",
     "next": [
-      "Extend the Tuesday snapshot routine to check each email's expected versus actual sends, flat flows, unsubscribes over 1% and bounces. It adds no new scheduled function.",
-      "Propose a 10% holdout on Discovery and Adopt to RevOps, so phase movement can be compared against teachers who got no emails."
+      "Extend the Tuesday snapshot routine to check each email's expected versus actual sends, flat flows, unsubscribes over 1% and bounces. It adds no new scheduled function."
     ],
     "caveats": [
       "Mailchimp opens and clicks are inflated by link scanners and Apple Mail's privacy feature. Judge the program by Gainsight phase movement, not by clicks.",
