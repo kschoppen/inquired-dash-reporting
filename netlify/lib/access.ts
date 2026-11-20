@@ -16,6 +16,7 @@ export const ALLOWED: string[] = [
   'o.page@inquired.com',       // Olivia Page
   't.israel@inquired.com',     // Tim Israel
   's.elangovan@inquired.com',  // Shanti Elangovan
+  'a.hanna@inquired.com',      // Allison Hanna
 ];
 
 const list = new Set(ALLOWED.map((e) => e.trim().toLowerCase()).filter(Boolean));
