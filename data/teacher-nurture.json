@@ -141,10 +141,6 @@
     {
       "level": "amber",
       "text": "Mailchimp shows a banner that a plan downgrade couldn't finish because of account conflicts. Check that it doesn't affect sending or audience limits."
-    },
-    {
-      "level": "grey",
-      "text": "Mailchimp lists every flow as Active since Oct 20, though the first email went out Oct 2. Confirm whether the flows were paused and restarted or rebuilt on Oct 20."
     }
   ],
   "checkin": {
@@ -211,7 +207,8 @@
     ],
     "caveats": [
       "Mailchimp opens and clicks are inflated by link scanners and Apple Mail's privacy feature. Judge the program by Gainsight phase movement, not by clicks.",
-      "The Mailchimp connection reads analytics only. It can't show whether each of the six flows is live or paused, so that needs a manual check in Mailchimp."
+      "The Mailchimp connection reads analytics only. It can't show whether each of the six flows is live or paused, so that needs a manual check in Mailchimp.",
+      "The flows were paused in October for edits and restarted, and Mailchimp lists them as Active since Oct 20. The exact pause dates aren't recorded, so the Started counts in Mailchimp cover only the time since the restart."
     ],
     "fixed_title": "Fixed",
     "fixed": [
