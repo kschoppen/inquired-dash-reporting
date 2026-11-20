@@ -49,7 +49,7 @@
   <div class="section-eyebrow">Open items</div>
   <ul class="open-items" id="open-items"></ul>
 
-  <p class="foot-note">Source: Mailchimp Marketing API, audience 20beb95bf5. Phase counts are saved segment member counts (Mailchimp refreshes those itself, the "as of" time is on each segment). Email stats are Mailchimp's report for each Customer Journey step created on or after Sep 1, 2026. Eligible = Segment is Medium, Large or Enterprise District.</p>
+  <p class="foot-note">Source: Mailchimp Marketing API, audience 20beb95bf5. Phase counts are saved segment member counts (Mailchimp refreshes those itself, the "as of" time is on each segment). Email stats are Mailchimp's report for each Customer Journey step created on or after Sep 1, 2026. "In a program-size district" = Segment is Medium, Large or Enterprise District, which includes Rostered teachers who haven't claimed an account yet. "In the program" = the sum of the five phase segments (claimed and oriented).</p>
   <div id="mth-section"></div>
 </main>
 <div class="tip" id="tip"></div>
@@ -127,8 +127,8 @@ function renderPhases(reg, live) {
   const share = (v) => total ? Math.round(v / total * 100) + "% of phased teachers" : "";
   el.innerHTML = dq + `
     <div class="stat-row">
-      ${tile(n(elig), "Eligible IJ teachers", "Medium, Large, Enterprise districts in the audience")}
-      ${tile(n(total), "Have a phase", unphased != null ? n(unphased) + " eligible teachers have no Phase Status yet" : "")}
+      ${tile(n(total), "In the program", "Claimed and oriented teachers in a phase (Medium, Large, Enterprise districts)", "accent")}
+      ${tile(n(elig), "In a program-size district", "Everyone in a Medium, Large or Enterprise district, including Rostered teachers (pre-marketing, owned by PE)")}
       ${tile(n(activated), "In Activation", share(activated), "accent")}
       ${tile(n(active), "Active Users", "Active User Flag is TRUE")}
     </div>

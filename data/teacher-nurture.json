@@ -45,7 +45,7 @@
   "extra_segments": [
     {
       "key": "eligible",
-      "label": "Eligible IJ teachers",
+      "label": "In a program-size district",
       "segment": "[DYNAMIC] IJ Teacher Mktg _Eligible _F26"
     },
     {
