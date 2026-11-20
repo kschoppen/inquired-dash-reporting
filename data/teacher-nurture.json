@@ -158,20 +158,6 @@
     "fixes_title": "Fix before more sends",
     "fixes": [
       {
-        "code": "T13 (both)",
-        "level": "red",
-        "issue": "The pacing link is a Google Slides /edit URL, so teachers who aren't signed in see a request-access page. The Adopt flow started T12 on Nov 16–17, so T13 sends next.",
-        "fix": "Share the file as view-only to anyone with the link, or use a published or /preview link. Update it in Mailchimp.",
-        "owner": "Kelsey"
-      },
-      {
-        "code": "T23, H3",
-        "level": "amber",
-        "issue": "Both ask teachers to reply, and the reply-to inbox isn't confirmed as monitored.",
-        "fix": "Name the inbox that reads replies, or swap in a form link.",
-        "owner": "Kelsey"
-      },
-      {
         "code": "T21, H2",
         "level": "amber",
         "issue": "\"Free to join\" isn't verified. H3 leaves it out.",
@@ -234,6 +220,11 @@
     "caveats": [
       "Mailchimp opens and clicks are inflated by link scanners and Apple Mail's privacy feature. Judge the program by Gainsight phase movement, not by clicks.",
       "The Mailchimp connection reads analytics only. It can't show whether each of the six flows is live or paused, so that needs a manual check in Mailchimp."
+    ],
+    "fixed_title": "Fixed",
+    "fixed": [
+      "T13 (both): the pacing link now opens for anyone with the link (Nov 20).",
+      "T23 and H3: replies go to learn@inquired.com, which Kelsey manages (confirmed Nov 20)."
     ]
   }
 }

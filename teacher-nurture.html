@@ -201,6 +201,7 @@ function renderCheckin(reg) {
     <p class="section-note"><b>${esc(c.bottom_line)}</b></p>
     ${h("What's working")}${ul(c.working)}
     ${h(c.fixes_title)}<table class="tn"><thead><tr><th>Email</th><th>Issue</th><th>Fix</th><th>Owner</th></tr></thead><tbody>${rows}</tbody></table>
+    ${c.fixed && c.fixed.length ? h(c.fixed_title) + ul(c.fixed) : ""}
     ${h(c.annoy_title)}${ul(c.annoy)}
     ${h(c.gaps_title)}${ul(c.gaps)}
     ${h(c.scale_title)}${ul(c.scale)}
