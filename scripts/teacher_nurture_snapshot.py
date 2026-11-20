@@ -92,15 +92,92 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     pass
 
+def sent_by_code(es):
+    out = {}
+    for e in es:
+        out[e["code"]] = out.get(e["code"], 0) + (e.get("sent") or 0)
+    return out
+
+
 history = [h for h in prev.get("history", []) if h.get("date") != today]
+# The newest earlier row predates per-email history. If the previous snapshot is from that same day,
+# its email list fills the gap so the first week-over-week comparison has a baseline.
+if history and "sent_by_code" not in history[-1] and prev.get("updated") == history[-1].get("date"):
+    history[-1]["sent_by_code"] = sent_by_code(prev.get("emails", []))
 history.append({"date": today,
                 "phases": {k: v["count"] for k, v in phases.items()},
-                "sent_total": sum(e["sent"] for e in emails)})
+                "sent_total": sum(e["sent"] for e in emails),
+                "sent_by_code": sent_by_code(emails)})
 history = history[-HISTORY_MAX:]
+
+# ---- Checks: expected versus actual sends, flat flows, unsubscribes, bounces, segment sanity ----
+ENTRY_MIN = 100        # a flow's trigger population must grow by this much before zero sends counts as a problem
+SWING_PCT, SWING_MIN = 0.25, 200
+MIN_SENT, UNSUB_MAX, BOUNCE_WATCH, BOUNCE_ALERT = 50, 0.01, 0.02, 0.05
+# Which saved segment(s) feed each flow's trigger (Phase Status / Active User Flag / Activation Substate).
+TRIGGER = {"awareness": ["awareness"], "discovery": ["discovery"], "activation": ["adopt", "sustained"],
+           "adopt": ["active_users"], "sustained": ["sustained"], "holding": ["holding"]}
+flags, entry_check = [], []
+
+
+def flag(level, kind, text):
+    flags.append({"level": level, "kind": kind, "text": text})
+
+
+def first_step(f):
+    codes = f["emails"]
+    first = [codes[0]]
+    if codes[0].endswith("-K2") and codes[0][:-3] + "-3-5" in codes:
+        first.append(codes[0][:-3] + "-3-5")
+    return first
+
+
+base = None
+for h in reversed(history[:-1]):
+    if (datetime.fromisoformat(today) - datetime.fromisoformat(h["date"])).days >= 6:
+        base = h
+        break
+
+if missing:
+    flag("alert", "segment", f"{len(missing)} phase segment(s) missing in Mailchimp, so phase counts are incomplete.")
+
+for e in emails:
+    sent = e.get("sent") or 0
+    if sent < MIN_SENT:
+        continue
+    if e.get("unsubs") is not None and e["unsubs"] / sent > UNSUB_MAX:
+        flag("watch", "unsub", f"{e['code']}: {e['unsubs']} unsubscribes on {sent} sent ({e['unsubs'] / sent:.1%}).")
+    if e.get("bounces") is not None and e["bounces"] / sent > BOUNCE_WATCH:
+        rate = e["bounces"] / sent
+        flag("alert" if rate > BOUNCE_ALERT else "watch", "bounce", f"{e['code']}: {e['bounces']} bounces on {sent} sent ({rate:.1%}).")
+
+if base:
+    for k, now_n in ((k, v["count"]) for k, v in phases.items() if k in {p["key"] for p in reg["phases"]}):
+        was = (base.get("phases") or {}).get(k)
+        if was and now_n is not None and abs(now_n - was) >= SWING_MIN and abs(now_n - was) / was > SWING_PCT:
+            flag("watch", "swing", f"{k}: {was:,} to {now_n:,} since {base['date']}. Check the Gainsight sync before trusting it.")
+    prior = base.get("sent_by_code")
+    if prior is not None:
+        now_sent = sent_by_code(emails)
+        for f in reg["flows"]:
+            keys = TRIGGER.get(f["key"], [])
+            if not keys or any(x not in phases for x in keys):
+                continue
+            was_trig = sum((base.get("phases") or {}).get(x) or 0 for x in keys)
+            grew = sum(phases[x]["count"] or 0 for x in keys) - was_trig
+            first_sends = sum(now_sent.get(c, 0) - prior.get(c, 0) for c in first_step(f))
+            flow_sends = sum(now_sent.get(c, 0) - prior.get(c, 0) for c in f["emails"])
+            entry_check.append({"flow": f["key"], "trigger_population_change": grew,
+                                "first_email_sends": first_sends, "all_flow_sends": flow_sends})
+            if grew >= ENTRY_MIN and first_sends == 0:
+                flag("alert", "entry", f"{f['name']}: {grew:,} more teachers in its trigger population since {base['date']}, but 0 first-email sends. The trigger may not be firing.")
+            elif flow_sends == 0 and sum(prior.get(c, 0) for c in f["emails"]) > 0:
+                flag("watch", "flat", f"{f['name']}: no new sends since {base['date']}.")
 
 snap = {"ok": True, "source": "snapshot", "updated": today, "fetched_at": now.isoformat(timespec="seconds"),
         "stale_after_days": 8, "phases": phases, "segments_missing": missing, "emails": emails,
-        "history": history}
+        "history": history, "flags": flags, "entry_check": entry_check,
+        "checks_base_date": base["date"] if base else None}
 with open(OUT, "w") as f:
     json.dump(snap, f, indent=1)
     f.write("\n")
@@ -109,4 +186,5 @@ sending = sorted({e["code"] for e in emails if e["sent"] > 0})
 print(json.dumps({"ok": True, "updated": today,
                   "phases": {k: v["count"] for k, v in phases.items()},
                   "segments_missing": missing, "emails_found": len(emails),
-                  "emails_sending": sending, "history_rows": len(history)}))
+                  "emails_sending": sending, "history_rows": len(history),
+                  "checks_base_date": base["date"] if base else None, "flags": flags}))

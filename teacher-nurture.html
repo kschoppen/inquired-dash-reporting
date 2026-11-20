@@ -212,6 +212,7 @@ function renderCheckin(reg) {
 function renderOpen(reg, live) {
   const items = [...reg.open_items];
   if (!reg.launch_date) items.unshift({ level: "grey", text: reg.launch_note });
+  (live && live.flags || []).filter((f) => f.kind !== "segment").forEach((f) => items.unshift({ level: f.level === "alert" ? "red" : "amber", text: f.text }));
   if (live && live.segments_missing && live.segments_missing.length) items.unshift({ level: "amber", text: `${live.segments_missing.length} phase segments are missing in Mailchimp, so phase counts are incomplete.` });
   document.getElementById("open-items").innerHTML = items.map((i) => `<li><span class="oi-dot ${i.level}">●</span><span class="oi-text">${esc(i.text)}</span></li>`).join("");
 }
