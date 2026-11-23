@@ -1,7 +1,7 @@
 {
   "skill": "state-signal",
   "title": "State Signal (MQA)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-23",
   "universe": "Companies at MQA or Engaged stage (mqa_lifecycle_stage) · Source: HubSpot",
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
   "cadence": "Weekly · Mondays (HubSpot numbers + Warm Signals via SIGNALS_ROUTINE.md PHASE A, Mondays 8am ET); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
