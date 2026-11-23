@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17",
+ "updated": "2026-11-23",
  "source": "InquirED-com/marketing-ops performance-history.json",
  "weeks": [
   {
@@ -12,8 +12,8 @@
      "category": "Webpage",
      "views": 43879,
      "submits": 52,
-     "sessions": 40355,
-     "engaged": 19350,
+     "sessions": 40274,
+     "engaged": 19324,
      "clicks": 5630
     },
     {
@@ -23,8 +23,8 @@
      "category": "Webpage",
      "views": 14523,
      "submits": 8,
-     "sessions": 14757,
-     "engaged": 8681,
+     "sessions": 14775,
+     "engaged": 8708,
      "clicks": 3383
     },
     {
@@ -34,8 +34,8 @@
      "category": "Product Page",
      "views": 8272,
      "submits": 41,
-     "sessions": 7614,
-     "engaged": 3141,
+     "sessions": 7605,
+     "engaged": 3150,
      "clicks": 1261
     },
     {
@@ -45,8 +45,8 @@
      "category": "HV Landers",
      "views": 5582,
      "submits": 56,
-     "sessions": 4783,
-     "engaged": 4516,
+     "sessions": 4767,
+     "engaged": 4508,
      "clicks": 0
     },
     {
@@ -56,8 +56,8 @@
      "category": "Webinars",
      "views": 5352,
      "submits": 1304,
-     "sessions": 5177,
-     "engaged": 2474,
+     "sessions": 5178,
+     "engaged": 2475,
      "clicks": 116
     },
     {
@@ -67,8 +67,8 @@
      "category": "Webpage",
      "views": 4900,
      "submits": 2,
-     "sessions": 4378,
-     "engaged": 2855,
+     "sessions": 4370,
+     "engaged": 2849,
      "clicks": 631
     },
     {
@@ -78,7 +78,7 @@
      "category": "Product Page",
      "views": 3028,
      "submits": 8,
-     "sessions": 2870,
+     "sessions": 2866,
      "engaged": 1769,
      "clicks": 0
     },
@@ -111,8 +111,8 @@
      "category": "Blog post",
      "views": 2518,
      "submits": 0,
-     "sessions": 2572,
-     "engaged": 287,
+     "sessions": 2573,
+     "engaged": 288,
      "clicks": 345
     },
     {
@@ -222,7 +222,7 @@
      "views": 1035,
      "submits": 179,
      "sessions": 947,
-     "engaged": 557,
+     "engaged": 558,
      "clicks": 0
     },
     {
@@ -650,8 +650,8 @@
      "category": "Blog post",
      "views": 216,
      "submits": 1,
-     "sessions": 216,
-     "engaged": 96,
+     "sessions": 217,
+     "engaged": 98,
      "clicks": 105
     },
     {
@@ -750,7 +750,7 @@
      "views": 169,
      "submits": 0,
      "sessions": 175,
-     "engaged": 39,
+     "engaged": 41,
      "clicks": 48
     },
     {
@@ -1399,7 +1399,7 @@
      "views": 41,
      "submits": 0,
      "sessions": 43,
-     "engaged": 14,
+     "engaged": 17,
      "clicks": 0
     },
     {
@@ -2052,6 +2052,17 @@
      "clicks": 12
     },
     {
+     "slug": "/learn/inkwell-essa-report",
+     "name": "Inkwell essa report",
+     "product": "Inkwell",
+     "category": "HV Landers",
+     "views": 18,
+     "submits": 0,
+     "sessions": 4,
+     "engaged": 2,
+     "clicks": 0
+    },
+    {
      "slug": "/learn/literacy-social-studies-guide",
      "name": "Social Studies Literacy Practices & Supports Guide",
      "product": "Inquiry Journeys",
@@ -2202,6 +2213,17 @@
      "views": 12,
      "submits": 0,
      "sessions": 12,
+     "engaged": 3,
+     "clicks": 0
+    },
+    {
+     "slug": "/post/inkwell-essa-tier-iv-evidence",
+     "name": "Inkwell essa tier iv evidence",
+     "product": "Inkwell",
+     "category": "Blog post",
+     "views": 12,
+     "submits": 0,
+     "sessions": 4,
      "engaged": 3,
      "clicks": 0
     },

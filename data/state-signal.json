@@ -6,7 +6,7 @@
   "actionability_rule": "actionable = no logged call/email/meeting (notes_last_contacted) in the last 60 days, or never contacted.",
   "cadence": "Weekly · Mondays (HubSpot numbers + Warm Signals via SIGNALS_ROUTINE.md PHASE A, Mondays 8am ET); policy research + Starbridge RFP refresh on request or ~monthly (state-signal-refresh skill)",
   "data_flags": [
-    "285 of 1916 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
+    "286 of 1919 MQA/Engaged companies (15%) have no state_st value set — shown as 'Unassigned', excluded from ranking.",
     "Product tag is a STATE POLICY / PROCUREMENT signal (which inquirED product that state's real legislation, adoption cycle, or open RFP relates to) — NOT yet which product a specific warm HubSpot account is interested in. Asked Tim (RevOps) for a company-level `primary_product_signal` rollup on 2026-09-16 — pending.",
     "All 50 states + DC now have real, WebSearch-verified policy research (2 rounds: 10 top-actionable states + a full 40-state sweep of the rest). Every claim has a real, checkable source URL — none fabricated. A handful of states (e.g. WY, VT on some dimensions) came back with an honest 'no verifiable signal found' rather than a stretched claim.",
     "Starbridge (inquirED's buyer-intelligence tool) is now wired in: `starbridge_open_rfps` per watch state, and `top` RFP detail, come from live Starbridge Bridges (ELA RFPs, GF8 RFPs, IJ RFPs — 622 total rows scanned, 51 currently open/New or Saved). This is a real, concrete procurement signal, distinct from and stronger than state legislative policy alone.",
@@ -14,22 +14,23 @@
     "Warm Signals refresh (2026-10-26): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and sorted by triggeredAt descending, with the 90-day cutoff (>= 2026-07-28) applied client-side against each row's Added-to-Bridge value since the server-side op:added_date filter remains broken (confirmed again this run) -- 2958 rows scanned in that window (843 GFE, 605 IJ, 1510 Inkwell), of which 32 clear the Meeting_Score >= 10 quality bar (8 GFE, 7 IJ, 17 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 70 starbridge_ids resolved across this run's 10 top_states (70 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as last run.",
     "Warm Signals refresh (2026-11-09): SKIPPED this run — Starbridge requires an OAuth authorization this unattended session could not start. warm_signals_by_state, warm_signals_90d_total (32), warm_signals_audit, and each account's warm_signal field are left at last week's values. Needs a session with Starbridge authorized to retry.",
     "Warm Signals refresh (2026-11-11): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-13) applied via a triggeredAt server-side filter (the op:added_date filter remains broken, confirmed again this run) -- 2942 rows scanned in that window (818 GFE, 668 IJ, 1456 Inkwell), of which 33 clear the Meeting_Score >= 10 quality bar (10 GFE, 8 IJ, 15 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (72 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last completed run (2026-10-26).",
-    "Warm Signals refresh (2026-11-16): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-18) applied via a triggeredAt server-side filter (the op:added_date filter was not retried this run; triggeredAt worked) -- 2956 rows scanned in that window (779 GFE, 682 IJ, 1495 Inkwell), of which 35 clear the Meeting_Score >= 10 quality bar (9 GFE, 9 IJ, 17 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (71 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last several completed runs."
+    "Warm Signals refresh (2026-11-16): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-18) applied via a triggeredAt server-side filter (the op:added_date filter was not retried this run; triggeredAt worked) -- 2956 rows scanned in that window (779 GFE, 682 IJ, 1495 Inkwell), of which 35 clear the Meeting_Score >= 10 quality bar (9 GFE, 9 IJ, 17 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (71 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last several completed runs.",
+    "Warm Signals refresh (2026-11-23): live-pulled via listBridgeRows from the 3 [MASTER] Warm Signals bridges (GFE/IJ/Inkwell), scoped by Status (New/Saved) and the 90-day cutoff (>= 2026-08-25) applied via a triggeredAt server-side filter (the op:added_date filter was not retried this run; triggeredAt worked) -- 3285 rows scanned in that window (860 GFE, 773 IJ, 1652 Inkwell), of which 45 clear the Meeting_Score >= 10 quality bar (10 GFE, 12 IJ, 23 Inkwell). The 90-day window is a display-scope decision for the warm_signals_90d_total KPI only -- the per-account match (HubSpot starbridge_id = Starbridge buyerId) is NOT time-boxed and covers full bridge history; of the 100 starbridge_ids resolved across this run's 10 top_states (71 of 100 drilled-down accounts had a starbridge_id set), only 1 (Byram Hills High School / NY) currently clears the score>=10 bar, same as the last several completed runs."
   ],
   "national_totals": {
-    "qualified": 1916,
-    "actionable": 1302,
-    "unassigned_qualified": 285,
+    "qualified": 1919,
+    "actionable": 1301,
+    "unassigned_qualified": 286,
     "unassigned_actionable": 273,
-    "states_with_signal": 52,
+    "states_with_signal": 54,
     "watch_states": 41
   },
   "ai_summary": {
-    "state": "TX",
-    "product": "ij",
-    "headline": "TX has 15 open Starbridge RFPs for Inquiry Journeys, giving it the strongest combined priority score (62/100) of any watch-list state right now.",
-    "starbridge_open_rfps": 15,
-    "note": "Picked automatically: highest priority_score (62/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
+    "state": "CT",
+    "product": "inkwell",
+    "headline": "CT has 1 open Starbridge RFP and 1 live Warm Signal for Inkwell, giving it the strongest combined priority score (68/100) of any watch-list state right now.",
+    "starbridge_open_rfps": 1,
+    "note": "Picked automatically: highest priority_score (68/100, act_now tier) among all watch states as of this refresh. See Methodology below for the full formula. Recomputed by scripts/score_watch_states.py -- this pick moves on its own as scores change, never a fixed choice."
   },
   "history": [
     {
@@ -2781,71 +2782,370 @@
           "actionable": 0
         }
       ]
+    },
+    {
+      "period": "2026-11-23",
+      "states": [
+        {
+          "state": "AK",
+          "qualified": 6,
+          "actionable": 6
+        },
+        {
+          "state": "AL",
+          "qualified": 10,
+          "actionable": 7
+        },
+        {
+          "state": "AR",
+          "qualified": 8,
+          "actionable": 6
+        },
+        {
+          "state": "AS",
+          "qualified": 1,
+          "actionable": 0
+        },
+        {
+          "state": "AZ",
+          "qualified": 39,
+          "actionable": 27
+        },
+        {
+          "state": "CA",
+          "qualified": 120,
+          "actionable": 86
+        },
+        {
+          "state": "CO",
+          "qualified": 27,
+          "actionable": 21
+        },
+        {
+          "state": "CT",
+          "qualified": 41,
+          "actionable": 28
+        },
+        {
+          "state": "DC",
+          "qualified": 5,
+          "actionable": 4
+        },
+        {
+          "state": "DE",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "FL",
+          "qualified": 23,
+          "actionable": 16
+        },
+        {
+          "state": "GA",
+          "qualified": 24,
+          "actionable": 13
+        },
+        {
+          "state": "HI",
+          "qualified": 9,
+          "actionable": 5
+        },
+        {
+          "state": "IA",
+          "qualified": 47,
+          "actionable": 37
+        },
+        {
+          "state": "ID",
+          "qualified": 8,
+          "actionable": 4
+        },
+        {
+          "state": "IL",
+          "qualified": 134,
+          "actionable": 97
+        },
+        {
+          "state": "IN",
+          "qualified": 12,
+          "actionable": 8
+        },
+        {
+          "state": "International",
+          "qualified": 18,
+          "actionable": 15
+        },
+        {
+          "state": "KS",
+          "qualified": 31,
+          "actionable": 20
+        },
+        {
+          "state": "KY",
+          "qualified": 53,
+          "actionable": 48
+        },
+        {
+          "state": "LA",
+          "qualified": 9,
+          "actionable": 7
+        },
+        {
+          "state": "MA",
+          "qualified": 68,
+          "actionable": 36
+        },
+        {
+          "state": "MD",
+          "qualified": 21,
+          "actionable": 12
+        },
+        {
+          "state": "ME",
+          "qualified": 19,
+          "actionable": 11
+        },
+        {
+          "state": "MI",
+          "qualified": 60,
+          "actionable": 24
+        },
+        {
+          "state": "MN",
+          "qualified": 60,
+          "actionable": 36
+        },
+        {
+          "state": "MO",
+          "qualified": 27,
+          "actionable": 24
+        },
+        {
+          "state": "MS",
+          "qualified": 3,
+          "actionable": 2
+        },
+        {
+          "state": "MT",
+          "qualified": 6,
+          "actionable": 6
+        },
+        {
+          "state": "NC",
+          "qualified": 28,
+          "actionable": 16
+        },
+        {
+          "state": "ND",
+          "qualified": 5,
+          "actionable": 3
+        },
+        {
+          "state": "NE",
+          "qualified": 11,
+          "actionable": 8
+        },
+        {
+          "state": "NH",
+          "qualified": 12,
+          "actionable": 10
+        },
+        {
+          "state": "NJ",
+          "qualified": 129,
+          "actionable": 40
+        },
+        {
+          "state": "NM",
+          "qualified": 3,
+          "actionable": 3
+        },
+        {
+          "state": "NV",
+          "qualified": 12,
+          "actionable": 9
+        },
+        {
+          "state": "NY",
+          "qualified": 119,
+          "actionable": 75
+        },
+        {
+          "state": "OH",
+          "qualified": 37,
+          "actionable": 26
+        },
+        {
+          "state": "OK",
+          "qualified": 14,
+          "actionable": 12
+        },
+        {
+          "state": "OR",
+          "qualified": 47,
+          "actionable": 25
+        },
+        {
+          "state": "PA",
+          "qualified": 64,
+          "actionable": 40
+        },
+        {
+          "state": "RI",
+          "qualified": 5,
+          "actionable": 5
+        },
+        {
+          "state": "SC",
+          "qualified": 14,
+          "actionable": 10
+        },
+        {
+          "state": "SD",
+          "qualified": 4,
+          "actionable": 3
+        },
+        {
+          "state": "TN",
+          "qualified": 18,
+          "actionable": 15
+        },
+        {
+          "state": "TX",
+          "qualified": 50,
+          "actionable": 29
+        },
+        {
+          "state": "UT",
+          "qualified": 9,
+          "actionable": 5
+        },
+        {
+          "state": "Unassigned",
+          "qualified": 286,
+          "actionable": 273
+        },
+        {
+          "state": "VA",
+          "qualified": 28,
+          "actionable": 15
+        },
+        {
+          "state": "VT",
+          "qualified": 6,
+          "actionable": 5
+        },
+        {
+          "state": "WA",
+          "qualified": 52,
+          "actionable": 19
+        },
+        {
+          "state": "WI",
+          "qualified": 67,
+          "actionable": 44
+        },
+        {
+          "state": "WV",
+          "qualified": 4,
+          "actionable": 2
+        },
+        {
+          "state": "WY",
+          "qualified": 2,
+          "actionable": 0
+        }
+      ]
     }
   ],
   "top_states": [
     {
-      "rank": 1,
       "state": "IL",
       "qualified": 134,
-      "actionable": 94
+      "actionable": 97,
+      "rank": 1
     },
     {
-      "rank": 2,
       "state": "CA",
-      "qualified": 119,
-      "actionable": 86
+      "qualified": 120,
+      "actionable": 86,
+      "rank": 2
     },
     {
-      "rank": 3,
       "state": "NY",
-      "qualified": 118,
-      "actionable": 75
+      "qualified": 119,
+      "actionable": 75,
+      "rank": 3
     },
     {
-      "rank": 4,
-      "state": "WI",
-      "qualified": 67,
-      "actionable": 52
-    },
-    {
-      "rank": 5,
       "state": "KY",
       "qualified": 53,
-      "actionable": 49
+      "actionable": 48,
+      "rank": 4
     },
     {
-      "rank": 6,
+      "state": "WI",
+      "qualified": 67,
+      "actionable": 44,
+      "rank": 5
+    },
+    {
       "state": "NJ",
-      "qualified": 128,
-      "actionable": 40
+      "qualified": 129,
+      "actionable": 40,
+      "rank": 6
     },
     {
-      "rank": 7,
       "state": "PA",
       "qualified": 64,
-      "actionable": 39
+      "actionable": 40,
+      "rank": 7
     },
     {
-      "rank": 8,
       "state": "IA",
-      "qualified": 46,
-      "actionable": 37
+      "qualified": 47,
+      "actionable": 37,
+      "rank": 8
     },
     {
-      "rank": 9,
       "state": "MA",
       "qualified": 68,
-      "actionable": 36
+      "actionable": 36,
+      "rank": 9
     },
     {
-      "rank": 10,
       "state": "MN",
       "qualified": 60,
-      "actionable": 34
+      "actionable": 36,
+      "rank": 10
     }
   ],
   "watch_states": [
+    {
+      "state": "CT",
+      "product": "inkwell",
+      "since": "2025-07",
+      "headline": "Connecticut's 2023 Right to Read Act required full transition to a state-approved, science-of-reading K-3 curriculum by July 2025; first-ever K-12 Social Studies standards finalized October 4, 2024.",
+      "sources": [
+        {
+          "title": "Connecticut Approved K-3 Reading Curriculum Models or Programs - CSDE",
+          "url": "https://portal.ct.gov/SDE/Academic-Office/Center-for-Literacy-Research-and-Reading-Success/Connecticut-Approved-K-3-Reading-Curricula-Programs"
+        }
+      ],
+      "qualified": 41,
+      "actionable": 28,
+      "starbridge_open_rfps": 1,
+      "priority_score": 68,
+      "priority_tier": "act_now",
+      "priority_breakdown": {
+        "open_rfp": 18,
+        "warm_signal": 18,
+        "policy_recency": 12,
+        "hubspot_footprint": 20
+      },
+      "starbridge_open_rfps_product": 1
+    },
     {
       "state": "TX",
       "product": "ij",
@@ -2857,8 +3157,8 @@
           "url": "https://tea.texas.gov/educators/subject-areas/social-studies/social-studies"
         }
       ],
-      "qualified": 48,
-      "actionable": 28,
+      "qualified": 50,
+      "actionable": 29,
       "starbridge_open_rfps": 28,
       "priority_score": 62,
       "priority_tier": "act_now",
@@ -2871,54 +3171,6 @@
       "starbridge_open_rfps_product": 15
     },
     {
-      "state": "WA",
-      "product": "inkwell",
-      "since": "2026-03",
-      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
-      "sources": [
-        {
-          "title": "HB 1295 Bill Summary - Washington State Legislature",
-          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
-        }
-      ],
-      "qualified": 50,
-      "actionable": 20,
-      "starbridge_open_rfps": 1,
-      "priority_score": 54,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 16,
-        "hubspot_footprint": 20
-      },
-      "starbridge_open_rfps_product": 1
-    },
-    {
-      "state": "CT",
-      "product": "inkwell",
-      "since": "2025-07",
-      "headline": "Connecticut's 2023 Right to Read Act required full transition to a state-approved, science-of-reading K-3 curriculum by July 2025; first-ever K-12 Social Studies standards finalized October 4, 2024.",
-      "sources": [
-        {
-          "title": "Connecticut Approved K-3 Reading Curriculum Models or Programs - CSDE",
-          "url": "https://portal.ct.gov/SDE/Academic-Office/Center-for-Literacy-Research-and-Reading-Success/Connecticut-Approved-K-3-Reading-Curricula-Programs"
-        }
-      ],
-      "qualified": 42,
-      "actionable": 31,
-      "starbridge_open_rfps": 1,
-      "priority_score": 50,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 20
-      },
-      "starbridge_open_rfps_product": 1
-    },
-    {
       "state": "AZ",
       "product": "inkwell",
       "since": "2025-08",
@@ -2929,8 +3181,8 @@
           "url": "https://www.azed.gov/educator-certification/literacy-k-5-endorsement"
         }
       ],
-      "qualified": 36,
-      "actionable": 26,
+      "qualified": 39,
+      "actionable": 27,
       "starbridge_open_rfps": 1,
       "priority_score": 50,
       "priority_tier": "watch",
@@ -2941,6 +3193,30 @@
         "hubspot_footprint": 20
       },
       "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "WA",
+      "product": "inkwell",
+      "since": "2026-03",
+      "headline": "Washington passed HB 1295 mandating evidence-based (science-of-reading) literacy instruction for public elementary students; signed March 24, 2026, effective June 11, 2026.",
+      "sources": [
+        {
+          "title": "HB 1295 Bill Summary - Washington State Legislature",
+          "url": "https://app.leg.wa.gov/BillSummary/?BillNumber=1295&Year=2025&Initiative=false"
+        }
+      ],
+      "qualified": 52,
+      "actionable": 19,
+      "starbridge_open_rfps": 1,
+      "priority_score": 49,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 18,
+        "warm_signal": 0,
+        "policy_recency": 16,
+        "hubspot_footprint": 15
+      },
+      "starbridge_open_rfps_product": 1
     },
     {
       "state": "DE",
@@ -2966,6 +3242,30 @@
         "open_rfp": 24,
         "warm_signal": 0,
         "policy_recency": 20,
+        "hubspot_footprint": 5
+      },
+      "starbridge_open_rfps_product": 2
+    },
+    {
+      "state": "ID",
+      "product": "inkwell",
+      "since": "unknown",
+      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "sources": [
+        {
+          "title": "Idaho Code Title 33, Chapter 18",
+          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 4,
+      "starbridge_open_rfps": 2,
+      "priority_score": 47,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 24,
+        "warm_signal": 18,
+        "policy_recency": 0,
         "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 2
@@ -3013,7 +3313,7 @@
           "url": "https://www.ednc.org/2021-04-06-science-reading-bill-nc-north-carolina-instruction-explain-educators-teacherss/"
         }
       ],
-      "qualified": 27,
+      "qualified": 28,
       "actionable": 16,
       "starbridge_open_rfps": 1,
       "priority_score": 40,
@@ -3037,8 +3337,32 @@
           "url": "https://www.fldoe.org/core/fileparse.php/20578/urlt/5-3.pdf"
         }
       ],
-      "qualified": 22,
+      "qualified": 23,
       "actionable": 16,
+      "starbridge_open_rfps": 1,
+      "priority_score": 37,
+      "priority_tier": "watch",
+      "priority_breakdown": {
+        "open_rfp": 18,
+        "warm_signal": 0,
+        "policy_recency": 4,
+        "hubspot_footprint": 15
+      },
+      "starbridge_open_rfps_product": 1
+    },
+    {
+      "state": "GA",
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
+      "sources": [
+        {
+          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
+          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
+        }
+      ],
+      "qualified": 24,
+      "actionable": 13,
       "starbridge_open_rfps": 1,
       "priority_score": 37,
       "priority_tier": "watch",
@@ -3061,8 +3385,8 @@
           "url": "https://www.kcrg.com/2026/01/17/state-board-education-signs-off-updated-iowa-social-studies-standards/"
         }
       ],
-      "qualified": 49,
-      "actionable": 39,
+      "qualified": 47,
+      "actionable": 37,
       "starbridge_open_rfps": 0,
       "priority_score": 36,
       "priority_tier": "watch",
@@ -3085,8 +3409,8 @@
           "url": "https://gc.nh.gov/rsa/html/XV/189/189-53.htm"
         }
       ],
-      "qualified": 10,
-      "actionable": 8,
+      "qualified": 12,
+      "actionable": 10,
       "starbridge_open_rfps": 0,
       "priority_score": 36,
       "priority_tier": "watch",
@@ -3123,30 +3447,6 @@
       "starbridge_open_rfps_product": 4
     },
     {
-      "state": "GA",
-      "product": "inkwell",
-      "since": "2023-03",
-      "headline": "Georgia's Early Literacy Act (HB 538, 2023) requires every K-3 classroom to use only State-Board-approved, science-of-reading-aligned materials by July 1, 2027; K-3 teacher training required by August 2025.",
-      "sources": [
-        {
-          "title": "Georgia Early Literacy Changes: What Districts Need to Know",
-          "url": "https://progresslearning.com/news-blog/georgia-early-literacy-changes/"
-        }
-      ],
-      "qualified": 22,
-      "actionable": 10,
-      "starbridge_open_rfps": 1,
-      "priority_score": 32,
-      "priority_tier": "watch",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 10
-      },
-      "starbridge_open_rfps_product": 1
-    },
-    {
       "state": "MO",
       "product": "inkwell",
       "since": "2025-07",
@@ -3161,8 +3461,8 @@
           "url": "https://dese.mo.gov/media/pdf/evidence-based-reading-instructional-materials-ebrip-guidance-2025"
         }
       ],
-      "qualified": 25,
-      "actionable": 21,
+      "qualified": 27,
+      "actionable": 24,
       "starbridge_open_rfps": 0,
       "priority_score": 32,
       "priority_tier": "watch",
@@ -3186,7 +3486,7 @@
         }
       ],
       "qualified": 12,
-      "actionable": 9,
+      "actionable": 8,
       "starbridge_open_rfps": 0,
       "priority_score": 32,
       "priority_tier": "watch",
@@ -3210,7 +3510,7 @@
         }
       ],
       "qualified": 6,
-      "actionable": 4,
+      "actionable": 5,
       "starbridge_open_rfps": 1,
       "priority_score": 31,
       "priority_tier": "low_priority",
@@ -3223,28 +3523,52 @@
       "starbridge_open_rfps_product": 1
     },
     {
-      "state": "ID",
+      "state": "NM",
       "product": "inkwell",
-      "since": "unknown",
-      "headline": "Idaho requires K-3 reading curriculum aligned to the science of reading beginning SY2024-25, drawn from a state-reviewed materials list on a six-year rotating cycle (Idaho Code 33-1806(5), Literacy Achievement and Accountability Act).",
+      "since": "2024-02",
+      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
       "sources": [
         {
-          "title": "Idaho Code Title 33, Chapter 18",
-          "url": "https://legislature.idaho.gov/statutesrules/idstat/title33/t33ch18/sect33-1811/"
+          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
+          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
         }
       ],
-      "qualified": 8,
-      "actionable": 5,
-      "starbridge_open_rfps": 2,
-      "priority_score": 29,
+      "qualified": 3,
+      "actionable": 3,
+      "starbridge_open_rfps": 1,
+      "priority_score": 31,
       "priority_tier": "low_priority",
       "priority_breakdown": {
-        "open_rfp": 24,
+        "open_rfp": 18,
         "warm_signal": 0,
-        "policy_recency": 0,
+        "policy_recency": 8,
         "hubspot_footprint": 5
       },
-      "starbridge_open_rfps_product": 2
+      "starbridge_open_rfps_product": 1
+    },
+    {
+      "state": "OK",
+      "product": "ij",
+      "since": "2025-12",
+      "headline": "Oklahoma Supreme Court struck down the state's 2025 social studies standards Dec 16, 2025 (Open Meetings Act violation); replacement 2026 standards approved March 26, 2026 still need legislative approval.",
+      "sources": [
+        {
+          "title": "Oklahoma Supreme Court strikes down controversial social studies standards - K-12 Dive",
+          "url": "https://www.k12dive.com/news/oklahoma-supreme-court-strikes-down-controversial-social-studies-standards/808438/"
+        }
+      ],
+      "qualified": 14,
+      "actionable": 12,
+      "starbridge_open_rfps": 0,
+      "priority_score": 31,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 16,
+        "hubspot_footprint": 15
+      },
+      "starbridge_open_rfps_product": 0
     },
     {
       "state": "OR",
@@ -3261,8 +3585,8 @@
           "url": "https://www.oregon.gov/ode/educator-resources/teachingcontent/instructional-materials/pages/adopted-instructional-materials.aspx"
         }
       ],
-      "qualified": 49,
-      "actionable": 26,
+      "qualified": 47,
+      "actionable": 25,
       "starbridge_open_rfps": 0,
       "priority_score": 28,
       "priority_tier": "low_priority",
@@ -3289,7 +3613,7 @@
           "url": "https://www.sos.ks.gov/publications/sessionlaws/2024/Chapter-82-SB-438.html"
         }
       ],
-      "qualified": 32,
+      "qualified": 31,
       "actionable": 20,
       "starbridge_open_rfps": 0,
       "priority_score": 28,
@@ -3303,50 +3627,26 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "NM",
+      "state": "CO",
       "product": "inkwell",
-      "since": "2024-02",
-      "headline": "New Mexico has a standing universal K-3 dyslexia-screening/structured-literacy law (2019 SB398); a 2024 push (SB242) to embed structured literacy into teacher-prep stalled but is expected to return.",
+      "since": "2024-07",
+      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
       "sources": [
         {
-          "title": "New Mexico Statutes Chapter 22A - Literacy for Children at Risk",
-          "url": "https://law.justia.com/codes/new-mexico/chapter-22a/article-1/"
+          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
+          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
         }
       ],
-      "qualified": 2,
-      "actionable": 2,
-      "starbridge_open_rfps": 1,
-      "priority_score": 28,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 18,
-        "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 2
-      },
-      "starbridge_open_rfps_product": 1
-    },
-    {
-      "state": "OK",
-      "product": "ij",
-      "since": "2025-12",
-      "headline": "Oklahoma Supreme Court struck down the state's 2025 social studies standards Dec 16, 2025 (Open Meetings Act violation); replacement 2026 standards approved March 26, 2026 still need legislative approval.",
-      "sources": [
-        {
-          "title": "Oklahoma Supreme Court strikes down controversial social studies standards - K-12 Dive",
-          "url": "https://www.k12dive.com/news/oklahoma-supreme-court-strikes-down-controversial-social-studies-standards/808438/"
-        }
-      ],
-      "qualified": 14,
-      "actionable": 10,
+      "qualified": 27,
+      "actionable": 21,
       "starbridge_open_rfps": 0,
-      "priority_score": 26,
+      "priority_score": 28,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 0,
         "warm_signal": 0,
-        "policy_recency": 16,
-        "hubspot_footprint": 10
+        "policy_recency": 8,
+        "hubspot_footprint": 20
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3375,6 +3675,30 @@
       "starbridge_open_rfps_product": 0
     },
     {
+      "state": "LA",
+      "product": "inkwell",
+      "since": "2026-04",
+      "headline": "Louisiana's BESE approved revised K-12 English Language Arts standards on April 13, 2026, with stronger phonics/science-of-reading emphasis, effective the 2027-2028 school year.",
+      "sources": [
+        {
+          "title": "Louisiana Strengthens Classroom Focus on the Science of Reading (LDOE)",
+          "url": "https://doe.louisiana.gov/about/news-releases/release/2026/04/13/louisiana-strengthens-classroom-focus-on-the-science-of-reading--grammar--and-cursive-writing"
+        }
+      ],
+      "qualified": 9,
+      "actionable": 7,
+      "starbridge_open_rfps": 0,
+      "priority_score": 26,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 16,
+        "hubspot_footprint": 10
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
       "state": "OH",
       "product": "inkwell",
       "since": "2023",
@@ -3385,8 +3709,8 @@
           "url": "https://education.ohio.gov/Media/Ed-Connection/March-4-2024/Updated-list-of-approved-core-curriculum-and-instr?feed=NewsletterRSS"
         }
       ],
-      "qualified": 33,
-      "actionable": 25,
+      "qualified": 37,
+      "actionable": 26,
       "starbridge_open_rfps": 0,
       "priority_score": 24,
       "priority_tier": "low_priority",
@@ -3395,30 +3719,6 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 20
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "CO",
-      "product": "inkwell",
-      "since": "2024-07",
-      "headline": "Colorado's READ Act K-3 curriculum Advisory List was last updated April 3, 2026; K-12 Social Studies standards were also revised November 2022 (district implementation expected by August 2024).",
-      "sources": [
-        {
-          "title": "Advisory List of Instructional Programming - Colorado Department of Education",
-          "url": "https://www.cde.state.co.us/coloradoliteracy/advisorylistofinstructionalprogramming2020"
-        }
-      ],
-      "qualified": 28,
-      "actionable": 19,
-      "starbridge_open_rfps": 0,
-      "priority_score": 23,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 8,
-        "hubspot_footprint": 15
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3434,7 +3734,7 @@
         }
       ],
       "qualified": 14,
-      "actionable": 9,
+      "actionable": 10,
       "starbridge_open_rfps": 0,
       "priority_score": 22,
       "priority_tier": "low_priority",
@@ -3482,7 +3782,7 @@
         }
       ],
       "qualified": 11,
-      "actionable": 9,
+      "actionable": 8,
       "starbridge_open_rfps": 0,
       "priority_score": 22,
       "priority_tier": "low_priority",
@@ -3495,26 +3795,26 @@
       "starbridge_open_rfps_product": 0
     },
     {
-      "state": "LA",
+      "state": "NV",
       "product": "inkwell",
-      "since": "2026-04",
-      "headline": "Louisiana's BESE approved revised K-12 English Language Arts standards on April 13, 2026, with stronger phonics/science-of-reading emphasis, effective the 2027-2028 school year.",
+      "since": "2025-06",
+      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
       "sources": [
         {
-          "title": "Louisiana Strengthens Classroom Focus on the Science of Reading (LDOE)",
-          "url": "https://doe.louisiana.gov/about/news-releases/release/2026/04/13/louisiana-strengthens-classroom-focus-on-the-science-of-reading--grammar--and-cursive-writing"
+          "title": "SB460 Overview - Nevada Legislature",
+          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
         }
       ],
-      "qualified": 8,
-      "actionable": 5,
+      "qualified": 12,
+      "actionable": 9,
       "starbridge_open_rfps": 0,
-      "priority_score": 21,
+      "priority_score": 22,
       "priority_tier": "low_priority",
       "priority_breakdown": {
         "open_rfp": 0,
         "warm_signal": 0,
-        "policy_recency": 16,
-        "hubspot_footprint": 5
+        "policy_recency": 12,
+        "hubspot_footprint": 10
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3529,7 +3829,7 @@
           "url": "https://www.nd.gov/dpi/sites/default/files/documents/Academic%20Support/ND%20Social%20Studies%20Standards%20Standards-Draft%201%204.24.26.pdf"
         }
       ],
-      "qualified": 4,
+      "qualified": 5,
       "actionable": 3,
       "starbridge_open_rfps": 0,
       "priority_score": 21,
@@ -3554,7 +3854,7 @@
         }
       ],
       "qualified": 28,
-      "actionable": 13,
+      "actionable": 15,
       "starbridge_open_rfps": 1,
       "priority_score": 19,
       "priority_tier": "low_priority",
@@ -3587,30 +3887,6 @@
         "warm_signal": 0,
         "policy_recency": 16,
         "hubspot_footprint": 2
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "NV",
-      "product": "inkwell",
-      "since": "2025-06",
-      "headline": "Nevada's SB460 (signed June 2025) codified the science of reading into law, requiring K-3 teachers complete coursework in research-backed reading instruction; SB52 sets a 2028-29 effective date for reading-based 3rd-grade retention.",
-      "sources": [
-        {
-          "title": "SB460 Overview - Nevada Legislature",
-          "url": "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bill/12863/Overview"
-        }
-      ],
-      "qualified": 10,
-      "actionable": 5,
-      "starbridge_open_rfps": 0,
-      "priority_score": 17,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 12,
-        "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3649,7 +3925,7 @@
           "url": "https://comptroller.tn.gov/office-functions/research-and-education-accountability/prek-12-collection/literacy-success-act--lsa-.html"
         }
       ],
-      "qualified": 19,
+      "qualified": 18,
       "actionable": 15,
       "starbridge_open_rfps": 0,
       "priority_score": 16,
@@ -3697,8 +3973,32 @@
           "url": "https://education.alaska.gov/akreads"
         }
       ],
-      "qualified": 7,
-      "actionable": 7,
+      "qualified": 6,
+      "actionable": 6,
+      "starbridge_open_rfps": 0,
+      "priority_score": 14,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 4,
+        "hubspot_footprint": 10
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "AR",
+      "product": "inkwell",
+      "since": "2023-03",
+      "headline": "Arkansas's LEARNS Act (Act 237 of 2023, signed March 8, 2023) mandates science-of-reading instruction, K-3 dyslexia/literacy screening, and bars promotion of 3rd graders missing reading benchmarks starting SY2025-26.",
+      "sources": [
+        {
+          "title": "DESE - LEARNS Act 237 of 2023",
+          "url": "https://dese.ade.arkansas.gov/Offices/special-projects/learns-act-237-of-2023-"
+        }
+      ],
+      "qualified": 8,
+      "actionable": 6,
       "starbridge_open_rfps": 0,
       "priority_score": 14,
       "priority_tier": "low_priority",
@@ -3722,7 +4022,7 @@
         }
       ],
       "qualified": 9,
-      "actionable": 4,
+      "actionable": 5,
       "starbridge_open_rfps": 0,
       "priority_score": 13,
       "priority_tier": "low_priority",
@@ -3745,8 +4045,8 @@
           "url": "https://www.maine.gov/doe/learning/mlrtaskforce"
         }
       ],
-      "qualified": 18,
-      "actionable": 10,
+      "qualified": 19,
+      "actionable": 11,
       "starbridge_open_rfps": 0,
       "priority_score": 10,
       "priority_tier": "low_priority",
@@ -3755,30 +4055,6 @@
         "warm_signal": 0,
         "policy_recency": 0,
         "hubspot_footprint": 10
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "WV",
-      "product": "inkwell",
-      "since": "2023",
-      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
-      "sources": [
-        {
-          "title": "Third Grade Success Act - West Virginia Department of Education",
-          "url": "https://wvde.us/third-grade-success-act/"
-        }
-      ],
-      "qualified": 4,
-      "actionable": 3,
-      "starbridge_open_rfps": 0,
-      "priority_score": 9,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 5
       },
       "starbridge_open_rfps_product": 0
     },
@@ -3793,31 +4069,7 @@
           "url": "https://governor.hawaii.gov/newsroom/vnr-ready-keiki-expands-public-pre-k-access-in-west-o%CA%BBahu-new-early-childhood-state-plan-released/"
         }
       ],
-      "qualified": 8,
-      "actionable": 5,
-      "starbridge_open_rfps": 0,
-      "priority_score": 9,
-      "priority_tier": "low_priority",
-      "priority_breakdown": {
-        "open_rfp": 0,
-        "warm_signal": 0,
-        "policy_recency": 4,
-        "hubspot_footprint": 5
-      },
-      "starbridge_open_rfps_product": 0
-    },
-    {
-      "state": "AR",
-      "product": "inkwell",
-      "since": "2023-03",
-      "headline": "Arkansas's LEARNS Act (Act 237 of 2023, signed March 8, 2023) mandates science-of-reading instruction, K-3 dyslexia/literacy screening, and bars promotion of 3rd graders missing reading benchmarks starting SY2025-26.",
-      "sources": [
-        {
-          "title": "DESE - LEARNS Act 237 of 2023",
-          "url": "https://dese.ade.arkansas.gov/Offices/special-projects/learns-act-237-of-2023-"
-        }
-      ],
-      "qualified": 7,
+      "qualified": 9,
       "actionable": 5,
       "starbridge_open_rfps": 0,
       "priority_score": 9,
@@ -3841,8 +4093,8 @@
           "url": "https://osse.dc.gov/release/osse-adopts-new-social-studies-standards-district-columbia-students"
         }
       ],
-      "qualified": 4,
-      "actionable": 3,
+      "qualified": 5,
+      "actionable": 4,
       "starbridge_open_rfps": 3,
       "priority_score": 9,
       "priority_tier": "low_priority",
@@ -3851,6 +4103,30 @@
         "warm_signal": 0,
         "policy_recency": 4,
         "hubspot_footprint": 5
+      },
+      "starbridge_open_rfps_product": 0
+    },
+    {
+      "state": "WV",
+      "product": "inkwell",
+      "since": "2023",
+      "headline": "West Virginia's 2023 Third Grade Success Act now requires mandatory retention of K-3 students not proficient in ELA/math, effective SY2026-27 (current school year); teachers must use WVDE-approved science-of-reading materials by 2026-27.",
+      "sources": [
+        {
+          "title": "Third Grade Success Act - West Virginia Department of Education",
+          "url": "https://wvde.us/third-grade-success-act/"
+        }
+      ],
+      "qualified": 4,
+      "actionable": 2,
+      "starbridge_open_rfps": 0,
+      "priority_score": 6,
+      "priority_tier": "low_priority",
+      "priority_breakdown": {
+        "open_rfp": 0,
+        "warm_signal": 0,
+        "policy_recency": 4,
+        "hubspot_footprint": 2
       },
       "starbridge_open_rfps_product": 0
     }
@@ -3922,7 +4198,7 @@
         "name": "Riverton Community Unit School District 14",
         "segment": "Small District",
         "stage": "MQA",
-        "signal": null,
+        "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
         "last_contacted": "2026-08-27",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976007325"
@@ -3952,7 +4228,7 @@
         "name": "Athens Senior High School",
         "segment": "Small District",
         "stage": "MQA",
-        "signal": null,
+        "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
         "last_contacted": "2026-04-14",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246857165"
@@ -4001,7 +4277,7 @@
       },
       {
         "id": 55218375690,
-        "name": "Roavc.com",
+        "name": "55218375690",
         "segment": "Single Site",
         "stage": "MQA",
         "signal": "High Intent DL",
@@ -4111,7 +4387,7 @@
       {
         "id": 30357262519,
         "name": "Uncommon Schools",
-        "segment": null,
+        "segment": "Other",
         "stage": "MQA",
         "signal": "Upcoming Adoption",
         "owner": "LJ Grab",
@@ -4169,108 +4445,6 @@
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/1743400290"
       }
     ],
-    "WI": [
-      {
-        "id": 5246868545,
-        "name": "Mapledale Middle School",
-        "segment": "Single Site",
-        "stage": "MQA",
-        "signal": "High Intent DL;Marked \"Yes, Reviewing\"",
-        "owner": "LJ Grab",
-        "last_contacted": "2022-01-21",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246868545"
-      },
-      {
-        "id": 4821446791,
-        "name": "Wqi",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": "Marked \"Yes, Reviewing\";Upcoming Adoption",
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-09-14",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4821446791"
-      },
-      {
-        "id": 8976278100,
-        "name": "Beecher-dunbar-pembine School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-06-18",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976278100"
-      },
-      {
-        "id": 8976321387,
-        "name": "Randall Consolidated School (District)",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "High Intent DL",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-07-08",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976321387"
-      },
-      {
-        "id": 3405035613,
-        "name": "Waunakee Community School District",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": null,
-        "owner": "LJ Grab",
-        "last_contacted": "2026-05-14",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3405035613"
-      },
-      {
-        "id": 4994703998,
-        "name": "Kaukauna Area School District",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-05-29",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4994703998"
-      },
-      {
-        "id": 5246875001,
-        "name": "Oregon School District",
-        "segment": "Medium District",
-        "stage": "MQA",
-        "signal": null,
-        "owner": "Gianna Miller",
-        "last_contacted": "2026-05-26",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246875001"
-      },
-      {
-        "id": 8976108695,
-        "name": "Cashton School District",
-        "segment": "Small District",
-        "stage": "MQA",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-04-29",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976108695"
-      },
-      {
-        "id": 8976346645,
-        "name": "Bruce Guadalupe Community School (District)",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-05-04",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976346645"
-      },
-      {
-        "id": 29142851177,
-        "name": "The Lincoln Academy",
-        "segment": "Single Site",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2026-04-08",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/29142851177"
-      }
-    ],
     "KY": [
       {
         "id": 8976907910,
@@ -4325,7 +4499,7 @@
       {
         "id": 16948542598,
         "name": "Paducah Independent School District",
-        "segment": null,
+        "segment": "Other",
         "stage": "MQA",
         "signal": null,
         "owner": "LJ Grab",
@@ -4371,6 +4545,108 @@
         "owner": "LJ Grab",
         "last_contacted": "2025-09-09",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/3199948336"
+      }
+    ],
+    "WI": [
+      {
+        "id": 5246868545,
+        "name": "Mapledale Middle School",
+        "segment": "Single Site",
+        "stage": "MQA",
+        "signal": "High Intent DL;Marked \"Yes, Reviewing\"",
+        "owner": "LJ Grab",
+        "last_contacted": "2022-01-21",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246868545"
+      },
+      {
+        "id": 8976278100,
+        "name": "Beecher-dunbar-pembine School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-06-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976278100"
+      },
+      {
+        "id": 8976321387,
+        "name": "Randall Consolidated School (District)",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": null,
+        "owner": "LJ Grab",
+        "last_contacted": "2026-07-08",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976321387"
+      },
+      {
+        "id": 4994703998,
+        "name": "Kaukauna Area School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-05-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/4994703998"
+      },
+      {
+        "id": 8976108695,
+        "name": "Cashton School District",
+        "segment": "Small District",
+        "stage": "MQA",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-29",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976108695"
+      },
+      {
+        "id": 8976346645,
+        "name": "Bruce Guadalupe Community School (District)",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-05-04",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976346645"
+      },
+      {
+        "id": 29142851177,
+        "name": "The Lincoln Academy",
+        "segment": "Single Site",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-04-08",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/29142851177"
+      },
+      {
+        "id": 19249508743,
+        "name": "Good Shepherd Lutheran Church",
+        "segment": "Other",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2026-03-26",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/19249508743"
+      },
+      {
+        "id": 8976294451,
+        "name": "Fall River School District",
+        "segment": "Small District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "LJ Grab",
+        "last_contacted": "2025-11-24",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976294451"
+      },
+      {
+        "id": 5246856971,
+        "name": "Howard-Suamico School District",
+        "segment": "Medium District",
+        "stage": "MQA",
+        "signal": "DL attended TL Webinar;Upcoming Adoption",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-05-27",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/5246856971"
       }
     ],
     "NJ": [
@@ -4517,6 +4793,16 @@
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/20847572888"
       },
       {
+        "id": 7211387733,
+        "name": "Mt. Lebanon School District",
+        "segment": "Medium District",
+        "stage": "Engaged",
+        "signal": "Upcoming Adoption",
+        "owner": "Gianna Miller",
+        "last_contacted": "2026-09-18",
+        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/7211387733"
+      },
+      {
         "id": 4355185179,
         "name": "Burrell School District",
         "segment": "Small District",
@@ -4565,16 +4851,6 @@
         "owner": "LJ Grab",
         "last_contacted": "2025-08-28",
         "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976232024"
-      },
-      {
-        "id": 8976333466,
-        "name": "Huntingdon Area School District",
-        "segment": "Small District",
-        "stage": "Engaged",
-        "signal": "Upcoming Adoption",
-        "owner": "LJ Grab",
-        "last_contacted": "2025-11-19",
-        "hs_url": "https://app.hubspot.com/contacts/4451852/record/0-2/8976333466"
       }
     ],
     "IA": [
@@ -4591,7 +4867,7 @@
       {
         "id": 1088593052,
         "name": "Svjags.org",
-        "segment": null,
+        "segment": "Other",
         "stage": "MQA",
         "signal": "2+ Leads Created Last 90 days;Upcoming Adoption",
         "owner": "LJ Grab",
@@ -4753,7 +5029,7 @@
       {
         "id": 3229076318,
         "name": "Silver Lake School District",
-        "segment": null,
+        "segment": "Other",
         "stage": "Engaged",
         "signal": null,
         "owner": "LJ Grab",
@@ -6673,100 +6949,149 @@
     "For a cold-start watch-state with no existing footprint, plan for a longer ramp — there's no warm relationship to open the door."
   ],
   "warm_signals_by_state": {
-    "NY": {
-      "count": 4,
+    "AZ": {
+      "count": 2,
       "by_product": {
-        "gf8": 3,
+        "gf8": 0,
+        "ij": 1,
+        "inkwell": 1
+      },
+      "top": [
+        {
+          "buyer": "Blue Ridge Unified School District 32",
+          "meeting": "Blue Ridge USD 32 Social Studies Curriculum Committee",
+          "posted_date": "2026-11-17",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Tanque Verde Unified School District 13",
+          "meeting": "Tanque Verde Unified School District K-6 ELA Curriculum Adoption Timeline",
+          "posted_date": "2026-09-16",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "CA": {
+      "count": 3,
+      "by_product": {
+        "gf8": 1,
+        "ij": 2,
+        "inkwell": 0
+      },
+      "top": [
+        {
+          "buyer": "Moreno Valley Unified School District",
+          "meeting": "Moreno Valley Unified School District Elementary Social Studies Curriculum Adoption",
+          "posted_date": "2026-08-25",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Azusa Unified School District",
+          "meeting": "Azusa SD Plans $1.5M for Transitional Kindergarten Expansion & K–3 Alignment in 2026-2027 Plan",
+          "posted_date": "2026-06-23",
+          "product": "gf8",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Glendale Unified School District",
+          "meeting": "Glendale Unified School District: K-8 Social Science Curriculum Adoption And Review",
+          "posted_date": "2026-06-23",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "CO": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 1,
+        "inkwell": 0
+      },
+      "top": [
+        {
+          "buyer": "Bennett School District 29-J",
+          "meeting": "Bennett School District 29J Begins K-12 Social Studies Adoption",
+          "posted_date": "2026-10-21",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "CT": {
+      "count": 2,
+      "by_product": {
+        "gf8": 1,
         "ij": 0,
         "inkwell": 1
       },
       "top": [
         {
-          "buyer": "West Islip School District",
-          "meeting": "West Islip Board of Education Board Of Education Meeting",
-          "posted_date": "2026-11-05",
+          "buyer": "Norwalk Public Schools",
+          "meeting": "Norwalk Public Schools Evaluating Curriculum Resources For New “Fives” Program",
+          "posted_date": "2026-11-17",
           "product": "gf8",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
         },
         {
-          "buyer": "Byram Hills Central School District",
-          "meeting": "Board Of Education Board Of Education Meeting",
-          "posted_date": "2026-10-13",
-          "product": "gf8",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Port Washington Union Free School District",
-          "meeting": "Port Washington Board of Education Board Meeting",
-          "posted_date": "2026-09-17",
+          "buyer": "East Hartford Public Schools",
+          "meeting": "East Hartford Public Schools: Science of Reading Curriculum RFP",
+          "posted_date": "2026-11-10",
           "product": "inkwell",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Byram Hills Central School District",
-          "meeting": "Byram Hills School District Board Goals 2026-2027",
-          "posted_date": "2026-09-15",
-          "product": "gf8",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
         }
       ]
     },
-    "MA": {
-      "count": 6,
+    "FL": {
+      "count": 1,
       "by_product": {
-        "gf8": 1,
+        "gf8": 0,
         "ij": 0,
-        "inkwell": 5
+        "inkwell": 1
       },
       "top": [
         {
-          "buyer": "Haverhill Public Schools",
-          "meeting": "Haverhill Public Schools Superintendent Goals 2026-2029",
-          "posted_date": "2026-11-09",
+          "buyer": "Columbia County School District",
+          "meeting": "Columbia County School District K-12 ELA Core Materials Adoption",
+          "posted_date": "2026-10-13",
           "product": "inkwell",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
-        },
+        }
+      ]
+    },
+    "ID": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 1
+      },
+      "top": [
         {
-          "buyer": "Hopkinton Public School District",
-          "meeting": "School Committee School Committee Meeting",
-          "posted_date": "2026-10-15",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Brookline Public School District",
-          "meeting": "Brookline School Committee Regular Meeting",
-          "posted_date": "2026-10-14",
-          "product": "gf8",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Hopkinton Public School District",
-          "meeting": "Hopkins School Committee Meeting",
-          "posted_date": "2026-09-24",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Westwood Public School District",
-          "meeting": "Westwood School Committee Meeting Minutes",
-          "posted_date": "2026-09-15",
+          "buyer": "Moscow School District 281",
+          "meeting": "Moscow School District 281 English Language Arts Curriculum Adoption",
+          "posted_date": "2026-11-18",
           "product": "inkwell",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
@@ -6775,16 +7100,16 @@
       ]
     },
     "IL": {
-      "count": 4,
+      "count": 5,
       "by_product": {
         "gf8": 3,
-        "ij": 0,
+        "ij": 1,
         "inkwell": 1
       },
       "top": [
         {
           "buyer": "Community Consolidated School District 59",
-          "meeting": "Board of Education School District 59 Board of Education Meeting",
+          "meeting": "Community Consolidated School District 59 K-5 ELA Curriculum Consolidation",
           "posted_date": "2026-11-10",
           "product": "inkwell",
           "score": 10,
@@ -6792,8 +7117,17 @@
           "status": "New"
         },
         {
+          "buyer": "Kinnikinnick Community Consolidated School District 131",
+          "meeting": "Kinnikinnick CCSD 131 Social Studies Curriculum Review",
+          "posted_date": "2026-10-27",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        },
+        {
           "buyer": "Oak Park Elementary School District 97",
-          "meeting": "Oak Park Board of Education District 97 Regular Meeting",
+          "meeting": "Oak Park District 97 Early Childhood Curriculum Pilot",
           "posted_date": "2026-09-08",
           "product": "gf8",
           "score": 10,
@@ -6802,20 +7136,161 @@
         },
         {
           "buyer": "Cary Community Consolidated School District 26",
-          "meeting": "Committee of the Whole Committee Of The Whole Meeting",
+          "meeting": "Cary 26 Early Childhood Curriculum Review",
           "posted_date": "2026-08-24",
           "product": "gf8",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
+        }
+      ]
+    },
+    "IN": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 1,
+        "inkwell": 0
+      },
+      "top": [
+        {
+          "buyer": "Metropolitan School District of Wayne Township",
+          "meeting": "MSD of Wayne Township Plans Elementary Social Studies Adoption for 2027-2028",
+          "posted_date": "2026-08-24",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "MA": {
+      "count": 7,
+      "by_product": {
+        "gf8": 1,
+        "ij": 0,
+        "inkwell": 6
+      },
+      "top": [
+        {
+          "buyer": "Marlborough Public Schools",
+          "meeting": "Marlborough Public Schools: Early Literacy Foundations And Instructional Materials",
+          "posted_date": "2026-11-10",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
         },
         {
-          "buyer": "Oak Park Elementary School District 97",
-          "meeting": "Oak Park Board Of Education District 97 Regular Meeting",
-          "posted_date": "2026-08-11",
+          "buyer": "Haverhill Public Schools",
+          "meeting": "Haverhill Public Schools K–2 Foundational Reading Curriculum Review",
+          "posted_date": "2026-11-09",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Hopkinton Public School District",
+          "meeting": "Hopkinton Public School District K-5 ELA Curriculum Pilot",
+          "posted_date": "2026-10-15",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Brookline Public School District",
+          "meeting": "Brookline Public Schools: BEEP Early Literacy Curriculum Selection",
+          "posted_date": "2026-10-14",
           "product": "gf8",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "MN": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 1
+      },
+      "top": [
+        {
+          "buyer": "Red Wing Public Schools",
+          "meeting": "Red Wing Public Schools K-5 Literacy Pilot And February Adoption Decision",
+          "posted_date": "2026-09-22",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "NC": {
+      "count": 2,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 2
+      },
+      "top": [
+        {
+          "buyer": "Edgecombe County Public School District",
+          "meeting": "Stocks Elementary New K-5 Reading Curriculum Adoption",
+          "posted_date": "2026-10-19",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        },
+        {
+          "buyer": "Chapel Hill-Carrboro City School District",
+          "meeting": "Chapel Hill-Carrboro City Schools ELA Curriculum Adoption",
+          "posted_date": "2026-10-15",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "Saved"
+        }
+      ]
+    },
+    "NH": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 1
+      },
+      "top": [
+        {
+          "buyer": "Pelham School District",
+          "meeting": "Pelham School District Plans FY29 Elementary Reading Program Selection",
+          "posted_date": "2026-09-02",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "NJ": {
+      "count": 1,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 1
+      },
+      "top": [
+        {
+          "buyer": "Plainfield Public School District",
+          "meeting": "Plainfield Public Schools ELA Curriculum Adoption Process",
+          "posted_date": "2026-10-13",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
         }
       ]
@@ -6830,7 +7305,7 @@
       "top": [
         {
           "buyer": "Clark County School District",
-          "meeting": "Clark County School Board Regular Board Meeting",
+          "meeting": "Clark County School District PreK Curriculum RFP And Expansion",
           "posted_date": "2026-09-10",
           "product": "gf8",
           "score": 10,
@@ -6839,48 +7314,48 @@
         }
       ]
     },
-    "CA": {
-      "count": 4,
+    "NY": {
+      "count": 5,
       "by_product": {
-        "gf8": 1,
-        "ij": 3,
-        "inkwell": 0
+        "gf8": 3,
+        "ij": 0,
+        "inkwell": 2
       },
       "top": [
         {
-          "buyer": "Moreno Valley Unified School District",
-          "meeting": "Board Of Education Of The Moreno Valley Unified School District Regular Meeting",
-          "posted_date": "2026-08-25",
-          "product": "ij",
+          "buyer": "Niagara-Wheatfield Central School District",
+          "meeting": "Niagara-Wheatfield K-2 ELA Science Of Reading Review",
+          "posted_date": "2026-11-18",
+          "product": "inkwell",
           "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
         },
         {
-          "buyer": "Azusa Unified School District",
-          "meeting": "Azusa Unified School District Local Control and Accountability Plan 2026-2027",
-          "posted_date": "2026-06-23",
+          "buyer": "West Islip School District",
+          "meeting": "West Islip School District PreK Capacity Planning Ahead Of 2028-29 Mandate",
+          "posted_date": "2026-11-05",
           "product": "gf8",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
         },
         {
-          "buyer": "Glendale Unified School District",
-          "meeting": "Glendale Unified School District Local Control and Accountability Plan 2026-2027",
-          "posted_date": "2026-06-23",
-          "product": "ij",
+          "buyer": "Byram Hills Central School District",
+          "meeting": "Byram Hills Central School District PreK Curriculum And Screening Evaluation",
+          "posted_date": "2026-10-13",
+          "product": "gf8",
           "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "source_bridge": "[MASTER] Warm Signals (GFE) > 1.5k",
           "status": "New"
         },
         {
-          "buyer": "Carlsbad Unified School District",
-          "meeting": "Carlsbad Unified School District Local Control and Accountability Plan 2026-2027",
-          "posted_date": "2026-06-01",
-          "product": "ij",
+          "buyer": "Port Washington Union Free School District",
+          "meeting": "Port Washington Union Free School District K-2 Literacy Program Pilot",
+          "posted_date": "2026-09-17",
+          "product": "inkwell",
           "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
         }
       ]
@@ -6895,7 +7370,7 @@
       "top": [
         {
           "buyer": "Lakewood City School District",
-          "meeting": "Lakewood City Schools Board of Education Board of Education Meeting",
+          "meeting": "Lakewood City School District Plans Social Studies Adoption By May 2027",
           "posted_date": "2026-11-09",
           "product": "ij",
           "score": 10,
@@ -6904,7 +7379,7 @@
         },
         {
           "buyer": "Mentor Exempted Village School District",
-          "meeting": "Mentor Exempted Village Board of Education Regular Meeting",
+          "meeting": "Mentor Exempted Village Schools Begins K-8 Social Studies Review for 2028-29 Adoption",
           "posted_date": "2026-10-13",
           "product": "ij",
           "score": 10,
@@ -6923,7 +7398,7 @@
       "top": [
         {
           "buyer": "Lampeter-Strasburg School District",
-          "meeting": "Lampeter-Strasburg School District Academic Committee Meeting Minutes",
+          "meeting": "Lampeter-Strasburg School District K–5 Literacy Resource Adoption",
           "posted_date": "2026-10-05",
           "product": "inkwell",
           "score": 10,
@@ -6932,7 +7407,7 @@
         },
         {
           "buyer": "Wyomissing Area School District",
-          "meeting": "Wyomissing Area School Board Board Meeting",
+          "meeting": "Wyomissing Area School District: K-4 ELA Materials Pilot",
           "posted_date": "2026-10-05",
           "product": "inkwell",
           "score": 10,
@@ -6941,7 +7416,7 @@
         },
         {
           "buyer": "Southern Lehigh School District",
-          "meeting": "Southern Lehigh School District Board of School Directors School Board Meeting",
+          "meeting": "Southern Lehigh School District K-5 Social Studies Curriculum Review",
           "posted_date": "2026-09-14",
           "product": "ij",
           "score": 10,
@@ -6951,20 +7426,66 @@
       ]
     },
     "TN": {
-      "count": 1,
+      "count": 2,
       "by_product": {
         "gf8": 0,
-        "ij": 1,
+        "ij": 2,
         "inkwell": 0
       },
       "top": [
         {
+          "buyer": "Arlington Community Schools",
+          "meeting": "Arlington Community Schools Social Studies Textbook Adoption For 2027-28",
+          "posted_date": "2026-11-17",
+          "product": "ij",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        },
+        {
           "buyer": "Franklin Special School District",
-          "meeting": "Franklin Special District Board Of Education Board Meeting",
+          "meeting": "Franklin Special School District Begins 2027-28 Social Studies Textbook Adoption",
           "posted_date": "2026-10-20",
           "product": "ij",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
+          "status": "New"
+        }
+      ]
+    },
+    "TX": {
+      "count": 3,
+      "by_product": {
+        "gf8": 0,
+        "ij": 0,
+        "inkwell": 3
+      },
+      "top": [
+        {
+          "buyer": "Calhoun County Independent School District",
+          "meeting": "Jackson-Roosevelt Elementary 2026-2027 Early Literacy Curriculum Purchase",
+          "posted_date": "2026-11-19",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "Saved"
+        },
+        {
+          "buyer": "Northside Independent School District",
+          "meeting": "Northside ISD Elementary Reading Materials Adoption",
+          "posted_date": "2026-10-27",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
+          "status": "Saved"
+        },
+        {
+          "buyer": "Raul Yzaguirre Schools For Success",
+          "meeting": "RYSS Early Childhood Academy PK Literacy Curriculum Review",
+          "posted_date": "2026-10-06",
+          "product": "inkwell",
+          "score": 10,
+          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
         }
       ]
@@ -6979,182 +7500,31 @@
       "top": [
         {
           "buyer": "Washougal School District 112-6",
-          "meeting": "Washougal School Board School Board Meeting",
+          "meeting": "Washougal School District Social Studies Curriculum Adoption Planning",
           "posted_date": "2026-10-13",
           "product": "ij",
           "score": 10,
           "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "IN": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 1,
-        "inkwell": 0
-      },
-      "top": [
-        {
-          "buyer": "Metropolitan School District of Wayne Township",
-          "meeting": "MSD of Wayne Township Board of Education Working Session",
-          "posted_date": "2026-08-24",
-          "product": "ij",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (IJ) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "TX": {
-      "count": 2,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 2
-      },
-      "top": [
-        {
-          "buyer": "Northside Independent School District",
-          "meeting": "North Side ISD Board of Trustees Called Meeting",
-          "posted_date": "2026-10-27",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "Saved"
-        },
-        {
-          "buyer": "Raul Yzaguirre Schools For Success",
-          "meeting": "Ryss Early Childhood Academy At Ost Campus Improvement Plan 2026-2027",
-          "posted_date": "2026-10-06",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "NC": {
-      "count": 2,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 2
-      },
-      "top": [
-        {
-          "buyer": "Edgecombe County Public School District",
-          "meeting": "Stocks Elementary School Comprehensive Progress Report 2027",
-          "posted_date": "2026-10-19",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        },
-        {
-          "buyer": "Chapel Hill-Carrboro City School District",
-          "meeting": "Board Of Education Board Meeting",
-          "posted_date": "2026-10-15",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "Saved"
-        }
-      ]
-    },
-    "FL": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 1
-      },
-      "top": [
-        {
-          "buyer": "Columbia County School District",
-          "meeting": "Columbia County School Board Regular Meeting",
-          "posted_date": "2026-10-13",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "MN": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 1
-      },
-      "top": [
-        {
-          "buyer": "Red Wing Public Schools",
-          "meeting": "Frederick Public Schools Board Regular Meeting",
-          "posted_date": "2026-09-22",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "NH": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 1
-      },
-      "top": [
-        {
-          "buyer": "Pelham School District",
-          "meeting": "Pelham School District Goals 2026-2028",
-          "posted_date": "2026-09-02",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
-          "status": "New"
-        }
-      ]
-    },
-    "AZ": {
-      "count": 1,
-      "by_product": {
-        "gf8": 0,
-        "ij": 0,
-        "inkwell": 1
-      },
-      "top": [
-        {
-          "buyer": "Tanque Verde Unified School District 13",
-          "meeting": "Tanque Verde Unified School District Governing Board Governing Board Meeting Minutes",
-          "posted_date": "2026-09-16",
-          "product": "inkwell",
-          "score": 10,
-          "source_bridge": "[MASTER] Warm Signals (Inkwell) > 1.5k",
           "status": "New"
         }
       ]
     }
   },
-  "warm_signals_90d_total": 35,
+  "warm_signals_90d_total": 45,
   "warm_signals_audit": {
-    "window_start": "2026-08-18",
+    "window_start": "2026-08-25",
     "by_bridge": {
       "gf8": {
-        "rows_scanned": 779,
-        "qualifying": 9
+        "rows_scanned": 860,
+        "qualifying": 10
       },
       "ij": {
-        "rows_scanned": 682,
-        "qualifying": 9
+        "rows_scanned": 773,
+        "qualifying": 12
       },
       "inkwell": {
-        "rows_scanned": 1495,
-        "qualifying": 17
+        "rows_scanned": 1652,
+        "qualifying": 23
       }
     }
   },
