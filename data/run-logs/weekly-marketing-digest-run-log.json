@@ -5790,5 +5790,444 @@
       "Closed-won MTD (Nov 1-16, all 5 pipelines): 7 deals, $4,103.40. Latest 3 closed-lost deals (Harrington Elementary MA, Red Cross Elementary KY, Bennett School District CO) all had a blank closed_lost_reason -- no competitive signal to report.",
       "GSC brand lift (Phase 2.5): script exited 0. Weeks upserted: 2026-11-02 (finalized) and 2026-11-09 (provisional, 5/7 days settled). YouTube and Instagram remain unavailable via the Search Analytics API (Search Console platform properties, not a credentials issue)."
     ]
+  },
+  {
+    "run_date": "2026-11-23",
+    "period_label": "2026-W47",
+    "window_current": [
+      "2026-11-16",
+      "2026-11-22"
+    ],
+    "window_prior": [
+      "2026-11-09",
+      "2026-11-15"
+    ],
+    "slack_message_ts": "",
+    "totals": {
+      "hih_current": 23,
+      "hih_prior": 20,
+      "hih_wow_pct": 15.0,
+      "mql_current": 75,
+      "mql_prior": 64,
+      "mql_wow_pct": 17.2,
+      "sql_current": 6,
+      "sql_prior": 2,
+      "sql_wow_pct": 200.0,
+      "opp_current": 6,
+      "opp_prior": 2,
+      "opp_wow_pct": 200.0
+    },
+    "by_product": {
+      "ij": {
+        "hih": [
+          4,
+          2
+        ],
+        "mql": [
+          14,
+          14
+        ],
+        "sql": [
+          3,
+          0
+        ],
+        "opp": [
+          3,
+          0
+        ]
+      },
+      "inkwell": {
+        "hih": [
+          8,
+          9
+        ],
+        "mql": [
+          44,
+          31
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "wh": {
+        "hih": [
+          0,
+          0
+        ],
+        "mql": [
+          0,
+          2
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "gf8": {
+        "hih": [
+          9,
+          3
+        ],
+        "mql": [
+          9,
+          4
+        ],
+        "sql": [
+          0,
+          1
+        ],
+        "opp": [
+          0,
+          1
+        ]
+      }
+    },
+    "by_segment": {
+      "single_small": {
+        "hih": [
+          7,
+          2
+        ],
+        "mql": [
+          24,
+          10
+        ],
+        "sql": [
+          3,
+          2
+        ],
+        "opp": [
+          3,
+          2
+        ]
+      },
+      "medium": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          8,
+          8
+        ],
+        "sql": [
+          1,
+          0
+        ],
+        "opp": [
+          1,
+          0
+        ]
+      },
+      "large": {
+        "hih": [
+          0,
+          1
+        ],
+        "mql": [
+          0,
+          2
+        ],
+        "sql": [
+          0,
+          0
+        ],
+        "opp": [
+          0,
+          0
+        ]
+      },
+      "enterprise": {
+        "hih": [
+          1,
+          0
+        ],
+        "mql": [
+          7,
+          2
+        ],
+        "sql": [
+          2,
+          0
+        ],
+        "opp": [
+          2,
+          0
+        ]
+      }
+    },
+    "coverage_pct": {
+      "product": {
+        "hih": 91.3,
+        "mql": 89.3,
+        "sql": 50.0,
+        "opp": 50.0
+      },
+      "segment": {
+        "hih": 39.1,
+        "mql": 52.0,
+        "sql": 100.0,
+        "opp": 100.0
+      }
+    },
+    "disposition": {
+      "disqualified_current": 229,
+      "disqualified_prior": 309,
+      "entered_nurture_current": 128,
+      "entered_nurture_prior": 127,
+      "by_product_current": {
+        "ij": {
+          "disqualified": 12,
+          "entered_nurture": 2
+        },
+        "inkwell": {
+          "disqualified": 58,
+          "entered_nurture": 25
+        },
+        "wh": {
+          "disqualified": 3,
+          "entered_nurture": 0
+        },
+        "gf8": {
+          "disqualified": 18,
+          "entered_nurture": 7
+        }
+      }
+    },
+    "pipeline": {
+      "new_business_open_deals": 180,
+      "account_growth_open_deals": 12,
+      "renewal_open_deals": 289,
+      "district_open_deals": 5,
+      "school_open_deals": 3,
+      "by_product": {
+        "ij": {
+          "count": 418,
+          "amount": 8763775.68
+        },
+        "inkwell": {
+          "count": 26,
+          "amount": 974120.0
+        },
+        "wh": {
+          "count": 79,
+          "amount": 786506.93
+        },
+        "gf8": {
+          "count": 30,
+          "amount": 1615596.0
+        },
+        "untagged": {
+          "count": 19,
+          "amount": 514875.62
+        }
+      },
+      "by_stage": {
+        "new_business": [
+          {
+            "stage": "Sales Qualified",
+            "count": 12,
+            "amount": 3000.0
+          },
+          {
+            "stage": "Interest",
+            "count": 146,
+            "amount": 4030159.33
+          },
+          {
+            "stage": "Consideration",
+            "count": 18,
+            "amount": 1455737.0
+          },
+          {
+            "stage": "Conviction",
+            "count": 4,
+            "amount": 32828.0
+          }
+        ],
+        "account_growth": [
+          {
+            "stage": "Interest",
+            "count": 9,
+            "amount": 191500.0
+          },
+          {
+            "stage": "Sales Qualified",
+            "count": 3,
+            "amount": 0.0
+          }
+        ],
+        "renewal": [
+          {
+            "stage": "Nurture",
+            "count": 276,
+            "amount": 5771251.49
+          },
+          {
+            "stage": "Engaged",
+            "count": 8,
+            "amount": 116614.17
+          },
+          {
+            "stage": "Validation/Approval",
+            "count": 5,
+            "amount": 155582.44
+          }
+        ],
+        "district": [
+          {
+            "stage": "86998181",
+            "count": 1,
+            "amount": 10000.0
+          },
+          {
+            "stage": "86998182",
+            "count": 2,
+            "amount": 6650.0
+          },
+          {
+            "stage": "86998184",
+            "count": 1,
+            "amount": 0.0
+          },
+          {
+            "stage": "1130557497",
+            "count": 1,
+            "amount": 0.0
+          }
+        ],
+        "school": [
+          {
+            "stage": "90421578",
+            "count": 1,
+            "amount": 1.0
+          },
+          {
+            "stage": "87077266",
+            "count": 2,
+            "amount": 0.0
+          }
+        ]
+      }
+    },
+    "hih_pool": 2587,
+    "closed_won_mtd": {
+      "deals": 7,
+      "amount": 4103.4,
+      "month": "2026-11"
+    },
+    "top_pieces": [
+      {
+        "offer": "Lit Talk with Dr. Nell K. Duke (webinar)",
+        "fills": 45
+      },
+      {
+        "offer": "IJ-DL: Scope & Sequence",
+        "fills": 15
+      },
+      {
+        "offer": "ELA-DL: Inkwell PPC Lander",
+        "fills": 13
+      },
+      {
+        "offer": "Source Material Webinar Series",
+        "fills": 8
+      },
+      {
+        "offer": "ELA-DL: Inkwell The Integrated Instructional Block",
+        "fills": 7
+      },
+      {
+        "offer": "ELA-DL: Inkwell K2 Sample Lesson",
+        "fills": 6
+      },
+      {
+        "offer": "SS-DL: WH-Scope and Sequence",
+        "fills": 5
+      },
+      {
+        "offer": "Meetings Link: Grace Callahan (GF8)",
+        "fills": 4
+      },
+      {
+        "offer": "Meetings Link: Grace Shealy",
+        "fills": 4
+      },
+      {
+        "offer": "IJ-Demo: Experience a Lesson (webinar)",
+        "fills": 3
+      }
+    ],
+    "dq_reasons": [
+      {
+        "reason": "Gmail",
+        "count": 21
+      },
+      {
+        "reason": "Non-Sellable Company",
+        "count": 14
+      },
+      {
+        "reason": "University Professor",
+        "count": 3
+      },
+      {
+        "reason": "Bounced/Opted Out",
+        "count": 2
+      }
+    ],
+    "nurture_reasons": [
+      {
+        "reason": "Did Not Engage",
+        "count": 105
+      },
+      {
+        "reason": "Not interested - no reason specified",
+        "count": 13
+      },
+      {
+        "reason": "Teacher - No influence",
+        "count": 4
+      },
+      {
+        "reason": "Timing (>6 months)",
+        "count": 3
+      },
+      {
+        "reason": "Open Opportunity",
+        "count": 1
+      },
+      {
+        "reason": "Current Partner (No Upsell)",
+        "count": 1
+      },
+      {
+        "reason": "Recently Contacted",
+        "count": 1
+      }
+    ],
+    "list_event_detected": true,
+    "acknowledged_events": [],
+    "data_flags": [
+      "List-event check tripped for a SECOND consecutive week: Disqualified (229) + Nurture (128) = 357 > 2x this week's combined funnel (HIH+MQL+SQL+Opp=110, threshold 220). Both DQ and Nurture are near/below their 8-week medians (DQ median 283.5, Nurture median 135), consistent with a continued thin-funnel stretch rather than a list cleanup. The prior week's (Nov 9) flag was never added to acknowledged_events, so this is now two straight unconfirmed weeks -- worth a check-in with Kelsey if it persists a third week.",
+      "SQL and Opp both recovered to 6 (from last week's 2) but remain roughly 70% below their 8-week averages (SQL avg 21.6, Opp avg 21.1) -- second straight week of suppressed lower-funnel activity. No corroborating cause found (no stage-ID change, no mass closure); flagged as needs investigation.",
+      "HIH exclusions this week: 0 internal, 1 higher_ed (University of Massachusetts Boston, umb.edu), 0 competitor, out of 24 total HIH list contacts pulled (24 of 24 returned, list-based method).",
+      "HIH segment coverage 39.1% (9 of 23 HIH contacts had a segment) -- above the 30% flag threshold; cross-checked against drill rows, no discrepancy found.",
+      "Product and segment coverage all stages this week are above the 30% threshold (lowest: SQL/Opp product coverage at 50%) -- no coverage flag needed.",
+      "DQ reasons pulled from the LEAD object (40 LEADs entered '7 - Disqualified' this week) run well below the contact-level DQ count (229) -- different funnel stage, both numbers legitimate, consistent with prior runs.",
+      "Stage movement: New Business active-pipeline stage counts (entered/forward/back) computed in full from targeted deal-level pulls cross-checked against each deal's actual prior stage-entry timestamp (all 17 forward-moving deals confirmed forward by timestamp comparison, no back-movement found). Account Growth and Renewal had zero stage entries this window (confirmed via per-stage aggregate queries, not omitted). moved_deals includes all 17 forward moves plus the 9 Closed Lost exits (26 rows); the Closed Lost rows carry a null 'from' since the deals' pre-exit stage wasn't pulled (budget tradeoff), not a data error.",
+      "top_pieces avg8 omitted for 'ELA-DL: Inkwell PPC Lander' (2 prior data points), 'Meetings Link: Grace Callahan (GF8)' (1 prior data point), 'Meetings Link: Grace Shealy' (0 prior data points), and 'IJ-Demo: Experience a Lesson (webinar)' (no reliable match in run-log history).",
+      "Closed-won MTD (Nov 1-23, all 5 pipelines): unchanged at 7 deals / $4,103.40 -- no new closed-won anywhere this window. Latest 3 closed-lost deals (Excellent Schools WA, Council Bluffs Community School District IA $17,220, Grace Childcare Services MI): Council Bluffs' stated reason was choosing consistency with their existing 6-12 social studies resource -- a soft competitive/incumbent-retention signal, not a named competitor display; the other two had no reason or a non-competitive reason.",
+      "GSC brand lift (Phase 2.5): script exited 0. Weeks upserted: 2026-11-09 (finalized, 241 clicks) and 2026-11-16 (provisional, 5/7 days settled, 163 clicks). Aligned 5-day WoW comparison: branded search clicks 149 vs 220 the prior week, -32% -- the sharpest drop since GSC tracking began in August -- called out as the week's watch item. YouTube and Instagram remain unavailable via the Search Analytics API (Search Console platform properties, not a credentials issue)."
+    ]
   }
 ]

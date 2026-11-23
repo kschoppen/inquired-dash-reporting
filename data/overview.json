@@ -26,24 +26,23 @@
     ]
   },
   "kpis": {
-    "hih_pool": 2566,
-    "mql_to_sql_pct": 3.1,
+    "hih_pool": 2587,
+    "mql_to_sql_pct": 8.0,
     "closed_won_mtd": "$4,103"
   },
   "brand_lift": {
-    "updated": "2026-11-16",
+    "updated": "2026-11-23",
     "status": "live",
-    "note": "These are Google Search numbers, not social engagement — how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector — it's owned by Microsoft and isn't integrated with Google. ⏳ The week of Nov 9 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (241 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
+    "note": "These are Google Search numbers, not social engagement \u2014 how often our brand and channels surface when people search. YouTube and Instagram are Search Console platform properties, visible in the Search Console UI but not exposed by the Search Analytics API, so those tiles stay blank rather than showing a fabricated zero. LinkedIn has no GSC connector \u2014 it's owned by Microsoft and isn't integrated with Google. \u23f3 The week of Nov 16 is still provisional: Google has finalized only 5 of its 7 days, so its full-week total (163 branded clicks) is understated and will revise upward on the next run. The WoW figure shown compares the same 5 settled days in each week, which is the like-for-like read; the full-week comparison would be misleading until the week settles.",
     "metrics": [
       {
         "key": "branded_search",
         "label": "Branded Search Clicks",
-        "sub": "Organic clicks on branded queries · inquired.com property",
-        "value": 241,
-        "delta": "-13% WoW ⚠️",
+        "sub": "Organic clicks on branded queries \u00b7 inquired.com property",
+        "value": 163,
+        "delta": "-32% WoW \ud83d\udea8",
         "delta_dir": "down",
         "spark": [
-          177,
           240,
           307,
           510,
@@ -55,7 +54,8 @@
           323,
           401,
           305,
-          241
+          241,
+          163
         ],
         "delta_basis": "first 5 days of each week",
         "provisional": true,
@@ -94,37 +94,37 @@
   },
   "weekly_signal": {
     "current": {
+      "week_label": "Week of Nov 16",
+      "updated": "2026-11-23",
+      "narrative": "HIH held steady this week at 23, right at its 8-week average, with Inkwell again contributing over a third of High Intent Handraisers and more than half of this week's 75 MQLs. SQL and Opportunity each recovered to 6 from last week's unusually thin 2, but both remain roughly 70% below their 8-week norms, marking a second straight week of soft lower-funnel movement with no clear cause identified. Disqualified and Nurture activity (229 and 128) again outweighed the week's combined funnel by more than 2x, tripping the list-event check for a second week running, though both sit near their own 8-week medians -- a thin-funnel pattern rather than a list cleanup. Sixteen new-business deals entered Interest this week worth about $190,800, branded search clicks fell 32% week over week on an aligned basis, and November's closed-won total holds at $4,103 across 7 deals."
+    },
+    "previous": {
       "week_label": "Week of Nov 9",
       "updated": "2026-11-16",
       "narrative": "The funnel split hard this week: HIH climbed 33% to 20, with Inkwell again contributing nearly half of it, while SQL and Opportunity each fell to just 2, down from 14 and 13 last week and about 92% under their 8-week averages. MQL held roughly flat at 64. Disqualified (309) and Nurture (127) together outweighed this week's thin funnel by more than 2x, tripping the list-event check, though both sit close to their own 8-week norms, so this looks like a soft week rather than a list cleanup. November's closed-won total stands at $4,103 across 7 deals so far, with 7 new-business deals entering Interest this week worth about $428K."
-    },
-    "previous": {
-      "week_label": "Week of Nov 2",
-      "updated": "2026-11-09",
-      "narrative": "The funnel cooled further this week: MQL fell to 65 (down 25% week over week and about 37% below the 8-week average), with SQL and Opportunity at 14 and 13, each roughly 40-45% below their recent norms, while HIH ticked up slightly to 15, with Inkwell still driving 7 of those 15. Disqualified and Nurture activity eased back to 258 and 81 -- both below their own 8-week medians -- but against this week's thinner funnel that ratio still tripped the list-event check, flagged in the run log rather than treated as a real list cleanup. Pipeline stayed active with 21 deals entering Interest across New Business and Account Growth (about $214.5K), and November's closed-won total sits at just $134 across 5 deals this early in the month."
     }
   },
   "pipeline_goal": {
     "school_year": "SY27-28",
-    "as_of": "2026-11-16",
+    "as_of": "2026-11-23",
     "goal": {
       "generated": 10000000,
       "closed_won": 2000000
     },
     "actual": {
-      "open": 4079787.33,
-      "lost": 2437127.5,
+      "open": 4214667.33,
+      "lost": 2484547.5,
       "won": 72521.91
     },
     "by_segment": {
       "single_small": {
-        "open": 395450.0,
-        "lost": 40800.0,
+        "open": 436050.0,
+        "lost": 61000.0,
         "won": 2583.0
       },
       "medium": {
-        "open": 1336774.0,
-        "lost": 637510.5,
+        "open": 1362154.0,
+        "lost": 664730.5,
         "won": 0.0
       },
       "large": {
@@ -133,15 +133,15 @@
         "won": 69938.91
       },
       "enterprise": {
-        "open": 935000.0,
+        "open": 990900.0,
         "lost": 1085349.0,
         "won": 0.0
       }
     },
     "by_product": {
       "ij": {
-        "open": 2749791.33,
-        "lost": 2338627.5,
+        "open": 2823571.33,
+        "lost": 2375847.5,
         "won": 72521.91
       },
       "inkwell": {
@@ -150,13 +150,13 @@
         "won": 0.0
       },
       "wh": {
-        "open": 14250.0,
-        "lost": 5000.0,
+        "open": 16750.0,
+        "lost": 22220.0,
         "won": 0.0
       },
       "gf8": {
-        "open": 1169996.0,
-        "lost": 93500.0,
+        "open": 1228596.0,
+        "lost": 103700.0,
         "won": 0.0
       },
       "untagged": {
@@ -177,8 +177,8 @@
         "won": 0.0
       },
       "new_business": {
-        "open": 4079787.33,
-        "lost": 1109456.5,
+        "open": 4214667.33,
+        "lost": 1156876.5,
         "won": 69938.91
       }
     },
