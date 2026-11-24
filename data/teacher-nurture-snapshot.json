@@ -1,50 +1,50 @@
 {
  "ok": true,
  "source": "snapshot",
- "updated": "2026-11-17",
- "fetched_at": "2026-11-17T12:39:40+00:00",
+ "updated": "2026-11-24",
+ "fetched_at": "2026-11-24T12:39:12+00:00",
  "stale_after_days": 8,
  "phases": {
   "awareness": {
-   "count": 42,
+   "count": 45,
    "segment_id": 40199920,
-   "cached_count": 42,
+   "cached_count": 45,
    "cached_as_of": "2026-09-24T17:48:02+00:00"
   },
   "discovery": {
-   "count": 14864,
+   "count": 15218,
    "segment_id": 40199921,
-   "cached_count": 15144,
+   "cached_count": 15505,
    "cached_as_of": "2026-09-24T17:48:04+00:00"
   },
   "adopt": {
-   "count": 623,
+   "count": 526,
    "segment_id": 40199922,
-   "cached_count": 632,
+   "cached_count": 533,
    "cached_as_of": "2026-09-24T17:48:06+00:00"
   },
   "sustained": {
-   "count": 2576,
+   "count": 2424,
    "segment_id": 40199923,
-   "cached_count": 2596,
+   "cached_count": 2441,
    "cached_as_of": "2026-09-24T17:48:08+00:00"
   },
   "holding": {
-   "count": 2634,
+   "count": 2641,
    "segment_id": 40199924,
-   "cached_count": 2681,
+   "cached_count": 2688,
    "cached_as_of": "2026-09-24T17:48:10+00:00"
   },
   "eligible": {
-   "count": 72019,
+   "count": 72232,
    "segment_id": 40199919,
-   "cached_count": 73479,
+   "cached_count": 73697,
    "cached_as_of": "2026-09-24T17:47:59+00:00"
   },
   "active_users": {
-   "count": 3269,
+   "count": 3020,
    "segment_id": 40199925,
-   "cached_count": 3300,
+   "cached_count": 3046,
    "cached_as_of": "2026-09-24T17:48:11+00:00"
   }
  },
@@ -126,11 +126,11 @@
    "web_id": 10349292,
    "type": "automation-email",
    "status": "sending",
-   "sent": 12147,
-   "opens": 3092,
-   "open_rate": 0.2578815679733111,
+   "sent": 12149,
+   "opens": 3094,
+   "open_rate": 0.2580053368912608,
    "clicks": 1210,
-   "click_rate": 0.10091743119266056,
+   "click_rate": 0.10090060040026684,
    "unsubs": 10,
    "bounces": 157
   },
@@ -141,11 +141,11 @@
    "web_id": 10349294,
    "type": "automation-email",
    "status": "sending",
-   "sent": 5729,
-   "opens": 1679,
-   "open_rate": 0.29435483870967744,
+   "sent": 5731,
+   "opens": 1682,
+   "open_rate": 0.2947774272695408,
    "clicks": 532,
-   "click_rate": 0.09326788218793829,
+   "click_rate": 0.09323519102698913,
    "unsubs": 11,
    "bounces": 25
   },
@@ -171,11 +171,11 @@
    "web_id": 10349298,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1550,
+   "sent": 1551,
    "opens": 391,
-   "open_rate": 0.2524209167204648,
+   "open_rate": 0.25225806451612903,
    "clicks": 117,
-   "click_rate": 0.07553260167850226,
+   "click_rate": 0.07548387096774194,
    "unsubs": 0,
    "bounces": 1
   },
@@ -201,11 +201,11 @@
    "web_id": 10349300,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1544,
-   "opens": 397,
-   "open_rate": 0.2572909915748542,
-   "clicks": 104,
-   "click_rate": 0.06740116655865197,
+   "sent": 1549,
+   "opens": 398,
+   "open_rate": 0.2571059431524548,
+   "clicks": 105,
+   "click_rate": 0.06782945736434108,
    "unsubs": 1,
    "bounces": 1
   },
@@ -232,8 +232,8 @@
    "type": "automation-email",
    "status": "sending",
    "sent": 2474,
-   "opens": 542,
-   "open_rate": 0.2194331983805668,
+   "opens": 543,
+   "open_rate": 0.21983805668016193,
    "clicks": 231,
    "click_rate": 0.09352226720647773,
    "unsubs": 2,
@@ -261,7 +261,7 @@
    "web_id": 10349304,
    "type": "automation-email",
    "status": "sending",
-   "sent": 2,
+   "sent": 3,
    "opens": 0,
    "open_rate": 0,
    "clicks": 0,
@@ -276,11 +276,13 @@
    "web_id": 10349305,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
+   "sent": 1,
    "opens": 0,
    "open_rate": 0,
    "clicks": 0,
-   "click_rate": 0
+   "click_rate": 0,
+   "unsubs": 0,
+   "bounces": 0
   },
   {
    "code": "H2",
@@ -319,11 +321,11 @@
    "web_id": 10349309,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1593,
+   "sent": 1594,
    "opens": 374,
-   "open_rate": 0.23492462311557788,
+   "open_rate": 0.23477715003138733,
    "clicks": 106,
-   "click_rate": 0.06658291457286432,
+   "click_rate": 0.06654111738857502,
    "unsubs": 0,
    "bounces": 1
   },
@@ -349,11 +351,11 @@
    "web_id": 10349311,
    "type": "automation-email",
    "status": "sending",
-   "sent": 1573,
-   "opens": 229,
-   "open_rate": 0.1457670273711012,
+   "sent": 1574,
+   "opens": 230,
+   "open_rate": 0.14631043256997456,
    "clicks": 89,
-   "click_rate": 0.056651814131126674,
+   "click_rate": 0.056615776081424936,
    "unsubs": 0,
    "bounces": 2
   },
@@ -379,11 +381,13 @@
    "web_id": 10349313,
    "type": "automation-email",
    "status": "sending",
-   "sent": 0,
-   "opens": 0,
-   "open_rate": 0,
-   "clicks": 0,
-   "click_rate": 0
+   "sent": 1122,
+   "opens": 226,
+   "open_rate": 0.2016057091882248,
+   "clicks": 68,
+   "click_rate": 0.060660124888492414,
+   "unsubs": 1,
+   "bounces": 1
   },
   {
    "code": "T13-3-5",
@@ -645,7 +649,141 @@
     "eligible": 72019,
     "active_users": 3269
    },
-   "sent_total": 39635
+   "sent_total": 39635,
+   "sent_by_code": {
+    "T2-3-5": 1,
+    "T2-K2": 0,
+    "T3": 0,
+    "T1": 8,
+    "T4": 12147,
+    "T5-3-5": 5729,
+    "T5-K2": 6290,
+    "T6-3-5": 1550,
+    "T6-K2": 1427,
+    "T7-3-5": 1544,
+    "T7-K2": 1427,
+    "T8": 2474,
+    "T21": 6,
+    "T22": 2,
+    "T23": 0,
+    "H2": 575,
+    "H3": 466,
+    "T9-3-5": 1593,
+    "T9-K2": 1465,
+    "T10": 1573,
+    "T11": 1358,
+    "T12": 0,
+    "T13-3-5": 0,
+    "T13-K2": 0,
+    "T14a": 0,
+    "T14b": 0,
+    "T15-3-5": 0,
+    "T15-K2": 0,
+    "T16": 0,
+    "T17": 0,
+    "T18": 0,
+    "T19": 0,
+    "T20": 0
+   }
+  },
+  {
+   "date": "2026-11-24",
+   "phases": {
+    "awareness": 45,
+    "discovery": 15218,
+    "adopt": 526,
+    "sustained": 2424,
+    "holding": 2641,
+    "eligible": 72232,
+    "active_users": 3020
+   },
+   "sent_total": 40771,
+   "sent_by_code": {
+    "T2-3-5": 1,
+    "T2-K2": 0,
+    "T3": 0,
+    "T1": 8,
+    "T4": 12149,
+    "T5-3-5": 5731,
+    "T5-K2": 6290,
+    "T6-3-5": 1551,
+    "T6-K2": 1427,
+    "T7-3-5": 1549,
+    "T7-K2": 1427,
+    "T8": 2474,
+    "T21": 6,
+    "T22": 3,
+    "T23": 1,
+    "H2": 575,
+    "H3": 466,
+    "T9-3-5": 1594,
+    "T9-K2": 1465,
+    "T10": 1574,
+    "T11": 1358,
+    "T12": 1122,
+    "T13-3-5": 0,
+    "T13-K2": 0,
+    "T14a": 0,
+    "T14b": 0,
+    "T15-3-5": 0,
+    "T15-K2": 0,
+    "T16": 0,
+    "T17": 0,
+    "T18": 0,
+    "T19": 0,
+    "T20": 0
+   }
   }
- ]
+ ],
+ "flags": [
+  {
+   "level": "watch",
+   "kind": "flat",
+   "text": "Awareness: no new sends since 2026-11-17."
+  },
+  {
+   "level": "watch",
+   "kind": "flat",
+   "text": "Holding: no new sends since 2026-11-17."
+  }
+ ],
+ "entry_check": [
+  {
+   "flow": "awareness",
+   "trigger_population_change": 3,
+   "first_email_sends": 0,
+   "all_flow_sends": 0
+  },
+  {
+   "flow": "discovery",
+   "trigger_population_change": 354,
+   "first_email_sends": 2,
+   "all_flow_sends": 4
+  },
+  {
+   "flow": "activation",
+   "trigger_population_change": -249,
+   "first_email_sends": 1,
+   "all_flow_sends": 6
+  },
+  {
+   "flow": "adopt",
+   "trigger_population_change": -249,
+   "first_email_sends": 1,
+   "all_flow_sends": 1124
+  },
+  {
+   "flow": "sustained",
+   "trigger_population_change": -152,
+   "first_email_sends": 0,
+   "all_flow_sends": 2
+  },
+  {
+   "flow": "holding",
+   "trigger_population_change": 7,
+   "first_email_sends": 0,
+   "all_flow_sends": 0
+  }
+ ],
+ "checks_base_date": "2026-11-17"
 }
